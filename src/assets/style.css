@@ -89,9 +89,14 @@ nav .icon-btn:hover span::before {
 main {
     position: relative;
     margin: 2rem 10vw 4rem;
-    padding: 1rem 2rem 2rem;
+    padding: 1rem 2rem;
     border-radius: 1rem;
     box-shadow: .125rem .25rem 1rem #666 !important;
+}
+
+main[data-is-first-page="true"],
+main[data-is-last-page="true"] {
+    padding-bottom: 3rem;
 }
 
 main[data-is-first-page="true"] button#previous {
@@ -109,13 +114,26 @@ main button#previous,
 main button#next {
     position: absolute;
     bottom: .5rem;
+    height: 2rem;
+    padding: 4px .5rem;
+    border: solid 4px var(--default-bd-color);
+    border-radius: 4px;
+    color: var(--default-tx-color);
+    background-color: var(--default-bg-color);
+    cursor: pointer;
+    transition: .3s;
+}
+main button#previous:hover,
+main button#next:hover {
+    color: var(--hovered-tx-color);
+    background-color: var(--hovered-bg-color);
 }
 
 main button#previous {
-    left: .5rem;
+    left: 1rem;
 }
 main button#next {
-    right: .5rem;
+    right: 1rem;
 }
 
 /* --- --- --- */
