@@ -246,7 +246,7 @@ article div.img img {
     width: 100%;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: .25rem .5rem .5rem var(--default-img-shadow-color) !important;
+    box-shadow: .25rem .375rem .5rem var(--default-img-shadow-color) !important;
 }
 
 /* ------------------ */
