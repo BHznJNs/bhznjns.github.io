@@ -1,11 +1,8 @@
 body {
     margin: 0;
+    background-color: var(--default-bg-color);
     transition: background .3s,
                 color .3s;
-}
-
-body.dark {
-    background-color: var(--default-bg-color);
 }
 
 body:not(.dark) #light-btn {
@@ -65,7 +62,7 @@ nav .icon-btn:hover {
     bottom: -2px;
     left: 0;
     content: " ";
-    border-bottom: solid 2px #000;
+    border-bottom: solid 2px var(--default-tx-color);
     width: 0;
     height: 1px;
     transition: .3s;
