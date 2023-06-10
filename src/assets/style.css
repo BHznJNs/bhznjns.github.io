@@ -213,6 +213,10 @@ article code {
     border-radius: 8px;
 }
 
+article blockquote code {
+    filter: invert(15%);
+}
+
 article blockquote {
     position: relative;
     padding: .5rem 1rem;
