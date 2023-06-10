@@ -10,7 +10,7 @@ export default function(firstLine, lines) {
             break
         }
 
-        codeContent += l
+        codeContent += l + "\n"
     }
     return new CodeBlock(codeContent, lang)
 }
