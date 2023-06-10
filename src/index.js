@@ -3,7 +3,7 @@ import mdResolver from "./utils/markdown/index.js"
 import { mdRender, indexRender } from "./utils/render.js"
 
 globalThis.CurrentPage = 1
-const indexDirPath = ".index/"
+const indexDirPath = "./.index/"
 
 document.querySelector("button#previous").addEventListener("click", () => {
     if (globalThis.CurrentPage > 0) {
@@ -33,7 +33,7 @@ async function hashEvent() {
             indexRender(indexing)
         }
         if (hash.endsWith(".md")) {
-            const articleContent = await fetchMD(hash)
+            const articleContent = await fetchMD("./" + hash)
             const structure = mdResolver(articleContent)
             mdRender(structure)
         }
