@@ -216,6 +216,7 @@ article blockquote::before {
     width: 2px;
     height: 100%;
     background-color: var(--default-tx-color);
+    cursor: pointer;
     transition: .3s;
 }
 article blockquote:hover::before {
@@ -224,13 +225,13 @@ article blockquote:hover::before {
 }
 
 article div.img {
-    margin: 1rem 1rem 2rem;
+    margin: 1rem 1rem 1.5rem;
 }
 article div.img img {
     width: 100%;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: .25rem .5rem .5rem #bbb !important;
+    box-shadow: .25rem .5rem .5rem var(--default-img-shadow-color) !important;
 }
 
 /* ------------------ */
