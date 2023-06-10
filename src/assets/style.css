@@ -140,13 +140,13 @@ main button#next {
 
 main ul {
     padding: 0;
+    list-style-type: none;
 }
 main[data-is-root="true"] #previous-dir {
     display: none;
 }
 main ul li {
     cursor: pointer;
-    list-style: none;
     border: solid 2px var(--default-bd-color);
     border-radius: 4px;
     margin-bottom: 8px;
