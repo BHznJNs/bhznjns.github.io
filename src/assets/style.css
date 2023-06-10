@@ -189,14 +189,38 @@ blockquote span {
     opacity: .75;
 }
 
-hr {
+article hr {
     margin-left: 1rem;
     margin-right: 1rem;
 }
 
-code {
+article code {
     font-size: 1rem;
     border-radius: 8px;
+}
+
+article blockquote {
+    position: relative;
+    padding: .5rem 1rem;
+    color: var(--default-tx-color);
+    background-color: var(--hovered-bg-color);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+article blockquote::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    content: " ";
+    width: 2px;
+    height: 100%;
+    background-color: var(--default-tx-color);
+    transition: .3s;
+}
+article blockquote:hover::before {
+    left: -3px;
+    width: 6px;
 }
 
 article div.img {
