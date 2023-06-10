@@ -147,7 +147,7 @@ main[data-is-root="true"] #previous-dir {
 main ul li {
     cursor: pointer;
     list-style: none;
-    border: solid 2px #666;
+    border: solid 2px var(--default-bd-color);
     border-radius: 4px;
     margin-bottom: 8px;
     padding: 4px 1rem;
