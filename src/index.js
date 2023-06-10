@@ -1,23 +1,40 @@
 import { fetchJSON, fetchMD } from "./utils/fetch.js"
+import keydownEvent from "./utils/keydownEvent.js"
 import mdResolver from "./utils/markdown/index.js"
 import { mdRender, indexRender } from "./utils/render.js"
 
 globalThis.CurrentPage = 1
 const indexDirPath = "./index/"
 
-document.querySelector("button#previous").addEventListener("click", () => {
+// ---------------------------
+// Buttons event setting start
+// ---------------------------
+
+const lightBtn = document.querySelector("#light-btn")
+const darkBtn = document.querySelector("#dark-btn")
+const previousBtn = document.querySelector("button#previous")
+const nextBtn = document.querySelector("button#next")
+
+lightBtn.onkeydown = keydownEvent(lightBtn)
+darkBtn.onkeydown = keydownEvent(darkBtn)
+previousBtn.addEventListener("click", () => {
     if (globalThis.CurrentPage > 0) {
         globalThis.CurrentPage -= 1
         hashEvent()
     }
 })
-document.querySelector("button#next").addEventListener("click", () => {
+nextBtn.addEventListener("click", () => {
     globalThis.CurrentPage += 1
     hashEvent()
 })
 
+// -------------------------
+// Buttons event setting end
+// -------------------------
+
+
 // ---------------------
-// hash controller start
+// Hash controller start
 // ---------------------
 const mainEl = document.querySelector("main")
 
@@ -45,5 +62,5 @@ async function hashEvent() {
 window.onload = hashEvent
 window.addEventListener("hashchange", hashEvent)
 // -------------------
-// hash controller end
+// Hash controller end
 // -------------------

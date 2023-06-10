@@ -28,11 +28,24 @@
         </a>
 
         <span>
-            <span id="light-btn" class="icon-btn" role="button" onclick="document.body.classList.remove('dark')">
+            <span
+                id="light-btn"
+                class="icon-btn"
+                role="button"
+                tabindex="0"
+                onkeydown="console.log(e)"
+                onclick="document.body.classList.remove('dark')"
+            >
                 <img src="./src/assets/sun.svg" alt="亮色模式">
                 <span>亮色模式</span>
             </span>
-            <span id="dark-btn" class="icon-btn" role="button" onclick="document.body.classList.add('dark')">
+            <span
+                id="dark-btn"
+                class="icon-btn"
+                role="button"
+                tabindex="0"
+                onclick="document.body.classList.add('dark')"
+            >
                 <img src="./src/assets/moon.svg" alt="黑暗模式">
                 <span>黑暗模式</span>
             </span>
@@ -49,7 +62,7 @@
         <button id="previous">上一页</button>
         <button id="next">下一页</button>
 
-        <ul id="previous-dir"><li>../</li></ul>
+        <ul id="previous-dir"><li tabindex="0">../</li></ul>
         <ul id="article-list"></ul>
     </main>
 

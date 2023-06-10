@@ -10,6 +10,7 @@ import XML from "../highlight-es/languages/xml.min.js"
 import CSS from "../highlight-es/languages/css.min.js"
 import Cpp from "../highlight-es/languages/cpp.min.js"
 import C from "../highlight-es/languages/c.min.js"
+import keydownEvent from "./keydownEvent.js"
 
 hljs.registerLanguage("javascript", JavaScript)
 hljs.registerLanguage("python", Python)
@@ -24,7 +25,7 @@ hljs.registerLanguage("c", C)
 
 const articleEl   = document.querySelector("article")
 const mainEl      = document.querySelector("main")
-const previoudBtn = mainEl.querySelector("#previous-dir li")
+const previoudDirBtn = mainEl.querySelector("#previous-dir li")
 const articleList = mainEl.querySelector("#article-list")
 
 // ----------------
@@ -53,6 +54,10 @@ export function mdRender(structure) {
     mainEl.style.display = "none"
     articleEl.style.display = "block"
     articleEl.innerHTML = resultHTML
+
+    articleEl.querySelectorAll("[tabindex='0']").forEach((el) => {
+        el.onkeydown = keydownEvent(el)
+    })
     hljs.highlightAll()
 }
 
@@ -60,7 +65,7 @@ export function mdRender(structure) {
 // index renderer
 // --------------
 
-previoudBtn.addEventListener("click", () => {
+previoudDirBtn.addEventListener("click", () => {
     const splited = location.hash.split("/")
     location.hash = splited.slice(0, -2).join("/") + "/"
 })
@@ -72,7 +77,9 @@ articleList.addEventListener("click", (e) => {
     location.hash += target.innerText
 })
 
+const listItem = (content) => `<li tabindex="0">${content}</li>`
 export function indexRender(indexing) {
+    // calculate properties
     const {current, total} = indexing
     let isFirstPage = false
     let isLastPage = false
@@ -94,15 +101,18 @@ export function indexRender(indexing) {
 
     // --- --- --- --- --- ---
 
-    let itemsHTML = ""
-    for (const item of indexing.content) {
-        if (item.endsWith("/")) {
-            itemsHTML += `<li>${item}</li>`
-        } else {
-            itemsHTML += `<li>${item}</li>`
-        }
-    }
-    articleList.innerHTML = itemsHTML
+    // reset HTML content
+    articleList.innerHTML = indexing
+        .content
+        .map(item => listItem(item))
+        .join("")
+    // set keyboard event
+    articleList.querySelectorAll("[tabindex='0']").forEach((el) => {
+        el.onkeydown = keydownEvent(el)
+    })
+
+    // --- --- --- --- --- ---
+
     articleEl.style.display = "none"
     mainEl.style.display = "block"
 }
