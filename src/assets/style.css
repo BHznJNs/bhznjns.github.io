@@ -12,6 +12,10 @@ body.dark #dark-btn {
     display: none;
 }
 
+a:visited {
+    color: var(--default-link-visited-color);
+}
+
 /* ---------------- */
 /* Nav styles start */
 /* ---------------- */
@@ -178,9 +182,7 @@ article {
 body.dark article a:link {
     color: deepskyblue;
 }
-body.dark article a:visited {
-    color: hotpink;
-}
+
 /* link in dark mode */
 
 h1, h2, h3, h4, h5, h6,

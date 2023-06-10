@@ -8,6 +8,7 @@ body:not(.dark) {
     --default-bd-color: #666;
 
     --default-img-shadow-color: #bbb;
+    --default-link-visited-color: deeppink;
 
     --default-code-color: #000;
     --default-code-bg-color: #eee;
@@ -23,6 +24,7 @@ body.dark {
     --default-bd-color: #666;
 
     --default-img-shadow-color: #444;
+    --default-link-visited-color: hotpink;
 
     --default-code-color: #eee;
     --default-code-bg-color: #333;
