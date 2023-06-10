@@ -64,7 +64,6 @@ nav .icon-btn:hover {
     content: " ";
     border-bottom: solid 2px var(--default-tx-color);
     width: 0;
-    height: 1px;
     transition: .3s;
 }
 nav .icon-btn:hover span {
