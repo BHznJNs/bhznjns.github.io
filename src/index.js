@@ -4,7 +4,7 @@ import mdResolver from "./utils/markdown/index.js"
 import { mdRender, indexRender } from "./utils/render.js"
 
 globalThis.CurrentPage = 1
-const indexDirPath = "./index/"
+const indexDirPath = "./.index/"
 
 // ---------------------------
 // Buttons event setting start

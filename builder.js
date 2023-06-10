@@ -1,7 +1,7 @@
 const fs = require("node:fs")
 
 const staticPath = "./static/"
-const indexPath  = "./index/"
+const indexPath  = "./.index/"
 
 // returns:
 // [ 'test.md', [ 'test_folder', [] ] ]
