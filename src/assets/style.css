@@ -27,6 +27,11 @@ nav {
     font-weight: bold;
     user-select: none;
 }
+
+body.dark #homepage img {
+    filter: invert(100%);
+}
+
 nav .icon-btn {
     display: inline-flex;
     height: 2rem;
