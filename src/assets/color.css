@@ -1,0 +1,25 @@
+body:not(.dark) {
+    --default-tx-color: #333;
+    --hovered-tx-color: #000;
+
+    --default-bg-color: #fff;
+    --hovered-bg-color: #eee;
+
+    --default-bd-color: #666;
+
+    --default-code-color: #000;
+    --default-code-bg-color: #eee;
+}
+
+body.dark {
+    --default-tx-color: #eee;
+    --hovered-tx-color: #fff;
+
+    --default-bg-color: #000;
+    --hovered-bg-color: #333;
+
+    --default-bd-color: #666;
+
+    --default-code-color: #eee;
+    --default-code-bg-color: #333;
+}

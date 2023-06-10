@@ -1,0 +1,15 @@
+{
+  "name": "markdown-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preview": "node preview.js",
+    "build": "node builder.js"
+  },
+  "author": "BHznJNs",
+  "license": "GPL-3",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

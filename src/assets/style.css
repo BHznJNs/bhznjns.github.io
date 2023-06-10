@@ -1,0 +1,209 @@
+body {
+    margin: 0;
+    transition: background .3s,
+                color .3s;
+}
+
+body.dark {
+    background-color: var(--default-bg-color);
+}
+
+body:not(.dark) #light-btn {
+    display: none;
+}
+body.dark #dark-btn {
+    display: none;
+}
+
+/* ---------------- */
+/* Nav styles start */
+/* ---------------- */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem 0;
+    font-size: larger;
+    font-weight: bold;
+    user-select: none;
+}
+nav .icon-btn {
+    display: inline-flex;
+    height: 2rem;
+    align-items: center;
+    padding: 4px .5rem;
+    border: solid 4px var(--default-bd-color);
+    border-radius: 8px;
+    color: var(--default-tx-color);
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: .3s;
+}
+nav .icon-btn img {
+    height: 1.5rem;
+    padding-right: .4rem;
+}
+
+nav .icon-btn:hover {
+    color: var(--hovered-tx-color);
+    background-color: var(--hovered-bg-color);
+}
+
+.icon-btn span {
+    position: relative;
+    bottom: 0;
+    transition: .3s;
+}
+.icon-btn span::before {
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    content: " ";
+    border-bottom: solid 2px #000;
+    width: 0;
+    height: 1px;
+    transition: .3s;
+}
+nav .icon-btn:hover span {
+    bottom: 2px;
+}
+nav .icon-btn:hover span::before {
+    width: 100%;
+}
+
+/* -------------- */
+/* Nav styles end */
+/* -------------- */
+
+
+/* ----------------- */
+/* Main styles start */
+/* ----------------- */
+
+main {
+    position: relative;
+    margin: 2rem 10vw 4rem;
+    padding: 1rem 2rem 2rem;
+    border-radius: 1rem;
+    box-shadow: .125rem .25rem 1rem #666 !important;
+}
+
+main[data-is-first-page="true"] button#previous {
+    display: none;
+}
+main[data-is-last-page="true"] button#next {
+    display: none;
+}
+main[data-is-only-page="true"] button#previous,
+main[data-is-only-page="true"] button#next {
+    display: none;
+}
+
+main button#previous,
+main button#next {
+    position: absolute;
+    bottom: .5rem;
+}
+
+main button#previous {
+    left: .5rem;
+}
+main button#next {
+    right: .5rem;
+}
+
+/* --- --- --- */
+
+main ul {
+    padding: 0;
+}
+main[data-is-root="true"] #previous-dir {
+    display: none;
+}
+main ul li {
+    cursor: pointer;
+    list-style: none;
+    border: solid 2px #666;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    padding: 4px 1rem;
+    transition: .3s;
+}
+main ul li:hover {
+    color: var(--hovered-tx-color);
+    background-color: var(--hovered-bg-color);
+}
+
+/* --------------- */
+/* Main styles end */
+/* --------------- */
+
+
+/* -------------------- */
+/* Article styles start */
+/* -------------------- */
+
+article:empty {
+    display: none;
+}
+
+article {
+    margin: 2rem 10vw 4rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0.125rem .25rem 1rem #666 !important;
+}
+
+/* link in dark mode */
+body.dark article a:link {
+    color: deepskyblue;
+}
+body.dark article a:visited {
+    color: hotpink;
+}
+/* link in dark mode */
+
+h1, h2, h3, h4, h5, h6,
+p, ol, ul, li, blockquote {
+    color: var(--default-tx-color)
+}
+
+p code,
+li code,
+blockquote code {
+    padding: 2px 8px;
+    margin: 0 4px;
+    color: var(--default-code-color);
+    background-color: var(--default-code-bg-color);
+}
+
+p span,
+li span,
+blockquote span {
+    opacity: .75;
+}
+
+hr {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+code {
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+article div.img {
+    margin: 1rem 1rem 2rem;
+}
+article div.img img {
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: .25rem .5rem .5rem #bbb !important;
+}
+
+/* ------------------ */
+/* Article styles end */
+/* ------------------ */
