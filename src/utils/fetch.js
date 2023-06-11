@@ -12,7 +12,6 @@ export async function fetchMD(path) {
             let totalData = "";
             const processor = (result) => {
                 if (result.done) {
-                    console.log("Markdown fetch processor done.")
                     return totalData
                 }
                 totalData += decoder.decode(result.value, { stream: true })
