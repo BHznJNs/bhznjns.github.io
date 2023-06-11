@@ -19,7 +19,5 @@ export default function(line) {
             indentCount += 1
         }
     }
-    console.log(line, indentCount)
-
     return indentCount
 }
