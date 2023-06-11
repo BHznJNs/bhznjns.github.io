@@ -1,7 +1,12 @@
 export default function(line) {
     let indentCount = 0
     let spaceCount = 0
+
     for (const ch of line) {
+        if (ch.match(/[^\s\t]/)) {
+            break
+        }
+
         if (ch == "\t") {
             indentCount += 1
             continue
@@ -14,5 +19,7 @@ export default function(line) {
             indentCount += 1
         }
     }
+    console.log(line, indentCount)
+
     return indentCount
 }

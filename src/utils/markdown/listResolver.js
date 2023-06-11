@@ -4,6 +4,7 @@ import getIndent from "./utils/getIndent.js"
 export default function listResolver(currentLine, lines) {
     const currentIndent = getIndent(currentLine)
     const currentNode = new List(currentLine)
+
     while (lines.length) {
         let l = lines.shift()
         const lIndent = getIndent(l)

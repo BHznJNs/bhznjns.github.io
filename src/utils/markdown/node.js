@@ -44,13 +44,18 @@ export class Para extends BaseNode {
 }
 
 export class Quote extends BaseNode {
-    tagName = "blockquote"
+    children = []
 
-    constructor(content) {
+    constructor(children) {
         super()
-
-        // remove "> "
-        this.content = content.slice(2)
+        this.children = children
+    }
+    toHTML() {
+        let resultHTML = ""
+        for (const node of this.children) {
+            resultHTML += node.toHTML()
+        }
+        return `<blockquote>${resultHTML}</blockquote>`
     }
 
     static pattern = (source) => source.startsWith("> ")
@@ -65,7 +70,7 @@ export class Divider extends BaseNode {
 }
 
 export class List extends BaseNode {
-    childrens = []
+    children = []
 
     constructor(content) {
         super()
@@ -73,14 +78,14 @@ export class List extends BaseNode {
         this.isOrdered = Boolean(List.orderedPattern(content))
 
         this.tagName = (this.isOrdered) ? "ol" : "ul"
-        this.childrens = [List.getContent(content, this.isOrdered)]
+        this.children = [List.getContent(content, this.isOrdered)]
     }
 
-    push = (child) => this.childrens.push(child)
+    push = (child) => this.children.push(child)
 
     toHTML() {
         let resultHTML = `<${this.tagName}>`
-        for (const child of this.childrens) {
+        for (const child of this.children) {
             if (typeof child == "string") {
                 const inline = inlineResolver(child)
                 resultHTML += `<li>${inline}</li>`
