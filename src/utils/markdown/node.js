@@ -118,6 +118,8 @@ export class CodeBlock extends BaseNode {
 
         this.lang = lang
         this.content = content
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
     }
     append(content) {
         this.content += content
