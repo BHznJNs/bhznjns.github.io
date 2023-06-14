@@ -98,7 +98,7 @@ export class List extends BaseNode {
     }
 
     static unorderedPattern = (source) => source.startsWith("- ")
-    static orderedPattern   = (source) => source.match(/^([0-9]+. )/)
+    static orderedPattern   = (source) => Boolean(source.match(/^([0-9]+. )/))
 
     static isListPattern = (source) =>
         List.orderedPattern(source) || List.unorderedPattern(source)
@@ -118,8 +118,8 @@ export class CodeBlock extends BaseNode {
 
         this.lang = lang
         this.content = content
-            .replace("<", "&lt;")
-            .replace(">", "&gt;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
     }
     append(content) {
         this.content += content
