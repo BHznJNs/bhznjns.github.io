@@ -388,8 +388,6 @@ pub enum TokenType {
 
 #[derive(PartialEq, Debug, Clone, Copy)]
 pub enum TextType {
-    Hint,
-
     Variable,
     Keyword,
     Annotation,
@@ -421,8 +419,6 @@ impl Token {
         let text = self.content.as_str();
 
         match self.type__ {
-            TextType::Hint => text.dim(),
-
             TextType::Variable => text.underlined(),
             TextType::Keyword => text.dark_cyan(),
             TextType::Annotation => text.red(),
@@ -581,8 +577,6 @@ pub enum TokenType {
 
 #[derive(PartialEq, Debug, Clone, Copy)]
 pub enum TextType {
-    Hint,
-
     Variable,
     Keyword,
     Annotation,
@@ -614,8 +608,6 @@ impl Token {
         let text = self.content.as_str();
 
         match self.type__ {
-            TextType::Hint => text.dim(),
-
             TextType::Variable => text.underlined(),
             TextType::Keyword => text.dark_cyan(),
             TextType::Annotation => text.red(),
