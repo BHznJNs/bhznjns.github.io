@@ -241,6 +241,12 @@ async function hashEvent() {
         location.hash = "static/"
     }
 }
+
+// 最后，添加事件监听，当页面加载时和 hash 改变时调用上述函数。
+// 页面加载时调用是为了更便于分享网站上的文章。
+window.onload = hashEvent
+// hash 改变时调用是为了便于控制在按键点击时改变界面。
+window.addEventListener("hashchange", hashEvent)
 ```
 
 ## 项目预览
