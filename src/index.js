@@ -40,6 +40,7 @@ const mainEl = document.querySelector("main")
 
 async function hashEvent() {
     if (location.hash) {
+        // remove '#'
         const hash = location.hash.slice(1)
 
         if (hash.endsWith("/")) {
