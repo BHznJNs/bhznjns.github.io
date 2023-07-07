@@ -1,8 +1,8 @@
 {
   "name": "markdown-blog",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
   "main": "index.js",
+  "repository": "https://github.com/BHznJNs/markdown-blog",
   "scripts": {
     "preview": "node preview.js",
     "build": "node builder.js"

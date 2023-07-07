@@ -41,19 +41,23 @@ const mainEl = document.querySelector("main")
 async function hashEvent() {
     if (location.hash) {
         const hash = location.hash.slice(1)
-        mainEl.setAttribute("data-is-root", hash == "static/")
 
         if (hash.endsWith("/")) {
+            // open folder
             const splited = hash.split("/").slice(0, -1)
             const indexFilePath = indexDirPath + splited.join("+") + "_" + globalThis.CurrentPage
             const indexing = await fetchJSON(indexFilePath)
             indexRender(indexing)
         }
         if (hash.endsWith(".md")) {
+            // open article
             const articleContent = await fetchMD("./" + hash)
             const structure = mdResolver(articleContent)
             mdRender(structure)
         }
+
+        // delay this operation
+        mainEl.setAttribute("data-is-root", hash == "static/")
     } else {
         location.hash = "static/"
     }

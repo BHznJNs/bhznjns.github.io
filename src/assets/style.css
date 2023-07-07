@@ -86,6 +86,12 @@ nav .icon-btn:hover span::before {
 /* Main styles start */
 /* ----------------- */
 
+@media screen and (max-width: 767px) {
+    main {
+        padding: 1rem 1.6rem !important;
+    }
+}
+
 main {
     position: relative;
     margin: 2rem 10vw 4rem;
@@ -167,6 +173,12 @@ main ul li:hover {
 /* Article styles start */
 /* -------------------- */
 
+@media screen and (max-width: 767px) {
+    article {
+        padding: 1rem 1.6rem !important;
+    }
+}
+
 article:empty {
     display: none;
 }
@@ -228,6 +240,7 @@ article blockquote code {
 article blockquote {
     position: relative;
     padding: .5rem 1rem;
+    margin-right: 1rem;
     color: var(--default-tx-color);
     background-color: var(--hovered-bg-color);
     border-top-right-radius: 8px;
