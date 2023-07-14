@@ -148,6 +148,8 @@ pub struct CompleterNode {
 #### 新建
 
 ```rust
+use std::{collections::BTreeMap, str::Chars};
+
 pub fn new() -> Self {
     Self {
         subnodes: BTreeMap::<char, CompleterNode>::new(),
@@ -158,7 +160,7 @@ pub fn new() -> Self {
 #### 插入
 
 ```rust
-// word 是需要插入的目标单词
+// `word` 是需要插入的目标单词
 pub fn insert(&mut self, mut word: Chars) {
     match word.next() {
         Some(ch) => {
