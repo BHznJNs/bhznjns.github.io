@@ -151,3 +151,15 @@ menupopup {
 单独使用上述 CSS 文件启动 Firefox，效果如下：
 
 ![屏幕截图](.Firefox 启用亚克力效果/屏幕截图.png)
+
+- - -
+
+``2023/8/20`` 更新：对样式进行了一些调整，使工具栏半透明化。
+
+CSS 文件地址：[userChrome.css](https://github.com/BHznJNs/windows11-beautifier/blob/master/scripts/userChrome.css)
+
+附上亮色和暗色模式的屏幕截图：
+
+![屏幕截图-亮色](.Firefox 启用亚克力效果/屏幕截图-亮色.png)
+
+![屏幕截图-暗色](.Firefox 启用亚克力效果/屏幕截图-暗色.png)
