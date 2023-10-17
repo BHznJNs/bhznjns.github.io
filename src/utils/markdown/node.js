@@ -90,24 +90,31 @@ export class List extends BaseNode {
                 const inline = inlineResolver(child)
                 resultHTML += `<li>${inline}</li>`
             } else {
-                resultHTML += child.toHTML()
+                try {
+                    resultHTML += child.toHTML()
+                } catch {
+                    // console.log(child);
+                }
+                
             }
         }
         resultHTML += `</${this.tagName}>`
         return resultHTML
     }
 
-    static unorderedPattern = (source) => source.startsWith("- ")
-    static orderedPattern   = (source) => Boolean(source.match(/^([0-9]+. )/))
+    static unorderedPattern = (source) => Boolean(source.match(/^([\s\t]*[+-]+ )/))
+    static orderedPattern   = (source) => Boolean(source.match(/^([\s\t]*[0-9]+. )/))
 
     static isListPattern = (source) =>
         List.orderedPattern(source) || List.unorderedPattern(source)
 
     static getContent(line, isOrdered) {
         if (isOrdered) {
-            return line.split(" ").slice(1).join(" ")
+            // "1. ..." => "..."
+            return line.match(/(?<=^([\s\t]*[0-9]+. )).+$/g)[0]
         } else {
-            return line.slice(2)
+            // "- ..." => "..."
+            return line.match(/(?<=^([\s\t]*[+-]+ )).+$/g)[0]
         }
     }
 }
