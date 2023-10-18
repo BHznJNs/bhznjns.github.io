@@ -6,6 +6,8 @@ const keyTermArray = [
     "/",
     "-",
     ":",
+    ",",
+    "'",
 ]
 // identifier character to HTML tag
 const KeyToken_TagName_map = new Map([
@@ -15,6 +17,8 @@ const KeyToken_TagName_map = new Map([
     ["//", "i"],
     ["--", "del"],
     ["::", "span"],
+    [",,", "sub"],
+    ["''", "sup"]
 ])
 
 // --- --- --- --- --- ---
