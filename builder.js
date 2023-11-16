@@ -11,7 +11,7 @@ function readDir(path) {
 
     // sort by time
     dirContent.sort((a, b) =>
-        fs.statSync(path + b).ctime.getTime() - fs.statSync(path + a).ctime.getTime())
+        fs.statSync(path + b).birthtime.getTime() - fs.statSync(path + a).birthtime.getTime())
 
     for (const item of dirContent) {
         const currentPath = path + item
