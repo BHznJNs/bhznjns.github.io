@@ -48,12 +48,19 @@ class LinkToken extends Token {
             return `<a href="${this.address}" target="_blank">${this.display}</a>`
         } else {
             // static resource
-            const hash = location.hash.slice(1)
-            const currentPath = hash.split("/").slice(0, -1).join("/")
-            const actualAddress = currentPath + "/" + this.address
-            return `<a href="${actualAddress}" target="_blank">${this.display}</a>`
+            let actualAddress
+            if ("location" in globalThis) {
+                // in browser
+                const hash = location.hash.slice(1)
+                const currentPath = hash.split("/").slice(0, -1).join("/")
+                actualAddress = currentPath + "/" + this.address
+            } else {
+                // in node
+                const currentPath = globalThis.__ResourcePath__
+                actualAddress = currentPath + "/" + this.address
+            }
+            return `<a href="${actualAddress}" target="_blank">${this.display}</a>`    
         }
-        
     }
 }
 

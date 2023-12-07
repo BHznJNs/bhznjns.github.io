@@ -1,14 +1,16 @@
 {
   "name": "markdown-blog",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "index.js",
+  "homepage": "https://bhznjns.github.io/markdown-blog/",
   "repository": "https://github.com/BHznJNs/markdown-blog",
+  "type": "module",
   "scripts": {
     "preview": "node preview.js",
-    "build": "node builder.js"
+    "build": "node ./builder/index.js"
   },
   "author": "BHznJNs",
-  "license": "GPL-3",
+  "license": "CC-BY-4.0",
   "dependencies": {
     "express": "^4.18.2"
   }

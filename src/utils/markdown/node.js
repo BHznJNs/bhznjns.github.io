@@ -155,9 +155,17 @@ export class ImageBlock extends BaseNode {
         if (this.address.startsWith("http")) {
             actualAddress = this.address
         } else {
-            const hash = location.hash.slice(1)
-            const currentPath = hash.split("/").slice(0, -1).join("/")
-            actualAddress = currentPath + "/" + this.address
+            if ("location" in globalThis) {
+                // in browser
+                const hash = location.hash.slice(1)
+                // get the parent directory path
+                const currentPath = hash.split("/").slice(0, -1).join("/")
+                actualAddress = currentPath + "/" + this.address
+            } else {
+                // in nodejs
+                const path = globalThis.__ResourcePath__
+                actualAddress = path + "/" + this.address
+            }
         }
 
         return `<div class="img"><img src="${actualAddress}" alt="${this.alt}" tabindex="0"></div>`
