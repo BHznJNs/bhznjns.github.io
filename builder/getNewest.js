@@ -35,10 +35,8 @@ class FileMonoStack {
 
             // Since the `createTime` is a timestamp,
             // there is no need to consider the condition of
-            // the two number equals. 
-            if (item.createTime > fileItem.createTime) {
-                continue
-            } else {
+            // the two number equals.
+            if (item.createTime < fileItem.createTime) {
                 this.#insert(index, fileItem)
                 return
             }
@@ -58,7 +56,7 @@ class FileMonoStack {
 
 export default function getNewest(currentDir, currentPath) {
     const fileStack = new FileMonoStack()
-    
+
     for (const item of currentDir) {
         if (typeof item == "string") {
             // directly push filename
@@ -71,7 +69,7 @@ export default function getNewest(currentDir, currentPath) {
     }
 
     if (fileStack.length > MAX_STACK_SIZE) {
-        fileStack.children.slice(MAX_STACK_SIZE)
+        fileStack.children = fileStack.children.slice(0, MAX_STACK_SIZE)
     }
     return fileStack;
 }

@@ -90,12 +90,7 @@ export class List extends BaseNode {
                 const inline = inlineResolver(child)
                 resultHTML += `<li>${inline}</li>`
             } else {
-                try {
-                    resultHTML += child.toHTML()
-                } catch {
-                    // console.log(child);
-                }
-                
+                resultHTML += child.toHTML()
             }
         }
         resultHTML += `</${this.tagName}>`

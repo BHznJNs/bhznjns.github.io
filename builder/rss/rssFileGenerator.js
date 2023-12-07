@@ -6,7 +6,8 @@ export default function(items) {
 <channel>
 <title>BHznJNs' Blog</title>
 <link>https://bhznjns.github.io/markdown-blog/#static/</link>
-<description>一个 Markdown 静态博客站。</description>`
+<description>一个 Markdown 静态博客站。</description>
+`
     const RssTemplateAfter = `</channel>
 </rss>`
 

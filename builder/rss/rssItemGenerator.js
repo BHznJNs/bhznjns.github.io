@@ -26,7 +26,8 @@ export class RssItem {
 <title>${this.title}</title>
 <link>${this.link}</link>
 <description>${this.description}</description>
-</item>`
+</item>
+`
     }
 }
 

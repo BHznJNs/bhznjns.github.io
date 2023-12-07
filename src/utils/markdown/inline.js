@@ -55,7 +55,7 @@ class LinkToken extends Token {
                 const currentPath = hash.split("/").slice(0, -1).join("/")
                 actualAddress = currentPath + "/" + this.address
             } else {
-                // in node
+                // in nodejs
                 const currentPath = globalThis.__ResourcePath__
                 actualAddress = currentPath + "/" + this.address
             }
