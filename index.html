@@ -28,25 +28,31 @@
         </a>
 
         <span>
-            <span
-                id="light-btn"
-                class="icon-btn"
-                role="button"
-                tabindex="0"
-                onclick="document.body.classList.remove('dark')"
-            >
-                <img src="./src/assets/sun.svg" alt="亮色模式">
-                <span>亮色模式</span>
-            </span>
-            <span
-                id="dark-btn"
-                class="icon-btn"
-                role="button"
-                tabindex="0"
-                onclick="document.body.classList.add('dark')"
-            >
-                <img src="./src/assets/moon.svg" alt="黑暗模式">
-                <span>黑暗模式</span>
+            <a id="rss-icon" class="icon-btn" href="./rss.xml">
+                <img src="./src/assets/rss.svg" alt="RSS 订阅">
+                <span>RSS</span>
+            </a>
+            <span>
+                <span
+                    id="light-btn"
+                    class="icon-btn"
+                    role="button"
+                    tabindex="0"
+                    onclick="document.body.classList.remove('dark')"
+                >
+                    <img src="./src/assets/sun.svg" alt="亮色模式">
+                    <span>亮色模式</span>
+                </span>
+                <span
+                    id="dark-btn"
+                    class="icon-btn"
+                    role="button"
+                    tabindex="0"
+                    onclick="document.body.classList.add('dark')"
+                >
+                    <img src="./src/assets/moon.svg" alt="黑暗模式">
+                    <span>黑暗模式</span>
+                </span>
             </span>
         </span>
     </nav>

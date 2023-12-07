@@ -33,6 +33,9 @@ nav {
 body.dark #homepage img {
     filter: invert(100%);
 }
+body.dark #rss-icon img {
+    filter: invert(100%);
+}
 
 nav .icon-btn {
     display: inline-flex;
