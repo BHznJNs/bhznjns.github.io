@@ -24,8 +24,8 @@ export class RssItem {
     toString() {
         return `<item>
 <title>${this.title}</title>
-<link>${this.link}</link
-description>${this.description}</description>
+<link>${this.link}</link>
+<description>${this.description}</description>
 </item>`
     }
 }
