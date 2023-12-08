@@ -12,9 +12,6 @@ function getPathParts(filePath) {
     return { filename, parent }
 }
 
-
-
-
 export class RssItem {
     title       = ""
     link        = ""
@@ -31,8 +28,8 @@ export class RssItem {
         return `<item>
 <title>${this.title}</title>
 <link>${this.link}</link>
-<description>${this.description}</description>
 <pubDate>${timeFormat(this.pubTime)}</pubDate>
+<description>${this.description || " "}</description>
 </item>
 `
     }
