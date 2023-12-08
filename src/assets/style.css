@@ -187,6 +187,11 @@ main ul li:hover {
     background-color: var(--hovered-bg-color);
 }
 
+main #article-list.disabled {
+    pointer-events: none;
+    opacity: .85;
+}
+
 /* --------------- */
 /* Main styles end */
 /* --------------- */

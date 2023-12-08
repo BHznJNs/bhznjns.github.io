@@ -37,11 +37,12 @@ nextBtn.addEventListener("click", () => {
 // Hash controller start
 // ---------------------
 const mainEl = document.querySelector("main")
+const articleList = document.getElementById("article-list")
 
 async function hashEvent() {
     if (location.hash) {
-        // remove '#'
-        const hash = location.hash.slice(1)
+        const hash = location.hash.slice(1) // remove '#'
+        articleList.classList.add("disabled")
 
         if (hash.endsWith("/")) {
             // open folder
@@ -59,6 +60,7 @@ async function hashEvent() {
 
         // delay this operation
         mainEl.setAttribute("data-is-root", hash == "static/")
+        articleList.classList.remove("disabled")
     } else {
         location.hash = "static/"
     }
