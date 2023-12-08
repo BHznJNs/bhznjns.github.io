@@ -1,5 +1,5 @@
 function addLeadingZero(num) {
-    numStr = num.toString();
+    let numStr = num.toString();
     while (numStr.length < 2) {
         numStr = "0" + numStr
     }
