@@ -50,9 +50,12 @@ nav .icon-btn {
     transition: .3s;
 }
 
+nav #homepage img {
+    padding-right: .4rem;
+}
+
 nav .icon-btn img {
     height: 1.5rem;
-    padding-right: .4rem;
 }
 
 nav .icon-btn:hover {
