@@ -1,14 +1,14 @@
-import { statSync } from "node:fs"
+import { Directory, File } from "./readDir.js"
 
-class FileItem {
-    path = ""
-    createTime = 0
+// class FileItem {
+//     path = ""
+//     createTime = 0
 
-    constructor(path) {
-        this.path = path
-        this.createTime = statSync(path).birthtime.getTime()
-    }
-}
+//     constructor(path) {
+//         this.path = path
+//         this.createTime = statSync(path).birthtime.getTime()
+//     }
+// }
 
 const MAX_STACK_SIZE = 16
 class FileMonoStack {
@@ -24,9 +24,9 @@ class FileMonoStack {
         return this.children.length
     }
 
-    push(fileItem) {
+    push(file) {
         if (this.length == 0) {
-            this.children.push(fileItem)
+            this.children.push(file)
             return
         }
 
@@ -36,12 +36,12 @@ class FileMonoStack {
             // Since the `createTime` is a timestamp,
             // there is no need to consider the condition of
             // the two number equals.
-            if (item.createTime < fileItem.createTime) {
-                this.#insert(index, fileItem)
+            if (item.createTime < file.createTime) {
+                this.#insert(index, file)
                 return
             }
         }
-        this.children.push(fileItem)
+        this.children.push(file)
     }
     pop() {
         return this.children.shift()
@@ -54,16 +54,15 @@ class FileMonoStack {
     }
 }
 
-export default function getNewest(currentDir, currentPath) {
+export default function getNewest(dir) {
     const fileStack = new FileMonoStack()
 
-    for (const item of currentDir) {
-        if (typeof item == "string") {
-            // directly push filename
-            fileStack.push(new FileItem(`${currentPath}/${item}`))
-        } else {
+    for (const item of dir.items) {
+        if (item instanceof File) {
+            fileStack.push(item)
+        } else if (item instanceof Directory) {
             // recursively read folder
-            const subFileStack = getNewest(item[1], `${currentPath}/${item[0]}`)
+            const subFileStack = getNewest(item)
             fileStack.concat(subFileStack)
         }
     }

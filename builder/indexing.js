@@ -1,29 +1,29 @@
 import { writeFileSync } from "node:fs"
 import slice from "./slice.js"
+import { Directory, File } from "./readDir.js"
 import { indexFilePath } from "./path.js"
 
-export default function indexing(currentDir, currentName) {
-    const currentDirFiles = []
+export default function indexing(dir, indexName) {
+    const currentDirItems = []
 
-    for (const item of currentDir) {
-        if (typeof item == "string") {
-            // directly push filename
-            currentDirFiles.push(item)
+    for (const item of dir.items) {
+        if (item instanceof File) {
+            currentDirItems.push(item.name)
+        } else if (item instanceof Directory) {
+            currentDirItems.push(item.name + "/")
+            indexing(item, indexName + "+" + item.name)
         } else {
-            // push folder name with '/' at end
-            currentDirFiles.push(item[0] + "/")
-            // recursively read folder
-            indexing(item[1], `${currentName}+${item[0]}`)
+            // unreachable
         }
     }
 
-    const sliced = slice(currentDirFiles)
-    const count = sliced.length
+    const sliced = slice(currentDirItems)
+    const count  = sliced.length
 
     let index = 0
     for (const slice of sliced) {
         index += 1
-        writeFileSync(`${indexFilePath}${currentName}_${index}`, JSON.stringify({
+        writeFileSync(`${indexFilePath}${indexName}_${index}`, JSON.stringify({
             total: count,
             current: index,
             content: slice,

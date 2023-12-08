@@ -2,8 +2,9 @@ import { readFileSync, writeFileSync } from "node:fs"
 import config from "../../package.json" assert { type: 'json' }
 import { rssResourcePath } from "../path.js"
 import renderer from "../renderer.js"
+import timeFormat from "../timeFormat.js"
 
-function getFileParts(filePath) {
+function getPathParts(filePath) {
     const splited = filePath.split("/")
     const fileNameWithExt = splited.pop()
     const filename = fileNameWithExt.split(".").slice(0, -1).join(".")
@@ -11,14 +12,19 @@ function getFileParts(filePath) {
     return { filename, parent }
 }
 
+
+
+
 export class RssItem {
     title       = ""
     link        = ""
+    pubTime     = ""
     description = ""
 
-    constructor(title, link, description) {
+    constructor(title, link, pubTime, description) {
         this.title       = title
         this.link        = link
+        this.pubTime     = pubTime
         this.description = description
     }
     toString() {
@@ -26,13 +32,14 @@ export class RssItem {
 <title>${this.title}</title>
 <link>${this.link}</link>
 <description>${this.description}</description>
+<pubDate>${timeFormat(this.pubTime)}</pubDate>
 </item>
 `
     }
 }
 
 export default function rssItemGenerator(file) {
-    const {filename, parent} = getFileParts(file.path)
+    const { filename, parent } = getPathParts(file.path)
     const fileContent = readFileSync(file.path, "utf-8")
 
     globalThis.__ResourcePath__ = config.homepage + parent
@@ -42,6 +49,11 @@ export default function rssItemGenerator(file) {
     const articlePath = rssResourcePath + filename + ".html"
     writeFileSync(articlePath, articleInfo.htmlContent)
 
-    const rssItem = new RssItem(articleInfo.title, config.homepage + articlePath, articleInfo.description)
+    const rssItem = new RssItem(
+        articleInfo.title,
+        config.homepage + articlePath,
+        new Date(file.createTime),
+        articleInfo.description
+    )
     return rssItem
 }
