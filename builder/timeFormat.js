@@ -3,7 +3,7 @@ const weekDayNames = [
     "Thur", "Fri", "Sat",
     "Sun",
 ]
-const weekDay = (date) => weekDayNames[date.getDay()]
+const weekDay = (date) => weekDayNames[date.getDay() - 1]
 
 const monthNames = [
     "Jan", "Feb", "Mar",
