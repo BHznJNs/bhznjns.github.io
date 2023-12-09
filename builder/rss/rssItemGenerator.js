@@ -13,22 +13,25 @@ function getPathParts(filePath) {
 }
 
 export class RssItem {
-    title       = ""
-    link        = ""
-    pubTime     = ""
-    description = ""
+    title         = ""
+    link          = ""
+    pubTime       = null
+    lastBuildTime = null
+    description   = ""
 
-    constructor(title, link, pubTime, description) {
-        this.title       = title
-        this.link        = link
-        this.pubTime     = pubTime
-        this.description = description
+    constructor(title, link, pubTime, lastBuildTime, description) {
+        this.title         = title
+        this.link          = link
+        this.pubTime       = pubTime
+        this.lastBuildTime = lastBuildTime
+        this.description   = description
     }
     toString() {
         return `<item>
 <title>${this.title}</title>
 <link>${this.link}</link>
 <pubDate>${timeFormat(this.pubTime)}</pubDate>
+<lastBuildDate>${timeFormat(this.lastBuildTime)}</lastBuildDate>
 <description>${this.description || " "}</description>
 </item>
 `
@@ -50,6 +53,7 @@ export default function rssItemGenerator(file) {
         articleInfo.title,
         config.homepage + articlePath,
         new Date(file.createTime),
+        new Date(file.modifyTime),
         articleInfo.description
     )
     return rssItem

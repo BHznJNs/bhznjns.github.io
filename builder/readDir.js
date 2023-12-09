@@ -18,11 +18,13 @@ export class File {
     name = ""
     path = ""
     createTime = 0
+    modifyTime = 0
 
-    constructor(name, path, createTime) {
+    constructor(name, path, createTime, modifyTime) {
         this.name = name
         this.path = path
         this.createTime = createTime
+        this.modifyTime = modifyTime
     }
 }
 
@@ -43,7 +45,13 @@ export default function readDir(dir, base) {
             const subDir = new Directory(item, itemCreateTime)
             dir.push(readDir(subDir, dirPath + "/"))
         } else {
-            const file = new File(item, itemPath, itemCreateTime)
+            const itemModifyTime = itemStat.mtime.getTime()
+            const file = new File(
+                item,
+                itemPath,
+                itemCreateTime,
+                itemModifyTime,
+            )
             dir.push(file)
         }
     }

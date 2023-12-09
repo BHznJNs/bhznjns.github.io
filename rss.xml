@@ -8,96 +8,112 @@
 <title>静态博客网站实现 RSS 发布</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/静态博客网站实现 RSS 发布.html</link>
 <pubDate>Fri, 8 Dec 2023 11:06:00 +0800</pubDate>
+<lastBuildDate>Fri, 8 Dec 2023 15:54:00 +0800</lastBuildDate>
 <description> </description>
 </item>
 <item>
 <title>极限和连续性 | Limits and continuity</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/极限和连续性.html</link>
 <pubDate>Sun, 3 Dec 2023 18:33:00 +0800</pubDate>
+<lastBuildDate>Thu, 7 Dec 2023 23:06:00 +0800</lastBuildDate>
 <description>极限不存在条件：如果从任意两个方向上得到的极限不同，则极限不存在。</description>
 </item>
 <item>
 <title>奇妙随想</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/奇妙随想.html</link>
 <pubDate>Thu, 30 Nov 2023 08:21:00 +0800</pubDate>
+<lastBuildDate>Thu, 30 Nov 2023 12:08:00 +0800</lastBuildDate>
 <description>我睡在宿舍的床上，周遭突然开始吵闹起来，我睁开眼，发现自己正趴在一张陌生的课桌上。我慌忙起身，感觉身上没有什么异常，两个肾也还在。但是眼前出现的却不是我熟悉的大学校园，而是一个典型中国式的中学教室。而我，正坐在这个教室从左往右数的第三组第四桌右侧的那一桌。</description>
 </item>
 <item>
 <title>电功率，电能和理想电源 | Power, Energy, Ideal Sources</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/电功率，电能和理想电源.html</link>
 <pubDate>Thu, 16 Nov 2023 13:22:00 +0800</pubDate>
+<lastBuildDate>Fri, 17 Nov 2023 17:47:00 +0800</lastBuildDate>
 <description>p = dw / dt = vi = v''2'' / R = i''2''R</description>
 </item>
 <item>
 <title>电路理论导入 | Introduction</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/电路理论导入.html</link>
 <pubDate>Thu, 16 Nov 2023 13:07:00 +0800</pubDate>
+<lastBuildDate>Thu, 16 Nov 2023 13:18:00 +0800</lastBuildDate>
 <description>q Coulomb (C)</description>
 </item>
 <item>
 <title>蒸汽性质 | Properties of Vapours</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/蒸汽性质.html</link>
 <pubDate>Wed, 1 Nov 2023 08:50:00 +0800</pubDate>
+<lastBuildDate>Thu, 16 Nov 2023 10:02:00 +0800</lastBuildDate>
 <description>Substances normally exist in different phases: ##solid##, ##liquid## and ##gas##.</description>
 </item>
 <item>
 <title>热机循环 | Engine Cycles</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/热机循环.html</link>
 <pubDate>Sun, 29 Oct 2023 18:42:00 +0800</pubDate>
+<lastBuildDate>Tue, 31 Oct 2023 09:13:00 +0800</lastBuildDate>
 <description>Thermodynamic cycles:</description>
 </item>
 <item>
 <title>熵和热力学第三定律 | Entropy and Third Law of Thermodynamics</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/熵和热力学第三定律.html</link>
 <pubDate>Sat, 28 Oct 2023 22:42:00 +0800</pubDate>
+<lastBuildDate>Sun, 29 Oct 2023 19:44:00 +0800</lastBuildDate>
 <description>S = Q / T</description>
 </item>
 <item>
 <title>热力学第二定律 | Second Law of Thermodynamics</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/热力学第二定律.html</link>
 <pubDate>Tue, 24 Oct 2023 21:11:00 +0800</pubDate>
+<lastBuildDate>Fri, 27 Oct 2023 13:50:00 +0800</lastBuildDate>
 <description>The second law of thermodynamics asserts that processes occur in a certain direction and that energy has quality as well as quantity.</description>
 </item>
 <item>
 <title>稳流过程 | Steady Flow Processes</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/稳流过程.html</link>
 <pubDate>Sun, 22 Oct 2023 22:37:00 +0800</pubDate>
+<lastBuildDate>Tue, 24 Oct 2023 21:08:00 +0800</lastBuildDate>
 <description>Control volume (open system) – A system that involves mass flow across their boundaries</description>
 </item>
 <item>
 <title>非流动过程 | Non-Flow Processes</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/非流动过程.html</link>
 <pubDate>Sat, 21 Oct 2023 14:15:00 +0800</pubDate>
+<lastBuildDate>Sun, 22 Oct 2023 22:36:00 +0800</lastBuildDate>
 <description>对于总能量：</description>
 </item>
 <item>
 <title>热力学第一定律</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/热力学第一定律.html</link>
 <pubDate>Tue, 17 Oct 2023 19:21:00 +0800</pubDate>
+<lastBuildDate>Sat, 21 Oct 2023 14:26:00 +0800</lastBuildDate>
 <description>A closed system, also known as a control mass, consists of a fixed amount of mass, and no mass can cross its boundary - an isolated system.</description>
 </item>
 <item>
 <title>热力学基础</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/热力学基础.html</link>
 <pubDate>Mon, 16 Oct 2023 22:38:00 +0800</pubDate>
+<lastBuildDate>Tue, 17 Oct 2023 19:20:00 +0800</lastBuildDate>
 <description>If two bodies are in thermal equilibrium with a third body, they are also in thermal equilibrium with each other.</description>
 </item>
 <item>
 <title>流体性质</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/流体性质.html</link>
 <pubDate>Mon, 16 Oct 2023 22:27:00 +0800</pubDate>
+<lastBuildDate>Mon, 16 Oct 2023 22:39:00 +0800</lastBuildDate>
 <description>A liquid is difficult to compress and, for many purposes regarded as ##incompressible##.</description>
 </item>
 <item>
 <title>多元函数 | Functions of several functions</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/多元函数.html</link>
 <pubDate>Sun, 15 Oct 2023 23:03:00 +0800</pubDate>
+<lastBuildDate>Sun, 3 Dec 2023 18:35:00 +0800</lastBuildDate>
 <description> </description>
 </item>
 <item>
 <title>曲线的曲率和法向量</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/曲线的曲率和法向量.html</link>
 <pubDate>Sat, 30 Sep 2023 21:57:00 +0800</pubDate>
+<lastBuildDate>Sun, 15 Oct 2023 22:50:00 +0800</lastBuildDate>
 <description>符号 ``k`` 表示曲线</description>
 </item>
 </channel>
