@@ -1,15 +1,5 @@
 import { Directory, File } from "./readDir.js"
 
-// class FileItem {
-//     path = ""
-//     createTime = 0
-
-//     constructor(path) {
-//         this.path = path
-//         this.createTime = statSync(path).birthtime.getTime()
-//     }
-// }
-
 const MAX_STACK_SIZE = 16
 class FileMonoStack {
     // where the data are stored,
