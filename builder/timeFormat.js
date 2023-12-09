@@ -1,28 +1,29 @@
-function addLeadingZero(num) {
+function addLeadingZero(num, target) {
     let numStr = num.toString();
-    while (numStr.length < 2) {
+    while (numStr.length < target) {
         numStr = "0" + numStr
     }
     return numStr;
 }
 
 const weekDayNames = [
-    "Mon", "Tues", "Wed",
-    "Thur", "Fri", "Sat",
-    "Sun",
+    "Sun", "Mon", "Tue",
+    "Wed", "Thu", "Fri",
+    "Sat",
 ]
-const weekDay = (date) => weekDayNames[date.getDay() - 1]
-
 const monthNames = [
     "Jan", "Feb", "Mar",
     "Apr", "May", "Jun",
     "Jul", "Aug", "Sep",
     "Oct", "Nov", "Dec",
 ]
-const month = (date) => monthNames[date.getMonth()]
-
-const time = (date) => `${addLeadingZero(date.getHours())}:${addLeadingZero(date.getMinutes())}:00`;
-const timezone = (date) => date.getTimezoneOffset() === 0 ? "GMT" : "BST";
+const weekDay  = date => weekDayNames[date.getDay()]
+const month    = date => monthNames[date.getMonth()]
+const time     = date => `${addLeadingZero(date.getHours(), 2)}:${addLeadingZero(date.getMinutes(), 2)}:00`;
+const timezone = () => {
+    const timezone = (-(new Date()).getTimezoneOffset() / 60)
+    return (timezone >= 0 ? "+" : "-") + addLeadingZero((timezone * 100).toString(), 4)
+}
 
 export default (date) =>
     `${weekDay(date)}, ${date.getDate()} ${month(date)} ${date.getFullYear()} ${time(date)} ${timezone(date)}`
