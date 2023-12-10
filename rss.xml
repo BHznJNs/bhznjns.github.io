@@ -8,8 +8,8 @@
 <title>静态博客网站实现 RSS 发布</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/静态博客网站实现 RSS 发布.html</link>
 <pubDate>Fri, 8 Dec 2023 11:06:00 +0800</pubDate>
-<lastBuildDate>Fri, 8 Dec 2023 15:54:00 +0800</lastBuildDate>
-<description> </description>
+<lastBuildDate>Sat, 9 Dec 2023 23:56:00 +0800</lastBuildDate>
+<description>网站发布 RSS 本质上就是更新网站的 ``rss.xml`` (或者 ``atom.xml``)，订阅者则可以通过 RSS 阅读器来获取网站最新的 RSS 文件，从而获知网站网站的最新动态。</description>
 </item>
 <item>
 <title>极限和连续性 | Limits and continuity</title>
