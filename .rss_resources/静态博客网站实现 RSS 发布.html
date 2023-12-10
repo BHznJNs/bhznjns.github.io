@@ -50,14 +50,14 @@ function rssFileGenerator(blogPaths) {
     const rssItems = blogs.map(rssItemResolver)
     return rssTemplate(rssItems)
 }
-</code></pre><p>将这个函数返回的内容写入到网站的 <code>rss.xml</code> 文件，进行部署，网站就能被 RSS 阅读器订阅了。</p><hr><h2>进阶 - 添加博客创建时间</h2><p>现在，你虽然已经可以通过 RSS 阅读器订阅并阅读你的博客，但你会发现，你的所有博客并没有按照先后顺序排列，阅读器上也没有注上每篇博客的发布时间。</p><p>`<pubDate>` 标签就能优化这一点。</p><p>为了添加这一标签，我们需要修改前文使用的 `rssItemResolver` 函数：</p><pre><code class="language-javascript">const rssItemResolver = blog =&gt; `&lt;item&gt;
+</code></pre><p>将这个函数返回的内容写入到网站的 <code>rss.xml</code> 文件，进行部署，网站就能被 RSS 阅读器订阅了。</p><hr><h2>进阶 - 添加博客创建时间</h2><p>现在，你虽然已经可以通过 RSS 阅读器订阅并阅读你的博客，但你会发现，你的所有博客并没有按照先后顺序排列，阅读器上也没有注上每篇博客的发布时间。</p><p><code>pubDate</code> 标签就能优化这一点。</p><p>为了添加这一标签，我们需要修改前文使用的 <code>rssItemResolver</code> 函数：</p><pre><code class="language-javascript">const rssItemResolver = blog =&gt; `&lt;item&gt;
 &lt;title&gt;${blog.title}&lt;/title&gt;
 &lt;link&gt;${blog.link}&lt;/link&gt;
 &lt;pubDate&gt;${timeFormater(blog.pubTime)}&lt;/pubDate&gt;
 &lt;description&gt;${blog.description}&lt;/description&gt;
 &lt;/item&gt;
 `
-</code></pre><p>需要注意的是，根据<a href="https://whitep4nth3r.com/blog/how-to-format-dates-for-rss-feeds-rfc-822/#valid-rfc-822-date-format" target="_blank">文章</a>，RSS 文档中出现的时间必须参照一定的格式，如 <code>Wed, 02 Oct 2002 15:00:00 +0200</code>。</p><p>所以我们需要一个 `timeFormater` 函数：</p><pre><code class="language-javascript">function addLeadingZero(num, target) {
+</code></pre><p>需要注意的是，根据<a href="https://whitep4nth3r.com/blog/how-to-format-dates-for-rss-feeds-rfc-822/#valid-rfc-822-date-format" target="_blank">文章</a>，RSS 文档中出现的时间必须参照一定的格式，如 <code>Wed, 02 Oct 2002 15:00:00 +0200</code>。</p><p>所以我们需要一个 <code>timeFormater</code> 函数：</p><pre><code class="language-javascript">function addLeadingZero(num, target) {
     let numStr = num.toString();
     while (numStr.length &lt; target) {
         numStr = "0" + numStr
@@ -86,5 +86,4 @@ const timezone = () =&gt; {
 
 const timeFormater = date =&gt;
     `${weekDay(date)}, ${date.getDate()} ${month(date)} ${date.getFullYear()} ${time(date)} ${timezone(date)}`
-
 </code></pre><p>修改如上代码后再次部署，再在 RSS 阅读器中查看，你会发现你的博客已经按照发布时间排序好了，并且对于每篇博客也会显示对应的发布时间。</p><p>本文完，感谢阅读。</p>
