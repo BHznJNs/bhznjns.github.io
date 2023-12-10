@@ -106,9 +106,9 @@ function rssFileGenerator(blogPaths) {
 
 现在，你虽然已经可以通过 RSS 阅读器订阅并阅读你的博客，但你会发现，你的所有博客并没有按照先后顺序排列，阅读器上也没有注上每篇博客的发布时间。
 
-`<pubDate>` 标签就能优化这一点。
+``pubDate`` 标签就能优化这一点。
 
-为了添加这一标签，我们需要修改前文使用的 `rssItemResolver` 函数：
+为了添加这一标签，我们需要修改前文使用的 ``rssItemResolver`` 函数：
 
 ```javascript
 const rssItemResolver = blog => `<item>
