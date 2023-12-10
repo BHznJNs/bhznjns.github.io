@@ -122,7 +122,7 @@ const rssItemResolver = blog => `<item>
 
 需要注意的是，根据[文章](https://whitep4nth3r.com/blog/how-to-format-dates-for-rss-feeds-rfc-822/#valid-rfc-822-date-format)，RSS 文档中出现的时间必须参照一定的格式，如 ``Wed, 02 Oct 2002 15:00:00 +0200``。
 
-所以我们需要一个 `timeFormater` 函数：
+所以我们需要一个 ``timeFormater`` 函数：
 
 ```javascript
 function addLeadingZero(num, target) {
@@ -154,7 +154,6 @@ const timezone = () => {
 
 const timeFormater = date =>
     `${weekDay(date)}, ${date.getDate()} ${month(date)} ${date.getFullYear()} ${time(date)} ${timezone(date)}`
-
 ```
 
 修改如上代码后再次部署，再在 RSS 阅读器中查看，你会发现你的博客已经按照发布时间排序好了，并且对于每篇博客也会显示对应的发布时间。
