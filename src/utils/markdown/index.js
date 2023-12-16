@@ -1,5 +1,5 @@
-import { Headline, Quote, Divider, List, CodeBlock, Para, ImageBlock } from "./node.js"
-import { codeResolver, listResolver, quoteResolver } from "./resolvers/index.js"
+import { Headline, Quote, Divider, List, CodeBlock, Para, ImageBlock, TableBlock } from "./node.js"
+import { codeResolver, listResolver, quoteResolver, tableResolver } from "./resolvers/index.js"
 import getLines from "./utils/getLines.js"
 
 export default function mdResolver(source) {
@@ -30,6 +30,9 @@ export default function mdResolver(source) {
         } else
         if (CodeBlock.pattern(l)) {
             nodes.push(codeResolver(l, lines))
+        } else 
+        if (TableBlock.pattern(l)) {
+            nodes.push(tableResolver(l, lines))
         } else {
             nodes.push(new Para(l))
         }

@@ -1,4 +1,5 @@
 import inlineResolver, { getInterval } from "./inline.js"
+import el from "./utils/el.js"
 
 class BaseNode {
     tagName = ""
@@ -6,7 +7,7 @@ class BaseNode {
 
     toHTML() {
         const inline = inlineResolver(this.content)
-        return `<${this.tagName}>${inline}</${this.tagName}>`
+        return el(this.tagName, inline)
     }
 }
 
@@ -32,11 +33,12 @@ export class Headline extends BaseNode {
         this.content = splited.slice(1).join(" ")
     }
 
-    static pattern = (source) => source.match(/^(#+ )/)
+    static pattern = source => source.match(/^(#+ )/)
 }
 
 export class Para extends BaseNode {
     tagName = "p"
+
     constructor(content) {
         super()
         this.content = content.trimStart()
@@ -44,6 +46,7 @@ export class Para extends BaseNode {
 }
 
 export class Quote extends BaseNode {
+    tagName = "blockquote"
     children = []
 
     constructor(children) {
@@ -51,21 +54,19 @@ export class Quote extends BaseNode {
         this.children = children
     }
     toHTML() {
-        let resultHTML = ""
-        for (const node of this.children) {
-            resultHTML += node.toHTML()
-        }
-        return `<blockquote>${resultHTML}</blockquote>`
+        const innerHTML = this.children
+            .map(node =>
+                node.toHTML()
+            ).join("")
+        return el(this.tagName, innerHTML)
     }
 
-    static pattern = (source) => source.startsWith("> ")
+    static pattern = source => source.startsWith("> ")
 }
 
 export class Divider extends BaseNode {
-    toHTML() {
-        return "<hr>"
-    }
-    static pattern = (source) =>
+    toHTML = () => "<hr>"
+    static pattern = source =>
         source.match(/(-\s*-\s*-)|(\*\s*\*\s*\*)/) && !source.match(/[a-zA-Z0-9]/)
 }
 
@@ -81,24 +82,23 @@ export class List extends BaseNode {
         this.children = [List.getContent(content, this.isOrdered)]
     }
 
-    push = (child) => this.children.push(child)
+    push = child => this.children.push(child)
 
     toHTML() {
-        let resultHTML = `<${this.tagName}>`
+        const childrenHTML = []
         for (const child of this.children) {
             if (typeof child == "string") {
                 const inline = inlineResolver(child)
-                resultHTML += `<li>${inline}</li>`
+                childrenHTML.push(`<li>${inline}</li>`)
             } else {
-                resultHTML += child.toHTML()
+                childrenHTML.push(child.toHTML())
             }
         }
-        resultHTML += `</${this.tagName}>`
-        return resultHTML
+        const innerHTML = childrenHTML.join("")
     }
 
     static unorderedPattern = (source) => Boolean(source.match(/^([\s\t]*[+-]+ )/))
-    static orderedPattern   = (source) => Boolean(source.match(/^([\s\t]*[0-9]+. )/))
+    static orderedPattern = (source) => Boolean(source.match(/^([\s\t]*[0-9]+. )/))
 
     static isListPattern = (source) =>
         List.orderedPattern(source) || List.unorderedPattern(source)
@@ -114,6 +114,38 @@ export class List extends BaseNode {
     }
 }
 
+export class TableBlock extends BaseNode {
+    headerCells = [""]   // [string]
+    bodyRows    = [[""]] // [[string]]
+
+    constructor(headerCells, bodyRows) {
+        super()
+
+        this.headerCells = headerCells
+        this.bodyRows    = bodyRows
+    }
+
+    #tableHeaderCell = content => el("th", content)
+    #tablebodyCell   = content => el("td", content)
+    #tableRow = row => el("tr", row.map(this.#tablebodyCell).join(""))
+
+    toHTML() {
+        const tableHeader = el(
+            "thead",
+            this.#tableRow(this.headerCells)
+        )
+        const tableBody = el(
+            "tbody",
+            this.bodyRows
+                .map(this.#tableRow)
+                .join("")
+        )
+        return el("table", tableHeader + tableBody)
+    }
+
+    static pattern = source => source.startsWith("| ")
+}
+
 export class CodeBlock extends BaseNode {
     constructor(content, lang) {
         super()
@@ -127,10 +159,11 @@ export class CodeBlock extends BaseNode {
         this.content += content
     }
     toHTML() {
-        return `<pre><code class="language-${this.lang}">${this.content}</code></pre>`
+        const codeElHTML = `<code class="language-${this.lang}">${this.content}</code>`
+        return el("pre", codeElHTML)
     }
 
-    static pattern = (source) => source.startsWith("```")
+    static pattern = source => source.startsWith("```")
 }
 
 export class ImageBlock extends BaseNode {
@@ -162,9 +195,8 @@ export class ImageBlock extends BaseNode {
                 actualAddress = path + "/" + this.address
             }
         }
-
         return `<div class="img"><img src="${actualAddress}" alt="${this.alt}" tabindex="0"></div>`
     }
 
-    static pattern = (source) => source.startsWith("![") && source.endsWith(")")
+    static pattern = source => source.startsWith("![") && source.endsWith(")")
 }
