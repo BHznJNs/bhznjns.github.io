@@ -1,5 +1,5 @@
-import { List } from "./node.js"
-import getIndent from "./utils/getIndent.js"
+import { List } from "../node.js"
+import getIndent from "../utils/getIndent.js"
 
 export default function listResolver(currentLine, lines) {
     const currentIndent = getIndent(currentLine)

@@ -1,5 +1,5 @@
-import mdResolver from "./index.js"
-import { Quote } from "./node.js"
+import mdResolver from "../index.js"
+import { Quote } from "../node.js"
 
 export default function(firstLine, lines) {
     let quotedContent = firstLine.slice(2) + "\n"

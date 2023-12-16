@@ -1,4 +1,4 @@
-import { CodeBlock } from "./node.js"
+import { CodeBlock } from "../node.js"
 
 export default function(firstLine, lines) {
     const lang = firstLine.slice(3)

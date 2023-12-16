@@ -1,7 +1,5 @@
-import codeResolver from "./codeResolver.js"
-import listResolver from "./listResolver.js"
 import { Headline, Quote, Divider, List, CodeBlock, Para, ImageBlock } from "./node.js"
-import quoteResolver from "./quoteResolver.js"
+import { codeResolver, listResolver, quoteResolver } from "./resolvers/index.js"
 import getLines from "./utils/getLines.js"
 
 export default function mdResolver(source) {
