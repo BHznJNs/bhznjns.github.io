@@ -350,6 +350,7 @@ article div.img img {
 
 table {
     width: 100%;
+    margin-bottom: 1rem;
     color: var(--default-tx-color);
     border: 1px solid var(--shallow-bd-color);
     border-collapse: separate;
