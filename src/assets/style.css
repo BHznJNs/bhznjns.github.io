@@ -337,6 +337,19 @@ article blockquote:hover::before {
     width: 6px;
 }
 
+@media screen and (max-width: 767px) {
+    /* Mobile phone style */
+    article div.img {
+        width: calc(100% + 3.2rem);
+        margin-left: -1.6rem !important;
+        margin-right: -1.6rem !important;
+    }
+
+    article div.img img {
+        border-radius: 0 !important;
+    }
+}
+
 article div.img {
     margin: 1rem 1rem 1.5rem;
 }
