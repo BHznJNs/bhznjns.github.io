@@ -1,16 +1,19 @@
-import fs from "node:fs"
+import { accessSync, readdirSync, statSync, unlinkSync, constants } from "node:fs"
 import { rssResourcePath } from "../path.js"
 
 export function clearRssResources() {
-    if (!fs.accessSync(rssResourcePath, fs.constants.R_OK | fs.constants.W_OK)) {
+    try {
+        accessSync(rssResourcePath, constants.R_OK | constants.W_OK)
+    } catch {
         return
     }
-    const dirContent = fs.readdirSync(rssResourcePath)
+
+    const dirContent = readdirSync(rssResourcePath)
     for (const file of dirContent) {
         const filePath = rssResourcePath + file
-        const isFile = fs.statSync(filePath).isFile
+        const isFile = statSync(filePath).isFile
         if (isFile) {
-            fs.unlinkSync(filePath)
+            unlinkSync(filePath)
         }
     }
 }
