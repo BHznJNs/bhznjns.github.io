@@ -196,7 +196,7 @@ export class ImageBlock extends BaseNode {
                 actualAddress = path + "/" + this.address
             }
         }
-        return `<div class="img"><img src="${actualAddress}" alt="${this.alt}" tabindex="0"></div>`
+        return `<div class="img"><img src="${actualAddress}" alt="${this.alt}" loading="lazy" tabindex="0"></div>`
     }
 
     static pattern = source => source.startsWith("![") && source.endsWith(")")
