@@ -36,6 +36,7 @@ nextBtn.addEventListener("click", () => {
 // ---------------------
 // Hash controller start
 // ---------------------
+
 const mainEl = document.querySelector("main")
 const articleList = document.getElementById("article-list")
 
@@ -68,6 +69,7 @@ async function hashEvent() {
 
 window.onload = hashEvent
 window.addEventListener("hashchange", hashEvent)
+
 // -------------------
 // Hash controller end
 // -------------------

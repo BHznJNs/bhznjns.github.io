@@ -12,16 +12,22 @@ import Cpp from "../highlight-es/languages/cpp.min.js"
 import C from "../highlight-es/languages/c.min.js"
 import keydownEvent from "./keydownEvent.js"
 
-hljs.registerLanguage("javascript", JavaScript)
-hljs.registerLanguage("python", Python)
-hljs.registerLanguage("rust", Rust)
-hljs.registerLanguage("bash", Bash)
-hljs.registerLanguage("json", JSON)
-hljs.registerLanguage("yaml", YAML)
-hljs.registerLanguage("xml", XML)
-hljs.registerLanguage("css", CSS)
-hljs.registerLanguage("cpp", Cpp)
-hljs.registerLanguage("c", C)
+const languages = {
+    "javascript": JavaScript,
+    "python": Python,
+    "rust": Rust,
+    "bash": Bash,
+    "json": JSON,
+    "yaml": YAML,
+    "xml": XML,
+    "css": CSS,
+    "cpp": Cpp,
+    "c": C,
+}
+
+for (const [key, val] of Object.entries(languages)) {
+    hljs.registerLanguage(key, val)
+}
 
 const articleEl   = document.querySelector("article")
 const mainEl      = document.querySelector("main")

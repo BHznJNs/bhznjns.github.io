@@ -37,7 +37,5 @@ export default function mdResolver(source) {
             nodes.push(new Para(l))
         }
     }
-
-    console.log(nodes)
     return nodes
 }
