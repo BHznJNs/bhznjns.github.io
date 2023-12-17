@@ -391,6 +391,9 @@ th, td {
     font-size: .85rem;
     text-align: left;
 }
+th {
+    opacity: .85;
+}
 td {
     border-top: 2px solid var(--shallow-bd-color);
 }
