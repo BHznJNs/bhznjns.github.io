@@ -3,9 +3,11 @@ body:not(.dark) {
     --hovered-tx-color: #000;
 
     --default-bg-color: #fff;
+    --allpage-bg-color: #f6f6f6;
     --hovered-bg-color: #eee;
 
-    --default-bd-color: #666;
+    --shallow-bd-color: #e0e0e0;
+    --deep-bd-color: #666;
 
     --default-img-shadow-color: #bbb;
     --default-link-visited-color: deeppink;
@@ -18,10 +20,12 @@ body.dark {
     --default-tx-color: #eee;
     --hovered-tx-color: #fff;
 
-    --default-bg-color: #000;
+    --default-bg-color: #121212;
+    --allpage-bg-color: #000;
     --hovered-bg-color: #333;
 
-    --default-bd-color: #666;
+    --shallow-bd-color: #616161;
+    --deep-bd-color: #666;
 
     --default-img-shadow-color: #444;
     --default-link-visited-color: hotpink;

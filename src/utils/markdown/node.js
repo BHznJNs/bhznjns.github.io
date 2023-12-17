@@ -77,9 +77,8 @@ export class List extends BaseNode {
         super()
 
         this.isOrdered = Boolean(List.orderedPattern(content))
-
-        this.tagName = (this.isOrdered) ? "ol" : "ul"
-        this.children = [List.getContent(content, this.isOrdered)]
+        this.tagName   = (this.isOrdered) ? "ol" : "ul"
+        this.children  = [List.getContent(content, this.isOrdered)]
     }
 
     push = child => this.children.push(child)
@@ -95,6 +94,7 @@ export class List extends BaseNode {
             }
         }
         const innerHTML = childrenHTML.join("")
+        return el(this.tagName, innerHTML)
     }
 
     static unorderedPattern = (source) => Boolean(source.match(/^([\s\t]*[+-]+ )/))
@@ -126,18 +126,19 @@ export class TableBlock extends BaseNode {
     }
 
     #tableHeaderCell = content => el("th", content)
-    #tablebodyCell   = content => el("td", content)
-    #tableRow = row => el("tr", row.map(this.#tablebodyCell).join(""))
+    #tableBodyCell   = content => el("td", content)
+    #tableHeaderRow  = row => el("tr", row.map(this.#tableHeaderCell).join(""))
+    #tableBodyRow    = row => el("tr", row.map(this.#tableBodyCell).join(""))
 
     toHTML() {
         const tableHeader = el(
             "thead",
-            this.#tableRow(this.headerCells)
+            this.#tableHeaderRow(this.headerCells)
         )
         const tableBody = el(
             "tbody",
             this.bodyRows
-                .map(this.#tableRow)
+                .map(this.#tableBodyRow)
                 .join("")
         )
         return el("table", tableHeader + tableBody)

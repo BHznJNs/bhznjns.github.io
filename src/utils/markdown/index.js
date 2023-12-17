@@ -38,5 +38,6 @@ export default function mdResolver(source) {
         }
     }
 
+    console.log(nodes)
     return nodes
 }

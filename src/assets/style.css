@@ -1,8 +1,14 @@
+:root {
+    --shadow-sm: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12) !important;
+    --shadow-md: 0 3px 3px -2px rgba(0,0,0,.2),0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12) !important;
+    --shadow-lg: 0 3px 3px -2px rgba(0,0,0,.2),0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12) !important;;
+}
+
 body {
     margin: 0;
-    background-color: var(--default-bg-color);
+    background-color: var(--allpage-bg-color);
     transition: background .3s,
-        color .3s;
+                color .3s;
 }
 
 body:not(.dark) #light-btn {
@@ -30,10 +36,7 @@ nav {
     user-select: none;
 }
 
-body.dark #homepage img {
-    filter: invert(100%);
-}
-body.dark #rss-icon img {
+.dark #homepage img, .dark #rss-icon img {
     filter: invert(100%);
 }
 
@@ -42,9 +45,10 @@ nav .icon-btn {
     height: 2rem;
     align-items: center;
     padding: 4px .5rem;
-    border: solid 4px var(--default-bd-color);
+    border: solid 4px var(--deep-bd-color);
     border-radius: 8px;
     color: var(--default-tx-color);
+    background-color: var(--default-bg-color);
     cursor: pointer;
     text-decoration: none !important;
     transition: .3s;
@@ -104,7 +108,7 @@ nav .icon-btn:hover span::before {
         margin-left: 1rem !important;
         margin-right: 1rem !important;
         border-radius: .75rem;
-        box-shadow: .125rem .25rem .45rem #999 !important;
+        box-shadow: var(--shadow-sm);
     }
 }
 
@@ -113,7 +117,8 @@ main {
     margin: 2rem 10vw 4rem;
     padding: 1rem 2rem;
     border-radius: 1rem;
-    box-shadow: .125rem .25rem 1rem #666;
+    background-color: var(--default-bg-color);
+    box-shadow: var(--shadow-md);
 }
 
 main[data-is-first-page="true"],
@@ -140,7 +145,7 @@ main button#next {
     bottom: .5rem;
     height: 2rem;
     padding: 4px .5rem;
-    border: solid 4px var(--default-bd-color);
+    border: solid 4px var(--deep-bd-color);
     border-radius: 4px;
     color: var(--default-tx-color);
     background-color: var(--default-bg-color);
@@ -175,7 +180,7 @@ main[data-is-root="true"] #previous-dir {
 
 main ul li {
     cursor: pointer;
-    border: solid 2px var(--default-bd-color);
+    border: solid 2px var(--deep-bd-color);
     border-radius: 4px;
     margin-bottom: 8px;
     padding: 4px 1rem;
@@ -208,7 +213,7 @@ main #article-list.disabled {
         margin-left: 1rem !important;
         margin-right: 1rem !important;
         border-radius: .75rem;
-        box-shadow: .125rem .25rem .45rem #999 !important;
+        box-shadow: var(--shadow-sm);
     }
 }
 
@@ -220,11 +225,12 @@ article {
     margin: 2rem 10vw 4rem;
     padding: 1rem 2rem;
     border-radius: 1rem;
-    box-shadow: 0.125rem .25rem 1rem #666;
+    background-color: var(--default-bg-color);
+    box-shadow: var(--shadow-md);
 }
 
 /* link in dark mode */
-body.dark article a:link {
+.dark article a:link {
     color: deepskyblue;
 }
 
@@ -339,9 +345,54 @@ article div.img img {
     width: 100%;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: .25rem .375rem .5rem var(--default-img-shadow-color) !important;
+    box-shadow: var(--shadow-sm);
 }
 
+table {
+    width: 100%;
+    color: var(--default-tx-color);
+    border: 1px solid var(--shallow-bd-color);
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+.dark table {
+    border-width: 2px;
+    box-shadow: none;
+}
+
+@media screen and (max-width: 767px) {
+    /* Mobile phone style */
+    table {
+        width: calc(100% + 3.2rem);
+        margin-left: -1.6rem;
+        margin-right: -1.6rem;
+        border-width: 2px;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+thead {
+    font-weight: bold;
+}
+
+th:first-child,
+td:first-child {
+    padding-right: 0 !important;
+}
+th, td {
+    padding: 8px 18px !important;
+    font-size: .85rem;
+    text-align: left;
+}
+td {
+    border-top: 2px solid var(--shallow-bd-color);
+}
 /* ------------------ */
 /* Article styles end */
 /* ------------------ */
