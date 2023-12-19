@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/#static/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>RIME 输入法折腾记录</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/RIME 输入法折腾记录.html</link>
+<pubDate>Mon, 18 Dec 2023 22:15:00 +0800</pubDate>
+<lastBuildDate>Tue, 19 Dec 2023 11:10:00 +0800</lastBuildDate>
+<description>``2023/12/18``</description>
+</item>
+<item>
 <title>静态博客网站实现 RSS 发布</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/静态博客网站实现 RSS 发布.html</link>
 <pubDate>Fri, 8 Dec 2023 11:06:00 +0800</pubDate>
@@ -108,13 +115,6 @@
 <pubDate>Sun, 15 Oct 2023 23:03:00 +0800</pubDate>
 <lastBuildDate>Sun, 3 Dec 2023 18:35:00 +0800</lastBuildDate>
 <description> </description>
-</item>
-<item>
-<title>曲线的曲率和法向量</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/曲线的曲率和法向量.html</link>
-<pubDate>Sat, 30 Sep 2023 21:57:00 +0800</pubDate>
-<lastBuildDate>Sun, 15 Oct 2023 22:50:00 +0800</lastBuildDate>
-<description>符号 ``k`` 表示曲线</description>
 </item>
 </channel>
 </rss>
