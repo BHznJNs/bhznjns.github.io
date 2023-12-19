@@ -156,8 +156,8 @@ export class CodeBlock extends BaseNode {
             .replaceAll("<", "&lt;")
             .replaceAll(">", "&gt;")
 
-        if (!globalThis.hljs.getLanguage(lang)) {
-            // if language definition is not imported
+        if (typeof window == "object" && !globalThis.hljs.getLanguage(lang)) {
+            // if in browser && if language definition is not imported
             import(`../../highlight-es/languages/${lang}.min.js`)
                 // register language
                 .then(def => globalThis.hljs.registerLanguage(lang, def.default))
