@@ -1,33 +1,7 @@
 import hljs from "../highlight-es/highlight.js"
-
-import JavaScript from "../highlight-es/languages/javascript.min.js"
-import Python from "../highlight-es/languages/python.min.js"
-import Rust from "../highlight-es/languages/rust.min.js"
-import JSON from "../highlight-es/languages/json.min.js"
-import YAML from "../highlight-es/languages/yaml.min.js"
-import Bash from "../highlight-es/languages/bash.min.js"
-import XML from "../highlight-es/languages/xml.min.js"
-import CSS from "../highlight-es/languages/css.min.js"
-import Cpp from "../highlight-es/languages/cpp.min.js"
-import C from "../highlight-es/languages/c.min.js"
 import keydownEvent from "./keydownEvent.js"
 
-const languages = {
-    "javascript": JavaScript,
-    "python": Python,
-    "rust": Rust,
-    "bash": Bash,
-    "json": JSON,
-    "yaml": YAML,
-    "xml": XML,
-    "css": CSS,
-    "cpp": Cpp,
-    "c": C,
-}
-
-for (const [key, val] of Object.entries(languages)) {
-    hljs.registerLanguage(key, val)
-}
+globalThis.hljs = hljs
 
 const articleEl   = document.querySelector("article")
 const mainEl      = document.querySelector("main")
@@ -64,7 +38,7 @@ export function mdRender(structure) {
     articleEl.querySelectorAll("[tabindex='0']").forEach((el) => {
         el.onkeydown = keydownEvent(el)
     })
-    hljs.highlightAll()
+    // hljs.highlightAll()
 }
 
 // --------------
