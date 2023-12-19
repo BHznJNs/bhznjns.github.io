@@ -1,8 +1,6 @@
 import hljs from "../highlight-es/highlight.js"
 import keydownEvent from "./keydownEvent.js"
 
-globalThis.hljs = hljs
-
 const articleEl   = document.querySelector("article")
 const mainEl      = document.querySelector("main")
 const previoudDirBtn = mainEl.querySelector("#previous-dir li")
@@ -21,12 +19,12 @@ articleEl.addEventListener("click", (e) => {
 
 
 export function mdRender(structure) {
-    let resultHTML = ""
+    // language names to import
+    globalThis.__LanguageList__ = new Set()
 
-    for (const node of structure) {
-        resultHTML += node.toHTML()
-    }
-
+    let resultHTML = structure
+        .map(node => node.toHTML())
+        .join("")
     if (!resultHTML.length) {
         resultHTML = "<h1>空文章</h1>"
     }
@@ -38,7 +36,21 @@ export function mdRender(structure) {
     articleEl.querySelectorAll("[tabindex='0']").forEach((el) => {
         el.onkeydown = keydownEvent(el)
     })
-    // hljs.highlightAll()
+
+    // dynamically import language definitions
+    const languageListArr = Array.from((globalThis.__LanguageList__))
+    const langDefImporters = languageListArr
+        .filter(name => !hljs.getLanguage(name))
+        .map(lang => import(`../highlight-es/languages/${lang}.min.js`))
+    globalThis.__LanguageList__ = null
+    Promise.all(langDefImporters)
+        .then(langDefs => langDefs.forEach((defModule, index) => {
+            const name = languageListArr[index]
+            const def  = defModule.default
+            hljs.registerLanguage(name, def)
+        }))
+        .then(() => hljs.highlightAll())
+        .catch(err => console.error(err))
 }
 
 // --------------

@@ -155,22 +155,15 @@ export class CodeBlock extends BaseNode {
         this.content = content
             .replaceAll("<", "&lt;")
             .replaceAll(">", "&gt;")
-
-        if (typeof window == "object" && !globalThis.hljs.getLanguage(lang)) {
-            // if in browser && if language definition is not imported
-            import(`../../highlight-es/languages/${lang}.min.js`)
-                // register language
-                .then(def => globalThis.hljs.registerLanguage(lang, def.default))
-                // highlight target code element
-                .then(() => document.querySelectorAll("pre code.language-" + lang).forEach(
-                    el => hljs.highlightElement(el)
-                ))
-        }
     }
     append(content) {
         this.content += content
     }
     toHTML() {
+        if (typeof window == "object") {
+            globalThis.__LanguageList__.add(this.lang)
+        }
+
         const codeElHTML = `<code class="language-${this.lang}">${this.content}</code>`
         return el("pre", codeElHTML)
     }
