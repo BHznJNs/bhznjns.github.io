@@ -1,3 +1,5 @@
+import el from "./utils/el.js"
+
 // identifier character array
 const keyTermArray = [
     "#",
@@ -35,32 +37,23 @@ class Token {
 }
 
 class LinkToken extends Token {
-    constructor(display, address) {
+    constructor(content, address) {
         super()
 
         this.type = Token.link
-        this.display = display
+        this.content = content
         this.address = address
     }
 
     toHTML() {
         if (this.address.startsWith("http")) {
-            return `<a href="${this.address}" target="_blank">${this.display}</a>`
-        } else {
-            // static resource
-            let actualAddress
-            if ("location" in globalThis) {
-                // in browser
-                const hash = location.hash.slice(1)
-                const currentPath = hash.split("/").slice(0, -1).join("/")
-                actualAddress = currentPath + "/" + this.address
-            } else {
-                // in nodejs
-                const currentPath = globalThis.__ResourcePath__
-                actualAddress = currentPath + "/" + this.address
-            }
-            return `<a href="${actualAddress}" target="_blank">${this.display}</a>`    
+            // internet links
+            return `<a href="${this.address}" target="_blank">${this.content}</a>`
         }
+
+        // static resources or links
+        const actualAddress = "static/" + this.address
+        return `<a href="#${actualAddress}">${this.content}</a>`    
     }
 }
 
@@ -152,10 +145,6 @@ function tokenize(text) {
 }
 
 function convert(tokens) {
-    function createElement(tagName, content) {
-        return `<${tagName}>${content}</${tagName}>`
-    }
-
     let resultHTML = ""
     let identifier = ""
     let tagContent = ""
@@ -165,7 +154,7 @@ function convert(tokens) {
             case Token.key:
                 if (identifier.length && token.content == identifier) {
                     const tagName = KeyToken_TagName_map.get(identifier)
-                    resultHTML += createElement(tagName, tagContent)
+                    resultHTML += el(tagName, tagContent)
 
                     identifier = ""
                     tagContent = ""
