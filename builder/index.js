@@ -1,9 +1,14 @@
-import fs from "node:fs"
-import readDir, { Directory } from "./readDir.js"
+import { writeFileSync } from "node:fs"
 import indexing from "./indexing.js"
 import getNewest from "./getNewest.js"
-import { rssFilePath } from "./path.js"
-import { rssFileGenerator, rssItemGenerator, clearRssResources } from "./rss/index.js"
+import saveNewest from "./saveNewest.js"
+import { indexFilePath, rssFilePath, rssResourcePath } from "./path.js"
+import { rssFileGenerator, rssItemGenerator } from "./rss/index.js"
+import clearDirectory from "./utils/clearDirectory.js"
+import readDir, { Directory } from "./utils/readDir.js"
+
+clearDirectory(indexFilePath)
+clearDirectory(rssResourcePath)
 
 const staticDir = new Directory("static")
 readDir(staticDir, "")
@@ -11,8 +16,12 @@ indexing(staticDir, "static")
 
 // --- --- --- --- --- ---
 
-clearRssResources()
-const newests  = getNewest(staticDir)
-const rssItems = newests.children.map(rssItemGenerator)
+const newests = getNewest(staticDir)
+saveNewest(newests.children)
+
+const rssItemSize = 16
+const rssItems = newests.children
+    .slice(0, rssItemSize)
+    .map(rssItemGenerator)
 const rssContent = rssFileGenerator(rssItems)
-fs.writeFileSync(rssFilePath, rssContent)
+writeFileSync(rssFilePath, rssContent)

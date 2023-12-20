@@ -5,6 +5,20 @@
 <link>https://bhznjns.github.io/markdown-blog/#static/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>切平面和线性近似 | Tangent planes & Linear approximations</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/切平面和线性近似.html</link>
+<pubDate>Wed, 20 Dec 2023 09:12:00 +0800</pubDate>
+<lastBuildDate>Wed, 20 Dec 2023 09:33:00 +0800</lastBuildDate>
+<description> </description>
+</item>
+<item>
+<title>偏导数 | Partial derivatives</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/偏导数.html</link>
+<pubDate>Tue, 19 Dec 2023 23:24:00 +0800</pubDate>
+<lastBuildDate>Wed, 20 Dec 2023 09:10:00 +0800</lastBuildDate>
+<description>函数 ``f`` 对 x 的偏导数即为 ``f`` 在 x 轴方向上的变化率，同理，函数 ``f`` 对 y 的偏导数即为 ``f`` 在 y 轴方向上的变化率。</description>
+</item>
+<item>
 <title>RIME 输入法折腾记录</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/RIME 输入法折腾记录.html</link>
 <pubDate>Mon, 18 Dec 2023 22:15:00 +0800</pubDate>
@@ -101,20 +115,6 @@
 <pubDate>Mon, 16 Oct 2023 22:38:00 +0800</pubDate>
 <lastBuildDate>Tue, 17 Oct 2023 19:20:00 +0800</lastBuildDate>
 <description>If two bodies are in thermal equilibrium with a third body, they are also in thermal equilibrium with each other.</description>
-</item>
-<item>
-<title>流体性质</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/流体性质.html</link>
-<pubDate>Mon, 16 Oct 2023 22:27:00 +0800</pubDate>
-<lastBuildDate>Mon, 16 Oct 2023 22:39:00 +0800</lastBuildDate>
-<description>A liquid is difficult to compress and, for many purposes regarded as ##incompressible##.</description>
-</item>
-<item>
-<title>多元函数 | Functions of several functions</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/多元函数.html</link>
-<pubDate>Sun, 15 Oct 2023 23:03:00 +0800</pubDate>
-<lastBuildDate>Sun, 3 Dec 2023 18:35:00 +0800</lastBuildDate>
-<description> </description>
 </item>
 </channel>
 </rss>

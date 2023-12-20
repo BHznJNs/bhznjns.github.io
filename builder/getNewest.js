@@ -1,6 +1,5 @@
-import { Directory, File } from "./readDir.js"
+import { Directory, File } from "./utils/readDir.js"
 
-const MAX_STACK_SIZE = 16
 class FileMonoStack {
     // where the data are stored,
     // the biggest at the the leftest and
@@ -33,9 +32,7 @@ class FileMonoStack {
         }
         this.children.push(file)
     }
-    pop() {
-        return this.children.shift()
-    }
+    pop = () => this.children.shift()
     concat(other) {
         while (other.length) {
             const item = other.children.pop()
@@ -56,9 +53,5 @@ export default function getNewest(dir) {
             fileStack.concat(subFileStack)
         }
     }
-
-    if (fileStack.length > MAX_STACK_SIZE) {
-        fileStack.children = fileStack.children.slice(0, MAX_STACK_SIZE)
-    }
-    return fileStack;
+    return fileStack
 }

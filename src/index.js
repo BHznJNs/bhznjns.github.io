@@ -1,9 +1,10 @@
 import { fetchJSON, fetchMD } from "./utils/fetch.js"
 import keydownEvent from "./utils/keydownEvent.js"
 import mdResolver from "./utils/markdown/index.js"
+import el from "./utils/markdown/utils/el.js"
 import { mdRender, indexRender } from "./utils/render.js"
 
-globalThis.CurrentPage = 1
+globalThis.__CurrentPage__ = 1
 const indexDirPath = "./.index/"
 
 // ---------------------------
@@ -18,13 +19,13 @@ const nextBtn = document.querySelector("button#next")
 lightBtn.onkeydown = keydownEvent(lightBtn)
 darkBtn.onkeydown = keydownEvent(darkBtn)
 previousBtn.addEventListener("click", () => {
-    if (globalThis.CurrentPage > 0) {
-        globalThis.CurrentPage -= 1
+    if (globalThis.__CurrentPage__ > 0) {
+        globalThis.__CurrentPage__ -= 1
         hashEvent()
     }
 })
 nextBtn.addEventListener("click", () => {
-    globalThis.CurrentPage += 1
+    globalThis.__CurrentPage__ += 1
     hashEvent()
 })
 
@@ -41,30 +42,45 @@ const mainEl = document.querySelector("main")
 const articleList = document.getElementById("article-list")
 
 async function hashEvent() {
-    if (location.hash) {
-        const hash = location.hash.slice(1) // remove '#'
-        articleList.classList.add("disabled")
+    if (!location.hash) {
+        location.hash = "static/"
+        return
+    }
 
-        if (hash.endsWith("/")) {
-            // open folder
-            const splited = hash.split("/").slice(0, -1)
-            const indexFilePath = indexDirPath + splited.join("+") + "_" + globalThis.CurrentPage
-            const indexing = await fetchJSON(indexFilePath)
-            indexRender(indexing)
-        }
-        if (hash.endsWith(".md")) {
-            // open article
-            const articleContent = await fetchMD("./" + hash)
-            const structure = mdResolver(articleContent)
-            mdRender(structure)
-        }
+    const hash = location.hash.slice(1) // remove '#'
+    articleList.classList.add("disabled")
 
-        // delay this operation
-        mainEl.setAttribute("data-is-root", hash == "static/")
-        articleList.classList.remove("disabled")
+    if (hash == "newest/") {
+        // open newest page
+        const newestIndex = await fetchJSON(indexDirPath + "newest_" + globalThis.__CurrentPage__)
+        indexRender(newestIndex, item => {
+            const dateEl  = el("code", item.date)
+            const titleEl = el("span", item.title)
+            return `<li tabindex="0" data-target-blog="${item.link}">${dateEl}: ${titleEl}</li>`
+        })
+    } else
+    if (hash.startsWith("static") && hash.endsWith("/")) {
+        // open folder
+        const splited = hash.split("/").slice(0, -1)
+        const indexFilePath = indexDirPath + splited.join("+") + "_" + globalThis.__CurrentPage__
+        const index = await fetchJSON(indexFilePath)
+        indexRender(index, item =>
+            `<li tabindex="0">${el("span", item)}</li>`
+        )
+    } else
+    if (hash.startsWith("static") && hash.endsWith(".md")) {
+        // open article
+        const articleContent = await fetchMD("./" + hash)
+        const structure = mdResolver(articleContent)
+        mdRender(structure)
     } else {
         location.hash = "static/"
+        return
     }
+
+    // delay this operation
+    mainEl.setAttribute("data-is-root", hash == "static/")
+    articleList.classList.remove("disabled")
 }
 
 window.onload = hashEvent

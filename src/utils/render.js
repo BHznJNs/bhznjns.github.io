@@ -3,7 +3,7 @@ import keydownEvent from "./keydownEvent.js"
 
 const articleEl   = document.querySelector("article")
 const mainEl      = document.querySelector("main")
-const previoudDirBtn = mainEl.querySelector("#previous-dir li")
+const parentDirBtn = mainEl.querySelector("#previous-dir li")
 const articleList = mainEl.querySelector("#article-list")
 
 // ----------------
@@ -57,20 +57,26 @@ export function mdRender(structure) {
 // index renderer
 // --------------
 
-previoudDirBtn.addEventListener("click", () => {
+parentDirBtn.addEventListener("click", () => {
     const splited = location.hash.split("/")
+    globalThis.__CurrentPage__ = 1
     location.hash = splited.slice(0, -2).join("/") + "/"
 })
 articleList.addEventListener("click", (e) => {
     const target = e.target
-    if (target.innerText.endsWith("/")) {
-        globalThis.CurrentPage = 1
+
+    if (!target.getAttribute("data-target-blog")) {
+        if (target.innerText.endsWith("/")) {
+            globalThis.__CurrentPage__ = 1
+        }
+        location.hash += target.innerText
+    } else {
+        globalThis.__CurrentPage__ = 1
+        location.hash = target.getAttribute("data-target-blog")
     }
-    location.hash += target.innerText
 })
 
-const listItem = (content) => `<li tabindex="0">${content}</li>`
-export function indexRender(indexing) {
+export function indexRender(indexing, itemResolver) {
     // calculate properties
     const {current, total} = indexing
     let isFirstPage = false
@@ -96,7 +102,7 @@ export function indexRender(indexing) {
     // reset HTML content
     articleList.innerHTML = indexing
         .content
-        .map(item => listItem(item))
+        .map(itemResolver)
         .join("")
     // set keyboard event
     articleList.querySelectorAll("[tabindex='0']").forEach((el) => {

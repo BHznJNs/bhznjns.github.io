@@ -1,6 +1,6 @@
 import { writeFileSync } from "node:fs"
-import slice from "./slice.js"
-import { Directory, File } from "./readDir.js"
+import slice from "./utils/slice.js"
+import { Directory, File } from "./utils/readDir.js"
 import { indexFilePath } from "./path.js"
 
 export default function indexing(dir, indexName) {

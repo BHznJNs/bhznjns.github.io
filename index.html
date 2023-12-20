@@ -68,13 +68,26 @@
         data-is-last-page=""
         data-is-only-page=""
     >
-        <h1><a href="https://github.com/BHznJNs">BHznJNs</a> 的 Markdown 静态博客站, 使用 VanillaJS 构建。</h1>
-
-        <button id="previous">上一页</button>
-        <button id="next">下一页</button>
+        <div id="homepage-description">
+            <h1>
+                <a href="https://github.com/BHznJNs">BHznJNs</a> 的 Markdown 静态博客站, 使用 VanillaJS 构建。
+            </h1>
+            <ul>
+                <li
+                    tabindex="0"
+                    onclick="location.hash = 'newest/'"
+                >
+                    最新博文
+                </li>
+            </ul>
+        </div>
 
         <ul id="previous-dir"><li tabindex="0">../</li></ul>
         <ul id="article-list"></ul>
+        <div id="page-switchers">
+            <button id="previous" class="icon-btn"><span>上一页</span></button>
+            <button id="next" class="icon-btn"><span>下一页</span></button>
+        </div>
     </main>
 
     <article style="display: none;"></article>

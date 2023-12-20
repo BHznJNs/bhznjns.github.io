@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from "node:fs"
 import config from "../../package.json" assert { type: 'json' }
 import { rssResourcePath } from "../path.js"
 import renderer from "../renderer.js"
-import timeFormat from "../timeFormat.js"
+import { rssTimeFormater } from "../utils/timeFormat.js"
 
 function getPathParts(filePath) {
     const splited = filePath.split("/")
@@ -30,8 +30,8 @@ export class RssItem {
         return `<item>
 <title>${this.title}</title>
 <link>${this.link}</link>
-<pubDate>${timeFormat(this.pubTime)}</pubDate>
-<lastBuildDate>${timeFormat(this.lastBuildTime)}</lastBuildDate>
+<pubDate>${rssTimeFormater(this.pubTime)}</pubDate>
+<lastBuildDate>${rssTimeFormater(this.lastBuildTime)}</lastBuildDate>
 <description>${this.description || " "}</description>
 </item>
 `
@@ -52,8 +52,8 @@ export default function rssItemGenerator(file) {
     const rssItem = new RssItem(
         articleInfo.title,
         config.homepage + articlePath,
-        new Date(file.createTime),
-        new Date(file.modifyTime),
+        file.createTime,
+        file.modifyTime,
         articleInfo.description
     )
     return rssItem
