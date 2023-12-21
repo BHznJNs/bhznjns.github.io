@@ -201,7 +201,7 @@ main #article-list.disabled {
 
 main #page-switchers {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 main #page-switchers button {
     height: 2.4rem;

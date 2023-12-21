@@ -1,6 +1,10 @@
 export async function fetchJSON(path) {
     return await fetch(path)
         .then(res => res.json())
+        .catch(err => {
+            console.log("JSON request error: " + path)
+            console.error(err)
+        })
 }
 
 export async function fetchMD(path) {
@@ -19,5 +23,9 @@ export async function fetchMD(path) {
             }
             const result = await reader.read();
             return processor(result);
+        })
+        .catch(err => {
+            console.log("Markdown request error: " + path)
+            console.error(err)
         })
 }

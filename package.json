@@ -7,11 +7,20 @@
   "type": "module",
   "scripts": {
     "preview": "node preview.js",
+    "compress": "rollup -c",
     "build": "node ./builder/index.js"
   },
   "author": "BHznJNs",
   "license": "CC-BY-4.0",
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.2",
+    "postcss": "^8.4.32",
+    "rollup": "^4.9.1",
+    "rollup-plugin-postcss": "^4.0.2"
   }
 }
