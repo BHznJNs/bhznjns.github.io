@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/#static/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>下划线动画（新）</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/下划线动画（新）.html</link>
+<pubDate>Wed, 20 Dec 2023 23:42:00 +0800</pubDate>
+<lastBuildDate>Thu, 21 Dec 2023 10:23:00 +0800</lastBuildDate>
+<description>``2023/12/20``</description>
+</item>
+<item>
 <title>切平面和线性近似 | Tangent planes & Linear approximations</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/切平面和线性近似.html</link>
 <pubDate>Wed, 20 Dec 2023 09:12:00 +0800</pubDate>
@@ -108,13 +115,6 @@
 <pubDate>Tue, 17 Oct 2023 19:21:00 +0800</pubDate>
 <lastBuildDate>Sat, 21 Oct 2023 14:26:00 +0800</lastBuildDate>
 <description>A closed system, also known as a control mass, consists of a fixed amount of mass, and no mass can cross its boundary - an isolated system.</description>
-</item>
-<item>
-<title>热力学基础</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/热力学基础.html</link>
-<pubDate>Mon, 16 Oct 2023 22:38:00 +0800</pubDate>
-<lastBuildDate>Tue, 17 Oct 2023 19:20:00 +0800</lastBuildDate>
-<description>If two bodies are in thermal equilibrium with a third body, they are also in thermal equilibrium with each other.</description>
 </item>
 </channel>
 </rss>
