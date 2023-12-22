@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "preview": "node preview.js",
-    "compress": "rollup -c",
+    "compress": "rollup --config builder/rollup.config.js",
     "build": "node ./builder/index.js"
   },
   "author": "BHznJNs",
