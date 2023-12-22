@@ -1,7 +1,7 @@
 import { writeFileSync } from "node:fs"
 import slice from "./utils/slice.js"
 import { Directory, File } from "./utils/readDir.js"
-import { indexFilePath } from "./path.js"
+import { indexFilePath } from "./utils/path.js"
 
 export default function indexing(dir, indexName) {
     const currentDirItems = []

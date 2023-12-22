@@ -12,20 +12,6 @@
 <description>``2023/12/20``</description>
 </item>
 <item>
-<title>切平面和线性近似 | Tangent planes & Linear approximations</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/切平面和线性近似.html</link>
-<pubDate>Wed, 20 Dec 2023 09:12:00 +0800</pubDate>
-<lastBuildDate>Wed, 20 Dec 2023 09:33:00 +0800</lastBuildDate>
-<description> </description>
-</item>
-<item>
-<title>偏导数 | Partial derivatives</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/偏导数.html</link>
-<pubDate>Tue, 19 Dec 2023 23:24:00 +0800</pubDate>
-<lastBuildDate>Wed, 20 Dec 2023 09:10:00 +0800</lastBuildDate>
-<description>函数 ``f`` 对 x 的偏导数即为 ``f`` 在 x 轴方向上的变化率，同理，函数 ``f`` 对 y 的偏导数即为 ``f`` 在 y 轴方向上的变化率。</description>
-</item>
-<item>
 <title>RIME 输入法折腾记录</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/RIME 输入法折腾记录.html</link>
 <pubDate>Mon, 18 Dec 2023 22:15:00 +0800</pubDate>
@@ -40,13 +26,6 @@
 <description>网站发布 RSS 本质上就是更新网站的 ``rss.xml`` (或者 ``atom.xml``)，订阅者则可以通过 RSS 阅读器来获取网站最新的 RSS 文件，从而获知网站网站的最新动态。</description>
 </item>
 <item>
-<title>极限和连续性 | Limits and continuity</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/极限和连续性.html</link>
-<pubDate>Sun, 3 Dec 2023 18:33:00 +0800</pubDate>
-<lastBuildDate>Thu, 7 Dec 2023 23:06:00 +0800</lastBuildDate>
-<description>极限不存在条件：如果从任意两个方向上得到的极限不同，则极限不存在。</description>
-</item>
-<item>
 <title>奇妙随想</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/奇妙随想.html</link>
 <pubDate>Thu, 30 Nov 2023 08:21:00 +0800</pubDate>
@@ -54,67 +33,88 @@
 <description>我睡在宿舍的床上，周遭突然开始吵闹起来，我睁开眼，发现自己正趴在一张陌生的课桌上。我慌忙起身，感觉身上没有什么异常，两个肾也还在。但是眼前出现的却不是我熟悉的大学校园，而是一个典型中国式的中学教室。而我，正坐在这个教室从左往右数的第三组第四桌右侧的那一桌。</description>
 </item>
 <item>
-<title>电功率，电能和理想电源 | Power, Energy, Ideal Sources</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/电功率，电能和理想电源.html</link>
-<pubDate>Thu, 16 Nov 2023 13:22:00 +0800</pubDate>
-<lastBuildDate>Fri, 17 Nov 2023 17:47:00 +0800</lastBuildDate>
-<description>p = dw / dt = vi = v''2'' / R = i''2''R</description>
+<title>哈希</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/哈希.html</link>
+<pubDate>Fri, 15 Sep 2023 10:32:00 +0800</pubDate>
+<lastBuildDate>Sun, 17 Dec 2023 16:05:00 +0800</lastBuildDate>
+<description>``2023/9/15``</description>
 </item>
 <item>
-<title>电路理论导入 | Introduction</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/电路理论导入.html</link>
-<pubDate>Thu, 16 Nov 2023 13:07:00 +0800</pubDate>
-<lastBuildDate>Thu, 16 Nov 2023 13:18:00 +0800</lastBuildDate>
-<description>q Coulomb (C)</description>
+<title>Firefox 启用亚克力效果</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Firefox 启用亚克力效果.html</link>
+<pubDate>Sat, 19 Aug 2023 22:39:00 +0800</pubDate>
+<lastBuildDate>Sun, 20 Aug 2023 14:12:00 +0800</lastBuildDate>
+<description>本文适用于运行在 Windows 11 操作系统下的 Firefox 116。</description>
 </item>
 <item>
-<title>蒸汽性质 | Properties of Vapours</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/蒸汽性质.html</link>
-<pubDate>Wed, 1 Nov 2023 08:50:00 +0800</pubDate>
-<lastBuildDate>Thu, 16 Nov 2023 10:02:00 +0800</lastBuildDate>
-<description>Substances normally exist in different phases: ##solid##, ##liquid## and ##gas##.</description>
+<title>印度沙漠中的学校如何在极端炎热中保持凉爽</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/印度沙漠中的学校如何在极端炎热中保持凉爽.html</link>
+<pubDate>Thu, 10 Aug 2023 11:02:00 +0800</pubDate>
+<lastBuildDate>Thu, 10 Aug 2023 17:00:00 +0800</lastBuildDate>
+<description>``2023/8/9``</description>
 </item>
 <item>
-<title>热机循环 | Engine Cycles</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/热机循环.html</link>
-<pubDate>Sun, 29 Oct 2023 18:42:00 +0800</pubDate>
-<lastBuildDate>Tue, 31 Oct 2023 09:13:00 +0800</lastBuildDate>
-<description>Thermodynamic cycles:</description>
+<title>常量</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/3_常量.html</link>
+<pubDate>Wed, 19 Jul 2023 21:15:00 +0800</pubDate>
+<lastBuildDate>Wed, 19 Jul 2023 21:29:00 +0800</lastBuildDate>
+<description>LLVM 中具有多种基本类型的常量。</description>
 </item>
 <item>
-<title>熵和热力学第三定律 | Entropy and Third Law of Thermodynamics</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/熵和热力学第三定律.html</link>
-<pubDate>Sat, 28 Oct 2023 22:42:00 +0800</pubDate>
-<lastBuildDate>Sun, 29 Oct 2023 19:44:00 +0800</lastBuildDate>
-<description>S = Q / T</description>
+<title>全局变量</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/2_全局变量.html</link>
+<pubDate>Wed, 19 Jul 2023 20:53:00 +0800</pubDate>
+<lastBuildDate>Wed, 19 Jul 2023 21:05:00 +0800</lastBuildDate>
+<description>全局变量定义了取代运行时而在编译器被分配的内存区域。</description>
 </item>
 <item>
-<title>热力学第二定律 | Second Law of Thermodynamics</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/热力学第二定律.html</link>
-<pubDate>Tue, 24 Oct 2023 21:11:00 +0800</pubDate>
-<lastBuildDate>Fri, 27 Oct 2023 13:50:00 +0800</lastBuildDate>
-<description>The second law of thermodynamics asserts that processes occur in a certain direction and that energy has quality as well as quantity.</description>
+<title>LLVM 标识符</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/1_标识符.html</link>
+<pubDate>Wed, 19 Jul 2023 20:12:00 +0800</pubDate>
+<lastBuildDate>Wed, 19 Jul 2023 20:51:00 +0800</lastBuildDate>
+<description>LLVM 中的标识符有两类：全局的和局部的。其中，全局的标识符（包括函数和全局变量）以 ``@`` 符号起始，局部变量（包括寄存器名称和类型）以``%``符号起始。另外，有三种不同格式的标识符，有不同的作用：</description>
 </item>
 <item>
-<title>稳流过程 | Steady Flow Processes</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/稳流过程.html</link>
-<pubDate>Sun, 22 Oct 2023 22:37:00 +0800</pubDate>
-<lastBuildDate>Tue, 24 Oct 2023 21:08:00 +0800</lastBuildDate>
-<description>Control volume (open system) – A system that involves mass flow across their boundaries</description>
+<title>关于 Google reCaptcha 的小坑</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/关于 Google reCaptcha 的小坑.html</link>
+<pubDate>Wed, 19 Jul 2023 17:03:00 +0800</pubDate>
+<lastBuildDate>Thu, 7 Dec 2023 23:06:00 +0800</lastBuildDate>
+<description>``2023/7/19``</description>
 </item>
 <item>
-<title>非流动过程 | Non-Flow Processes</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/非流动过程.html</link>
-<pubDate>Sat, 21 Oct 2023 14:15:00 +0800</pubDate>
-<lastBuildDate>Sun, 22 Oct 2023 22:36:00 +0800</lastBuildDate>
-<description>对于总能量：</description>
+<title>单词补全原理及 Rust 简单实现</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/单词补全原理及 Rust 简单实现.html</link>
+<pubDate>Thu, 13 Jul 2023 22:59:00 +0800</pubDate>
+<lastBuildDate>Fri, 14 Jul 2023 18:30:00 +0800</lastBuildDate>
+<description>前注：本文的实现参考了此 Github 仓库: [rs-complete](https://github.com/Blightmud/rs-complete)</description>
 </item>
 <item>
-<title>热力学第一定律</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/热力学第一定律.html</link>
-<pubDate>Tue, 17 Oct 2023 19:21:00 +0800</pubDate>
-<lastBuildDate>Sat, 21 Oct 2023 14:26:00 +0800</lastBuildDate>
-<description>A closed system, also known as a control mass, consists of a fixed amount of mass, and no mass can cross its boundary - an isolated system.</description>
+<title>前端静态 Markdown 博客网站实现</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/前端静态 Markdown 博客网站实现.html</link>
+<pubDate>Fri, 7 Jul 2023 10:28:00 +0800</pubDate>
+<lastBuildDate>Fri, 7 Jul 2023 23:51:00 +0800</lastBuildDate>
+<description>``2023/7/7``</description>
+</item>
+<item>
+<title>Rust 命令行交互语法高亮实现 (1)</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Rust 命令行输入语法高亮实现 (1).html</link>
+<pubDate>Wed, 14 Jun 2023 14:15:00 +0800</pubDate>
+<lastBuildDate>Wed, 14 Jun 2023 21:22:00 +0800</lastBuildDate>
+<description>``2023/6/14``</description>
+</item>
+<item>
+<title>Github Pages 配置的一个小坑</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/github_pages_配置的小坑.html</link>
+<pubDate>Sat, 10 Jun 2023 20:17:00 +0800</pubDate>
+<lastBuildDate>Sun, 11 Jun 2023 08:45:00 +0800</lastBuildDate>
+<description>众所周知，``Github Page`` 默认是使用 [jekyll](https://jekyllcn.com/docs/home/) 来构建静态站点的，但对于不使用 jekyll 的用户来说，可能会因此遇到一些小坑，比如我今天遇到的这个: 无法访问以 ``.`` 号开头的文件/文件夹。</description>
+</item>
+<item>
+<title>下划线动画</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/下划线动画.html</link>
+<pubDate>Sat, 10 Jun 2023 19:13:00 +0800</pubDate>
+<lastBuildDate>Sat, 10 Jun 2023 19:29:00 +0800</lastBuildDate>
+<description>``2023/6/10``</description>
 </item>
 </channel>
 </rss>

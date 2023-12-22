@@ -1,0 +1,115 @@
+<h1>Firefox 启用亚克力效果</h1><p>本文适用于运行在 Windows 11 操作系统下的 Firefox 116。</p><p><code>2023/8/19</code></p><hr><h2>安装 MicaForEveryone</h2><p>Github 地址：<a href="https://github.com/MicaForEveryone/MicaForEveryone" target="_blank">MicaForEveryone</a></p><p>安装后，点击左下角添加新规则，输入 firefox。规则中标题栏颜色为“由应用程序决定”，模糊类型为“亚克力”。</p><h2>安装 WaveFox</h2><p>Github 地址：<a href="https://github.com/QNetITQ/WaveFox" target="_blank">WaveFox</a></p><p>到浏览器 <code>about:config</code> 页面，添加如下规则：</p><pre><code class="language-">userChrome.DarkTheme.TabFrameColor.Black.Enabled
+userChrome.DarkTheme.TabFrameSaturation.VeryHigh.Enabled
+userChrome.DarkTheme.TabFrameType.Border.Enabled
+userChrome.LightTheme.TabFrameColor.Auto.Enabled
+userChrome.LightTheme.TabFrameType.Shadow.Enabled
+userChrome.TabSeparatorsMediumSaturation-Enabled
+userChrome.Tabs.Option8.Enabled
+userChrome.Windows.SystemEffects.Enabled
+</code></pre><p>重启浏览器即可</p><h2>更进一步</h2><p>我们可以通过 WaveFox 的源码了解到其实现亚克力效果的机制。</p><p>在 WaveFox 的源码中搜索 <code>SystemEffects</code>, 可以在其中的 <code>special/windows_11_10.css</code> 文件中找到相关的代码片段。</p><p>将其复制到单独文件：</p><pre><code class="language-css">/* userChrome.css */
+
+@media (-moz-windows-accent-color-in-titlebar: 0)
+{
+    #main-window[tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode])
+    {
+        appearance: -moz-win-borderless-glass !important;
+        background-color: transparent !important;
+    }
+
+    :root[tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) #navigator-toolbox
+    {
+        background-color: transparent !important;
+    }
+
+    :root[sizemode="normal"][tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) #navigator-toolbox
+    {
+        margin-block-start: 1px !important;
+    }
+
+    /* System window control buttons */
+
+    @media (min-resolution: 1dppx)
+    {
+        .titlebar-buttonbox-container
+        {
+            --titlebar-button-inline-padding: 16px;
+            --titlebar-close-inline-padding: 17px;
+        }
+    }
+
+    @media (min-resolution: 1.25dppx)
+    {
+        .titlebar-buttonbox-container
+        {
+            --titlebar-button-inline-padding: 17px;
+            --titlebar-close-inline-padding: 18px;
+        }
+    }
+
+    @media (min-resolution: 1.5dppx)
+    {
+        .titlebar-buttonbox-container
+        {
+            --titlebar-button-inline-padding: 17px;
+            --titlebar-close-inline-padding: 17px;
+        }
+    }
+
+    @media (min-resolution: 1.75dppx)
+    {
+        .titlebar-buttonbox-container
+        {
+            --titlebar-button-inline-padding: 17px;
+            --titlebar-close-inline-padding: 17px;
+        }
+    }
+
+    @media (min-resolution: 2dppx)
+    {
+        .titlebar-buttonbox-container
+        {
+            --titlebar-button-inline-padding: 16px;
+            --titlebar-close-inline-padding: 17px;
+        }
+    }
+
+    :root[tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]):not([sizemode="fullscreen"]) .titlebar-button:not(.titlebar-close:hover, .titlebar-close:hover:active) .toolbarbutton-icon
+    {
+        opacity: 0 !important;
+    }
+
+    :root[tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]):not([sizemode="fullscreen"]) .titlebar-button:not(.titlebar-close)
+    {
+        margin-inline-end: 1px !important;
+    }
+
+    :root[sizemode="normal"][tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) .titlebar-button
+    {
+        padding-inline: var(--titlebar-button-inline-padding) !important;
+    }
+
+    :root[sizemode="normal"][tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) .titlebar-close
+    {
+        padding-inline: var(--titlebar-close-inline-padding) !important;
+    }
+
+    :root[sizemode="maximized"][tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) .titlebar-button
+    {
+        padding-inline: var(--titlebar-button-inline-padding) !important;
+    }
+
+    :root[sizemode="maximized"][tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) .titlebar-close
+    {
+        margin-inline-end: 2px !important;
+        padding-inline: var(--titlebar-close-inline-padding) !important;
+    }
+}
+
+.titlebar-buttonbox-container {
+    align-items: flex-start !important;
+}
+
+menupopup {
+    opacity: .85;
+}
+</code></pre><p>单独使用上述 CSS 文件启动 Firefox，效果如下：</p><div class="img"><img src="https://bhznjns.github.io/markdown-blog/static/其它/.Firefox 启用亚克力效果/屏幕截图.png" alt="屏幕截图" loading="lazy" tabindex="0"></div><hr><p><code>2023/8/20</code> 更新：对样式进行了一些调整，使工具栏半透明化。</p><p>CSS 文件地址：<a href="https://github.com/BHznJNs/windows11-beautifier/blob/master/scripts/userChrome.css" target="_blank">userChrome.css</a></p><p>附上亮色和暗色模式的屏幕截图：</p><div class="img"><img src="https://bhznjns.github.io/markdown-blog/static/其它/.Firefox 启用亚克力效果/屏幕截图-亮色.png" alt="屏幕截图-亮色" loading="lazy" tabindex="0"></div><div class="img"><img src="https://bhznjns.github.io/markdown-blog/static/其它/.Firefox 启用亚克力效果/屏幕截图-暗色.png" alt="屏幕截图-暗色" loading="lazy" tabindex="0"></div>

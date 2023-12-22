@@ -1,10 +1,16 @@
 import { writeFileSync } from "node:fs"
-import { indexFilePath } from "./path.js"
+import config from "../build.config.js"
 import slice from "./utils/slice.js"
+import isInIgnoredDir from "./utils/isInIgnoredDir.js"
+import { indexFilePath } from "./utils/path.js"
 import { dateFormater } from "./utils/timeFormat.js"
 
 export default function(newestList) {
-    const sliced = slice(newestList)
+    const ignoreDirs = config.enableNewest.ignoreDir
+    const filtered = newestList.filter(item =>
+        !isInIgnoredDir(item.path, ignoreDirs)
+    )
+    const sliced = slice(filtered)
     const count  = sliced.length
 
     let index = 0

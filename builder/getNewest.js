@@ -1,7 +1,7 @@
 import { Directory, File } from "./utils/readDir.js"
 
 class FileMonoStack {
-    // where the data are stored,
+    // `children`: where the data are stored,
     // the biggest at the the leftest and
     // the smallest at the rightest.
     children = []

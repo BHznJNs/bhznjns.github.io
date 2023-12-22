@@ -1,5 +1,8 @@
-<!DOCTYPE html>
-<html>
+import { writeFileSync } from "node:fs"
+import config from "../build.config.js"
+import { indexHTMLPath } from "./utils/path.js"
+
+const HTMLHeader = `\
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +12,9 @@
     <link rel="shortcut icon" href="./src/assets/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./dist/style.min.css">
     <script src="./dist/index.min.js" type="module" defer></script>
-</head>
-<body>
+</head>`
+
+const inlineDarkmodeSwitcherScript = `\
 <script>
     const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
     const darkModeSwitcher = () => {
@@ -19,7 +23,9 @@
     }
     darkModeMediaQuery.addListener(darkModeSwitcher)
     darkModeSwitcher()
-</script>
+</script>`
+
+const navigator = `\
 <nav>
     <a id="homepage" class="icon-btn" href="#">
         <img src="./src/assets/homepage.svg" alt="主页">
@@ -27,6 +33,7 @@
     </a>
 
     <span>
+${(config.enableRSS && config.enableRSS.value) ? `\
         <a
             id="rss-icon"
             class="icon-btn"
@@ -34,7 +41,7 @@
             title="RSS 订阅"
         >
             <img src="./src/assets/rss.svg" alt="RSS 订阅">
-        </a>
+        </a>` : ""}
         <span>
             <span
                 id="light-btn"
@@ -58,7 +65,9 @@
             </span>
         </span>
     </span>
-</nav>
+</nav>`
+
+const main = `\
 <main
     style="display: none;"
     data-is-root=true
@@ -67,7 +76,8 @@
     data-is-only-page=""
 >
     <div id="homepage-description">
-        <h1><a href='https://github.com/BHznJNs'>BHznJNs</a> 的 Markdown 静态博客站, 使用 VanillaJS 构建。</h1>
+        ${config.siteDescription ? config.siteDescription : ""}
+${config.enableNewest ? `\
         <ul>
             <li
                 tabindex="0"
@@ -75,8 +85,7 @@
             >
                 最新博文
             </li>
-        </ul>
-        
+        </ul>` : ""}
     </div>
 
     <ul id="previous-dir"><li tabindex="0">../</li></ul>
@@ -85,7 +94,20 @@
         <button id="previous" class="icon-btn"><span>上一页</span></button>
         <button id="next" class="icon-btn"><span>下一页</span></button>
     </div>
-</main>
+</main>`
+
+const template = `\
+<!DOCTYPE html>
+<html>
+${HTMLHeader}
+<body>
+${inlineDarkmodeSwitcherScript}
+${navigator}
+${main}
 <article style="display: none;"></article>
 </body>
-</html>
+</html>`
+
+export default function writeTemplate() {
+    writeFileSync(indexHTMLPath, template)
+}
