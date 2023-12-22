@@ -11,7 +11,7 @@ const HTMLHeader = `\
     <title>BHznJNs' Blog</title>
     <link rel="shortcut icon" href="./src/assets/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./dist/style.min.css">
-    <script src="./dist/index.min.js" type="module" defer></script>
+    <script src="./dist/index.js" type="module" defer></script>
 </head>`
 
 const inlineDarkmodeSwitcherScript = `\

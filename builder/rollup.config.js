@@ -1,4 +1,5 @@
 import terser from "@rollup/plugin-terser"
+import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
 import postcss from "rollup-plugin-postcss"
 import autoprefixer from "autoprefixer"
 import cssnanoPlugin from "cssnano"
@@ -6,8 +7,9 @@ import cssnanoPlugin from "cssnano"
 export default {
     input: "src/index.js",
     output: {
-        file: "dist/index.min.js",
-        format: "es"
+        dir: "dist/",
+        format: "es",
+        chunkFileNames: "[name].js"
     },
     plugins: [
         terser(),
@@ -17,6 +19,7 @@ export default {
                cssnanoPlugin()
             ],
             extract: "style.min.css"
-        })
+        }),
+        dynamicImportVars(),
     ]
 }
