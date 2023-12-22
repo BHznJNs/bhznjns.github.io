@@ -9,7 +9,8 @@ export default {
     output: {
         dir: "dist/",
         format: "es",
-        chunkFileNames: "[name].js"
+        entryFileNames: "index.min.js",
+        chunkFileNames: "chunks/[name].min.js",
     },
     plugins: [
         terser(),

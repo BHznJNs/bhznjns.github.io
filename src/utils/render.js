@@ -41,7 +41,7 @@ export function mdRender(structure) {
     const languageListArr = Array.from((globalThis.__LanguageList__))
     const langDefImporters = languageListArr
         .filter(name => !hljs.getLanguage(name))
-        .map(lang => import(`../highlight-es/languages/${lang.toLowerCase()}.min.js`))
+        .map(lang => import(`../highlight-es/languages/${lang.toLowerCase()}.js`))
     globalThis.__LanguageList__ = null
     Promise.all(langDefImporters)
         .then(langDefs => langDefs.forEach((defModule, index) => {
