@@ -1,6 +1,7 @@
 import terser from "@rollup/plugin-terser"
 import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
 import postcss from "rollup-plugin-postcss"
+import cssImport from "postcss-import"
 import autoprefixer from "autoprefixer"
 import cssnanoPlugin from "cssnano"
 
@@ -16,8 +17,9 @@ export default {
         terser(),
         postcss({
             plugins: [
-               autoprefixer(),
-               cssnanoPlugin()
+                cssImport(),
+                autoprefixer(),
+                cssnanoPlugin(),
             ],
             extract: "style.min.css"
         }),

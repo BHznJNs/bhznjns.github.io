@@ -10,7 +10,7 @@ const HTMLHeader = `\
     <meta name="color-scheme" content="light dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BHznJNs' Blog</title>
-    <link rel="shortcut icon" href="./src/assets/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./src/imgs/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./dist/style.min.css">
     <script src="./dist/index.min.js" type="module" defer></script>
 </head>`
@@ -29,7 +29,7 @@ const inlineDarkmodeSwitcherScript = `\
 const navigator = `\
 <nav>
     <a id="homepage" class="icon-btn" href="#">
-        <img src="./src/assets/homepage.svg" alt="主页">
+        <img src="./src/imgs/homepage.svg" alt="主页">
         <span>主页</span>
     </a>
 
@@ -41,7 +41,7 @@ ${(config.enableRSS && config.enableRSS.value) ? `\
             href="./rss.xml"
             title="RSS 订阅"
         >
-            <img src="./src/assets/rss.svg" alt="RSS 订阅">
+            <img src="./src/imgs/rss.svg" alt="RSS 订阅">
         </a>` : ""}
         <span>
             <span
@@ -52,7 +52,7 @@ ${(config.enableRSS && config.enableRSS.value) ? `\
                 title="亮色模式"
                 onclick="document.body.classList.remove('dark')"
             >
-                <img src="./src/assets/sun.svg" alt="亮色模式">
+                <img src="./src/imgs/sun.svg" alt="亮色模式">
             </span>
             <span
                 id="dark-btn"
@@ -62,7 +62,7 @@ ${(config.enableRSS && config.enableRSS.value) ? `\
                 title="黑暗模式"
                 onclick="document.body.classList.add('dark')"
             >
-                <img src="./src/assets/moon.svg" alt="黑暗模式">
+                <img src="./src/imgs/moon.svg" alt="黑暗模式">
             </span>
         </span>
     </span>

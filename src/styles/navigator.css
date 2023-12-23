@@ -1,0 +1,70 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem 0;
+    font-size: larger;
+    font-weight: bold;
+    user-select: none;
+}
+
+.dark #homepage img, .dark #rss-icon img {
+    filter: invert(100%);
+}
+
+.icon-btn {
+    display: inline-flex;
+    height: 2rem;
+    align-items: center;
+    padding: 4px .5rem;
+    border: solid 4px var(--deep-bd-color);
+    border-radius: 8px;
+    color: var(--default-tx-color) !important;
+    background-color: var(--default-bg-color);
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: .3s;
+}
+
+#homepage img {
+    padding-right: .4rem;
+}
+
+.icon-btn img {
+    height: 1.5rem;
+}
+
+.icon-btn:hover {
+    color: var(--hovered-tx-color);
+    background-color: var(--hovered-bg-color);
+}
+
+.icon-btn span {
+    transition: transform .3s;
+}
+
+.icon-btn:hover span {
+    transform: translateY(-3px);
+}
+
+.icon-btn span::before {
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    content: " ";
+    border-bottom: solid 2px var(--default-tx-color);
+    width: 0;
+    transition: width .3s;
+}
+
+.icon-btn:hover span::before {
+    width: 100%;
+}
+
+body:not(.dark) #light-btn {
+    display: none;
+}
+
+body.dark #dark-btn {
+    display: none;
+}

@@ -1,6 +1,4 @@
-import "./assets/style.css"
-import "./assets/color.css"
-import "./highlight-es/github-dark.css"
+import "./styles/style.css"
 
 import { fetchJSON, fetchMD } from "./utils/fetch.js"
 import keydownEvent from "./utils/keydownEvent.js"

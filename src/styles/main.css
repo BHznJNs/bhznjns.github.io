@@ -1,0 +1,114 @@
+main {
+    margin: 2rem 10vw 4rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    background-color: var(--default-bg-color);
+    box-shadow: var(--shadow-md);
+    transition: background .6s;
+}
+
+@media screen and (max-width: 767px) {
+    /* Mobile phone style */
+    main {
+        padding: 1rem 1.6rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        border-radius: .75rem;
+        box-shadow: var(--shadow-sm);
+    }
+}
+
+main[data-is-first-page="true"] button#previous {
+    display: none;
+}
+
+main[data-is-last-page="true"] button#next {
+    display: none;
+}
+
+main[data-is-only-page="true"] button#previous,
+main[data-is-only-page="true"] button#next {
+    display: none;
+}
+
+/* --- --- --- */
+
+main ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+main[data-is-root="true"] #previous-dir {
+    display: none;
+}
+main[data-is-root="true"] #homepage-description {
+    display: block;
+}
+
+#homepage-description {
+    display: none;
+}
+
+main ul li {
+    cursor: pointer;
+    border: solid 2px var(--deep-bd-color);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    padding: 6px 1rem;
+    transition: .3s;
+}
+
+main ul li:hover {
+    color: var(--hovered-tx-color);
+    background-color: var(--hovered-bg-color);
+}
+
+main #article-list.disabled {
+    pointer-events: none;
+    opacity: .85;
+}
+
+#article-list :not(li) {
+    /* 
+        prevents the event emits from the `code` and `span`
+        elements under the `li` element
+     */
+    pointer-events: none;
+}
+
+#article-list li span {
+    position: relative;
+    bottom: 0;
+    padding-bottom: 2px;
+    background-image: linear-gradient(
+        to right,
+        var(--default-tx-color),
+        var(--default-tx-color)
+    );
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 0 2px;
+    transition: bottom .3s,
+                background-size .3s;
+}
+
+#article-list li:hover span {
+    bottom: 2px;
+    background-position: left bottom;
+    background-size: 100% 2px;
+}
+
+main #page-switchers {
+    display: flex;
+    justify-content: flex-end;
+}
+main #page-switchers button {
+    height: 2.4rem;
+    margin-right: .6rem;
+    border-width: 3px;
+}
+#page-switchers button span::before {
+    /* reverse the direction of underline animation */
+    left: unset;
+    right: 0;
+}
