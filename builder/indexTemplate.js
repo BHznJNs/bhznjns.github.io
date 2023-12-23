@@ -1,6 +1,7 @@
 import { writeFileSync } from "node:fs"
 import config from "../build.config.js"
 import { indexHTMLPath } from "./utils/path.js"
+import el from "../src/utils/markdown/utils/el.js"
 
 const HTMLHeader = `\
 <head>
@@ -96,6 +97,8 @@ ${config.enableNewest ? `\
     </div>
 </main>`
 
+const footer = config.footer ? el("footer", config.footer) : ""
+
 const template = `\
 <!DOCTYPE html>
 <html>
@@ -105,6 +108,7 @@ ${inlineDarkmodeSwitcherScript}
 ${navigator}
 ${main}
 <article style="display: none;"></article>
+${footer}
 </body>
 </html>`
 

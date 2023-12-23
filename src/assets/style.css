@@ -431,3 +431,10 @@ td {
 /* ------------------ */
 /* Article styles end */
 /* ------------------ */
+
+footer {
+    margin-bottom: 1rem;
+    text-align: center;
+    opacity: .65;
+    color: var(--default-tx-color);
+}

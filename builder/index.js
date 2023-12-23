@@ -20,16 +20,26 @@ indexing(staticDir, "static")
 
 // --- --- --- --- --- ---
 
-const newests = getNewest(staticDir)
-saveNewest(newests.children)
+if (!config.enableRSS && !config.enableNewest) {
+    // if RSS and newest are both disabled,
+    // there is no need to continue.
+    process.exit(0)
+}
 
-const rssItemSize = 16
-const rssIgnoredDirs = config.enableRSS.ignoreDir
-const rssItems = newests.children
-    .filter(item =>
-        !isInIgnoredDir(item.path, rssIgnoredDirs)
-    )
-    .slice(0, rssItemSize)
-    .map(rssItemGenerator)
-const rssContent = rssFileGenerator(rssItems)
-writeFileSync(rssFilePath, rssContent)
+const newests = getNewest(staticDir)
+if (config.enableNewest && config.enableNewest.value) {
+    saveNewest(newests.children)
+}
+
+if (config.enableRSS && config.enableRSS.value) {
+    const rssItemSize = 16
+    const rssIgnoredDirs = config.enableRSS.ignoreDir
+    const rssItems = newests.children
+        .filter(item =>
+            !isInIgnoredDir(item.path, rssIgnoredDirs)
+        )
+        .slice(0, rssItemSize)
+        .map(rssItemGenerator)
+    const rssContent = rssFileGenerator(rssItems)
+    writeFileSync(rssFilePath, rssContent)
+}

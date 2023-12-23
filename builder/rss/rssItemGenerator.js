@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from "node:fs"
-import config from "../../package.json" assert { type: 'json' }
+import config from "../../build.config.js"
 import renderer from "../renderer.js"
 import { rssResourcePath } from "../utils/path.js"
 import { rssTimeFormater } from "../utils/timeFormat.js"
