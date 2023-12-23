@@ -9,6 +9,18 @@
   Current colors taken from GitHub's CSS
 */
 
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+
+code.hljs {
+  padding: 3px 5px
+}
+
+/* --- --- --- */
+
 .hljs {
   color: #c9d1d9;
   background: #0d1117;
