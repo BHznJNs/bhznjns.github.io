@@ -319,12 +319,27 @@ article hr {
 }
 
 article code {
+    /* inline code */
     font-size: 1rem;
     border-radius: 8px;
 }
-
-article blockquote code {
-    filter: invert(15%);
+article pre code {
+    /* code block */
+    position: relative;
+    padding-top: calc(1rem + 4px);
+}
+article pre code span {
+    opacity: 1 !important;
+}
+article pre code::before {
+    /* show language name for code block */
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    content: attr(data-language);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: .75rem;
+    font-weight: bold;
 }
 
 article blockquote {
@@ -335,6 +350,10 @@ article blockquote {
     background-color: var(--hovered-bg-color);
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+}
+
+article blockquote code {
+    filter: invert(15%);
 }
 
 article blockquote::before {

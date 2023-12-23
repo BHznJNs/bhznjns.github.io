@@ -163,9 +163,15 @@ export class CodeBlock extends BaseNode {
         if (typeof window == "object") {
             globalThis.__LanguageList__.add(this.lang)
         }
-
-        const codeElHTML = `<code class="language-${this.lang}">${this.content}</code>`
-        return el("pre", codeElHTML)
+        const codeEl = el(
+            "code",
+            this.content,
+            {
+                "class": `language-${this.lang}`,
+                "data-language": this.lang.toUpperCase(),
+            }
+        )
+        return el("pre", codeEl)
     }
 
     static pattern = source => source.startsWith("```")

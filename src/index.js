@@ -60,7 +60,14 @@ async function hashEvent() {
         indexRender(newestIndex, item => {
             const dateEl  = el("code", item.date)
             const titleEl = el("span", item.title)
-            return `<li tabindex="0" data-target-blog="${item.link}">${dateEl}: ${titleEl}</li>`
+            return el(
+                "li",
+                `${dateEl}: ${titleEl}`,
+                {
+                    tabindex: 0,
+                    "data-target-blog": item.link
+                }
+            )
         })
     } else
     if (hash.startsWith("static") && hash.endsWith("/")) {
@@ -69,7 +76,9 @@ async function hashEvent() {
         const indexFilePath = indexDirPath + splited.join("+") + "_" + globalThis.__CurrentPage__
         const index = await fetchJSON(indexFilePath)
         indexRender(index, item =>
-            `<li tabindex="0">${el("span", item)}</li>`
+            el("li", el("span", item), {
+                tabindex: 0
+            })
         )
     } else
     if (hash.startsWith("static") && hash.endsWith(".md")) {
