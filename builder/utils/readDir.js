@@ -55,6 +55,17 @@ export default function readDir(dir, base) {
             dir.push(file)
         }
     }
-    dir.items.sort((a, b) => b.createTime - a.createTime)
+    dir.items.sort((a, b) => {
+        // put directories at the front
+        if (a instanceof Directory && b instanceof File) {
+            return -1
+        }
+        if (b instanceof Directory && a instanceof File) {
+            return 1
+        }
+
+        // newer at the fronter position
+        return b.createTime - a.createTime
+    })
     return dir
 }
