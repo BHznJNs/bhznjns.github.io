@@ -1,7 +1,7 @@
-<h1>下划线动画</h1><p><code>2023/6/10</code></p><hr><p>本文是一个使用 CSS <code>::before</code> 伪类实现 (使用 <code>::after</code> 效果相同) 的下划线动画。</p><hr><p>首先，在需要添加动画的元素添加 <code>position</code> 属性</p><pre><code class="language-css">.target-element {
+<h1>下划线动画</h1><p><code>2023/6/10</code></p><hr><p>本文是一个使用 CSS <code>::before</code> 伪类实现 (使用 <code>::after</code> 效果相同) 的下划线动画。</p><hr><p>首先，在需要添加动画的元素添加 <code>position</code> 属性</p><pre><code class="language-css" data-language="CSS">.target-element {
     position: relative;
 }
-</code></pre><p>接着实现伪类，</p><pre><code class="language-css">.target-element::before {
+</code></pre><p>接着实现伪类，</p><pre><code class="language-css" data-language="CSS">.target-element::before {
     /* 这两行代码是为了让伪类成为 block 元素 */
     display: block;
     content: " ";
@@ -15,7 +15,7 @@
     /* 过渡动画控制 */
     transition: .3s;
 }
-</code></pre><p>再实现 <code>hover</code> 时的伪类表现效果：</p><pre><code class="language-css">.target-element:hover::before {
+</code></pre><p>再实现 <code>hover</code> 时的伪类表现效果：</p><pre><code class="language-css" data-language="CSS">.target-element:hover::before {
     width: 100%;
 }
 </code></pre>
