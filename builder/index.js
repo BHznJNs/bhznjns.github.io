@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs"
+import { writeFileSync, unlinkSync } from "node:fs"
 import indexing from "./indexing.js"
 import getNewest from "./getNewest.js"
 import saveNewest from "./saveNewest.js"
@@ -10,6 +10,7 @@ import writeIndexTemplate from "./indexTemplate.js"
 import readDir, { Directory } from "./utils/readDir.js"
 import isInIgnoredDir from "./utils/isInIgnoredDir.js"
 
+try { unlinkSync(rssFilePath) } catch {}
 clearDirectory(indexFilePath)
 clearDirectory(rssResourcePath)
 writeIndexTemplate()
@@ -32,7 +33,7 @@ if (config.enableNewest && config.enableNewest.value) {
 }
 
 if (config.enableRSS && config.enableRSS.value) {
-    const rssItemSize = config.newestCapacity
+    const rssItemSize = config.RSSCapacity
     const rssIgnoredDirs = config.enableRSS.ignoreDir
     const rssItems = newests.children
         .filter(item =>

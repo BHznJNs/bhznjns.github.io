@@ -31,6 +31,11 @@ main[data-is-only-page="true"] button#next {
     display: none;
 }
 
+main button.icon-btn:hover span {
+    font-weight: bold;
+    transform: translateY(-2px);
+}
+
 /* --- --- --- */
 
 main ul {

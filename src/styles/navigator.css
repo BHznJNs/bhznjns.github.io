@@ -42,7 +42,7 @@ nav {
     transition: transform .3s;
 }
 
-.icon-btn:hover span {
+nav .icon-btn:hover span {
     transform: translateY(-3px);
 }
 

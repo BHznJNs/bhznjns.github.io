@@ -25,7 +25,6 @@
         <img src="./src/imgs/homepage.svg" alt="主页">
         <span>主页</span>
     </a>
-
     <span>
         <a
             id="rss-icon"
@@ -33,7 +32,10 @@
             href="./rss.xml"
             title="RSS 订阅"
         >
-            <img src="./src/imgs/rss.svg" alt="RSS 订阅">
+            <img
+                src="./src/imgs/rss.svg"
+                alt="RSS 订阅"
+            >
         </a>
         <span>
             <span
@@ -44,7 +46,10 @@
                 title="亮色模式"
                 onclick="document.body.classList.remove('dark')"
             >
-                <img src="./src/imgs/sun.svg" alt="亮色模式">
+                <img
+                    src="./src/imgs/sun.svg"
+                    alt="亮色模式图标"
+                >
             </span>
             <span
                 id="dark-btn"
@@ -54,7 +59,10 @@
                 title="黑暗模式"
                 onclick="document.body.classList.add('dark')"
             >
-                <img src="./src/imgs/moon.svg" alt="黑暗模式">
+                <img
+                    src="./src/imgs/moon.svg"
+                    alt="黑暗模式图标"
+                >
             </span>
         </span>
     </span>
@@ -81,8 +89,12 @@
     <ul id="previous-dir"><li tabindex="0">../</li></ul>
     <ul id="article-list"></ul>
     <div id="page-switchers">
-        <button id="previous" class="icon-btn"><span>上一页</span></button>
-        <button id="next" class="icon-btn"><span>下一页</span></button>
+        <button id="previous" class="icon-btn">
+            <span>上一页</span>
+        </button>
+        <button id="next" class="icon-btn">
+            <span>下一页</span>
+        </button>
     </div>
 </main>
 <article style="display: none;"></article>
