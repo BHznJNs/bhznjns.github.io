@@ -17,4 +17,5 @@ export default {
         ignoreDir: []
     },
     pageCapacity: 10,
+    newestCapacity: 16,
 }

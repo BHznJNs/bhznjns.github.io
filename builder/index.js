@@ -32,7 +32,7 @@ if (config.enableNewest && config.enableNewest.value) {
 }
 
 if (config.enableRSS && config.enableRSS.value) {
-    const rssItemSize = 16
+    const rssItemSize = config.newestCapacity
     const rssIgnoredDirs = config.enableRSS.ignoreDir
     const rssItems = newests.children
         .filter(item =>
