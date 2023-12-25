@@ -18,4 +18,5 @@ export default {
     },
     pageCapacity: 10,
     newestCapacity: 16,
+    previewPort: 3000,
 }
