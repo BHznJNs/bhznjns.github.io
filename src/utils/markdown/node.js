@@ -126,7 +126,7 @@ export class TableBlock extends BaseNode {
     }
 
     #tableHeaderCell = content => el("th", content)
-    #tableBodyCell   = content => el("td", content)
+    #tableBodyCell   = content => el("td", inlineResolver(content))
     #tableHeaderRow  = row => el("tr", row.map(this.#tableHeaderCell).join(""))
     #tableBodyRow    = row => el("tr", row.map(this.#tableBodyCell).join(""))
 
