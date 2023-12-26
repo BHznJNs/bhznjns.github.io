@@ -1,6 +1,7 @@
 import "./styles/style.css"
+import "./libs/katex/katex.css"
 
-import { fetchJSON, fetchMD } from "./utils/fetch.js"
+import { fetchJSON, fetchMD } from "./utils/fetchResources.js"
 import keydownEvent from "./utils/keydownEvent.js"
 import mdResolver from "./utils/markdown/index.js"
 import el from "./utils/markdown/utils/el.js"

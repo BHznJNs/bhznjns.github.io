@@ -211,3 +211,21 @@ export class ImageBlock extends BaseNode {
 
     static pattern = source => source.startsWith("![") && source.endsWith(")")
 }
+
+export class FormulaBlock extends BaseNode {
+    tagName = "div"
+    content = ""
+
+    constructor(content) {
+        super()
+
+        this.content = content
+        globalThis.__ContainsFormula__ = true
+    }
+    toHTML = () => el(this.tagName, this.content, {
+        "class": "math"
+    })
+
+    static pattern = source =>
+        source.startsWith("$$$")
+}

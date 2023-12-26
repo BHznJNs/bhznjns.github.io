@@ -1,4 +1,3 @@
-
 article {
     margin: 2rem 10vw 4rem;
     padding: 1rem 2rem;
@@ -83,9 +82,7 @@ blockquote code {
     background-color: var(--default-code-bg-color);
 }
 
-article p span,
-article li span,
-article blockquote span {
+article span.dim {
     opacity: .75;
 }
 

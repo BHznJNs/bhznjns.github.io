@@ -1,10 +1,10 @@
-import hljs from "../highlight-es/highlight.js"
 import keydownEvent from "./keydownEvent.js"
+import { importHighlighter, importTexRenderer } from "./importer.js"
 
-const articleEl   = document.querySelector("article")
-const mainEl      = document.querySelector("main")
+const articleEl    = document.querySelector("article")
+const mainEl       = document.querySelector("main")
 const parentDirBtn = mainEl.querySelector("#previous-dir li")
-const articleList = mainEl.querySelector("#article-list")
+const articleList  = mainEl.querySelector("#article-list")
 
 // ----------------
 // article renderer
@@ -17,10 +17,11 @@ articleEl.addEventListener("click", (e) => {
     }
 })
 
-
 export function mdRender(structure) {
     // language names to import
     globalThis.__LanguageList__ = new Set()
+    // to deside whether to import `katex`
+    globalThis.__ContainsFormula__ = false
 
     let resultHTML = structure
         .map(node => node.toHTML())
@@ -37,20 +38,8 @@ export function mdRender(structure) {
         el.onkeydown = keydownEvent(el)
     })
 
-    // dynamically import language definitions
-    const languageListArr = Array.from((globalThis.__LanguageList__))
-    const langDefImporters = languageListArr
-        .filter(name => !hljs.getLanguage(name))
-        .map(lang => import(`../highlight-es/languages/${lang.toLowerCase()}.js`))
-    globalThis.__LanguageList__ = null
-    Promise.all(langDefImporters)
-        .then(langDefs => langDefs.forEach((defModule, index) => {
-            const name = languageListArr[index]
-            const def  = defModule.default
-            hljs.registerLanguage(name, def)
-        }))
-        .then(() => hljs.highlightAll())
-        .catch(err => console.error(err))
+    importHighlighter().then(() => globalThis.__LanguageList__ = null)
+    importTexRenderer().then(() => globalThis.__ContainsFormula__ = false)
 }
 
 // --------------

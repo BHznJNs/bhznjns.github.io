@@ -10,6 +10,7 @@ const keyTermArray = [
     ":",
     ",",
     "'",
+    "$",
 ]
 // identifier character to HTML tag
 const KeyToken_TagName_map = new Map([
@@ -18,9 +19,10 @@ const KeyToken_TagName_map = new Map([
     ["__", "u"],
     ["//", "i"],
     ["--", "del"],
-    ["::", "span"],
+    ["::", "span.dim"],
     [",,", "sub"],
-    ["''", "sup"]
+    ["''", "sup"],
+    ["$$", "span.math"],
 ])
 
 // --- --- --- --- --- ---
@@ -154,7 +156,18 @@ function convert(tokens) {
             case Token.key:
                 if (identifier.length && token.content == identifier) {
                     const tagName = KeyToken_TagName_map.get(identifier)
-                    resultHTML += el(tagName, tagContent)
+                    if (tagName.includes(".")) {
+                        const [realTagName, className] = tagName.split(".")
+                        if (identifier == "$$") {
+                            // formula sign
+                            globalThis.__ContainsFormula__ = true
+                        }
+                        resultHTML += el(realTagName, tagContent, {
+                            "class": className
+                        })
+                    } else {
+                        resultHTML += el(tagName, tagContent)
+                    }
 
                     identifier = ""
                     tagContent = ""
