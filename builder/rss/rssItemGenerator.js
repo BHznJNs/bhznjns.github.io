@@ -43,6 +43,7 @@ export default function rssItemGenerator(file) {
     const fileContent = readFileSync(file.path, "utf-8")
 
     globalThis.__ResourcePath__ = config.homepage + parent
+    globalThis.__IframeCounter__ = 0
     const articleInfo = renderer(fileContent)
     globalThis.__ResourcePath__ = undefined
 

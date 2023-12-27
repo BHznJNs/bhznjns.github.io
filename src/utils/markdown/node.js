@@ -319,8 +319,15 @@ window.addEventListener("load", (e) => {
 
         globalThis.__IframeCounter__ += 1
         this.id = "iframe_" + globalThis.__IframeCounter__
-        this.content = content + IframeInline.#injectedHeightSender(this.id)
         this.description = description
+
+        if (typeof window == "object") {
+            // in browser
+            this.content = content + IframeInline.#injectedHeightSender(this.id)
+        } else {
+            // in node.js
+            this.content = content
+        }
     }
 
     toHTML() {

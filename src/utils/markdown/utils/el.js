@@ -40,7 +40,8 @@ export default function el(tagName, content, props=null) {
         function propToString(props) {
             const resultStrArr = []
             for (const [key, val] of Object.entries(props)) {
-                resultStrArr.push(`${key}="${val.toString()}"`)
+                const valStr = val.toString().replaceAll("\"", "&quot;")
+                resultStrArr.push(`${key}="${valStr}"`)
             }
             return resultStrArr.join(" ")
         }

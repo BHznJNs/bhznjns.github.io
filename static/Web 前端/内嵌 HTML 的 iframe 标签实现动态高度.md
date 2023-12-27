@@ -15,7 +15,7 @@ HTML 的 ``iframe`` 标签有属性 ``srcdoc``，你可以使用这一属性直�
 展示效果：
 
 @@@
-<iframe srcdoc="<h1>Hello World!</h1>"></iframe>
+<iframe srcdoc='<h1>Hello World!</h1>'></iframe>
 @@@
 
 ## 实现动态高度
