@@ -177,41 +177,6 @@ export class CodeBlock extends BaseNode {
     static pattern = source => source.startsWith("```")
 }
 
-export class ImageBlock extends BaseNode {
-    constructor(content) {
-        super()
-        content = content.substr(2)
-        const alt = getInterval(content, "]")
-        content = content.substr(alt.length + 2)
-        const address = getInterval(content, ")")
-
-        this.alt = alt
-        this.address = address
-    }
-
-    toHTML() {
-        let actualAddress
-        if (this.address.startsWith("http")) {
-            actualAddress = this.address
-        } else {
-            if ("location" in globalThis) {
-                // in browser
-                const hash = location.hash.slice(1)
-                // get the parent directory path
-                const currentPath = hash.split("/").slice(0, -1).join("/")
-                actualAddress = currentPath + "/" + this.address
-            } else {
-                // in nodejs
-                const path = globalThis.__ResourcePath__
-                actualAddress = path + "/" + this.address
-            }
-        }
-        return `<div class="img"><img src="${actualAddress}" alt="${this.alt}" loading="lazy" tabindex="0"></div>`
-    }
-
-    static pattern = source => source.startsWith("![") && source.endsWith(")")
-}
-
 export class FormulaBlock extends BaseNode {
     tagName = "div"
     content = ""
@@ -229,3 +194,136 @@ export class FormulaBlock extends BaseNode {
     static pattern = source =>
         source.startsWith("$$$")
 }
+
+// --- --- --- --- -
+// media nodes start
+// --- --- --- --- -
+
+class MediaNode extends BaseNode {
+    source = ""
+    description = ""    
+    constructor(mdText) {
+        super()
+
+        mdText = mdText.substr(2)
+        this.description = getInterval(mdText, "]")
+        mdText = mdText.substr(this.description.length + 2)
+        this.source = getInterval(mdText, ")")
+    }
+
+    static containerGenerator(content) {
+        return el("div", content, {
+            "class": "media-container"
+        })
+    }
+
+    static patternGenerator(identifierSign) {
+        return (source) =>
+            source.startsWith(identifierSign + "[") && source.endsWith(")")
+    }
+
+    static replaceContentGenerator(href, description) {
+        const downloadElCN = el("a", "从这里下载！", { href })
+        const downloadElEN = el("a", "Download this!", { href })
+        const replaceContent = `${description}<br>${downloadElCN}<br>${downloadElEN}`
+        return replaceContent
+    }
+
+    static srcUrlResolver(rawUrl) {
+        let actualUrl
+        if (rawUrl.startsWith("http")) {
+            actualUrl = rawUrl
+        } else {
+            if ("location" in globalThis) {
+                // in browser
+                const hash = location.hash.slice(1)
+                // get the parent directory path
+                const currentPath = hash.split("/").slice(0, -1).join("/")
+                actualUrl = currentPath + "/" + rawUrl
+            } else {
+                // in nodejs
+                const path = globalThis.__ResourcePath__
+                actualUrl = path + "/" + rawUrl
+            }
+        }
+        return actualUrl
+    }
+}
+
+export class ImageBlock extends MediaNode {
+    static pattern = MediaNode.patternGenerator("!")
+
+    toHTML() {
+        const actualUrl = MediaNode.srcUrlResolver(this.source)
+        const imageEl = `<img src="${actualUrl}" alt="${this.description}" loading="lazy" tabindex="0">`
+        return MediaNode.containerGenerator(imageEl)
+    }
+}
+
+export class AudioBlock extends MediaNode {
+    static pattern = MediaNode.patternGenerator(":")
+
+    toHTML() {
+        const actualUrl = MediaNode.srcUrlResolver(this.source)
+        const replaceContent = MediaNode.replaceContentGenerator(actualUrl, this.description)
+        const audioEl = el("audio", replaceContent, {
+            src: actualUrl,
+            controls: true,
+        })
+        return MediaNode.containerGenerator(audioEl)
+    }
+}
+
+export class VideoBlock extends MediaNode {
+    static pattern = MediaNode.patternGenerator("?")
+
+    toHTML() {
+        const actualUrl = MediaNode.srcUrlResolver(this.source)
+        const replaceContent = MediaNode.replaceContentGenerator(actualUrl, this.description)
+        const videoEl = el("video", replaceContent, {
+            src: actualUrl,
+            controls: "true",
+        })
+        return MediaNode.containerGenerator(videoEl)
+    }
+}
+
+export const isIframePattern = (source) =>
+    MediaNode.patternGenerator("@")(source)
+    || source.startsWith("@@@")
+
+export class IframeInline extends BaseNode {
+    tagName = "iframe"
+
+    constructor(content, description) {
+        super()
+
+        this.content = content
+        this.description = description
+    }
+
+    toHTML() {
+        const iframeEl = el(this.tagName, this.description, {
+            title: this.description,
+            srcdoc: this.content,
+            sandbox: "allow-scripts",
+        })
+        return MediaNode.containerGenerator(iframeEl)
+    }
+}
+
+export class IframeBlock extends MediaNode {
+    toHTML() {
+        const actualUrl = MediaNode.srcUrlResolver(this.source)
+        const iframeEl = el("iframe", this.description, {
+            src: actualUrl,
+            title: this.description,
+            sandbox: "allow-scripts",
+        })
+        return MediaNode.containerGenerator(iframeEl)
+    }
+}
+
+// --- --- --- ---
+// media nodes end
+// --- --- --- ---

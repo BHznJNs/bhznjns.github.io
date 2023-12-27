@@ -27,8 +27,6 @@ article:empty {
     color: deepskyblue;
 }
 
-/* link in dark mode */
-
 h1,
 h2,
 h3,
@@ -80,6 +78,7 @@ blockquote code {
     margin: 0 4px;
     color: var(--default-code-color);
     background-color: var(--default-code-bg-color);
+    box-shadow: none !important;
 }
 
 article span.dim {
@@ -100,6 +99,7 @@ article pre code {
     /* code block */
     position: relative;
     padding-top: calc(1rem + 4px);
+    box-shadow: var(--shadow-md);
 }
 article pre code span {
     opacity: 1 !important;
@@ -147,30 +147,49 @@ article blockquote:hover::before {
     width: 6px;
 }
 
+/* media elements start */
 @media screen and (max-width: 767px) {
     /* Mobile phone style */
-    article div.img {
+    article div.media-container {
         width: calc(100% + 3.2rem);
         margin-left: -1.6rem !important;
         margin-right: -1.6rem !important;
     }
 
-    article div.img img {
+    article div.media-container {
         border-radius: 0 !important;
     }
 }
 
-article div.img {
+article div.media-container {
     margin: 1rem 1rem 1.5rem;
-}
-
-article div.img img {
-    width: 100%;
+    font-size: 0;
     border-radius: 8px;
-    cursor: pointer;
     box-shadow: var(--shadow-sm);
+    overflow: hidden;
 }
 
+div.media-container img,
+div.media-container video,
+div.media-container audio,
+div.media-container iframe {
+    width: 100%;
+    vertical-align: bottom;
+}
+
+div.media-container img {
+    cursor: pointer;
+}
+audio::-webkit-media-controls-panel {
+    background-color: var(--default-bg-color);
+}
+div.media-container iframe {
+    border: none;
+    height: 50vh;
+}
+/* media elements end */
+
+/* table elements start */
 table {
     width: 100%;
     margin-bottom: 1rem;
@@ -184,7 +203,6 @@ table {
 
 .dark table {
     border-width: 2px;
-    box-shadow: none;
 }
 
 @media screen and (max-width: 767px) {
@@ -197,7 +215,6 @@ table {
         border-left: none;
         border-right: none;
         border-radius: 0;
-        box-shadow: none;
     }
 }
 
@@ -220,3 +237,4 @@ th {
 td {
     border-top: 2px solid var(--shallow-bd-color);
 }
+/* table elements end */

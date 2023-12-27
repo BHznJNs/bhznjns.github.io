@@ -11,7 +11,7 @@ export default {
     output: {
         dir: "dist/",
         format: "es",
-        sourcemap: true,
+        sourcemap: "hidden",
         sourcemapFileNames: "sourcemaps/[name].map",
         entryFileNames: "index.min.js",
         chunkFileNames: "chunks/[name].min.js",
@@ -42,5 +42,22 @@ export default {
             plugins: [cssnanoPlugin()],
         }),
         dynamicImportVars(),
+
+        { // customized plugin
+            name: "sourcemap-path appender",
+            renderChunk(code, chunk) {
+                let sourcemapPath
+                if (chunk.isEntry) {
+                    sourcemapPath = `./sourcemaps/${chunk.name}.map`
+                } else {
+                    sourcemapPath = `../sourcemaps/${chunk.name}.map`
+                }
+                code += "\n//# sourceMappingURL=" + sourcemapPath
+                return {
+                    code: code,
+                    map: null,
+                }
+            }
+        }
     ]
 }

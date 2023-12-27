@@ -1,7 +1,6 @@
 import { writeFileSync } from "node:fs"
 import config from "../build.config.js"
 import { indexHTMLPath } from "./utils/path.js"
-import el from "../src/utils/markdown/utils/el.js"
 
 const currentLang = config.language
 const langList = [
@@ -129,7 +128,7 @@ ${config.enableNewest ? `\
 </main>`
 
 const footer = config.footer
-    ? el("footer", config.footer)
+    ? `<footer>${config.footer}</footer>`
     : ""
 
 // --- --- --- --- --- ---
