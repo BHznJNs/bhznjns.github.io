@@ -9,7 +9,12 @@ export async function fetchJSON(path) {
 
 export async function fetchMD(path) {
     return await fetch(path)
-        .then(res => res.body)
+        .then(res => {
+            if (res.status != 200) {
+                throw res.status
+            }
+            return res.body
+        })
         .then(async body => {
             const reader = body.getReader()
             const decoder = new TextDecoder('utf-8');
@@ -25,7 +30,15 @@ export async function fetchMD(path) {
             return processor(result);
         })
         .catch(err => {
-            console.log("Markdown request error: " + path)
-            console.error(err)
+            switch (err) {
+                // render error code in markdown format
+                case 404:
+                    return "# 404 Not Found"
+                case 500:
+                    return "# 500 Internal Server Error"
+                default:
+                    console.log("Markdown request error: " + path)
+                    console.error(err)
+            }
         })
 }

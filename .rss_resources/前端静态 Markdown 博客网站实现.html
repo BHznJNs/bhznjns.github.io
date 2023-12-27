@@ -172,7 +172,7 @@ async function hashEvent() {
 window.onload = hashEvent
 // hash 改变时调用是为了便于控制在按键点击时改变界面。
 window.addEventListener("hashchange", hashEvent)
-</code></pre><h2>项目预览</h2><p>最后，当你写完一篇博客的时候，肯定会有想要先在本地预览的需求。</p><p>首先，如果你的代码组织使用了 ES Module，你是无法通过在浏览器直接打开 HTML 文件的方式来预览的，即使这个项目基本所有的代码都写在前端。如下图，你大概率会因为同源策略而无法加载索引文件。浏览器报错如下图所示：</p><div class="img"><img src="https://bhznjns.github.io/markdown-blog/static/Web 前端/.前端静态 Markdown 博客网站实现/Error Image.png" alt="错误图例" loading="lazy" tabindex="0"></div><h3>我的解决方式</h3><p>在本地安装 Express </p><p>在项目根目录新建<code>preview.js</code></p><pre><code class="language-javascript" data-language="JAVASCRIPT">const express = require("express")
+</code></pre><h2>项目预览</h2><p>最后，当你写完一篇博客的时候，肯定会有想要先在本地预览的需求。</p><p>首先，如果你的代码组织使用了 ES Module，你是无法通过在浏览器直接打开 HTML 文件的方式来预览的，即使这个项目基本所有的代码都写在前端。如下图，你大概率会因为同源策略而无法加载索引文件。浏览器报错如下图所示：</p><div class="media-container"><img  src="https://bhznjns.github.io/markdown-blog/static/Web 前端/.前端静态 Markdown 博客网站实现/Error Image.png" alt="错误图例" loading="lazy" tabindex="0"></div><h3>我的解决方式</h3><p>在本地安装 Express </p><p>在项目根目录新建<code>preview.js</code></p><pre><code class="language-javascript" data-language="JAVASCRIPT">const express = require("express")
 const app = express()
 
 const port = 3000

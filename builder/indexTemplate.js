@@ -46,7 +46,12 @@ const inlineDarkmodeSwitcherScript = `\
 
 const navigator = `\
 <nav>
-    <a id="homepage" class="icon-btn" href="#">
+    <a
+        id="homepage"
+        class="icon-btn"
+        href="#"
+        onclick="globalThis.__CurrentPage__=1"
+    >
         <img src="./src/imgs/homepage.svg" alt="${languageSelect("主页", "home")}">
         <span>${languageSelect("主页", "Home")}</span>
     </a>

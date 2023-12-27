@@ -50,12 +50,17 @@ class LinkToken extends Token {
     toHTML() {
         if (this.address.startsWith("http")) {
             // internet links
-            return `<a href="${this.address}" target="_blank">${this.content}</a>`
+            return el("a", this.content, {
+                href: this.address,
+                target: "_blank"
+            })
         }
 
         // static resources or links
         const actualAddress = "static/" + this.address
-        return `<a href="#${actualAddress}">${this.content}</a>`    
+        return el("a", this.content, {
+            href: "#" + actualAddress
+        })
     }
 }
 
@@ -147,7 +152,7 @@ function tokenize(text) {
 }
 
 function convert(tokens) {
-    let resultHTML = ""
+    let resultHTML = []
     let identifier = ""
     let tagContent = ""
 
@@ -162,11 +167,11 @@ function convert(tokens) {
                             // formula sign
                             globalThis.__ContainsFormula__ = true
                         }
-                        resultHTML += el(realTagName, tagContent, {
+                        resultHTML.push(el(realTagName, tagContent, {
                             "class": className
-                        })
+                        }))
                     } else {
-                        resultHTML += el(tagName, tagContent)
+                        resultHTML.push(el(tagName, tagContent))
                     }
 
                     identifier = ""
@@ -177,13 +182,13 @@ function convert(tokens) {
                 break
             case Token.text:
                 if (!identifier.length) {
-                    resultHTML += token.content
+                    resultHTML.push(el("text", token.content))
                 } else {
                     tagContent = token.content
                 }
                 break
             case Token.link:
-                resultHTML += token.toHTML()
+                resultHTML.push(token.toHTML())
                 break
         }
     }

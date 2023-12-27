@@ -59,9 +59,8 @@ async function hashEvent() {
         indexRender(newestIndex, item => {
             const dateEl  = el("code", item.date)
             const titleEl = el("span", item.title)
-            return el(
-                "li",
-                `${dateEl}: ${titleEl}`,
+            return el("li",
+                [dateEl, el("text", ": "), titleEl],
                 {
                     tabindex: 0,
                     "data-target-blog": item.link

@@ -1,5 +1,6 @@
 import keydownEvent from "./keydownEvent.js"
 import { importHighlighter, importTexRenderer } from "./importer.js"
+import el from "./markdown/utils/el.js"
 
 const articleEl    = document.querySelector("article")
 const mainEl       = document.querySelector("main")
@@ -25,18 +26,20 @@ export function mdRender(structure) {
 
     let resultHTML = structure
         .map(node => node.toHTML())
-        .join("")
     if (!resultHTML.length) {
-        resultHTML = "<h1>空文章</h1>"
+        resultHTML = el("h1", "404 Not Found")
     }
+    articleEl.innerHTML = ""
+    resultHTML.forEach(el => articleEl.appendChild(el))
 
     mainEl.style.display = "none"
     articleEl.style.display = "block"
-    articleEl.innerHTML = resultHTML
-
     articleEl.querySelectorAll("[tabindex='0']").forEach((el) => {
         el.onkeydown = keydownEvent(el)
     })
+    // return to the top
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
 
     importHighlighter().then(() => globalThis.__LanguageList__ = null)
     importTexRenderer().then(() => globalThis.__ContainsFormula__ = false)
@@ -89,10 +92,13 @@ export function indexRender(indexing, itemResolver) {
     // --- --- --- --- --- ---
 
     // reset HTML content
-    articleList.innerHTML = indexing
-        .content
+    articleList.innerHTML = ""
+    indexing.content
         .map(itemResolver)
-        .join("")
+        .forEach(el =>
+            articleList.appendChild(el)
+        )
+
     // set keyboard event
     articleList.querySelectorAll("[tabindex='0']").forEach((el) => {
         el.onkeydown = keydownEvent(el)

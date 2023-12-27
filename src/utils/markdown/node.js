@@ -55,9 +55,7 @@ export class Quote extends BaseNode {
     }
     toHTML() {
         const innerHTML = this.children
-            .map(node =>
-                node.toHTML()
-            ).join("")
+            .map(node => node.toHTML())
         return el(this.tagName, innerHTML)
     }
 
@@ -65,7 +63,7 @@ export class Quote extends BaseNode {
 }
 
 export class Divider extends BaseNode {
-    toHTML = () => "<hr>"
+    toHTML = () => el("hr", [])
     static pattern = source =>
         source.match(/(-\s*-\s*-)|(\*\s*\*\s*\*)/) && !source.match(/[a-zA-Z0-9]/)
 }
@@ -88,13 +86,12 @@ export class List extends BaseNode {
         for (const child of this.children) {
             if (typeof child == "string") {
                 const inline = inlineResolver(child)
-                childrenHTML.push(`<li>${inline}</li>`)
+                childrenHTML.push(el("li", inline))
             } else {
                 childrenHTML.push(child.toHTML())
             }
         }
-        const innerHTML = childrenHTML.join("")
-        return el(this.tagName, innerHTML)
+        return el(this.tagName, childrenHTML)
     }
 
     static unorderedPattern = (source) => Boolean(source.match(/^([\s\t]*[+-]+ )/))
@@ -127,8 +124,8 @@ export class TableBlock extends BaseNode {
 
     #tableHeaderCell = content => el("th", content)
     #tableBodyCell   = content => el("td", inlineResolver(content))
-    #tableHeaderRow  = row => el("tr", row.map(this.#tableHeaderCell).join(""))
-    #tableBodyRow    = row => el("tr", row.map(this.#tableBodyCell).join(""))
+    #tableHeaderRow  = row => el("tr", row.map(this.#tableHeaderCell))
+    #tableBodyRow    = row => el("tr", row.map(this.#tableBodyCell))
 
     toHTML() {
         const tableHeader = el(
@@ -139,9 +136,8 @@ export class TableBlock extends BaseNode {
             "tbody",
             this.bodyRows
                 .map(this.#tableBodyRow)
-                .join("")
         )
-        return el("table", tableHeader + tableBody)
+        return el("table", [tableHeader, tableBody])
     }
 
     static pattern = source => source.startsWith("| ")
@@ -152,9 +148,15 @@ export class CodeBlock extends BaseNode {
         super()
 
         this.lang = lang
-        this.content = content
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;")
+        if (typeof window == "object") {
+            // in browser
+            this.content = content
+        } else {
+            // in node.js
+            this.content = content
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+        }
     }
     append(content) {
         this.content += content
@@ -255,7 +257,12 @@ export class ImageBlock extends MediaNode {
 
     toHTML() {
         const actualUrl = MediaNode.srcUrlResolver(this.source)
-        const imageEl = `<img src="${actualUrl}" alt="${this.description}" loading="lazy" tabindex="0">`
+        const imageEl = el("img", [], {
+            src: actualUrl,
+            alt: this.description,
+            loading: "lazy",
+            tabindex: 0,
+        })
         return MediaNode.containerGenerator(imageEl)
     }
 }
