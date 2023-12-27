@@ -25,7 +25,7 @@ span {
 span:hover {
     background-position: left bottom;
 }
-</code></pre><p>在浏览器中的实际效果可以看这里：</p><div class="media-container"><iframe id="0.7833846481936173" title="" srcdoc="<!DOCTYPE html>
+</code></pre><p>在浏览器中的实际效果可以看这里：</p><div class="media-container"><iframe id="iframe_NaN" title="" srcdoc="<!DOCTYPE html>
 <style>
     span {
         background-image: linear-gradient(to right, #333, #333);
@@ -47,7 +47,7 @@ window.addEventListener("load", (e) => {
     const height = parseFloat(getComputedStyle(iframeRootEl).height)
     parent.postMessage({
         height,
-        id: 0.7833846481936173
+        id: "iframe_NaN"
     }, "*")
 })
 </script>" sandbox="allow-scripts"></iframe></div>
