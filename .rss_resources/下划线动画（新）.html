@@ -25,4 +25,29 @@ span {
 span:hover {
     background-position: left bottom;
 }
-</code></pre>
+</code></pre><p>在浏览器中的实际效果可以看这里：</p><div class="media-container"><iframe id="0.7833846481936173" title="" srcdoc="<!DOCTYPE html>
+<style>
+    span {
+        background-image: linear-gradient(to right, #333, #333);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        background-size: 0 2px;
+        transition: background-size .3s;
+    }
+    span:hover {
+        background-position: left bottom;
+        background-size: 100% 2px;
+    }
+</style>
+<span>content content content <br> content content content</span>
+<script>
+window.addEventListener("load", (e) => {
+    const iframeRootEl = e.target.documentElement
+    const parent = window.parent
+    const height = parseFloat(getComputedStyle(iframeRootEl).height)
+    parent.postMessage({
+        height,
+        id: 0.7833846481936173
+    }, "*")
+})
+</script>" sandbox="allow-scripts"></iframe></div>

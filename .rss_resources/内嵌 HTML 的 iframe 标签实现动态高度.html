@@ -1,0 +1,13 @@
+<h1>内嵌 HTML 的 iframe 标签实现动态高度</h1><p><code>2023/12/27</code></p><hr><h2>内嵌 HTML 的 iframe</h2><p>HTML 的 <code>iframe</code> 标签有属性 <code>srcdoc</code>，你可以使用这一属性直接将一段 HTML 代码内嵌在另一份 HTML 文档中，就像这样：</p><pre><code class="language-xml" data-language="XML">&lt;iframe srcdoc="&lt;h1&gt;Hello World!&lt;/h1&gt;"&gt;&lt;/iframe&gt;
+</code></pre><p>展示效果：</p><div class="media-container"><iframe id="0.4030695981437675" title="" srcdoc="<iframe srcdoc="<h1>Hello World!</h1>"></iframe>
+<script>
+window.addEventListener("load", (e) => {
+    const iframeRootEl = e.target.documentElement
+    const parent = window.parent
+    const height = parseFloat(getComputedStyle(iframeRootEl).height)
+    parent.postMessage({
+        height,
+        id: 0.4030695981437675
+    }, "*")
+})
+</script>" sandbox="allow-scripts"></iframe></div>

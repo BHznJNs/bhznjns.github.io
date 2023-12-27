@@ -82,6 +82,8 @@ async function hashEvent() {
     if (hash.startsWith("static") && hash.endsWith(".md")) {
         // open article
         const articleContent = await fetchMD("./" + hash)
+        // used to dynamic generate iframe id
+        globalThis.__IframeCounter__ = 0
         const structure = mdResolver(articleContent)
         mdRender(structure)
     } else {

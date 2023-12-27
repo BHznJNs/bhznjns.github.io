@@ -309,7 +309,7 @@ window.addEventListener("load", (e) => {
     const height = parseFloat(getComputedStyle(iframeRootEl).height)
     parent.postMessage({
         height,
-        id: ${id}
+        id: "${id}"
     }, "*")
 })
 </script>`
@@ -317,7 +317,8 @@ window.addEventListener("load", (e) => {
     constructor(content, description) {
         super()
 
-        this.id = Math.random()
+        globalThis.__IframeCounter__ += 1
+        this.id = "iframe_" + globalThis.__IframeCounter__
         this.content = content + IframeInline.#injectedHeightSender(this.id)
         this.description = description
     }
