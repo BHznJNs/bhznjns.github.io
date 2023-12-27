@@ -301,16 +301,30 @@ export const isIframePattern = (source) =>
 
 export class IframeInline extends BaseNode {
     tagName = "iframe"
+    static #injectedHeightSender = id => `\
+<script>
+window.addEventListener("load", (e) => {
+    const iframeRootEl = e.target.documentElement
+    const parent = window.parent
+    const height = parseFloat(getComputedStyle(iframeRootEl).height)
+    parent.postMessage({
+        height,
+        id: ${id}
+    }, "*")
+})
+</script>`
 
     constructor(content, description) {
         super()
 
-        this.content = content
+        this.id = Math.random()
+        this.content = content + IframeInline.#injectedHeightSender(this.id)
         this.description = description
     }
 
     toHTML() {
         const iframeEl = el(this.tagName, this.description, {
+            id: this.id,
             title: this.description,
             srcdoc: this.content,
             sandbox: "allow-scripts",

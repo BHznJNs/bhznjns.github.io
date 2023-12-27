@@ -96,6 +96,14 @@ async function hashEvent() {
 
 window.onload = hashEvent
 window.addEventListener("hashchange", hashEvent)
+window.addEventListener("message", (e) => {
+    if (e.origin != "null") {
+        return
+    }
+    const { id, height } = e.data
+    const targetIframeEl = document.getElementById(id)
+    targetIframeEl.style.height = height + "px"
+}, false)
 
 // -------------------
 // Hash controller end
