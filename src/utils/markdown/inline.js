@@ -117,8 +117,14 @@ function tokenize(text) {
             continue
         }
 
-        if (keyTermArray.includes(ch) && !isEscape) {
+        if (keyTermArray.includes(ch)) {
             // keyTerm = "#" && ch = "#"
+            if (isEscape) {
+                textTerm += ch
+                isEscape = false
+                continue
+            }
+
             if (keyTerm.length && keyTerm == ch) {
                 tokens.push(new Token(Token.text, textTerm))
                 tokens.push(new Token(Token.key , keyTerm + ch))

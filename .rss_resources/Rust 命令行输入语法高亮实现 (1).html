@@ -1,4 +1,4 @@
-<h1>Rust 命令行交互语法高亮实现 (1)</h1><p><code>2023/6/14</code></p><p>本文主要介绍笔者对于 <a href="https://github.com/BHznJNs/Calculator.rs" target="_blank">Calculator.rs</a> 中<code>repl</code>下<strong>语法高亮</strong>的实现方式。</p><hr><h2>实现前提：<code>raw_mode</code>的启用</h2><p>通常来说，我们在使用 rust 时，要想获取用户输入，就必须调用 rust 标准库中的<code>io\:\:stdin().readline</code>函数。</p><pre><code class="language-rust" data-language="RUST">use std::io::{self, Write};
+<h1>Rust 命令行交互语法高亮实现 (1)</h1><p><code>2023/6/14</code></p><p>本文主要介绍笔者对于 <a href="https://github.com/BHznJNs/Calculator.rs" target="_blank">Calculator.rs</a> 中<code>repl</code>下<strong>语法高亮</strong>的实现方式。</p><hr><h2>实现前提：<code>raw_mode</code>的启用</h2><p>通常来说，我们在使用 rust 时，要想获取用户输入，就必须调用 rust 标准库中的<code>io::stdin().readline</code>函数。</p><pre><code class="language-rust" data-language="RUST">use std::io::{self, Write};
 
 fn main() {
     let mut input = String::new();
