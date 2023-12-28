@@ -22,11 +22,6 @@ article:empty {
     display: none !important;
 }
 
-/* link in dark mode */
-.dark article a:link {
-    color: deepskyblue;
-}
-
 h1,
 h2,
 h3,
@@ -81,7 +76,46 @@ blockquote code {
     box-shadow: none !important;
 }
 
+article a:visited {
+    color: var(--default-link-visited-color);
+}
+article a:link {
+    color: var(--default-link-unvisited-color);
+}
+
+article u {
+    position: relative;
+    bottom: 0;
+    text-decoration: none;
+    background-image: linear-gradient(to right, var(--default-tx-color), var(--default-tx-color));
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% 1px;
+    transition: bottom .3s .15s,
+                padding .3s .15s,
+                background-size .3s;
+}
+article u:hover {
+    bottom: 1px;
+    padding-bottom: 2px;
+    background-size: 100% 3px;
+}
+
+article del {
+    padding: 0 2px;
+    text-decoration: none;
+    background-image: linear-gradient(to right, var(--default-tx-color), var(--default-tx-color));
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 100% 2px;
+    transition: background-size .3s;
+}
+article del:hover {
+    background-size: 100% 4px;
+}
+
 article span.dim {
+    /* dimmed text */
     opacity: .75;
 }
 

@@ -10,7 +10,8 @@ body:not(.dark) {
     --deep-bd-color: #666;
 
     --default-img-shadow-color: #bbb;
-    --default-link-visited-color: deeppink;
+    --default-link-unvisited-color: #1976D2;
+    --default-link-visited-color: #ff1493;
 
     --default-code-color: #000;
     --default-code-bg-color: #eee;
@@ -28,7 +29,8 @@ body.dark {
     --deep-bd-color: #666;
 
     --default-img-shadow-color: #444;
-    --default-link-visited-color: hotpink;
+    --default-link-unvisited-color: #64B5F6;
+    --default-link-visited-color: #ff69b4;
 
     --default-code-color: #eee;
     --default-code-bg-color: #333;
