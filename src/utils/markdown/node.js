@@ -310,12 +310,14 @@ export class FormulaBlock extends BaseNode {
 
         this.content = content
         this.description = description
-        globalThis.__ContainsFormula__ = true
     }
-    toHTML = () => el("div", this.content, {
-        "class": "math",
-        title: this.description,
-    })
+    toHTML() {
+        globalThis.__ContainsFormula__ = true
+        return el("div", this.content, {
+            "class": "math",
+            title: this.description,
+        })
+    }
 
     static pattern = source =>
         source.startsWith("$$$")

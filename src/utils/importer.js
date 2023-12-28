@@ -23,7 +23,6 @@ export async function importHighlighter() {
         // no code blocks
         return
     }
-
     if (hljs) {
         importLangDefs()
         return
@@ -44,6 +43,7 @@ export async function importTexRenderer() {
     }
 
     if (!globalThis.__ContainsFormula__) {
+        // no formula
         return
     }
     if (katex) {
