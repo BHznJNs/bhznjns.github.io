@@ -1,3 +1,7 @@
+import config from "../../build.config.js"
+
+const { katexOptions } = config
+
 let hljs  = null
 let katex = null
 
@@ -39,7 +43,7 @@ export async function importTexRenderer() {
     function renderFormula() {
         // render all formula element
         document.querySelectorAll(".math")
-            .forEach(el => katex.render(el.textContent, el))
+            .forEach(el => katex.render(el.textContent, el, katexOptions))
     }
 
     if (!globalThis.__ContainsFormula__) {

@@ -11,10 +11,10 @@ export default {
      * the description for this site, will be shown at the homepage
      * 站点的描述，会被显示在首页
      */
-    siteDescription: "<h1>" +
-"<a href='https://github.com/BHznJNs'>BHznJNs</a> "+
-"的 Markdown 静态博客站, 使用 VanillaJS 构建。" +
-"</h1>",
+    siteDescription: "<h1>"
+        + "<a href='https://github.com/BHznJNs'>BHznJNs</a> "
+        + "的 Markdown 静态博客站, 使用 VanillaJS 构建。"
+        + "</h1>",
 
     /**
      * footer: String
@@ -73,4 +73,11 @@ export default {
      * 为预览服务器定义端口
      */
     previewPort: 3000,
+
+    /**
+     * katexOptions: Object
+     * options for katex.js rendering, see here: https://katex.org/docs/options
+     * katex.js 用于渲染数学公式的配置项，见此：https://katex.org/docs/options
+     */
+    katexOptions: null
 }

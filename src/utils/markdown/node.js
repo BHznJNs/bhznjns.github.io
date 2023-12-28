@@ -1,5 +1,8 @@
+import config from "../../../build.config.js"
 import inlineResolver, { getInterval } from "./inline.js"
 import el from "./utils/el.js"
+
+const { language } = config
 
 class BaseNode {
     tagName = ""
@@ -171,9 +174,13 @@ class MediaNode extends BaseNode {
     }
 
     static replaceContentGenerator(href, description) {
-        const downloadElCN = el("a", "从这里下载！", { href })
-        const downloadElEN = el("a", "Download this!", { href })
-        const replaceContent = `${description}<br>${downloadElCN}<br>${downloadElEN}`
+        let downloadEl
+        if (language == "cn") {
+            downloadEl = el("a", "从这里下载！", { href })
+        } else if (language == "en") {
+            downloadEl = el("a", "Download this!", { href })
+        }
+        const replaceContent = `${description}<br>${downloadEl}`
         return replaceContent
     }
 
