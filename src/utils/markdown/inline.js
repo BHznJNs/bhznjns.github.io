@@ -136,7 +136,11 @@ function tokenize(text) {
                 textTerm += keyTerm
                 keyTerm = ""
             }
-            isEscape = false
+
+            if (isEscape) {
+                textTerm += "\\"
+                isEscape = false
+            }
             textTerm += ch
         }
     }
