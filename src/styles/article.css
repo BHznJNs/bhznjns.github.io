@@ -185,6 +185,11 @@ article blockquote:hover::before {
     width: 6px;
 }
 
+article span.math,
+article div.math {
+    font-size: larger;
+}
+
 /* media elements start */
 @media screen and (max-width: 767px) {
     /* Mobile phone style */
