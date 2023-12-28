@@ -3,7 +3,7 @@ main {
     padding: 1rem 2rem;
     border-radius: 1rem;
     background-color: var(--default-bg-color);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
     transition: background .6s;
 }
 
