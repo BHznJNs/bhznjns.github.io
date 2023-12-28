@@ -76,6 +76,10 @@ blockquote code {
     box-shadow: none !important;
 }
 
+article a::before {
+    display: inline-block;
+    content: "🔗";
+}
 article a:visited {
     color: var(--default-link-visited-color);
 }
