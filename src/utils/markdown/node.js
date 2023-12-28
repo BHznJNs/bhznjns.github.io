@@ -111,7 +111,7 @@ export class List extends BaseNode {
     }
 }
 
-export class TableBlock extends BaseNode {
+export class Table extends BaseNode {
     headerCells = [""]   // [string]
     bodyRows    = [[""]] // [[string]]
 
@@ -141,60 +141,6 @@ export class TableBlock extends BaseNode {
     }
 
     static pattern = source => source.startsWith("| ")
-}
-
-export class CodeBlock extends BaseNode {
-    constructor(content, lang) {
-        super()
-
-        this.lang = lang
-        if (typeof window == "object") {
-            // in browser
-            this.content = content
-        } else {
-            // in node.js
-            this.content = content
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-        }
-    }
-    append(content) {
-        this.content += content
-    }
-    toHTML() {
-        if (typeof window == "object") {
-            globalThis.__LanguageList__.add(this.lang)
-        }
-        const codeEl = el(
-            "code",
-            this.content,
-            {
-                "class": `language-${this.lang}`,
-                "data-language": this.lang.toUpperCase(),
-            }
-        )
-        return el("pre", codeEl)
-    }
-
-    static pattern = source => source.startsWith("```")
-}
-
-export class FormulaBlock extends BaseNode {
-    tagName = "div"
-    content = ""
-
-    constructor(content) {
-        super()
-
-        this.content = content
-        globalThis.__ContainsFormula__ = true
-    }
-    toHTML = () => el(this.tagName, this.content, {
-        "class": "math"
-    })
-
-    static pattern = source =>
-        source.startsWith("$$$")
 }
 
 // --- --- --- --- -
@@ -252,7 +198,7 @@ class MediaNode extends BaseNode {
     }
 }
 
-export class ImageBlock extends MediaNode {
+export class Image extends MediaNode {
     static pattern = MediaNode.patternGenerator("!")
 
     toHTML() {
@@ -267,7 +213,7 @@ export class ImageBlock extends MediaNode {
     }
 }
 
-export class AudioBlock extends MediaNode {
+export class Audio extends MediaNode {
     static pattern = MediaNode.patternGenerator(":")
 
     toHTML() {
@@ -281,7 +227,7 @@ export class AudioBlock extends MediaNode {
     }
 }
 
-export class VideoBlock extends MediaNode {
+export class Video extends MediaNode {
     static pattern = MediaNode.patternGenerator("?")
 
     toHTML() {
@@ -299,8 +245,83 @@ export const isIframePattern = (source) =>
     MediaNode.patternGenerator("@")(source)
     || source.startsWith("@@@")
 
-export class IframeInline extends BaseNode {
-    tagName = "iframe"
+export class Iframe extends MediaNode {
+    toHTML() {
+        const actualUrl = MediaNode.srcUrlResolver(this.source)
+        const iframeEl = el("iframe", this.description, {
+            src: actualUrl,
+            title: this.description,
+            sandbox: "allow-scripts",
+        })
+        return MediaNode.containerGenerator(iframeEl)
+    }
+}
+
+// --- --- --- ---
+// media nodes end
+// --- --- --- ---
+
+// --- --- --- --- -
+// block nodes start
+// --- --- --- --- -
+
+export class CodeBlock extends BaseNode {
+    constructor(content, lang) {
+        super()
+
+        this.lang = lang
+        if (typeof window == "object") {
+            // in browser
+            this.content = content
+        } else {
+            // in node.js
+            this.content = content
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+        }
+    }
+    append(content) {
+        this.content += content
+    }
+    toHTML() {
+        if (typeof window == "object") {
+            globalThis.__LanguageList__.add(this.lang)
+        }
+        const codeEl = el(
+            "code",
+            this.content,
+            {
+                "class": `language-${this.lang}`,
+                "data-language": this.lang.toUpperCase(),
+            }
+        )
+        return el("pre", codeEl)
+    }
+
+    static pattern = source => source.startsWith("```")
+}
+
+export class FormulaBlock extends BaseNode {
+    content = ""
+    description = ""
+
+    constructor(content, description) {
+        super()
+
+        this.content = content
+        this.description = description
+        globalThis.__ContainsFormula__ = true
+    }
+    toHTML = () => el("div", this.content, {
+        "class": "math",
+        title: this.description,
+    })
+
+    static pattern = source =>
+        source.startsWith("$$$")
+}
+
+export class IframeBlock extends BaseNode {
     static #injectedHeightSender = id => `\
 <script>
 window.addEventListener("load", (e) => {
@@ -323,7 +344,7 @@ window.addEventListener("load", (e) => {
 
         if (typeof window == "object") {
             // in browser
-            this.content = content + IframeInline.#injectedHeightSender(this.id)
+            this.content = content + IframeBlock.#injectedHeightSender(this.id)
         } else {
             // in node.js
             this.content = content
@@ -331,7 +352,7 @@ window.addEventListener("load", (e) => {
     }
 
     toHTML() {
-        const iframeEl = el(this.tagName, this.description, {
+        const iframeEl = el("iframe", this.description, {
             id: this.id,
             title: this.description,
             srcdoc: this.content,
@@ -341,18 +362,6 @@ window.addEventListener("load", (e) => {
     }
 }
 
-export class IframeBlock extends MediaNode {
-    toHTML() {
-        const actualUrl = MediaNode.srcUrlResolver(this.source)
-        const iframeEl = el("iframe", this.description, {
-            src: actualUrl,
-            title: this.description,
-            sandbox: "allow-scripts",
-        })
-        return MediaNode.containerGenerator(iframeEl)
-    }
-}
-
 // --- --- --- ---
-// media nodes end
+// block nodes end
 // --- --- --- ---

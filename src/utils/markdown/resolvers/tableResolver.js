@@ -1,4 +1,4 @@
-import { TableBlock } from "../node.js"
+import { Table } from "../node.js"
 
 // input: "| content | content |""
 // output: ["content","content"]
@@ -17,7 +17,7 @@ export default function(firstLine, lines) {
     while (lines.length) {
         const l = lines.shift()
 
-        if (TableBlock.pattern(l)) {
+        if (Table.pattern(l)) {
             contentLines.push(l)
         } else {
             lines.unshift(l)
@@ -27,6 +27,6 @@ export default function(firstLine, lines) {
 
     const headerCells = tableLineConverter(headerText)
     const contentRows = contentLines.map(tableLineConverter)
-    const tableNode = new TableBlock(headerCells, contentRows)
+    const tableNode = new Table(headerCells, contentRows)
     return tableNode
 }

@@ -1,16 +1,13 @@
 import {
     Headline, Quote, Divider,
-    List, CodeBlock, Para,
-    TableBlock, FormulaBlock,
-    ImageBlock, AudioBlock, VideoBlock, isIframePattern
+    List, Para, Table,
+    Image, Audio, Video,
+    FormulaBlock, CodeBlock,
+    isIframePattern
 } from "./node.js"
 import {
-    codeResolver,
-    listResolver,
-    quoteResolver,
-    tableResolver,
-    formulaResolver,
-    iframeResolver
+    listResolver, quoteResolver, tableResolver,
+    codeResolver, formulaResolver, iframeResolver,
 } from "./resolvers/index.js"
 import getLines from "./utils/getLines.js"
 
@@ -37,23 +34,23 @@ export default function mdResolver(source) {
         if (List.isListPattern(l)) {
             nodes.push(listResolver(l, lines))
         } else
-        if (CodeBlock.pattern(l)) {
-            nodes.push(codeResolver(l, lines))
-        } else 
-        if (TableBlock.pattern(l)) {
+        if (Table.pattern(l)) {
             nodes.push(tableResolver(l, lines))
+        } else
+        if (Image.pattern(l)) {
+            nodes.push(new Image(l))
+        } else
+        if (Audio.pattern(l)) {
+            nodes.push(new Audio(l))
+        } else
+        if (Video.pattern(l)) {
+            nodes.push(new Video(l))
         } else
         if (FormulaBlock.pattern(l)) {
             nodes.push(formulaResolver(l, lines))
         } else
-        if (ImageBlock.pattern(l)) {
-            nodes.push(new ImageBlock(l))
-        } else
-        if (AudioBlock.pattern(l)) {
-            nodes.push(new AudioBlock(l))
-        } else
-        if (VideoBlock.pattern(l)) {
-            nodes.push(new VideoBlock(l))
+        if (CodeBlock.pattern(l)) {
+            nodes.push(codeResolver(l, lines))
         } else
         if (isIframePattern(l)) {
             nodes.push(iframeResolver(l, lines))
