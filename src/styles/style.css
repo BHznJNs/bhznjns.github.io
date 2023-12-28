@@ -28,3 +28,9 @@ footer {
     opacity: .65;
     color: var(--default-tx-color);
 }
+footer a:visited {
+    color: var(--default-link-visited-color);
+}
+footer a:link {
+    color: var(--default-link-unvisited-color);
+}

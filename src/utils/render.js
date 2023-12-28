@@ -57,12 +57,20 @@ parentDirBtn.addEventListener("click", () => {
 articleList.addEventListener("click", (e) => {
     const target = e.target
 
+    if (target == articleList) {
+        // when click on the `articleList` itself
+        // ignore this event.
+        return
+    }
+
     if (!target.getAttribute("data-target-blog")) {
         if (target.innerText.endsWith("/")) {
+            // open directory
             globalThis.__CurrentPage__ = 1
         }
         location.hash += target.innerText
     } else {
+        // in `newest` page
         globalThis.__CurrentPage__ = 1
         location.hash = target.getAttribute("data-target-blog")
     }
