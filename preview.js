@@ -24,11 +24,14 @@ function getLANIpAddress() {
 app.use("/preview", express.static("./"))
 app.use("/rss_resources", express.static("./.rss_resources"))
 
-app.listen(port, "0.0.0.0", () => {
-    // listen in LAN
-    const LAN_IP = getLANIpAddress()
-    console.log(`Listening: http://${LAN_IP}:${port}/preview/`)
-})
+const LAN_IP = getLANIpAddress()
+if (LAN_IP) {
+    app.listen(port, "0.0.0.0", () => {
+        // listen in LAN
+        console.log(`Listening: http://${LAN_IP}:${port}/preview/`)
+    })
+}
+
 app.listen(port, () => {
     // listen in localhost
     console.log(`Listening: http://localhost:${port}/preview/`)
