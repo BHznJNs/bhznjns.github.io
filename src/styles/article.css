@@ -241,6 +241,13 @@ article div.math {
         border-radius: 0 !important;
     }
 }
+@media screen and (min-width: 1024px) {
+    /* PC style */
+    article div.media-container:not(blockquote div.media-container) {
+        margin-left: 2.5rem !important;
+        margin-right: 2.5rem !important;
+    }
+}
 
 article div.media-container {
     margin: 1rem 1rem 1.5rem;
