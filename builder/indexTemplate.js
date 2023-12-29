@@ -107,7 +107,7 @@ const main = `\
     data-is-last-page=""
     data-is-only-page=""
 >
-    <div id="homepage-description">
+    <header id="homepage-description">
         ${config.siteDescription ? config.siteDescription : ""}
 ${config.enableNewest ? `\
         <ul>
@@ -118,7 +118,7 @@ ${config.enableNewest ? `\
                 ${languageSelect("最新博文", "Newests")}
             </li>
         </ul>` : ""}
-    </div>
+    </header>
 
     <ul id="previous-dir"><li tabindex="0">../</li></ul>
     <ul id="article-list"></ul>
