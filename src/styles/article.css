@@ -95,8 +95,8 @@ article u {
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: 100% 1px;
-    transition: bottom .3s .15s,
-                padding .3s .15s,
+    transition: bottom .3s .05s,
+                padding .3s .05s,
                 background-size .3s;
 }
 article u:hover {
@@ -217,14 +217,23 @@ article blockquote::before {
     height: 100%;
     background-color: var(--default-tx-color);
     cursor: pointer;
-    transition: .3s;
+    z-index: 1;
+    transition: width .3s,
+                transform .3s .05s;
 }
 
 article blockquote:hover::before {
-    left: -3px;
     width: 6px;
+    transform: translateX(-3px);
 }
 /* blockquote end */
+
+@media screen and (min-width: 1024px) {
+    /* PC style */
+    article div.math {
+        font-size: x-large !important;
+    }
+}
 
 article span.math,
 article div.math {
