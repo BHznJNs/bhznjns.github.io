@@ -21,6 +21,12 @@ const languageSelect = languageSelectorCreator(currentLang)
 
 // --- --- --- --- --- ---
 
+const prefetchResources = [
+    "./dist/katex.min.css",
+    "./dist/chunks/katex.min.js",
+    "./dist/chunks/highlight.min.js",
+].map(src => `<link rel="prefetch" href="${src}">`)
+
 const HTMLHeader = `\
 <head>
     <meta charset="UTF-8">
@@ -28,6 +34,7 @@ const HTMLHeader = `\
     <meta name="color-scheme" content="light dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BHznJNs' Blog</title>
+    ${prefetchResources}
     <link rel="shortcut icon" href="./src/imgs/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./dist/style.min.css">
     <script src="./dist/index.min.js" type="module" defer></script>
