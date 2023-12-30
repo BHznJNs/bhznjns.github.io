@@ -25,7 +25,7 @@ const prefetchResources = [
     "./dist/katex.min.css",
     "./dist/chunks/katex.min.js",
     "./dist/chunks/highlight.min.js",
-].map(src => `<link rel="prefetch" href="${src}">`)
+].map(src => `<link rel="prefetch" href="${src}">`).join("")
 
 const HTMLHeader = `\
 <head>
