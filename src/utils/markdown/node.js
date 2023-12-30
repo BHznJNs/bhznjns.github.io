@@ -62,7 +62,8 @@ export class Quote extends BaseNode {
         return el(this.tagName, innerHTML)
     }
 
-    static pattern = source => source.startsWith("> ")
+    static pattern = source =>
+        (source == ">") || source.startsWith("> ")
 }
 
 export class Divider extends BaseNode {
