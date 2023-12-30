@@ -153,6 +153,10 @@ article pre code {
     padding: calc(1rem + 4px) 1rem 1rem;
     overflow-x: auto;
     box-shadow: var(--shadow-md);
+    transition: box-shadow .3s;
+}
+article pre code:hover {
+    box-shadow: var(--shadow-lg);
 }
 article pre code::before {
     /* show language name for code block */
@@ -228,6 +232,7 @@ article blockquote:hover::before {
 }
 /* blockquote end */
 
+/* math formula start */
 @media screen and (min-width: 1024px) {
     /* PC style */
     article div.math {
@@ -235,10 +240,15 @@ article blockquote:hover::before {
     }
 }
 
-article span.math,
 article div.math {
     font-size: larger;
+    text-align: center;
+    line-height: 1.75;
 }
+article span.math {
+    font-size: 1.125rem;
+}
+/* math formula end */
 
 /* media elements start */
 @media screen and (max-width: 767px) {
@@ -301,6 +311,10 @@ table {
     border-spacing: 0;
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
+    transition: box-shadow .3s;
+}
+table:hover {
+    box-shadow: var(--shadow-md);
 }
 
 .dark table {
