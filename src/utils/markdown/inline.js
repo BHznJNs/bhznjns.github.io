@@ -169,26 +169,26 @@ function convert(tokens) {
     for (const token of tokens) {
         switch (token.type) {
             case Token.key:
-                if (identifier.length && token.content == identifier) {
-                    const tagName = KeyToken_TagName_map.get(identifier)
-                    if (tagName.includes(".")) {
-                        const [realTagName, className] = tagName.split(".")
-                        if (identifier == "$$") {
-                            // formula sign
-                            globalThis.__ContainsFormula__ = true
-                        }
-                        resultHTML.push(el(realTagName, tagContent, {
-                            "class": className
-                        }))
-                    } else {
-                        resultHTML.push(el(tagName, tagContent))
-                    }
-
-                    identifier = ""
-                    tagContent = ""
-                } else {
+                if (!(identifier.length && token.content == identifier)) {
                     identifier = token.content
+                    continue
                 }
+                const tagName = KeyToken_TagName_map.get(identifier)
+                if (tagName.includes(".")) {
+                    const [realTagName, className] = tagName.split(".")
+                    if (identifier == "$$") {
+                        // formula sign
+                        globalThis.__ContainsFormula__ = true
+                    }
+                    resultHTML.push(el(realTagName, tagContent, {
+                        "class": className
+                    }))
+                } else {
+                    resultHTML.push(el(tagName, tagContent))
+                }
+
+                identifier = ""
+                tagContent = ""
                 break
             case Token.text:
                 if (!identifier.length) {
