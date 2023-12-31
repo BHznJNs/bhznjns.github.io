@@ -1,4 +1,5 @@
 import config from "../../../build.config.js"
+import mdResolver from "./index.js"
 import inlineResolver, { getInterval } from "./inline.js"
 import el from "./utils/el.js"
 
@@ -57,9 +58,9 @@ export class Quote extends BaseNode {
         this.children = children
     }
     toHTML() {
-        const innerHTML = this.children
+        const innerNodes = this.children
             .map(node => node.toHTML())
-        return el(this.tagName, innerHTML)
+        return el(this.tagName, innerNodes)
     }
 
     static pattern = source =>
@@ -307,6 +308,34 @@ export class CodeBlock extends BaseNode {
     }
 
     static pattern = source => source.startsWith("```")
+}
+
+export class DetailsBlock extends BaseNode {
+    summary = ""
+    content = ""
+
+    constructor(content, summary) {
+        super()
+        
+        this.summary = summary
+        this.content = mdResolver(content)
+    }
+    toHTML() {
+        const summaryEl = el("summary", this.summary)
+        const detailsEl = el("details", summaryEl)
+
+        const innerNodes = this.content
+            .map(node => node.toHTML())
+        const childrenEl = el("div", el("div", innerNodes), {
+            "class": "details-children"
+        })
+        return el("div", [detailsEl, childrenEl], {
+            "class": "details"
+        })
+    }
+
+    static pattern = source =>
+        source.startsWith(">>>")
 }
 
 export class FormulaBlock extends BaseNode {

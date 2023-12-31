@@ -10,6 +10,9 @@ nav {
 .dark #homepage img, .dark #rss-icon img {
     filter: invert(100%);
 }
+#homepage img {
+    padding-right: .4rem;
+}
 
 .icon-btn {
     display: inline-flex;
@@ -22,15 +25,13 @@ nav {
     background-color: var(--default-bg-color);
     cursor: pointer;
     text-decoration: none !important;
-    transition: .3s;
-}
-
-#homepage img {
-    padding-right: .4rem;
+    transition: color .3s,
+                background .3s;
 }
 
 .icon-btn img {
     height: 1.5rem;
+    transition: filter .3s .15s;
 }
 
 .icon-btn:hover {
@@ -39,7 +40,8 @@ nav {
 }
 
 .icon-btn span {
-    transition: transform .3s;
+    transition: color .3s .15s,
+                transform .3s;
 }
 
 nav .icon-btn:hover span {

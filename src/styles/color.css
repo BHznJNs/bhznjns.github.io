@@ -13,8 +13,9 @@ body:not(.dark) {
     --default-link-unvisited-color: #1976D2;
     --default-link-visited-color: #ff1493;
 
-    --default-code-color: #000;
-    --default-code-bg-color: #eee;
+    --default-inline-code-color: #000;
+    --default-inline-code-bg-color: #eee;
+    --default-block-code-bg-color: #0d1117;
 }
 
 body.dark {
@@ -32,6 +33,7 @@ body.dark {
     --default-link-unvisited-color: #64B5F6;
     --default-link-visited-color: #ff69b4;
 
-    --default-code-color: #eee;
-    --default-code-bg-color: #333;
+    --default-inline-code-color: #eee;
+    --default-inline-code-bg-color: #333;
+    --default-block-code-bg-color: #1a1c1f;
 }

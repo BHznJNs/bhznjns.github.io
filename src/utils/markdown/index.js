@@ -3,11 +3,12 @@ import {
     List, Para, Table,
     Image, Audio, Video,
     FormulaBlock, CodeBlock,
-    isIframePattern
+    isIframePattern,
+    DetailsBlock
 } from "./node.js"
 import {
     listResolver, quoteResolver, tableResolver,
-    codeResolver, formulaResolver, iframeResolver,
+    codeResolver, formulaResolver, iframeResolver, detailsResolver,
 } from "./resolvers/index.js"
 import getLines from "./utils/getLines.js"
 
@@ -45,6 +46,9 @@ export default function mdResolver(source) {
         } else
         if (Video.pattern(l)) {
             nodes.push(new Video(l))
+        } else
+        if (DetailsBlock.pattern(l)) {
+            nodes.push(detailsResolver(l, lines))
         } else
         if (FormulaBlock.pattern(l)) {
             nodes.push(formulaResolver(l, lines))

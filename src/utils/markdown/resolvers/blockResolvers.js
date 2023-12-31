@@ -1,4 +1,4 @@
-import { CodeBlock, FormulaBlock, Iframe, IframeBlock } from "../node.js"
+import { CodeBlock, DetailsBlock, FormulaBlock, Iframe, IframeBlock } from "../node.js"
 
 function blockResolverGenerator(endSign, targetClass) {
     return function(firstLine, lines) {
@@ -19,6 +19,7 @@ function blockResolverGenerator(endSign, targetClass) {
 }
 
 export const codeResolver = blockResolverGenerator("```", CodeBlock)
+export const detailsResolver = blockResolverGenerator(">>>", DetailsBlock)
 export const formulaResolver = blockResolverGenerator("$$$", FormulaBlock)
 export function iframeResolver(firstLine, lines) {
     const blockResolver = blockResolverGenerator("@@@", IframeBlock)
