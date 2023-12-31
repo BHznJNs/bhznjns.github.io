@@ -5,7 +5,7 @@ import { fetchJSON, fetchMD } from "./utils/fetchResources.js"
 import keydownEvent from "./utils/keydownEvent.js"
 import mdResolver from "./utils/markdown/index.js"
 import el from "./utils/markdown/utils/el.js"
-import { mdRender, indexRender } from "./utils/render.js"
+import { articleRender, indexRender } from "./utils/render.js"
 
 globalThis.__CurrentPage__ = 1
 const indexDirPath = "./.index/"
@@ -82,11 +82,9 @@ async function hashEvent() {
     if (hash.startsWith("static") && hash.endsWith(".md")) {
         // open article
         const articleContent = await fetchMD("./" + hash)
-        // used to dynamic generate iframe id
-        globalThis.__IframeCounter__ = 0
-        const structure = mdResolver(articleContent)
-        mdRender(structure)
+        articleRender(articleContent)
     } else {
+        // the hash "#static/" is the homepage
         location.hash = "static/"
         return
     }

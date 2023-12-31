@@ -1,20 +1,10 @@
 export default {
     /**
      * homepage: String
-     * the URL that this site deployed
-     * 此站点部署的 URL
+     * the URL that this site deployed, is used to generate the rss.xml file
+     * 此站点部署的 URL，用于生成 rss.xml 文件
      */
     homepage: "https://bhznjns.github.io/markdown-blog/",
-
-    /**
-     * siteDescription: String
-     * the description for this site, will be shown at the homepage
-     * 站点的描述，会被显示在首页
-     */
-    siteDescription: "<h1>"
-        + "<a href='https://github.com/BHznJNs'>BHznJNs</a> "
-        + "的 Markdown 静态博客站, 使用 VanillaJS 构建。"
-        + "</h1>",
 
     /**
      * footer: String

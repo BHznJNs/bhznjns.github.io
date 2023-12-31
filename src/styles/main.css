@@ -53,11 +53,11 @@ main ul {
 main[data-is-root="true"] #previous-dir {
     display: none;
 }
-main[data-is-root="true"] #homepage-description {
+main[data-is-root="true"] ul#newest {
     display: block;
 }
 
-#homepage-description {
+ul#newest {
     display: none;
 }
 

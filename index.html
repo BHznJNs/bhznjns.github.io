@@ -79,17 +79,16 @@
     data-is-last-page=""
     data-is-only-page=""
 >
-    <header id="homepage-description">
-        <h1><a href='https://github.com/BHznJNs'>BHznJNs</a> 的 Markdown 静态博客站, 使用 VanillaJS 构建。</h1>
-        <ul>
-            <li
-                tabindex="0"
-                onclick="location.hash = 'newest/'"
-            >
-                最新博文
-            </li>
-        </ul>
-    </header>
+    <article id="directory-description"></article>
+
+    <ul id="newest">
+        <li
+            tabindex="0"
+            onclick="location.hash = 'newest/'"
+        >
+            最新博文
+        </li>
+    </ul>
 
     <ul id="previous-dir"><li tabindex="0">../</li></ul>
     <ul id="article-list"></ul>

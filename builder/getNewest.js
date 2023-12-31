@@ -46,6 +46,10 @@ export default function getNewest(dir) {
 
     for (const item of dir.items) {
         if (item instanceof File) {
+            if (item.name == "README.md") {
+                // skip files that is named "README.md"
+                continue
+            }
             fileStack.push(item)
         } else if (item instanceof Directory) {
             // recursively read folder

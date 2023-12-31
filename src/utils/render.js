@@ -1,11 +1,13 @@
 import keydownEvent from "./keydownEvent.js"
 import { importHighlighter, importTexRenderer } from "./importer.js"
 import el from "./markdown/utils/el.js"
+import mdResolver from "./markdown/index.js"
 
-const articleEl    = document.querySelector("article")
-const mainEl       = document.querySelector("main")
-const parentDirBtn = mainEl.querySelector("#previous-dir li")
-const articleList  = mainEl.querySelector("#article-list")
+const articleEl        = document.querySelector("article:not(#directory-description)")
+const mainEl           = document.querySelector("main")
+const dirDescriptionEl = mainEl.querySelector("#directory-description")
+const parentDirBtn     = mainEl.querySelector("#previous-dir li")
+const articleList      = mainEl.querySelector("#article-list")
 
 // ----------------
 // article renderer
@@ -18,19 +20,28 @@ articleEl.addEventListener("click", (e) => {
     }
 })
 
-export function mdRender(structure) {
+function mdEntry(mdContent) {
     // language names to import
     globalThis.__LanguageList__ = new Set()
     // to deside whether to import `katex`
     globalThis.__ContainsFormula__ = false
+    // used to dynamic generate iframe id
+    globalThis.__IframeCounter__ = 0
 
-    let resultHTML = structure
+    const structure = mdResolver(mdContent)
+
+    let resultNodes = structure
         .map(node => node.toHTML())
-    if (!resultHTML.length) {
-        resultHTML = el("h1", "404 Not Found")
+    if (!resultNodes.length) {
+        resultNodes = el("h1", "404 Not Found")
     }
+    return resultNodes
+}
+
+export function articleRender(articleContent) {
+    const resultNodes = mdEntry(articleContent)
     articleEl.innerHTML = ""
-    resultHTML.forEach(el => articleEl.appendChild(el))
+    resultNodes.forEach(el => articleEl.appendChild(el))
 
     mainEl.style.display = "none"
     articleEl.style.display = "block"
@@ -96,10 +107,22 @@ export function indexRender(indexing, itemResolver) {
     mainEl.setAttribute("data-is-last-page", isLastPage)
     mainEl.setAttribute("data-is-only-page", isOnlyPage)
 
-
     // --- --- --- --- --- ---
 
-    // reset HTML content
+    dirDescriptionEl.innerHTML = ""
+    if ("directoryDescription" in indexing) {
+        // render directory description
+        const resultNodes = mdEntry(indexing.directoryDescription)
+        resultNodes.forEach(el => dirDescriptionEl.appendChild(el))
+        dirDescriptionEl.querySelectorAll("[tabindex='0']").forEach((el) => {
+            el.onkeydown = keydownEvent(el)
+        })
+
+        importHighlighter().then(() => globalThis.__LanguageList__ = null)
+        importTexRenderer().then(() => globalThis.__ContainsFormula__ = false)
+    }
+
+    // reset articleList content
     articleList.innerHTML = ""
     indexing.content
         .map(itemResolver)
@@ -116,4 +139,8 @@ export function indexRender(indexing, itemResolver) {
 
     articleEl.style.display = "none"
     mainEl.style.display = "block"
+
+    // return to the top
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
 }

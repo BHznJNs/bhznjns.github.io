@@ -1,13 +1,18 @@
-import { writeFileSync } from "node:fs"
+import { readFileSync, writeFileSync } from "node:fs"
 import slice from "./utils/slice.js"
 import { Directory, File } from "./utils/readDir.js"
 import { indexFilePath } from "./utils/path.js"
 
 export default function indexing(dir, indexName) {
     const currentDirItems = []
+    let directoryDescription
 
     for (const item of dir.items) {
         if (item instanceof File) {
+            if (item.name == "README.md") {
+                directoryDescription = readFileSync(item.path, "utf-8")
+                continue
+            }
             currentDirItems.push(item.name)
         } else if (item instanceof Directory) {
             currentDirItems.push(item.name + "/")
@@ -27,6 +32,7 @@ export default function indexing(dir, indexName) {
             total: count,
             current: index,
             content: slice,
+            directoryDescription,
         }))
     }
 }

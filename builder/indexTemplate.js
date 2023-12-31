@@ -107,18 +107,17 @@ const main = `\
     data-is-last-page=""
     data-is-only-page=""
 >
-    <header id="homepage-description">
-        ${config.siteDescription ? config.siteDescription : ""}
+    <article id="directory-description"></article>
+
 ${config.enableNewest ? `\
-        <ul>
-            <li
-                tabindex="0"
-                onclick="location.hash = 'newest/'"
-            >
-                ${languageSelect("最新博文", "Newests")}
-            </li>
-        </ul>` : ""}
-    </header>
+    <ul id="newest">
+        <li
+            tabindex="0"
+            onclick="location.hash = 'newest/'"
+        >
+            ${languageSelect("最新博文", "Newests")}
+        </li>
+    </ul>` : ""}
 
     <ul id="previous-dir"><li tabindex="0">../</li></ul>
     <ul id="article-list"></ul>
