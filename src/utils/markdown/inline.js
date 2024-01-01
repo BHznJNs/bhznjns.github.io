@@ -1,4 +1,5 @@
 import el from "./utils/el.js"
+import getInterval from "./utils/getInterval.js"
 
 // identifier character array
 const keyTermArray = [
@@ -96,29 +97,6 @@ class PhoneticToken extends Token {
 
 // --- --- --- --- --- ---
 
-// ("abc]", "]") -> "abc"
-export function getInterval(text, endSign) {
-    let intervalText = ""
-    let isEscape = false
-
-    while (text.length) {
-        const ch = text.slice(0, 1)
-        text = text.substr(1)
-
-        if (ch == "\\") {
-            isEscape = !isEscape
-            continue
-        }
-        if (ch == endSign && !isEscape) {
-            break
-        }
-        intervalText += ch
-        isEscape = false
-    }
-
-    return intervalText
-}
-
 function tokenize(text) {
     const tokens = []
     let textTerm = ""
@@ -129,39 +107,40 @@ function tokenize(text) {
         const ch = text.slice(0, 1)
         text = text.substr(1)
 
-        // link resolve
-        if (ch == "[" && !isEscape) {
+        let lastType = tokens.length && tokens[tokens.length - 1].type
+
+        // special inline rules resolve
+        if (["[", "{"].includes(ch) && !isEscape && lastType == Token.text) {
+            const specialTokenSign = ch
             tokens.push(new Token(Token.text, textTerm))
             textTerm = ""
 
-            const linkDisplay = getInterval(text, "]")
-            text = text.substr(linkDisplay.length + 1)
+            const displayContent = getInterval(text, specialTokenSign)
+            text = text.substr(displayContent.length + 1)
 
-            let ch = text.slice(0, 1)
+            const _ch = text.slice(0, 1)
             text = text.substr(1)
-            if (ch == "(" && !isEscape) {
-                const linkSelf = getInterval(text, ")")
-                text = text.substr(linkSelf.length + 1)
-                tokens.push(new LinkToken(linkDisplay, linkSelf))
+
+            if (_ch != "(") {
+                // if there is no left parenthesis("(") follows
+                // the `[...]` or `{...}`, directly append the content
+                // before into the `textTerm`
+                textTerm += specialTokenSign + displayContent + specialTokenSign
+                textTerm += _ch
+                continue
             }
-            continue
-        }
 
-        // phonetic notation resolve 拼音处理
-        if (ch == "{" && !isEscape) {
-            tokens.push(new Token(Token.text, textTerm))
-            textTerm = ""
+            let targetTokenType
+            if (specialTokenSign == "[") {
+                targetTokenType = LinkToken
+            } else
+            if (specialTokenSign == "{") {
+                targetTokenType = PhoneticToken
+            } else { /* unreachable */ }
 
-            const textDisplay = getInterval(text, "}")
-            text = text.substr(textDisplay.length + 1)
-
-            let ch = text.slice(0, 1)
-            text = text.substr(1)
-            if (ch == "(" && !isEscape) {
-                const notation = getInterval(text, ")")
-                text = text.substr(notation.length + 1)
-                tokens.push(new PhoneticToken(textDisplay, notation))
-            }
+            const hiddenContent = getInterval(text, ")")
+            text = text.substr(hiddenContent.length + 1)
+            tokens.push(new targetTokenType(displayContent, hiddenContent))
             continue
         }
 
