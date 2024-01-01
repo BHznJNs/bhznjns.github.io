@@ -1,0 +1,40 @@
+@media screen and (max-width: 767px) {
+    /* Mobile phone style */
+    article pre:not(blockquote pre) {
+        width: calc(100% + 3.2rem);
+        margin-left: -1.6rem !important;
+        margin-right: -1.6rem !important;
+    }
+    article pre code:not(blockquote pre code) {
+        border-radius: 0 !important;
+    }
+}
+article pre code {
+    /* code block */
+    display: block;
+    position: relative;
+    padding: calc(1rem + 4px) 1rem 1rem;
+    overflow-x: auto;
+    font-size: 1rem;
+    font-family: Consolas, monospace;
+    border-radius: 8px;
+    background-color: var(--default-block-code-bg-color);
+    box-shadow: var(--shadow-md);
+    transition: box-shadow .3s;
+}
+article pre code:hover {
+    box-shadow: var(--shadow-lg);
+}
+article pre code::before {
+    /* show language name for code block */
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    content: attr(data-language);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: .75rem;
+    font-weight: bold;
+}
+article pre code span {
+    opacity: 1 !important;
+}

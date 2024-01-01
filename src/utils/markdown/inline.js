@@ -33,9 +33,10 @@ class Token {
         this.content = content
     }
 
-    static key  = Symbol("key")
-    static link = Symbol("link")
-    static text = Symbol("text")
+    static key      = Symbol("key")
+    static text     = Symbol("text")
+    static link     = Symbol("link")
+    static phonetic = Symbol("phonetic")
 }
 
 class LinkToken extends Token {
@@ -61,6 +62,35 @@ class LinkToken extends Token {
         return el("a", this.content, {
             href: "#" + actualAddress
         })
+    }
+}
+
+class PhoneticToken extends Token {
+    constructor(content, notation) {
+        super()
+
+        this.type = Token.phonetic
+        this.content  = content
+        this.notation = notation
+    }
+    toHTML() {
+        const ignoredLeftParenthesis = el("rp", "(")
+        const ignoredRightParenthesis = el("rp", ")")
+        const cjkNotation = el("span", el("span", this.notation), {
+            "class": "cjk-notation-container"
+        })
+        const cjkText = el("span", el("span", this.content), {
+            "class": "cjk-text-container"
+        })
+        const notation = el("rt", this.notation)
+
+        return el("ruby", [
+            cjkNotation,
+            cjkText,
+            ignoredLeftParenthesis,
+            notation,
+            ignoredRightParenthesis,
+        ])
     }
 }
 
@@ -113,6 +143,24 @@ function tokenize(text) {
                 const linkSelf = getInterval(text, ")")
                 text = text.substr(linkSelf.length + 1)
                 tokens.push(new LinkToken(linkDisplay, linkSelf))
+            }
+            continue
+        }
+
+        // phonetic notation resolve 拼音处理
+        if (ch == "{" && !isEscape) {
+            tokens.push(new Token(Token.text, textTerm))
+            textTerm = ""
+
+            const textDisplay = getInterval(text, "}")
+            text = text.substr(textDisplay.length + 1)
+
+            let ch = text.slice(0, 1)
+            text = text.substr(1)
+            if (ch == "(" && !isEscape) {
+                const notation = getInterval(text, ")")
+                text = text.substr(notation.length + 1)
+                tokens.push(new PhoneticToken(textDisplay, notation))
             }
             continue
         }
@@ -198,6 +246,7 @@ function convert(tokens) {
                 }
                 break
             case Token.link:
+            case Token.phonetic:
                 resultHTML.push(token.toHTML())
                 break
         }

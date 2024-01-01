@@ -1,0 +1,77 @@
+article div.media-container {
+    margin: 1rem 1rem 1.5rem;
+    background-color: var(--default-bg-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: box-shadow .3s;
+}
+@media screen and (max-width: 767px) {
+    /* Mobile phone style */
+    article div.media-container:not(blockquote div.media-container) {
+        width: calc(100% + 3.2rem);
+        margin-left: -1.6rem;
+        margin-right: -1.6rem;
+        border-radius: 0;
+    }
+}
+@media screen and (min-width: 1024px) {
+    /* PC style */
+    article div.media-container:not(blockquote div.media-container) {
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+    }
+}
+
+article div.media-container:hover {
+    box-shadow: var(--shadow-md);
+}
+
+div.media-container img,
+div.media-container video,
+div.media-container audio,
+div.media-container iframe {
+    width: 100%;
+    vertical-align: bottom;
+}
+
+div.media-container img {
+    cursor: pointer;
+}
+
+div.media-container iframe {
+    border: none;
+    height: 50vh;
+}
+
+/* Chrome/Edge `audio` element style */
+audio::-webkit-media-controls-panel {
+    background-color: var(--default-bg-color);
+}
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+    color: var(--default-tx-color);
+}
+@media (prefers-color-scheme: light) {
+    /* dark mode style when the dark mode is disabled in OS */
+    .dark audio::-webkit-media-controls-play-button,
+    .dark audio::-webkit-media-controls-mute-button,
+    .dark audio::-webkit-media-controls-volume-slider,
+    .dark audio::-webkit-media-controls-timeline {
+        filter: invert(.85);
+    }
+}
+@media (prefers-color-scheme: dark) {
+    /* light mode style when the dark mode is enabled in OS */
+    body:not(.dark) audio::-webkit-media-controls-current-time-display,
+    body:not(.dark) audio::-webkit-media-controls-time-remaining-display {
+        text-shadow: 0 0 1px var(--default-tx-color);
+    }
+
+    body:not(.dark) audio::-webkit-media-controls-play-button,
+    body:not(.dark) audio::-webkit-media-controls-mute-button,
+    body:not(.dark) audio::-webkit-media-controls-volume-slider,
+    body:not(.dark) audio::-webkit-media-controls-timeline {
+        filter: invert(.85);
+    }
+}

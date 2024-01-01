@@ -1,7 +1,7 @@
 @import url(./color.css);
 @import url(./navigator.css);
 @import url(./main.css);
-@import url(./article.css);
+@import url(./article/index.css);
 @import url(../libs/highlight-es/github-dark.css);
 
 body {

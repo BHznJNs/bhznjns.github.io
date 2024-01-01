@@ -1,0 +1,167 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li,
+blockquote {
+    color: var(--default-tx-color);
+    transition: color .3s .15s;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 1.6em;
+}
+
+h4 {
+    font-size: 1.4em;
+}
+
+h5 {
+    font-size: 1.2em;
+}
+
+h6 {
+    font-size: 1.1em;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code,
+p code,
+li code,
+blockquote code:not(pre code) {
+    /* inline code style */
+    padding: 2px 8px;
+    margin: 0 4px;
+    color: var(--default-inline-code-color);
+    background-color: var(--default-inline-code-bg-color);
+    font-size: 1rem;
+    font-family: Consolas, monospace;
+    border-radius: 8px;
+    box-shadow: none !important;
+    transition: color .3s .15s,
+                background .3s .15s;
+}
+
+article a::before {
+    display: inline-block;
+    content: "🔗";
+}
+article a:visited {
+    color: var(--default-link-visited-color);
+}
+article a:link {
+    color: var(--default-link-unvisited-color);
+}
+
+article u {
+    position: relative;
+    bottom: 0;
+    text-decoration: none;
+    background-image: linear-gradient(to right, var(--default-tx-color), var(--default-tx-color));
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% 1px;
+    transition: bottom .3s .05s,
+                padding .3s .05s,
+                background-size .3s;
+}
+article u:hover {
+    bottom: 1px;
+    padding-bottom: 2px;
+    background-size: 100% 3px;
+}
+
+article del {
+    padding: 0 2px;
+    text-decoration: none;
+    background-image: linear-gradient(to right, var(--default-tx-color), var(--default-tx-color));
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 100% 2px;
+    transition: background-size .3s;
+}
+article del:hover {
+    background-size: 100% 4px;
+}
+
+article span.dim {
+    /* dimmed text */
+    opacity: .75;
+}
+
+article hr {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+/* phonetic notation start */
+article ruby {
+    cursor: pointer;
+}
+
+ruby .cjk-notation-container {
+    display: inline-grid;
+    grid-template-columns: 0fr;
+    opacity: 0;
+    overflow-x: hidden;
+    user-select: none;
+    transition: grid-template-columns .3s .15s,
+                opacity .3s .15s;
+}
+
+ruby .cjk-text-container {
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    opacity: 1;
+    transition: grid-template-columns .3s,
+                opacity .3s .15s;
+}
+
+ruby .cjk-notation-container span,
+ruby .cjk-text-container span {
+    white-space: nowrap;
+    min-width: 0;
+}
+
+ruby rt {
+    position: relative;
+    top: 0;
+    opacity: 1;
+    transition: top .3s,
+                transform .3s,
+                opacity .3s .05s;
+}
+
+ruby:hover rt {
+    top: 2em; /* for Firefox */
+    transform: translateY(2em); /* for Chrome/Edge */
+    opacity: 0;
+}
+
+ruby:hover .cjk-text-container {
+    grid-template-columns: 0fr;
+    opacity: 0;
+}
+
+ruby:hover .cjk-notation-container {
+    grid-template-columns: 1fr;
+    opacity: 1;
+}
+/* phonetic notation end */

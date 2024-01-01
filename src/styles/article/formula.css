@@ -1,0 +1,16 @@
+@media screen and (min-width: 1024px) {
+    /* PC style */
+    article div.math {
+        font-size: x-large !important;
+    }
+}
+
+article div.math {
+    color: var(--default-tx-color);
+    font-size: larger;
+    text-align: center;
+    line-height: 1.75;
+}
+article span.math {
+    font-size: 1.125rem;
+}

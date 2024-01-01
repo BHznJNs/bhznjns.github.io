@@ -1,0 +1,70 @@
+@media screen and (max-width: 767px) {
+    article blockquote {
+        margin-left: 1rem !important;
+        margin-right: 0 !important;
+    }
+    article blockquote > pre,
+    article blockquote > div.media-container {
+        margin-left: -1rem;
+        margin-right: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    article blockquote > pre code {
+        margin-left: 0 !important;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+    }
+
+    article blockquote > .details details {
+        margin-left: -1rem;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+    article blockquote > .details .details-children {
+        margin-left: -1rem;
+        border-bottom-right-radius: 0;
+    }
+    article blockquote > .details .details-children pre code {
+        border-radius: 0;
+    }
+    article blockquote > .details .details-children pre,
+    article blockquote > .details .details-children div.media-container {
+        margin-left: -1.6rem;
+        margin-right: -1.6rem;
+        border-radius: 0;
+    }
+}
+article blockquote {
+    position: relative;
+    padding: 0.1px 1rem;
+    margin-right: 1rem;
+    color: var(--default-tx-color);
+    background-color: var(--hovered-bg-color);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+article blockquote code:not(pre code) {
+    filter: invert(15%);
+}
+
+article blockquote::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    content: " ";
+    width: 2px;
+    height: 100%;
+    background-color: var(--default-tx-color);
+    cursor: pointer;
+    z-index: 1;
+    transition: width .3s,
+                transform .3s .05s;
+}
+
+article blockquote:hover::before {
+    width: 6px;
+    transform: translateX(-3px);
+}

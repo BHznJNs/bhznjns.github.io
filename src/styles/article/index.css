@@ -1,0 +1,31 @@
+@import url(./inline.css);
+@import url(./formula.css);
+@import url(./table.css);
+@import url(./media.css);
+@import url(./code_block.css);
+@import url(./details_block.css);
+@import url(./quote_block.css);
+
+article:not(#directory-description) {
+    margin: 2rem 10vw 4rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    background-color: var(--default-bg-color);
+    box-shadow: var(--shadow-lg);
+    transition: background .6s;
+}
+
+@media screen and (max-width: 767px) {
+    /* Mobile phone style */
+    article:not(#directory-description) {
+        padding: 1rem 1.6rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        border-radius: .75rem;
+        box-shadow: var(--shadow-sm);
+    }
+}
+
+article:empty {
+    display: none !important;
+}
