@@ -93,7 +93,7 @@ for (let word of words) {
     b.push({ key, value });
   }
 }
-</code></pre><p>这里的 <code>set</code> 方法是第一个在先前的 JavaScript Map 示例代码中出现过的方法。它接受一个键值对并将其存储在我们的哈希表中。它调用了我们前面创建的 <code>bucket</code> 和 <code>entry</code> 方法。如果找到了入口，它的值会被覆写；如果未找到，输入的键值对会被添加到表中。在 JavaScript 中，<code>{ key, value }</code> 是 <code>{ key: key, value: value }</code> 的简写。</p><pre><code class="language-javascript" data-language="JAVASCRIPT">class HashMap {
+</code></pre><p>这里的 <code>set</code> 方法是第一个在先前的 JavaScript Map 示例代码中出现过的方法。它接受一个键值对并将其存储在我们的哈希表中。它调用了我们前面创建的 <code>bucket</code> 和 <code>entry</code> 方法。如果找到了入口，它的值会被覆写；如果未找到，输入的键值对会被添加到表中。在 JavaScript 中，<code>` 是 </code>` 的简写。</p><pre><code class="language-javascript" data-language="JAVASCRIPT">class HashMap {
   // ...
   get(key) {
     let b = this.bucket(key);
