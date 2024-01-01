@@ -361,16 +361,25 @@ export class FormulaBlock extends BaseNode {
 }
 
 export class IframeBlock extends BaseNode {
-    static #injectedHeightSender = id => `\
+    // injected html codes, used to auto darkmode and send height message
+    static #injectedCodes = id => `\
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: white;
+    background-color: #121212;
+  }
+}
+</style>
 <script>
 window.addEventListener("load", (e) => {
-    const iframeRootEl = e.target.documentElement
-    const parent = window.parent
-    const height = parseFloat(getComputedStyle(iframeRootEl).height)
-    parent.postMessage({
-        height,
-        id: "${id}"
-    }, "*")
+  const iframeRootEl = e.target.documentElement
+  const parent = window.parent
+  const height = parseFloat(getComputedStyle(iframeRootEl).height)
+  parent.postMessage({
+    height,
+    id: "${id}"
+  }, "*")
 })
 </script>`
 
@@ -383,7 +392,7 @@ window.addEventListener("load", (e) => {
 
         if (typeof window == "object") {
             // in browser
-            this.content = content + IframeBlock.#injectedHeightSender(this.id)
+            this.content = content + IframeBlock.#injectedCodes(this.id)
         } else {
             // in node.js
             this.content = content
