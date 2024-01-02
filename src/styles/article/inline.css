@@ -112,56 +112,36 @@ article hr {
 }
 
 /* phonetic notation start */
-article ruby {
-    cursor: pointer;
+ruby {
+    position: relative;
 }
-
-ruby .cjk-notation-container {
-    display: inline-grid;
-    grid-template-columns: 0fr;
-    opacity: 0;
-    overflow-x: hidden;
-    user-select: none;
-    transition: grid-template-columns .3s .15s,
-                opacity .3s .15s;
-}
-
-ruby .cjk-text-container {
-    display: inline-grid;
-    grid-template-columns: 1fr;
-    opacity: 1;
-    transition: grid-template-columns .3s,
-                opacity .3s .15s;
-}
-
-ruby .cjk-notation-container span,
-ruby .cjk-text-container span {
+ruby::before {
+    position: absolute;
+    left: 50%;
+    bottom: calc(1em + 4px);
+    transform: translateX(-50%);
+    content: attr(data-notation);
+    padding: 2px 4px;
     white-space: nowrap;
-    min-width: 0;
+    background-color: var(--default-bg-color);
+    border-radius: 2px;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity .3s .05s;
+}
+ruby:hover::before {
+    opacity: 1;
 }
 
 ruby rt {
     position: relative;
     top: 0;
     opacity: 1;
-    transition: top .3s,
-                transform .3s,
-                opacity .3s .05s;
+    font-size: 9px;
+    transition: opacity .3s;
 }
-
 ruby:hover rt {
-    top: 2em; /* for Firefox */
-    transform: translateY(2em); /* for Chrome/Edge */
     opacity: 0;
-}
-
-ruby:hover .cjk-text-container {
-    grid-template-columns: 0fr;
-    opacity: 0;
-}
-
-ruby:hover .cjk-notation-container {
-    grid-template-columns: 1fr;
-    opacity: 1;
 }
 /* phonetic notation end */

@@ -1,58 +1,71 @@
 import el from "./utils/el.js"
 import getInterval from "./utils/getInterval.js"
 
-// identifier character array
-const keyTermArray = [
-    "#",
-    "`",
-    "_",
-    "/",
-    "-",
-    ":",
-    ",",
-    "'",
-    "$",
-]
 // identifier character to HTML tag
 const KeyToken_TagName_map = new Map([
-    ["##", "strong"],
-    ["``", "code"],
-    ["__", "u"],
-    ["//", "i"],
-    ["--", "del"],
-    ["::", "span.dim"],
-    [",,", "sub"],
-    ["''", "sup"],
-    ["$$", "span.math"],
+    ["#", "strong"],
+    ["`", "code"],
+    ["_", "u"],
+    ["/", "i"],
+    ["-", "del"],
+    [":", "span.dim"],
+    [",", "sub"],
+    ["'", "sup"],
+    ["$", "span.math"],
+])
+
+const PairedParenMap = new Map([
+    ["[", "]"],
+    ["{", "}"],
 ])
 
 // --- --- --- --- --- ---
 
-class Token {
-    constructor(type, content) {
-        this.type = type
+class TextToken {
+    constructor(content) {
         this.content = content
     }
+    toHTML = () => el("text", this.content)
+}
+class KeyToken {
+    constructor(tagSign, content) {
+        const tag = KeyToken_TagName_map.get(tagSign)
+        if (tag.includes(".")) {
+            const [realTagName, className] = tag.split(".")
+            this.tagName = realTagName
+            this.className = className
+        } else {
+            this.tagName = tag
+        }
+        this.content = content
 
-    static key      = Symbol("key")
-    static text     = Symbol("text")
-    static link     = Symbol("link")
-    static phonetic = Symbol("phonetic")
+        if (this.className == "math") {
+            // set this global variable to import
+            // the math formula renderer module
+            globalThis.__ContainsFormula__ = true
+        }
+    }
+
+    toHTML() {
+        const thisEl = el(this.tagName, parser(this.content))
+        if (this.className) {
+            thisEl.setAttribute("class", this.className)
+        }
+        return thisEl
+    }
 }
 
-class LinkToken extends Token {
+class LinkToken {
     constructor(content, address) {
-        super()
-
-        this.type = Token.link
         this.content = content
         this.address = address
     }
 
     toHTML() {
+        const displayContent = parser(this.content)
         if (this.address.startsWith("http")) {
             // internet links
-            return el("a", this.content, {
+            return el("a", displayContent, {
                 href: this.address,
                 target: "_blank"
             })
@@ -60,181 +73,164 @@ class LinkToken extends Token {
 
         // static resources or links
         const actualAddress = "static/" + this.address
-        return el("a", this.content, {
+        return el("a", displayContent, {
             href: "#" + actualAddress
         })
     }
 }
-
-class PhoneticToken extends Token {
+class PhoneticToken {
     constructor(content, notation) {
-        super()
-
-        this.type = Token.phonetic
         this.content  = content
         this.notation = notation
     }
     toHTML() {
         const ignoredLeftParenthesis = el("rp", "(")
         const ignoredRightParenthesis = el("rp", ")")
-        const cjkNotation = el("span", el("span", this.notation), {
-            "class": "cjk-notation-container"
-        })
-        const cjkText = el("span", el("span", this.content), {
-            "class": "cjk-text-container"
-        })
-        const notation = el("rt", this.notation)
+        const notationEl = el("rt", this.notation)
 
-        return el("ruby", [
-            cjkNotation,
-            cjkText,
+        const content = parser(this.content).concat([
             ignoredLeftParenthesis,
-            notation,
+            notationEl,
             ignoredRightParenthesis,
         ])
+        return el("ruby", content, {
+            "data-notation": this.notation
+        })
     }
 }
 
 // --- --- --- --- --- ---
 
-function tokenize(text) {
+export default function parser(source) {
+    function getFirstChar() {
+        const ch = source.charAt(0)
+        source = source.substring(1)
+        return ch
+    }
+    function getSpecialTokenClass(tokenSign) {
+        let targetTokenType
+        if (tokenSign == "[") {
+            targetTokenType = LinkToken
+        } else if (tokenSign == "{") {
+            targetTokenType = PhoneticToken
+        } else { /* unreachable */ }
+        return targetTokenType
+    }
+
+    // --- --- --- --- --- ---
+
     const tokens = []
-    let textTerm = ""
-    let keyTerm  = ""
+    let textTerm = "" // text
+    let keyTerm  = "" // inline style content
+    let keyStart = ""
     let isEscape = false
+    let isInKey  = false
 
-    while (text.length) {
-        const ch = text.slice(0, 1)
-        text = text.substr(1)
+    while (source.length) {
+        const ch = getFirstChar()
 
-        let lastType = tokens.length && tokens[tokens.length - 1].type
-
-        // special inline rules resolve
-        if (["[", "{"].includes(ch) && !isEscape && lastType == Token.text) {
-            const specialTokenSign = ch
-            tokens.push(new Token(Token.text, textTerm))
-            textTerm = ""
-
-            const displayContent = getInterval(text, specialTokenSign)
-            text = text.substr(displayContent.length + 1)
-
-            const _ch = text.slice(0, 1)
-            text = text.substr(1)
-
-            if (_ch != "(") {
-                // if there is no left parenthesis("(") follows
-                // the `[...]` or `{...}`, directly append the content
-                // before into the `textTerm`
-                textTerm += specialTokenSign + displayContent + specialTokenSign
-                textTerm += _ch
+        // key rules resolve
+        if (KeyToken_TagName_map.has(ch) && !isEscape) {
+            if (isInKey && ch != keyStart) {
+                keyTerm += ch
                 continue
             }
 
-            let targetTokenType
-            if (specialTokenSign == "[") {
-                targetTokenType = LinkToken
-            } else
-            if (specialTokenSign == "{") {
-                targetTokenType = PhoneticToken
-            } else { /* unreachable */ }
+            const nextCh = getFirstChar()
+            if (nextCh != ch) {
+                textTerm += ch
+                source = nextCh + source
+                continue
+            }
 
-            const hiddenContent = getInterval(text, ")")
-            text = text.substr(hiddenContent.length + 1)
-            tokens.push(new targetTokenType(displayContent, hiddenContent))
+            if (isInKey) {
+                tokens.push(new KeyToken(ch, keyTerm))
+                keyTerm  = ""
+                keyStart = ""
+            } else {
+                tokens.push(new TextToken(textTerm))
+                textTerm = ""
+                keyStart = ch
+            }
+            isInKey = !isInKey
             continue
         }
 
-        if (keyTermArray.includes(ch)) {
-            // keyTerm = "#" && ch = "#"
-            if (isEscape) {
-                textTerm += ch
-                isEscape = false
-                continue
-            }
+        // special inline rules resolve
+        if (["[", "{"].includes(ch) && !isInKey && !isEscape) {
+            const specialTokenSign = ch
+            const pairedTokenSign = PairedParenMap.get(specialTokenSign)
 
-            if (keyTerm.length && keyTerm == ch) {
-                tokens.push(new Token(Token.text, textTerm))
-                tokens.push(new Token(Token.key , keyTerm + ch))
-                keyTerm  = ""
-                textTerm = ""
-            } else {
-                keyTerm = ch
-            }
-        } else {
-            if (ch == "\\") {
-                isEscape = !isEscape
-                continue
-            }
-            if (keyTerm.length) {
-                textTerm += keyTerm
-                keyTerm = ""
-            }
+            tokens.push(new TextToken(textTerm))
+            textTerm = ""
 
-            if (isEscape) {
-                textTerm += "\\"
-                isEscape = false
-            }
-            textTerm += ch
-        }
-    }
+            let removedContent = specialTokenSign
+            // the actual displayed content for special inline elements
+            const displayContent = getInterval(source, pairedTokenSign)
+            if (displayContent != null) {
+                removedContent += source.slice(0, displayContent.length + 1)
+                source = source.substr(displayContent.length + 1)
 
-    if (textTerm.length) {
-        tokens.push(new Token(Token.text, textTerm))
-    }
-    if (keyTerm.length) {
-        tokens.push(new Token(Token.text, keyTerm))
-    }
-
-    return tokens
-}
-
-function convert(tokens) {
-    let resultHTML = []
-    let identifier = ""
-    let tagContent = ""
-
-    for (const token of tokens) {
-        switch (token.type) {
-            case Token.key:
-                if (!(identifier.length && token.content == identifier)) {
-                    identifier = token.content
-                    continue
-                }
-                const tagName = KeyToken_TagName_map.get(identifier)
-                if (tagName.includes(".")) {
-                    const [realTagName, className] = tagName.split(".")
-                    if (identifier == "$$") {
-                        // formula sign
-                        globalThis.__ContainsFormula__ = true
+                const nextCh = getFirstChar()
+                removedContent += nextCh
+                if (nextCh == "(") {
+                    // the hidden displayed content for special inline elements
+                    const hiddenContent = getInterval(source, ")")
+                    if (hiddenContent != null) {
+                        let targetTokenType = getSpecialTokenClass(specialTokenSign)
+                        source = source.substr(hiddenContent.length + 1)
+                        tokens.push(new targetTokenType(displayContent, hiddenContent))
+                        continue
                     }
-                    resultHTML.push(el(realTagName, tagContent, {
-                        "class": className
-                    }))
-                } else {
-                    resultHTML.push(el(tagName, tagContent))
                 }
+            }
+            textTerm += removedContent
+            continue
+        }
 
-                identifier = ""
-                tagContent = ""
-                break
-            case Token.text:
-                if (!identifier.length) {
-                    resultHTML.push(el("text", token.content))
-                } else {
-                    tagContent = token.content
-                }
-                break
-            case Token.link:
-            case Token.phonetic:
-                resultHTML.push(token.toHTML())
-                break
+        // --- --- --- --- --- ---
+
+        if (ch == "\\") {
+            isEscape = !isEscape
+            continue
+        }
+
+        let text
+        if (isEscape) {
+            text = "\\" + ch
+            isEscape = false
+        } else {
+            text = ch
+        }
+
+        if (isInKey) {
+            keyTerm += text
+        } else {
+            textTerm += text
         }
     }
-    return resultHTML
+
+    if (keyTerm.length) {
+        tokens.push(new KeyToken(keyStart, keyTerm))
+    }
+    if (textTerm.length) {
+        tokens.push(new TextToken(textTerm))
+    }
+    return tokens
+        .filter(token =>
+            !(token instanceof TextToken && !token.content.length))
+        .map(token => token.toHTML())
 }
 
-export default function(rawText) {
-    const tokens = tokenize(rawText)
-    const resultHTML = convert(tokens)
-    return resultHTML
-}
+// test cases
+// console.log(parser("##bo//itelic//ld##"))
+// console.log(parser("##bo[link text](http://www.com)ld##"))
+// console.log(parser("asd[asd"))
+// console.log(parser("asd[asd]asd"))
+// console.log(parser("asd[asd](asd"))
+// console.log(parser("asd[asd](asd)"))
+// console.log(parser("asd[##link##](asd)"))
+// console.log(parser("##asd[link##](asd)"))
+// console.log(parser("##asd[link](asd)##"))
+// console.log(parser("::dimmed::"))
+// console.log(parser("$$f_c = \\frac{1}{abc}$$"))

@@ -1,5 +1,9 @@
 // ("abc]", "]") -> "abc"
 export default function getInterval(text, endSign) {
+    if (!text.includes(endSign)) {
+        return null
+    }
+
     let intervalText = ""
     let isEscape = false
 
