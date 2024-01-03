@@ -75,7 +75,7 @@ main ul li:hover {
     background-color: var(--hovered-bg-color);
 }
 
-main #article-list.disabled {
+main.disabled {
     pointer-events: none;
     opacity: .85;
 }

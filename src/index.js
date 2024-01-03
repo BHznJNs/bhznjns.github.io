@@ -51,7 +51,7 @@ async function hashEvent() {
     }
 
     const hash = location.hash.slice(1) // remove '#'
-    articleList.classList.add("disabled")
+    mainEl.classList.add("disabled")
 
     if (hash == "newest/") {
         // open newest page
@@ -91,7 +91,7 @@ async function hashEvent() {
 
     // delay this operation
     mainEl.setAttribute("data-is-root", hash == "static/")
-    articleList.classList.remove("disabled")
+    mainEl.classList.remove("disabled")
 }
 
 window.onload = hashEvent
