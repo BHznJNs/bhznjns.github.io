@@ -130,7 +130,16 @@ export default function parser(source) {
         const ch = getFirstChar()
 
         // key rules resolve
-        if (KeyToken_TagName_map.has(ch) && !isEscape) {
+        if (KeyToken_TagName_map.has(ch)) {
+            if (isEscape) {
+                if (isInKey) {
+                    keyTerm += ch
+                } else {
+                    textTerm += ch
+                }
+                continue
+            }
+
             if (isInKey && ch != keyStart) {
                 keyTerm += ch
                 continue
