@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from "node:fs"
 import config from "../../build.config.js"
 import renderer from "../renderer.js"
 import { rssResourcePath } from "../utils/path.js"
-import { rssTimeFormater } from "../utils/timeFormat.js"
+import rssTimeFormater from "../utils/timeFormat.js"
 
 function getPathParts(filePath) {
     const splited = filePath.split("/")

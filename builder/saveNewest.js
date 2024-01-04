@@ -3,7 +3,6 @@ import config from "../build.config.js"
 import slice from "./utils/slice.js"
 import isInIgnoredDir from "./utils/isInIgnoredDir.js"
 import { indexFilePath } from "./utils/path.js"
-import { dateFormater } from "./utils/timeFormat.js"
 
 export default function(newestList) {
     const ignoreDirs = config.enableNewest.ignoreDir
@@ -21,9 +20,9 @@ export default function(newestList) {
             current: index,
             content: slice.map(item => {
                 return {
-                    title: item.name,
-                    link:  item.path,
-                    date:  dateFormater(item.createTime)
+                    title:     item.name,
+                    link:      item.path,
+                    timestamp: item.createTime
                 }
             }),
         }))

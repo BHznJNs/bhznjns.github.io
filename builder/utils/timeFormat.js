@@ -25,14 +25,7 @@ const getTimezone = () => {
     return (timezone >= 0 ? "+" : "-") + addLeadingZero((timezone * 100).toString(), 4)
 }
 
-export function dateFormater(timestamp) {
-    const date  = new Date(timestamp)
-    const year  = date.getFullYear()
-    const month = date.getMonth() + 1
-    const day   = date.getDate()
-    return year + "/" + month + "/" + day
-}
-export function rssTimeFormater(timestamp) {
+export default function rssTimeFormater(timestamp) {
     const date           = new Date(timestamp)
     const weekDay        = getWeekDay(date)
     const day_month_year = `${date.getDate()} ${getMonth(date)} ${date.getFullYear()}`

@@ -3,7 +3,6 @@ import "./libs/katex/katex.css"
 
 import { fetchJSON, fetchMD } from "./utils/fetchResources.js"
 import keydownEvent from "./utils/keydownEvent.js"
-import mdResolver from "./utils/markdown/index.js"
 import el from "./utils/markdown/utils/el.js"
 import { articleRender, indexRender } from "./utils/render.js"
 
@@ -42,7 +41,6 @@ nextBtn.addEventListener("click", () => {
 // ---------------------
 
 const mainEl = document.querySelector("main")
-const articleList = document.getElementById("article-list")
 
 async function hashEvent() {
     if (!location.hash) {
@@ -57,7 +55,9 @@ async function hashEvent() {
         // open newest page
         const newestIndex = await fetchJSON(indexDirPath + "newest_" + globalThis.__CurrentPage__)
         indexRender(newestIndex, item => {
-            const dateEl  = el("code", item.date)
+            const createDate = new Date(item.timestamp)
+            const formatedDate = new Intl.DateTimeFormat().format(createDate)
+            const dateEl  = el("code", formatedDate)
             const titleEl = el("span", item.title)
             return el("li",
                 [dateEl, el("text", ": "), titleEl],
