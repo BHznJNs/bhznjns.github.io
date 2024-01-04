@@ -3,8 +3,22 @@ function propSetter(el, props) {
         return
     }
     for (const [key, val] of Object.entries(props)) {
+        if (val == undefined) {
+            continue
+        }
         el.setAttribute(key, val)
     }
+}
+
+function propToString(props) {
+    // input: {prop: "value"}
+    // output: "prop='value'"
+    const htmlValueFormater = val => val.toString().replaceAll("\"", "&quot;") 
+    const resultPropStr = Object.entries(props)
+        .filter(([_, val]) => val != undefined)
+        .map(([key, val]) => `${key}="${htmlValueFormater(val)}"`)
+        .join(" ")
+    return resultPropStr
 }
 
 function contentSetter(el, content) {
@@ -37,15 +51,6 @@ export default function el(tagName, content, props=null) {
         return targetEl
     } else {
         // in node.js
-        function propToString(props) {
-            const resultStrArr = []
-            for (const [key, val] of Object.entries(props)) {
-                const valStr = val.toString().replaceAll("\"", "&quot;")
-                resultStrArr.push(`${key}="${valStr}"`)
-            }
-            return resultStrArr.join(" ")
-        }
-
         if (content instanceof Array) {
             content = content.join("")
         }
@@ -55,7 +60,7 @@ export default function el(tagName, content, props=null) {
             case "hr":
                 return "<hr>"
             case "img":
-                return `<img ${props ? " " + propToString(props) : ""}>`
+                return `<img ${props ? propToString(props) : ""}>`
         }
         return `<${tagName}${props ? " " + propToString(props) : ""}>${content}</${tagName}>`
     }

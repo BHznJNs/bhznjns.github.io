@@ -47,10 +47,8 @@ class KeyToken {
     }
 
     toHTML() {
-        const thisEl = el(this.tagName, parser(this.content))
-        if (this.className) {
-            thisEl.setAttribute("class", this.className)
-        }
+        const elOption = this.className == undefined ? null : {"class": this.className}
+        const thisEl = el(this.tagName, parser(this.content), elOption)
         return thisEl
     }
 }
