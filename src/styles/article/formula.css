@@ -6,9 +6,10 @@
 }
 
 article div.math {
+    width: max-content;
+    margin: 0 auto;
     color: var(--default-tx-color);
     font-size: larger;
-    text-align: center;
     line-height: 1.75;
 }
 article span.math {
