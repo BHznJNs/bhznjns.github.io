@@ -16,6 +16,7 @@
         border-bottom-left-radius: 0 !important;
     }
 
+    /* details node under blockquote */
     article blockquote > .details details {
         margin-left: -1rem;
         border-top-right-radius: 8px;
@@ -23,7 +24,7 @@
     }
     article blockquote > .details .details-children {
         margin-left: -1rem;
-        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
     }
     article blockquote > .details .details-children pre code {
         border-radius: 0;

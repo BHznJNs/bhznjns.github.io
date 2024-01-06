@@ -23,8 +23,8 @@ article details {
         margin: 0 1.6rem;
         padding: 0 1.6rem !important;
     }
-    article .details-children > div pre:last-child,
-    article .details-children > div div.media-container:last-child {
+    article .details-children > div > pre:last-child,
+    article .details-children > div > div.media-container:last-child {
         margin-bottom: 0;
     }
 }
