@@ -35,13 +35,15 @@ const HTMLHeader = `\
 
 const inlineDarkmodeSwitcherScript = `\
 <script>
-    const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
-    const darkModeSwitcher = () => {
-        const isDarkMode = darkModeMediaQuery.matches
-        document.body.classList.toggle("dark", isDarkMode)
-    }
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark", isDarkMode)
+}
+if (darkModeMediaQuery) {
     darkModeMediaQuery.addListener(darkModeSwitcher)
     darkModeSwitcher()
+}
 </script>`
 
 const navigator = `\
