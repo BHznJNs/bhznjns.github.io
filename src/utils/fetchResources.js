@@ -13,21 +13,7 @@ export async function fetchMD(path) {
             if (res.status != 200) {
                 throw res.status
             }
-            return res.body
-        })
-        .then(async body => {
-            const reader = body.getReader()
-            const decoder = new TextDecoder('utf-8');
-            let totalData = "";
-            const processor = (result) => {
-                if (result.done) {
-                    return totalData
-                }
-                totalData += decoder.decode(result.value, { stream: true })
-                return reader.read().then(processor);
-            }
-            const result = await reader.read();
-            return processor(result);
+            return res.text()
         })
         .catch(err => {
             switch (err) {
@@ -39,6 +25,7 @@ export async function fetchMD(path) {
                 default:
                     console.log("Markdown request error: " + path)
                     console.error(err)
+                    return "# Unexpected request error"
             }
         })
 }
