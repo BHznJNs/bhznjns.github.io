@@ -18,15 +18,16 @@ nav {
     display: inline-flex;
     height: 2rem;
     align-items: center;
-    padding: 4px .5rem;
-    border: solid 4px var(--deep-bd-color);
-    border-radius: 8px;
+    padding: 6px .6rem;
     color: var(--default-tx-color) !important;
     background-color: var(--default-bg-color);
+    border: solid 1px var(--btn-bd-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
     cursor: pointer;
     text-decoration: none !important;
-    transition: color .3s,
-                background .3s;
+    transition: background .3s,
+                box-shadow .3s;
 }
 
 .icon-btn img {
@@ -35,8 +36,8 @@ nav {
 }
 
 .icon-btn:hover {
-    color: var(--hovered-tx-color);
     background-color: var(--hovered-bg-color);
+    box-shadow: var(--shadow-md-1);
 }
 
 .icon-btn span {
@@ -61,6 +62,10 @@ nav .icon-btn:hover span {
 
 .icon-btn:hover span::before {
     width: 100%;
+}
+
+body.dark .icon-btn {
+    border-width: 3px;
 }
 
 body:not(.dark) #light-btn {

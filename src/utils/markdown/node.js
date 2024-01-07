@@ -143,7 +143,9 @@ export class Table extends BaseNode {
             this.bodyRows
                 .map(this.#tableBodyRow)
         )
-        return el("table", [tableHeader, tableBody])
+        return el("div", el("table", [tableHeader, tableBody]), {
+            "class": "table"
+        })
     }
 
     static pattern = source => source.startsWith("| ")
@@ -294,18 +296,27 @@ export class CodeBlock extends BaseNode {
         this.content += content
     }
     toHTML() {
-        if (typeof window == "object") {
+        const isPlaintext = ["plaintext", "text", ""].includes(this.lang)
+        if (typeof window == "object" && !isPlaintext) {
             globalThis.__LanguageList__.add(this.lang)
         }
-        const codeEl = el(
-            "code",
-            this.content,
-            {
-                "class": `language-${this.lang}`,
-                "data-language": this.lang.toUpperCase(),
-            }
-        )
-        return el("pre", codeEl)
+        
+        let langName
+        let langClass
+        if (isPlaintext) {
+            langClass = "nohighlight"
+            langName  = "PLAINTEXT"
+        } else {
+            langClass = `language-${this.lang}`
+            langName  = this.lang.toUpperCase()
+        }
+
+        const codeEl = el("code", this.content, {
+            "class": langClass
+        })
+        return el("pre", codeEl, {
+            "data-language": langName
+        })
     }
 
     static pattern = source => source.startsWith("```")
@@ -327,8 +338,10 @@ export class DetailsBlock extends BaseNode {
 
         const innerNodes = this.content
             .map(node => node.toHTML())
-        const childrenEl = el("div", el("div", innerNodes), {
+        const childrenEl = el("div", el("div", innerNodes, {
             "class": "details-children"
+        }), {
+            "class": "details-children-container"
         })
         return el("div", [detailsEl, childrenEl], {
             "class": "details"

@@ -14,7 +14,7 @@ main {
         margin-left: 1rem;
         margin-right: 1rem;
         border-radius: .75rem;
-        box-shadow: var(--shadow-sm);
+        box-shadow: var(--shadow-md-2);
     }
 }
 
@@ -69,6 +69,9 @@ main ul li {
     padding: 6px 1rem;
     transition: .3s;
 }
+.dark main ul li {
+    border-color: var(--shallow-bd-color);
+}
 
 main ul li:hover {
     color: var(--hovered-tx-color);
@@ -117,7 +120,6 @@ main #page-switchers {
 main #page-switchers button {
     height: 2.4rem;
     margin-right: .6rem;
-    border-width: 3px;
 }
 #page-switchers button span::before {
     /* reverse the direction of underline animation */

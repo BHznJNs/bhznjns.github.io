@@ -103,12 +103,20 @@ article del:hover {
 
 article span.dim {
     /* dimmed text */
-    opacity: .75;
+    opacity: .7;
 }
 
 article hr {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin: 0 6vw .6rem;
+    padding: .3rem 0;
+    border: none;
+    border-bottom: 2px solid var(--deep-bd-color);
+    color: transparent;
+    transition: margin .3s;
+}
+article hr:hover {
+    margin-left : 2vw;
+    margin-right: 2vw;
 }
 
 /* phonetic notation start */

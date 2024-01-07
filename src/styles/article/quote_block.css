@@ -17,13 +17,15 @@
     }
 
     /* details node under blockquote */
-    article blockquote > .details details {
+    article blockquote > .details {
         margin-left: -1rem;
+    }
+    article blockquote > .details details {
         border-top-right-radius: 8px;
         border-bottom-right-radius: 8px;
     }
-    article blockquote > .details .details-children {
-        margin-left: -1rem;
+    article blockquote > .details .details-children-container {
+        margin: 0;
         border-bottom-left-radius: 0;
     }
     article blockquote > .details .details-children pre code {
@@ -58,7 +60,7 @@ article blockquote::before {
     content: " ";
     width: 2px;
     height: 100%;
-    background-color: var(--default-tx-color);
+    background-color: var(--deep-bd-color);
     cursor: pointer;
     z-index: 1;
     transition: width .3s,
@@ -68,4 +70,8 @@ article blockquote::before {
 article blockquote:hover::before {
     width: 6px;
     transform: translateX(-3px);
+}
+
+body:not(.dark) blockquote > .details .details-children {
+    border-color: todo;
 }

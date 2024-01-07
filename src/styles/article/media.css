@@ -2,7 +2,7 @@ article div.media-container {
     margin: 1rem;
     background-color: var(--default-bg-color);
     border-radius: 8px;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md-1);
     overflow: hidden;
     transition: box-shadow .3s;
 }
@@ -24,7 +24,7 @@ article div.media-container {
 }
 
 article div.media-container:hover {
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md-2);
 }
 
 div.media-container img,

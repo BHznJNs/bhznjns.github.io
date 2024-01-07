@@ -22,7 +22,7 @@ article:not(#directory-description) {
         margin-left: 1rem;
         margin-right: 1rem;
         border-radius: .75rem;
-        box-shadow: var(--shadow-sm);
+        box-shadow: var(--shadow-md-2);
     }
 }
 
