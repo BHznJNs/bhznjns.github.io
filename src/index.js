@@ -3,8 +3,7 @@ import "./libs/katex/katex.css"
 
 import { fetchJSON, fetchMD } from "./utils/fetchResources.js"
 import keydownEvent from "./utils/keydownEvent.js"
-import el from "./utils/markdown/utils/el.js"
-import { articleRender, indexRender } from "./utils/render.js"
+import { articleRender, directoryItemRenderer, indexRender, newestItemRenderer } from "./utils/render.js"
 
 globalThis.__CurrentPage__ = 1
 const indexDirPath = "./.index/"
@@ -54,34 +53,21 @@ async function hashEvent() {
     if (hash == "newest/") {
         // open newest page
         const newestIndex = await fetchJSON(indexDirPath + "newest_" + globalThis.__CurrentPage__)
-        indexRender(newestIndex, item => {
-            const createDate = new Date(item.timestamp)
-            const formatedDate = new Intl.DateTimeFormat().format(createDate)
-            const dateEl  = el("code", formatedDate)
-            const titleEl = el("span", item.title)
-            return el("li",
-                [dateEl, el("text", ": "), titleEl],
-                {
-                    tabindex: 0,
-                    "data-target-blog": item.link
-                }
-            )
-        })
+        if (!newestIndex) return
+        indexRender(newestIndex, newestItemRenderer)
     } else
     if (hash.startsWith("static") && hash.endsWith("/")) {
-        // open folder
+        // open directory
         const splited = hash.split("/").slice(0, -1)
         const indexFilePath = indexDirPath + splited.join("+") + "_" + globalThis.__CurrentPage__
         const index = await fetchJSON(indexFilePath)
-        indexRender(index, item =>
-            el("li", el("span", item), {
-                tabindex: 0
-            })
-        )
+        if (!index) return
+        indexRender(index, directoryItemRenderer)
     } else
     if (hash.startsWith("static") && hash.endsWith(".md")) {
         // open article
         const articleContent = await fetchMD("./" + hash)
+        if (!articleContent) return
         articleRender(articleContent)
     } else {
         // the hash "#static/" is the homepage

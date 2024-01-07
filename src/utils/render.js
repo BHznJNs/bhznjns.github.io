@@ -87,6 +87,25 @@ articleList.addEventListener("click", (e) => {
     }
 })
 
+export function newestItemRenderer(item) {
+    const createDate = new Date(item.timestamp)
+    const formatedDate = new Intl.DateTimeFormat().format(createDate)
+    const dateEl  = el("code", formatedDate)
+    const titleEl = el("span", item.title)
+    return el("li",
+        [dateEl, el("text", ": "), titleEl],
+        {
+            tabindex: 0,
+            "data-target-blog": item.link
+        }
+    )
+}
+export function directoryItemRenderer(item) {
+    return el("li", el("span", item), {
+        tabindex: 0
+    })
+}
+
 export function indexRender(indexing, itemResolver) {
     // calculate properties
     const {current, total} = indexing
