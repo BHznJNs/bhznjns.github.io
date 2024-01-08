@@ -43,7 +43,21 @@ export async function importTexRenderer() {
     function renderFormula() {
         // render all formula element
         document.querySelectorAll(".math")
-            .forEach(el => katex.render(el.textContent, el, katexOptions))
+            .forEach(el => {
+                const texString = el.textContent
+                try {
+                    katex.render(texString, el, katexOptions)
+                } catch(e) {
+                    if (e instanceof katex.ParseError) {
+                        // KaTeX can't parse the expression
+                        el.innerHTML = ("Error in LaTeX '" + texString + "': " + e.message)
+                            .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                    } else {
+                        // other error
+                        throw e
+                    }
+                }
+            })
     }
 
     if (!globalThis.__ContainsFormula__) {

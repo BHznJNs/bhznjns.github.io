@@ -1,11 +1,11 @@
 import "./styles/style.css"
 import "./libs/katex/katex.css"
 
-import { fetchJSON, fetchMD } from "./utils/fetchResources.js"
-import keydownEvent from "./utils/keydownEvent.js"
+import pageManager from "./scripts/pageManager.js"
+import { fetchJSON, fetchMD } from "./scripts/fetchResources.js"
+import keydownEvent from "./scripts/keydownEvent.js"
 import { articleRender, directoryItemRenderer, indexRender, newestItemRenderer } from "./utils/render.js"
 
-globalThis.__CurrentPage__ = 1
 const indexDirPath = "./.index/"
 
 // ---------------------------
@@ -20,13 +20,13 @@ const nextBtn = document.querySelector("button#next")
 lightBtn.onkeydown = keydownEvent(lightBtn)
 darkBtn.onkeydown = keydownEvent(darkBtn)
 previousBtn.addEventListener("click", () => {
-    if (globalThis.__CurrentPage__ > 0) {
-        globalThis.__CurrentPage__ -= 1
+    if (pageManager.current() > 0) {
+        pageManager.previous()
         hashEvent()
     }
 })
 nextBtn.addEventListener("click", () => {
-    globalThis.__CurrentPage__ += 1
+    pageManager.next()
     hashEvent()
 })
 
@@ -52,14 +52,15 @@ async function hashEvent() {
 
     if (hash == "newest/") {
         // open newest page
-        const newestIndex = await fetchJSON(indexDirPath + "newest_" + globalThis.__CurrentPage__)
+        const indexPath = indexDirPath + "newest_" + pageManager.current()
+        const newestIndex = await fetchJSON(indexPath)
         if (!newestIndex) return
         indexRender(newestIndex, newestItemRenderer)
     } else
     if (hash.startsWith("static") && hash.endsWith("/")) {
         // open directory
         const splited = hash.split("/").slice(0, -1)
-        const indexFilePath = indexDirPath + splited.join("+") + "_" + globalThis.__CurrentPage__
+        const indexFilePath = indexDirPath + splited.join("+") + "_" + pageManager.current()
         const index = await fetchJSON(indexFilePath)
         if (!index) return
         indexRender(index, directoryItemRenderer)
@@ -82,6 +83,12 @@ async function hashEvent() {
 
 window.onload = hashEvent
 window.addEventListener("hashchange", hashEvent)
+window.addEventListener("popstate", () => {
+    if (location.hash.endsWith("/")) {
+        // in a directory
+        pageManager.back()
+    }
+})
 window.addEventListener("message", (e) => {
     if (e.origin != "null") {
         return

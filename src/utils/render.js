@@ -1,7 +1,8 @@
-import keydownEvent from "./keydownEvent.js"
-import { importHighlighter, importTexRenderer } from "./importer.js"
+import keydownEvent from "../scripts/keydownEvent.js"
+import { importHighlighter, importTexRenderer } from "../scripts/importer.js"
 import el from "./markdown/utils/el.js"
 import mdResolver from "./markdown/index.js"
+import pageManager from "../scripts/pageManager.js"
 
 const articleEl        = document.querySelector("article:not(#directory-description)")
 const mainEl           = document.querySelector("main")
@@ -62,7 +63,7 @@ export function articleRender(articleContent) {
 
 parentDirBtn.addEventListener("click", () => {
     const splited = location.hash.split("/")
-    globalThis.__CurrentPage__ = 1
+    pageManager.back()
     location.hash = splited.slice(0, -2).join("/") + "/"
 })
 articleList.addEventListener("click", (e) => {
@@ -77,12 +78,12 @@ articleList.addEventListener("click", (e) => {
     if (!target.getAttribute("data-target-blog")) {
         if (target.innerText.endsWith("/")) {
             // open directory
-            globalThis.__CurrentPage__ = 1
+            pageManager.open()
         }
         location.hash += target.innerText
     } else {
         // in `newest` page
-        globalThis.__CurrentPage__ = 1
+        pageManager.open()
         location.hash = target.getAttribute("data-target-blog")
     }
 })
