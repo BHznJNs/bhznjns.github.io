@@ -39,7 +39,7 @@ article pre code {
     transition: box-shadow .3s;
 }
 article pre code:hover {
-    box-shadow: var(--shadow-lg-2);
+    box-shadow: var(--shadow-md-2);
 }
 article pre code.nohighlight {
     color: #f7f7f7;

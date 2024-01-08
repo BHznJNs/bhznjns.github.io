@@ -42,10 +42,11 @@ article blockquote {
     position: relative;
     padding: 0.1px 1rem;
     margin-right: 1rem;
-    color: var(--default-tx-color);
-    background-color: var(--hovered-bg-color);
+    color: var(--quote-tx-color);
+    background-color: var(--quote-bg-color);
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    transition: color .3s .15s;
 }
 
 article blockquote code:not(pre code) {
