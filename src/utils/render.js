@@ -64,6 +64,7 @@ export function articleRender(articleContent) {
 parentDirBtn.addEventListener("click", () => {
     const splited = location.hash.split("/")
     pageManager.back()
+    // return to parent
     location.hash = splited.slice(0, -2).join("/") + "/"
 })
 articleList.addEventListener("click", (e) => {

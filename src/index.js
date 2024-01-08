@@ -81,7 +81,7 @@ async function hashEvent() {
     mainEl.classList.remove("disabled")
 }
 
-window.onload = hashEvent
+window.addEventListener("load", hashEvent)
 window.addEventListener("hashchange", hashEvent)
 window.addEventListener("popstate", () => {
     if (location.hash.endsWith("/")) {
