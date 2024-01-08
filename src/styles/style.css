@@ -5,6 +5,7 @@
 @import url(../libs/highlight-es/github-dark.css);
 
 body {
+    --page-horizonal-padding: 10vw;
     --shadow-sm: 0 2px 1px -1px rgba(0,0,0,.2),
                  0 1px 1px 0 rgba(0,0,0,.14),
                  0 1px 3px 0 rgba(0,0,0,.12) !important;
@@ -22,6 +23,18 @@ body {
     background-color: var(--allpage-bg-color);
     transition: background .6s,
                 color .3s;
+}
+@media screen and (max-width: 767px) {
+    /* Mobile phone style */
+    body {
+        --page-horizonal-padding: 1.6rem;
+    }
+}
+@media screen and (min-width: 1024px) {
+    /* PC style */
+    body {
+        --page-horizonal-padding: 16vw;
+    }
 }
 
 /* close shadows in dark mode */

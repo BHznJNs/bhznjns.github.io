@@ -1,5 +1,5 @@
 article div.media-container {
-    margin: 1rem;
+    margin: 1rem 2rem;
     background-color: var(--default-bg-color);
     border-radius: 8px;
     box-shadow: var(--shadow-md-1);
@@ -15,11 +15,12 @@ article div.media-container {
         border-radius: 0;
     }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 960px) {
     /* PC style */
     article div.media-container:not(blockquote div.media-container) {
-        margin-left: 2.5rem;
-        margin-right: 2.5rem;
+        margin-left: 4rem;
+        margin-right: 4rem;
+        border-radius: 16px;
     }
 }
 

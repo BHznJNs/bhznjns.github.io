@@ -1,10 +1,18 @@
 nav {
     display: flex;
     justify-content: space-between;
-    padding: 1rem 2rem 0;
+    padding: 1rem var(--page-horizonal-padding) 0;
     font-size: larger;
     font-weight: bold;
     user-select: none;
+}
+
+@media screen and (max-width: 767px) {
+    /* Mobile phone style */
+    nav {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 }
 
 .dark #homepage img, .dark #rss-icon img {

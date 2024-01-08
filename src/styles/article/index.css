@@ -7,7 +7,7 @@
 @import url(./quote_block.css);
 
 article:not(#directory-description) {
-    margin: 2rem 10vw 4rem;
+    margin: 2rem var(--page-horizonal-padding) 4rem;
     padding: 1rem 2rem;
     border-radius: 1rem;
     background-color: var(--default-bg-color);
@@ -19,8 +19,6 @@ article:not(#directory-description) {
     /* Mobile phone style */
     article:not(#directory-description) {
         padding: 1rem 1.6rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
         border-radius: .75rem;
         box-shadow: var(--shadow-md-2);
     }
