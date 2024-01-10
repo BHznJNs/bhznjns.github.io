@@ -1,10 +1,10 @@
-article h1,
-article h2,
-article h3,
-article h4,
-article h5,
-article h6,
-article p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
 article ol,
 article ul,
 article li {
@@ -36,15 +36,7 @@ h6 {
     font-size: 1.1em;
 }
 
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code,
-p code,
-li code,
-blockquote code:not(pre code) {
+code:not(pre code) {
     /* inline code style */
     padding: 2px 8px;
     margin: 0 4px;

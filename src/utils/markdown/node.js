@@ -218,9 +218,17 @@ export class Image extends MediaNode {
         const imageEl = el("img", [], {
             src: actualUrl,
             alt: this.description,
-            loading: "lazy",
             tabindex: 0,
         })
+        if (typeof window == "object") {
+            imageEl.onclick = e =>
+                window.open(e.target.src)
+            imageEl.onerror = e => {
+                const target = e.target
+                target.onclick = null
+                target.classList.add("load-error")
+            }
+        }
         return MediaNode.containerGenerator(imageEl)
     }
 }

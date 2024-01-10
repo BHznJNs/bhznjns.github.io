@@ -14,13 +14,6 @@ const articleList      = mainEl.querySelector("#article-list")
 // article renderer
 // ----------------
 
-articleEl.addEventListener("click", (e) => {
-    const target = e.target
-    if (target.tagName == "IMG") {
-        window.open(target.src)
-    }
-})
-
 function mdEntry(mdContent) {
     // language names to import
     globalThis.__LanguageList__ = new Set()
