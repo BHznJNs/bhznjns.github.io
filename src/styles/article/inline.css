@@ -53,11 +53,11 @@ article a::before {
     display: inline-block;
     content: "🔗";
 }
-article a:visited {
-    color: var(--default-link-visited-color);
-}
 article a:link {
     color: var(--default-link-unvisited-color);
+}
+article a:visited {
+    color: var(--default-link-visited-color);
 }
 
 article u {

@@ -36,11 +36,11 @@ main button.icon-btn:hover span {
 
 /* --- --- --- */
 
-main a:visited {
-    color: var(--default-link-visited-color);
-}
 main a:link {
     color: var(--default-link-unvisited-color);
+}
+main a:visited {
+    color: var(--default-link-visited-color);
 }
 
 main ul {
