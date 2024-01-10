@@ -5,6 +5,7 @@ article .table {
     overflow-y: hidden;
     border: 1px solid var(--shallow-bd-color);
     border-radius: 8px;
+    box-sizing: border-box;
     box-shadow: var(--shadow-sm);
     transition: box-shadow .3s;
 }
