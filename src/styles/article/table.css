@@ -1,5 +1,6 @@
 article .table {
     width: 100%;
+    margin-bottom: 1rem;
     overflow-x: auto;
     overflow-y: hidden;
     border: 1px solid var(--shallow-bd-color);
@@ -17,7 +18,6 @@ article .table {
 table {
     width: fit-content;
     min-width: 100%;
-    margin-bottom: 1rem;
     color: var(--default-tx-color);
     border-collapse: separate;
     border-spacing: 0;

@@ -2,8 +2,6 @@ nav {
     display: flex;
     justify-content: space-between;
     padding: 1rem var(--page-horizonal-padding) 0;
-    font-size: larger;
-    font-weight: bold;
     user-select: none;
 }
 
@@ -21,10 +19,14 @@ nav {
 #homepage img {
     padding-right: .4rem;
 }
+#homepage span {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
 
 .icon-btn {
     display: inline-flex;
-    height: 2rem;
+    height: 2.4rem;
     align-items: center;
     padding: 6px .6rem;
     color: var(--default-tx-color) !important;
@@ -39,7 +41,7 @@ nav {
 }
 
 .icon-btn img {
-    height: 1.5rem;
+    height: 1.6rem;
     transition: filter .3s .15s;
 }
 
@@ -72,14 +74,14 @@ nav .icon-btn:hover span {
     width: 100%;
 }
 
-body.dark .icon-btn {
+.dark .icon-btn {
     border-width: 3px;
 }
-
+.dark #dark-btn {
+    display: none;
+}
 body:not(.dark) #light-btn {
     display: none;
 }
 
-body.dark #dark-btn {
-    display: none;
-}
+
