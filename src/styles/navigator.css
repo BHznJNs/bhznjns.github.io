@@ -26,7 +26,7 @@ nav {
 
 .icon-btn {
     display: inline-flex;
-    height: 2.4rem;
+    height: 2rem;
     align-items: center;
     padding: 6px .6rem;
     color: var(--default-tx-color) !important;

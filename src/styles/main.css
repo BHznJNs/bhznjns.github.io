@@ -114,7 +114,8 @@ main[data-is-only-page="true"] button#next {
     display: flex;
     justify-content: flex-end;
 }
-#page-switchers button {
+#page-switchers button.icon-btn {
+    height: 2.4rem;
     margin-right: .6rem;
     font-weight: bold;
 }
