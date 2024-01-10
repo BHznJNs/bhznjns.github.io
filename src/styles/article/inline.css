@@ -42,7 +42,6 @@ code:not(pre code) {
     margin: 0 4px;
     color: var(--default-inline-code-color);
     background-color: var(--default-inline-code-bg-color);
-    font-size: 1rem;
     font-family: Consolas, monospace;
     border-radius: 8px;
     box-shadow: none !important;
