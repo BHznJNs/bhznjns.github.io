@@ -30,7 +30,7 @@ ol {
 }
 ol > li::before {
     content: counter(list-item);
-    padding: 1px 6px;
+    padding: 0 6px;
     margin-right: .5rem;
     color: var(--default-bg-color);
     background-color: var(--default-tx-color);
