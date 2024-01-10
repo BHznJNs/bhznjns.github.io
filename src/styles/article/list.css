@@ -1,0 +1,38 @@
+article ol,
+article ul,
+article li {
+    color: inherit;
+    transition: color .3s .15s;
+}
+
+article ol,
+article ul {
+    padding-left: 1rem;
+    list-style-position: inside;
+}
+
+article ol li,
+article ul li {
+    padding-bottom: 2px;
+}
+
+article ul > li::marker {
+    font-size: 20px;
+    color: var(--default-tx-color);
+    transition: color .3s;
+}
+article ul > li:hover::marker {
+    color: var(--deep-bd-color);
+}
+
+ol {
+    list-style: none;
+}
+ol > li::before {
+    content: counter(list-item);
+    padding: 2px 6px;
+    margin-right: .5rem;
+    color: var(--default-bg-color);
+    background-color: var(--default-tx-color);
+    border-radius: 6px;
+}
