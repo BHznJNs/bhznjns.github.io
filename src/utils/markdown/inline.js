@@ -1,4 +1,4 @@
-import el from "./utils/el.js"
+import el from "../el.js"
 import getInterval from "./utils/getInterval.js"
 
 // identifier character to HTML tag

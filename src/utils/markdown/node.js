@@ -2,7 +2,7 @@ import config from "../../../build.config.js"
 import mdResolver from "./index.js"
 import inlineResolver from "./inline.js"
 import getInterval from "./utils/getInterval.js"
-import el from "./utils/el.js"
+import el from "../el.js"
 
 const { language } = config
 
