@@ -1,44 +1,10 @@
 @media screen and (max-width: 767px) {
-    article blockquote {
+    blockquote {
         margin-left: 1rem !important;
         margin-right: 0 !important;
     }
-    article blockquote > pre,
-    article blockquote > div.media-container {
-        margin-left: -1rem;
-        margin-right: 0;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-    article blockquote > pre code {
-        margin-left: 0 !important;
-        border-top-left-radius: 0 !important;
-        border-bottom-left-radius: 0 !important;
-    }
-
-    /* details node under blockquote */
-    article blockquote > .details {
-        margin-left: -1rem;
-    }
-    article blockquote > .details details {
-        border-top-right-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
-    article blockquote > .details .details-children-container {
-        margin: 0;
-        border-bottom-left-radius: 0;
-    }
-    article blockquote > .details .details-children pre code {
-        border-radius: 0;
-    }
-    article blockquote > .details .details-children pre,
-    article blockquote > .details .details-children div.media-container {
-        margin-left: -1.6rem;
-        margin-right: -1.6rem;
-        border-radius: 0;
-    }
 }
-article blockquote {
+blockquote {
     position: relative;
     padding: 0.1px 1rem;
     margin-right: 1rem;
@@ -49,11 +15,11 @@ article blockquote {
     transition: color .3s .15s;
 }
 
-article blockquote code:not(pre code) {
+blockquote code:not(pre code) {
     filter: invert(15%);
 }
 
-article blockquote::before {
+blockquote::before {
     position: absolute;
     top: 0;
     left: 0;
@@ -68,7 +34,7 @@ article blockquote::before {
                 transform .3s .05s;
 }
 
-article blockquote:hover::before {
+blockquote:hover::before {
     width: 6px;
     transform: translateX(-3px);
 }

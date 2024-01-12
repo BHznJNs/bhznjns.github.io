@@ -1,7 +1,8 @@
 nav {
     display: flex;
     justify-content: space-between;
-    padding: 1rem var(--page-horizonal-padding) 0;
+    margin: 1rem var(--page-horizonal-padding) 0;
+    padding: 0 8px;
     user-select: none;
 }
 
@@ -23,6 +24,9 @@ nav {
     font-size: 1.2rem;
     font-weight: bold;
 }
+#rss-icon {
+    margin-right: 6px;
+}
 
 .icon-btn {
     display: inline-flex;
@@ -38,6 +42,11 @@ nav {
     text-decoration: none !important;
     transition: background .3s,
                 box-shadow .3s;
+}
+
+a.icon-btn::before {
+    content: none;
+    display: unset;
 }
 
 .icon-btn img {

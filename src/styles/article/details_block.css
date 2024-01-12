@@ -1,8 +1,8 @@
-article .details {
+div.details {
     margin: 1rem 0;
 }
 
-article details {
+div.details details {
     padding: 0 1rem;
     border-radius: 8px;
     transition: background .3s,
@@ -12,52 +12,74 @@ article details {
 
 @media screen and (max-width: 767px) {
     /* Mobile phone style */
-    article > .details {
+    div.details {
         margin-left: -1.6rem;
         margin-right: -1.6rem;
     }
-    article details {
+    div.details details {
         border-radius: 0;
     }
-    article .details .details-children-container {
+    div.details .details-children-container {
         margin: 0 1.6rem;
     }
-    .details-children-container > .details-children {
+    div.details .details-children-container > .details-children {
         padding: 0 1.6rem !important;
     }
-    article .details .details-children > pre:last-child,
-    article .details .details-children > div.media-container:last-child {
+    div.details .details-children > pre:last-child,
+    div.details .details-children > div.media-container:last-child {
         margin-bottom: 0;
+    }
+
+    /* details node under blockquote */
+    blockquote > .details {
+        margin-left: -1rem;
+    }
+    blockquote > .details details {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+    blockquote > .details .details-children-container {
+        margin: 0;
+        border-bottom-left-radius: 0;
+    }
+    blockquote > .details .details-children pre code {
+        border-radius: 0;
+    }
+    blockquote > .details .details-children pre,
+    blockquote > .details .details-children div.media-container {
+        margin-left: -1.6rem;
+        margin-right: -1.6rem;
+        border-radius: 0;
     }
 }
 
 
-body:not(.dark) article details[open] {
+body:not(.dark) details[open] {
     background-color: var(--default-bg-color);
 }
 
-article details[open] {
+div.details details[open] {
     padding-top: .6rem;
     padding-bottom: .6rem;
     box-shadow: var(--shadow-sm);
 }
 
-.dark article details[open] {
+.dark div.details details[open] {
     background-color: var(--shallow-bd-color);
 }
 
-article details summary {
+div.details details summary {
     color: var(--default-tx-color);
     font-size: larger;
     outline: none;
     user-select: none;
     cursor: pointer;
 }
-article details summary:focus-visible {
+div.details details summary:focus-visible {
     outline: auto;
 }
 
-article .details .details-children-container {
+div.details .details-children-container {
     display: grid;
     grid-template-rows: 0fr;
     border: 2px solid transparent;
@@ -66,12 +88,12 @@ article .details .details-children-container {
     transition: grid-template-rows .3s .15s,
                 border .3s .15s;
 }
-.details-children-container > .details-children {
+div.details .details-children-container > .details-children {
     padding: 0 1rem;
     min-height: 0;
     overflow: hidden;
 }
-article details[open] + .details-children-container {
+div.details details[open] + .details-children-container {
     grid-template-rows: 1fr;
     border-color: var(--shallow-bd-color);
     border-bottom-left-radius: 8px;

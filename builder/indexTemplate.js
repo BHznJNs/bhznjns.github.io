@@ -109,7 +109,7 @@ const main = `\
     data-is-last-page=""
     data-is-only-page=""
 >
-    <article id="directory-description"></article>
+    <header id="directory-description"></header>
 
 ${config.enableNewest ? `\
     <ul id="newest">

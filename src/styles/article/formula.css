@@ -1,11 +1,11 @@
 @media screen and (min-width: 960px) {
     /* PC style */
-    article div.math {
+    div.math {
         font-size: x-large !important;
     }
 }
 
-article div.math {
+div.math {
     width: max-content;
     max-width: 100%; /* prevent overflow*/
     margin: 0 auto;
@@ -13,6 +13,6 @@ article div.math {
     font-size: larger;
     line-height: 1.75;
 }
-article span.math {
+span.math {
     font-size: 1.125rem;
 }

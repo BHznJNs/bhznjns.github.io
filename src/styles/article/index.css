@@ -7,7 +7,7 @@
 @import url(./details_block.css);
 @import url(./quote_block.css);
 
-article:not(#directory-description) {
+article {
     margin: 2rem var(--page-horizonal-padding) 4rem;
     padding: 1rem 2rem;
     border-radius: 1rem;
@@ -19,7 +19,7 @@ article:not(#directory-description) {
 
 @media screen and (max-width: 767px) {
     /* Mobile phone style */
-    article:not(#directory-description) {
+    article {
         padding: 1rem 1.6rem;
         border-radius: .75rem;
         box-shadow: var(--shadow-md-2);

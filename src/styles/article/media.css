@@ -1,4 +1,4 @@
-article div.media-container {
+div.media-container {
     margin: 1rem 2rem;
     background-color: var(--default-bg-color);
     border-radius: 8px;
@@ -8,23 +8,29 @@ article div.media-container {
 }
 @media screen and (max-width: 767px) {
     /* Mobile phone style */
-    article div.media-container:not(blockquote div.media-container) {
+    div.media-container:not(blockquote div.media-container) {
         width: calc(100% + 3.2rem);
         margin-left: -1.6rem;
         margin-right: -1.6rem;
         border-radius: 0;
     }
+    blockquote > div.media-container {
+        margin-left: -1rem;
+        margin-right: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
 }
 @media screen and (min-width: 960px) {
     /* PC style */
-    article div.media-container:not(blockquote div.media-container) {
+    div.media-container:not(blockquote div.media-container) {
         margin-left: 4rem;
         margin-right: 4rem;
         border-radius: 16px;
     }
 }
 
-article div.media-container:hover {
+div.media-container:hover {
     box-shadow: var(--shadow-md-2);
 }
 

@@ -1,4 +1,4 @@
-article .table {
+.table {
     width: 100%;
     margin-bottom: 1rem;
     overflow-x: auto;
@@ -12,7 +12,7 @@ article .table {
 .table:hover {
     box-shadow: var(--shadow-md-1);
 }
-.dark article .table {
+.dark .table {
     border-width: 2px;
 }
 
@@ -30,7 +30,7 @@ table {
         border-left: none;
         border-right: none;
     }
-    article .table {
+    .table {
         width: calc(100% + 3.2rem);
         margin-left: -1.6rem;
         margin-right: -1.6rem;

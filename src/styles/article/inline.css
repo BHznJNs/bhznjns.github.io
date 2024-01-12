@@ -46,18 +46,18 @@ code:not(pre code) {
                 background .3s .15s;
 }
 
-article a::before {
+a::before {
     display: inline-block;
     content: "🔗";
 }
-article a:link {
+a:link {
     color: var(--default-link-unvisited-color);
 }
-article a:visited {
+a:visited {
     color: var(--default-link-visited-color);
 }
 
-article u {
+u {
     position: relative;
     bottom: 0;
     text-decoration: none;
@@ -69,13 +69,13 @@ article u {
                 padding .3s .05s,
                 background-size .3s;
 }
-article u:hover {
+u:hover {
     bottom: 1px;
     padding-bottom: 2px;
     background-size: 100% 3px;
 }
 
-article del {
+del {
     padding: 0 2px;
     text-decoration: none;
     background-image: linear-gradient(to right, var(--default-tx-color), var(--default-tx-color));
@@ -84,16 +84,16 @@ article del {
     background-size: 100% 2px;
     transition: background-size .3s;
 }
-article del:hover {
+del:hover {
     background-size: 100% 4px;
 }
 
-article span.dim {
+span.dim {
     /* dimmed text */
     opacity: .7;
 }
 
-article hr {
+hr {
     margin: 0 6vw .6rem;
     padding: .3rem 0;
     border: none;
@@ -101,7 +101,7 @@ article hr {
     color: transparent;
     transition: margin .3s;
 }
-article hr:hover {
+hr:hover {
     margin-left : 2vw;
     margin-right: 2vw;
 }

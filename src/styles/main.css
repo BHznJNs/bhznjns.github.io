@@ -2,6 +2,7 @@ main {
     margin: 2rem var(--page-horizonal-padding) 4rem;
     padding: 1rem 2rem;
     border-radius: 1rem;
+    color: var(--default-tx-color);
     background-color: var(--default-bg-color);
     box-shadow: var(--shadow-lg);
     transition: background .6s;
@@ -17,13 +18,6 @@ main {
 }
 
 /* --- --- --- */
-
-main a:link {
-    color: var(--default-link-unvisited-color);
-}
-main a:visited {
-    color: var(--default-link-visited-color);
-}
 
 main ul {
     padding: 0;

@@ -1,27 +1,27 @@
-article ol,
-article ul,
-article li {
+ol,
+ul,
+li {
     color: inherit;
     transition: color .3s .15s;
 }
 
-article ol,
-article ul {
+ol,
+ul {
     padding-left: 1rem;
     list-style-position: inside;
 }
 
-article ol li,
-article ul li {
+ol li,
+ul li {
     margin-bottom: 4px;
 }
 
-article ul > li::marker {
+ul > li::marker {
     font-size: 20px;
     color: var(--default-tx-color);
     transition: color .3s;
 }
-article ul > li:hover::marker {
+ul > li:hover::marker {
     color: var(--deep-bd-color);
 }
 
