@@ -145,7 +145,11 @@ export default function parser(source) {
 
             const nextCh = getFirstChar()
             if (nextCh != ch) {
-                textTerm += ch
+                if (isInKey) {
+                    keyTerm += ch
+                } else {
+                    textTerm += ch
+                }
                 source = nextCh + source
                 continue
             }
@@ -223,6 +227,7 @@ export default function parser(source) {
     if (textTerm.length) {
         tokens.push(new TextToken(textTerm))
     }
+    console.log(tokens)
     return tokens
         .filter(token =>
             !(token instanceof TextToken && !token.content.length))
@@ -232,6 +237,8 @@ export default function parser(source) {
 // test cases
 // console.log(parser("##bo//itelic//ld##"))
 // console.log(parser("##bo[link text](http://www.com)ld##"))
+// console.log(parser("::dim[link text](http://www.com)med::"))
+// console.log(parser("//ita[link text](http:\\/\\/www.com)lic//"))
 // console.log(parser("asd[asd"))
 // console.log(parser("asd[asd]asd"))
 // console.log(parser("asd[asd](asd"))
