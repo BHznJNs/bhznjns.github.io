@@ -11,7 +11,7 @@ export default {
      * the footer for this site, can be deleted if you do not need it
      * 站点的脚注，如果你不需要可以删除
      */
-    footer: `Powerd by <a href='https://github.com/BHznJNs/markdown-blog'>MarkdownBlog</a>`,
+    footer: "::Powered by [MarkdownBlog](https://github.com/BHznJNs/markdown-blog)::",
 
     /**
      * language: String
@@ -21,27 +21,23 @@ export default {
     language: "zh",
 
     /**
-     * enableRSS: Boolean | Object<value: Boolean, ignoreDir: [String]>
-     * used to enable / disable the RSS function, if you do not want add blogs in some directory to the `rss.xml` , just add it into the `ignoreDir`
-     * 用来启用/禁用 RSS 发布功能，如果你不想将某些文件夹的内容添加到 `rss.xml` 中，将其添加到 `ignoreDir` 中
+     * enableRSS: Boolean
+     * used to enable / disable the RSS function, if you do not want add blogs in some directory to the `rss.xml` , just add it into the `rssIgnoreDir`
+     * 用来启用/禁用 RSS 发布功能，如果你不想将某些文件夹的内容添加到 `rss.xml` 中，将其添加到 `rssIgnoreDir` 中
      */
-    enableRSS: {
-        value: true,
-        ignoreDir: [
-            // directories in `static`
-            "学习笔记/"
-        ]
-    },
+    enableRSS: true,
+    rssIgnoreDir: [
+        // directories in `static`
+        "学习笔记/"
+    ],
 
     /**
      * enableNewest: Boolean | Object<value: Boolean, ignoreDir: [String]>
-     * used to enable / disable the Newest function, if you do not want add blogs in some directory, just add it into the `ignoreDir`
-     * 用来启用/禁用 最新博文 功能，如果你不想将某些文件夹的内容添加到其中，将其添加到 `ignoreDir` 中
+     * used to enable / disable the Newest function, if you do not want add blogs in some directory, just add it into the `newestIgnoreDir`
+     * 用来启用/禁用 最新博文 功能，如果你不想将某些文件夹的内容添加到其中，将其添加到 `newestIgnoreDir` 中
      */
-    enableNewest: {
-        value: true,
-        ignoreDir: []
-    },
+    enableNewest: true,
+    newestIgnoreDir: [],
 
     /**
      * pageCapacity: Number

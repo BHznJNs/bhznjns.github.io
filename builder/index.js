@@ -3,12 +3,11 @@ import indexing from "./indexing.js"
 import getNewest from "./getNewest.js"
 import saveNewest from "./saveNewest.js"
 import config from "../build.config.js"
-import { rssFileGenerator, rssItemGenerator } from "./rss/index.js"
 import { indexFilePath, rssFilePath, rssResourcePath } from "./utils/path.js"
 import clearDirectory from "./utils/clearDirectory.js"
 import writeIndexTemplate from "./indexTemplate.js"
 import readDir, { Directory } from "./utils/readDir.js"
-import isInIgnoredDir from "./utils/isInIgnoredDir.js"
+import saveRSS from "./saveRSS.js"
 
 try { unlinkSync(rssFilePath) } catch {}
 clearDirectory(indexFilePath)
@@ -28,19 +27,9 @@ if (!config.enableRSS && !config.enableNewest) {
 }
 
 const newests = getNewest(staticDir)
-if (config.enableNewest && config.enableNewest.value) {
+if (config.enableNewest) {
     saveNewest(newests.children)
 }
-
-if (config.enableRSS && config.enableRSS.value) {
-    const rssItemSize = config.RSSCapacity
-    const rssIgnoredDirs = config.enableRSS.ignoreDir
-    const rssItems = newests.children
-        .filter(item =>
-            !isInIgnoredDir(item.path, rssIgnoredDirs)
-        )
-        .slice(0, rssItemSize)
-        .map(rssItemGenerator)
-    const rssContent = rssFileGenerator(rssItems)
-    writeFileSync(rssFilePath, rssContent)
+if (config.enableRSS) {
+    saveRSS(newests.children)
 }

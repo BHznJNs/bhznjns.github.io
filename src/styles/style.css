@@ -48,13 +48,7 @@ body.dark {
     --shadow-lg:   none !important;
 }
 
-.dark footer {
-    opacity: .85 !important;
-}
-
 footer {
-    margin-bottom: 1rem;
     text-align: center;
-    opacity: .65;
     color: var(--default-tx-color);
 }

@@ -92,6 +92,9 @@ span.dim {
     /* dimmed text */
     opacity: .7;
 }
+.dark span.dim {
+    opacity: .8;
+}
 
 hr {
     margin: 0 6vw .6rem;

@@ -1,6 +1,7 @@
 import { writeFileSync } from "node:fs"
 import config from "../build.config.js"
 import { indexHTMLPath } from "./utils/path.js"
+import renderer from "../src/utils/markdown/index.js"
 
 const currentLang = config.language
 const langList = [
@@ -58,7 +59,7 @@ const navigator = `\
         <span>${languageSelect("主页", "Home")}</span>
     </a>
     <span>
-${(config.enableRSS && config.enableRSS.value) ? `\
+${(config.enableRSS) ? `\
         <a
             id="rss-icon"
             class="icon-btn"
@@ -134,7 +135,11 @@ ${config.enableNewest ? `\
 </main>`
 
 const footer = config.footer
-    ? `<footer>${config.footer}</footer>`
+    ? `<footer>${
+        renderer(config.footer)
+            .map(node => node.toHTML())
+            .join("")
+        }</footer>`
     : ""
 
 // --- --- --- --- --- ---
