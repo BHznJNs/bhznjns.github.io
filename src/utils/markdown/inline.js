@@ -227,7 +227,6 @@ export default function parser(source) {
     if (textTerm.length) {
         tokens.push(new TextToken(textTerm))
     }
-    console.log(tokens)
     return tokens
         .filter(token =>
             !(token instanceof TextToken && !token.content.length))
