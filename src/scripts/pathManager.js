@@ -39,7 +39,7 @@ export async function hashChangeEvent(_) {
         pathManager.homepage()
     }
 
-    mainEl.setAttribute("data-is-root", hash == "static/")
+    mainEl.setAttribute("data-is-root", hash === "static/")
     mainEl.classList.remove("disabled")
 }
 
@@ -60,7 +60,7 @@ const pathManager = {
         location.hash = target
     },
     parent() {
-        if (location.hash == "#" + newestPath) {
+        if (location.hash === "#" + newestPath) {
             return homepagePath
         }
         const splited = location.hash.slice(1).split("/")
@@ -74,7 +74,7 @@ const pathManager = {
     },
     isIn: {
         newestPage() {
-            return location.hash == "#newest/"
+            return location.hash === "#newest/"
         },
         directory() {
             return location.hash.startsWith("#static")

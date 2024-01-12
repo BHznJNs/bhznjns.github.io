@@ -11,11 +11,11 @@ export default function getInterval(text, endSign) {
         const ch = text.slice(0, 1)
         text = text.substr(1)
 
-        if (ch == "\\") {
+        if (ch === "\\") {
             isEscape = !isEscape
             continue
         }
-        if (ch == endSign && !isEscape) {
+        if (ch === endSign && !isEscape) {
             break
         }
         intervalText += ch

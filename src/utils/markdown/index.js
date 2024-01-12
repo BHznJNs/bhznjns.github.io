@@ -19,7 +19,8 @@ export default function mdResolver(source) {
     while (lines.length) {
         const l = lines.shift()
 
-        if (l.length == 0) {
+        if (!l.length) {
+            // skip empty line
             continue
         }
 

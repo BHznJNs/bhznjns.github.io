@@ -8,7 +8,7 @@ function blockResolverGenerator(endSign, targetClass) {
         while (lines.length) {
             const l = lines.shift()
 
-            if (l == endSign) {
+            if (l === endSign) {
                 break
             }
 

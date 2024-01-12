@@ -3,7 +3,7 @@ function propSetter(el, props) {
         return
     }
     for (const [key, val] of Object.entries(props)) {
-        if (val == undefined) {
+        if (val === undefined) {
             continue
         }
         el.setAttribute(key, val)
@@ -30,7 +30,7 @@ function contentSetter(el, content) {
     } else if (content instanceof HTMLElement) {
         // single element
         el.appendChild(content)
-    } else if (typeof content == "string") {
+    } else if (typeof content === "string") {
         // common text
         el.textContent = content
     } else {
@@ -41,7 +41,7 @@ function contentSetter(el, content) {
 export default function el(tagName, content, props=null) {
     if ("document" in globalThis) {
         // in browser
-        if (tagName == "text") {
+        if (tagName === "text") {
             return document.createTextNode(content)
         }
 

@@ -27,7 +27,7 @@ parentDirBtn.addEventListener("click", () => {
 articleList.addEventListener("click", (e) => {
     const target = e.target
 
-    if (target == articleList) {
+    if (target === articleList) {
         // when click on the `articleList` itself
         // ignore this event.
         return

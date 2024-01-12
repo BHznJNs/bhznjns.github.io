@@ -1,6 +1,7 @@
 export default function(el) {
     return function(e) {
-        if (e.key == "Enter" || e.key == " ") {
+        // when Enter key or Space key
+        if (e.key === "Enter" || e.key === " ") {
             el.click()
         }
     }

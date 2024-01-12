@@ -7,14 +7,14 @@ export default function(line) {
             break
         }
 
-        if (ch == "\t") {
+        if (ch === "\t") {
             indentCount += 1
             continue
         }
-        if (ch == " ") {
+        if (ch === " ") {
             spaceCount += 1
         }
-        if (spaceCount == 2) {
+        if (spaceCount === 2) {
             spaceCount = 0
             indentCount += 1
         }

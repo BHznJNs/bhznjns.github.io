@@ -25,7 +25,7 @@ export class Headline extends BaseNode {
         const numberSignStr = splited[0]
         let numberSignCount = 0
         for (const ch of numberSignStr) {
-            if (ch == '#') {
+            if (ch === '#') {
                 numberSignCount += 1
             }
         }
@@ -65,7 +65,7 @@ export class Quote extends BaseNode {
     }
 
     static pattern = source =>
-        (source == ">") || source.startsWith("> ")
+        (source === ">") || source.startsWith("> ")
 }
 
 export class Divider extends BaseNode {
@@ -90,7 +90,7 @@ export class List extends BaseNode {
     toHTML() {
         const childrenHTML = []
         for (const child of this.children) {
-            if (typeof child == "string") {
+            if (typeof child === "string") {
                 const inline = inlineResolver(child)
                 childrenHTML.push(el("li", inline))
             } else {
@@ -180,9 +180,9 @@ class MediaNode extends BaseNode {
 
     static replaceContentGenerator(href, description) {
         let downloadEl
-        if (language == "cn") {
+        if (language === "cn") {
             downloadEl = el("a", "从这里下载！", { href })
-        } else if (language == "en") {
+        } else if (language === "en") {
             downloadEl = el("a", "Download this!", { href })
         }
         const replaceContent = `${description}<br>${downloadEl}`
@@ -221,7 +221,7 @@ export class Image extends MediaNode {
             loading: "lazy",
             tabindex: 0,
         })
-        if (typeof window == "object") {
+        if (typeof window === "object") {
             // in browser
             imageEl.onclick = e =>
                 window.open(e.target.src)
@@ -292,7 +292,7 @@ export class CodeBlock extends BaseNode {
         super()
 
         this.lang = lang
-        if (typeof window == "object") {
+        if (typeof window === "object") {
             // in browser
             this.content = content
         } else {
@@ -307,7 +307,7 @@ export class CodeBlock extends BaseNode {
     }
     toHTML() {
         const isPlaintext = ["plaintext", "text", ""].includes(this.lang)
-        if (typeof window == "object" && !isPlaintext) {
+        if (typeof window === "object" && !isPlaintext) {
             globalThis.__LanguageList__.add(this.lang)
         }
         
@@ -414,7 +414,7 @@ window.addEventListener("load", (e) => {
         this.id = "iframe_" + globalThis.__IframeCounter__
         this.description = description
 
-        if (typeof window == "object") {
+        if (typeof window === "object") {
             // in browser
             this.content = content + IframeBlock.#injectedCodes(this.id)
         } else {

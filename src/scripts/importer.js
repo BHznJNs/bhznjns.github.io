@@ -23,7 +23,7 @@ export async function importHighlighter() {
             .catch(err => console.error(err))
     }
 
-    if (globalThis.__LanguageList__.size == 0) {
+    if (!globalThis.__LanguageList__.size) {
         // no code blocks
         return
     }

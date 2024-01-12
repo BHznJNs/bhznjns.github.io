@@ -12,7 +12,7 @@ export default function listResolver(currentLine, lines) {
 
         if (nextIndent > currentIndent) {
             currentNode.push(listResolver(nextLine, lines))
-        } else if (nextIndent == currentIndent && isNextOrdered == currentNode.isOrdered) {
+        } else if (nextIndent === currentIndent && isNextOrdered === currentNode.isOrdered) {
             currentNode.push(List.getContent(nextLine, isNextOrdered))
         } else {
             lines.unshift(nextLine)

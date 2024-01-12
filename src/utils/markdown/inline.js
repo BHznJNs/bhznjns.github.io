@@ -39,7 +39,7 @@ class KeyToken {
         }
         this.content = content
 
-        if (this.className == "math") {
+        if (this.className === "math") {
             // set this global variable to import
             // the math formula renderer module
             globalThis.__ContainsFormula__ = true
@@ -47,7 +47,7 @@ class KeyToken {
     }
 
     toHTML() {
-        const elOption = this.className == undefined ? null : {"class": this.className}
+        const elOption = this.className === undefined ? null : {"class": this.className}
         const thisEl = el(this.tagName, parser(this.content), elOption)
         return thisEl
     }
@@ -107,9 +107,9 @@ export default function parser(source) {
     }
     function getSpecialTokenClass(tokenSign) {
         let targetTokenType
-        if (tokenSign == "[") {
+        if (tokenSign === "[") {
             targetTokenType = LinkToken
-        } else if (tokenSign == "{") {
+        } else if (tokenSign === "{") {
             targetTokenType = PhoneticToken
         } else { /* unreachable */ }
         return targetTokenType
@@ -184,7 +184,7 @@ export default function parser(source) {
 
                 const nextCh = getFirstChar()
                 removedContent += nextCh
-                if (nextCh == "(") {
+                if (nextCh === "(") {
                     // the hidden displayed content for special inline elements
                     const hiddenContent = getInterval(source, ")")
                     if (hiddenContent != null) {
@@ -201,7 +201,7 @@ export default function parser(source) {
 
         // --- --- --- --- --- ---
 
-        if (ch == "\\") {
+        if (ch === "\\") {
             isEscape = !isEscape
             continue
         }

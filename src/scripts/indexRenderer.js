@@ -32,13 +32,13 @@ export default function indexRender(indexing, itemResolver) {
     let isFirstPage = false
     let isLastPage  = false
     let isOnlyPage  = false
-    if (total == 1) {
+    if (total === 1) {
         isOnlyPage = true
     } else {
-        if (current == 1) {
+        if (current === 1) {
             isFirstPage = true
         }
-        if (current == total) {
+        if (current === total) {
             isLastPage = true
         }
     }
