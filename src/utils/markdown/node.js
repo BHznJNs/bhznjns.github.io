@@ -218,9 +218,11 @@ export class Image extends MediaNode {
         const imageEl = el("img", [], {
             src: actualUrl,
             alt: this.description,
+            loading: "lazy",
             tabindex: 0,
         })
         if (typeof window == "object") {
+            // in browser
             imageEl.onclick = e =>
                 window.open(e.target.src)
             imageEl.onerror = e => {
