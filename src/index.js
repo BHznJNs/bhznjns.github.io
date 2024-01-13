@@ -28,9 +28,9 @@ window.addEventListener("message", (e) => {
 if ("serviceWorker" in navigator) {
     // if support service worker, register
     navigator.serviceWorker
-        .register("./dist/sw.js")
+        .register("./sw.js")
         .catch(function(error) {
             // registration failed
-            console.log("Registration failed with " + error);
+            console.error("Registration failed with " + error);
         })
 }
