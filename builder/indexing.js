@@ -11,11 +11,11 @@ export default function indexing(dir, indexName) {
 
     for (const item of dir.items) {
         if (item instanceof File) {
-            if (item.name === "README.md") {
+            if (item.name === "README.md" || item.name === "读我.md") {
                 directoryDescription = readFileSync(item.path, "utf-8")
                 continue
             }
-            if (item.name === "rev") {
+            if (item.name === "rev" || item.name === "倒序") {
                 isInversed = true
                 continue
             }
