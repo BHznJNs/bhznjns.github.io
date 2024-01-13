@@ -11,6 +11,9 @@ div.math {
     margin: 0 auto;
     color: var(--default-tx-color);
     font-size: larger;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
     line-height: 1.75;
 }
 span.math {
