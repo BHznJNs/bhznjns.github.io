@@ -17,6 +17,11 @@ nav {
 .dark #homepage img, .dark #rss-icon img {
     filter: invert(100%);
 }
+
+nav .icon-btn img {
+    aspect-ratio: 1;
+}
+
 #homepage img {
     padding-right: .4rem;
 }

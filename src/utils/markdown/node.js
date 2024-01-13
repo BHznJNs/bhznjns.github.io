@@ -322,7 +322,8 @@ export class CodeBlock extends BaseNode {
         }
 
         const codeEl = el("code", this.content, {
-            "class": langClass
+            "class": langClass,
+            tabindex: 0
         })
         return el("pre", codeEl, {
             "data-language": langName
