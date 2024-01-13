@@ -89,6 +89,15 @@ div.media-container img.load-error::after {
     text-overflow: ellipsis;
 }
 
+.dark div.media-container img.load-error::before {
+    background-color: #dfddda;
+    filter: invert(1);
+}
+.dark div.media-container img.load-error::after {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
 div.media-container iframe {
     border: none;
     height: 50vh;
