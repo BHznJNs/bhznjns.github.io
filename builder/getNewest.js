@@ -41,13 +41,16 @@ class FileMonoStack {
     }
 }
 
+const ignoredFileNames = [
+    "README.md",
+    "rev"
+]
 export default function getNewest(dir) {
     const fileStack = new FileMonoStack()
 
     for (const item of dir.items) {
         if (item instanceof File) {
-            if (item.name == "README.md") {
-                // skip files that is named "README.md"
+            if (ignoredFileNames.includes(item.name)) {
                 continue
             }
             fileStack.push(item)

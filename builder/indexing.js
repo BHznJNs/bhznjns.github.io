@@ -4,8 +4,10 @@ import { Directory, File } from "./utils/readDir.js"
 import { indexFilePath } from "./utils/path.js"
 
 export default function indexing(dir, indexName) {
-    const currentDirItems = []
+    const currentFiles = []
+    const currentDirs  = []
     let directoryDescription
+    let isInversed = false
 
     for (const item of dir.items) {
         if (item instanceof File) {
@@ -13,14 +15,22 @@ export default function indexing(dir, indexName) {
                 directoryDescription = readFileSync(item.path, "utf-8")
                 continue
             }
-            currentDirItems.push(item.name)
+            if (item.name == "rev") {
+                isInversed = true
+                continue
+            }
+            currentFiles.push(item.name)
         } else if (item instanceof Directory) {
-            currentDirItems.push(item.name + "/")
+            currentDirs.push(item.name + "/")
             indexing(item, indexName + "+" + item.name)
-        } else {
-            // unreachable
-        }
+        } else { /* unreachable */ }
     }
+
+    if (isInversed) {
+        currentFiles.reverse()
+        currentDirs.reverse()
+    }
+    const currentDirItems = currentDirs.concat(currentFiles)
 
     const sliced = slice(currentDirItems)
     const count  = sliced.length
