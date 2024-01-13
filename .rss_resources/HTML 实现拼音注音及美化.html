@@ -1,13 +1,13 @@
-<h1>HTML 实现拼音注音及美化</h1><p><code>2024/01/01</code></p><hr><p>这个需求放在五六年前可能实现起来还会麻烦一些，但是现在，主流浏览器都已经支持（并且兼容性良好）用于东亚文字注音的 HTML 标签 <code><ruby></code>。</p><h2>用法</h2><p>这一标签的用法十分简单，看如下代码：</p><pre data-language="XML"><code class="language-xml">&lt;ruby&gt;
+<h1>HTML 实现拼音注音及美化</h1><p><code>2024/01/01</code></p><hr><p>这个需求放在五六年前可能实现起来还会麻烦一些，但是现在，主流浏览器都已经支持（并且兼容性良好）用于东亚文字注音的 HTML 标签 <code><ruby></code>。</p><h2>用法</h2><p>这一标签的用法十分简单，看如下代码：</p><pre data-language="XML"><code class="language-xml" tabindex="0">&lt;ruby&gt;
   汉 &lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;han&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt; 字 &lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;zi&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;
 &lt;/ruby&gt;
 </code></pre><p>将需要注音的汉字直接放在 <code><ruby></code> 下，将拼音写在 <code><rt></code> 标签下，<code><rp></code> 标签用于兼容不支持 <code><ruby></code> 标签的浏览器。</p><p>在支持 <code><ruby></code> 标签的浏览器下，上面这段 HTML 代码看起来会像这样：</p><div class="media-container"><iframe id="iframe_1" title="" srcdoc="<ruby>
   汉 <rp>(</rp><rt>han</rt><rp>)</rp> 字 <rp>(</rp><rt>zi</rt><rp>)</rp>
 </ruby>
 " sandbox="allow-scripts"></iframe></div><p>在不支持 <code><ruby></code> 标签的浏览器下，上面这段 HTML 代码看起来会像这样：</p><div class="media-container"><iframe id="iframe_2" title="" srcdoc="<p>汉(han)字(zi)</p>
-" sandbox="allow-scripts"></iframe></div><hr><h2>拼音位置偏移</h2><p>你可能会发现，上面的拼音渲染中，拼音的位置有些偏移，这是由于 HTML 空白字符的影响。让我们删除 HTML 代码中的空格和换行，再看看效果：</p><pre data-language="XML"><code class="language-xml">&lt;ruby&gt;汉&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;han&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;字&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;zi&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;
+" sandbox="allow-scripts"></iframe></div><hr><h2>拼音位置偏移</h2><p>你可能会发现，上面的拼音渲染中，拼音的位置有些偏移，这是由于 HTML 空白字符的影响。让我们删除 HTML 代码中的空格和换行，再看看效果：</p><pre data-language="XML"><code class="language-xml" tabindex="0">&lt;ruby&gt;汉&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;han&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;字&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;zi&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;
 </code></pre><div class="media-container"><iframe id="iframe_3" title="" srcdoc="<ruby>汉<rp>(</rp><rt>han</rt><rp>)</rp>字<rp>(</rp><rt>zi</rt><rp>)</rp></ruby>
-" sandbox="allow-scripts"></iframe></div><p>现在，拼音便能完美的对应上相应字符的位置了。</p><hr><h2>美化</h2><p>我们将上面的 HTML 代码进行修改，添加一些元素（为了让代码可读性更强，添加了换行和空格，实际使用中应删去）：</p><pre data-language="XML"><code class="language-xml">&lt;ruby&gt;
+" sandbox="allow-scripts"></iframe></div><p>现在，拼音便能完美的对应上相应字符的位置了。</p><hr><h2>美化</h2><p>我们将上面的 HTML 代码进行修改，添加一些元素（为了让代码可读性更强，添加了换行和空格，实际使用中应删去）：</p><pre data-language="XML"><code class="language-xml" tabindex="0">&lt;ruby&gt;
     &lt;span class="notation-container"&gt;
         &lt;span&gt;ming tian&lt;/span&gt;
     &lt;/span&gt;
@@ -18,7 +18,7 @@
     &lt;rt&gt;ming tian&lt;/rt&gt;
     &lt;rp&gt;)&lt;/rp&gt;
 &lt;/ruby&gt;
-</code></pre><p>在添加 CSS 代码：</p><pre data-language="CSS"><code class="language-css">.notation-container span,
+</code></pre><p>在添加 CSS 代码：</p><pre data-language="CSS"><code class="language-css" tabindex="0">.notation-container span,
 .text-container span {
     /* 避免文字换行影响动画效果 */
     white-space: nowrap;

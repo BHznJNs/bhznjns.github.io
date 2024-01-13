@@ -6,14 +6,6 @@ nav {
     user-select: none;
 }
 
-@media screen and (max-width: 767px) {
-    /* Mobile phone style */
-    nav {
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-}
-
 .dark #homepage img, .dark #rss-icon img {
     filter: invert(100%);
 }

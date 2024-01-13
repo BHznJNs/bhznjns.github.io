@@ -24,3 +24,13 @@ window.addEventListener("message", (e) => {
     const targetIframeEl = document.getElementById(id)
     targetIframeEl.style.height = height + "px"
 }, false)
+
+if ("serviceWorker" in navigator) {
+    // if support service worker, register
+    navigator.serviceWorker
+        .register("./dist/sw.js")
+        .catch(function(error) {
+            // registration failed
+            console.log("Registration failed with " + error);
+        })
+}

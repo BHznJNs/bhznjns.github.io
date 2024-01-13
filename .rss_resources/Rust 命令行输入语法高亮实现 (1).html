@@ -1,4 +1,4 @@
-<h1>Rust 命令行交互语法高亮实现 (1)</h1><p><code>2023/6/14</code></p><p>本文主要介绍笔者对于 <a href="https://github.com/BHznJNs/Calculator.rs" target="_blank">Calculator.rs</a> 中<code>repl</code>下<strong>语法高亮</strong>的实现方式。</p><hr><h2>实现前提：<code>raw_mode</code>的启用</h2><p>通常来说，我们在使用 rust 时，要想获取用户输入，就必须调用 rust 标准库中的<code>io<span class="dim">stdin().readline</span></code>函数。</p><pre data-language="RUST"><code class="language-rust">use std::io::{self, Write};
+<h1>Rust 命令行交互语法高亮实现 (1)</h1><p><code>2023/6/14</code></p><p>本文主要介绍笔者对于 <a href="https://github.com/BHznJNs/Calculator.rs" target="_blank">Calculator.rs</a> 中<code>repl</code>下<strong>语法高亮</strong>的实现方式。</p><hr><h2>实现前提：<code>raw_mode</code>的启用</h2><p>通常来说，我们在使用 rust 时，要想获取用户输入，就必须调用 rust 标准库中的<code>io<span class="dim">stdin().readline</span></code>函数。</p><pre data-language="RUST"><code class="language-rust" tabindex="0">use std::io::{self, Write};
 
 fn main() {
     let mut input = String::new();
@@ -8,7 +8,7 @@ fn main() {
     
     println!("{}", input);
 }
-</code></pre><p>但是，通过这种方式来获取用户输入有一个缺点：你只能在用户输入完一行，按下回车后才能拿到用户输入的内容，而在用户输入的过程中，你啥也干不了。</p><p>那么，有没有办法能够逐个字符地读取用户输入，并做出自定义的反馈呢？当然有。那就是<code>raw_mode</code>。</p><p>这个<code>raw_mode</code>并不是一个对于命令行的专有名词，只是在 <a href="https://github.com/crossterm-rs/crossterm" target="_blank">crossterm</a> 等库中对于这种需求实现的称呼。</p><p>本文的实现同样是围绕 crossterm 这个库而展开，原因很简单，这个库集成了我们要实现语法高亮的太多功能：光标控制、raw_mode、终端信息获取、输出上色等等，且其中的一些功能在不同的操作系统上需要有不同的实现，使用这个跨平台且在多款终端上经过测试的库比起自己实现要舒服得多。</p><p>相比于常规的 Readline，在<code>raw_mode</code>下，用户的输入不会有任何的默认行为，包括但不限于显示输入字符、回车换行返回、退格删除字符、光标移动等。</p><hr><h2>语法高亮实现思路</h2><p>实现思路非常简单易懂，可以简单地分为三个阶段：</p><ol><li>读取用户输入并存储到字符串</li><li>对这个字符串进行分析 (tokenize)</li><li>使用分析的结果 (tokens) 进行渲染</li></ol><p>接下来，我会，逐一介绍这三个阶段。</p><h3>读取用户输入并存储</h3><p>在<code>raw_mode</code>读取用户输入时，我们需要先对 crossterm 封装好的键盘事件进行处理，这段代码可以用来获取当前的按键事件。</p><pre data-language="RUST"><code class="language-rust">use crossterm::{
+</code></pre><p>但是，通过这种方式来获取用户输入有一个缺点：你只能在用户输入完一行，按下回车后才能拿到用户输入的内容，而在用户输入的过程中，你啥也干不了。</p><p>那么，有没有办法能够逐个字符地读取用户输入，并做出自定义的反馈呢？当然有。那就是<code>raw_mode</code>。</p><p>这个<code>raw_mode</code>并不是一个对于命令行的专有名词，只是在 <a href="https://github.com/crossterm-rs/crossterm" target="_blank">crossterm</a> 等库中对于这种需求实现的称呼。</p><p>本文的实现同样是围绕 crossterm 这个库而展开，原因很简单，这个库集成了我们要实现语法高亮的太多功能：光标控制、raw_mode、终端信息获取、输出上色等等，且其中的一些功能在不同的操作系统上需要有不同的实现，使用这个跨平台且在多款终端上经过测试的库比起自己实现要舒服得多。</p><p>相比于常规的 Readline，在<code>raw_mode</code>下，用户的输入不会有任何的默认行为，包括但不限于显示输入字符、回车换行返回、退格删除字符、光标移动等。</p><hr><h2>语法高亮实现思路</h2><p>实现思路非常简单易懂，可以简单地分为三个阶段：</p><ol><li>读取用户输入并存储到字符串</li><li>对这个字符串进行分析 (tokenize)</li><li>使用分析的结果 (tokens) 进行渲染</li></ol><p>接下来，我会，逐一介绍这三个阶段。</p><h3>读取用户输入并存储</h3><p>在<code>raw_mode</code>读取用户输入时，我们需要先对 crossterm 封装好的键盘事件进行处理，这段代码可以用来获取当前的按键事件。</p><pre data-language="RUST"><code class="language-rust" tabindex="0">use crossterm::{
     event::{self, Event, KeyEvent, KeyEventKind},
 };
 
@@ -22,7 +22,7 @@ pub fn get_key() -&gt; Option&lt;KeyEvent&gt; {
     }
     None
 }
-</code></pre><p>然后，我们需要利用这个函数来获取按键事件并进行处理。</p><pre data-language="RUST"><code class="language-rust">use crossterm::terminal::{enable_raw_mode, disable_raw_mode};
+</code></pre><p>然后，我们需要利用这个函数来获取按键事件并进行处理。</p><pre data-language="RUST"><code class="language-rust" tabindex="0">use crossterm::terminal::{enable_raw_mode, disable_raw_mode};
 
 enable_raw_mode().unwrap();
 loop {
@@ -64,7 +64,7 @@ loop {
     }
 }
 disable_raw_mode().unwrap();
-</code></pre><h3>对读取到的字符串进行解析</h3><p>这一阶段简单来说就是对上一阶段获得的字符串进行 tokenize，但是这与编译代码时所使用的分词器有所不同：这个 tokenizer 所生成的 token 必须能够被用来较容易地还原出原始内容。</p><p>这一阶段的代码因人而异，这里仅贴出 Calculator.rs 项目中使用的 tokenizer 代码，谨供参考：</p><pre data-language="RUST"><code class="language-rust">pub fn tokenize(source: &str) -&gt; TokenVec {
+</code></pre><h3>对读取到的字符串进行解析</h3><p>这一阶段简单来说就是对上一阶段获得的字符串进行 tokenize，但是这与编译代码时所使用的分词器有所不同：这个 tokenizer 所生成的 token 必须能够被用来较容易地还原出原始内容。</p><p>这一阶段的代码因人而异，这里仅贴出 Calculator.rs 项目中使用的 tokenizer 代码，谨供参考：</p><pre data-language="RUST"><code class="language-rust" tabindex="0">pub fn tokenize(source: &str) -&gt; TokenVec {
     let mut index = 0;
 
     // is used for check is number minus OR
@@ -243,7 +243,7 @@ disable_raw_mode().unwrap();
     }
     return tokens;
 }
-</code></pre><p>还有其中的一些定义：</p><pre data-language="RUST"><code class="language-rust">// ASCII_constants.rs
+</code></pre><p>还有其中的一些定义：</p><pre data-language="RUST"><code class="language-rust" tabindex="0">// ASCII_constants.rs
 pub fn is_identi_ascii(ascii: u8) -&gt; bool {
     // a-z A-Z _
     const UNDERLINE_ASCII: u8 = 95;
@@ -370,12 +370,12 @@ impl Token {
         }
     }
 }
-</code></pre><p>通过这一步骤，可以生成形如下面这样的 token：</p><pre data-language="RUST"><code class="language-rust">Token { type__: TextType::Identifier    , content: "variable" }
+</code></pre><p>通过这一步骤，可以生成形如下面这样的 token：</p><pre data-language="RUST"><code class="language-rust" tabindex="0">Token { type__: TextType::Identifier    , content: "variable" }
 Token { type__: TextType::Divider       , content: " " }
 Token { type__: TextType::Symbol        , content: "=" }
 Token { type__: TextType::Divider       , content: " " }
 Token { type__: TextType::StringLiteral , content: "\"foo bar\"" }
-</code></pre><h3>使用分析的结果进行渲染</h3><p>这一步就很简单了，直接循环第二步所产生的 token，然后通过<code>token.colored</code>获取 token 对应的<code>StyledContent</code>，直接 print 出来即可。</p><pre data-language="RUST"><code class="language-rust">use crossterm::{cursor, execute};
+</code></pre><h3>使用分析的结果进行渲染</h3><p>这一步就很简单了，直接循环第二步所产生的 token，然后通过<code>token.colored</code>获取 token 对应的<code>StyledContent</code>，直接 print 出来即可。</p><pre data-language="RUST"><code class="language-rust" tabindex="0">use crossterm::{cursor, execute};
 
 fn clear_line() -&gt; io::Result&lt;()&gt; {
     // 把光标移动到终端最左侧
@@ -401,7 +401,7 @@ pub fn render(tokens: TokenVec) -&gt; io::Result&lt;()&gt; {
 
     stdout.flush()
 }
-</code></pre><p>在第一阶段的<code>loop</code>中调用：</p><pre data-language="RUST"><code class="language-rust">...
+</code></pre><p>在第一阶段的<code>loop</code>中调用：</p><pre data-language="RUST"><code class="language-rust" tabindex="0">...
 KeyCode::Char(ch) =&gt; {
     if !ch.is_ascii() {
         // 当遇到非 ASCII 字符时，中断
@@ -419,7 +419,7 @@ KeyCode::Char(ch) =&gt; {
     render(tokens).unwrap();
 }
 ...
-</code></pre><hr><p>最终实现效果如下：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/Calculator.rs/.语法高亮实现(1)/test-screenshot.png" alt="效果图" loading="lazy" tabindex="0"></div><hr><h2>完整代码如下</h2><pre data-language="RUST"><code class="language-rust">extern crate crossterm;
+</code></pre><hr><p>最终实现效果如下：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/Calculator.rs/.语法高亮实现(1)/test-screenshot.png" alt="效果图" loading="lazy" tabindex="0"></div><hr><h2>完整代码如下</h2><pre data-language="RUST"><code class="language-rust" tabindex="0">extern crate crossterm;
 
 use std::io::{self, stdout, Write};
 use std::collections::VecDeque;

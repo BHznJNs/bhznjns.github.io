@@ -1,4 +1,4 @@
-<h1>静态博客网站实现 RSS 发布</h1><h2>RSS 发布原理</h2><p>网站发布 RSS 本质上就是更新网站的 <code>rss.xml</code> (或者 <code>atom.xml</code>)，订阅者则可以通过 RSS 阅读器来获取网站最新的 RSS 文件，从而获知网站网站的最新动态。</p><p>因此，RSS 发布的核心就是生成 <code>rss.xml</code> 文件。</p><h2>RSS 文件格式</h2><p>要知道如何生成 <code>rss.xml</code> 文件，我们就需要先知道文件的大致格式。</p><p>以下是 RSS 2.0 的 <code>rss.xml</code> 基本格式：</p><pre data-language="XML"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+<h1>静态博客网站实现 RSS 发布</h1><h2>RSS 发布原理</h2><p>网站发布 RSS 本质上就是更新网站的 <code>rss.xml</code> (或者 <code>atom.xml</code>)，订阅者则可以通过 RSS 阅读器来获取网站最新的 RSS 文件，从而获知网站网站的最新动态。</p><p>因此，RSS 发布的核心就是生成 <code>rss.xml</code> 文件。</p><h2>RSS 文件格式</h2><p>要知道如何生成 <code>rss.xml</code> 文件，我们就需要先知道文件的大致格式。</p><p>以下是 RSS 2.0 的 <code>rss.xml</code> 基本格式：</p><pre data-language="XML"><code class="language-xml" tabindex="0">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
 &lt;rss version="2.0"&gt;
 
 &lt;channel&gt;
@@ -19,13 +19,13 @@
 &lt;/channel&gt;
 
 &lt;/rss&gt;
-</code></pre><p>由如上所示的代码，我们可以知道应该被包含在 <code>rss.xml</code> 文件中的内容：</p><ol><li>网站名称</li><li>网站链接</li><li>网站描述</li><li>要发布的文章若干，其中同样包含文章标题、文章链接、文章描述</li><li>一些其它的属性（作者、发布时间等）可选</li></ol><p>那么，生成 <code>rss.xml</code> 文件要做哪些工作我们就大致清楚了。</p><h2>RSS 文件生成</h2><p>为了让 <code>rss.xml</code> 文件中能够从新到旧展示博客文章，我们首先需要读取所有博客文件 (放在本站中就是所有的 markdown 文件)，再按照新旧顺序排序，选取其中最新的若干篇博客。</p><p>获取到最新的若干篇博客后，就需要开始生成 <code>rss.xml</code> 文件了。</p><p>我们先将最新的若干篇博客转换为对应的 RSS Item 字符串，代码如下：</p><pre data-language="JAVASCRIPT"><code class="language-javascript">const rssItemResolver = blog =&gt; `&lt;item&gt;
+</code></pre><p>由如上所示的代码，我们可以知道应该被包含在 <code>rss.xml</code> 文件中的内容：</p><ol><li>网站名称</li><li>网站链接</li><li>网站描述</li><li>要发布的文章若干，其中同样包含文章标题、文章链接、文章描述</li><li>一些其它的属性（作者、发布时间等）可选</li></ol><p>那么，生成 <code>rss.xml</code> 文件要做哪些工作我们就大致清楚了。</p><h2>RSS 文件生成</h2><p>为了让 <code>rss.xml</code> 文件中能够从新到旧展示博客文章，我们首先需要读取所有博客文件 (放在本站中就是所有的 markdown 文件)，再按照新旧顺序排序，选取其中最新的若干篇博客。</p><p>获取到最新的若干篇博客后，就需要开始生成 <code>rss.xml</code> 文件了。</p><p>我们先将最新的若干篇博客转换为对应的 RSS Item 字符串，代码如下：</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const rssItemResolver = blog =&gt; `&lt;item&gt;
 &lt;title&gt;${blog.title}&lt;/title&gt;
 &lt;link&gt;${blog.link}&lt;/link&gt;
 &lt;description&gt;${blog.description}&lt;/description&gt;
 &lt;/item&gt;
 `
-</code></pre><p>再准备一份文件整体的模板，代码如下：</p><pre data-language="JAVASCRIPT"><code class="language-javascript">// 在这里 `rssItems` 是由 rss item 字符串组成的数组。
+</code></pre><p>再准备一份文件整体的模板，代码如下：</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">// 在这里 `rssItems` 是由 rss item 字符串组成的数组。
 const rssTemplate = rssItems =&gt;
 `&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
 &lt;rss version="2.0"&gt;
@@ -36,7 +36,7 @@ const rssTemplate = rssItems =&gt;
 ${rssItems.join("")}
 &lt;/channel&gt;
 &lt;/rss&gt;`
-</code></pre><p>再写一个入口函数</p><pre data-language="JAVASCRIPT"><code class="language-javascript">// 这里的 `blogPaths` 是目标博客文件的路径
+</code></pre><p>再写一个入口函数</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">// 这里的 `blogPaths` 是目标博客文件的路径
 function rssFileGenerator(blogPaths) {
     // 生成 `Blog` 对象数组，`Blog` 对象应包含如下属性：
     // - 标题
@@ -50,14 +50,14 @@ function rssFileGenerator(blogPaths) {
     const rssItems = blogs.map(rssItemResolver)
     return rssTemplate(rssItems)
 }
-</code></pre><p>将这个函数返回的内容写入到网站的 <code>rss.xml</code> 文件，进行部署，网站就能被 RSS 阅读器订阅了。</p><hr><h2>进阶 - 添加博客创建时间</h2><p>现在，你虽然已经可以通过 RSS 阅读器订阅并阅读你的博客，但你会发现，你的所有博客并没有按照先后顺序排列，阅读器上也没有注上每篇博客的发布时间。</p><p><code>pubDate</code> 标签就能优化这一点。</p><p>为了添加这一标签，我们需要修改前文使用的 <code>rssItemResolver</code> 函数：</p><pre data-language="JAVASCRIPT"><code class="language-javascript">const rssItemResolver = blog =&gt; `&lt;item&gt;
+</code></pre><p>将这个函数返回的内容写入到网站的 <code>rss.xml</code> 文件，进行部署，网站就能被 RSS 阅读器订阅了。</p><hr><h2>进阶 - 添加博客创建时间</h2><p>现在，你虽然已经可以通过 RSS 阅读器订阅并阅读你的博客，但你会发现，你的所有博客并没有按照先后顺序排列，阅读器上也没有注上每篇博客的发布时间。</p><p><code>pubDate</code> 标签就能优化这一点。</p><p>为了添加这一标签，我们需要修改前文使用的 <code>rssItemResolver</code> 函数：</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const rssItemResolver = blog =&gt; `&lt;item&gt;
 &lt;title&gt;${blog.title}&lt;/title&gt;
 &lt;link&gt;${blog.link}&lt;/link&gt;
 &lt;pubDate&gt;${timeFormater(blog.pubTime)}&lt;/pubDate&gt;
 &lt;description&gt;${blog.description}&lt;/description&gt;
 &lt;/item&gt;
 `
-</code></pre><p>需要注意的是，根据<a href="https://whitep4nth3r.com/blog/how-to-format-dates-for-rss-feeds-rfc-822/#valid-rfc-822-date-format" target="_blank">文章</a>，RSS 文档中出现的时间必须参照一定的格式，如 <code>Wed, 02 Oct 2002 15:00:00 +0200</code>。</p><p>所以我们需要一个 <code>timeFormater</code> 函数：</p><pre data-language="JAVASCRIPT"><code class="language-javascript">function addLeadingZero(num, target) {
+</code></pre><p>需要注意的是，根据<a href="https://whitep4nth3r.com/blog/how-to-format-dates-for-rss-feeds-rfc-822/#valid-rfc-822-date-format" target="_blank">文章</a>，RSS 文档中出现的时间必须参照一定的格式，如 <code>Wed, 02 Oct 2002 15:00:00 +0200</code>。</p><p>所以我们需要一个 <code>timeFormater</code> 函数：</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">function addLeadingZero(num, target) {
     let numStr = num.toString();
     while (numStr.length &lt; target) {
         numStr = "0" + numStr

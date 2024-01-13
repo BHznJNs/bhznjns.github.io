@@ -1,4 +1,4 @@
-<h1>前端静态 Markdown 博客网站实现</h1><p><code>2023/7/7</code></p><hr><p>本文主要介绍了本站的实现原理，本文实现仅供参考。</p><hr><p>如果你访问过本站，你可能会对本站作为一个部署于 Github Page 上的静态网站，是如何实现类似于动态网站的功能感到好奇。如果你看过了本站的部分代码，你可能也会对本站是如何渲染 Markdown 文档感到好奇。</p><p>本文主要分为<strong>三</strong>个部分：</p><ol><li>Markdown 文档的编译（md -> html）</li><li>网站静态文件索引的实现（indexing）</li><li>前端路由的实现（hash）及路由到静态文件的映射</li></ol><hr><h2>Markdown 文档的编译</h2><p>这一部分其实算是本站最复杂的一部分，因为这个简易的编译器是我自己写的（😀</p><p>当然你如果嫌麻烦之类的，也可以用现成的 npm 包（e.g. <a href="https://marked.js.org/" target="_blank">marked</a>），效果相同。</p><p>为了防止文章篇幅过长，这里就不贴我的代码实现了，贴个<a href="https://github.com/BHznJNs/markdown-blog/blob/master/src/utils/markdown/index.js" target="_blank"> Github 上的代码地址</a>，有感兴趣的小伙伴可以看一下~~</p><h3>网站静态文件索引的实现</h3><p>这一部分又可以分成<strong>三</strong>个小部分：</p><ol><li>静态文件遍历</li><li>分页函数实现</li><li>创建并写入索引数据</li></ol><p>在完成了这三个部分之后，你可以参考<a href="https://github.com/BHznJNs/markdown-blog/blob/master/builder.js" target="_blank">这里</a>，将代码整合到一个脚本中，在你每次对静态文件进行改动（增添、删减等）时对其调用。</p><h3>静态文件遍历</h3><p>这一步非常简单，下面直接贴上我的代码实现：</p><pre data-language="JAVASCRIPT"><code class="language-javascript">const fs = require("node:fs")
+<h1>前端静态 Markdown 博客网站实现</h1><p><code>2023/7/7</code></p><hr><p>本文主要介绍了本站的实现原理，本文实现仅供参考。</p><hr><p>如果你访问过本站，你可能会对本站作为一个部署于 Github Page 上的静态网站，是如何实现类似于动态网站的功能感到好奇。如果你看过了本站的部分代码，你可能也会对本站是如何渲染 Markdown 文档感到好奇。</p><p>本文主要分为<strong>三</strong>个部分：</p><ol><li>Markdown 文档的编译（md -> html）</li><li>网站静态文件索引的实现（indexing）</li><li>前端路由的实现（hash）及路由到静态文件的映射</li></ol><hr><h2>Markdown 文档的编译</h2><p>这一部分其实算是本站最复杂的一部分，因为这个简易的编译器是我自己写的（😀</p><p>当然你如果嫌麻烦之类的，也可以用现成的 npm 包（e.g. <a href="https://marked.js.org/" target="_blank">marked</a>），效果相同。</p><p>为了防止文章篇幅过长，这里就不贴我的代码实现了，贴个<a href="https://github.com/BHznJNs/markdown-blog/blob/master/src/utils/markdown/index.js" target="_blank"> Github 上的代码地址</a>，有感兴趣的小伙伴可以看一下~~</p><h3>网站静态文件索引的实现</h3><p>这一部分又可以分成<strong>三</strong>个小部分：</p><ol><li>静态文件遍历</li><li>分页函数实现</li><li>创建并写入索引数据</li></ol><p>在完成了这三个部分之后，你可以参考<a href="https://github.com/BHznJNs/markdown-blog/blob/master/builder.js" target="_blank">这里</a>，将代码整合到一个脚本中，在你每次对静态文件进行改动（增添、删减等）时对其调用。</p><h3>静态文件遍历</h3><p>这一步非常简单，下面直接贴上我的代码实现：</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const fs = require("node:fs")
 
 // input: "./static/" // 这里是静态文件文件夹的路径
 // returns: [ 'test.md', [ 'test_folder', [] ] ]
@@ -29,7 +29,7 @@ function readDir(path) {
     }
     return result
 }
-</code></pre><h3>分页函数实现</h3><p>这一步是为了防止当网站文章过多时导致索引文件过大。下面贴上代码实现：</p><pre data-language="JAVASCRIPT"><code class="language-javascript">// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</code></pre><h3>分页函数实现</h3><p>这一步是为了防止当网站文章过多时导致索引文件过大。下面贴上代码实现：</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 //                             ||
 //                             ||
 //                             \/
@@ -50,7 +50,7 @@ function slicing(items) {
         return slices
     }
 }
-</code></pre><h3>创建并写入索引数据</h3><p>这一步主要是在处理第一步生成的数据，将每个文件夹下的每一层放到一个索引对象中。我们用一棵树来具体解释一下：</p><pre data-language="PLAINTEXT"><code class="nohighlight">                root // 这是存放静态文件的根目录
+</code></pre><h3>创建并写入索引数据</h3><p>这一步主要是在处理第一步生成的数据，将每个文件夹下的每一层放到一个索引对象中。我们用一棵树来具体解释一下：</p><pre data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">                root // 这是存放静态文件的根目录
                  |
         -------------------
         |                 |
@@ -63,13 +63,13 @@ function slicing(items) {
         ---------          ----------
         |       |          |        |
       file5   file6      file7    file8
-</code></pre><p>则最终会生成大概这样的结构：</p><pre data-language="JSON"><code class="language-json">[
+</code></pre><p>则最终会生成大概这样的结构：</p><pre data-language="JSON"><code class="language-json" tabindex="0">[
     ["dir1/", "dir2/"], // 对于 `root` 的索引
     ["file1", "dir3/"], // 对于 `dir1` 的索引
     ["file5", "file6"], // 对于 `dir3` 的索引
     // 以此类推 ...
 ]
-</code></pre><p>下面是具体的代码实现：</p><pre data-language="JAVASCRIPT"><code class="language-javascript">function indexing(currentDir, currentName) {
+</code></pre><p>下面是具体的代码实现：</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">function indexing(currentDir, currentName) {
     // 当前文件夹的索引的数据
     const currentDirFiles = []
 
@@ -107,7 +107,7 @@ function slicing(items) {
         }))
     }
 }
-</code></pre><h2>前端路由的实现及路由到静态文件的映射</h2><p>由于本项目的目标是一个静态站点，故使用基于<code>location.hash</code>的路由实现。</p><p>这里放出我的实现，仅供参考。</p><pre data-language="JAVASCRIPT"><code class="language-javascript">async function fetchJSON(path) {
+</code></pre><h2>前端路由的实现及路由到静态文件的映射</h2><p>由于本项目的目标是一个静态站点，故使用基于<code>location.hash</code>的路由实现。</p><p>这里放出我的实现，仅供参考。</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">async function fetchJSON(path) {
     return await fetch(path)
         .then(res =&gt; res.json())
 }
@@ -172,7 +172,7 @@ async function hashEvent() {
 window.onload = hashEvent
 // hash 改变时调用是为了便于控制在按键点击时改变界面。
 window.addEventListener("hashchange", hashEvent)
-</code></pre><h2>项目预览</h2><p>最后，当你写完一篇博客的时候，肯定会有想要先在本地预览的需求。</p><p>首先，如果你的代码组织使用了 ES Module，你是无法通过在浏览器直接打开 HTML 文件的方式来预览的，即使这个项目基本所有的代码都写在前端。如下图，你大概率会因为同源策略而无法加载索引文件。浏览器报错如下图所示：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/Web 前端/.前端静态 Markdown 博客网站实现/Error Image.png" alt="错误图例" loading="lazy" tabindex="0"></div><h3>我的解决方式</h3><p>在本地安装 Express <code>npm i express`。</code></p><p>在项目根目录新建<code>preview.js</code></p><pre data-language="JAVASCRIPT"><code class="language-javascript">const express = require("express")
+</code></pre><h2>项目预览</h2><p>最后，当你写完一篇博客的时候，肯定会有想要先在本地预览的需求。</p><p>首先，如果你的代码组织使用了 ES Module，你是无法通过在浏览器直接打开 HTML 文件的方式来预览的，即使这个项目基本所有的代码都写在前端。如下图，你大概率会因为同源策略而无法加载索引文件。浏览器报错如下图所示：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/Web 前端/.前端静态 Markdown 博客网站实现/Error Image.png" alt="错误图例" loading="lazy" tabindex="0"></div><h3>我的解决方式</h3><p>在本地安装 Express <code>npm i express`。</code></p><p>在项目根目录新建<code>preview.js</code></p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const express = require("express")
 const app = express()
 
 const port = 3000
@@ -183,7 +183,7 @@ app.use("/preview", express.static("./"))
 app.listen(port, () =&gt; {
     console.log(`http://localhost:${port}/preview/`)
 })
-</code></pre><p>运行脚本，在浏览器中打开<a href="http://localhost:3000/preview/" target="_blank">http:<i>localhost:3000/preview/</i></a>，就可以看到网站的预览啦！</p><p>为了方便，你还可以将第二阶段的构建脚本和这个预览脚本写到<code>package.json</code>中，方便调用。</p><pre data-language="JSON"><code class="language-json">{
+</code></pre><p>运行脚本，在浏览器中打开<a href="http://localhost:3000/preview/" target="_blank">http:<i>localhost:3000/preview/</i></a>，就可以看到网站的预览啦！</p><p>为了方便，你还可以将第二阶段的构建脚本和这个预览脚本写到<code>package.json</code>中，方便调用。</p><pre data-language="JSON"><code class="language-json" tabindex="0">{
   "name": "repo-name",
   "version": "1.0.0",
   "main": "index.js",

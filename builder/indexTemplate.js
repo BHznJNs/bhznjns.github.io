@@ -29,7 +29,7 @@ const HTMLHeader = `\
     <meta name="color-scheme" content="light dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BHznJNs' Blog</title>
-    <link rel="shortcut icon" href="./src/imgs/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./dist/style.min.css">
     <script src="./dist/index.min.js" type="module" defer></script>
 </head>`
@@ -55,7 +55,7 @@ const navigator = `\
         href="#"
         onclick="globalThis.__CurrentPage__=1"
     >
-        <img src="./src/imgs/homepage.svg" alt="${languageSelect("主页", "home")}">
+        <img src="./dist/imgs/homepage.svg" alt="${languageSelect("主页", "home")}">
         <span>${languageSelect("主页", "Home")}</span>
     </a>
     <span>
@@ -67,7 +67,7 @@ ${(config.enableRSS) ? `\
             title="${languageSelect("RSS 订阅", "RSS Subscribe")}"
         >
             <img
-                src="./src/imgs/rss.svg"
+                src="./dist/imgs/rss.svg"
                 alt="${languageSelect("RSS 订阅", "RSS Subscribe")}"
             >
         </a>` : ""}
@@ -81,7 +81,7 @@ ${(config.enableRSS) ? `\
                 onclick="document.body.classList.remove('dark')"
             >
                 <img
-                    src="./src/imgs/sun.svg"
+                    src="./dist/imgs/sun.svg"
                     alt="${languageSelect("亮色模式图标", "Light Mode Icon")}"
                 >
             </span>
@@ -94,7 +94,7 @@ ${(config.enableRSS) ? `\
                 onclick="document.body.classList.add('dark')"
             >
                 <img
-                    src="./src/imgs/moon.svg"
+                    src="./dist/imgs/moon.svg"
                     alt="${languageSelect("黑暗模式图标", "Dark Mode Icon")}"
                 >
             </span>
