@@ -5,6 +5,7 @@ h4,
 h5,
 h6,
 p {
+    overflow-wrap: break-word;
     color: inherit;
     transition: color .3s .15s;
 }
