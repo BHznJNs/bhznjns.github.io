@@ -10,7 +10,7 @@ const langList = [
 ]
 function languageSelectorCreator(lang) {
     for (const [index, langName] of Object.entries(langList)) {
-        if (currentLang == langName) {
+        if (currentLang === langName) {
             return (...selections) => selections[index]
         }
     }

@@ -14,7 +14,7 @@ class FileMonoStack {
     }
 
     push(file) {
-        if (this.length == 0) {
+        if (!this.length) {
             this.children.push(file)
             return
         }
