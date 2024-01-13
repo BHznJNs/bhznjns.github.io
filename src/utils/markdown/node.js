@@ -228,6 +228,7 @@ export class Image extends MediaNode {
             imageEl.onerror = e => {
                 const target = e.target
                 target.onclick = null
+                target.title = this.description
                 target.classList.add("load-error")
             }
         }
