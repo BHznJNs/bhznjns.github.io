@@ -22,7 +22,7 @@ export function directoryItemRenderer(item) {
 }
 
 const mainEl           = document.querySelector("main")
-const articleEl        = document.querySelector("article:not(#directory-description)")
+const articleEl        = document.querySelector("article")
 const articleList      = mainEl.querySelector("#article-list")
 const dirDescriptionEl = mainEl.querySelector("#directory-description")
 

@@ -5,7 +5,7 @@ import indexRender, { newestItemRenderer, directoryItemRenderer } from "./indexR
 
 export async function hashChangeEvent(_) {
     const mainEl = document.querySelector("main")
-    const articleEl = document.querySelector("article:not(#directory-description)")
+    const articleEl = document.querySelector("article")
     const indexDirPath = "./.index/"
 
     if (!location.hash) {
@@ -34,6 +34,7 @@ export async function hashChangeEvent(_) {
         // open article
         const articleContent = await fetchMD("./" + hash)
         if (!articleContent) return
+        mainEl.style.display = "none"
         articleRender(articleEl, articleContent)
     } else {
         pathManager.homepage()

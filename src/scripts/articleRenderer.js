@@ -2,8 +2,6 @@ import { importHighlighter, importTexRenderer } from "./importer.js"
 import mdResolver from "../utils/markdown/index.js"
 import keydownEvent from "../utils/keydownEvent.js"
 
-const mainEl = document.querySelector("main")
-
 export default function articleRender(articleEl, mdText) {
     // language names to import
     globalThis.__LanguageList__ = new Set()
@@ -25,7 +23,6 @@ export default function articleRender(articleEl, mdText) {
     articleEl.innerHTML = ""
     resultNodes.forEach(el => articleEl.appendChild(el))
 
-    mainEl.style.display = "none"
     articleEl.style.display = "block"
     articleEl.querySelectorAll("[tabindex='0']").forEach((el) => {
         el.onkeydown = keydownEvent(el)
