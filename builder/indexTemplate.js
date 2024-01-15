@@ -146,7 +146,7 @@ const footer = config.footer
 
 const template = `\
 <!DOCTYPE html>
-<html>
+<html lang="${languageSelect("zh-CN", "en")}">
 ${HTMLHeader}
 <body>
 ${inlineDarkmodeSwitcherScript}
