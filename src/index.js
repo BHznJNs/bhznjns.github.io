@@ -1,5 +1,4 @@
 import "./styles/style.css"
-import "./libs/katex/katex.css"
 
 import "./scripts/mainManager.js"
 import pageManager from "./scripts/pageManager.js"
@@ -25,12 +24,12 @@ window.addEventListener("message", (e) => {
     targetIframeEl.style.height = height + "px"
 }, false)
 
-if ("serviceWorker" in navigator) {
-    // if support service worker, register
-    navigator.serviceWorker
-        .register("./sw.js")
-        .catch(function(error) {
-            // registration failed
-            console.error("Registration failed with " + error);
-        })
-}
+// if ("serviceWorker" in navigator) {
+//     // if support service worker, register
+//     navigator.serviceWorker
+//         .register("./sw.js")
+//         .catch(function(error) {
+//             // registration failed
+//             console.error("Registration failed with " + error);
+//         })
+// }

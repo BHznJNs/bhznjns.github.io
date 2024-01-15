@@ -11,7 +11,7 @@ export async function importHighlighter() {
         const languageListArr = Array.from(globalThis.__LanguageList__)
         const langDefImporters = languageListArr
             .filter(name => !hljs.getLanguage(name))
-            .map(lang => import(`../libs/highlight-es/languages/${lang.toLowerCase()}.js`))
+            .map(lang => import(`./libs/highlight-es/languages/${lang.toLowerCase()}.js`))
 
         Promise.all(langDefImporters)
             .then(langDefs => langDefs.forEach((defModule, index) => {
@@ -33,7 +33,7 @@ export async function importHighlighter() {
     }
 
     // import highlight.js itself
-    await import("../libs/highlight-es/highlight.js")
+    await import("../libs/highlight-es/highlight.min.js")
         .then(module => hljs = module.default)
         .then(importLangDefs)
         .catch(err => console.error(err))
@@ -69,7 +69,10 @@ export async function importTexRenderer() {
         return
     }
 
-    const tasks = [import("../libs/katex/katex.js"), fetch("dist/katex.min.css")]
+    const tasks = [
+        import("../libs/katex/katex.min.js"),
+        fetch("dist/libs/katex/katex.min.css"),
+    ]
     await Promise.all(tasks)
         .then(([module, cssRes]) => {
             // set katex js module & render
