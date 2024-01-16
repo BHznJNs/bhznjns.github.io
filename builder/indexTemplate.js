@@ -116,6 +116,7 @@ const template = `\
 <html lang="${languageSelector("zh-CN", "en")}">
 ${HTMLHeader}
 <body>
+<fab-icon></fab-icon>
 ${inlineDarkmodeSwitcherScript}
 ${navigator}
 ${main}

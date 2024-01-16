@@ -1,6 +1,7 @@
 import "./styles/style.css"
 
 import "./scripts/mainManager.js"
+import "./components/fab.js"
 import pageController from "./components/paging.js"
 import keydownEvent from "./utils/keydownEvent.js"
 

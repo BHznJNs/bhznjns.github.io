@@ -5,6 +5,7 @@ body:not(.dark) {
 
     --default-bg-color: #fff;
     --quote-bg-color: #f5f5f5;
+    --fab-bg-color: #fff;
     --hovered-bg-color: #eee;
     --allpage-bg-color: #f7f7f7;
 
@@ -27,6 +28,7 @@ body.dark {
 
     --default-bg-color: #161616;
     --quote-bg-color: #3e3e3e;
+    --fab-bg-color: #424242;
     --hovered-bg-color: #333;
     --allpage-bg-color: #000;
 

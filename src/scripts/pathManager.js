@@ -65,7 +65,7 @@ const pathManager = {
         location.hash = target
     },
     parent() {
-        if (location.hash === "#" + newestPath) {
+        if (this.isIn.root() || this.isIn.newestPage()) {
             return homepagePath
         }
         const splited = location.hash.slice(1).split("/")
@@ -73,13 +73,16 @@ const pathManager = {
             return splited.slice(0, -2).join("/") + "/"
         }
         if (this.isIn.article()) {
-            return splited.slice(0, -1).join("/")
+            return splited.slice(0, -1).join("/") + "/"
         }
         throw new Error("Unexpected hash: " + location.hash)
     },
     isIn: {
+        root() {
+            return location.hash === "#" + homepagePath
+        },
         newestPage() {
-            return location.hash === "#newest/"
+            return location.hash === "#" + newestPath
         },
         directory() {
             return location.hash.startsWith("#static")

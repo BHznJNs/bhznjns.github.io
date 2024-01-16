@@ -1,6 +1,7 @@
 import { importHighlighter, importTexRenderer } from "./importer.js"
 import mdResolver from "../utils/markdown/index.js"
 import keydownEvent from "../utils/keydownEvent.js"
+import backToTop from "../utils/backToTop.js"
 
 export default function articleRender(articleEl, mdText) {
     // language names to import
@@ -27,9 +28,7 @@ export default function articleRender(articleEl, mdText) {
     articleEl.querySelectorAll("[tabindex='0']").forEach((el) => {
         el.onkeydown = keydownEvent(el)
     })
-    // return to the top
-    document.body.scrollTop = 0
-    document.documentElement.scrollTop = 0
+    backToTop()
 
     importHighlighter().then(() => globalThis.__LanguageList__ = null)
     importTexRenderer().then(() => globalThis.__ContainsFormula__ = false)

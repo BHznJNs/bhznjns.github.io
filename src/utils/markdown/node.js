@@ -70,7 +70,7 @@ export class Quote extends BaseNode {
 }
 
 export class Divider extends BaseNode {
-    toHTML = () => el("hr", [])
+    toHTML = () => el("hr")
     static pattern = source =>
         source.match(/(-\s*-\s*-)|(\*\s*\*\s*\*)/) && !source.match(/[a-zA-Z0-9]/)
 }
@@ -211,7 +211,7 @@ export class Image extends MediaNode {
 
     toHTML() {
         const actualUrl = MediaNode.srcUrlResolver(this.source)
-        const imageEl = el("img", [], {
+        const imageEl = el("img", "", {
             src: actualUrl,
             alt: this.description,
             loading: "lazy",

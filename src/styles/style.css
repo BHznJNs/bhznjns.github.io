@@ -3,6 +3,7 @@
 @import url(./main.css);
 @import url(./article/index.css);
 @import url(./components/paging.css);
+@import url(./components/fab.css);
 @import url(../libs/highlight-es/github-dark.css);
 
 body {

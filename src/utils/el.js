@@ -38,7 +38,7 @@ function contentSetter(el, content) {
     }
 }
 
-export default function el(tagName, content, props=null) {
+export default function el(tagName, content="", props=null) {
     if ("document" in globalThis) {
         // in browser
         if (tagName === "text") {
