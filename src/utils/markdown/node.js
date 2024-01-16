@@ -3,6 +3,7 @@ import mdResolver from "./index.js"
 import inlineResolver from "./inline.js"
 import getInterval from "./utils/getInterval.js"
 import el from "../el.js"
+import languageSelector from "../languageSelector.js"
 
 const { language } = config
 
@@ -179,12 +180,7 @@ class MediaNode extends BaseNode {
     }
 
     static replaceContentGenerator(href, description) {
-        let downloadEl
-        if (language === "cn") {
-            downloadEl = el("a", "从这里下载！", { href })
-        } else if (language === "en") {
-            downloadEl = el("a", "Download this!", { href })
-        }
+        const downloadEl = el("a", languageSelector("从这里下载！", "Download Here!"), { href })
         const replaceContent = `${description}<br>${downloadEl}`
         return replaceContent
     }

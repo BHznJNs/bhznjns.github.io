@@ -2,25 +2,7 @@ import { writeFileSync } from "node:fs"
 import config from "../build.config.js"
 import { indexHTMLPath } from "./utils/path.js"
 import renderer from "../src/utils/markdown/index.js"
-
-const currentLang = config.language
-const langList = [
-    "zh",
-    "en",
-]
-function languageSelectorCreator(lang) {
-    for (const [index, langName] of Object.entries(langList)) {
-        if (currentLang === langName) {
-            return (...selections) => selections[index]
-        }
-    }
-    console.warn("Unexpected language: " + lang)
-    // default returns English text
-    return (...selections) => selections[1]
-}
-const languageSelect = languageSelectorCreator(currentLang)
-
-// --- --- --- --- --- ---
+import languageSelector from "../src/utils/languageSelector.js"
 
 const HTMLHeader = `\
 <head>
@@ -28,7 +10,7 @@ const HTMLHeader = `\
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="color-scheme" content="light dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BHznJNs' Blog</title>
+    <title>${config.title ? "MarkdownBlog" : config.title}</title>
     <link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./dist/style.min.css">
     <script src="./dist/index.min.js" type="module" defer></script>
@@ -55,8 +37,8 @@ const navigator = `\
         href="#"
         onclick="globalThis.__CurrentPage__=1"
     >
-        <img src="./dist/imgs/homepage.svg" alt="${languageSelect("主页", "home")}">
-        <span>${languageSelect("主页", "Home")}</span>
+        <img src="./dist/imgs/homepage.svg" alt="${languageSelector("主页", "home")}">
+        <span>${languageSelector("主页", "Home")}</span>
     </a>
     <span>
 ${(config.enableRSS) ? `\
@@ -64,11 +46,11 @@ ${(config.enableRSS) ? `\
             id="rss-icon"
             class="icon-btn"
             href="./rss.xml"
-            title="${languageSelect("RSS 订阅", "RSS Subscribe")}"
+            title="${languageSelector("RSS 订阅", "RSS Subscribe")}"
         >
             <img
                 src="./dist/imgs/rss.svg"
-                alt="${languageSelect("RSS 订阅", "RSS Subscribe")}"
+                alt="${languageSelector("RSS 订阅", "RSS Subscribe")}"
             >
         </a>` : ""}
         <span>
@@ -77,12 +59,12 @@ ${(config.enableRSS) ? `\
                 class="icon-btn"
                 role="button"
                 tabindex="0"
-                title="${languageSelect("亮色模式", "Light Mode")}"
+                title="${languageSelector("亮色模式", "Light Mode")}"
                 onclick="document.body.classList.remove('dark')"
             >
                 <img
                     src="./dist/imgs/sun.svg"
-                    alt="${languageSelect("亮色模式图标", "Light Mode Icon")}"
+                    alt="${languageSelector("亮色模式图标", "Light Mode Icon")}"
                 >
             </span>
             <span
@@ -90,12 +72,12 @@ ${(config.enableRSS) ? `\
                 class="icon-btn"
                 role="button"
                 tabindex="0"
-                title="${languageSelect("黑暗模式", "Dark Mode")}"
+                title="${languageSelector("黑暗模式", "Dark Mode")}"
                 onclick="document.body.classList.add('dark')"
             >
                 <img
                     src="./dist/imgs/moon.svg"
-                    alt="${languageSelect("黑暗模式图标", "Dark Mode Icon")}"
+                    alt="${languageSelector("黑暗模式图标", "Dark Mode Icon")}"
                 >
             </span>
         </span>
@@ -103,35 +85,20 @@ ${(config.enableRSS) ? `\
 </nav>`
 
 const main = `\
-<main
-    style="display: none;"
-    data-is-root=true
-    data-is-first-page=""
-    data-is-last-page=""
-    data-is-only-page=""
->
+<main style="display: none;" data-is-root=true>
     <header id="directory-description"></header>
-
 ${config.enableNewest ? `\
     <ul id="newest">
         <li
             tabindex="0"
             onclick="location.hash = 'newest/'"
         >
-            ${languageSelect("最新博文", "Newests")}
+            ${languageSelector("最新博文", "Newests")}
         </li>
     </ul>` : ""}
-
     <ul id="previous-dir"><li tabindex="0">../</li></ul>
     <ul id="article-list"></ul>
-    <div id="page-switchers">
-        <button id="previous" class="icon-btn">
-            <span>${languageSelect("上一页", "Previous")}</span>
-        </button>
-        <button id="next" class="icon-btn">
-            <span>${languageSelect("下一页", "Next")}</span>
-        </button>
-    </div>
+    <paging-view></paging-view>
 </main>`
 
 const footer = config.footer
@@ -146,7 +113,7 @@ const footer = config.footer
 
 const template = `\
 <!DOCTYPE html>
-<html lang="${languageSelect("zh-CN", "en")}">
+<html lang="${languageSelector("zh-CN", "en")}">
 ${HTMLHeader}
 <body>
 ${inlineDarkmodeSwitcherScript}

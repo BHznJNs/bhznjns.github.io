@@ -7,6 +7,13 @@ export default {
     homepage: "https://bhznjns.github.io/markdown-blog/",
 
     /**
+     * title: String
+     * the title of blog HTML document, will be shown in the tabbar of browser
+     * 博客 HTML 文档的标题，会被展示在浏览器的标签栏
+     */
+    title: "BHznJNs' Blog",
+
+    /**
      * footer: String
      * the footer for this site, can be deleted if you do not need it
      * 站点的脚注，如果你不需要可以删除

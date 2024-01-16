@@ -1,4 +1,4 @@
-import pageManager from "./pageManager.js"
+import pageController from "../components/paging.js"
 import { fetchJSON, fetchMD } from "./fetchResources.js"
 import articleRender from "./articleRenderer.js"
 import indexRender, { newestItemRenderer, directoryItemRenderer } from "./indexRenderer.js"
@@ -17,7 +17,9 @@ export async function hashChangeEvent(_) {
 
     if (pathManager.isIn.newestPage()) {
         // open newest page
-        const indexPath = indexDirPath + "newest_" + pageManager.current()
+        const indexPath = indexDirPath
+            + "newest_"
+            + pageController.current()
         const newestIndex = await fetchJSON(indexPath)
         if (!newestIndex) return
         indexRender(newestIndex, newestItemRenderer)
@@ -25,7 +27,9 @@ export async function hashChangeEvent(_) {
     if (pathManager.isIn.directory()) {
         // open directory
         const splited = hash.split("/").slice(0, -1)
-        const indexFilePath = indexDirPath + splited.join("+") + "_" + pageManager.current()
+        const indexFilePath = indexDirPath
+            + splited.join("+") + "_"
+            + pageController.current()
         const index = await fetchJSON(indexFilePath)
         if (!index) return
         indexRender(index, directoryItemRenderer)

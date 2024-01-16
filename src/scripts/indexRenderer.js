@@ -25,26 +25,11 @@ const mainEl           = document.querySelector("main")
 const articleEl        = document.querySelector("article")
 const articleList      = mainEl.querySelector("#article-list")
 const dirDescriptionEl = mainEl.querySelector("#directory-description")
+const pagingComponent  = mainEl.querySelector("paging-view")
 
 export default function indexRender(indexing, itemResolver) {
-    // calculate & set properties
     const {current, total} = indexing
-    let isFirstPage = false
-    let isLastPage  = false
-    let isOnlyPage  = false
-    if (total === 1) {
-        isOnlyPage = true
-    } else {
-        if (current === 1) {
-            isFirstPage = true
-        }
-        if (current === total) {
-            isLastPage = true
-        }
-    }
-    mainEl.setAttribute("data-is-first-page", isFirstPage)
-    mainEl.setAttribute("data-is-last-page" , isLastPage)
-    mainEl.setAttribute("data-is-only-page" , isOnlyPage)
+    pagingComponent.setPage(current, total)
 
     // --- --- --- --- --- ---
     

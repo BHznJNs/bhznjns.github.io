@@ -8,70 +8,7 @@ const necessaryResources = [
     "./dist/imgs/favicon.png",
 ]
 const optionalResources = [
-    "./dist/katex.min.css",
-    "./dist/chunks/katex.min.js",
-    "./dist/chunks/highlight.min.js",
-    // formula fonts
-    "./dist/fonts/KaTeX_AMS-Regular.woff2",
-    "./dist/fonts/KaTeX_AMS-Regular.woff",
-    "./dist/fonts/KaTeX_AMS-Regular.ttf",
-    "./dist/fonts/KaTeX_Caligraphic-Bold.woff2",
-    "./dist/fonts/KaTeX_Caligraphic-Bold.woff",
-    "./dist/fonts/KaTeX_Caligraphic-Bold.ttf",
-    "./dist/fonts/KaTeX_Caligraphic-Regular.woff2",
-    "./dist/fonts/KaTeX_Caligraphic-Regular.woff",
-    "./dist/fonts/KaTeX_Caligraphic-Regular.ttf",
-    "./dist/fonts/KaTeX_Fraktur-Bold.woff2",
-    "./dist/fonts/KaTeX_Fraktur-Bold.woff",
-    "./dist/fonts/KaTeX_Fraktur-Bold.ttf",
-    "./dist/fonts/KaTeX_Fraktur-Regular.woff2",
-    "./dist/fonts/KaTeX_Fraktur-Regular.woff",
-    "./dist/fonts/KaTeX_Fraktur-Regular.ttf",
-    "./dist/fonts/KaTeX_Main-Bold.woff2",
-    "./dist/fonts/KaTeX_Main-Bold.woff",
-    "./dist/fonts/KaTeX_Main-Bold.ttf",
-    "./dist/fonts/KaTeX_Main-BoldItalic.woff2",
-    "./dist/fonts/KaTeX_Main-BoldItalic.woff",
-    "./dist/fonts/KaTeX_Main-BoldItalic.ttf",
-    "./dist/fonts/KaTeX_Main-Italic.woff2",
-    "./dist/fonts/KaTeX_Main-Italic.woff",
-    "./dist/fonts/KaTeX_Main-Italic.ttf",
-    "./dist/fonts/KaTeX_Main-Regular.woff2",
-    "./dist/fonts/KaTeX_Main-Regular.woff",
-    "./dist/fonts/KaTeX_Main-Regular.ttf",
-    "./dist/fonts/KaTeX_Math-BoldItalic.woff2",
-    "./dist/fonts/KaTeX_Math-BoldItalic.woff",
-    "./dist/fonts/KaTeX_Math-BoldItalic.ttf",
-    "./dist/fonts/KaTeX_Math-Italic.woff2",
-    "./dist/fonts/KaTeX_Math-Italic.woff",
-    "./dist/fonts/KaTeX_Math-Italic.ttf",
-    "./dist/fonts/KaTeX_SansSerif-Bold.woff2",
-    "./dist/fonts/KaTeX_SansSerif-Bold.woff",
-    "./dist/fonts/KaTeX_SansSerif-Bold.ttf",
-    "./dist/fonts/KaTeX_SansSerif-Italic.woff2",
-    "./dist/fonts/KaTeX_SansSerif-Italic.woff",
-    "./dist/fonts/KaTeX_SansSerif-Italic.ttf",
-    "./dist/fonts/KaTeX_SansSerif-Regular.woff2",
-    "./dist/fonts/KaTeX_SansSerif-Regular.woff",
-    "./dist/fonts/KaTeX_SansSerif-Regular.ttf",
-    "./dist/fonts/KaTeX_Script-Regular.woff2",
-    "./dist/fonts/KaTeX_Script-Regular.woff",
-    "./dist/fonts/KaTeX_Script-Regular.ttf",
-    "./dist/fonts/KaTeX_Size1-Regular.woff2",
-    "./dist/fonts/KaTeX_Size1-Regular.woff",
-    "./dist/fonts/KaTeX_Size1-Regular.ttf",
-    "./dist/fonts/KaTeX_Size2-Regular.woff2",
-    "./dist/fonts/KaTeX_Size2-Regular.woff",
-    "./dist/fonts/KaTeX_Size2-Regular.ttf",
-    "./dist/fonts/KaTeX_Size3-Regular.woff2",
-    "./dist/fonts/KaTeX_Size3-Regular.woff",
-    "./dist/fonts/KaTeX_Size3-Regular.ttf",
-    "./dist/fonts/KaTeX_Size4-Regular.woff2",
-    "./dist/fonts/KaTeX_Size4-Regular.woff",
-    "./dist/fonts/KaTeX_Size4-Regular.ttf",
-    "./dist/fonts/KaTeX_Typewriter-Regular.woff2",
-    "./dist/fonts/KaTeX_Typewriter-Regular.woff",
-    "./dist/fonts/KaTeX_Typewriter-Regular.ttf",
+    /\/dist\/libs\//
 ]
 
 // get the page URL without hash
@@ -91,9 +28,13 @@ function isResourceToCache(url, type) {
         : necessaryResources
     const currentURL = getCleanURL()
     for (const path of resources) {
-        const pathURL = new URL(path, currentURL)
-        if (pathURL.href == url) {
-            return true
+        if (typeof path === "string") {
+            const pathURL = new URL(path, currentURL)
+            return pathURL.href === url
+        } else if (path instanceof RegExp) {
+            return path.test(url)
+        } else {
+            console.error("Unexpected resource path: " + path)
         }
     }
     return false

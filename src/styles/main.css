@@ -1,3 +1,5 @@
+@import url(./paging.css);
+
 main {
     margin: 2rem var(--page-horizonal-padding) 4rem;
     padding: 1rem 2rem;
@@ -27,7 +29,7 @@ main ul {
 main[data-is-root="true"] #previous-dir {
     display: none;
 }
-main[data-is-root="true"] ul#newest {
+main[data-is-root="true"] #newest {
     display: block;
 }
 
@@ -87,37 +89,4 @@ main.disabled {
     bottom: 2px;
     background-position: left bottom;
     background-size: 100% 2px;
-}
-
-/* page switcher */
-
-main[data-is-first-page="true"] button#previous {
-    display: none;
-}
-
-main[data-is-last-page="true"] button#next {
-    display: none;
-}
-
-main[data-is-only-page="true"] button#previous,
-main[data-is-only-page="true"] button#next {
-    display: none;
-}
-
-#page-switchers {
-    display: flex;
-    justify-content: flex-end;
-}
-#page-switchers button.icon-btn {
-    height: 2.4rem;
-    margin-right: .6rem;
-    font-weight: bold;
-}
-#page-switchers .icon-btn:hover span {
-    transform: translateY(-2px);
-}
-#page-switchers button span::before {
-    /* reverse the direction of underline animation */
-    left: unset;
-    right: 0;
 }

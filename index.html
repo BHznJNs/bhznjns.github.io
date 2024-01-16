@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="color-scheme" content="light dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BHznJNs' Blog</title>
+    <title>MarkdownBlog</title>
     <link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./dist/style.min.css">
     <script src="./dist/index.min.js" type="module" defer></script>
@@ -74,15 +74,8 @@ if (darkModeMediaQuery) {
         </span>
     </span>
 </nav>
-<main
-    style="display: none;"
-    data-is-root=true
-    data-is-first-page=""
-    data-is-last-page=""
-    data-is-only-page=""
->
+<main style="display: none;" data-is-root=true>
     <header id="directory-description"></header>
-
     <ul id="newest">
         <li
             tabindex="0"
@@ -91,17 +84,9 @@ if (darkModeMediaQuery) {
             最新博文
         </li>
     </ul>
-
     <ul id="previous-dir"><li tabindex="0">../</li></ul>
     <ul id="article-list"></ul>
-    <div id="page-switchers">
-        <button id="previous" class="icon-btn">
-            <span>上一页</span>
-        </button>
-        <button id="next" class="icon-btn">
-            <span>下一页</span>
-        </button>
-    </div>
+    <paging-view></paging-view>
 </main>
 <article style="display: none;"></article>
 <footer><p><span class="dim">Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>

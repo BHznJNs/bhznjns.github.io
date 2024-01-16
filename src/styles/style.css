@@ -48,6 +48,25 @@ body.dark {
     --shadow-lg:   none !important;
 }
 
+label {
+    user-select: none;
+}
+input {
+    width: 3em;
+    height: 32px;
+    padding: 0 6px;
+    overflow: hidden;
+    color: var(--default-tx-color);
+    background-color: var(--quote-bg-color);
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+}
+label input {
+    margin-left: 4px;
+}
+
 footer {
     text-align: center;
     color: var(--default-tx-color);

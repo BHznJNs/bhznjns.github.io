@@ -69,22 +69,16 @@ export async function importTexRenderer() {
         return
     }
 
-    const tasks = [
-        import("../libs/katex/katex.min.js"),
-        fetch("dist/libs/katex/katex.min.css"),
-    ]
-    await Promise.all(tasks)
-        .then(([module, cssRes]) => {
-            // set katex js module & render
-            katex = module.default
-            renderFormula()
-            return cssRes.text()
-        })
-        .then(cssText => {
-            // set katex css
-            const style = document.createElement("style")
-            style.textContent = cssText
-            document.head.appendChild(style)
-        })
-        .catch(err => console.error(err))
+    // dynamically import katex style and script 
+    const linkEl = document.createElement("link")
+    linkEl.rel  = "stylesheet"
+    linkEl.href = "./dist/libs/katex/katex.min.css"
+    document.head.appendChild(linkEl)
+    try {
+        const katexModule = await import("../libs/katex/katex.min.js")
+        katex = katexModule.default
+        renderFormula()
+    } catch(e) {
+        console.error(e)
+    }
 }

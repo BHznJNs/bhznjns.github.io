@@ -58,9 +58,11 @@ export default function el(tagName, content, props=null) {
             case "text":
                 return content
             case "hr":
-                return "<hr>"
+            case "br":
+                return `<${tagName}>`
             case "img":
-                return `<img ${props ? propToString(props) : ""}>`
+            case "input":
+                return `<${tagName} ${props ? propToString(props) : ""}>`
         }
         return `<${tagName}${props ? " " + propToString(props) : ""}>${content}</${tagName}>`
     }

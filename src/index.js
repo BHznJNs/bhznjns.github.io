@@ -1,7 +1,7 @@
 import "./styles/style.css"
 
 import "./scripts/mainManager.js"
-import pageManager from "./scripts/pageManager.js"
+import pageController from "./components/paging.js"
 import keydownEvent from "./utils/keydownEvent.js"
 
 const lightBtn = document.querySelector("#light-btn")
@@ -12,7 +12,7 @@ darkBtn.onkeydown = keydownEvent(darkBtn)
 window.addEventListener("popstate", () => {
     if (location.hash.endsWith("/")) {
         // in a directory
-        pageManager.back()
+        pageController.back()
     }
 })
 window.addEventListener("message", (e) => {
@@ -24,12 +24,12 @@ window.addEventListener("message", (e) => {
     targetIframeEl.style.height = height + "px"
 }, false)
 
-// if ("serviceWorker" in navigator) {
-//     // if support service worker, register
-//     navigator.serviceWorker
-//         .register("./sw.js")
-//         .catch(function(error) {
-//             // registration failed
-//             console.error("Registration failed with " + error);
-//         })
-// }
+if ("serviceWorker" in navigator) {
+    // if support service worker, register
+    navigator.serviceWorker
+        .register("./sw.js")
+        .catch(function(error) {
+            // registration failed
+            console.error("Registration failed with " + error);
+        })
+}
