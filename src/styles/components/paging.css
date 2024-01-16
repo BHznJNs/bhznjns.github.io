@@ -2,7 +2,7 @@ paging-view {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: .6rem;
+    gap: 1rem;
 }
 paging-view.hidden {
     display: none;
