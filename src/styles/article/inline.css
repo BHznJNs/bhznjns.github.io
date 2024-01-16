@@ -120,10 +120,10 @@ ruby::before {
     bottom: calc(1em + 4px);
     transform: translateX(-50%);
     content: attr(data-notation);
-    padding: 2px 4px;
+    padding: 2px 6px;
     white-space: nowrap;
     background-color: var(--default-bg-color);
-    border-radius: 2px;
+    border-radius: 4px;
     opacity: 0;
     z-index: 1;
     pointer-events: none;
