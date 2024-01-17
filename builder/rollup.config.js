@@ -64,4 +64,23 @@ export default [{
             ],
         }),
     ]
+}, {
+    input: "src/sw.js",
+    output: {
+        file: "sw.js",
+        format: "es",
+        sourcemap: "hidden",
+        sourcemapFileNames: "dist/sw.map",
+    },
+    plugins: [
+        terser(),
+        {   // customized plugin
+            name: "sourcemap-path appender",
+            renderChunk(code) {
+                const sourcemapPath = "./dist/sw.map"
+                code += "\n//# sourceMappingURL=" + sourcemapPath
+                return { code, map: null }
+            }
+        }
+    ]
 }]
