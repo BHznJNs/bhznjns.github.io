@@ -3,12 +3,11 @@ import el from "../utils/el.js"
 import backToTop from "../utils/backToTop.js"
 import languageSelector from "../utils/languageSelector.js"
 
-const fabItem = (id, description) => el("button", el("div", "", {
-    "data-image-name": id
-}), {
-    id: id,
-    title: description,
-})
+const fabItem = (id, title) => el(
+    "button",
+    el("div"),
+    { id, title }
+)
 
 class FabIcon extends HTMLElement {
     #elements = {}
@@ -26,6 +25,7 @@ class FabIcon extends HTMLElement {
 
         this.classList.add("hidden")
         this.#eventAppender()
+        this.style.setProperty("--fab-item-count", subFabItem.length + 1)
         for (const el of [switcher].concat(subFabItem)) {
             this.appendChild(el)
         }
