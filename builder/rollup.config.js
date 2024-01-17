@@ -70,14 +70,14 @@ export default [{
         file: "sw.js",
         format: "es",
         sourcemap: "hidden",
-        sourcemapFileNames: "dist/sw.map",
+        sourcemapFileNames: "dist/sw.js.map",
     },
     plugins: [
         terser(),
         {   // customized plugin
             name: "sourcemap-path appender",
             renderChunk(code) {
-                const sourcemapPath = "./dist/sw.map"
+                const sourcemapPath = "./dist/sw.js.map"
                 code += "\n//# sourceMappingURL=" + sourcemapPath
                 return { code, map: null }
             }

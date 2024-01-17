@@ -28,6 +28,24 @@ export default {
     language: "zh",
 
     /**
+     * enableFab: Boolean
+     * used to enable / disable the FAB buttons
+     * 用来启用/禁用浮动操作按钮
+     */
+    enableFab: true,
+    /**
+     * fabOrdering: [String]
+     * defines the ordering of FAB buttons, if you do need some FAB button, just remove it
+     * 定义浮动操作按钮的顺序，如果你不需要某个浮动操作按钮，直接将其移除即可
+     */
+    fabOrdering: [
+        "downsizeText",
+        "enlargeText",
+        "backToParent",
+        "backToTop",
+    ],
+
+    /**
      * enableRSS: Boolean
      * used to enable / disable the RSS function, if you do not want add blogs in some directory to the `rss.xml` , just add it into the `rssIgnoreDir`
      * 用来启用/禁用 RSS 发布功能，如果你不想将某些文件夹的内容添加到 `rss.xml` 中，将其添加到 `rssIgnoreDir` 中

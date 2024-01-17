@@ -1,9 +1,14 @@
 import "./styles/style.css"
 
 import "./scripts/mainManager.js"
-import "./components/fab.js"
+import config from "../build.config.js"
 import pageController from "./components/paging.js"
 import keydownEvent from "./utils/keydownEvent.js"
+
+if (config.enableFab) {
+    // dynamically import FAB component
+    import("./components/fab.js")
+}
 
 const lightBtn = document.querySelector("#light-btn")
 const darkBtn = document.querySelector("#dark-btn")

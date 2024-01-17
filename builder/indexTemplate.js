@@ -116,8 +116,8 @@ const template = `\
 <html lang="${languageSelector("zh-CN", "en")}">
 ${HTMLHeader}
 <body>
-<fab-icon></fab-icon>
 ${inlineDarkmodeSwitcherScript}
+${config.enableFab ? "<fab-icon></fab-icon>" : ""}
 ${navigator}
 ${main}
 <article style="display: none;"></article>
