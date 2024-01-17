@@ -33,7 +33,7 @@ pre::before {
     padding-top: 2px;
     content: attr(data-language);
     color: rgba(255, 255, 255, 0.85);
-    font-size: .75rem;
+    font-size: .75em;
     font-weight: bold;
     z-index: 1;
 }
@@ -41,9 +41,9 @@ pre::before {
 pre code {
     /* code block */
     display: block;
-    padding: calc(1rem + 4px) 1rem 1rem;
+    padding: calc(1em + 4px) 1rem 1rem;
     overflow-x: auto;
-    font-size: 1rem;
+    font-size: 1em;
     font-family: Consolas, monospace;
     border-radius: 8px;
     background-color: var(--default-block-code-bg-color);

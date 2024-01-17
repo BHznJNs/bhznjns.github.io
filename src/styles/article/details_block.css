@@ -70,7 +70,7 @@ div.details details[open] {
 
 div.details details summary {
     color: var(--default-tx-color);
-    font-size: larger;
+    font-size: 1.2em;
     outline: none;
     user-select: none;
     cursor: pointer;

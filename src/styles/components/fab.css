@@ -54,13 +54,13 @@ fab-icon button:not(#switcher) {
     transition: background .3s,
                 filter .3s,
                 box-shadow .3s,
-                transform calc(var(--fab-item-index) * .3s) .25s;
+                transform calc(var(--fab-item-index) * .25s) .25s;
 }
 fab-icon.hidden button:not(#switcher) {
     transition: background .3s,
                 filter .3s,
                 box-shadow .3s,
-                transform calc(var(--fab-item-index) * .25s) calc(var(--z-index-value) * .25s + .25s) linear;
+                transform calc(var(--fab-item-index) * .225s) calc(var(--z-index-value) * .225s + .15s) linear;
 }
 fab-icon button:not(#switcher):hover {
     box-shadow: var(--shadow-md-1);
@@ -99,5 +99,14 @@ fab-icon #back-to-top div {
 }
 fab-icon #back-to-parent div {
     background-image: url(./imgs/fab-back-to-parent.svg);
+}
+fab-icon #enlarge-text div {
+    background-image: url(./imgs/fab-zoom-out.svg);
+}
+fab-icon #enlarge-text div {
+    background-image: url(./imgs/fab-zoom-out.svg);
+}
+fab-icon #downsize-text div {
+    background-image: url(./imgs/fab-zoom-in.svg);
 }
 

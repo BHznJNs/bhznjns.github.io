@@ -14,11 +14,11 @@ ul {
 
 ol li,
 ul li {
-    margin-bottom: 4px;
+    margin-bottom: .25em;
 }
 
 ul > li::marker {
-    font-size: 20px;
+    font-size: 1.25em;
     color: var(--default-tx-color);
     transition: color .3s;
 }

@@ -394,14 +394,20 @@ export class IframeBlock extends BaseNode {
 }
 </style>
 <script>
-window.addEventListener("load", (e) => {
-  const iframeRootEl = e.target.documentElement
-  const parent = window.parent
-  const height = parseFloat(getComputedStyle(iframeRootEl).height)
-  parent.postMessage({
-    height,
-    id: "${id}"
-  }, "*")
+const rootEl = document.documentElement
+function postHeight() {
+    const parent = window.parent
+    const height = parseFloat(getComputedStyle(rootEl).height)
+    parent.postMessage({
+        height,
+        id: "${id}"
+    }, "*")
+}
+window.addEventListener("load", postHeight)
+window.addEventListener("message", e => {
+  const { fontSize } = e.data
+  rootEl.style.fontSize = fontSize
+  postHeight()
 })
 </script>`
 
