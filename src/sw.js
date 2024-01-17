@@ -8,6 +8,8 @@ const necessaryResources = [
     "./dist/imgs/fab-switch.svg",
     "./dist/imgs/fab-back-to-top.svg",
     "./dist/imgs/fab-back-to-parent.svg",
+    "./dist/imgs/fab-zoom-in.svg",
+    "./dist/imgs/fab-zoom-out.svg",
     "./dist/imgs/favicon.png",
 ]
 const optionalResources = [
