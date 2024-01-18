@@ -25,7 +25,8 @@ blockquote::before {
     left: 0;
     display: block;
     content: " ";
-    width: 2px;
+    width: .125em;
+    max-width: 8px;
     height: 100%;
     background-color: var(--deep-bd-color);
     cursor: pointer;
@@ -35,7 +36,7 @@ blockquote::before {
 }
 
 blockquote:hover::before {
-    width: 6px;
+    width: .375em;
     transform: translateX(-3px);
 }
 
