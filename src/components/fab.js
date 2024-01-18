@@ -37,6 +37,7 @@ class FabIcon extends HTMLElement {
         }
 
         this.classList.add("hidden")
+        this.classList.add("unseen")
         this.#eventAppender()
         this.style.setProperty("--fab-item-count", subFabItem.length + 1)
         for (const el of [switcher].concat(subFabItem)) {
@@ -46,6 +47,7 @@ class FabIcon extends HTMLElement {
 
     #eventAppender() {
         this.#switcher.addEventListener("click", () => {
+            this.classList.remove("unseen")
             this.classList.toggle("hidden")
         })
         this.#subItems.backToParent.addEventListener("click", () => {

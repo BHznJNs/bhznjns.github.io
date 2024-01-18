@@ -92,4 +92,7 @@ fab-icon button:not(#switcher) img {
     width: 65%;
     height: 65%;
 }
-
+fab-icon.unseen button:not(#switcher) img {
+    /* to reduce the loading priority */
+    visibility: hidden;
+}
