@@ -1,9 +1,11 @@
 div.media-container {
+    max-height: 80vh;
     margin: 1rem 2rem;
     background-color: var(--default-bg-color);
     border-radius: 8px;
     box-shadow: var(--shadow-md-1);
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     transition: box-shadow .3s;
 }
 @media screen and (max-width: 767px) {
