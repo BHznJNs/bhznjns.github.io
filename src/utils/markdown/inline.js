@@ -1,4 +1,5 @@
 import el from "../el.js"
+import htmlEntityReplace from "../htmlEntityReplace.js"
 import getInterval from "./utils/getInterval.js"
 
 // identifier character to HTML tag
@@ -48,7 +49,7 @@ class KeyToken {
 
     toHTML() {
         const elOption = this.className === undefined ? null : {"class": this.className}
-        const thisEl = el(this.tagName, parser(this.content), elOption)
+        const thisEl = el(this.tagName, parseEntry(this.content), elOption)
         return thisEl
     }
 }
@@ -60,7 +61,7 @@ class LinkToken {
     }
 
     toHTML() {
-        const displayContent = parser(this.content)
+        const displayContent = parseEntry(this.content)
         if (this.address.startsWith("http")) {
             // internet links
             return el("a", displayContent, {
@@ -86,7 +87,7 @@ class PhoneticToken {
         const ignoredRightParenthesis = el("rp", ")")
         const notationEl = el("rt", this.notation)
 
-        const content = parser(this.content).concat([
+        const content = parseEntry(this.content).concat([
             ignoredLeftParenthesis,
             notationEl,
             ignoredRightParenthesis,
@@ -99,7 +100,7 @@ class PhoneticToken {
 
 // --- --- --- --- --- ---
 
-export default function parser(source) {
+function parser(source) {
     function getFirstChar() {
         const ch = source.charAt(0)
         source = source.substring(1)
@@ -228,22 +229,35 @@ export default function parser(source) {
         tokens.push(new TextToken(textTerm))
     }
     return tokens
+}
+
+export default function parseEntry(source) {
+    const tokens = parser(source)
+    let resultHTML = tokens
         .filter(token =>
+            // remove empty TextToken
             !(token instanceof TextToken && !token.content.length))
         .map(token => token.toHTML())
+
+    if (typeof window !== "object" && source === resultHTML[0]) {
+        // for server rendering
+        return htmlEntityReplace(source)
+    }
+    return resultHTML
 }
 
 // test cases
-// console.log(parser("##bo//itelic//ld##"))
-// console.log(parser("##bo[link text](http://www.com)ld##"))
-// console.log(parser("::dim[link text](http://www.com)med::"))
-// console.log(parser("//ita[link text](http:\\/\\/www.com)lic//"))
-// console.log(parser("asd[asd"))
-// console.log(parser("asd[asd]asd"))
-// console.log(parser("asd[asd](asd"))
-// console.log(parser("asd[asd](asd)"))
-// console.log(parser("asd[##link##](asd)"))
-// console.log(parser("##asd[link##](asd)"))
-// console.log(parser("##asd[link](asd)##"))
-// console.log(parser("::dimmed::"))
-// console.log(parser("$$f_c = \\frac{1}{abc}$$"))
+// console.log(parseEntry("##bo//itelic//ld##"))
+// console.log(parseEntry("##bo[link text](http://www.com)ld##"))
+// console.log(parseEntry("::dim[link text](http://www.com)med::"))
+// console.log(parseEntry("//ita[link text](http:\\/\\/www.com)lic//"))
+// console.log(parseEntry("``<test>``"))
+// console.log(parseEntry("asd[asd"))
+// console.log(parseEntry("asd[asd]asd"))
+// console.log(parseEntry("asd[asd](asd"))
+// console.log(parseEntry("asd[asd](asd)"))
+// console.log(parseEntry("asd[##link##](asd)"))
+// console.log(parseEntry("##asd[link##](asd)"))
+// console.log(parseEntry("##asd[link](asd)##"))
+// console.log(parseEntry("::dimmed::"))
+// console.log(parseEntry("$$f_c = \\frac{1}{abc}$$"))
