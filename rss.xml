@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/#static/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>“我们都只是暂时的健全人”</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/我们都只是暂时的健全人.html</link>
+<pubDate>Thu, 18 Jan 2024 16:07:00 +0800</pubDate>
+<lastBuildDate>Thu, 18 Jan 2024 17:17:00 +0800</lastBuildDate>
+<description>原文：[“We're All Just Temporarily Abled”](https://blog.jim-nielsen.com/2023/temporarily-abled/)</description>
+</item>
+<item>
 <title>漂亮的 FAB 动画实现</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/漂亮的 FAB 动画实现.html</link>
 <pubDate>Thu, 18 Jan 2024 08:41:00 +0800</pubDate>
@@ -108,13 +115,6 @@
 <pubDate>Thu, 13 Jul 2023 22:59:00 +0800</pubDate>
 <lastBuildDate>Fri, 14 Jul 2023 18:30:00 +0800</lastBuildDate>
 <description>前注：本文的实现参考了此 Github 仓库: [rs-complete](https://github.com/Blightmud/rs-complete)</description>
-</item>
-<item>
-<title>前端静态 Markdown 博客网站实现</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/前端静态 Markdown 博客网站实现.html</link>
-<pubDate>Fri, 7 Jul 2023 10:28:00 +0800</pubDate>
-<lastBuildDate>Fri, 7 Jul 2023 23:51:00 +0800</lastBuildDate>
-<description>``2023/7/7``</description>
 </item>
 </channel>
 </rss>
