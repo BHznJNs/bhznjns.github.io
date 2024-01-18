@@ -5,15 +5,15 @@ const necessaryResources = [
     "./dist/imgs/rss.svg",
     "./dist/imgs/homepage.svg",
     "./dist/imgs/broken-image.svg",
+    "./dist/imgs/favicon.png",
+]
+const optionalResources = [
+    /\/dist\/libs\//,
     "./dist/imgs/fab-switch.svg",
     "./dist/imgs/fab-back-to-top.svg",
     "./dist/imgs/fab-back-to-parent.svg",
     "./dist/imgs/fab-zoom-in.svg",
     "./dist/imgs/fab-zoom-out.svg",
-    "./dist/imgs/favicon.png",
-]
-const optionalResources = [
-    /\/dist\/libs\//
 ]
 
 // get the page URL without hash
@@ -28,18 +28,22 @@ function getCleanURL() {
 
 // check if the input URL is in the necessary
 function isResourceToCache(url, type) {
-    const resources = type === "option" 
-        ? optionalResources
-        : necessaryResources
+    const resources = type === "necessary"
+        ? necessaryResources
+        : optionalResources
     const currentURL = getCleanURL()
     for (const path of resources) {
         if (typeof path === "string") {
             const pathURL = new URL(path, currentURL)
-            return pathURL.href === url
+            if (pathURL.href === url) {
+                return true
+            }
         } else if (path instanceof RegExp) {
-            return path.test(url)
+            if (path.test(url)) {
+                return true
+            }
         } else {
-            console.error("Unexpected resource path: " + path)
+            console.error("Unexpected presetted optional resource path: " + path)
         }
     }
     return false
@@ -68,7 +72,7 @@ self.addEventListener("activate", (e) => {
         const cache = await caches.open(cacheName)
         const keys = await cache.keys()
         keys.filter(req =>
-            !isResourceToCache(req.url, "necessary") &&
+            !isResourceToCache(req.url, "option") &&
             !isResourceToCache(req.url, "necessary"))
         .forEach(req => cache.delete(req))
     })())
@@ -77,22 +81,41 @@ self.addEventListener("activate", (e) => {
 
 // intercepting fetch operations
 self.addEventListener("fetch", (e) => {
-    async function returnCachedResource() {
+    function isSameOrigin(url) {
+        const currentURL = new URL(getCleanURL())
+        const targetURL  = new URL(url)
+        return currentURL.origin === targetURL.origin
+    }
+    async function returnCachedResource(reqURL) {
+        if (!isSameOrigin(reqURL)) {
+            return fetch(reqURL, {
+                mode: "no-cors"
+            })
+        }
+
         const cache = await caches.open(cacheName)
-        const cachedResponse = await cache.match(e.request.url)
+        const cachedResponse = await cache.match(reqURL)
 
         if (cachedResponse) {
             // return cached resources directly
             return cachedResponse
-        } else {
-            // fetch not cached resources and return
-            const fetchResponse = await fetch(e.request.url)
-            if (isResourceToCache(e.request.url, "option")) {
-                // cache optional resources
-                cache.put(e.request.url, fetchResponse.clone())
-            }
-            return fetchResponse
         }
+
+        let fetchResponse
+        try {
+            fetchResponse = await fetch(reqURL, { mode: "no-cors" })
+        } catch(err) {
+            return new Response("Network error happened: " + err, {
+                status: 408,
+                headers: { "Content-Type": "text/plain" },
+            })
+        }
+        if (isResourceToCache(reqURL, "option")) {
+            // cache optional resources
+            cache.put(reqURL, fetchResponse.clone())
+        }
+        return fetchResponse
     }
-    e.respondWith(returnCachedResource())
+    const reqURL = e.request.url
+    e.respondWith(returnCachedResource(reqURL))
 })
