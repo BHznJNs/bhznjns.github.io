@@ -6,7 +6,11 @@ function propSetter(el, props) {
         if (val === undefined) {
             continue
         }
-        el.setAttribute(key, val)
+        if (val instanceof Function) {
+            el[key] = val
+        } else {
+            el.setAttribute(key, val)
+        }
     }
 }
 

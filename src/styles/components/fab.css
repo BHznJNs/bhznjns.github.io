@@ -69,44 +69,27 @@ fab-icon.hidden button:not(#switcher) {
     transform: translateY(0);
 }
 
-fab-icon button div {
+fab-icon button img {
     background-repeat: no-repeat;
     background-size: contain;
 }
-.dark fab-icon > button > div {
+.dark fab-icon > button > img {
     filter: invert(1);
 }
-fab-icon #switcher div {
+fab-icon #switcher img {
     width: 75%;
     height: 75%;
     padding-bottom: 0;
-    background-image: url(./imgs/fab-switch.svg);
     transform: rotate(-180deg);
     transition: padding .3s .25s,
                 transform .3s .25s;
 }
-fab-icon.hidden #switcher div {
+fab-icon.hidden #switcher img {
     padding-bottom: 12px;
     transform: rotate(0);
 }
-fab-icon button:not(#switcher) div {
+fab-icon button:not(#switcher) img {
     width: 65%;
     height: 65%;
-}
-
-fab-icon #back-to-top div {
-    background-image: url(./imgs/fab-back-to-top.svg);
-}
-fab-icon #back-to-parent div {
-    background-image: url(./imgs/fab-back-to-parent.svg);
-}
-fab-icon #enlarge-text div {
-    background-image: url(./imgs/fab-zoom-out.svg);
-}
-fab-icon #enlarge-text div {
-    background-image: url(./imgs/fab-zoom-out.svg);
-}
-fab-icon #downsize-text div {
-    background-image: url(./imgs/fab-zoom-in.svg);
 }
 

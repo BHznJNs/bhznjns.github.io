@@ -5,9 +5,14 @@ import backToTop from "../utils/backToTop.js"
 import languageSelector from "../utils/languageSelector.js"
 import { downsizeText, enlargeText } from "../scripts/articleRenderer.js"
 
-const fabItem = (id, title) => el(
-    "button",
-    el("div"),
+const fabItem = (id, imgName, title) => el("button",
+    el("img", "", {
+        src: `./dist/imgs/fab-${imgName}.svg`,
+        loading: "lazy",
+        onerror() {
+            this.src = "./dist/imgs/broken-image.svg"
+        }
+    }),
     { id, title }
 )
 
@@ -18,11 +23,11 @@ class FabIcon extends HTMLElement {
     constructor() {
         super()
 
-        const switcher = this.#switcher = fabItem("switcher", languageSelector("切换浮动操作按钮", "Switch The FAB"))
-        this.#subItems.backToParent = fabItem("back-to-parent", languageSelector("返回父级", "Back to Parent"))
-        this.#subItems.backToTop    = fabItem("back-to-top", languageSelector("返回顶部", "Back to Top"))
-        this.#subItems.enlargeText  = fabItem("enlarge-text", languageSelector("放大文本", "Enlarge Text"))
-        this.#subItems.downsizeText = fabItem("downsize-text", languageSelector("缩小文本", "Downsize Text"))
+        const switcher = this.#switcher = fabItem("switcher"      , "switch"        , languageSelector("切换浮动操作按钮", "Switch The FAB"))
+        this.#subItems.backToParent     = fabItem("back-to-parent", "back-to-parent", languageSelector("返回父级"       , "Back to Parent"))
+        this.#subItems.backToTop        = fabItem("back-to-top"   , "back-to-top"   , languageSelector("返回顶部"       , "Back to Top"   ))
+        this.#subItems.enlargeText      = fabItem("enlarge-text"  , "zoom-out"      , languageSelector("放大文本"       , "Enlarge Text"  ))
+        this.#subItems.downsizeText     = fabItem("downsize-text" , "zoom-in"       , languageSelector("缩小文本"       , "Downsize Text" ))
 
         const subFabItem = config.fabOrdering
             .map(fabItem => this.#subItems[fabItem])
@@ -44,7 +49,6 @@ class FabIcon extends HTMLElement {
             this.classList.toggle("hidden")
         })
         this.#subItems.backToParent.addEventListener("click", () => {
-            console.log(pathManager.parent())
             pathManager.jumpTo(pathManager.parent())
         })
         this.#subItems.backToTop.addEventListener("click", backToTop)
