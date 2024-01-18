@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/#static/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>漂亮的 FAB 动画实现</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/漂亮的 FAB 动画实现.html</link>
+<pubDate>Thu, 18 Jan 2024 08:41:00 +0800</pubDate>
+<lastBuildDate>Thu, 18 Jan 2024 08:46:00 +0800</lastBuildDate>
+<description>``2024/01/18``</description>
+</item>
+<item>
 <title>HTML 实现拼音注音及美化</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/HTML 实现拼音注音及美化.html</link>
 <pubDate>Mon, 1 Jan 2024 14:52:00 +0800</pubDate>
@@ -108,13 +115,6 @@
 <pubDate>Fri, 7 Jul 2023 10:28:00 +0800</pubDate>
 <lastBuildDate>Fri, 7 Jul 2023 23:51:00 +0800</lastBuildDate>
 <description>``2023/7/7``</description>
-</item>
-<item>
-<title>Rust 命令行交互语法高亮实现 (1)</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Rust 命令行输入语法高亮实现 (1).html</link>
-<pubDate>Wed, 14 Jun 2023 14:15:00 +0800</pubDate>
-<lastBuildDate>Wed, 14 Jun 2023 21:22:00 +0800</lastBuildDate>
-<description>``2023/6/14``</description>
 </item>
 </channel>
 </rss>

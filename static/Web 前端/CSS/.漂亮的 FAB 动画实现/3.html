@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #fab {
+            --fab-size: 64px;
+            --shadow-sm: 0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12) !important;
+            --shadow-md-1: 0 3px 3px -2px rgba(0,0,0,.2),0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12) !important;
+            --shadow-md-2: 0 3px 5px -1px rgba(0,0,0,.2),0 5px 8px 0 rgba(0,0,0,.14),0 1px 14px 0 rgba(0,0,0,.12) !important;
+
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            width: var(--fab-size);
+            height: var(--fab-size);
+            z-index: 999; /* at the most top */
+            transition: transform .3s;
+        }
+        #fab.hidden {
+            transform: translateY(calc(1rem + var(--fab-size) / 3));
+        }
+
+        .fab-item {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .fab-item:hover {
+            background-color: #eee;
+        }
+        .fab-item .image {
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        #switcher {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            box-shadow: var(--shadow-md-1);
+            transition: background .3s,
+                        box-shadow .3s,
+                        transform .3s .25s;
+        }
+        #switcher:hover {
+            box-shadow: var(--shadow-md-2);
+        }
+        #switcher .image {
+            width: 75%;
+            height: 75%;
+            padding-bottom: 0;
+            background-image: url(./fab-switch.svg);
+            transform: rotate(-180deg);
+            transition: padding .3s .25s,
+                        transform .3s .25s;
+        }
+        #fab.hidden #switcher .image {
+            padding-bottom: 12px;
+            transform: rotate(0);
+        }
+
+        div.fab-item:not(#switcher) {
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            box-shadow: var(--shadow-sm);
+            transform: translateY(calc(-4px - var(--fab-item-index) * var(--fab-size)));
+            transition: background .3s,
+                        box-shadow .3s,
+                        transform .3s .25s;
+        }
+        #fab.hidden div.fab-item:not(#switcher) {
+            transform: translateY(0);
+        }
+        div.fab-item:not(#switcher) .image {
+            width: 75%;
+            height: 75%;
+        }
+        #item1 .image {
+            background-image: url(./html5.svg)
+        }
+        #item2 .image {
+            background-image: url(./css.svg)
+        }
+        #item3 .image {
+            background-image: url(./javascript.svg)
+        }
+    </style>
+</head>
+<body>
+    <div id="fab">
+        <div id="switcher" class="fab-item">
+            <div class="image"></div>
+        </div>
+        <div id="item1" class="fab-item">
+            <div class="image"></div>
+        </div>
+        <div id="item2" class="fab-item">
+            <div class="image"></div>
+        </div>
+        <div id="item3" class="fab-item">
+            <div class="image"></div>
+        </div>
+    </div>
+    <script>
+        const container = document.querySelector("#fab")
+        const switcher  = container.querySelector("#switcher")
+
+        switcher.addEventListener("click", () => {
+            container.classList.toggle("hidden")
+        })
+
+        const subFabItems = container.querySelectorAll(".fab-item:not(#switcher)")
+        for (const [index, item] of Object.entries(subFabItems)) {
+            item.style.setProperty("--fab-item-index", Number(index) + 1)
+        }
+    </script>
+</body>
+</html>
