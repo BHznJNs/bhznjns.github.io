@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/#static/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>树莓派旁路由折腾记录</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/树莓派旁路由折腾记录.html</link>
+<pubDate>Sun, 21 Jan 2024 18:20:00 +0800</pubDate>
+<lastBuildDate>Sun, 21 Jan 2024 22:52:00 +0800</lastBuildDate>
+<description>``2024/01/21``</description>
+</item>
+<item>
 <title>“我们都只是暂时的健全人”</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/我们都只是暂时的健全人.html</link>
 <pubDate>Thu, 18 Jan 2024 16:07:00 +0800</pubDate>
@@ -108,13 +115,6 @@
 <pubDate>Wed, 19 Jul 2023 17:03:00 +0800</pubDate>
 <lastBuildDate>Thu, 7 Dec 2023 23:06:00 +0800</lastBuildDate>
 <description>``2023/7/19``</description>
-</item>
-<item>
-<title>单词补全原理及 Rust 简单实现</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/单词补全原理及 Rust 简单实现.html</link>
-<pubDate>Thu, 13 Jul 2023 22:59:00 +0800</pubDate>
-<lastBuildDate>Fri, 14 Jul 2023 18:30:00 +0800</lastBuildDate>
-<description>前注：本文的实现参考了此 Github 仓库: [rs-complete](https://github.com/Blightmud/rs-complete)</description>
 </item>
 </channel>
 </rss>
