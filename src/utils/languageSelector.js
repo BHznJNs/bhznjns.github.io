@@ -4,7 +4,7 @@ const currentLang = config.language
 const langList = ["zh", "en"]
 function languageSelectorCreator(lang) {
     for (const [index, langName] of Object.entries(langList)) {
-        if (currentLang === langName) {
+        if (lang === langName) {
             return (...selections) => selections[index]
         }
     }

@@ -5,7 +5,7 @@ fab-icon {
     bottom: 1rem;
     width: var(--fab-size);
     height: var(--fab-size);
-    z-index: 999; /* at the most top */
+    z-index: 1000; /* at the most top */
     transition: transform .3s;
 }
 fab-icon.hidden {
@@ -26,6 +26,10 @@ fab-icon button {
 fab-icon button:hover {
     background-color: var(--hovered-bg-color);
 }
+fab-icon button:disabled {
+    opacity: .8;
+    pointer-events: none;
+}
 
 fab-icon #switcher {
     top: 0;
@@ -36,6 +40,7 @@ fab-icon #switcher {
     z-index: var(--fab-item-count);
     transition: background .3s,
                 filter .3s,
+                opacity .3s,
                 box-shadow .3s,
                 transform .3s .25s;
 }
@@ -53,6 +58,7 @@ fab-icon button:not(#switcher) {
     transform: translateY(calc(-4px - var(--fab-item-index) * var(--fab-size)));
     transition: background .3s,
                 filter .3s,
+                opacity .3s,
                 box-shadow .3s,
                 transform calc(var(--fab-item-index) * .25s) .25s;
 }

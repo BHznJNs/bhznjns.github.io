@@ -39,11 +39,19 @@ export default {
      * 定义浮动操作按钮的顺序，如果你不需要某个浮动操作按钮，直接将其移除即可
      */
     fabOrdering: [
+        "catalogSwitcher",
         "downsizeText",
         "enlargeText",
         "backToParent",
         "backToTop",
     ],
+
+    /**
+     * enableCatalog: Boolean
+     * used to enable / disable the catalog feature
+     * 用来启用/禁用文章目录功能
+     */
+    enableCatalog: true,
 
     /**
      * enableRSS: Boolean

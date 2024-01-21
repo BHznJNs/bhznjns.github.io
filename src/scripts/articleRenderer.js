@@ -2,26 +2,33 @@ import { importHighlighter, importTexRenderer } from "./importer.js"
 import mdResolver from "../utils/markdown/index.js"
 import keydownEvent from "../utils/keydownEvent.js"
 import backToTop from "../utils/backToTop.js"
-import getRem from "../utils/getRem.js"
+import eventbus from "../utils/eventbus/inst.js"
+import config from "../../build.config.js"
+import { Headline } from "../utils/markdown/node.js"
+import languageSelector from "../utils/languageSelector.js"
 
 const articleEl = document.querySelector("article")
-let fontSizeOffset = 0
-function setIframesRem(fontSize) {
-    const embeddedIframes = document.querySelectorAll("article iframe[srcdoc]")
-    embeddedIframes.forEach(el =>
-        el.contentWindow.postMessage({ fontSize }, "*"))
+const emptyArticlePlaceHolder = languageSelector("空文章", "Empty Article")
+
+eventbus.on("catalog-toggle", () => {
+    articleEl.classList.toggle("with-catalog")
+})
+eventbus.on("catalog-closed", () => {
+    articleEl.classList.remove("with-catalog")
+})
+
+function getHeadlines(structure) {
+    return structure
+        .filter(node => node instanceof Headline)
+        .map((node, index) => {
+            const id = node.id = "headline-" + index
+            const content = node.content.map(el => el.cloneNode(true))
+            return {
+                id, content,
+                level: node.tagName,
+            }
+        })
 }
-function textScalerCreator(callback) {
-    return function() {
-        callback()
-        const baseSize = getRem()
-        const targetFontSize = baseSize + fontSizeOffset + "px"
-        articleEl.style.fontSize = targetFontSize
-        setIframesRem(targetFontSize)
-    }
-}
-export const enlargeText  = textScalerCreator(() => fontSizeOffset += 1)
-export const downsizeText = textScalerCreator(() => fontSizeOffset -= 1)
 
 export default function articleRender(articleEl, mdText) {
     // language names to import
@@ -32,11 +39,14 @@ export default function articleRender(articleEl, mdText) {
     globalThis.__IframeCounter__ = 0
 
     const structure = mdResolver(mdText)
+    if (config.enableCatalog) {
+        const headlineItems = getHeadlines(structure)
+        eventbus.emit("article-rendered", headlineItems)
+    }
 
-    let resultNodes = structure
-        .map(node => node.toHTML())
+    let resultNodes = structure.map(node => node.toHTML())
     if (!resultNodes.length) {
-        resultNodes = el("h1", "Empty")
+        resultNodes = el("h1", emptyArticlePlaceHolder)
     }
 
     // --- --- --- --- --- ---

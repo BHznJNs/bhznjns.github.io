@@ -6,18 +6,25 @@ export function newestItemRenderer(item) {
     const createDate = new Date(item.timestamp)
     const formatedDate = new Intl.DateTimeFormat().format(createDate)
     const dateEl  = el("code", formatedDate)
-    const titleEl = el("span", item.title)
+    const titleEl = el("span", item.title, {
+        "class": "underline-target"
+    })
     return el("li",
         [dateEl, el("text", ": "), titleEl],
         {
             tabindex: 0,
-            "data-target-blog": item.link
+            "class": "underline-through",
+            "data-target-blog": item.link,
         }
     )
 }
 export function directoryItemRenderer(item) {
-    return el("li", el("span", item), {
-        tabindex: 0
+    const contentEl = el("span", item, {
+        "class": "underline-target"
+    })
+    return el("li", contentEl, {
+        "class": "underline-through",
+        tabindex: 0,
     })
 }
 

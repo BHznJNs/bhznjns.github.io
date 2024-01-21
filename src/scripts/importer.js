@@ -1,7 +1,18 @@
 import config from "../../build.config.js"
 
-const { katexOptions } = config
+function importStyle(path) {
+    const linkEl = document.createElement("link")
+    linkEl.rel  = "stylesheet"
+    linkEl.href = path
+    document.head.appendChild(linkEl)
+}
 
+export async function importComponent(name) {
+    await import(`../components/${name}.js`)
+    importStyle(`./dist/chunks/${name}.min.css`)
+}
+
+const { katexOptions } = config
 let hljs  = null
 let katex = null
 
@@ -11,7 +22,7 @@ export async function importHighlighter() {
         const languageListArr = Array.from(globalThis.__LanguageList__)
         const langDefImporters = languageListArr
             .filter(name => !hljs.getLanguage(name))
-            .map(lang => import(`./libs/highlight-es/languages/${lang.toLowerCase()}.js`))
+            .map(lang => import(`../libs/highlight-es/languages/${lang.toLowerCase()}.js`))
 
         Promise.all(langDefImporters)
             .then(langDefs => langDefs.forEach((defModule, index) => {
@@ -70,10 +81,7 @@ export async function importTexRenderer() {
     }
 
     // dynamically import katex style and script 
-    const linkEl = document.createElement("link")
-    linkEl.rel  = "stylesheet"
-    linkEl.href = "./dist/libs/katex/katex.min.css"
-    document.head.appendChild(linkEl)
+    importStyle("./dist/libs/katex/katex.min.css")
     try {
         const katexModule = await import("../libs/katex/katex.min.js")
         katex = katexModule.default

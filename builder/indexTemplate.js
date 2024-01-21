@@ -117,9 +117,16 @@ const template = `\
 ${HTMLHeader}
 <body>
 ${inlineDarkmodeSwitcherScript}
-${config.enableFab ? "<fab-icon></fab-icon>" : ""}
+${config.enableFab
+    ? "<fab-icon></fab-icon>"
+    : ""
+}
 ${navigator}
 ${main}
+${config.enableCatalog
+    ? "<article-catalog></article-catalog>"
+    : ""
+}
 <article style="display: none;"></article>
 ${footer}
 </body>

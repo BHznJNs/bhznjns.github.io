@@ -1,11 +1,13 @@
+import "../styles/components/fab.css"
 import pathManager from "../scripts/pathManager.js"
 import config from "../../build.config.js"
 import el from "../utils/el.js"
 import backToTop from "../utils/backToTop.js"
 import languageSelector from "../utils/languageSelector.js"
-import { downsizeText, enlargeText } from "../scripts/articleRenderer.js"
+import { downsizeText, enlargeText } from "../scripts/textScaler.js"
+import eventbus from "../utils/eventbus/inst.js"
 
-const fabItem = (id, imgName, title) => el("button",
+const fabItem = (imgName, title) => el("button",
     el("img", "", {
         src: `./dist/imgs/fab-${imgName}.svg`,
         loading: "lazy",
@@ -13,7 +15,7 @@ const fabItem = (id, imgName, title) => el("button",
             this.src = "./dist/imgs/broken-image.svg"
         }
     }),
-    { id, title }
+    { title }
 )
 
 class FabIcon extends HTMLElement {
@@ -23,11 +25,15 @@ class FabIcon extends HTMLElement {
     constructor() {
         super()
 
-        const switcher = this.#switcher = fabItem("switcher"      , "switch"        , languageSelector("切换浮动操作按钮", "Switch The FAB"))
-        this.#subItems.backToParent     = fabItem("back-to-parent", "back-to-parent", languageSelector("返回父级"       , "Back to Parent"))
-        this.#subItems.backToTop        = fabItem("back-to-top"   , "back-to-top"   , languageSelector("返回顶部"       , "Back to Top"   ))
-        this.#subItems.enlargeText      = fabItem("enlarge-text"  , "zoom-out"      , languageSelector("放大文本"       , "Enlarge Text"  ))
-        this.#subItems.downsizeText     = fabItem("downsize-text" , "zoom-in"       , languageSelector("缩小文本"       , "Downsize Text" ))
+        const switcher = this.#switcher = fabItem("switch"        , languageSelector("切换浮动操作按钮", "Switch The FAB"))
+        this.#subItems.backToParent     = fabItem("back-to-parent", languageSelector("返回父级"       , "Back to Parent"))
+        this.#subItems.backToTop        = fabItem("back-to-top"   , languageSelector("返回顶部"       , "Back to Top"   ))
+        this.#subItems.enlargeText      = fabItem("zoom-out"      , languageSelector("放大文本"       , "Enlarge Text"  ))
+        this.#subItems.downsizeText     = fabItem("zoom-in"       , languageSelector("缩小文本"       , "Downsize Text" ))
+        if (config.enableCatalog) {
+            this.#subItems.catalogSwitcher =
+                fabItem("catalog", languageSelector("开启/关闭菜单" , "Open/Close Catalog"))
+        }
 
         const subFabItem = config.fabOrdering
             .map(fabItem => this.#subItems[fabItem])
@@ -36,16 +42,17 @@ class FabIcon extends HTMLElement {
             item.style.setProperty("--fab-item-index", Number(index) + 1)
         }
 
+        switcher.id = "switcher"
         this.classList.add("hidden")
         this.classList.add("unseen")
-        this.#eventAppender()
+        this.#appendEvent()
         this.style.setProperty("--fab-item-count", subFabItem.length + 1)
         for (const el of [switcher].concat(subFabItem)) {
             this.appendChild(el)
         }
     }
 
-    #eventAppender() {
+    #appendEvent() {
         this.#switcher.addEventListener("click", () => {
             this.classList.remove("unseen")
             this.classList.toggle("hidden")
@@ -56,6 +63,17 @@ class FabIcon extends HTMLElement {
         this.#subItems.backToTop.addEventListener("click", backToTop)
         this.#subItems.enlargeText.addEventListener("click", enlargeText)
         this.#subItems.downsizeText.addEventListener("click", downsizeText)
+        this.#subItems.catalogSwitcher.addEventListener("click", () => {
+            eventbus.emit("catalog-toggle")
+        })
+
+        const toggleCatalogSwitcherState = () => {
+            const catalogSwitcher = this.#subItems.catalogSwitcher
+            const isInArticle = pathManager.isIn.article()
+            catalogSwitcher.disabled = !isInArticle
+        }
+        window.addEventListener("hashchange", toggleCatalogSwitcherState)
+        toggleCatalogSwitcherState()
     }
 }
 customElements.define("fab-icon", FabIcon)

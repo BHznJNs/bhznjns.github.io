@@ -1,0 +1,22 @@
+/* Underlined animations */
+.underline-through .underline-target {
+    position: relative;
+    bottom: 0;
+    padding-bottom: 2px;
+    background-image: linear-gradient(
+        to right,
+        var(--default-tx-color),
+        var(--default-tx-color)
+    );
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 0 2px;
+    transition: bottom .3s,
+                background-size .3s;
+}
+
+.underline-through:hover .underline-target {
+    bottom: 2px;
+    background-position: left bottom;
+    background-size: 100% 2px;
+}

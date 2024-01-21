@@ -55,13 +55,13 @@ class PagingView extends HTMLElement {
             el("text", "/"),
             this.#elements.maxPage,
         ])
-        this.#eventAppender()
+        this.#appendEvent()
         for (const el of [prevBtn, labelEl, nextBtn]) {
             this.appendChild(el)
         }
     }
-    #eventAppender() {
-        this.#elements.input.addEventListener("keydown", (e) => {
+    #appendEvent() {
+        this.#elements.input.addEventListener("keydown", e => {
             if (e.key !== "Enter") {
                 return
             }

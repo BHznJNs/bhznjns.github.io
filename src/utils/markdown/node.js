@@ -1,26 +1,11 @@
-import config from "../../../build.config.js"
 import mdResolver from "./index.js"
 import inlineResolver from "./inline.js"
 import getInterval from "./utils/getInterval.js"
 import el from "../el.js"
 import languageSelector from "../languageSelector.js"
 
-const { language } = config
-
-class BaseNode {
-    tagName = ""
-    content = ""
-
-    toHTML() {
-        const inline = inlineResolver(this.content)
-        return el(this.tagName, inline)
-    }
-}
-
-export class Headline extends BaseNode {
+export class Headline {
     constructor(content) {
-        super()
-
         // "### test" -> "###"
         const splited = content.split(" ")
         const numberSignStr = splited[0]
@@ -35,28 +20,37 @@ export class Headline extends BaseNode {
             numberSignCount = 0
         }
 
+        const rawContent = splited.slice(1).join(" ")
         this.tagName = "h" + numberSignCount
-        this.content = splited.slice(1).join(" ")
+        this.content = inlineResolver(rawContent)
+    }
+    toHTML() {
+        const options = this.id === undefined
+            ? null
+            : { id: this.id }
+        return el(this.tagName, this.content, options)
     }
 
     static pattern = source => source.match(/^(#+ )/)
 }
 
-export class Para extends BaseNode {
+export class Para {
     tagName = "p"
 
     constructor(content) {
-        super()
         this.content = content.trimStart()
+    }
+    toHTML() {
+        const inline = inlineResolver(this.content)
+        return el(this.tagName, inline)
     }
 }
 
-export class Quote extends BaseNode {
+export class Quote {
     tagName = "blockquote"
     children = []
 
     constructor(children) {
-        super()
         this.children = children
     }
     toHTML() {
@@ -69,18 +63,16 @@ export class Quote extends BaseNode {
         (source === ">") || source.startsWith("> ")
 }
 
-export class Divider extends BaseNode {
+export class Divider {
     toHTML = () => el("hr")
     static pattern = source =>
         source.match(/(-\s*-\s*-)|(\*\s*\*\s*\*)/) && !source.match(/[a-zA-Z0-9]/)
 }
 
-export class List extends BaseNode {
+export class List {
     children = []
 
     constructor(content) {
-        super()
-
         this.isOrdered = Boolean(List.orderedPattern(content))
         this.tagName   = (this.isOrdered) ? "ol" : "ul"
         this.children  = [List.getContent(content, this.isOrdered)]
@@ -118,13 +110,11 @@ export class List extends BaseNode {
     }
 }
 
-export class Table extends BaseNode {
+export class Table {
     headerCells = [""]   // [string]
     bodyRows    = [[""]] // [[string]]
 
     constructor(headerCells, bodyRows) {
-        super()
-
         this.headerCells = headerCells
         this.bodyRows    = bodyRows
     }
@@ -156,12 +146,10 @@ export class Table extends BaseNode {
 // media nodes start
 // --- --- --- --- -
 
-class MediaNode extends BaseNode {
+class MediaNode {
     source = ""
     description = ""    
     constructor(mdText) {
-        super()
-
         mdText = mdText.substr(2)
         this.description = getInterval(mdText, "]")
         mdText = mdText.substr(this.description.length + 2)
@@ -285,10 +273,8 @@ export class Iframe extends MediaNode {
 // block nodes start
 // --- --- --- --- -
 
-export class CodeBlock extends BaseNode {
+export class CodeBlock {
     constructor(content, lang) {
-        super()
-
         this.lang = lang
         if (typeof window === "object") {
             // in browser
@@ -331,13 +317,11 @@ export class CodeBlock extends BaseNode {
     static pattern = source => source.startsWith("```")
 }
 
-export class DetailsBlock extends BaseNode {
+export class DetailsBlock {
     summary = ""
     content = ""
 
-    constructor(content, summary) {
-        super()
-        
+    constructor(content, summary) {   
         this.summary = summary
         this.content = mdResolver(content)
     }
@@ -361,13 +345,11 @@ export class DetailsBlock extends BaseNode {
         source.startsWith(">>>")
 }
 
-export class FormulaBlock extends BaseNode {
+export class FormulaBlock {
     content = ""
     description = ""
 
     constructor(content, description) {
-        super()
-
         this.content = content
         this.description = description
     }
@@ -383,7 +365,7 @@ export class FormulaBlock extends BaseNode {
         source.startsWith("$$$")
 }
 
-export class IframeBlock extends BaseNode {
+export class IframeBlock {
     // injected html codes, used to auto darkmode and send height message
     static #injectedCodes = id => `\
 <style>
@@ -413,8 +395,6 @@ window.addEventListener("message", e => {
 </script>`
 
     constructor(content, description) {
-        super()
-
         globalThis.__IframeCounter__ += 1
         this.id = "iframe_" + globalThis.__IframeCounter__
         this.description = description

@@ -9,7 +9,7 @@ parentDirBtn.addEventListener("click", () => {
     pageController.back()
     pathManager.jumpTo(pathManager.parent())
 })
-articleList.addEventListener("click", (e) => {
+articleList.addEventListener("click", e => {
     const target = e.target
 
     if (target === articleList) {

@@ -4,10 +4,13 @@ import "./scripts/mainManager.js"
 import config from "../build.config.js"
 import pageController from "./components/paging.js"
 import keydownEvent from "./utils/keydownEvent.js"
+import { importComponent } from "./scripts/importer"
 
 if (config.enableFab) {
-    // dynamically import FAB component
-    import("./components/fab.js")
+    importComponent("fab")
+}
+if (config.enableCatalog) {
+    importComponent("catalog")
 }
 
 const lightBtn = document.querySelector("#light-btn")
@@ -21,14 +24,14 @@ window.addEventListener("popstate", () => {
         pageController.back()
     }
 })
-window.addEventListener("message", (e) => {
+window.addEventListener("message", e => {
     if (e.origin != "null") {
         return
     }
     const { id, height } = e.data
     const targetIframeEl = document.getElementById(id)
     targetIframeEl.style.height = height + "px"
-}, false)
+})
 
 if ("serviceWorker" in navigator) {
     // if support service worker, register

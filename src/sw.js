@@ -10,6 +10,7 @@ const necessaryResources = [
 const optionalResources = [
     /\/dist\/libs\//,
     "./dist/imgs/fab-switch.svg",
+    "./dist/imgs/fab-catalog.svg",
     "./dist/imgs/fab-back-to-top.svg",
     "./dist/imgs/fab-back-to-parent.svg",
     "./dist/imgs/fab-zoom-in.svg",
@@ -49,7 +50,7 @@ function isResourceToCache(url, type) {
     return false
 }
 
-self.addEventListener("install", (e) => {
+self.addEventListener("install", e => {
     console.log("[Service Worker] Installing...")
     e.waitUntil((async () => {
         const cache = await caches.open(cacheName)
@@ -66,7 +67,7 @@ self.addEventListener("install", (e) => {
     })())
 })
 
-self.addEventListener("activate", (e) => {
+self.addEventListener("activate", e => {
     e.waitUntil((async () => {
         // auto update cache when this file updated
         const cache = await caches.open(cacheName)
@@ -80,7 +81,7 @@ self.addEventListener("activate", (e) => {
 })
 
 // intercepting fetch operations
-self.addEventListener("fetch", (e) => {
+self.addEventListener("fetch", e => {
     function isSameOrigin(url) {
         const currentURL = new URL(getCleanURL())
         const targetURL  = new URL(url)
