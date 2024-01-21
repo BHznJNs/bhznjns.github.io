@@ -1,5 +1,5 @@
 import { hashChangeEvent } from "../scripts/pathManager.js"
-import el from "../utils/el.js"
+import el from "../utils/dom/el.js"
 import languageSelector from "../utils/languageSelector.js"
 
 class PageController {

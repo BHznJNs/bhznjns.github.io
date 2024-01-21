@@ -1,6 +1,6 @@
 import articleRender from "./articleRenderer.js"
-import el from "../utils/el.js"
-import keydownEvent from "../utils/keydownEvent.js"
+import el from "../utils/dom/el.js"
+import keydownEvent from "../utils/dom/keydownEvent.js"
 
 export function newestItemRenderer(item) {
     const createDate = new Date(item.timestamp)

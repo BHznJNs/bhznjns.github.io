@@ -1,4 +1,4 @@
-import el from "../el.js"
+import el from "../dom/el.js"
 import htmlEntityReplace from "../htmlEntityReplace.js"
 import getInterval from "./utils/getInterval.js"
 

@@ -1,8 +1,8 @@
 import mdResolver from "./index.js"
 import inlineResolver from "./inline.js"
-import getInterval from "./utils/getInterval.js"
-import el from "../el.js"
+import el from "../dom/el.js"
 import languageSelector from "../languageSelector.js"
+import getInterval from "./utils/getInterval.js"
 
 export class Headline {
     constructor(content) {

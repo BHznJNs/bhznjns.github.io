@@ -1,9 +1,9 @@
 import pathManager from "../scripts/pathManager"
 import "../styles/components/catalog.css"
-import el from "../utils/el.js"
+import throttle from "../utils/throttle.js"
 import eventbus from "../utils/eventbus/inst.js"
-import scrollToEl from "../utils/scrollToEl"
-import throttle from "../utils/throttle"
+import el from "../utils/dom/el.js"
+import scrollToEl from "../utils/dom/scrollToEl.js"
 
 function catalogItemRenderer({ level, content, id }) {
     const contentEl = el("div",

@@ -1,4 +1,4 @@
-import getRem from "../utils/getRem.js"
+import getRem from "../utils/dom/getRem.js"
 
 const articleEl = document.querySelector("article")
 
