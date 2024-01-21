@@ -28,10 +28,11 @@ export default pageController
 
 // --- --- --- --- --- ---
 
-const btn = content => el(
-    "button",
-    el("span", content), {
-    "class": "icon-btn"
+const btn = content => el("button",
+    el("span", content, {
+        "class": "underline-target"
+    }), {
+    "class": "icon-btn underline-side"
 })
 
 class PagingView extends HTMLElement {
@@ -48,8 +49,9 @@ class PagingView extends HTMLElement {
         this.#elements.maxPage = el("span", "1")
         const prevBtn = this.#elements.prevBtn = btn(languageSelector("上一页", "Prev"))
         const nextBtn = this.#elements.nextBtn = btn(languageSelector("下一页", "Next"))
-        prevBtn.id = "prev-btn"
-        nextBtn.id = "next-btn"
+        prevBtn.id = "prev-btn"; prevBtn.classList.add("left")
+        nextBtn.id = "next-btn"; nextBtn.classList.add("right")
+
         const labelEl = el("label", [
             this.#elements.input,
             el("text", "/"),

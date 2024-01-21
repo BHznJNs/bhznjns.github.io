@@ -1,9 +1,8 @@
 @import url(./color.css);
-@import url(./underline.css);
 @import url(./navigator.css);
 @import url(./main.css);
 @import url(./article/index.css);
-@import url(./components/paging.css);
+@import url(./components/index.css);
 @import url(../libs/highlight-es/github-dark.css);
 
 body {

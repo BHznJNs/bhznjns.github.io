@@ -29,64 +29,11 @@ nav .icon-btn img {
     margin-right: 6px;
 }
 
-.icon-btn {
-    display: inline-flex;
-    height: 2rem;
-    align-items: center;
-    padding: 6px .5rem;
-    color: var(--default-tx-color) !important;
-    background-color: var(--default-bg-color);
-    border: solid 1px var(--btn-bd-color);
-    border-radius: 8px;
-    box-shadow: var(--shadow-sm);
-    cursor: pointer;
-    text-decoration: none !important;
-    transition: background .3s,
-                box-shadow .3s;
-}
-
-a.icon-btn::before {
+nav a::before {
     content: none;
     display: unset;
 }
 
-.icon-btn img {
-    height: 1.6rem;
-    transition: filter .3s .15s;
-}
-
-.icon-btn:hover {
-    background-color: var(--hovered-bg-color);
-    box-shadow: var(--shadow-md-1);
-}
-
-.icon-btn span {
-    transition: color .3s .15s,
-                transform .3s;
-}
-
-nav .icon-btn:hover span {
-    transform: translateY(-3px);
-}
-
-.icon-btn span::before {
-    display: block;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    content: " ";
-    border-bottom: solid 2px var(--default-tx-color);
-    width: 0;
-    transition: width .3s;
-}
-
-.icon-btn:hover span::before {
-    width: 100%;
-}
-
-.dark .icon-btn {
-    border-width: 3px;
-}
 .dark #dark-btn {
     display: none;
 }

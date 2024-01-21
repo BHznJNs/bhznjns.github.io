@@ -33,12 +33,12 @@ const navigator = `\
 <nav>
     <a
         id="homepage"
-        class="icon-btn"
+        class="icon-btn underline-side left"
         href="#"
         onclick="globalThis.__CurrentPage__=1"
     >
         <img src="./dist/imgs/homepage.svg" alt="${languageSelector("主页", "home")}">
-        <span>${languageSelector("主页", "Home")}</span>
+        <span class="underline-target">${languageSelector("主页", "Home")}</span>
     </a>
     <span>
 ${(config.enableRSS) ? `\
