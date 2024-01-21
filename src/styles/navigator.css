@@ -1,6 +1,7 @@
 nav {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin: 1rem var(--page-horizonal-padding) 0;
     padding: 0 8px;
     user-select: none;
@@ -14,6 +15,9 @@ nav .icon-btn img {
     aspect-ratio: 1;
 }
 
+#homepage {
+    margin-right: 6px;
+}
 #homepage img {
     padding-right: .4rem;
 }

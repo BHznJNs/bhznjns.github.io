@@ -42,8 +42,15 @@ ul > li:hover::marker {
 
 ol {
     list-style: none;
+    overflow-x: hidden;
 }
 ol > li {
+    display: flex;
+    counter-increment: list-item;
+    align-items: baseline;
+    margin-bottom: 0;
+    padding: 4px 0;
+    overflow-wrap: anywhere;
     border-top-left-radius: var(--border-radius-value);
     border-bottom-left-radius: var(--border-radius-value);
 }
@@ -57,6 +64,6 @@ ol > li::before {
     color: var(--default-bg-color);
     background-color: var(--default-tx-color);
     border-radius: var(--border-radius-value);
-    font-family: inherit;
+    font-weight: normal;
     transition: inherit;
 }

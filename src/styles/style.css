@@ -70,6 +70,7 @@ label input {
 }
 
 footer {
+    padding: 0 6px;
     margin-bottom: 48px;
     text-align: center;
     color: var(--default-tx-color);

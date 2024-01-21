@@ -43,13 +43,11 @@ article-catalog.hidden {
 }
 
 article-catalog ol li {
-    margin-bottom: 0;
-    padding: 3px 0;
     user-select: none;
     cursor: pointer;
 }
 
-article-catalog li span {
+article-catalog li * {
     /* prevent to trigger events */
     pointer-events: none;
 }

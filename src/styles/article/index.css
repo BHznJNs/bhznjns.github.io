@@ -47,6 +47,7 @@ article.with-catalog {
         width: auto;
         margin-left: var(--page-horizonal-padding);
         margin-right: var(--page-horizonal-padding);
+        border-radius: .75rem;
         pointer-events: none;
         user-select: none;
         opacity: .6;
