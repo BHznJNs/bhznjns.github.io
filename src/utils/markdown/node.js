@@ -365,8 +365,27 @@ export class FormulaBlock {
         source.startsWith("$$$")
 }
 
+export class ChartBlock {
+    static pattern = source =>
+        source.startsWith("!!!")
+
+    constructor(content, _description) {
+        const options = new Function(content + ";return option")()
+        this.chartOptions = options
+        globalThis.__ChartOptionList__.push(options)
+    }
+    toHTML() {
+        const chartEl = el("div", "", {
+            "class": "chart",
+        })
+        chartEl.__ChartOptions__ = this.chartOptions
+        return MediaNode.containerGenerator(chartEl)
+    }
+}
+
 export class IframeBlock {
-    // injected html codes, used to auto darkmode and send height message
+    // injected html codes, used to auto darkmode
+    // and send height message
     static #injectedCodes = id => `\
 <style>
 @media (prefers-color-scheme: dark) {

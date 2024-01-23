@@ -4,11 +4,13 @@ import {
     Image, Audio, Video,
     FormulaBlock, CodeBlock,
     isIframePattern,
-    DetailsBlock
+    DetailsBlock,
+    ChartBlock
 } from "./node.js"
 import {
     listResolver, quoteResolver, tableResolver,
-    codeResolver, formulaResolver, iframeResolver, detailsResolver,
+    codeResolver, formulaResolver, chartResolver,
+    iframeResolver, detailsResolver,
 } from "./resolvers/index.js"
 import getLines from "./utils/getLines.js"
 
@@ -56,6 +58,9 @@ export default function mdResolver(source) {
         } else
         if (CodeBlock.pattern(l)) {
             nodes.push(codeResolver(l, lines))
+        } else
+        if (ChartBlock.pattern(l)) {
+            nodes.push(chartResolver(l, lines))
         } else
         if (isIframePattern(l)) {
             nodes.push(iframeResolver(l, lines))

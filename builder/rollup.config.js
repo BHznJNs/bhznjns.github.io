@@ -28,7 +28,11 @@ export default [
             chunkFileNames: "chunks/[name].min.js",
             sourcemap: true,
         },
-        external: [/katex/, /highlight/],
+        external: [
+            /libs\/katex/,
+            /libs\/highlight/,
+            /libs\/echarts/
+        ],
         plugins: [
             terser(),
             copy({
@@ -37,7 +41,9 @@ export default [
                         src: [
                             "src/imgs/*.svg",
                             "src/imgs/*.jpg",
+                            "src/imgs/*.jpeg",
                             "src/imgs/*.png",
+                            "src/imgs/*.webp",
                         ],
                         dest: "dist/imgs/"
                     },
@@ -52,16 +58,24 @@ export default [
                         src: "src/libs/katex/fonts/*",
                         dest: "dist/libs/katex/fonts/",
                     },
-                    {/* highlight.js */
+                    { /* highlight.js */
                         src: [
                             "src/libs/highlight-es/highlight.min.js",
                             "src/libs/highlight-es/highlight.map",
                         ],
                         dest: "dist/libs/highlight-es/"
                     },
-                    {/* highlight.js languages */
+                    { /* highlight.js languages */
                         src: "src/libs/highlight-es/languages/*",
                         dest: "dist/libs/highlight-es/languages/"
+                    },
+                    { /* echarts.js */
+                        src: "src/libs/echarts/core.js",
+                        dest: "dist/libs/echarts/"
+                    },
+                    { /* echarts.js chunks */
+                        src: "src/libs/echarts/chunks/*",
+                        dest: "dist/libs/echarts/chunks"
                     }
                 ],
             }),

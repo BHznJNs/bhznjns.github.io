@@ -98,5 +98,17 @@ export default {
      * options for katex.js rendering, see here: https://katex.org/docs/options
      * katex.js 用于渲染数学公式的配置项，见此：https://katex.org/docs/options
      */
-    katexOptions: null
+    katexOptions: null,
+
+    /**
+     * echartsOptions: Object
+     * the global general config options for echarts.js rendering, see here: https://echarts.apache.org/zh/option.html
+     * echarts.js 用于渲染图表的通用配置项，见此：https://echarts.apache.org/zh/option.html
+     */
+    echartsOptions: {
+        tooltip: {
+            show: true,
+            backgroundColor: "rgb(255,255,255,.9)"
+        }
+    }
 }

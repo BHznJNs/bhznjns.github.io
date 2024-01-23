@@ -1,4 +1,7 @@
-import { importHighlighter, importTexRenderer } from "./importer.js"
+import importHighlighter from "./importers/highlight.js"
+import importTexRenderer from "./importers/katex.js"
+import importChartRenderer from "./importers/echarts.js"
+
 import mdResolver from "../utils/markdown/index.js"
 import keydownEvent from "../utils/dom/keydownEvent.js"
 import backToTop from "../utils/dom/backToTop.js"
@@ -31,10 +34,12 @@ function getHeadlines(structure) {
 }
 
 export default function articleRender(articleEl, mdText) {
-    // language names to import
+    // language names to import for `highlight.js`
     globalThis.__LanguageList__ = new Set()
     // to deside whether to import `katex`
     globalThis.__ContainsFormula__ = false
+    // to deside whether to import `echarts.js`
+    globalThis.__ChartOptionList__ = []
     // used to dynamic generate iframe id
     globalThis.__IframeCounter__ = 0
 
@@ -60,6 +65,7 @@ export default function articleRender(articleEl, mdText) {
     })
     backToTop()
 
-    importHighlighter().then(() => globalThis.__LanguageList__ = null)
-    importTexRenderer().then(() => globalThis.__ContainsFormula__ = false)
+    importHighlighter(globalThis.__LanguageList__).then(() => globalThis.__LanguageList__ = null)
+    importTexRenderer(globalThis.__ContainsFormula__).then(() => globalThis.__ContainsFormula__ = false)
+    importChartRenderer(globalThis.__ChartOptionList__).then(() => globalThis.__ChartOptions__ = null)
 }

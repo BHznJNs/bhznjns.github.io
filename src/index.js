@@ -4,7 +4,7 @@ import "./scripts/mainManager.js"
 import config from "../build.config.js"
 import pageController from "./components/paging.js"
 import keydownEvent from "./utils/dom/keydownEvent.js"
-import { importComponent } from "./scripts/importer"
+import importComponent from "./scripts/importers/component.js"
 
 if (config.enableFab) {
     importComponent("fab")

@@ -12,10 +12,6 @@ div.details details {
 
 @media screen and (max-width: 767px) {
     /* Mobile phone style */
-    div.details {
-        margin-left: -1.6rem;
-        margin-right: -1.6rem;
-    }
     div.details details {
         border-radius: 0;
     }
