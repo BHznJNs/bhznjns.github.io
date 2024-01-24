@@ -2,25 +2,30 @@ import debounce from "../../utils/debounce.js"
 import eventbus from "../../utils/eventbus/inst.js"
 import languageSelector from "../../utils/languageSelector.js"
 import config from "../../../build.config.js"
-
-const globalOptions = config.echartsOptions
+import mergeObj from "../../utils/mergeObj.js"
 
 let echarts = null
 let importChart = null
 let importComponent = null
 
+const globalOptions = config.echartsOptions
 const chartElList = () => document.querySelectorAll(".chart")
 
-const darkmodeObserver = new MutationObserver(_ => {
-    for (const el of chartElList()) {
-        // rerender all chart elements to reset color theme
-        echarts.dispose(el)
-        chartRenderer(el)
-    }
-})
-
-const resizeEvent = () => chartElList()
-    .forEach(el => echarts.getInstanceByDom(el).resize())
+// darkmode style definition
+const backgroundColor = "#252525"
+const FrontColor      = "#f7f7f7"
+const darkmodeStyle   = {
+    backgroundColor,
+    textStyle: {
+        color: FrontColor,
+    },
+    xAxis: {axisLine: {lineStyle: {
+        color: FrontColor,
+    }}},
+    yAxis: {axisLine: {lineStyle: {
+        color: FrontColor,
+    }}}
+}
 
 function chartRenderer(el) {
     const isDarkMode = document.body.classList.contains("dark")
@@ -30,7 +35,12 @@ function chartRenderer(el) {
     // options merging
     const currentOptions = el.__ChartOptions__
     const globalOptionsCloned = Object.assign({}, globalOptions)
-    const finalOptions = Object.assign(globalOptionsCloned, currentOptions)
+
+    if (isDarkMode) {
+        mergeObj(globalOptionsCloned, darkmodeStyle)
+    }
+
+    const finalOptions = mergeObj(globalOptionsCloned, currentOptions)
     chartInst.setOption(finalOptions)
 }
 
@@ -89,6 +99,18 @@ function chartOptionResolver(options={}, libsToImport) {
     }
 }
 
+// event listeners
+const darkmodeObserver = new MutationObserver(_ => {
+    for (const el of chartElList()) {
+        // rerender all chart elements to reset color theme
+        echarts.dispose(el)
+        chartRenderer(el)
+    }
+})
+const resizeEvent = () => chartElList()
+    .forEach(el => echarts.getInstanceByDom(el).resize())
+
+
 export default async function(chartOptions) {
     function loadError(err) {
         const loadErrText = languageSelector("图表加载失败", "Chart load error")
@@ -138,7 +160,9 @@ export default async function(chartOptions) {
             })
 
             // resize event listeners
-            eventbus.on("catalog-toggle", resizeEvent)
+            eventbus.on("catalog-toggle", () => {
+                setTimeout(resizeEvent, 1000)
+            })
             window.addEventListener("resize",
                 debounce(resizeEvent, 200))
         })
