@@ -9,37 +9,16 @@ let importChart = null
 let importComponent = null
 
 const globalOptions = config.echartsOptions
-const chartElList = () => document.querySelectorAll(".chart")
-
-// darkmode style definition
-const backgroundColor = "#252525"
-const FrontColor      = "#f7f7f7"
-const darkmodeStyle   = {
-    backgroundColor,
-    textStyle: {
-        color: FrontColor,
-    },
-    xAxis: {axisLine: {lineStyle: {
-        color: FrontColor,
-    }}},
-    yAxis: {axisLine: {lineStyle: {
-        color: FrontColor,
-    }}}
-}
+const chartElList = () => document.querySelectorAll(".echarts-container")
 
 function chartRenderer(el) {
     const isDarkMode = document.body.classList.contains("dark")
-    const renderMode = isDarkMode ? "dark" : "light"
-    const chartInst = echarts.init(el, renderMode)
+    const renderMode = isDarkMode ? "another-dark" : "light"
+    const chartInst  = echarts.init(el, renderMode)
 
     // options merging
     const currentOptions = el.__ChartOptions__
-    const globalOptionsCloned = Object.assign({}, globalOptions)
-
-    if (isDarkMode) {
-        mergeObj(globalOptionsCloned, darkmodeStyle)
-    }
-
+    const globalOptionsCloned = mergeObj({}, globalOptions)
     const finalOptions = mergeObj(globalOptionsCloned, currentOptions)
     chartInst.setOption(finalOptions)
 }
@@ -145,11 +124,16 @@ export default async function(chartOptions) {
         importChartLibs()
         return
     }
-    import("../../libs/echarts/core.js")
-        .then(module => {
+    Promise.all([
+        import("../../libs/echarts/core.js"),
+        import("./echartsAnotherDarkTheme.js"),
+    ])
+        .then(([module, darkModule]) => {
             echarts         = module.default
             importChart     = module.importChart
             importComponent = module.importComponent
+            const darkTheme = darkModule.default
+            echarts.registerTheme("another-dark", darkTheme)
         })
         .then(importChartLibs)
         .then(() => {
