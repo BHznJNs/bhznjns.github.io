@@ -4,7 +4,7 @@ import config from "../../../build.config.js"
 let katex = null
 const { katexOptions } = config
 
-export default async function(isContainsFormula) {
+export default async function(isContainsFormula=false) {
     function renderFormula() {
         // render all formula element
         document.querySelectorAll(".math")

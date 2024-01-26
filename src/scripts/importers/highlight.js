@@ -1,6 +1,6 @@
 let hljs = null
 
-export default async function(languageList=new Set) {
+export default async function(languageList=new Set()) {
     function importLangDefs() {
         // dynamically import language definitions
         const languageListArr = Array.from(languageList)
@@ -14,7 +14,11 @@ export default async function(languageList=new Set) {
                 const def  = defModule.default
                 hljs.registerLanguage(name, def)
             }))
-            .then(() => hljs.highlightAll())
+            .then(() => {
+                const seletor = "pre.code-block code"
+                document.querySelectorAll(seletor)
+                    .forEach(hljs.highlightElement)
+            })
             .catch(err => console.error(err))
     }
 

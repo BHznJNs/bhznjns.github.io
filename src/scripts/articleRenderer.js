@@ -1,6 +1,6 @@
 import importHighlighter from "./importers/highlight.js"
 import importTexRenderer from "./importers/katex.js"
-import importChartRenderer from "./importers/echarts.js"
+import importChartRenderer from "./importers/charts/index.js"
 
 import mdResolver from "../utils/markdown/index.js"
 import keydownEvent from "../utils/dom/keydownEvent.js"
@@ -36,10 +36,10 @@ function getHeadlines(structure) {
 export default function articleRender(articleEl, mdText) {
     // language names to import for `highlight.js`
     globalThis.__LanguageList__ = new Set()
+    // to deside which chart library to import
+    globalThis.__ChartTypeList__ = new Set()
     // to deside whether to import `katex`
     globalThis.__ContainsFormula__ = false
-    // to deside whether to import `echarts.js`
-    globalThis.__ChartOptionList__ = []
     // used to dynamic generate iframe id
     globalThis.__IframeCounter__ = 0
 
@@ -67,5 +67,5 @@ export default function articleRender(articleEl, mdText) {
 
     importHighlighter(globalThis.__LanguageList__).then(() => globalThis.__LanguageList__ = null)
     importTexRenderer(globalThis.__ContainsFormula__).then(() => globalThis.__ContainsFormula__ = false)
-    importChartRenderer(globalThis.__ChartOptionList__).then(() => globalThis.__ChartOptions__ = null)
+    importChartRenderer(globalThis.__ChartTypeList__).then(() => globalThis.__ChartTypeList__ = null)
 }

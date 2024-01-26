@@ -110,5 +110,58 @@ export default {
             show: true,
             backgroundColor: "rgb(255,255,255,.9)"
         }
+    },
+
+    /**
+     * flowchartOptions: Object
+     * the global general config options for flow chart rendering, see here: https://flowchart.js.org/
+     * 流程图渲染的全局配置项，见此：https://flowchart.js.org/
+     */
+    flowchartOptions: {
+        // 'x': 0,
+        // 'y': 0,
+        // 'line-width': 3,
+        // 'line-length': 50,
+        // 'text-margin': 10,
+        // 'font-size': 14,
+        // 'font-color': 'black',
+        // 'line-color': 'black',
+        // 'element-color': 'black',
+        // 'fill': 'white',
+        // 'yes-text': 'yes',
+        // 'no-text': 'no',
+        // 'arrow-end': 'block',
+        // 'scale': 1,
+        //// style symbol types
+        // 'symbols': {
+        //     'start': {
+        //         'font-color': 'red',
+        //         'element-color': 'green',
+        //         'fill': 'yellow'
+        //     },
+        //     'end': {
+        //         'class': 'end-element'
+        //     }
+        // },
+        //// even flowstate support ;-)
+        // 'flowstate': {
+        //     'past': { 'fill': '#CCCCCC', 'font-size': 12 },
+        //     'current': { 'fill': 'yellow', 'font-color': 'red', 'font-weight': 'bold' },
+        //     'future': { 'fill': '#FFFF99' },
+        //     'request': { 'fill': 'blue' },
+        //     'invalid': { 'fill': '#444444' },
+        //     'approved': { 'fill': '#58C4A3', 'font-size': 12, 'yes-text': 'APPROVED', 'no-text': 'n/a' },
+        //     'rejected': { 'fill': '#C45879', 'font-size': 12, 'yes-text': 'n/a', 'no-text': 'REJECTED' }
+        // }
+    },
+
+    /**
+     * ganttOptions: Object
+     * the global general config options for gantt chart rendering, see here: https://github.com/frappe/gantt
+     * 甘特图渲染的全局配置项，见此：https://github.com/frappe/gantt
+     */
+    ganttOptions: {
+        // languages property here will be the same with upper `language` as default
+        // 这里的 languages 属性默认会与前文中指定的 `language` 相同
     }
 }

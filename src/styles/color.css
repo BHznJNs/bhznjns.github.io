@@ -4,6 +4,7 @@ body:not(.dark) {
     --hovered-tx-color: #000;
 
     --default-bg-color: #fff;
+    --chart-bg-color: #fff;
     --quote-bg-color: #f5f5f5;
     --fab-bg-color: #fff;
     --hovered-bg-color: #eee;
@@ -27,6 +28,7 @@ body.dark {
     --hovered-tx-color: #fff;
 
     --default-bg-color: #161616;
+    --chart-bg-color: #252525;
     --quote-bg-color: #3e3e3e;
     --fab-bg-color: #424242;
     --hovered-bg-color: #333;

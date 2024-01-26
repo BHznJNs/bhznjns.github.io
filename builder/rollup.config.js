@@ -29,9 +29,13 @@ export default [
             sourcemap: true,
         },
         external: [
+            /build\.config\.js/,
             /libs\/katex/,
             /libs\/highlight/,
-            /libs\/echarts/
+            /libs\/echarts/,
+            /libs\/flowchart/,
+            /libs\/sequence-diagram/,
+            /libs\/frappe-gantt/,
         ],
         plugins: [
             terser(),
@@ -76,6 +80,21 @@ export default [
                     { /* echarts.js chunks */
                         src: "src/libs/echarts/chunks/*",
                         dest: "dist/libs/echarts/chunks"
+                    },
+                    { /* flowchart.js */
+                        src: [
+                            "src/libs/flowchart.js/*.min.js",
+                            "src/libs/flowchart.js/*.map"
+                        ],
+                        dest: "dist/libs/flowchart.js/"
+                    },
+                    { /* sequence-diagram */
+                        src: "src/libs/sequence-diagram/sequence-diagram-web.mjs",
+                        dest: "dist/libs/sequence-diagram/"
+                    },
+                    { /* frappe-gantt */
+                        src: "src/libs/frappe-gantt/*.min.*",
+                        dest: "dist/libs/frappe-gantt/"
                     }
                 ],
             }),

@@ -100,19 +100,36 @@ div.media-container img.load-error::after {
     background-color: rgba(255, 255, 255, 0.85);
 }
 
-div.media-container .chart {
-    width: 100%;
-    height: 600px;
-    max-height: 60vh;
-}
-
 div.media-container iframe {
     border: none;
     height: 50vh;
     background-color: white;
 }
 
-/* Chrome/Edge `audio` element style */
+/* Charts styles start */
+
+div.media-container .echarts-container {
+    width: 100%;
+    height: 600px;
+    max-height: 60vh;
+}
+
+div.media-container .flowchart-container,
+div.media-container .sequencechart-container,
+div.media-container .ganttchart-container {
+    padding: 8px;
+    background-color: var(--chart-bg-color);
+    transition: background .3s .15s;
+}
+body.dark div.media-container .flowchart-container svg,
+body.dark div.media-container .sequencechart-container svg {
+    filter: invert(.85);
+}
+
+/* Charts styles end */
+
+
+/* Chrome/Edge `audio` element style start */
 audio::-webkit-media-controls-panel {
     background-color: var(--default-bg-color);
 }

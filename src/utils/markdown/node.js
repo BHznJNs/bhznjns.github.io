@@ -310,6 +310,7 @@ export class CodeBlock {
             tabindex: 0
         })
         return el("pre", codeEl, {
+            "class": "code-block",
             "data-language": langName
         })
     }
@@ -363,24 +364,6 @@ export class FormulaBlock {
 
     static pattern = source =>
         source.startsWith("$$$")
-}
-
-export class ChartBlock {
-    static pattern = source =>
-        source.startsWith("!!!")
-
-    constructor(content, _description) {
-        const options = new Function(content + ";return option")()
-        this.chartOptions = options
-        globalThis.__ChartOptionList__.push(options)
-    }
-    toHTML() {
-        const chartEl = el("div", "", {
-            "class": "chart",
-        })
-        chartEl.__ChartOptions__ = this.chartOptions
-        return MediaNode.containerGenerator(chartEl)
-    }
 }
 
 export class IframeBlock {
@@ -437,6 +420,110 @@ window.addEventListener("message", e => {
         return MediaNode.containerGenerator(iframeEl)
     }
 }
+
+// types of chart blocks
+
+class EchartsChartType {
+    constructor(content) {
+        const options = new Function(
+            "let option;"
+            + content
+            + ";return option"
+        )()
+        this.chartOptions = options
+        globalThis.__ChartTypeList__.add("echarts")
+    }
+    toHTML() {
+        const chartEl = el("div", "", {
+            "class": "echarts-container",
+        })
+        chartEl.__ChartOptions__ = this.chartOptions
+        return chartEl
+    }
+}
+class FlowChartType {
+    constructor(content) {
+        this.content = content
+        globalThis.__ChartTypeList__.add("flow-chart")
+    }
+    toHTML() {
+        const chartEl = el("div", "", {
+            "class": "flowchart-container"
+        })
+        chartEl.__ChartContent__ = this.content
+        return chartEl
+    }
+}
+class SequenceChartType {
+    constructor(content) {
+        this.content = content
+        globalThis.__ChartTypeList__.add("sequence-chart")
+    }
+    toHTML() {
+        const chartEl = el("div", "", {
+            "class": "sequencechart-container"
+        })
+        chartEl.__ChartContent__ = this.content
+        return chartEl
+    }
+}
+class GanttChartType {
+    constructor(content) {
+        this.content = new Function(`const tasks = [${content}]; return tasks`)()
+        globalThis.__ChartTypeList__.add("gantt-chart")
+    }
+    toHTML() {
+        const chartEl = el("div", "", {
+            "class": "ganttchart-container"
+        })
+        chartEl.__ChartContent__ = this.content
+        return chartEl
+    }
+}
+class UnknownChartType {
+    constructor(errMsg) {
+        this.content = errMsg
+    }
+    toHTML() {
+        return el("span", this.content)
+    }
+}
+
+export class ChartBlock {
+    static pattern = source =>
+        source.startsWith("!!!")
+    
+    #type = null
+
+    constructor(content, type) {
+        switch (type) {
+            case "": case "echarts":
+                this.#type = new EchartsChartType(content)
+                break
+            case "flow":       case "flowchart":
+            case "flow chart": case "flow-chart":
+                this.#type = new FlowChartType(content)
+                break
+            case "sequence":      case "sequencechart":
+            case "sequence char": case "sequence-chart":
+                this.#type = new SequenceChartType(content)
+                break
+            case "gantt":       case "ganttchart":
+            case "gantt chart": case "gantt-chart":
+                this.#type = new GanttChartType(content)
+                break
+            default:
+                const errMsg = "Unknown chart type: " + type
+                console.error(errMsg)
+                this.#type = new UnknownChartType(errMsg)
+        }
+    }
+    toHTML() {
+        const chartEl = this.#type.toHTML()
+        return MediaNode.containerGenerator(chartEl)
+    }
+}
+
 
 // --- --- --- ---
 // block nodes end

@@ -1,8 +1,8 @@
-import debounce from "../../utils/debounce.js"
-import eventbus from "../../utils/eventbus/inst.js"
-import languageSelector from "../../utils/languageSelector.js"
-import config from "../../../build.config.js"
-import mergeObj from "../../utils/mergeObj.js"
+import config from "../../../../build.config.js"
+import { loadErrText } from "./index.js"
+import debounce from "../../../utils/debounce.js"
+import eventbus from "../../../utils/eventbus/inst.js"
+import mergeObj from "../../../utils/mergeObj.js"
 
 let echarts = null
 let importChart = null
@@ -90,14 +90,13 @@ const resizeEvent = () => chartElList()
     .forEach(el => echarts.getInstanceByDom(el).resize())
 
 
-export default async function(chartOptions) {
+export default async function() {
     function loadError(err) {
-        const loadErrText = languageSelector("图表加载失败", "Chart load error")
         console.error(err)
         chartElList().forEach(el =>
             el.textContent = loadErrText)
     }
-    function importChartLibs() {
+    function importChartLibs(chartOptions) {
         const libsToImport = {
             charts: new Set(),
             components: new Set(),
@@ -116,16 +115,21 @@ export default async function(chartOptions) {
             .catch(loadError)
     }
 
+    const chartOptions = []
+    for (const el of chartElList()) {
+        chartOptions.push(el.__ChartOptions__)
+    }
+
     if (!chartOptions.length) {
         // no chart
         return
     }
     if (echarts) {
-        importChartLibs()
+        importChartLibs(chartOptions)
         return
     }
     Promise.all([
-        import("../../libs/echarts/core.js"),
+        import("../../../libs/echarts/core.js"),
         import("./echartsAnotherDarkTheme.js"),
     ])
         .then(([module, darkModule]) => {
@@ -135,7 +139,7 @@ export default async function(chartOptions) {
             const darkTheme = darkModule.default
             echarts.registerTheme("another-dark", darkTheme)
         })
-        .then(importChartLibs)
+        .then(() => importChartLibs(chartOptions))
         .then(() => {
             const body = document.body
             darkmodeObserver.observe(body, {
