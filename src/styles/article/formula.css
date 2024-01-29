@@ -21,3 +21,8 @@ div.math {
 span.math {
     font-size: 1.125em;
 }
+span.math img {
+    /* for server side rendered formula */
+    height: calc(1em + 16px);
+    vertical-align: middle;
+}

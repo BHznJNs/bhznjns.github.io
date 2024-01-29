@@ -1,6 +1,19 @@
-<h1>LLVM 标识符</h1><p>LLVM 中的标识符有两类：全局的和局部的。其中，全局的标识符（包括函数和全局变量）以 <code>@</code> 符号起始，局部变量（包括寄存器名称和类型）以<code>%</code>符号起始。另外，有三种不同格式的标识符，有不同的作用：</p><ol><li>具名的值，例如 <code>%foo</code>, <code>@DivisionByZero</code>, <code>%a.really.long.identifier</code>。实际运用于其中的正则表达式则是：<code>[%@][-a-zA-Z$._][-a-zA-Z$._0-9]*</code>。此类的标识符要求其中的字符可以被引号包裹。一些特殊字符可能会被通过 <code>"\xx"</code> 的方式转义（在这里 xx 是该字符在 ASCII 中的十六进制表达）。通过这种方式，任何字符都可以被用作具名的值，即使是引号本身。<code>"\o1"</code> 前缀可以被用来为全局值抑制破坏（？）。</li><li>非具名的值通常用来表示无符号带有前缀的值，例如 <code>%12</code>, <code>@2</code>, <code>%44</code>。</li><li>常量将会在下面的常量章节中介绍。</li></ol><p>LLVM 要求值必须以一个前缀开头有两个原因：第一，这样编译器不需要担心命名与保留词冲突的问题，并且保留词在未来可以被无损地增加。另外，非具名的标识符允许编译器快速地生成临时变量而无需担心符号冲突。</p><p>LLVM 中的保留词非常类似于其它编程语言中的保留词。其中有对于不同操作的关键字，如<code>add</code>, <code>bitcast</code>, <code>ret</code> 等；对于原始类型的名称，如 <code>void</code>, <code>i32</code> 等，还有其它一些方面的保留词。</p><p>这些保留词不会与变量名冲突，因为他们的开头都不带有前缀（<code>%</code> 或 <code>@</code>）。</p><hr><p>这里有个 LLVM 代码的例子用于将一个整形变量 <code>%x</code> 乘以 8。</p><p>简单的版本：</p><pre data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">%result = mul i32 %X, 8
-</code></pre><p>强度（？）减弱后的版本：</p><pre data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">%result = shl i32 %X, 3
-</code></pre><p>复杂一些的版本：</p><pre data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">%0 = add i32 %X, %X           ; yields i32:%0
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLVM 标识符</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<article>
+    <h1>LLVM 标识符</h1><p>LLVM 中的标识符有两类：全局的和局部的。其中，全局的标识符（包括函数和全局变量）以 <code>@</code> 符号起始，局部变量（包括寄存器名称和类型）以<code>%</code>符号起始。另外，有三种不同格式的标识符，有不同的作用：</p><ol><li>具名的值，例如 <code>%foo</code>, <code>@DivisionByZero</code>, <code>%a.really.long.identifier</code>。实际运用于其中的正则表达式则是：<code>[%@][-a-zA-Z$._][-a-zA-Z$._0-9]*</code>。此类的标识符要求其中的字符可以被引号包裹。一些特殊字符可能会被通过 <code>"\xx"</code> 的方式转义（在这里 xx 是该字符在 ASCII 中的十六进制表达）。通过这种方式，任何字符都可以被用作具名的值，即使是引号本身。<code>"\o1"</code> 前缀可以被用来为全局值抑制破坏（？）。</li><li>非具名的值通常用来表示无符号带有前缀的值，例如 <code>%12</code>, <code>@2</code>, <code>%44</code>。</li><li>常量将会在下面的常量章节中介绍。</li></ol><p>LLVM 要求值必须以一个前缀开头有两个原因：第一，这样编译器不需要担心命名与保留词冲突的问题，并且保留词在未来可以被无损地增加。另外，非具名的标识符允许编译器快速地生成临时变量而无需担心符号冲突。</p><p>LLVM 中的保留词非常类似于其它编程语言中的保留词。其中有对于不同操作的关键字，如<code>add</code>, <code>bitcast</code>, <code>ret</code> 等；对于原始类型的名称，如 <code>void</code>, <code>i32</code> 等，还有其它一些方面的保留词。</p><p>这些保留词不会与变量名冲突，因为他们的开头都不带有前缀（<code>%</code> 或 <code>@</code>）。</p><hr><p>这里有个 LLVM 代码的例子用于将一个整形变量 <code>%x</code> 乘以 8。</p><p>简单的版本：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">%result = mul i32 %X, 8
+</code></pre><p>强度（？）减弱后的版本：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">%result = shl i32 %X, 3
+</code></pre><p>复杂一些的版本：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">%0 = add i32 %X, %X           ; yields i32:%0
 %1 = add i32 %0, %0           ; yields i32:%1
 %result = add i32 %1, %1
 </code></pre><p>这最后的将 <code>%x</code> 乘以 8 的方式体现了 LLVM 的几个重要的词法特性：</p><ol><li>注释以 <code>;</code> 开头，在行末结束。</li><li>不具名的临时变量会在一个计算结果未被存到一个具名变量中时产生。</li><li>不具名的临时变量具有数字顺序（使用一个从 0 开始的计数器）。需要注意地是，基础的块和不具名的函数参数都会被计数。</li></ol><p>这同样体现一个文档中约定俗成的规定：在编写教程的时候，我们会跟随注释的指导，注释中会定义产生的值的类型和名称。</p>
+</article>
+</body>
+</html>

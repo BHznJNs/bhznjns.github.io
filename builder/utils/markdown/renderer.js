@@ -1,5 +1,5 @@
-import renderer from "../src/utils/markdown/index.js"
-import { Para } from "../src/utils/markdown/node.js"
+import renderer from "./index.js"
+import { Para } from "./node.js"
 
 export class ArticleInfo {
     title       = ""
@@ -23,12 +23,31 @@ function getDescription(htmlNodes) {
     return description
 }
 
+function pageTemplate(title, body) {
+    return `\
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<article>
+    ${body}
+</article>
+</body>
+</html>`
+}
+
 export default function(source) {
     const htmlNodes = renderer(source)
 
     const title       = htmlNodes[0].content
     const description = getDescription(htmlNodes)
-    const htmlContent = htmlNodes.map(node => node.toHTML()).join("")
+    const htmlBody    = htmlNodes.map(node => node.toHTML()).join("")
+    const htmlContent = pageTemplate(title, htmlBody)
 
     return new ArticleInfo(title, description, htmlContent)
 }

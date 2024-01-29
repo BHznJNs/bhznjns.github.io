@@ -1,17 +1,27 @@
-<h1>RIME 输入法折腾记录</h1><p><code>2023/12/18</code></p><hr><h2>缘由</h2><p>之所以开始折腾 RIME 输入法，是因为 Windows 11 自带的输入法不知从哪次的 Windows 更新开始，在 Windows 拼音输入法下输入时按下 <code>Tab</code> 键，就会出现如下提示：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/Windows 输入法.png" alt="Windows 输入法" loading="lazy" tabindex="0"></div><p>开启这一选项意味着你输入的内容都会被发送到微软的服务器，这显然是对个人隐私保护不利的。</p><p>我当然可以选择不启用这一功能，但是每每想到这个输入法上存在着这么一个用不着的功能，还被绑定到 <code>Tab</code> 这个常用的按键，我就浑身难受。</p><blockquote><p>小声提一下，你可以在 设置 &gt; 时间&语言&gt;语言 &区域中 找到设置，&gt; Microsoft 拼音 &gt; 词典和自学 &gt; 尝试来自必应的文本建议 启用和关闭这一功能。</p></blockquote><h2>替代品</h2><p>于是我开始搜寻自带输入法的替代品。很快，我找到来 RIME（中州韵） 输入法，这一输入法可以高度自定义，有足够的社区支持<del>（可以抄现成的作业）</del>，支持 Windows、Linux、MacOs 三大操作系统，最重要的是，它完全开源！</p><p>你可以很容易地从<a href="https://rime.im/" target="_blank">官网</a>下载它，Windows 版本的 RIME 输入法被叫作“小狼毫”。</p><h2>参考</h2><p>具体的配置过程主要参照这两篇博客：</p><ul><li><a href="https://www.mintimate.cn/2023/03/18/rimeQuickInit/" target="_blank">跨平台的开源输入法Rime定制指南，打造强大的个性化输入法</a></li><li><a href="https://dvel.me/posts/rime-ice/" target="_blank">Rime 配置：雾凇拼音</a></li></ul><p>以及其文中附带的 GitHub 上已经配置好的 repo。</p><hr><h2>主要功能</h2><p>在本文成文时，我使用的是当前的最新 Windows 版本 <code>0.15.0</code>。</p><p>在我的完全配置后，现在已经可以实现如下功能：</p><ul><li>模糊音识别（en =&gt; eng, ian =&gt; iang etc.）</li><li>一定程度的拼音纠错 （dagn =&gt; dang, hoa =&gt; hao etc.）</li><li>还看得过去的 UI 界面</li><li>日本語输入</li><li>字符映射（emoji 输入, 一月 =&gt; January etc.）</li><li>较为完备的词库</li><li>通过 lua 脚本实现的快捷的当前时间输入（time =&gt; 22:52, week =&gt; Mon., date =&gt; 2023/12/18）</li></ul><p>接下来，我会从入门开始逐一介绍如何配置上述这些功能。</p><h2>折腾配置</h2><h3>配置文件解析</h3><p>在 Windows 上，你可以通过任务栏的托盘（如下图）快速打开配置文件夹。</p><blockquote><p>小声提一嘴，如果你和我一样只习惯拼音输入法，在安装中选择输入法的界面可以只选择<strong>朙月拼音</strong>选项，也能勉强算是开箱即用。</p></blockquote><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/RIME 托盘图标.png" alt="RIME 托盘图标" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/RIME 托盘右键菜单.png" alt="RIME 托盘右键菜单" loading="lazy" tabindex="0"></div><p>主要的配置文件及其功能：</p><ul><li><code>weasel.custom.yaml</code>：主要用于设置在特定应用中使用英文模式及配置 UI 界面</li><li><code>default.custom.yaml</code>：用来存放对于所有 RIME 输入法中输入方式的通用配置（按键绑定、单页词数等）</li><li><code>luna_pinyin.custom.yaml</code>：针对明月拼音输入法的配置文件</li><li><code>build/</code>：存储输入法编译配置文件后的产物。</li></ul><p>其它的也不太用得着，就先不介绍了。</p><h3>外观</h3><p>俗话说，美是第一生产力。RIME 输入法的默认外观不一定能符合你的需求，自己配置一份外观即能让自己用得更舒服，也能更符合自己的审美。先贴上我配置完后的外观：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/RIME 外观.png" alt="RIME 外观" loading="lazy" tabindex="0"></div><p>我们先打开上文中提到的 <code>weasel.custom.yaml</code>，</p><p>可以看到，文件开头的部分：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">customization:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIME 输入法折腾记录</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<article>
+    <h1>RIME 输入法折腾记录</h1><p><code>2023/12/18</code></p><hr><h2>缘由</h2><p>之所以开始折腾 RIME 输入法，是因为 Windows 11 自带的输入法不知从哪次的 Windows 更新开始，在 Windows 拼音输入法下输入时按下 <code>Tab</code> 键，就会出现如下提示：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/Windows 输入法.png" alt="Windows 输入法" loading="lazy" tabindex="0"></div><p>开启这一选项意味着你输入的内容都会被发送到微软的服务器，这显然是对个人隐私保护不利的。</p><p>我当然可以选择不启用这一功能，但是每每想到这个输入法上存在着这么一个用不着的功能，还被绑定到 <code>Tab</code> 这个常用的按键，我就浑身难受。</p><blockquote><p>小声提一下，你可以在 设置 &gt; 时间&语言&gt;语言 &区域中 找到设置，&gt; Microsoft 拼音 &gt; 词典和自学 &gt; 尝试来自必应的文本建议 启用和关闭这一功能。</p></blockquote><h2>替代品</h2><p>于是我开始搜寻自带输入法的替代品。很快，我找到来 RIME（中州韵） 输入法，这一输入法可以高度自定义，有足够的社区支持<del>（可以抄现成的作业）</del>，支持 Windows、Linux、MacOs 三大操作系统，最重要的是，它完全开源！</p><p>你可以很容易地从<a href="https://rime.im/" target="_blank">官网</a>下载它，Windows 版本的 RIME 输入法被叫作“小狼毫”。</p><h2>参考</h2><p>具体的配置过程主要参照这两篇博客：</p><ul><li><a href="https://www.mintimate.cn/2023/03/18/rimeQuickInit/" target="_blank">跨平台的开源输入法Rime定制指南，打造强大的个性化输入法</a></li><li><a href="https://dvel.me/posts/rime-ice/" target="_blank">Rime 配置：雾凇拼音</a></li></ul><p>以及其文中附带的 GitHub 上已经配置好的 repo。</p><hr><h2>主要功能</h2><p>在本文成文时，我使用的是当前的最新 Windows 版本 <code>0.15.0</code>。</p><p>在我的完全配置后，现在已经可以实现如下功能：</p><ul><li>模糊音识别（en =&gt; eng, ian =&gt; iang etc.）</li><li>一定程度的拼音纠错 （dagn =&gt; dang, hoa =&gt; hao etc.）</li><li>还看得过去的 UI 界面</li><li>日本語输入</li><li>字符映射（emoji 输入, 一月 =&gt; January etc.）</li><li>较为完备的词库</li><li>通过 lua 脚本实现的快捷的当前时间输入（time =&gt; 22:52, week =&gt; Mon., date =&gt; 2023/12/18）</li></ul><p>接下来，我会从入门开始逐一介绍如何配置上述这些功能。</p><h2>折腾配置</h2><h3>配置文件解析</h3><p>在 Windows 上，你可以通过任务栏的托盘（如下图）快速打开配置文件夹。</p><blockquote><p>小声提一嘴，如果你和我一样只习惯拼音输入法，在安装中选择输入法的界面可以只选择<strong>朙月拼音</strong>选项，也能勉强算是开箱即用。</p></blockquote><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/RIME 托盘图标.png" alt="RIME 托盘图标" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/RIME 托盘右键菜单.png" alt="RIME 托盘右键菜单" loading="lazy" tabindex="0"></div><p>主要的配置文件及其功能：</p><ul><li><code>weasel.custom.yaml</code>：主要用于设置在特定应用中使用英文模式及配置 UI 界面</li><li><code>default.custom.yaml</code>：用来存放对于所有 RIME 输入法中输入方式的通用配置（按键绑定、单页词数等）</li><li><code>luna_pinyin.custom.yaml</code>：针对明月拼音输入法的配置文件</li><li><code>build/</code>：存储输入法编译配置文件后的产物。</li></ul><p>其它的也不太用得着，就先不介绍了。</p><h3>外观</h3><p>俗话说，美是第一生产力。RIME 输入法的默认外观不一定能符合你的需求，自己配置一份外观即能让自己用得更舒服，也能更符合自己的审美。先贴上我配置完后的外观：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/RIME 外观.png" alt="RIME 外观" loading="lazy" tabindex="0"></div><p>我们先打开上文中提到的 <code>weasel.custom.yaml</code>，</p><p>可以看到，文件开头的部分：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">customization:
   distribution_code_name: Weasel
   distribution_version: 0.15.0.0
   generator: "Weasel::UIStyleSettings"
   modified_time: "Sun Dec 17 22:14:58 2023"
   rime_version: 1.8.5
-</code></pre><p>这些都不需要管，关键在于后面 <code>patch</code> 之后的部分。</p><p>你可以通过类似下面这样的配置项来告诉输入法，你希望在哪些应用中默认使用英文输入法。<strong>注意⚠️</strong>请使用合适的缩进并且不要使用 Tab 来作为缩进，这可能会导致输入法读取配置文件时出现错误；另外，这里的程序名可以通过任务管理器获取，并且必须全部小写，不得有大写字符。</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">app_options:
+</code></pre><p>这些都不需要管，关键在于后面 <code>patch</code> 之后的部分。</p><p>你可以通过类似下面这样的配置项来告诉输入法，你希望在哪些应用中默认使用英文输入法。<strong>注意⚠️</strong>请使用合适的缩进并且不要使用 Tab 来作为缩进，这可能会导致输入法读取配置文件时出现错误；另外，这里的程序名可以通过任务管理器获取，并且必须全部小写，不得有大写字符。</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">app_options:
   windowsterminal.exe:
     ascii_mode: true
   vscode.exe:
     ascii_mode: true
   vscodium.exe:
     ascii_mode: true
-</code></pre><p>在修改配置文件后，你可以通过托盘右键菜单中的“重新部署”来刷新输入法，应用新的配置。</p><hr><p>在添加完对于特定应用的配置后，接下来才是重头戏：样式管理。这是我目前使用的样式并附上完整的注释：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">style:
+</code></pre><p>在修改配置文件后，你可以通过托盘右键菜单中的“重新部署”来刷新输入法，应用新的配置。</p><hr><p>在添加完对于特定应用的配置后，接下来才是重头戏：样式管理。这是我目前使用的样式并附上完整的注释：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">style:
   color_scheme: BlueGrey               # 当前使用的颜色配置方案
   display_tray_icon: false             # 是否显示右下角图标
   horizontal: true                     # 横排显示
@@ -33,7 +43,7 @@
     hilite_padding: 8        # 激活候选项背景色高度
     hilite_spacing: 3        # 序号和候选项之间的间隔
     hilited_corner_radius: 8 # 选词的圆角幅度，0为直角
-</code></pre><p>然后就是配色方案的编写，不多说，直接上代码：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">preset_color_schemes:
+</code></pre><p>然后就是配色方案的编写，不多说，直接上代码：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">preset_color_schemes:
   BlueGrey:
     name: BlueGrey                         # 配置方案名称
     back_color: 0xF1EFEC                   # 候选框背景色
@@ -47,7 +57,7 @@
     hilited_label_color: 0xE0E0E0          # 已选择字左侧数字序号颜色
     candidate_text_color: 0x333333         # 未候选字颜色
     comment_text_color: 0x666666
-</code></pre><p>再附加一张来自其它博主的<del>包浆</del>图例：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/RIME_coloring_1440w.webp" alt="RIME 外观" loading="lazy" tabindex="0"></div><blockquote><p>小声说一句🤫：这里的颜色代码不是一般的 RGB 顺序，而是 BGR 顺序，因此你不能直接复制网上配色方案中的颜色代码。这里是一位<a href="https://bennyyip.github.io/Rime-See-Me/" target="_blank">大佬做的在线工具</a>，你可以以图形化的方式编写配色方案。</p></blockquote><p>再附上完整的 <code>weasel.custom.yaml</code> 文件：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">customization:
+</code></pre><p>再附加一张来自其它博主的<del>包浆</del>图例：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/RIME_coloring_1440w.webp" alt="RIME 外观" loading="lazy" tabindex="0"></div><blockquote><p>小声说一句🤫：这里的颜色代码不是一般的 RGB 顺序，而是 BGR 顺序，因此你不能直接复制网上配色方案中的颜色代码。这里是一位<a href="https://bennyyip.github.io/Rime-See-Me/" target="_blank">大佬做的在线工具</a>，你可以以图形化的方式编写配色方案。</p></blockquote><p>再附上完整的 <code>weasel.custom.yaml</code> 文件：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">customization:
   distribution_code_name: Weasel
   distribution_version: 0.15.0.0
   generator: "Weasel::UIStyleSettings"
@@ -99,7 +109,7 @@ patch:
       hilited_label_color: 0xE0E0E0          # 已选择字左侧数字序号颜色
       candidate_text_color: 0x333333         # 未候选字颜色
       comment_text_color: 0x666666
-</code></pre><hr><h3>创建自己的输入方案</h3><p>这一步实际上非常简单。你只需要在配置文件夹下创建 <code>[方案名称].schema.yaml</code> 的文件，再参考官方的<a href="https://github.com/rime/rime-luna-pinyin/blob/master/luna_pinyin.schema.yaml" target="_blank">朙月拼音配置文件的写法</a>，加以修改。目前，你只需要 Copy 朙月拼音配置文件，把其中的 <code>schema_id</code>, <code>author</code>, <code>description</code>, <code>name</code> 和 <code>version</code> 改成自己的就 OK。</p><h3>模糊音识别及拼音纠错</h3><p>这一部分非常简单，你只需要在输入方案文件的最后加上如下代码：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">speller:
+</code></pre><hr><h3>创建自己的输入方案</h3><p>这一步实际上非常简单。你只需要在配置文件夹下创建 <code>[方案名称].schema.yaml</code> 的文件，再参考官方的<a href="https://github.com/rime/rime-luna-pinyin/blob/master/luna_pinyin.schema.yaml" target="_blank">朙月拼音配置文件的写法</a>，加以修改。目前，你只需要 Copy 朙月拼音配置文件，把其中的 <code>schema_id</code>, <code>author</code>, <code>description</code>, <code>name</code> 和 <code>version</code> 改成自己的就 OK。</p><h3>模糊音识别及拼音纠错</h3><p>这一部分非常简单，你只需要在输入方案文件的最后加上如下代码：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">speller:
   algebra:
     - erase/^xx$/
     - derive/^([zcs])h/$1/ # zh, ch, sh =&gt; z, c, s
@@ -115,11 +125,11 @@ patch:
     - derive/([iu])a(o|ng?)$/a$1$2/    # tain =&gt; tian
     - abbrev/^([a-z]).+$/$1/  # 简拼（首字母）
     - abbrev/^([zcs]h).+$/$1/ # 简拼（zh, ch, sh）
-</code></pre><p>其中每一行的用处也都写明，你可以根据自己的需求选择是否使用全部规则。</p><hr><h3>日本語输入</h3><p>这是我个人的特殊需求，不需要的话可以跳过。对于其它语言输入法的设置也同理。</p><p>打开这个<a href="https://github.com/gkovacs/rime-japanese" target="_blank"> GitHub 储存库</a>，下载源代码，将其中以 <code>yaml</code> 为拓展名的文件直接复制到配置文件夹中，再修改 <code>default.custom.yaml</code> 中的 <code>schema_list</code> 字段为：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">patch:
+</code></pre><p>其中每一行的用处也都写明，你可以根据自己的需求选择是否使用全部规则。</p><hr><h3>日本語输入</h3><p>这是我个人的特殊需求，不需要的话可以跳过。对于其它语言输入法的设置也同理。</p><p>打开这个<a href="https://github.com/gkovacs/rime-japanese" target="_blank"> GitHub 储存库</a>，下载源代码，将其中以 <code>yaml</code> 为拓展名的文件直接复制到配置文件夹中，再修改 <code>default.custom.yaml</code> 中的 <code>schema_list</code> 字段为：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">patch:
   schema_list:
     - {schema: pinyin}
     - {schema: japanese}
-</code></pre><p>另外，你如果觉得配置文件夹中的文件太多太杂乱的话，你可以创建 <code>dicts</code> 文件夹（这也是我们之后中文词库存放文件夹），然后将 <code>japanese.jmdict.dict.yaml</code>, <code>japanese.kana.dict.yaml</code>, <code>japanese.mozc.dict.yaml</code> 都移动到其中，在修改 <code>japanese.dict.yaml</code> 文件为如下所示：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0"># nihong-hybrid.dict.yaml
+</code></pre><p>另外，你如果觉得配置文件夹中的文件太多太杂乱的话，你可以创建 <code>dicts</code> 文件夹（这也是我们之后中文词库存放文件夹），然后将 <code>japanese.jmdict.dict.yaml</code>, <code>japanese.kana.dict.yaml</code>, <code>japanese.mozc.dict.yaml</code> 都移动到其中，在修改 <code>japanese.dict.yaml</code> 文件为如下所示：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0"># nihong-hybrid.dict.yaml
 # encoding: utf-8
 
 ---
@@ -130,10 +140,10 @@ import_tables:
   - dicts/japanese.mozc
   - dicts/japanese.jmdict
   - dicts/japanese.kana
-</code></pre><p>重新部署程序，点击 <code>F4</code> 或者 <code>Ctrl + 反引号</code>，打开输入方案切换框，不出意外的话，框中应该会出现“日本語”的字样。选择它，你就可以使用ローマ字（罗马音）来进行日文输入了。</p><hr><h3>字符映射</h3><p>这一步利用来输入法自带的 opencc 功能，得以通过字符映射的方式实现 emoji 等输入。</p><p>我们先在我们的语言配置文件（*.schema.yaml）中找到 <code>switches</code> 字段，在其中加入如下代码：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">- name: mapping_suggestion
+</code></pre><p>重新部署程序，点击 <code>F4</code> 或者 <code>Ctrl + 反引号</code>，打开输入方案切换框，不出意外的话，框中应该会出现“日本語”的字样。选择它，你就可以使用ローマ字（罗马音）来进行日文输入了。</p><hr><h3>字符映射</h3><p>这一步利用来输入法自带的 opencc 功能，得以通过字符映射的方式实现 emoji 等输入。</p><p>我们先在我们的语言配置文件（*.schema.yaml）中找到 <code>switches</code> 字段，在其中加入如下代码：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">- name: mapping_suggestion
   reset: 1              # 此字段可以让输入法记忆开关状态 
   states: [ 关闭, 映射 ] # 此字段会在输入方案切换框中展示，可以调整需要展示的文字
-</code></pre><p>添加完后应该会像这样：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">switches:
+</code></pre><p>添加完后应该会像这样：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">switches:
   - name: ascii_mode
     reset: 0
     states: [ 中文, 西文 ]
@@ -146,19 +156,19 @@ import_tables:
     states: [ 漢字, 汉字 ]
   - name: ascii_punct
     states: [ 。，, ．， ]
-</code></pre><p>再在其后添加 <code>mapping_suggestion</code> 的定义：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">mapping_suggestion:
+</code></pre><p>再在其后添加 <code>mapping_suggestion</code> 的定义：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">mapping_suggestion:
   opencc_config: mapping.json # 存储映射词库定义的文件
   option_name: mapping_suggestion
   tips: all
   inherit_comment: false
-</code></pre><p>再在 <code>engine</code> - <code>filters</code> 下加入如下字段：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">- simplifier@emoji_suggestion
-</code></pre><p>添加完后如下所示：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">engine:
+</code></pre><p>再在 <code>engine</code> - <code>filters</code> 下加入如下字段：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">- simplifier@emoji_suggestion
+</code></pre><p>添加完后如下所示：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">engine:
   filters:
     - simplifier@emoji_suggestion
     - simplifier@zh_simp # 简体过滤，此行可能可以省略
     - simplifier # 简体
     - uniquifier # rime基础驱动
-</code></pre><p>最后，你可以<a href="https://github.com/iDvel/rime-ice/tree/main/opencc" target="_blank">到此</a>下载需要的映射表，复制到配置文件目录下的 <code>opencc</code> 目录（没有可以自己新建），在将其中的 <code>emoji.json</code> 更名为 <code>mapping.json</code>。</p><p>刷新程序，试试效果：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/输入一月效果.png" alt="输入一月效果" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/输入笑效果.png" alt="输入笑效果" loading="lazy" tabindex="0"></div><hr><h3>lua 脚本配置</h3><blockquote><p>顺便提一下，我不确定 lua 脚本的使用是否需要安装 lua 解释器，姑且贴一下：<a href="https://github.com/rjpcomputing/luaforwindows" target="_blank">https:<i>github.com/rjpcomputing/luaforwindows</i></a>，如果你需要在 Windows 电脑上安装 lua，可能能用得上</p></blockquote><p>先在配置文件目录下新建 <code>lua</code> 文件夹和 <code>rime.lua</code> 文件，再在 <code>lua</code> 文件夹下添加如下脚本：</p><pre data-language="LUA"><code class="language-lua" tabindex="0">-- time.lua
+</code></pre><p>最后，你可以<a href="https://github.com/iDvel/rime-ice/tree/main/opencc" target="_blank">到此</a>下载需要的映射表，复制到配置文件目录下的 <code>opencc</code> 目录（没有可以自己新建），在将其中的 <code>emoji.json</code> 更名为 <code>mapping.json</code>。</p><p>刷新程序，试试效果：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/输入一月效果.png" alt="输入一月效果" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/输入笑效果.png" alt="输入笑效果" loading="lazy" tabindex="0"></div><hr><h3>lua 脚本配置</h3><blockquote><p>顺便提一下，我不确定 lua 脚本的使用是否需要安装 lua 解释器，姑且贴一下：<a href="https://github.com/rjpcomputing/luaforwindows" target="_blank">https:<i>github.com/rjpcomputing/luaforwindows</i></a>，如果你需要在 Windows 电脑上安装 lua，可能能用得上</p></blockquote><p>先在配置文件目录下新建 <code>lua</code> 文件夹和 <code>rime.lua</code> 文件，再在 <code>lua</code> 文件夹下添加如下脚本：</p><pre class="code-block" data-language="LUA"><code class="language-lua" tabindex="0">-- time.lua
 local function translator(input, seg)
     if (input == "time" or input == "when") then
         yield(Candidate("time", seg.start, seg._end, os.date("%H:%M"), " "))
@@ -168,7 +178,7 @@ local function translator(input, seg)
     end
 end
 return translator
-</code></pre><pre data-language="LUA"><code class="language-lua" tabindex="0">-- week.lua
+</code></pre><pre class="code-block" data-language="LUA"><code class="language-lua" tabindex="0">-- week.lua
 function translator(input, seg)
     if (input == "week" or input == "xingqiji") then
         local day_w=os.date("%w")
@@ -218,7 +228,7 @@ function translator(input, seg)
     end
 end
 return translator
-</code></pre><pre data-language="LUA"><code class="language-lua" tabindex="0">-- date.lua
+</code></pre><pre class="code-block" data-language="LUA"><code class="language-lua" tabindex="0">-- date.lua
 local function translator(input, seg)
     if (input == "date" or input == "riqi") then
         ------------------------------------------------------------------------------------
@@ -373,13 +383,13 @@ local function translator(input, seg)
     end
 end
 return translator
-</code></pre><p>再在 <code>rime.lua</code> 文件中添加如下定义：</p><pre data-language="LUA"><code class="language-lua" tabindex="0">time_translator = require("time")
+</code></pre><p>再在 <code>rime.lua</code> 文件中添加如下定义：</p><pre class="code-block" data-language="LUA"><code class="language-lua" tabindex="0">time_translator = require("time")
 week_translator = require("week")
 date_translator = require("date")
-</code></pre><p>最后，在输入方案配置文件中的 <code>engine</code> - <code>translators</code> 下添加：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">- lua_translator@time_translator
+</code></pre><p>最后，在输入方案配置文件中的 <code>engine</code> - <code>translators</code> 下添加：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">- lua_translator@time_translator
 - lua_translator@week_translator
 - lua_translator@date_translator
-</code></pre><p>添加完后应该会像这样：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">engine:
+</code></pre><p>添加完后应该会像这样：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">engine:
   processors:
     - ascii_composer
     - recognizer
@@ -407,10 +417,10 @@ date_translator = require("date")
     - simplifier@mapping_suggestion
     - simplifier
     - uniquifier
-</code></pre><p>刷新程序，在中文模式下输入“date”、“riqi”等设定词，就可以看到 lua 脚本中定义好的输出了：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/输入“time”.png" alt="输入“time”" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/输入“week”.png" alt="输入“week”" loading="lazy" tabindex="0"></div><hr><h3>导入词库</h3><p>首先，在 <code>default.custom.yaml</code> 中加入：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">translator:
+</code></pre><p>刷新程序，在中文模式下输入“date”、“riqi”等设定词，就可以看到 lua 脚本中定义好的输出了：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/输入“time”.png" alt="输入“time”" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/工具软件/.RIME 输入法折腾记录/输入“week”.png" alt="输入“week”" loading="lazy" tabindex="0"></div><hr><h3>导入词库</h3><p>首先，在 <code>default.custom.yaml</code> 中加入：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">translator:
   # 允许使用用户词库
   enable_user_dict: true
-</code></pre><p>在配置文件目录下创建 <code>chinese_simp.dict.yaml</code>，这个文件夹会用来存放指向所需的词库文件的路径。</p><p>修改输入方案配置文件下 <code>translator</code> - <code>dictionary</code> 为：<code>chinese_simp</code>，即指向我们刚刚创建的文件。</p><p>到<a href="https://github.com/iDvel/rime-ice/tree/main/cn_dicts" target="_blank">这里</a>下载其中的 <code>base.dict.yaml</code>, <code>ext.dict.yaml</code> 和 <code>8105.dict.yaml</code> 词库文件，放到前文里创建的 <code>dicts</code> 目录下。</p><p>修改 <code>chinese_simp.dict.yaml</code> 如下所示：</p><pre data-language="YAML"><code class="language-yaml" tabindex="0">name: chinese_simp # 注意name和文件名一致
+</code></pre><p>在配置文件目录下创建 <code>chinese_simp.dict.yaml</code>，这个文件夹会用来存放指向所需的词库文件的路径。</p><p>修改输入方案配置文件下 <code>translator</code> - <code>dictionary</code> 为：<code>chinese_simp</code>，即指向我们刚刚创建的文件。</p><p>到<a href="https://github.com/iDvel/rime-ice/tree/main/cn_dicts" target="_blank">这里</a>下载其中的 <code>base.dict.yaml</code>, <code>ext.dict.yaml</code> 和 <code>8105.dict.yaml</code> 词库文件，放到前文里创建的 <code>dicts</code> 目录下。</p><p>修改 <code>chinese_simp.dict.yaml</code> 如下所示：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">name: chinese_simp # 注意name和文件名一致
 version: "0.0.1"
 sort: by_weight
 use_preset_vocabulary: true
@@ -419,7 +429,7 @@ import_tables:
   - dicts/base
   - dicts/ext
   - dicts/8105
-</code></pre><blockquote><p>注意⚠️：前文的字符映射要在这里的导入词库配置完之后才能够使用映射表中的所有内容。</p></blockquote><hr><h2>最后，放上我的完整的输入方案配置文件 <code>pinyin.schema.yaml</code></h2><pre data-language="YAML"><code class="language-yaml" tabindex="0">schema:
+</code></pre><blockquote><p>注意⚠️：前文的字符映射要在这里的导入词库配置完之后才能够使用映射表中的所有内容。</p></blockquote><hr><h2>最后，放上我的完整的输入方案配置文件 <code>pinyin.schema.yaml</code></h2><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">schema:
   schema_id: pinyin
   name: 拼音
   version: '0.1'
@@ -529,3 +539,6 @@ recognizer:
     punct: '^/([0-9]0?|[A-Za-z]+)$'
     reverse_lookup: "`[a-z]*'?$"
 </code></pre><p>感谢阅读！</p>
+</article>
+</body>
+</html>

@@ -12,12 +12,6 @@ div.details details {
 
 @media screen and (max-width: 767px) {
     /* Mobile phone style */
-    div.details details {
-        border-radius: 0;
-    }
-    div.details .details-children-container {
-        margin: 0 1.6rem;
-    }
     div.details .details-children-container > .details-children {
         padding: 0 1.6rem !important;
     }

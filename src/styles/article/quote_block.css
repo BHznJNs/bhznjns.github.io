@@ -12,7 +12,8 @@ blockquote {
     background-color: var(--quote-bg-color);
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
-    transition: color .3s .15s;
+    transition: color .3s .15s,
+                background .3s .15s;
 }
 
 blockquote code:not(pre code) {

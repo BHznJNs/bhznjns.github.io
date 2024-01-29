@@ -29,6 +29,7 @@ export default [
             sourcemap: true,
         },
         external: [
+            /\/builder\//,
             /build\.config\.js/,
             /libs\/katex/,
             /libs\/highlight/,

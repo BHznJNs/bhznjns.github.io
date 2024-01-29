@@ -1,6 +1,6 @@
 {
   "name": "markdown-blog",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "main": "index.js",
   "homepage": "https://bhznjns.github.io/markdown-blog/",
   "repository": "https://github.com/BHznJNs/markdown-blog",
@@ -14,7 +14,11 @@
   "author": "BHznJNs",
   "license": "CC-BY-4.0",
   "dependencies": {
-    "express": "^4.18.2"
+    "crypto-js": "^4.2.0",
+    "echarts": "^5.4.3",
+    "electron": "^28.2.0",
+    "express": "^4.18.2",
+    "html2canvas": "^1.4.1"
   },
   "devDependencies": {
     "@rollup/plugin-dynamic-import-vars": "^2.1.2",

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echarts Chart Renderer</title>
+    <style>
+        #render-target {
+            width: 960px;
+            height: 720px;
+        }
+    </style>
+</head>
+<body>
+    <div id="render-target"></div>
+    <script>
+        const { ipcRenderer } = require("electron")
+        const { writeFileSync } = require("node:fs")
+        const echarts = require("echarts")
+
+        ipcRenderer.once("chart-content", async (_, { chartContent, savePath }) => {
+            const targetEl = document.querySelector("#render-target")
+
+            try {
+                const options = new Function(
+                    "let option;"
+                    + chartContent
+                    + ";return option"
+                )()
+                let chart = echarts.init(targetEl)
+                options.animation = false
+                chart.setOption(options)
+            } catch(err) {
+                ipcRenderer.send("render-error", err.message)
+                return
+            }
+
+            // SVG output
+            // const SVGContent = targetEl.childNodes[0].innerHTML
+            // writeFileSync(savePath, SVGContent)
+            // ipcRenderer.send("render-ended")
+
+            // PNG output
+            const canvas = targetEl.querySelector("canvas")
+            canvas.toBlob(async blob => {
+                const buffer = await blob.arrayBuffer()
+                const viewer = new DataView(buffer)
+                writeFileSync(savePath, viewer)
+                ipcRenderer.send("render-ended")
+            })
+        })
+    </script>
+</body>
+</html>

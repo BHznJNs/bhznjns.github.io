@@ -22,6 +22,12 @@ const PairedParenMap = new Map([
 
 // --- --- --- --- --- ---
 
+let katexRenderer = null
+if (typeof window === "undefined") {
+    const renderModule = await import("../../../builder/utils/renderer/index.js")
+    katexRenderer = content => renderModule.render(content, "katex")
+}
+
 class TextToken {
     constructor(content) {
         this.content = content
@@ -40,7 +46,7 @@ class KeyToken {
         }
         this.content = content
 
-        if (this.className === "math") {
+        if (this.className === "math" && typeof window === "object") {
             // set this global variable to import
             // the math formula renderer module
             globalThis.__ContainsFormula__ = true
@@ -48,6 +54,17 @@ class KeyToken {
     }
 
     toHTML() {
+        if (this.className === "math" && typeof window === "undefined") {
+            // for katex rendering in node.js
+            const filename = katexRenderer(this.content)
+            const formulaImage = el("img", "", {
+                src: "./" + filename
+            })
+            const container = el("span", formulaImage, {
+                "class": "math"
+            })
+            return container
+        }
         const elOption = this.className === undefined ? null : {"class": this.className}
         const thisEl = el(this.tagName, parseEntry(this.content), elOption)
         return thisEl

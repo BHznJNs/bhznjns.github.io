@@ -1,4 +1,4 @@
-import { writeFileSync, unlinkSync } from "node:fs"
+import { unlinkSync } from "node:fs"
 import indexing from "./indexing.js"
 import getNewest from "./getNewest.js"
 import saveNewest from "./saveNewest.js"
@@ -8,6 +8,10 @@ import clearDirectory from "./utils/clearDirectory.js"
 import writeIndexTemplate from "./indexTemplate.js"
 import readDir, { Directory } from "./utils/readDir.js"
 import saveRSS from "./saveRSS.js"
+
+if (!config.homepage.endsWith("/")) {
+    config.homepage += "/"
+}
 
 try { unlinkSync(rssFilePath) } catch {}
 clearDirectory(indexFilePath)

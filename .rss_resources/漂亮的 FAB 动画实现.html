@@ -1,9 +1,19 @@
-<h1>漂亮的 FAB 动画实现</h1><p><code>2024/01/18</code></p><hr><p>FAB(Floating Action Button) 浮动操作按钮，是 Material Design 中的常见组件。</p><blockquote><p>浮动操作按钮代表着应用中最重要的操作。</p></blockquote><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/Web 前端/CSS/.漂亮的 FAB 动画实现/components_buttons_fab.webp" alt="FAB 图例" loading="lazy" tabindex="0"></div><p>而本文要实现的 FAB 动画则如下 GIF 图所示：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/Web 前端/CSS/.漂亮的 FAB 动画实现/screenshot.gif" alt="目标效果图" loading="lazy" tabindex="0"></div><p>那么，让我们开始吧！</p><hr><h2>初步实现</h2><pre data-language="XML"><code class="language-xml" tabindex="0">&lt;div id="fab"&gt;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>漂亮的 FAB 动画实现</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<article>
+    <h1>漂亮的 FAB 动画实现</h1><p><code>2024/01/18</code></p><hr><p>FAB(Floating Action Button) 浮动操作按钮，是 Material Design 中的常见组件。</p><blockquote><p>浮动操作按钮代表着应用中最重要的操作。</p></blockquote><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/Web 前端/CSS/.漂亮的 FAB 动画实现/components_buttons_fab.webp" alt="FAB 图例" loading="lazy" tabindex="0"></div><p>而本文要实现的 FAB 动画则如下 GIF 图所示：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/Web 前端/CSS/.漂亮的 FAB 动画实现/screenshot.gif" alt="目标效果图" loading="lazy" tabindex="0"></div><p>那么，让我们开始吧！</p><hr><h2>初步实现</h2><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;div id="fab"&gt;
     &lt;div id="switcher" class="fab-item"&gt;
         &lt;div class="image"&gt;&lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;
-</code></pre><p>我们先只定义一个 FAB 按钮（即 <code>#switcher</code>），用来切换状态。</p><p>再定义其样式：</p><pre data-language="CSS"><code class="language-css" tabindex="0">/* 组件容器样式 */
+</code></pre><p>我们先只定义一个 FAB 按钮（即 <code>#switcher</code>），用来切换状态。</p><p>再定义其样式：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">/* 组件容器样式 */
 #fab {
     --fab-size: 64px;
     --shadow-sm: 0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12) !important;
@@ -58,13 +68,13 @@
     background-image: url(./fab-switch.svg);
     transform: rotate(-180deg);
 }
-</code></pre><div class="media-container"><iframe src="https://bhznjns.github.io/markdown-blog/static/Web 前端/CSS/.漂亮的 FAB 动画实现/1.html" title="第一步效果" sandbox="allow-scripts" loading="lazy">第一步效果</iframe></div><hr><h2>开关动画</h2><p>嗯，已经有 FAB 按钮的形状了，让我们给 switcher 按钮添加开关事件吧</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const container = document.querySelector("#fab")
+</code></pre><div class="media-container"><iframe src="https://bhznjns.github.io/markdown-blog/static/Web 前端/CSS/.漂亮的 FAB 动画实现/1.html" title="第一步效果" sandbox="allow-scripts" loading="lazy">第一步效果</iframe></div><hr><h2>开关动画</h2><p>嗯，已经有 FAB 按钮的形状了，让我们给 switcher 按钮添加开关事件吧</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const container = document.querySelector("#fab")
 const switcher  = container.querySelector("#switcher")
 
 switcher.addEventListener("click", () =&gt; {
     container.classList.toggle("hidden")
 })
-</code></pre><p>再加上 <code>hidden</code> 的样式和 <code>transition</code> 属性</p><pre data-language="CSS"><code class="language-css" tabindex="0">#fab {
+</code></pre><p>再加上 <code>hidden</code> 的样式和 <code>transition</code> 属性</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">#fab {
     transition: transform .3s;
 }
 #fab.hidden {
@@ -83,7 +93,7 @@ switcher.addEventListener("click", () =&gt; {
     padding-bottom: 12px;
     transform: rotate(0);
 }
-</code></pre><div class="media-container"><iframe src="https://bhznjns.github.io/markdown-blog/static/Web 前端/CSS/.漂亮的 FAB 动画实现/2.html" title="第二步效果" sandbox="allow-scripts" loading="lazy">第二步效果</iframe></div><hr><h2>添加子按钮</h2><p>在组件的开关按钮内接着添加元素：</p><pre data-language="XML"><code class="language-xml" tabindex="0">&lt;div id="fab"&gt;
+</code></pre><div class="media-container"><iframe src="https://bhznjns.github.io/markdown-blog/static/Web 前端/CSS/.漂亮的 FAB 动画实现/2.html" title="第二步效果" sandbox="allow-scripts" loading="lazy">第二步效果</iframe></div><hr><h2>添加子按钮</h2><p>在组件的开关按钮内接着添加元素：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;div id="fab"&gt;
     &lt;div id="switcher" class="fab-item"&gt;
         &lt;div class="image"&gt;&lt;/div&gt;
     &lt;/div&gt;
@@ -97,11 +107,11 @@ switcher.addEventListener("click", () =&gt; {
         &lt;div class="image"&gt;&lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;
-</code></pre><p>通过 javascript 动态向子按钮（<code>#item1</code> <code>#item2</code> <code>#item3</code>）添加 css 变量：</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const subFabItems = container.querySelectorAll(".fab-item:not(#switcher)")
+</code></pre><p>通过 javascript 动态向子按钮（<code>#item1</code> <code>#item2</code> <code>#item3</code>）添加 css 变量：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const subFabItems = container.querySelectorAll(".fab-item:not(#switcher)")
 for (const [index, item] of Object.entries(subFabItems)) {
     item.style.setProperty("--fab-item-index", Number(index) + 1)
 }
-</code></pre><p>给新添加的元素设置样式：</p><pre data-language="CSS"><code class="language-css" tabindex="0">#switcher {
+</code></pre><p>给新添加的元素设置样式：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">#switcher {
     /* 让 `switcher` 位于组件最顶层 */
     z-index: 999;
 }
@@ -135,8 +145,8 @@ div.fab-item:not(#switcher) .image {
 #item3 .image {
     background-image: url(./javascript.svg)
 }
-</code></pre><div class="media-container"><iframe src="https://bhznjns.github.io/markdown-blog/static/Web 前端/CSS/.漂亮的 FAB 动画实现/3.html" title="第三步效果" sandbox="allow-scripts" loading="lazy">第三步效果</iframe></div><hr><h2>层叠展开/收回效果实现</h2><p>到这里其实主要功能已经实现得差不多了，但是前文中 GIF 图里的层叠展开/收回效果还没有实现。</p><p>我们先为组件根元素设置组件子按钮数变量</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">container.style.setProperty("--fab-item-count", subFabItems.length + 1)
-</code></pre><p>再来设置子按钮的样式：</p><pre data-language="CSS"><code class="language-css" tabindex="0">/* 设置子按钮的层级关系 */
+</code></pre><div class="media-container"><iframe src="https://bhznjns.github.io/markdown-blog/static/Web 前端/CSS/.漂亮的 FAB 动画实现/3.html" title="第三步效果" sandbox="allow-scripts" loading="lazy">第三步效果</iframe></div><hr><h2>层叠展开/收回效果实现</h2><p>到这里其实主要功能已经实现得差不多了，但是前文中 GIF 图里的层叠展开/收回效果还没有实现。</p><p>我们先为组件根元素设置组件子按钮数变量</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">container.style.setProperty("--fab-item-count", subFabItems.length + 1)
+</code></pre><p>再来设置子按钮的样式：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">/* 设置子按钮的层级关系 */
 div.fab-item:not(#switcher) {
     --z-index-value: calc(var(--fab-item-count) - var(--fab-item-index));
     z-index: var(--z-index-value);
@@ -153,3 +163,6 @@ div.fab-item:not(#switcher) {
                           linear;
 }
 </code></pre><p>最终效果：</p><div class="media-container"><iframe src="https://bhznjns.github.io/markdown-blog/static/Web 前端/CSS/.漂亮的 FAB 动画实现/final.html" title="最终效果" sandbox="allow-scripts" loading="lazy">最终效果</iframe></div>
+</article>
+</body>
+</html>

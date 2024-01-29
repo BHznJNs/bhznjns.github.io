@@ -1,6 +1,16 @@
-<h1>内嵌 HTML 的 iframe 标签实现动态高度</h1><p><code>2023/12/27</code></p><hr><h2>内嵌 HTML 的 iframe</h2><p>HTML 的 <code>iframe</code> 标签有属性 <code>srcdoc</code>，你可以使用这一属性直接将一段 HTML 代码内嵌在另一份 HTML 文档中，就像这样：</p><pre data-language="XML"><code class="language-xml" tabindex="0">&lt;iframe srcdoc="&lt;h1&gt;Hello World!&lt;/h1&gt;"&gt;&lt;/iframe&gt;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内嵌 HTML 的 iframe 标签实现动态高度</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<article>
+    <h1>内嵌 HTML 的 iframe 标签实现动态高度</h1><p><code>2023/12/27</code></p><hr><h2>内嵌 HTML 的 iframe</h2><p>HTML 的 <code>iframe</code> 标签有属性 <code>srcdoc</code>，你可以使用这一属性直接将一段 HTML 代码内嵌在另一份 HTML 文档中，就像这样：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;iframe srcdoc="&lt;h1&gt;Hello World!&lt;/h1&gt;"&gt;&lt;/iframe&gt;
 </code></pre><p>展示效果：</p><div class="media-container"><iframe id="iframe_1" title="" srcdoc="<iframe srcdoc='<h1>Hello World!</h1>'></iframe>
-" sandbox="allow-scripts"></iframe></div><h2>实现动态高度</h2><p>本文中通过 <code>postMessage</code> 在 iframe 内部向父窗口发送 iframe 内容的高度信息。</p><p>首先，我们需要在被内嵌的 HTML 代码中加入如下代码：</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">&lt;script&gt;
+" sandbox="allow-scripts"></iframe></div><h2>实现动态高度</h2><p>本文中通过 <code>postMessage</code> 在 iframe 内部向父窗口发送 iframe 内容的高度信息。</p><p>首先，我们需要在被内嵌的 HTML 代码中加入如下代码：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">&lt;script&gt;
 // 在 iframe 加载完成时执行
 window.addEventListener("load", (e) =&gt; {
     // 获取 iframe 的根节点（html 节点）
@@ -16,7 +26,7 @@ window.addEventListener("load", (e) =&gt; {
     }, "*") // 此参数可以防止数据因安全原因被拦截
 })
 &lt;/script&gt;
-</code></pre><p>再在父窗口中加入如下监听代码：</p><pre data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">window.addEventListener("message", (e) =&gt; {
+</code></pre><p>再在父窗口中加入如下监听代码：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">window.addEventListener("message", (e) =&gt; {
     if (e.origin != "null") {
         // 由于内嵌 HTML 的 iframe 发送的信息事件中的
         // `origin` 属性为 "null"，我们可以以此屏蔽
@@ -31,3 +41,6 @@ window.addEventListener("load", (e) =&gt; {
     targetIframeEl.style.height = height + "px"
 }, false)
 </code></pre>
+</article>
+</body>
+</html>

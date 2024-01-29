@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from "node:fs"
 import config from "../../build.config.js"
-import renderer from "../renderer.js"
+import renderer from "../utils/markdown/renderer.js"
 import { rssResourcePath } from "../utils/path.js"
 import rssTimeFormater from "../utils/timeFormat.js"
 

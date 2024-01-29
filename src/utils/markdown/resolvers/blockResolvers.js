@@ -1,6 +1,6 @@
 import { ChartBlock, CodeBlock, DetailsBlock, FormulaBlock, Iframe, IframeBlock } from "../node.js"
 
-function blockResolverGenerator(endSign, targetClass) {
+export function blockResolverGenerator(endSign, targetClass) {
     return function(firstLine, lines) {
         const description = firstLine.slice(3)
 

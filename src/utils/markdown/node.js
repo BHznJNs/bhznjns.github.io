@@ -178,17 +178,10 @@ class MediaNode {
         if (rawUrl.startsWith("http")) {
             actualUrl = rawUrl
         } else {
-            if ("location" in globalThis) {
-                // in browser
-                const hash = location.hash.slice(1)
-                // get the parent directory path
-                const currentPath = hash.split("/").slice(0, -1).join("/")
-                actualUrl = currentPath + "/" + rawUrl
-            } else {
-                // in nodejs
-                const path = globalThis.__ResourcePath__
-                actualUrl = path + "/" + rawUrl
-            }
+            const hash = location.hash.slice(1)
+            // get the parent directory path
+            const currentPath = hash.split("/").slice(0, -1).join("/")
+            actualUrl = currentPath + "/" + rawUrl
         }
         return actualUrl
     }
@@ -205,16 +198,13 @@ export class Image extends MediaNode {
             loading: "lazy",
             tabindex: 0,
         })
-        if (typeof window === "object") {
-            // in browser
-            imageEl.onclick = e =>
-                window.open(e.target.src)
-            imageEl.onerror = e => {
-                const target = e.target
-                target.onclick = null
-                target.title = this.description
-                target.classList.add("load-error")
-            }
+        imageEl.onclick = e =>
+            window.open(e.target.src)
+        imageEl.onerror = e => {
+            const target = e.target
+            target.onclick = null
+            target.title = this.description
+            target.classList.add("load-error")
         }
         return MediaNode.containerGenerator(imageEl)
     }
@@ -276,27 +266,18 @@ export class Iframe extends MediaNode {
 export class CodeBlock {
     constructor(content, lang) {
         this.lang = lang
-        if (typeof window === "object") {
-            // in browser
-            this.content = content
-        } else {
-            // in node.js
-            this.content = content
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-        }
+        this.content = content
     }
     append(content) {
         this.content += content
     }
     toHTML() {
         const isPlaintext = ["plaintext", "text", ""].includes(this.lang)
-        if (typeof window === "object" && !isPlaintext) {
+        if (!isPlaintext) {
             globalThis.__LanguageList__.add(this.lang)
         }
-        
-        let langName
-        let langClass
+
+        let langName, langClass
         if (isPlaintext) {
             langClass = "nohighlight"
             langName  = "PLAINTEXT"
@@ -400,14 +381,7 @@ window.addEventListener("message", e => {
         globalThis.__IframeCounter__ += 1
         this.id = "iframe_" + globalThis.__IframeCounter__
         this.description = description
-
-        if (typeof window === "object") {
-            // in browser
-            this.content = content + IframeBlock.#injectedCodes(this.id)
-        } else {
-            // in node.js
-            this.content = content
-        }
+        this.content = content + IframeBlock.#injectedCodes(this.id)
     }
 
     toHTML() {
@@ -523,7 +497,6 @@ export class ChartBlock {
         return MediaNode.containerGenerator(chartEl)
     }
 }
-
 
 // --- --- --- ---
 // block nodes end
