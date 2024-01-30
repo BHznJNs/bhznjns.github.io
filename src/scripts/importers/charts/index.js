@@ -2,6 +2,7 @@ import importEcharts from "./echarts.js"
 import importFlowchart from "./flowchart.js"
 import importSequenceChart from "./sequence.js"
 import importGantt from "./gantt.js"
+import importRailroad from "./railroad.js"
 import languageSelector from "../../../utils/languageSelector.js"
 
 const chartMethodMap = new Map([
@@ -9,6 +10,7 @@ const chartMethodMap = new Map([
     ["flow-chart"    , importFlowchart],
     ["sequence-chart", importSequenceChart],
     ["gantt-chart"   , importGantt],
+    ["railroad-chart", importRailroad],
 ])
 
 export const loadErrText   = languageSelector("图表加载失败", "Chart load error")

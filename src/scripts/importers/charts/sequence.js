@@ -9,7 +9,7 @@ export default async function() {
         const diagram = new SequenceDiagram(chartContent)
         el.appendChild(diagram.dom())
     }
-    function sequenceChartRenderer() {
+    function sequenceChartRender() {
         for (const el of chartElList()) {
             try {
                 renderItem(el)
@@ -22,13 +22,13 @@ export default async function() {
 
 
     if (SequenceDiagram) {
-        sequenceChartRenderer()
+        sequenceChartRender()
         return
     }
 
     import("../../../libs/sequence-diagram/sequence-diagram-web.mjs")
         .then(module => SequenceDiagram = module.SequenceDiagram)
-        .then(sequenceChartRenderer)
+        .then(sequenceChartRender)
         .catch(err => {
             console.error(err)
             chartElList().forEach(el =>

@@ -14,7 +14,8 @@ export default async function() {
             const chartInst = flowchart.parse(chartContent)
             try {
                 chartInst.drawSVG(el, flowchartOptions)
-            } catch(_) {
+            } catch(err) {
+                console.error(err)
                 el.textContent = renderErrText
             }
         }

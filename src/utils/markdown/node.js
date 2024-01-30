@@ -454,6 +454,19 @@ class GanttChartType {
         return chartEl
     }
 }
+class RailroadChartType {
+    constructor(content) {
+        this.content = content
+        globalThis.__ChartTypeList__.add("railroad-chart")
+    }
+    toHTML() {
+        const chartEl = el("div", "", {
+            "class": "railroad-container"
+        })
+        chartEl.__ChartContent__ = this.content
+        return chartEl
+    }
+}
 class UnknownChartType {
     constructor(errMsg) {
         this.content = errMsg
@@ -485,6 +498,10 @@ export class ChartBlock {
             case "gantt":       case "ganttchart":
             case "gantt chart": case "gantt-chart":
                 this.#type = new GanttChartType(content)
+                break
+            case "rail": case "railroad": case "railroadchart":
+            case "railroad chart":        case "railroad-chart":
+                this.#type = new RailroadChartType(content)
                 break
             default:
                 const errMsg = "Unknown chart type: " + type

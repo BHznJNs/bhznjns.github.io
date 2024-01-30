@@ -1,4 +1,4 @@
-import { loadErrText } from "./index.js"
+import { loadErrText, renderErrText } from "./index.js"
 import importStyle from "../style.js"
 import config from "../../../../build.config.js"
 
@@ -12,22 +12,27 @@ if (!("language" in ganttOptions)) {
 }
 
 export default async function() {
-    function ganttChartRenderer() {
+    function ganttChartRender() {
         for (const el of chartElList()) {
             const chartContent = el.__ChartContent__
-            new FrappGantt(el, chartContent, ganttOptions)
+            try {
+                new FrappGantt(el, chartContent, ganttOptions)
+            } catch(err) {
+                console.error(err)
+                el.textContent = renderErrText
+            }
         }
     }
 
     if (FrappGantt) {
-        ganttChartRenderer()
+        ganttChartRender()
         return
     }
 
     importStyle("./dist/libs/frappe-gantt/frappe-gantt.min.css")
     import("../../../libs/frappe-gantt/frappe-gantt.min.js")
         .then(module => FrappGantt = module.default)
-        .then(ganttChartRenderer)
+        .then(ganttChartRender)
         .catch(err => {
             console.error(err)
             chartElList().forEach(el =>

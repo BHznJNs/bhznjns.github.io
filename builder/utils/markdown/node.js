@@ -243,6 +243,10 @@ export class ChartBlock {
             case "gantt chart": case "gantt-chart":
                 this.#type = "gantt"
                 break
+            case "rail": case "railroad": case "railroadchart":
+            case "railroad chart":        case "railroad-chart":
+                this.#type = "railroad"
+                break
             default:
                 const errMsg = "Unknown chart type: " + type
                 console.error(errMsg)

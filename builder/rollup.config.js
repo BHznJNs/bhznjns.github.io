@@ -37,6 +37,7 @@ export default [
             /libs\/flowchart/,
             /libs\/sequence-diagram/,
             /libs\/frappe-gantt/,
+            /libs\/railroad-diagrams/,
         ],
         plugins: [
             terser(),
@@ -96,6 +97,13 @@ export default [
                     { /* frappe-gantt */
                         src: "src/libs/frappe-gantt/*.min.*",
                         dest: "dist/libs/frappe-gantt/"
+                    },
+                    { /* railroad-diagrams */
+                        src: [
+                            "src/libs/railroad-diagrams/railroad.min.js",
+                            "src/libs/railroad-diagrams/railroad.css",
+                        ],
+                        dest: "dist/libs/railroad-diagrams/"
                     }
                 ],
             }),

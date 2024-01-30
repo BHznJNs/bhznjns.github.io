@@ -68,7 +68,11 @@ function renderEnd() {
 
 export function render(chartContent, type) {
     const outputDir = "./.rss_resources/"
-    const extname = ["flowchart", "sequence"].includes(type) ? "svg" : "png"
+    const extname = [
+        "flowchart",
+        "sequence",
+        "railroad",
+    ].includes(type) ? "svg" : "png"
     const filename = `${type}-${Crypto.MD5(chartContent).toString()}.${extname}`
 
     // use echarts' build-in ssr

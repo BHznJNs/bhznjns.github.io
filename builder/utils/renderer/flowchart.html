@@ -17,14 +17,13 @@
         ipcRenderer.once("chart-content", (_, { chartContent, savePath }) => {
             const targetEl = document.querySelector("#render-target")
 
-            let chartInst
             try {
-                chartInst = flowchart.parse(chartContent)
+                const chartInst = flowchart.parse(chartContent)
+                chartInst.drawSVG(targetEl)
             } catch(err) {
                 ipcRenderer.send("render-error", err.message)
                 return
             }
-            chartInst.drawSVG(targetEl)
 
             const SVGContent = targetEl.innerHTML
             writeFileSync(savePath, SVGContent)
