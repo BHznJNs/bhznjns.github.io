@@ -1,5 +1,5 @@
-import pathManager from "../scripts/pathManager"
 import "../styles/components/catalog.css"
+import pathManager from "../scripts/pathManager"
 import throttle from "../utils/throttle.js"
 import eventbus from "../utils/eventbus/inst.js"
 import el from "../utils/dom/el.js"

@@ -1,12 +1,11 @@
-import { loadErrText, renderErrText } from "./index.js"
 import importStyle from "../style.js"
+import ChartImporter from "./importer.js"
 
-let moduleConstants = null
-const chartElList = () => document.querySelectorAll(".railroad-container")
+class RailroadImporter extends ChartImporter {
+    _targetElList = () => document.querySelectorAll(".railroad-container")
 
-export default async function() {
-    function itemRender(el, chartContent) {
-        const renderArgs = moduleConstants.concat(el)
+    renderItem(el, chartContent) {
+        const renderArgs = this._module.concat(el)
         const renderFn = new Function(
             "Diagram",
             "ComplexDiagram",
@@ -33,53 +32,35 @@ export default async function() {
         )
         renderFn.apply(null, renderArgs)
     }
-    function railroadRender() {
-        for (const el of chartElList()) {
-            try {
-                itemRender(el, el.__ChartContent__)
-            } catch(err) {
-                console.error(err)
-                el.textContent = renderErrText
-            }
-        }
-    }
 
-    if (moduleConstants) {
-        railroadRender()
-        return
+    async importModule() {
+        importStyle("./dist/libs/railroad-diagrams/railroad.css")
+        const module = await import("../../../libs/railroad-diagrams/railroad.min.js")
+        const { default: rr } = module
+        return [
+            rr.Diagram,
+            rr.ComplexDiagram,
+            rr.Sequence,
+            rr.Stack,
+            rr.OptionalSequence,
+            rr.AlternatingSequence,
+            rr.Choice,
+            rr.HorizontalChoice,
+            rr.MultipleChoice,
+            rr.Optional,
+            rr.OneOrMore,
+            rr.ZeroOrMore,
+            rr.Group,
+            rr.Start,
+            rr.End,
+            rr.Terminal,
+            rr.NonTerminal,
+            rr.Comment,
+            rr.Skip,
+            rr.Block,
+        ]
     }
-
-    importStyle("./dist/libs/railroad-diagrams/railroad.css")
-    import("../../../libs/railroad-diagrams/railroad.min.js")
-        .then(module => {
-            const rr = module.default
-            moduleConstants = [
-                rr.Diagram,
-                rr.ComplexDiagram,
-                rr.Sequence,
-                rr.Stack,
-                rr.OptionalSequence,
-                rr.AlternatingSequence,
-                rr.Choice,
-                rr.HorizontalChoice,
-                rr.MultipleChoice,
-                rr.Optional,
-                rr.OneOrMore,
-                rr.ZeroOrMore,
-                rr.Group,
-                rr.Start,
-                rr.End,
-                rr.Terminal,
-                rr.NonTerminal,
-                rr.Comment,
-                rr.Skip,
-                rr.Block,
-            ]
-        })
-        .then(railroadRender)
-        .catch(err => {
-            console.error(err)
-            chartElList().forEach(el =>
-                el.textContent = loadErrText)
-        })
 }
+
+const inst = new RailroadImporter()
+export default inst.render.bind(inst)

@@ -68,6 +68,7 @@ export default [
                         src: [
                             "src/libs/highlight-es/highlight.min.js",
                             "src/libs/highlight-es/highlight.map",
+                            "src/libs/highlight-es/github-dark.css"
                         ],
                         dest: "dist/libs/highlight-es/"
                     },

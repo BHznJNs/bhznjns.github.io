@@ -1,39 +1,38 @@
-let hljs = null
+import DynamicImporter from "./dynamicImporter.js"
+import importStyle from "./style.js"
 
-export default async function(languageList=new Set()) {
-    function importLangDefs() {
-        // dynamically import language definitions
-        const languageListArr = Array.from(languageList)
-        const langDefImporters = languageListArr
-            .filter(name => !hljs.getLanguage(name))
+class HighlightImporter extends DynamicImporter {
+    name = "Highlight.js"
+    _targetElList = () => document.querySelectorAll("pre.code-block code")
+
+    constructor() { super() }
+
+    async #importLangDefs(languageList=[]) {
+        const langDefImporters = languageList
+            .filter(name => !this._module.getLanguage(name))
             .map(lang => import(`../../libs/highlight-es/languages/${lang.toLowerCase()}.js`))
-
-        Promise.all(langDefImporters)
+        await Promise.all(langDefImporters)
             .then(langDefs => langDefs.forEach((defModule, index) => {
-                const name = languageListArr[index]
+                const name = languageList[index]
                 const def  = defModule.default
-                hljs.registerLanguage(name, def)
+                this._module.registerLanguage(name, def)
             }))
-            .then(() => {
-                const seletor = "pre.code-block code"
-                document.querySelectorAll(seletor)
-                    .forEach(hljs.highlightElement)
-            })
-            .catch(err => console.error(err))
+            .catch(this.loadErrResolver)
     }
 
-    if (!languageList.size) {
-        // no code blocks
-        return
-    }
-    if (hljs) {
-        importLangDefs()
-        return
-    }
+    renderItem(el) {
+        this._module.highlightElement(el)
 
-    // import highlight.js itself
-    import("../../libs/highlight-es/highlight.min.js")
-        .then(module => hljs = module.default)
-        .then(importLangDefs)
-        .catch(err => console.error(err))
+    }
+    async beforeRender(languageList=new Set()) {
+        await this.#importLangDefs(Array.from(languageList))
+    }
+    async importModule() {
+        importStyle("./dist/libs/highlight-es/github-dark.css")
+        const module = await import("../../libs/highlight-es/highlight.min.js")
+        return module.default
+    }
 }
+
+const inst = new HighlightImporter()
+export default inst.render.bind(inst)

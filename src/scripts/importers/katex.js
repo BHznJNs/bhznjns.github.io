@@ -1,46 +1,37 @@
 import importStyle from "./style.js"
+import DynamicImporter from "./dynamicImporter.js"
 import config from "../../../build.config.js"
 
-let katex = null
 const { katexOptions } = config
 
-export default async function(isContainsFormula=false) {
-    function renderFormula() {
-        // render all formula element
-        document.querySelectorAll(".math")
-            .forEach(el => {
-                const texString = el.textContent
-                try {
-                    katex.render(texString, el, katexOptions)
-                } catch(e) {
-                    if (e instanceof katex.ParseError) {
-                        // KaTeX can't parse the expression
-                        el.innerHTML = ("Error in LaTeX '" + texString + "': " + e.message)
-                            .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-                    } else {
-                        // other error
-                        throw e
-                    }
-                }
-            })
+class KatexImporter extends DynamicImporter {
+    name = "KaTeX"
+    _targetElList = () => document.querySelectorAll(".math")
+
+    constructor() { super() }
+
+    renderErrResolver(err, el) {
+        if (err instanceof this._module.ParseError) {
+            // KaTeX can't parse the expression
+            el.innerHTML = ("Error in LaTeX '" + texString + "': " + err.message)
+                .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        } else {
+            // other error
+            el.textContent = this.name + " " + DynamicImporter.renderErrMsg
+            console.error(err)
+        }
+    }
+    renderItem(el) {
+        const texString = el.textContent
+        this._module.render(texString, el, katexOptions)
     }
 
-    if (!isContainsFormula) {
-        // no formula
-        return
-    }
-    if (katex) {
-        renderFormula()
-        return
-    }
-
-    // dynamically import katex style and script 
-    importStyle("./dist/libs/katex/katex.min.css")
-    try {
-        const katexModule = await import("../../libs/katex/katex.min.js")
-        katex = katexModule.default
-        renderFormula()
-    } catch(e) {
-        console.error(e)
+    async importModule() {
+        importStyle("./dist/libs/katex/katex.min.css")
+        const module = await import("../../libs/katex/katex.min.js")
+        return module.default
     }
 }
+
+const inst = new KatexImporter()
+export default inst.render.bind(inst)

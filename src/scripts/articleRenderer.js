@@ -1,6 +1,6 @@
-import importHighlighter from "./importers/highlight.js"
-import importTexRenderer from "./importers/katex.js"
-import importChartRenderer from "./importers/charts/index.js"
+import highlightRender from "./importers/highlight.js"
+import katexRender from "./importers/katex.js"
+import chartRender from "./importers/charts/index.js"
 
 import mdResolver from "../utils/markdown/index.js"
 import keydownEvent from "../utils/dom/keydownEvent.js"
@@ -65,7 +65,7 @@ export default function articleRender(articleEl, mdText) {
     })
     backToTop()
 
-    importHighlighter(globalThis.__LanguageList__).then(() => globalThis.__LanguageList__ = null)
-    importTexRenderer(globalThis.__ContainsFormula__).then(() => globalThis.__ContainsFormula__ = false)
-    importChartRenderer(globalThis.__ChartTypeList__).then(() => globalThis.__ChartTypeList__ = null)
+    highlightRender(globalThis.__LanguageList__).then(() => globalThis.__LanguageList__ = null)
+    katexRender(globalThis.__ContainsFormula__).then(() => globalThis.__ContainsFormula__ = false)
+    chartRender(globalThis.__ChartTypeList__).then(() => globalThis.__ChartTypeList__ = null)
 }

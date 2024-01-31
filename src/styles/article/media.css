@@ -123,6 +123,7 @@ div.media-container .ganttchart-container {
 }
 body.dark div.media-container .flowchart-container svg,
 body.dark div.media-container .sequencechart-container svg {
+    width: 100%;
     filter: invert(.85);
 }
 

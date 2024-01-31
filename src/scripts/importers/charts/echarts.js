@@ -1,27 +1,15 @@
 import config from "../../../../build.config.js"
-import { loadErrText } from "./index.js"
 import debounce from "../../../utils/debounce.js"
 import eventbus from "../../../utils/eventbus/inst.js"
 import mergeObj from "../../../utils/mergeObj.js"
+import ChartImporter from "./importer.js"
 
-let echarts = null
-let importChart = null
-let importComponent = null
-
+let [
+    echarts,
+    importChart,
+    importComponent,
+] = [null, null, null]
 const globalOptions = config.echartsOptions
-const chartElList = () => document.querySelectorAll(".echarts-container")
-
-function chartRenderer(el) {
-    const isDarkMode = document.body.classList.contains("dark")
-    const renderMode = isDarkMode ? "another-dark" : "light"
-    const chartInst  = echarts.init(el, renderMode)
-
-    // options merging
-    const currentOptions = el.__ChartOptions__
-    const globalOptionsCloned = mergeObj({}, globalOptions)
-    const finalOptions = mergeObj(globalOptionsCloned, currentOptions)
-    chartInst.setOption(finalOptions)
-}
 
 function chartOptionResolver(options={}, libsToImport) {
     const ignoredProps = [
@@ -78,81 +66,88 @@ function chartOptionResolver(options={}, libsToImport) {
     }
 }
 
-// event listeners
-const darkmodeObserver = new MutationObserver(_ => {
-    for (const el of chartElList()) {
-        // rerender all chart elements to reset color theme
-        echarts.dispose(el)
-        chartRenderer(el)
+async function importChartLibs(chartOptions) {
+    const libsToImport = {
+        charts: new Set(),
+        components: new Set(),
     }
-})
-const resizeEvent = () => chartElList()
-    .forEach(el => echarts.getInstanceByDom(el).resize())
+    chartOptionResolver(globalOptions, libsToImport)
+    chartOptions.forEach(options =>
+        chartOptionResolver(options, libsToImport))
 
-
-export default async function() {
-    function loadError(err) {
-        console.error(err)
-        chartElList().forEach(el =>
-            el.textContent = loadErrText)
-    }
-    function importChartLibs(chartOptions) {
-        const libsToImport = {
-            charts: new Set(),
-            components: new Set(),
-        }
-        chartOptionResolver(globalOptions, libsToImport)
-        chartOptions.forEach(options =>
-            chartOptionResolver(options, libsToImport))
-
-        const chartsToImport = Array.from(libsToImport.charts).map(importChart)
-        const componentsToImport = Array.from(libsToImport.components).map(importComponent)
-        Promise.all(chartsToImport.concat(componentsToImport))
-            .then(echartsLibs => {
-                echarts.use(echartsLibs)
-                chartElList().forEach(chartRenderer)
-            })
-            .catch(loadError)
-    }
-
-    const chartOptions = []
-    for (const el of chartElList()) {
-        chartOptions.push(el.__ChartOptions__)
-    }
-
-    if (!chartOptions.length) {
-        // no chart
-        return
-    }
-    if (echarts) {
-        importChartLibs(chartOptions)
-        return
-    }
-    Promise.all([
-        import("../../../libs/echarts/core.js"),
-        import("./echartsAnotherDarkTheme.js"),
-    ])
-        .then(([module, darkModule]) => {
-            echarts         = module.default
-            importChart     = module.importChart
-            importComponent = module.importComponent
-            const darkTheme = darkModule.default
-            echarts.registerTheme("another-dark", darkTheme)
-        })
-        .then(() => importChartLibs(chartOptions))
-        .then(() => {
-            const body = document.body
-            darkmodeObserver.observe(body, {
-                attributes: true,
-                attributeFilter: ["class"]
-            })
-
-            // resize event listeners
-            eventbus.on("catalog-toggle", () => {
-                setTimeout(resizeEvent, 1000)
-            })
-            window.addEventListener("resize",
-                debounce(resizeEvent, 200))
-        })
-        .catch(loadError)
+    const chartsToImport = Array.from(libsToImport.charts).map(importChart)
+    const componentsToImport = Array.from(libsToImport.components).map(importComponent)
+    await Promise.all(chartsToImport.concat(componentsToImport))
+        .then(echarts.use)
 }
+
+class EchartsImporter extends ChartImporter {
+    _targetElList = () => document.querySelectorAll(".echarts-container")
+
+    // event listeners
+    #darkmodeObserver = new MutationObserver(_ => {
+        for (const el of this._targetElList()) {
+            // rerender all chart elements to reset color theme
+            this._module.dispose(el)
+            this.renderItem(el)
+        }
+    })
+    #resizeEvent() {
+        this._targetElList()
+            .forEach(el =>
+                echarts.getInstanceByDom(el).resize())
+    }
+
+    // --- --- --- --- --- ---
+
+    renderItem(el) {
+        const isDarkMode = document.body.classList.contains("dark")
+        const renderMode = isDarkMode ? "another-dark" : "light"
+        const chartInst  = this._module.init(el, renderMode)
+    
+        // options merging
+        const currentOptions = el.__ChartOptions__
+        const globalOptionsCloned = mergeObj({}, globalOptions)
+        const finalOptions = mergeObj(globalOptionsCloned, currentOptions)
+        chartInst.setOption(finalOptions)
+    }
+
+    async beforeRender() {
+        const chartOptions = Array.from(this._targetElList())
+            .map(el => el.__ChartOptions__)
+        try {
+            await importChartLibs(chartOptions)
+        } catch(err) {
+            this.loadErrResolver(err)
+        }
+    }
+
+    async importModule() {
+        const [module, darkTheme] = await Promise.all([
+            import("../../../libs/echarts/core.js"),
+            import("./echartsAnotherDarkTheme.js"),
+        ])
+        echarts         = module.default
+        importChart     = module.importChart
+        importComponent = module.importComponent
+        echarts.registerTheme("another-dark", darkTheme.default)
+
+        // dark mode toggling listener
+        const body = document.body
+        this.#darkmodeObserver.observe(body, {
+            attributes: true,
+            attributeFilter: ["class"]
+        })
+
+        // resize event listeners
+        eventbus.on("catalog-toggle", () => {
+            setTimeout(this.#resizeEvent.bind(this), 1000)
+        })
+        window.addEventListener("resize",
+            debounce(this.#resizeEvent.bind(this), 200))
+        return echarts
+    }
+}
+
+const inst = new EchartsImporter()
+export default inst.render.bind(inst)

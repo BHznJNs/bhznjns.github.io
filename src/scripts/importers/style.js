@@ -1,4 +1,4 @@
-export default function(path) {
+export default function importStyle(path) {
     const linkEl = document.createElement("link")
     linkEl.rel  = "stylesheet"
     linkEl.href = path
