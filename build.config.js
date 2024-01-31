@@ -163,5 +163,22 @@ export default {
     ganttOptions: {
         // languages property here will be the same with upper `language` as default
         // 这里的 languages 属性默认会与前文中指定的 `language` 相同
+    },
+
+    /**
+     * railroadOptions: Object
+     * the global general config options for railroad chart rendering, see here: https://github.com/tabatkins/railroad-diagrams/blob/gh-pages/README-js.md
+     * 铁路渲染的全局配置项，见此：https://github.com/tabatkins/railroad-diagrams/blob/gh-pages/README-js.md
+     */
+    railroadOptions: {
+        verticalGap: 8, // the minimum amount of vertical separation between two items
+        arcRadius: 10,  // the radius of the arcs
+
+        // when some branches of a container are narrower than others, this determines how they're aligned in the extra space.
+        // values: "center" | "left" | "right"
+        internalAlignment: "center",
+
+        charWidth: 8.5, // the approximate width of characters in normal text, ignored for text diagrams
+        commentCharWidth: 7, // the approximate width of character in Comment text
     }
 }

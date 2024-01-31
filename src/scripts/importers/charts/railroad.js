@@ -1,5 +1,8 @@
 import importStyle from "../style.js"
 import ChartImporter from "./importer.js"
+import config from "../../../../build.config.js"
+
+const { railroadOptions } = config
 
 class RailroadImporter extends ChartImporter {
     _targetElList = () => document.querySelectorAll(".railroad-container")
@@ -36,7 +39,17 @@ class RailroadImporter extends ChartImporter {
     async importModule() {
         importStyle("./dist/libs/railroad-diagrams/railroad.css")
         const module = await import("../../../libs/railroad-diagrams/railroad.min.js")
-        const { default: rr } = module
+        const {
+            default: rr,
+            Options,
+        } = module
+        Object.assign(Options, {
+            VS                : railroadOptions.verticalGap,
+            AR                : railroadOptions.arcRadius,
+            INTERNAL_ALIGNMENT: railroadOptions.internalAlignment,
+            CHAR_WIDTH        : railroadOptions.charWidth,
+            COMMENT_CHAR_WIDTH: railroadOptions.commentCharWidth,
+        })
         return [
             rr.Diagram,
             rr.ComplexDiagram,
