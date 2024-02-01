@@ -76,6 +76,25 @@ const ganttChartContent = `\
     progress: 50,
 },`
 
+const railroadChartContent = `\
+Diagram(
+	Choice(1, '+', Skip(), '-'),
+	Choice(0,
+		Sequence(
+			OneOrMore(NonTerminal('digit')),
+			'.',
+			OneOrMore(NonTerminal('digit'))),
+		OneOrMore(NonTerminal('digit')),
+		Sequence(
+			'.',
+			OneOrMore(NonTerminal('digit')))),
+	Choice(0,
+		Skip(),
+		Sequence(
+			Choice(0, 'e', 'E'),
+			Choice(1, '+', Skip(), '-'),
+			OneOrMore(NonTerminal('digit')))))`
+
 const katexTestContent = `\
 e = mc^2\\\\
 \\frac a b = \\frac c d`
@@ -84,13 +103,15 @@ e = mc^2\\\\
 let filename
 filename = render(echartsChartContent, "echarts")
 console.log(filename)
-// filename = render(flowChartContent, "flowchart")
-// console.log(filename)
-// filename = render(sequenceChartContent, "sequence")
-// console.log(filename)
-// filename = render(ganttChartContent, "gantt")
-// console.log(filename)
-// filename = render(katexTestContent, "katex")
-// console.log(filename)
+filename = render(flowChartContent, "flowchart")
+console.log(filename)
+filename = render(sequenceChartContent, "sequence")
+console.log(filename)
+filename = render(ganttChartContent, "gantt")
+console.log(filename)
+filename = render(railroadChartContent, "railroad")
+console.log(filename)
+filename = render(katexTestContent, "katex")
+console.log(filename)
 
 execute()

@@ -17,11 +17,15 @@
         const html2canvas = require("html2canvas")
         const { writeFileSync } = require("node:fs")
 
-        ipcRenderer.once("chart-content", async (_, { chartContent, savePath }) => {
+        ipcRenderer.once("chart-content", async (_, {
+            chartContent,
+            renderOptions,
+            savePath,
+        }) => {
             const _chartContent = new Function(`return [${chartContent}]`)()
             const targetEl = document.querySelector("#render-target")
             try {
-                new Gantt(targetEl, _chartContent)
+                new Gantt(targetEl, _chartContent, renderOptions)
             } catch(err) {
                 ipcRenderer.send("render-error", err)
                 return

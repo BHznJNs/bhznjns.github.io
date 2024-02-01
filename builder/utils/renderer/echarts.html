@@ -6,19 +6,28 @@
     <title>Echarts Chart Renderer</title>
     <style>
         #render-target {
-            width: 960px;
-            height: 720px;
+            width: 720px;
+            height: 480px;
         }
     </style>
 </head>
 <body>
     <div id="render-target"></div>
+
+    <script type="module">
+        import mergeObj from "../../../src/utils/mergeObj.js"
+        globalThis.mergeObj = mergeObj
+    </script>
     <script>
         const { ipcRenderer } = require("electron")
         const { writeFileSync } = require("node:fs")
         const echarts = require("echarts")
 
-        ipcRenderer.once("chart-content", async (_, { chartContent, savePath }) => {
+        ipcRenderer.once("chart-content", async (_, {
+            chartContent,
+            renderOptions,
+            savePath,
+        }) => {
             const targetEl = document.querySelector("#render-target")
 
             try {
@@ -27,9 +36,11 @@
                     + chartContent
                     + ";return option"
                 )()
-                let chart = echarts.init(targetEl)
-                options.animation = false
-                chart.setOption(options)
+                const finalOptions = mergeObj(renderOptions, options)
+                finalOptions.animation = false
+
+                const chart = echarts.init(targetEl)
+                chart.setOption(finalOptions)
             } catch(err) {
                 ipcRenderer.send("render-error", err.message)
                 return

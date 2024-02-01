@@ -8,8 +8,9 @@
 <body>
     <div id="render-target"></div>
     <script type="module">
-        import rr from "../../../src/libs/railroad-diagrams/railroad.js"
+        import rr, { Options } from "../../../src/libs/railroad-diagrams/railroad.js"
 
+        globalThis.chartOptions = Options
         globalThis.moduleConstants = [
             rr.Diagram,
             rr.ComplexDiagram,
@@ -39,7 +40,19 @@
 
         const styleTextContent = readFileSync("./src/libs/railroad-diagrams/style-ssr.css")
 
-        ipcRenderer.once("chart-content", (_, { chartContent, savePath }) => {
+        ipcRenderer.once("chart-content", (_, {
+            chartContent,
+            renderOptions,
+            savePath,
+        }) => {
+            Object.assign(globalThis.chartOptions, {
+                VS                : renderOptions.verticalGap,
+                AR                : renderOptions.arcRadius,
+                INTERNAL_ALIGNMENT: renderOptions.internalAlignment,
+                CHAR_WIDTH        : renderOptions.charWidth,
+                COMMENT_CHAR_WIDTH: renderOptions.commentCharWidth,
+            })
+
             const targetEl = document.querySelector("#render-target")
             const renderArgs = moduleConstants.concat(targetEl)
             const renderFn = new Function(

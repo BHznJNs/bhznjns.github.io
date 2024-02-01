@@ -104,7 +104,7 @@ class EchartsImporter extends ChartImporter {
         const isDarkMode = document.body.classList.contains("dark")
         const renderMode = isDarkMode ? "another-dark" : "light"
         const chartInst  = this._module.init(el, renderMode)
-    
+
         // options merging
         const currentOptions = el.__ChartOptions__
         const globalOptionsCloned = mergeObj({}, globalOptions)

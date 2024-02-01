@@ -14,12 +14,16 @@
         const { ipcRenderer } = require("electron")
         const { writeFileSync } = require("node:fs")
 
-        ipcRenderer.once("chart-content", (_, { chartContent, savePath }) => {
+        ipcRenderer.once("chart-content", (_, {
+            chartContent,
+            renderOptions,
+            savePath,
+        }) => {
             const targetEl = document.querySelector("#render-target")
 
             try {
                 const chartInst = flowchart.parse(chartContent)
-                chartInst.drawSVG(targetEl)
+                chartInst.drawSVG(targetEl, renderOptions)
             } catch(err) {
                 ipcRenderer.send("render-error", err.message)
                 return

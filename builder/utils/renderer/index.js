@@ -2,7 +2,7 @@ import proc from "node:child_process"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import Crypto from "crypto-js"
-import electron from "electron"
+// import electron from "electron"
 // import echartsRenderer from "./echarts.js"
 
 const __filename = fileURLToPath(import.meta.url)
@@ -28,9 +28,10 @@ const taskQueue = {
     }
 }
 
-let child = null
+let child    = null
+let electron = null
 function renderer({chartContent, type, savePath}) {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         function callback({ msg, errMsg }) {
             if (msg === "page-ready") {
                 child.send({ chartContent, savePath })
@@ -49,6 +50,7 @@ function renderer({chartContent, type, savePath}) {
         }
 
         if (child === null) {
+            electron = (await import("electron")).default
             child = proc.spawn(electron, startArgs, {
                 stdio: ["inherit", "inherit", "inherit", "ipc"]
             })
