@@ -192,7 +192,9 @@ export class FormulaBlock {
             src: "./" + filename,
             alt: this.description,
         })
-        const container = el("div", formulaImage)
+        const container = el("div", formulaImage, {
+            "class": "math"
+        })
         return container
     }
 
@@ -246,6 +248,9 @@ export class ChartBlock {
             case "rail": case "railroad": case "railroadchart":
             case "railroad chart":        case "railroad-chart":
                 this.#type = "railroad"
+                break
+            case "qrcode": case "qr-code": case "qr code":
+                this.#type = "qrcode"
                 break
             default:
                 const errMsg = "Unknown chart type: " + type

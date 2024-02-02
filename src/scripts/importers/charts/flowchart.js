@@ -1,5 +1,5 @@
 import ChartImporter from "./importer.js"
-import umdLoader from "../umd.js"
+import umdImporter from "../umd.js"
 import config from "../../../../build.config.js"
 
 globalThis.raphael = null
@@ -16,8 +16,8 @@ class FlowchartImporter extends ChartImporter {
     }
 
     async importModule() {
-        globalThis.raphael = await umdLoader("./dist/libs/flowchart.js/raphael.min.js", "raphael")
-        const flowchartModule = await umdLoader("./dist/libs/flowchart.js/flowchart.min.js", "flowchart")
+        globalThis.raphael = await umdImporter("./dist/libs/flowchart.js/raphael.min.js", "raphael")
+        const flowchartModule = await umdImporter("./dist/libs/flowchart.js/flowchart.min.js", "flowchart")
         return flowchartModule
     }
 }

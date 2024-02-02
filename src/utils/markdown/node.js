@@ -467,6 +467,19 @@ class RailroadChartType {
         return chartEl
     }
 }
+class QRCodeType {
+    constructor(content) {
+        this.content = content
+        globalThis.__ChartTypeList__.add("qrcode")
+    }
+    toHTML() {
+        const chartEl = el("div", "", {
+            "class": "qrcode-container"
+        })
+        chartEl.__QRCodeContent__ = this.content
+        return chartEl
+    }
+}
 class UnknownChartType {
     constructor(errMsg) {
         this.content = errMsg
@@ -502,6 +515,9 @@ export class ChartBlock {
             case "rail": case "railroad": case "railroadchart":
             case "railroad chart":        case "railroad-chart":
                 this.#type = new RailroadChartType(content)
+                break
+            case "qrcode": case "qr-code": case "qr code":
+                this.#type = new QRCodeType(content)
                 break
             default:
                 const errMsg = "Unknown chart type: " + type

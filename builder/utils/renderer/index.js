@@ -2,7 +2,7 @@ import proc from "node:child_process"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import Crypto from "crypto-js"
-// import electron from "electron"
+import qrcodeRenderer from "./qrcode.js"
 // import echartsRenderer from "./echarts.js"
 
 const __filename = fileURLToPath(import.meta.url)
@@ -22,8 +22,11 @@ const taskQueue = {
     async execute() {
         while (this.__list.length) {
             const task = this.__list.shift()
-            await renderer(task)
-                .catch(err => console.error("[Renderer Error] " + err))
+            try {
+                await renderer(task)
+            } catch(err) {
+                console.error("[Renderer Error] " + err)
+            }
         }
     }
 }
@@ -31,6 +34,17 @@ const taskQueue = {
 let child    = null
 let electron = null
 function renderer({chartContent, type, savePath}) {
+    // use qrcode-svg 's build-in ssr
+    if (type === "qrcode") {
+        qrcodeRenderer(chartContent, savePath)
+        return
+    }
+    // use echarts' build-in ssr
+    // if (type === "echarts") {
+    //     echartsRenderer(chartContent, outputDir + filename)
+    //     return
+    // }
+
     return new Promise(async (resolve, reject) => {
         function callback({ msg, errMsg }) {
             if (msg === "page-ready") {
@@ -74,15 +88,9 @@ export function render(chartContent, type) {
         "flowchart",
         "sequence",
         "railroad",
+        "qrcode",
     ].includes(type) ? "svg" : "png"
     const filename = `${type}-${Crypto.MD5(chartContent).toString()}.${extname}`
-
-    // use echarts' build-in ssr
-    // if (type === "echarts") {
-    //     echartsRenderer(chartContent, outputDir + filename)
-    //     return filename
-    // }
-
     taskQueue.push(chartContent, type, outputDir + filename)
     return filename
 }

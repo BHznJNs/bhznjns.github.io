@@ -38,6 +38,7 @@ export default [
             /libs\/sequence-diagram/,
             /libs\/frappe-gantt/,
             /libs\/railroad-diagrams/,
+            /libs\/qrcode-svg/,
         ],
         plugins: [
             terser(),
@@ -105,6 +106,10 @@ export default [
                             "src/libs/railroad-diagrams/railroad.css",
                         ],
                         dest: "dist/libs/railroad-diagrams/"
+                    },
+                    { /* qrcode-svg */
+                        src: "src/libs/qrcode-svg/qrcode.min.js",
+                        dest: "dist/libs/qrcode-svg/"
                     }
                 ],
             }),

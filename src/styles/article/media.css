@@ -121,6 +121,10 @@ div.media-container .ganttchart-container {
     background-color: var(--chart-bg-color);
     transition: background .3s .15s;
 }
+div.media-container .qrcode-container {
+    margin: 0 auto;
+}
+
 body.dark div.media-container .flowchart-container svg,
 body.dark div.media-container .sequencechart-container svg {
     width: 100%;

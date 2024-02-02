@@ -180,5 +180,17 @@ export default {
 
         charWidth: 8.5, // the approximate width of characters in normal text, ignored for text diagrams
         commentCharWidth: 7, // the approximate width of character in Comment text
+    },
+
+    /**
+     * qrcodeOptions: Object
+     * the global general config options for qrcode rendering, see here: https://github.com/papnkukn/qrcode-svg
+     * 二维码渲染的全局配置项，见此：https://github.com/papnkukn/qrcode-svg
+     */
+    qrcodeOptions: {
+        content: "default content", // default content for all qrcodes
+        padding: 4, // white space padding, 4 modules by default, 0 for no border
+        width: 256, // QR Code width in pixels
+        height: 256, // QR Code height in pixels
     }
 }
