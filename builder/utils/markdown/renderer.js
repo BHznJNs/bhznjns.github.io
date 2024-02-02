@@ -1,5 +1,7 @@
 import renderer from "./index.js"
 import { Para } from "./node.js"
+import config from "../../../build.config.js"
+import languageSelector from "../../../src/utils/languageSelector.js"
 
 export class ArticleInfo {
     title       = ""
@@ -23,10 +25,11 @@ function getDescription(htmlNodes) {
     return description
 }
 
+const htmlLang = languageSelector("zh-CN", "en")
 function pageTemplate(title, body) {
     return `\
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${htmlLang}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
