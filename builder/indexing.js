@@ -1,9 +1,14 @@
-import { readFileSync, writeFileSync } from "node:fs"
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import slice from "./utils/slice.js"
 import { Directory, File } from "./utils/readDir.js"
 import { indexFilePath } from "./utils/path.js"
+import isExist from "./utils/isExist.js"
 
 export default function indexing(dir, indexName) {
+    if (!isExist(indexFilePath)) {
+        mkdirSync(indexFilePath)
+    }
+
     const currentFiles = []
     const currentDirs  = []
     let directoryDescription

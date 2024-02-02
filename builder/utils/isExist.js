@@ -5,7 +5,6 @@ export default function(path) {
         accessSync(path, constants.R_OK | constants.W_OK)
         return true
     } catch(err) {
-        console.error(`Path ${path} does node exist!`)
         return false
     }
 }
