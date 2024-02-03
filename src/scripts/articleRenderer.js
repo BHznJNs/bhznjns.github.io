@@ -74,13 +74,18 @@ export default function articleRender(articleEl, mdText) {
         globalThis.__ChartTypeList__   = null
 
         // scroll to the position last leaved
-        if (location.hash !== sessionStorage.getItem("last-leave-page")) {
-            return
-        }
-        const lastLeavePos = sessionStorage.getItem("last-leave-position") || 0
-        scrollToPos(Number.parseInt(lastLeavePos))
-
+        const lastLeavePage = sessionStorage.getItem("last-leave-page")
+        const lastLeavePos  = sessionStorage.getItem("last-leave-position") || 0
         sessionStorage.removeItem("last-leave-page")
         sessionStorage.removeItem("last-leave-position")
+
+        if (window.scrollY > 0) {
+            // when is scrolled, skip position restoring
+            return
+        }
+        if (location.hash !== lastLeavePage) {
+            return
+        }
+        scrollToPos(Number.parseInt(lastLeavePos))
     })
 }
