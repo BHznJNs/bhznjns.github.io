@@ -16,7 +16,7 @@ export default function indexing(dir, indexName) {
 
     for (const item of dir.items) {
         if (item instanceof File) {
-            if (item.name === "README.md" || item.name === "读我.md") {
+            if (["README.md", "readme.md", "读我.md"].includes(item.name)) {
                 directoryDescription = readFileSync(item.path, "utf-8")
                 continue
             }

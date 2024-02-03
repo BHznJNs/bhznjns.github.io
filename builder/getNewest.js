@@ -42,7 +42,7 @@ class FileMonoStack {
 }
 
 const ignoredFileNames = [
-    "README.md", "读我.md",
+    "README.md", "readme.md", "读我.md",
     "rev", "倒序",
 ]
 export default function getNewest(dir) {
