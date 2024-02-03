@@ -45,9 +45,7 @@ ol {
     overflow-x: hidden;
 }
 ol > li {
-    display: flex;
     counter-increment: list-item;
-    align-items: baseline;
     margin-bottom: 0;
     padding: 4px 0;
     overflow-wrap: anywhere;
