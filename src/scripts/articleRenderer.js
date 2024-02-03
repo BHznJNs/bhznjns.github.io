@@ -4,11 +4,11 @@ import chartRender from "./importers/charts/index.js"
 
 import mdResolver from "../utils/markdown/index.js"
 import keydownEvent from "../utils/dom/keydownEvent.js"
-import backToTop from "../utils/dom/backToTop.js"
 import eventbus from "../utils/eventbus/inst.js"
 import config from "../../build.config.js"
 import { Headline } from "../utils/markdown/node.js"
 import languageSelector from "../utils/languageSelector.js"
+import { scrollToPos } from "../utils/dom/scrollControl.js"
 
 const articleEl = document.querySelector("article")
 const emptyArticlePlaceHolder = languageSelector("空文章", "Empty Article")
@@ -63,9 +63,24 @@ export default function articleRender(articleEl, mdText) {
     articleEl.querySelectorAll("[tabindex='0']").forEach((el) => {
         el.onkeydown = keydownEvent(el)
     })
-    backToTop()
 
-    highlightRender(globalThis.__LanguageList__).then(() => globalThis.__LanguageList__ = null)
-    katexRender(globalThis.__ContainsFormula__).then(() => globalThis.__ContainsFormula__ = false)
-    chartRender(globalThis.__ChartTypeList__).then(() => globalThis.__ChartTypeList__ = null)
+    Promise.all([
+        highlightRender(globalThis.__LanguageList__),
+        katexRender(globalThis.__ContainsFormula__),
+        chartRender(globalThis.__ChartTypeList__),
+    ]).then(() => {
+        globalThis.__LanguageList__    = null
+        globalThis.__ContainsFormula__ = false
+        globalThis.__ChartTypeList__   = null
+
+        // scroll to the position last leaved
+        if (location.hash !== sessionStorage.getItem("last-leave-page")) {
+            return
+        }
+        const lastLeavePos = sessionStorage.getItem("last-leave-position") || 0
+        scrollToPos(Number.parseInt(lastLeavePos))
+
+        sessionStorage.removeItem("last-leave-page")
+        sessionStorage.removeItem("last-leave-position")
+    })
 }

@@ -8,9 +8,12 @@ class KatexImporter extends DynamicImporter {
     name = "KaTeX"
     _targetElList = () => document.querySelectorAll(".math")
 
-    constructor() { super() }
+    loadCondition(isContainsFormula) {
+        return isContainsFormula
+    }
 
     renderErrResolver(err, el) {
+        const texString = el.textContent
         if (err instanceof this._module.ParseError) {
             // KaTeX can't parse the expression
             el.innerHTML = ("Error in LaTeX '" + texString + "': " + err.message)

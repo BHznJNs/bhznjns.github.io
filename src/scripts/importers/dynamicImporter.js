@@ -11,6 +11,7 @@ export default class DynamicImporter {
 
     async importModule(props) { throw new UnOverridedError("importModule") }
     async beforeRender(props) {}
+    loadCondition(props) { throw new UnOverridedError("loadCondition") }
     renderItem(el) { throw new UnOverridedError("renderItem") }
 
     renderAll(props) {
@@ -34,6 +35,9 @@ export default class DynamicImporter {
     }
 
     async render(props) {
+        if (!this.loadCondition(props)) {
+            return
+        }
         if (this._module === null) {
             try {
                 this._module = await this.importModule(props)

@@ -5,8 +5,6 @@ class HighlightImporter extends DynamicImporter {
     name = "Highlight.js"
     _targetElList = () => document.querySelectorAll("pre.code-block code")
 
-    constructor() { super() }
-
     async #importLangDefs(languageList=[]) {
         const langDefImporters = languageList
             .filter(name => !this._module.getLanguage(name))
@@ -18,6 +16,10 @@ class HighlightImporter extends DynamicImporter {
                 this._module.registerLanguage(name, def)
             }))
             .catch(this.loadErrResolver)
+    }
+
+    loadCondition(languageList) {
+        return languageList.size > 0
     }
 
     renderItem(el) {

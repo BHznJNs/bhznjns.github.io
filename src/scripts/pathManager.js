@@ -2,12 +2,13 @@ import pageController from "../components/paging.js"
 import { fetchJSON, fetchMD } from "./fetchResources.js"
 import articleRender from "./articleRenderer.js"
 import indexRender, { newestItemRenderer, directoryItemRenderer } from "./indexRenderer.js"
+import { scrollToTop } from "../utils/dom/scrollControl.js"
 
-export async function hashChangeEvent(_) {
-    const mainEl = document.querySelector("main")
-    const articleEl = document.querySelector("article")
-    const indexDirPath = "./.index/"
+const mainEl = document.querySelector("main")
+const articleEl = document.querySelector("article")
+const indexDirPath = "./.index/"
 
+export async function hashChangeEvent(e) {
     if (!location.hash) {
         pathManager.homepage()
         return
@@ -46,6 +47,14 @@ export async function hashChangeEvent(_) {
 
     mainEl.setAttribute("data-is-root", hash === "static/")
     mainEl.classList.remove("disabled")
+
+    const getHash = url => new URL(url).hash
+    if (e instanceof HashChangeEvent
+        && pathManager.isIn.directory(getHash(e.oldURL))
+        && pathManager.isIn.article(getHash(e.newURL))) {
+        // when enters an article from directory
+        scrollToTop()
+    }
 }
 
 window.addEventListener("hashchange", hashChangeEvent)
@@ -84,13 +93,15 @@ const pathManager = {
         newestPage() {
             return location.hash === "#" + newestPath
         },
-        directory() {
-            return location.hash.startsWith("#static")
-                && location.hash.endsWith("/")
+        directory(test) {
+            const testTarget = test || location.hash
+            return testTarget.startsWith("#static")
+                && testTarget.endsWith("/")
         },
-        article() {
-            return location.hash.startsWith("#static")
-                && location.hash.endsWith(".md")
+        article(test) {
+            const testTarget = test || location.hash
+            return testTarget.startsWith("#static")
+                && testTarget.endsWith(".md")
         }
     }
 }

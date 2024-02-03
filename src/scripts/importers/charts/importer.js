@@ -8,6 +8,8 @@ export default class ChartImporter extends DynamicImporter {
 
     name = undefined
 
+    loadCondition() { return true }
+
     loadErrResolver(err) {
         console.error(err)
         this._targetElList().forEach(el =>

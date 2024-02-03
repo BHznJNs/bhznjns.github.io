@@ -5,6 +5,7 @@ import config from "../build.config.js"
 import pageController from "./components/paging.js"
 import keydownEvent from "./utils/dom/keydownEvent.js"
 import importComponent from "./scripts/importers/component.js"
+import pathManager from "./scripts/pathManager"
 
 if (config.enableFab) {
     importComponent("fab")
@@ -24,6 +25,16 @@ window.addEventListener("popstate", () => {
         pageController.back()
     }
 })
+
+window.addEventListener("beforeunload", e => {
+    if (!pathManager.isIn.article()) {
+        return
+    }
+    // when leave an article remember current scroll position
+    sessionStorage.setItem("last-leave-page", location.hash)
+    sessionStorage.setItem("last-leave-position", window.scrollY)
+})
+
 window.addEventListener("message", e => {
     if (e.origin != "null") {
         return

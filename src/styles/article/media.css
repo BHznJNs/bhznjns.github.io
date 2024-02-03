@@ -121,14 +121,22 @@ div.media-container .ganttchart-container {
     background-color: var(--chart-bg-color);
     transition: background .3s .15s;
 }
-div.media-container .qrcode-container {
-    margin: 0 auto;
+
+.flowchart-container svg,
+.sequencechart-container svg {
+    width: 100%;
+}
+.railroad-container svg {
+    width: 100%;
+    background-color: var(--chart-bg-color) !important;
+}
+body.dark .flowchart-container svg,
+body.dark .sequencechart-container svg {
+    filter: invert(.85);
 }
 
-body.dark div.media-container .flowchart-container svg,
-body.dark div.media-container .sequencechart-container svg {
-    width: 100%;
-    filter: invert(.85);
+div.media-container .qrcode-container {
+    margin: 0 auto;
 }
 
 /* Charts styles end */

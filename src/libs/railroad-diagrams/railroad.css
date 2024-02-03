@@ -53,8 +53,6 @@ svg.railroad-diagram g.diagram-text:hover path.diagram-text {
     https://github.com/BHznJNs/
 */
 svg.railroad-diagram {
-    width: 100%;
-    background-color: var(--chart-bg-color);
     vertical-align: middle;
 }
 svg.railroad-diagram path,

@@ -98,7 +98,15 @@ export default {
      * options for katex.js rendering, see here: https://katex.org/docs/options
      * katex.js 用于渲染数学公式的配置项，见此：https://katex.org/docs/options
      */
-    katexOptions: null,
+    katexOptions: {
+        // leqno: false, // like `\usepackage[leqno]{amsmath}` in LaTeX
+        // fleqn: false, // like `\documentclass[fleqn]` in LaTeX with the amsmath package
+        // macros: {},
+        // minRuleThickness: 0.04,
+        // maxSize: Infinity,
+        // maxExpand: 1000,
+        // globalGroup: false,
+    },
 
     /**
      * echartsOptions: Object
@@ -118,40 +126,40 @@ export default {
      * 流程图渲染的全局配置项，见此：https://flowchart.js.org/
      */
     flowchartOptions: {
-        // 'x': 0,
-        // 'y': 0,
-        // 'line-width': 3,
-        // 'line-length': 50,
-        // 'text-margin': 10,
-        // 'font-size': 14,
-        // 'font-color': 'black',
-        // 'line-color': 'black',
-        // 'element-color': 'black',
-        // 'fill': 'white',
-        // 'yes-text': 'yes',
-        // 'no-text': 'no',
-        // 'arrow-end': 'block',
-        // 'scale': 1,
+        // "x": 0,
+        // "y": 0,
+        // "line-width": 3,
+        // "line-length": 50,
+        // "text-margin": 10,
+        // "font-size": 14,
+        // "font-color": "black",
+        // "line-color": "black",
+        // "element-color": "black",
+        // "fill": "white",
+        // "yes-text": "yes",
+        // "no-text": "no",
+        // "arrow-end": "block",
+        // "scale": 1,
         //// style symbol types
-        // 'symbols': {
-        //     'start': {
-        //         'font-color': 'red',
-        //         'element-color': 'green',
-        //         'fill': 'yellow'
+        // "symbols": {
+        //     "start": {
+        //         "font-color": "red",
+        //         "element-color": "green",
+        //         "fill": "yellow"
         //     },
-        //     'end': {
-        //         'class': 'end-element'
+        //     "end": {
+        //         "class": "end-element"
         //     }
         // },
         //// even flowstate support ;-)
-        // 'flowstate': {
-        //     'past': { 'fill': '#CCCCCC', 'font-size': 12 },
-        //     'current': { 'fill': 'yellow', 'font-color': 'red', 'font-weight': 'bold' },
-        //     'future': { 'fill': '#FFFF99' },
-        //     'request': { 'fill': 'blue' },
-        //     'invalid': { 'fill': '#444444' },
-        //     'approved': { 'fill': '#58C4A3', 'font-size': 12, 'yes-text': 'APPROVED', 'no-text': 'n/a' },
-        //     'rejected': { 'fill': '#C45879', 'font-size': 12, 'yes-text': 'n/a', 'no-text': 'REJECTED' }
+        // "flowstate": {
+        //     "past": { "fill": "#CCCCCC", "font-size": 12 },
+        //     "current": { "fill": "yellow", "font-color": "red", "font-weight": "bold" },
+        //     "future": { "fill": "#FFFF99" },
+        //     "request": { "fill": "blue" },
+        //     "invalid": { "fill": "#444444" },
+        //     "approved": { "fill": "#58C4A3", "font-size": 12, "yes-text": "APPROVED", "no-text": "n/a" },
+        //     "rejected": { "fill": "#C45879", "font-size": 12, "yes-text": "n/a", "no-text": "REJECTED" }
         // }
     },
 
@@ -161,8 +169,23 @@ export default {
      * 甘特图渲染的全局配置项，见此：https://github.com/frappe/gantt
      */
     ganttOptions: {
-        // languages property here will be the same with upper `language` as default
-        // 这里的 languages 属性默认会与前文中指定的 `language` 相同
+        // header_height: 50,
+        // column_width: 30,
+        // step: 24,
+        // view_modes: ["Quarter Day", "Half Day", "Day", "Week", "Month"],
+        // bar_height: 20,
+        // bar_corner_radius: 3,
+        // arrow_curve: 5,
+        // padding: 18,
+        // view_mode: "Day",
+        // date_format: "YYYY-MM-DD",
+        // custom_popup_html: null
+
+        //// language options: "es", "it", "ru", "ptBr", "fr", "tr", "zh", "de", "hu"
+        //// 语言选项："es", "it", "ru", "ptBr", "fr", "tr", "zh", "de", "hu"
+        //// languages property here will be the same with upper `language` as default
+        //// 这里的 languages 属性默认会与前文中指定的 `language` 相同
+        // language: "en",
     },
 
     /**

@@ -1,6 +1,7 @@
 import articleRender from "./articleRenderer.js"
 import el from "../utils/dom/el.js"
 import keydownEvent from "../utils/dom/keydownEvent.js"
+import { scrollToTop } from "../utils/dom/scrollControl.js"
 
 export function newestItemRenderer(item) {
     const createDate = new Date(item.timestamp)
@@ -61,10 +62,7 @@ export default function indexRender(indexing, itemResolver) {
 
     // --- --- --- --- --- ---
 
-    articleEl.style.display = "none"
+    articleEl.innerHTML = ""
     mainEl.style.display = "block"
-
-    // return to the top
-    document.body.scrollTop = 0
-    document.documentElement.scrollTop = 0
+    scrollToTop()
 }
