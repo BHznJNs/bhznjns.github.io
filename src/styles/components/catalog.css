@@ -9,7 +9,6 @@ article-catalog {
     width: 360px;
     max-width: 36vw;
     height: calc(100vh - var(--top-margin) - var(--bottom-margin));
-    padding-right: 6px;
     color: var(--default-tx-color);
     background-color: var(--default-bg-color);
     border-top-right-radius: 1rem;
@@ -43,6 +42,8 @@ article-catalog.hidden {
 }
 
 article-catalog ol li {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
     user-select: none;
     cursor: pointer;
 }

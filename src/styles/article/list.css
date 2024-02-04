@@ -12,7 +12,7 @@ ol {
 }
 ul {
     margin-left: 1em;
-    padding-left: 1.5em;
+    padding-left: 1.625em;
     overflow-wrap: break-word;
 }
 
@@ -47,10 +47,9 @@ ol {
 ol > li {
     counter-increment: list-item;
     margin-bottom: 0;
-    padding: 4px 0;
+    padding: 4px;
     overflow-wrap: anywhere;
-    border-top-left-radius: var(--border-radius-value);
-    border-bottom-left-radius: var(--border-radius-value);
+    border-radius: var(--border-radius-value);
 }
 ol > li:hover {
     background-color: var(--hovered-bg-color);

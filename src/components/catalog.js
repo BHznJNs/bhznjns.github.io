@@ -6,11 +6,9 @@ import el from "../utils/dom/el.js"
 import { scrollToEl } from "../utils/dom/scrollControl.js"
 
 function catalogItemRenderer({ level, content, id }) {
-    const contentEl = el("div",
-        el("span", content, {
-            "class": "underline-target"
-        })
-    )
+    const contentEl = el("span", content, {
+        "class": "underline-target"
+    })
     return el("li", contentEl, {
         "class": [
             "level-" + level,
