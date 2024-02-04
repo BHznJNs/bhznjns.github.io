@@ -6,7 +6,7 @@ fab-icon {
     width: var(--fab-size);
     height: var(--fab-size);
     z-index: 1000; /* at the most top */
-    transition: transform .3s;
+    transition: opacity .3s, transform .3s;
 }
 fab-icon.hidden {
     transform: translateY(calc(1rem + var(--fab-size) / 3));

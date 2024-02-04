@@ -4,6 +4,7 @@ import throttle from "../utils/throttle.js"
 import eventbus from "../utils/eventbus/inst.js"
 import el from "../utils/dom/el.js"
 import { scrollToEl } from "../utils/dom/scrollControl.js"
+import importStyle from "../scripts/importers/style"
 
 function catalogItemRenderer({ level, content, id }) {
     const contentEl = el("span", content, {
@@ -22,6 +23,10 @@ class Catalog extends HTMLElement {
     rootNode = null
     constructor() {
         super()
+
+        this.style.visibility = "hidden"
+        importStyle("./dist/chunks/catalog.min.css")
+            .then(() => this.style.visibility = "visible")
 
         this.rootNode = el("ol")
         this.classList.add("hidden")

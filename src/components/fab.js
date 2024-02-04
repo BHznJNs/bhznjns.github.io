@@ -6,6 +6,7 @@ import { scrollToTop } from "../utils/dom/scrollControl.js"
 import languageSelector from "../utils/languageSelector.js"
 import { downsizeText, enlargeText } from "../scripts/textScaler.js"
 import eventbus from "../utils/eventbus/inst.js"
+import importStyle from "../scripts/importers/style"
 
 const fabItem = (imgName, title) => el("button",
     el("img", "", {
@@ -24,6 +25,13 @@ class FabIcon extends HTMLElement {
 
     constructor() {
         super()
+
+        // hide self before style loaded
+        this.style.opacity = 0
+        importStyle("./dist/chunks/fab.min.css")
+            .then(() => this.style.opacity = 1)
+
+        // --- --- --- --- --- ---
 
         const switcher = this.#switcher = fabItem("switch"        , languageSelector("切换浮动操作按钮", "Switch The FAB"))
         this.#subItems.backToParent     = fabItem("back-to-parent", languageSelector("返回父级"       , "Back to Parent"))

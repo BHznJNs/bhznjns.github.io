@@ -74,8 +74,11 @@ export default [
                         dest: "dist/libs/highlight-es/"
                     },
                     { /* highlight.js languages */
-                        src: "src/libs/highlight-es/languages/*",
-                        dest: "dist/libs/highlight-es/languages/"
+                        src: [
+                            "src/libs/highlight-es/languages",
+                            "src/libs/highlight-es/libs"
+                        ],
+                        dest: "dist/libs/highlight-es/"
                     },
                     { /* echarts.js */
                         src: "src/libs/echarts/core.js",

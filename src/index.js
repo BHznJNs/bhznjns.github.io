@@ -4,14 +4,13 @@ import "./scripts/mainManager.js"
 import config from "../build.config.js"
 import pageController from "./components/paging.js"
 import keydownEvent from "./utils/dom/keydownEvent.js"
-import importComponent from "./scripts/importers/component.js"
 import pathManager from "./scripts/pathManager"
 
 if (config.enableFab) {
-    importComponent("fab")
+    import("./components/fab.js")
 }
 if (config.enableCatalog) {
-    importComponent("catalog")
+    import("./components/catalog.js")
 }
 
 const lightBtn = document.querySelector("#light-btn")
