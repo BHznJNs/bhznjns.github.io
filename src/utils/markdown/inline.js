@@ -195,7 +195,7 @@ function parser(source) {
 
             let removedContent = specialTokenSign
             // the actual displayed content for special inline elements
-            const displayContent = getInterval(source, pairedTokenSign)
+            const displayContent = getInterval(source, pairedTokenSign, true)
             if (displayContent != null) {
                 removedContent += source.slice(0, displayContent.length + 1)
                 source = source.substr(displayContent.length + 1)
@@ -267,6 +267,7 @@ export default function parseEntry(source) {
 // console.log(parseEntry("##bo//itelic//ld##"))
 // console.log(parseEntry("##bo[link text](http://www.com)ld##"))
 // console.log(parseEntry("::dim[link text](http://www.com)med::"))
+// console.log(parseEntry("[http:\\/\\/www.com](http://www.com)"))
 // console.log(parseEntry("//ita[link text](http:\\/\\/www.com)lic//"))
 // console.log(parseEntry("``<test>``"))
 // console.log(parseEntry("asd[asd"))

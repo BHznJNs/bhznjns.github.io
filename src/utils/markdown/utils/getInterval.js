@@ -1,5 +1,5 @@
 // ("abc]", "]") -> "abc"
-export default function getInterval(text, endSign) {
+export default function getInterval(text, endSign, includeEscape=false) {
     if (!text.includes(endSign)) {
         return null
     }
@@ -13,7 +13,9 @@ export default function getInterval(text, endSign) {
 
         if (ch === "\\") {
             isEscape = !isEscape
-            continue
+            if (!includeEscape) {
+                continue
+            }
         }
         if (ch === endSign && !isEscape) {
             break
