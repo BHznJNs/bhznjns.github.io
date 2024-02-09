@@ -22,7 +22,6 @@ class RailroadImporter extends ChartImporter {
         if (railroadRenderOptions.CHAR_WIDTH < targetCharWidth) {
             railroadRenderOptions.CHAR_WIDTH = targetCharWidth
         }
-        console.log(railroadRenderOptions.CHAR_WIDTH)
 
         const renderArgs = this._module.concat(el)
         const renderFn = new Function(
