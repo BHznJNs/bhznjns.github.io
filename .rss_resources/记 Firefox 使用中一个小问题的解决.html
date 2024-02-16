@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记 Firefox 使用中一个小问题的解决</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<article>
+    <h1>记 Firefox 使用中一个小问题的解决</h1><p>在 Windows 11 的 23H2 更新中，加入了众望所归的任务栏可选合并功能。但是，在设置了任务栏不合并之后使用 Firefox 浏览器，却常常出现如下问题：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/其它/.记 Firefox 使用中一个小问题的解决/2024-02-09-23-37-22-43a08b.png" alt="示例图片" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/其它/.记 Firefox 使用中一个小问题的解决/2024-02-09-23-37-22-43a08b 放大.png" alt="放大后" loading="lazy" tabindex="0"></div><p>可以看到 Firefox 的标题文字并没有展示在任务栏中。</p><h2>解决办法</h2><p>在 Mozzila Support 的<a href="https://support.mozilla.org/zh-CN/questions/1439337" target="_blank">这个帖子</a>中，有人反馈了这个 bug。</p><p>在这个问题底下，有其它用户回复：</p><blockquote><p>Try changing <strong>browser.startup.blankWindow</strong> to <strong>false</strong> in <code>about:config</code>.</p><p>在 <code>about:config</code> 中将 <strong>browser.startup.blankWindow</strong> 改为 <strong>false</strong>。</p></blockquote>
+</article>
+</body>
+</html>

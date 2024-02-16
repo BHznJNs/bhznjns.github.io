@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>记 Firefox 使用中一个小问题的解决</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/记 Firefox 使用中一个小问题的解决.html</link>
+<pubDate>Fri, 16 Feb 2024 10:20:00 +0800</pubDate>
+<lastBuildDate>Fri, 16 Feb 2024 10:38:00 +0800</lastBuildDate>
+<description>在 Windows 11 的 23H2 更新中，加入了众望所归的任务栏可选合并功能。但是，在设置了任务栏不合并之后使用 Firefox 浏览器，却常常出现如下问题：</description>
+</item>
+<item>
 <title>服务端渲染测试</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/服务端渲染测试.html</link>
 <pubDate>Mon, 29 Jan 2024 15:18:00 +0800</pubDate>
@@ -108,13 +115,6 @@
 <pubDate>Wed, 19 Jul 2023 20:53:00 +0800</pubDate>
 <lastBuildDate>Wed, 19 Jul 2023 21:05:00 +0800</lastBuildDate>
 <description>全局变量定义了取代运行时而在编译器被分配的内存区域。</description>
-</item>
-<item>
-<title>LLVM 标识符</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/1_标识符.html</link>
-<pubDate>Wed, 19 Jul 2023 20:12:00 +0800</pubDate>
-<lastBuildDate>Wed, 19 Jul 2023 20:51:00 +0800</lastBuildDate>
-<description>LLVM 中的标识符有两类：全局的和局部的。其中，全局的标识符（包括函数和全局变量）以 ``@`` 符号起始，局部变量（包括寄存器名称和类型）以``%``符号起始。另外，有三种不同格式的标识符，有不同的作用：</description>
 </item>
 </channel>
 </rss>
