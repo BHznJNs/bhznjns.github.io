@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>枚举变继承，状态代多态</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/枚举变继承，状态代多态.html</link>
+<pubDate>Sat, 17 Feb 2024 23:28:00 +0800</pubDate>
+<lastBuildDate>Sun, 18 Feb 2024 14:11:00 +0800</lastBuildDate>
+<description>来看看这个例子吧：</description>
+</item>
+<item>
 <title>记 Firefox 使用中一个小问题的解决</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/记 Firefox 使用中一个小问题的解决.html</link>
 <pubDate>Fri, 16 Feb 2024 10:20:00 +0800</pubDate>
@@ -108,13 +115,6 @@
 <pubDate>Wed, 19 Jul 2023 21:15:00 +0800</pubDate>
 <lastBuildDate>Wed, 19 Jul 2023 21:29:00 +0800</lastBuildDate>
 <description>LLVM 中具有多种基本类型的常量。</description>
-</item>
-<item>
-<title>全局变量</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/2_全局变量.html</link>
-<pubDate>Wed, 19 Jul 2023 20:53:00 +0800</pubDate>
-<lastBuildDate>Wed, 19 Jul 2023 21:05:00 +0800</lastBuildDate>
-<description>全局变量定义了取代运行时而在编译器被分配的内存区域。</description>
 </item>
 </channel>
 </rss>
