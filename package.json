@@ -6,7 +6,8 @@
   "repository": "https://github.com/BHznJNs/markdown-blog",
   "type": "module",
   "scripts": {
-    "preview": "node preview.js",
+    "preview": "node ./builder/scripts/preview.js",
+    "count": "node ./builder/scripts/count/index.js",
     "compress": "rollup --config builder/rollup.config.js",
     "build": "node ./builder/index.js",
     "test": "mocha ./builder/test/*.test.js ./builder/test/*/*.test.js"
