@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>多语言字数统计</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/多语言字数统计.html</link>
+<pubDate>Mon, 26 Feb 2024 21:19:00 +0800</pubDate>
+<lastBuildDate>Mon, 26 Feb 2024 22:01:00 +0800</lastBuildDate>
+<description>在实现本项目的字数统计功能时，需要编写一个用来统计多语言混合文本的函数。</description>
+</item>
+<item>
 <title>枚举变继承，状态代多态</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/枚举变继承，状态代多态.html</link>
 <pubDate>Sat, 17 Feb 2024 23:28:00 +0800</pubDate>
@@ -108,13 +115,6 @@
 <pubDate>Thu, 10 Aug 2023 11:02:00 +0800</pubDate>
 <lastBuildDate>Thu, 10 Aug 2023 17:00:00 +0800</lastBuildDate>
 <description>``2023/8/9``</description>
-</item>
-<item>
-<title>常量</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/3_常量.html</link>
-<pubDate>Wed, 19 Jul 2023 21:15:00 +0800</pubDate>
-<lastBuildDate>Wed, 19 Jul 2023 21:29:00 +0800</lastBuildDate>
-<description>LLVM 中具有多种基本类型的常量。</description>
 </item>
 </channel>
 </rss>
