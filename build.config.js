@@ -98,7 +98,7 @@ export default {
      * defined the port id for preview server
      * 为预览服务器定义端口
      */
-    previewPort: 3000,
+    previewPort: 3030,
 
     /**
      * katexOptions: Object

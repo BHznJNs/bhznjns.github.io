@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>ECharts 实现动态按需导入</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Echarts 实现动态按需导入.html</link>
+<pubDate>Tue, 27 Feb 2024 08:40:00 +0800</pubDate>
+<lastBuildDate>Tue, 27 Feb 2024 14:51:00 +0800</lastBuildDate>
+<description>``2024/02/27``</description>
+</item>
+<item>
 <title>多语言字数统计</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/多语言字数统计.html</link>
 <pubDate>Mon, 26 Feb 2024 21:19:00 +0800</pubDate>
@@ -108,13 +115,6 @@
 <pubDate>Sat, 19 Aug 2023 22:39:00 +0800</pubDate>
 <lastBuildDate>Sun, 20 Aug 2023 14:12:00 +0800</lastBuildDate>
 <description>本文适用于运行在 Windows 11 操作系统下的 Firefox 116。</description>
-</item>
-<item>
-<title>印度沙漠中的学校如何在极端炎热中保持凉爽</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/印度沙漠中的学校如何在极端炎热中保持凉爽.html</link>
-<pubDate>Thu, 10 Aug 2023 11:02:00 +0800</pubDate>
-<lastBuildDate>Thu, 10 Aug 2023 17:00:00 +0800</lastBuildDate>
-<description>``2023/8/9``</description>
 </item>
 </channel>
 </rss>
