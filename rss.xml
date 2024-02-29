@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>使用 Service Worker 实现自定义资源缓存</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/使用 Service Worker 实现自定义资源缓存.html</link>
+<pubDate>Thu, 29 Feb 2024 16:15:00 +0800</pubDate>
+<lastBuildDate>Thu, 29 Feb 2024 21:58:00 +0800</lastBuildDate>
+<description>``2024/02/29``</description>
+</item>
+<item>
 <title>ECharts 实现动态按需导入</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/Echarts 实现动态按需导入.html</link>
 <pubDate>Tue, 27 Feb 2024 08:40:00 +0800</pubDate>
@@ -108,13 +115,6 @@
 <pubDate>Fri, 15 Sep 2023 10:32:00 +0800</pubDate>
 <lastBuildDate>Sun, 17 Dec 2023 16:05:00 +0800</lastBuildDate>
 <description>``2023/9/15``</description>
-</item>
-<item>
-<title>Firefox 启用亚克力效果</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Firefox 启用亚克力效果.html</link>
-<pubDate>Sat, 19 Aug 2023 22:39:00 +0800</pubDate>
-<lastBuildDate>Sun, 20 Aug 2023 14:12:00 +0800</lastBuildDate>
-<description>本文适用于运行在 Windows 11 操作系统下的 Firefox 116。</description>
 </item>
 </channel>
 </rss>
