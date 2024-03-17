@@ -72,12 +72,26 @@ export default {
     ],
 
     /**
-     * enableNewest: Boolean | Object<value: Boolean, ignoreDir: [String]>
+     * enableNewest: Boolean
      * used to enable / disable the Newest function, if you do not want add blogs in some directory, just add it into the `newestIgnoreDir`
      * 用来启用/禁用 最新博文 功能，如果你不想将某些文件夹的内容添加到其中，将其添加到 `newestIgnoreDir` 中
      */
     enableNewest: true,
     newestIgnoreDir: [],
+
+    /**
+     * enableSearch: Boolean
+     * used to enable / disable the Search feature
+     * 用来启用/禁用搜索功能
+     */
+    enableSearch: true,
+
+    /**
+     * searchPageThreshold: Number
+     * used to set the paging threshold for the search index, larger to set less page and slower index loading
+     * 用来设置搜索索引的分页阈值，越大分页越少且索引加载越慢
+     */
+    searchPageThreshold: 30000,
 
     /**
      * pageCapacity: Number

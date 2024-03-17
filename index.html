@@ -23,6 +23,7 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<search-box></search-box>
 <fab-icon></fab-icon>
 <nav>
     <a
@@ -35,6 +36,16 @@ if (darkModeMediaQuery) {
         <span class="underline-target">主页</span>
     </a>
     <span>
+        <button
+            id="search-btn"
+            class="icon-btn"
+            title="搜索"
+        >
+            <img
+                src="./dist/imgs/search.svg"
+                alt="搜索"
+            >
+        </button>
         <a
             id="rss-icon"
             class="icon-btn"
@@ -90,8 +101,10 @@ if (darkModeMediaQuery) {
     <ul id="article-list"></ul>
     <paging-view></paging-view>
 </main>
+<div id="article-container">
 <article-catalog></article-catalog>
 <article style="display: none;"></article>
+</div>
 <footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog-template" target="_blank">MarkdownBlogTemplate</a></span></p></footer>
 </body>
 </html>

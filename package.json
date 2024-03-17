@@ -1,6 +1,6 @@
 {
   "name": "markdown-blog",
-  "version": "1.13.4",
+  "version": "1.14.0",
   "main": "index.js",
   "homepage": "https://bhznjns.github.io/markdown-blog/",
   "repository": "https://github.com/BHznJNs/markdown-blog",
@@ -10,8 +10,8 @@
     "count": "node ./builder/scripts/count/index.js",
     "backup": "node ./builder/scripts/backup.js",
     "restore": "node ./builder/scripts/restore.js",
+    "build": "node ./builder/scripts/build/index.js",
     "compress": "rollup --config builder/rollup.config.js",
-    "build": "node ./builder/index.js",
     "test": "mocha ./builder/test/*.test.js ./builder/test/*/*.test.js"
   },
   "author": "BHznJNs",

@@ -1,13 +1,14 @@
 import { unlinkSync } from "node:fs"
-import indexing from "./indexing.js"
-import getNewest from "./getNewest.js"
+import indexing from "../../indexing.js"
+import getNewest from "../../getNewest.js"
 import saveNewest from "./saveNewest.js"
-import config from "../build.config.js"
-import { indexFilePath, rssFilePath, rssResourcePath } from "./utils/path.js"
-import clearDirectory from "./utils/clearDirectory.js"
-import writeIndexTemplate from "./indexTemplate.js"
-import readDir, { Directory } from "./utils/readDir.js"
 import saveRSS from "./saveRSS.js"
+import saveSearchIndex from "./resolveSearch.js"
+import config from "../../../build.config.js"
+import { indexFilePath, rssFilePath, rssResourcePath } from "../../utils/path.js"
+import clearDirectory from "../../utils/clearDirectory.js"
+import writeIndexTemplate from "../../indexTemplate.js"
+import readDir, { Directory } from "../../utils/readDir.js"
 
 if (!config.homepage.endsWith("/")) {
     config.homepage += "/"
@@ -24,13 +25,20 @@ indexing(staticDir, "static")
 
 // --- --- --- --- --- ---
 
-if (!config.enableRSS && !config.enableNewest) {
+if (
+    !config.enableRSS &&
+    !config.enableNewest &&
+    !config.enableSearch
+) {
     // if RSS and newest are both disabled,
     // there is no need to continue.
     process.exit(0)
 }
 
 const newests = getNewest(staticDir)
+if (config.enableSearch) {
+    await saveSearchIndex(newests.children)
+}
 if (config.enableNewest) {
     saveNewest(newests.children)
 }
