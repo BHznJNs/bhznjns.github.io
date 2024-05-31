@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>关于购置联想小新 Pad 作为电脑副屏的使用体验</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/关于购置联想小新 Pad 作为电脑副屏的使用体验.html</link>
+<pubDate>Fri, 31 May 2024 10:12:00 +0800</pubDate>
+<lastBuildDate>Fri, 31 May 2024 12:00:00 +0800</lastBuildDate>
+<description>近来沉迷于代码，深感笔记本单屏的局限，遂起心购置副屏。</description>
+</item>
+<item>
 <title>JavaScript 实现容器元素横向滚动</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/JavaScript 实现容器元素横向滚动.html</link>
 <pubDate>Thu, 18 Apr 2024 20:54:00 +0800</pubDate>
@@ -108,13 +115,6 @@
 <pubDate>Fri, 8 Dec 2023 11:06:00 +0800</pubDate>
 <lastBuildDate>Sun, 10 Dec 2023 10:17:00 +0800</lastBuildDate>
 <description>网站发布 RSS 本质上就是更新网站的 ``rss.xml`` (或者 ``atom.xml``)，订阅者则可以通过 RSS 阅读器来获取网站最新的 RSS 文件，从而获知网站网站的最新动态。</description>
-</item>
-<item>
-<title>奇妙随想</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/奇妙随想.html</link>
-<pubDate>Thu, 30 Nov 2023 08:21:00 +0800</pubDate>
-<lastBuildDate>Thu, 30 Nov 2023 12:08:00 +0800</lastBuildDate>
-<description>我睡在宿舍的床上，周遭突然开始吵闹起来，我睁开眼，发现自己正趴在一张陌生的课桌上。我慌忙起身，感觉身上没有什么异常，两个肾也还在。但是眼前出现的却不是我熟悉的大学校园，而是一个典型中国式的中学教室。而我，正坐在这个教室从左往右数的第三组第四桌右侧的那一桌。</description>
 </item>
 </channel>
 </rss>
