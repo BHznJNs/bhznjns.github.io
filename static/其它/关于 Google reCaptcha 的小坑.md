@@ -34,7 +34,7 @@ https://recaptcha.net/recaptcha/api.js
 
 ## 还不能正常使用？
 
-这大概率是因为网站 Content-Security-Policy 内容安全政策的原因。你可以访问[这里](.关于 Google reCaptcha 的小坑/GoogleRedirect.json)，下载 JSON 后，打开刚才安装的浏览器插件的管理界面，选择上面的``导出和导入``，将此 JSON 文件导入，再尝试使用你所需要访问的网页。
+这大概率是因为网站 Content-Security-Policy 内容安全政策的原因。你可以访问[这里](//static/其它/.关于 Google reCaptcha 的小坑/GoogleRedirect.json)，下载 JSON 后，打开刚才安装的浏览器插件的管理界面，选择上面的``导出和导入``，将此 JSON 文件导入，再尝试使用你所需要访问的网页。
 
 ## 一条 FAQ (同样搬自原文)
 
