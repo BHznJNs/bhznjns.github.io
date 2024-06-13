@@ -5,6 +5,20 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>@echo off
+if "%1" == "h" goto begin
+mshta vbscript:createobject("wscript.shell").run("""%~nx0"" h",0)(window.close)&&exit
+:begin
+REM
+
+:: 其它代码
+</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Bat 脚本隐藏 CMD 窗口.html</link>
+<pubDate>Thu, 13 Jun 2024 16:00:00 +0800</pubDate>
+<lastBuildDate>Thu, 13 Jun 2024 16:03:00 +0800</lastBuildDate>
+<description> </description>
+</item>
+<item>
 <title>关于购置联想小新 Pad 作为电脑副屏的使用体验</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/关于购置联想小新 Pad 作为电脑副屏的使用体验.html</link>
 <pubDate>Fri, 31 May 2024 10:12:00 +0800</pubDate>
@@ -108,13 +122,6 @@
 <pubDate>Mon, 18 Dec 2023 22:15:00 +0800</pubDate>
 <lastBuildDate>Tue, 19 Dec 2023 11:10:00 +0800</lastBuildDate>
 <description>``2023/12/18``</description>
-</item>
-<item>
-<title>静态博客网站实现 RSS 发布</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/静态博客网站实现 RSS 发布.html</link>
-<pubDate>Fri, 8 Dec 2023 11:06:00 +0800</pubDate>
-<lastBuildDate>Sun, 10 Dec 2023 10:17:00 +0800</lastBuildDate>
-<description>网站发布 RSS 本质上就是更新网站的 ``rss.xml`` (或者 ``atom.xml``)，订阅者则可以通过 RSS 阅读器来获取网站最新的 RSS 文件，从而获知网站网站的最新动态。</description>
 </item>
 </channel>
 </rss>
