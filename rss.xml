@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>上手一个代码库的十个好问题</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/上手一个代码库的十个好问题.html</link>
+<pubDate>Fri, 21 Jun 2024 22:53:00 +0800</pubDate>
+<lastBuildDate>Fri, 21 Jun 2024 23:30:00 +0800</lastBuildDate>
+<description>原文：[10 Great Questions To Ask To Become Familiar With a Huge Codebase](https://mannes.tech/10-questions-codebase/)</description>
+</item>
+<item>
 <title>@echo off
 if "%1" == "h" goto begin
 mshta vbscript:createobject("wscript.shell").run("""%~nx0"" h",0)(window.close)&&exit
@@ -115,13 +122,6 @@ REM
 <pubDate>Wed, 20 Dec 2023 23:42:00 +0800</pubDate>
 <lastBuildDate>Wed, 27 Dec 2023 18:12:00 +0800</lastBuildDate>
 <description>``2023/12/20``</description>
-</item>
-<item>
-<title>RIME 输入法折腾记录</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/RIME 输入法折腾记录.html</link>
-<pubDate>Mon, 18 Dec 2023 22:15:00 +0800</pubDate>
-<lastBuildDate>Tue, 19 Dec 2023 11:10:00 +0800</lastBuildDate>
-<description>``2023/12/18``</description>
 </item>
 </channel>
 </rss>
