@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>哈夫曼树与哈夫曼编码</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/哈夫曼树与哈夫曼编码.html</link>
+<pubDate>Sun, 23 Jun 2024 17:03:00 +0800</pubDate>
+<lastBuildDate>Sun, 23 Jun 2024 22:02:00 +0800</lastBuildDate>
+<description>设有一棵二叉树，其只有叶子节点有值，对于每个叶子节点设节点上的值为该叶子节点的##权重##，设该节点到根节点所经过的边的条数为该节点到根节点的##路径长度##，树的所有节点的权重与到根节点的路径长度的和为##树的带权路径长度##。</description>
+</item>
+<item>
 <title>上手一个代码库的十个好问题</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/上手一个代码库的十个好问题.html</link>
 <pubDate>Fri, 21 Jun 2024 22:53:00 +0800</pubDate>
@@ -115,13 +122,6 @@ REM
 <pubDate>Wed, 27 Dec 2023 18:05:00 +0800</pubDate>
 <lastBuildDate>Wed, 27 Dec 2023 18:57:00 +0800</lastBuildDate>
 <description>``2023/12/27``</description>
-</item>
-<item>
-<title>下划线动画（新）</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/下划线动画（新）.html</link>
-<pubDate>Wed, 20 Dec 2023 23:42:00 +0800</pubDate>
-<lastBuildDate>Wed, 27 Dec 2023 18:12:00 +0800</lastBuildDate>
-<description>``2023/12/20``</description>
 </item>
 </channel>
 </rss>
