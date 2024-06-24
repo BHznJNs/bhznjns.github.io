@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SET 命令</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<article>
+    <h1>SET 命令</h1><p><code>SET</code> 命令是 Redis 最基础的命令，因此我们从此开始。</p><p>SET 命令定义：<code>src/server.h <del> setCommand</del></code></p><p>实现：<code>src/t_string.c</code></p><h2>用法</h2><p>SET 命令是用于设置一个键的字符串值，这意味着其参数的 value 部分一定会被作为字符串解析。</p><p>SET 命令有 <code>O(1)</code> 的时间复杂度。</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">SET key value [NX | XX] [GET] [EX seconds | PX milliseconds | EXAT unix-time-seconds | PXAT unix-time-milliseconds | KEEPTTL]
+</code></pre><h2>实现</h2><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">void setCommand(client *c) {
+    robj *expire = NULL;
+    int unit = UNIT_SECONDS;
+    int flags = OBJ_NO_FLAGS;
+
+    if (parseExtendedStringArgumentsOrReply(c,&flags,&unit,&expire,COMMAND_SET) != C_OK) {
+        return;
+    }
+
+    c-&gt;argv[2] = tryObjectEncoding(c-&gt;argv[2]);
+    setGenericCommand(c,flags,c-&gt;argv[1],c-&gt;argv[2],expire,unit,NULL,NULL);
+}
+</code></pre>
+</article>
+</body>
+</html>
