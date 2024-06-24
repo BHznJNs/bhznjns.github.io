@@ -162,7 +162,7 @@ function parser(source) {
         if (KeyToken_TagName_map.has(ch)) {
             if (isEscape) {
                 if (isInKey) {
-                    keyTerm += ch
+                    keyTerm += "\\" + ch
                 } else {
                     textTerm += ch
                 }
@@ -306,6 +306,7 @@ export function parseEntry(source) {
 
 // test cases
 // console.log(parser("``\\```"))
+// console.log(parseEntry("``\\-\\-test``"))
 // console.log(parseEntry("##bo//itelic//ld##"))
 // console.log(parseEntry("##bo[link text](http://www.com)ld##"))
 // console.log(parseEntry("::dim[link text](http://www.com)med::"))
