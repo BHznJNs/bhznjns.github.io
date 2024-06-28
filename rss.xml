@@ -5,10 +5,17 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>zmalloc</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/zmalloc.html</link>
+<pubDate>Fri, 28 Jun 2024 16:10:00 +0800</pubDate>
+<lastBuildDate>Fri, 28 Jun 2024 16:48:00 +0800</lastBuildDate>
+<description>``zmalloc`` 模块是 Redis 对 ``stdlib`` 中内存管理函数 ``malloc``、``realloc``、``free`` 等的再封装，Redis 内部的动态内存分配均通过此函数实现。</description>
+</item>
+<item>
 <title>SET 命令</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/SET 命令.html</link>
-<pubDate>Mon, 24 Jun 2024 10:32:00 +0800</pubDate>
-<lastBuildDate>Mon, 24 Jun 2024 10:48:00 +0800</lastBuildDate>
+<pubDate>Fri, 28 Jun 2024 16:09:00 +0800</pubDate>
+<lastBuildDate>Fri, 28 Jun 2024 16:09:00 +0800</lastBuildDate>
 <description>``SET`` 命令是 Redis 最基础的命令，因此我们从此开始。</description>
 </item>
 <item>
@@ -55,7 +62,7 @@ REM
 </item>
 <item>
 <title>使用 Service Worker 实现自定义资源缓存</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/使用 Service Worker 实现自定义资源缓存.html</link>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/使用 service worker 实现自定义资源缓存.html</link>
 <pubDate>Thu, 29 Feb 2024 16:15:00 +0800</pubDate>
 <lastBuildDate>Thu, 29 Feb 2024 21:58:00 +0800</lastBuildDate>
 <description>``2024/02/29``</description>
@@ -115,13 +122,6 @@ REM
 <pubDate>Thu, 18 Jan 2024 08:41:00 +0800</pubDate>
 <lastBuildDate>Thu, 18 Jan 2024 15:32:00 +0800</lastBuildDate>
 <description>``2024/01/18``</description>
-</item>
-<item>
-<title>HTML 实现拼音注音及美化</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/HTML 实现拼音注音及美化.html</link>
-<pubDate>Mon, 1 Jan 2024 14:52:00 +0800</pubDate>
-<lastBuildDate>Mon, 1 Jan 2024 15:24:00 +0800</lastBuildDate>
-<description>``2024/01/01``</description>
 </item>
 </channel>
 </rss>
