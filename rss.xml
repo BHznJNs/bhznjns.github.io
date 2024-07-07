@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>参与开源入门教程</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/参与开源入门教程.html</link>
+<pubDate>Sun, 7 Jul 2024 21:12:00 +0800</pubDate>
+<lastBuildDate>Sun, 7 Jul 2024 21:24:00 +0800</lastBuildDate>
+<description>原文链接：[在校生如何在开源社区中成长？](https://www.zhihu.com/question/336820269/answer/762430975)</description>
+</item>
+<item>
 <title>构建你自己的编译器</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/构建你自己的编译器.html</link>
 <pubDate>Sun, 7 Jul 2024 15:03:00 +0800</pubDate>
@@ -115,13 +122,6 @@ REM
 <pubDate>Mon, 29 Jan 2024 15:18:00 +0800</pubDate>
 <lastBuildDate>Fri, 2 Feb 2024 22:21:00 +0800</lastBuildDate>
 <description>::inlined formulas:: $$test = \frac {a + b} {c + d}$$</description>
-</item>
-<item>
-<title>树莓派旁路由折腾记录</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/树莓派旁路由折腾记录.html</link>
-<pubDate>Sun, 21 Jan 2024 18:20:00 +0800</pubDate>
-<lastBuildDate>Sun, 21 Jan 2024 22:52:00 +0800</lastBuildDate>
-<description>``2024/01/21``</description>
 </item>
 </channel>
 </rss>
