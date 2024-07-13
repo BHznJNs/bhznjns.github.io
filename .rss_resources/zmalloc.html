@@ -8,7 +8,7 @@
 </head>
 <body>
 <article>
-    <h1>zmalloc</h1><p><code>zmalloc</code> 模块是 Redis 对 <code>stdlib</code> 中内存管理函数 <code>malloc</code>、<code>realloc</code>、<code>free</code> 等的再封装，Redis 内部的动态内存分配均通过此函数实现。</p><h2>zmalloc 函数实现解析</h2><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">static size_t used_memory = 0;
+    <h1>zmalloc</h1><p><code>zmalloc</code> 模块是 Redis 对 <code>stdlib</code> 中内存管理函数 <code>malloc</code>、<code>realloc</code>、<code>free</code> 等的再封装，Redis 内部的动态内存分配均通过此模块实现。</p><h2>zmalloc 函数实现解析</h2><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">static size_t used_memory = 0;
 
 void *zmalloc(size_t size) {
     void *ptr = malloc(size+sizeof(size_t));

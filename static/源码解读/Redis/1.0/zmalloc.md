@@ -1,6 +1,6 @@
 # zmalloc
 
-``zmalloc`` 模块是 Redis 对 ``stdlib`` 中内存管理函数 ``malloc``、``realloc``、``free`` 等的再封装，Redis 内部的动态内存分配均通过此函数实现。
+``zmalloc`` 模块是 Redis 对 ``stdlib`` 中内存管理函数 ``malloc``、``realloc``、``free`` 等的再封装，Redis 内部的动态内存分配均通过此模块实现。
 
 ## zmalloc 函数实现解析
 
