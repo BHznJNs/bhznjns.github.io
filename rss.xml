@@ -29,7 +29,7 @@
 <title>zmalloc</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/zmalloc.html</link>
 <pubDate>Fri, 28 Jun 2024 16:10:00 +0800</pubDate>
-<lastBuildDate>Sat, 13 Jul 2024 19:16:00 +0800</lastBuildDate>
+<lastBuildDate>Fri, 28 Jun 2024 16:48:00 +0800</lastBuildDate>
 <description>``zmalloc`` 模块是 Redis 对 ``stdlib`` 中内存管理函数 ``malloc``、``realloc``、``free`` 等的再封装，Redis 内部的动态内存分配均通过此模块实现。</description>
 </item>
 <item>
@@ -83,7 +83,7 @@ REM
 </item>
 <item>
 <title>使用 Service Worker 实现自定义资源缓存</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/使用 Service Worker 实现自定义资源缓存.html</link>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/使用 service worker 实现自定义资源缓存.html</link>
 <pubDate>Thu, 29 Feb 2024 16:15:00 +0800</pubDate>
 <lastBuildDate>Thu, 29 Feb 2024 21:58:00 +0800</lastBuildDate>
 <description>``2024/02/29``</description>
