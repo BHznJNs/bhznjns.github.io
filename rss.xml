@@ -5,11 +5,46 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
-<title>2.0 版本语法草案</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/2.0 版本语法草案.html</link>
-<pubDate>Mon, 29 Jul 2024 16:51:00 +0800</pubDate>
-<lastBuildDate>Mon, 29 Jul 2024 17:58:00 +0800</lastBuildDate>
-<description>变量的定义 or 赋值同时也是表达式，其值为： ``<value>``</description>
+<title>类定义</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/类定义与类实例化.html</link>
+<pubDate>Sat, 3 Aug 2024 20:12:00 +0800</pubDate>
+<lastBuildDate>Sat, 3 Aug 2024 20:19:00 +0800</lastBuildDate>
+<description>匿名类：</description>
+</item>
+<item>
+<title>函数定义</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/函数.html</link>
+<pubDate>Sat, 3 Aug 2024 20:07:00 +0800</pubDate>
+<lastBuildDate>Sat, 3 Aug 2024 20:11:00 +0800</lastBuildDate>
+<description>函数中使用 ``return`` 关键字返回值</description>
+</item>
+<item>
+<title>循环</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/循环.html</link>
+<pubDate>Sat, 3 Aug 2024 20:06:00 +0800</pubDate>
+<lastBuildDate>Sat, 3 Aug 2024 20:07:00 +0800</lastBuildDate>
+<description>无限循环</description>
+</item>
+<item>
+<title>条件判断</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/条件判断.html</link>
+<pubDate>Sat, 3 Aug 2024 20:06:00 +0800</pubDate>
+<lastBuildDate>Sat, 3 Aug 2024 20:06:00 +0800</lastBuildDate>
+<description> </description>
+</item>
+<item>
+<title>数据类型</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/数据类型.html</link>
+<pubDate>Sat, 3 Aug 2024 20:04:00 +0800</pubDate>
+<lastBuildDate>Sat, 3 Aug 2024 20:05:00 +0800</lastBuildDate>
+<description>int 类型（允许无限大的数），通过不带有小数点的数字字面量创建，如 ``1``</description>
+</item>
+<item>
+<title>变量定义</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/变量定义与赋值.html</link>
+<pubDate>Sat, 3 Aug 2024 20:02:00 +0800</pubDate>
+<lastBuildDate>Sat, 3 Aug 2024 20:04:00 +0800</lastBuildDate>
+<description>变量的定义同时也是表达式，其值为： ``<value>``</description>
 </item>
 <item>
 <title>参与开源入门教程</title>
@@ -87,41 +122,6 @@ REM
 <pubDate>Thu, 18 Apr 2024 20:54:00 +0800</pubDate>
 <lastBuildDate>Thu, 18 Apr 2024 22:17:00 +0800</lastBuildDate>
 <description>在我编写一个动态 Tabbar 组件时，经过搜索引擎查询发现，浏览器并没有提供成熟的 API 供开发者进行横竖向滚动的切换，于是便有了这篇博客。</description>
-</item>
-<item>
-<title>使用 Service Worker 实现自定义资源缓存</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/使用 service worker 实现自定义资源缓存.html</link>
-<pubDate>Thu, 29 Feb 2024 16:15:00 +0800</pubDate>
-<lastBuildDate>Thu, 29 Feb 2024 21:58:00 +0800</lastBuildDate>
-<description>``2024/02/29``</description>
-</item>
-<item>
-<title>ECharts 实现动态按需导入</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Echarts 实现动态按需导入.html</link>
-<pubDate>Tue, 27 Feb 2024 08:40:00 +0800</pubDate>
-<lastBuildDate>Tue, 27 Feb 2024 14:51:00 +0800</lastBuildDate>
-<description>``2024/02/27``</description>
-</item>
-<item>
-<title>多语言字数统计</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/多语言字数统计.html</link>
-<pubDate>Mon, 26 Feb 2024 21:19:00 +0800</pubDate>
-<lastBuildDate>Mon, 26 Feb 2024 22:01:00 +0800</lastBuildDate>
-<description>在实现本项目的字数统计功能时，需要编写一个用来统计多语言混合文本的函数。</description>
-</item>
-<item>
-<title>枚举变继承，状态代多态</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/枚举变继承，状态代多态.html</link>
-<pubDate>Sat, 17 Feb 2024 23:28:00 +0800</pubDate>
-<lastBuildDate>Sun, 18 Feb 2024 14:11:00 +0800</lastBuildDate>
-<description>来看看这个例子吧：</description>
-</item>
-<item>
-<title>记 Firefox 使用中一个小问题的解决</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/记 Firefox 使用中一个小问题的解决.html</link>
-<pubDate>Fri, 16 Feb 2024 10:20:00 +0800</pubDate>
-<lastBuildDate>Fri, 16 Feb 2024 10:38:00 +0800</lastBuildDate>
-<description>在 Windows 11 的 23H2 更新中，加入了众望所归的任务栏可选合并功能。但是，在设置了任务栏不合并之后使用 Firefox 浏览器，却常常出现如下问题：</description>
 </item>
 </channel>
 </rss>

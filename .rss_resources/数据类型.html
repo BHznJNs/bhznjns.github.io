@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据类型</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<article>
+    <h1>数据类型</h1><h2>基础数据类型</h2><p>int 类型（允许无限大的数），通过不带有小数点的数字字面量创建，如 <code>1</code></p><p>float 类型（f64），通过带有小数点的数字字面量创建，如 <code>3.14</code></p><ul><li>float 类型通过 Epsilon 消除误差，使得诸如 <code>0.1 + 0.2 == 0.3</code> 的表达式为真</li></ul><p>boolean 类型，通过全局常量 <code>true</code> 和 <code>false</code> 获取和使用</p><p>unique 类型，通过标准库内置函数 <code>unique</code> 创建，该类型保证每次创建的值唯一，即 <code>unique("key") != unique("key")</code> 的值为真</p><h2>裸类型</h2><p>裸类型是相对于部分内建对象（<code>String</code>, <code>Array</code>, <code>Map</code>）而言的，它们具备较弱的功能（不具备供调用的方法），同时占用内存较小。</p><p>裸字符串类型，通过双引号和单引号创建，</p><p>如 <code>'string1'</code> <code>"string2"</code></p><p>可通过中引号 + 整数的方式读取字符</p><p>如 <code>string[0]</code></p><p>裸数组类型，即大小不可变数组，只允许读写数组内的值，不允许改变数组长度，使用中括号创建，</p><p>如 <code>[1, 2, 3]</code></p><p>可通过中引号 + 整数的方式读写值</p><p>如 <code>arr[0]</code> <code>arr[0] = <value></code></p><p>裸集合类型，集合中值相同的元素会被合并，原则上，只应将基础类型（数字、布尔值、unique、裸字符串）作为集合的元素</p><p>通过大括号创建，集合的元素通过逗号分割，</p><p>如 <code>{1, 2, 3}</code></p><p>裸字典类型，通过大括号创建，字典的键可使用引号包裹（可选），字典中元素可使用逗号进行分割，</p><p>如 <code>{"a": 1, b: 2}</code></p><p>可通过中引号 + 字符串的方式读取和设置键值对</p><p>如 <code>dict["key"]</code> <code>dict["key"] = <value></code></p><blockquote><p>与上述裸类型对应的对象类型在后面介绍。</p></blockquote>
+</article>
+</body>
+</html>

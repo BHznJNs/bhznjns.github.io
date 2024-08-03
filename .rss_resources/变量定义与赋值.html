@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量定义</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<article>
+    <h1>变量定义</h1><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">variable_name := &lt;value&gt;
+</code></pre><p>变量的定义同时也是表达式，其值为： <code>&lt;value&gt;</code></p><p>错误的左值应该引发报错：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">10 := 20
+-------
+DeclareError: invalid left-hand value.
+</code></pre><h1>变量赋值</h1><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">variable_name = &lt;value&gt;
+</code></pre><p>变量的赋值同时也是表达式，其值为： <code>&lt;value&gt;</code></p><p>错误的左值应该引发报错：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">10 = 20
+-------
+AssignmentError: invalid left-hand value.
+</code></pre>
+</article>
+</body>
+</html>
