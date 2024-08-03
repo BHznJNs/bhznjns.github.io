@@ -14,6 +14,12 @@
 </code></pre><p>函数中使用 <code>return</code> 关键字返回值</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@&lt;function-name&gt;(param: Type) {
     return &lt;value&gt;
 }
+</code></pre><p>默认参数</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@&lt;function-name&gt;(param: Type = &lt;default-value&gt;) {
+    # function body
+}
+</code></pre><p>可变参数数量</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@&lt;function-name&gt;(param: Type, ..rest) {
+    # rest 为剩余参数组成的裸数组
+}
 </code></pre><p>匿名函数：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">variable = @(param: Type) {
     # function body
 }
