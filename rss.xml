@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>关于我实习一个月跑路后的一点感想以及为什么我认为现阶段前端已死</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/实习一个月后的一点感想.html</link>
+<pubDate>Fri, 16 Aug 2024 14:27:00 +0800</pubDate>
+<lastBuildDate>Fri, 16 Aug 2024 23:49:00 +0800</lastBuildDate>
+<description>于今年五月份，我开始找前端实习。大抵是因为劳动节放假，投了几家公司没有收到回复。这时，我刷到了本文的主角，为了我的个人隐私和该公司的名誉，我们就叫他 A 司罢。</description>
+</item>
+<item>
 <title>类定义</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/类定义与类实例化.html</link>
 <pubDate>Sat, 3 Aug 2024 20:12:00 +0800</pubDate>
@@ -115,13 +122,6 @@ REM
 <pubDate>Fri, 31 May 2024 10:12:00 +0800</pubDate>
 <lastBuildDate>Fri, 31 May 2024 19:49:00 +0800</lastBuildDate>
 <description>近来沉迷于代码，深感笔记本单屏的局限，遂起心购置副屏。</description>
-</item>
-<item>
-<title>JavaScript 实现容器元素横向滚动</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/JavaScript 实现容器元素横向滚动.html</link>
-<pubDate>Thu, 18 Apr 2024 20:54:00 +0800</pubDate>
-<lastBuildDate>Thu, 18 Apr 2024 22:17:00 +0800</lastBuildDate>
-<description>在我编写一个动态 Tabbar 组件时，经过搜索引擎查询发现，浏览器并没有提供成熟的 API 供开发者进行横竖向滚动的切换，于是便有了这篇博客。</description>
 </item>
 </channel>
 </rss>
