@@ -8,7 +8,7 @@
 <title>通过 DNS 服务获取域名对应 Host</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/通过 DNS 服务获取域名对应 Host.html</link>
 <pubDate>Sat, 24 Aug 2024 13:51:00 +0800</pubDate>
-<lastBuildDate>Sat, 24 Aug 2024 14:29:00 +0800</lastBuildDate>
+<lastBuildDate>Sat, 24 Aug 2024 20:40:00 +0800</lastBuildDate>
 <description>在编写 TCP/HTTP 客户端请求程序时，通过 DNS 服务获取域名对应的 IP 地址是非常常见的需求。</description>
 </item>
 <item>

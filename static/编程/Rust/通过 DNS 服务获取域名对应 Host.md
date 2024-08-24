@@ -6,9 +6,27 @@
 
 ## 标准库
 
-Rust 的 ``std::net`` 标准库中有一个名为 ``ToSocketAddrs`` 的 trait，它可以将表示 IP 地址的字符串转化为 ``SocketAddr`` 的迭代器，也可以对域名调用操作系统的 DNS 查询函数获取对应的 IP 地址，同样返回 ``SocketAddr`` 的迭代器。
+Rust 的 ``std::net`` 标准库中有一个名为 ``ToSocketAddrs`` 的 trait，它可以将表示主机地址的字符串转化为 ``SocketAddr`` 的迭代器，也可以对域名调用操作系统的 DNS 查询函数获取对应的 IP 地址，同样返回 ``SocketAddr`` 的迭代器。
 
 ``tokio`` 的内部使用此方式实现 DNS 查询。见[此文件183行](https://github.com/tokio-rs/tokio/blob/master/tokio/src/net/addr.rs)
+
+> [important]
+> 使用 ``ToSocketAddrs`` 解析主机地址时必须带上端口，如
+> ```rust
+> "127.0.0.1:4000".to_socket_addrs();
+> "localhost:4000".to_socket_addrs();
+> "google.com:80".to_socket_addrs();
+> ```
+> 
+> - - -
+> 
+> 你也可以使用 IP/域名 + 端口 的元组来解析，像这样：
+> 
+> ```rust
+> ("127.0.0.1", 4000).to_socket_addrs();
+> ("localhost", 4000).to_socket_addrs();
+> ("google.com", 80).to_socket_addrs();
+> ```
 
 ## 操作系统 C 库
 
