@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>通过 DNS 服务获取域名对应 Host</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/通过 DNS 服务获取域名对应 Host.html</link>
+<pubDate>Sat, 24 Aug 2024 13:51:00 +0800</pubDate>
+<lastBuildDate>Sat, 24 Aug 2024 14:29:00 +0800</lastBuildDate>
+<description>在编写 TCP/HTTP 客户端请求程序时，通过 DNS 服务获取域名对应的 IP 地址是非常常见的需求。</description>
+</item>
+<item>
 <title>关于我实习一个月跑路后的一点感想以及为什么我认为现阶段前端已死</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/实习一个月后的一点感想.html</link>
 <pubDate>Fri, 16 Aug 2024 14:27:00 +0800</pubDate>
@@ -54,6 +61,27 @@
 <description>变量的定义同时也是表达式，其值为： ``<value>``</description>
 </item>
 <item>
+<title>fork 多进程处理</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/fork 多进程处理.html</link>
+<pubDate>Fri, 2 Aug 2024 23:29:00 +0800</pubDate>
+<lastBuildDate>Sat, 3 Aug 2024 19:24:00 +0800</lastBuildDate>
+<description>fork 函数能复制当前进程，创建一个具有相同数据的子进程，通过在调用 fork 函数后在父子进程中判断 fork 函数的返回值以区分父子进程的行为。</description>
+</item>
+<item>
+<title>socket 编程</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/socket 编程.html</link>
+<pubDate>Fri, 2 Aug 2024 22:51:00 +0800</pubDate>
+<lastBuildDate>Fri, 2 Aug 2024 23:13:00 +0800</lastBuildDate>
+<description>本文针对使用 TCP 协议的 socket 编程</description>
+</item>
+<item>
+<title>大白话解释 select</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/大白话解释 select.html</link>
+<pubDate>Tue, 9 Jul 2024 10:55:00 +0800</pubDate>
+<lastBuildDate>Tue, 9 Jul 2024 17:10:00 +0800</lastBuildDate>
+<description>select 函数是 C 语言编程中用来实现多路 IO 复用的重要函数。你可以通过</description>
+</item>
+<item>
 <title>参与开源入门教程</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/参与开源入门教程.html</link>
 <pubDate>Sun, 7 Jul 2024 21:12:00 +0800</pubDate>
@@ -87,41 +115,6 @@
 <pubDate>Fri, 28 Jun 2024 16:09:00 +0800</pubDate>
 <lastBuildDate>Fri, 28 Jun 2024 16:09:00 +0800</lastBuildDate>
 <description>``SET`` 命令是 Redis 最基础的命令，因此我们从此开始。</description>
-</item>
-<item>
-<title>哈夫曼树与哈夫曼编码</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/哈夫曼树与哈夫曼编码.html</link>
-<pubDate>Sun, 23 Jun 2024 17:03:00 +0800</pubDate>
-<lastBuildDate>Sun, 23 Jun 2024 22:02:00 +0800</lastBuildDate>
-<description>设有一棵二叉树，其只有叶子节点有值，对于每个叶子节点设节点上的值为该叶子节点的##权重##，设该节点到根节点所经过的边的条数为该节点到根节点的##路径长度##，树的所有节点的权重与到根节点的路径长度的和为##树的带权路径长度##。</description>
-</item>
-<item>
-<title>上手一个代码库的十个好问题</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/上手一个代码库的十个好问题.html</link>
-<pubDate>Fri, 21 Jun 2024 22:53:00 +0800</pubDate>
-<lastBuildDate>Fri, 21 Jun 2024 23:30:00 +0800</lastBuildDate>
-<description>原文：[10 Great Questions To Ask To Become Familiar With a Huge Codebase](https://mannes.tech/10-questions-codebase/)</description>
-</item>
-<item>
-<title>@echo off
-if "%1" == "h" goto begin
-mshta vbscript:createobject("wscript.shell").run("""%~nx0"" h",0)(window.close)&&exit
-:begin
-REM
-
-:: 其它代码
-</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Bat 脚本隐藏 CMD 窗口.html</link>
-<pubDate>Thu, 13 Jun 2024 16:00:00 +0800</pubDate>
-<lastBuildDate>Thu, 13 Jun 2024 16:03:00 +0800</lastBuildDate>
-<description> </description>
-</item>
-<item>
-<title>关于购置联想小新 Pad 作为电脑副屏的使用体验</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/关于购置联想小新 Pad 作为电脑副屏的使用体验.html</link>
-<pubDate>Fri, 31 May 2024 10:12:00 +0800</pubDate>
-<lastBuildDate>Fri, 31 May 2024 19:49:00 +0800</lastBuildDate>
-<description>近来沉迷于代码，深感笔记本单屏的局限，遂起心购置副屏。</description>
 </item>
 </channel>
 </rss>
