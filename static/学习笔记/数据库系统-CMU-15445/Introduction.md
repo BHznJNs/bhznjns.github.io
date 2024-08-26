@@ -88,4 +88,4 @@ Each operator takes one or more relations as inputs and outputs a new relation.
 | Intersection | {选取数个表，返回其取交集产生的新表}(Generate a relation that contains only the tuples that appear in both of the input relations.) |
 | Difference | {对两个表，返回在第一个表中，第二个表中没有出现的元组组成的新表}(Generate a relation that contains only the tuples that appear in the first and not the second of the input relations.) |
 | Product | {返回由两个表中所有元组的所有组合组成的新表}(Generate a relation that contains all possible combinations of tuples from the input relations) |
-| Join | {}(Generate a relation that contains all tuples that are a combination of two tuples \(one from each input relation\) with a common value\(s\) for one or more attributes) |
+| Join | {通过另一个表的数据作为条件来查询一个表中的数据}(Generate a relation that contains all tuples that are a combination of two tuples \(one from each input relation\) with a common value\(s\) for one or more attributes) |
