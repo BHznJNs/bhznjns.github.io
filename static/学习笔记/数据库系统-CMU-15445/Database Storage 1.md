@@ -96,7 +96,7 @@ The directory also records meta-data about available space:
 ### Data Organizing
 
 Two approaches:
-- Tuple-oriented
+- Tuple-oriented ← This Class
 - Log-structured ← Next Class
 
 #### Tuple Storage
