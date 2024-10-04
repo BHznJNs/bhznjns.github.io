@@ -79,5 +79,52 @@ It may also be better to just let smaller nodes exist and then periodically rebu
   - 在节点中存储指向 key 实际数据的指针
   - 会导致产生非连续 IO (nonsequential IO)
 2. Variable-Length Nodes
+  - 每个节点的长度可变
+  - 需要谨慎的内存管理
 3. Padding
+  - 总是将键拓展到键类型的最大长度
 4. Key Map / Indirection
+  - 将键值对另外存储，在 B 树中只存储键值对的指针
+
+#### Intra-Node Search
+
+1. Linear: 直接进行线性查找
+  - 使用 SIMD 进行批量比较
+2. Binary: 进行二分查找
+3. Interpolation
+
+#### Optimizations
+
+##### {Prefix Compression}(前缀压缩)
+
+| robbed | robbing | robot |
+
+##Prefix: rob#
+| bed | bing | ot |
+
+##### Deduplication
+
+| K1 | V1 | K1 | V2 | K1 | V3 | K2 | V4 |
+
+| K1 | V1 | V2 | V3 | K2 | V4 |
+
+##### Suffix Truncation
+
+有时不需要存储完整的键，可以将其截断进行存储
+
+##### Pointer Swizzling
+
+一般在访问某个特定 page 时，会使用逻辑指针 pageid 在对应 table 中查询进行访问，对于已经被固定在内存中的 page 可以直接通过物理指针进行访问以减少内存 I/O，提升访问性能。
+
+##### Bulk Insert
+
+通过先排序键再从下到上建立索引，快速为现有的表构建新的 B+ 树
+
+- - -
+
+在一些时候，对 B+ 树的插入和删除操作会造成很大的开销。
+
+### Write-Optimized B+ Tree -- Bε-trees
+
+当进行写入时，不立即应用更新，而是将操作存储到 inner nodes 的日志缓冲区（或 {mod}(modify) log）
+当缓冲区已满时，将日志中的条目按照更新的键传递到子节点；若无子节点，则应用更新。
