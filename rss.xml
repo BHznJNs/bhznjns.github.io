@@ -5,116 +5,116 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
-<title>2024年2~8月半年小记</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/2024年2~8月半年小记.html</link>
-<pubDate>Wed, 28 Aug 2024 10:15:00 +0800</pubDate>
-<lastBuildDate>Wed, 28 Aug 2024 16:54:00 +0800</lastBuildDate>
-<description>从 2024 年的 2 月初到 8 月初，发送了不少我觉得受益匪浅的事，于是便有此文记录。</description>
+<title>自欺欺人式努力：优先中价值事务</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/自欺欺人式努力：优先中价值事务.html</link>
+<pubDate>Tue, 8 Oct 2024 15:02:00 +0800</pubDate>
+<lastBuildDate>Tue, 8 Oct 2024 19:46:00 +0800</lastBuildDate>
+<description>``2024/10/08``</description>
 </item>
 <item>
-<title>通过 DNS 服务获取域名对应 Host</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/通过 DNS 服务获取域名对应 Host.html</link>
-<pubDate>Sat, 24 Aug 2024 13:51:00 +0800</pubDate>
-<lastBuildDate>Sat, 24 Aug 2024 20:40:00 +0800</lastBuildDate>
-<description>在编写 TCP/HTTP 客户端请求程序时，通过 DNS 服务获取域名对应的 IP 地址是非常常见的需求。</description>
+<title>流媒体巨头 Spotify 的发展困境</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/流媒体巨头 Spotify 的发展困境.html</link>
+<pubDate>Tue, 8 Oct 2024 08:56:00 +0800</pubDate>
+<lastBuildDate>Tue, 8 Oct 2024 10:03:00 +0800</lastBuildDate>
+<description>``2024/10/08``</description>
 </item>
 <item>
-<title>关于我实习一个月跑路后的一点感想以及为什么我认为现阶段前端已死</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/实习一个月后的一点感想.html</link>
-<pubDate>Fri, 16 Aug 2024 14:27:00 +0800</pubDate>
-<lastBuildDate>Fri, 16 Aug 2024 23:49:00 +0800</lastBuildDate>
-<description>于今年五月份，我开始找前端实习。大抵是因为劳动节放假，投了几家公司没有收到回复。这时，我刷到了本文的主角，为了我的个人隐私和该公司的名誉，我们就叫他 A 司罢。</description>
+<title>前端开发速成，帮你快速实现自己的想法</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/前端开发速成，帮你快速实现自己的想法.html</link>
+<pubDate>Mon, 7 Oct 2024 11:25:00 +0800</pubDate>
+<lastBuildDate>Mon, 7 Oct 2024 23:16:00 +0800</lastBuildDate>
+<description>本文的适用对象：</description>
 </item>
 <item>
-<title>类定义</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/类定义与类实例化.html</link>
-<pubDate>Sat, 3 Aug 2024 20:12:00 +0800</pubDate>
-<lastBuildDate>Sat, 3 Aug 2024 20:19:00 +0800</lastBuildDate>
-<description>匿名类：</description>
+<title>我的编程技巧总结</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/我的编程技巧总结.html</link>
+<pubDate>Sun, 6 Oct 2024 18:41:00 +0800</pubDate>
+<lastBuildDate>Sun, 6 Oct 2024 18:59:00 +0800</lastBuildDate>
+<description>原文：[My programming beliefs as of July 2024](http://evanhahn.com/programming-beliefs-as-of-july-2024?utm_source=pocket_shared)</description>
 </item>
 <item>
-<title>函数定义</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/函数.html</link>
-<pubDate>Sat, 3 Aug 2024 20:07:00 +0800</pubDate>
-<lastBuildDate>Sat, 3 Aug 2024 20:57:00 +0800</lastBuildDate>
-<description>函数中使用 ``return`` 关键字返回值</description>
+<title>读书和人生</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/读书和人生.html</link>
+<pubDate>Sun, 6 Oct 2024 13:50:00 +0800</pubDate>
+<lastBuildDate>Sun, 6 Oct 2024 14:46:00 +0800</lastBuildDate>
+<description>``2024/10/06``</description>
 </item>
 <item>
-<title>循环</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/循环.html</link>
-<pubDate>Sat, 3 Aug 2024 20:06:00 +0800</pubDate>
-<lastBuildDate>Sat, 3 Aug 2024 20:07:00 +0800</lastBuildDate>
-<description>无限循环</description>
+<title>软件开发中的破窗效应</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/软件开发中的破窗效应.html</link>
+<pubDate>Sun, 6 Oct 2024 12:41:00 +0800</pubDate>
+<lastBuildDate>Sun, 6 Oct 2024 12:56:00 +0800</lastBuildDate>
+<description>这即是破窗效应。</description>
 </item>
 <item>
-<title>条件判断</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/条件判断.html</link>
-<pubDate>Sat, 3 Aug 2024 20:06:00 +0800</pubDate>
-<lastBuildDate>Sat, 3 Aug 2024 20:06:00 +0800</lastBuildDate>
-<description> </description>
+<title>快速上手 derive 过程宏</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/快速上手 derive 过程宏.html</link>
+<pubDate>Sat, 5 Oct 2024 21:25:00 +0800</pubDate>
+<lastBuildDate>Sun, 6 Oct 2024 10:08:00 +0800</lastBuildDate>
+<description>参考资料：[Rust 语言圣经](https://course.rs/advance/macro.html#%E7%94%A8%E8%BF%87%E7%A8%8B%E5%AE%8F%E4%B8%BA%E5%B1%9E%E6%80%A7%E6%A0%87%E8%AE%B0%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81)</description>
 </item>
 <item>
-<title>数据类型</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/数据类型.html</link>
-<pubDate>Sat, 3 Aug 2024 20:04:00 +0800</pubDate>
-<lastBuildDate>Sat, 3 Aug 2024 20:05:00 +0800</lastBuildDate>
-<description>int 类型（允许无限大的数），通过不带有小数点的数字字面量创建，如 ``1``</description>
+<title>读书最强的名牌大学生们读不了书</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/读书最强的名牌大学生们读不了书.html</link>
+<pubDate>Thu, 3 Oct 2024 10:05:00 +0800</pubDate>
+<lastBuildDate>Thu, 3 Oct 2024 15:39:00 +0800</lastBuildDate>
+<description>``2024/10/03``</description>
 </item>
 <item>
-<title>变量定义</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/变量定义与赋值.html</link>
-<pubDate>Sat, 3 Aug 2024 20:02:00 +0800</pubDate>
-<lastBuildDate>Sat, 3 Aug 2024 20:04:00 +0800</lastBuildDate>
-<description>变量的定义同时也是表达式，其值为： ``<value>``</description>
+<title>现代人的原子化和展示欲</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/现代人的原子化和展示欲.html</link>
+<pubDate>Wed, 2 Oct 2024 13:33:00 +0800</pubDate>
+<lastBuildDate>Wed, 2 Oct 2024 13:55:00 +0800</lastBuildDate>
+<description>``2024/10/02``</description>
 </item>
 <item>
-<title>fork 多进程处理</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/fork 多进程处理.html</link>
-<pubDate>Fri, 2 Aug 2024 23:29:00 +0800</pubDate>
-<lastBuildDate>Sat, 3 Aug 2024 19:24:00 +0800</lastBuildDate>
-<description>fork 函数能复制当前进程，创建一个具有相同数据的子进程，通过在调用 fork 函数后在父子进程中判断 fork 函数的返回值以区分父子进程的行为。</description>
+<title>Markdown to Mindmap</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Markdown2Mindmap.html</link>
+<pubDate>Mon, 30 Sep 2024 15:18:00 +0800</pubDate>
+<lastBuildDate>Mon, 30 Sep 2024 15:38:00 +0800</lastBuildDate>
+<description>``2024/09/30``</description>
 </item>
 <item>
-<title>socket 编程</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/socket 编程.html</link>
-<pubDate>Fri, 2 Aug 2024 22:51:00 +0800</pubDate>
-<lastBuildDate>Fri, 2 Aug 2024 23:13:00 +0800</lastBuildDate>
-<description>本文针对使用 TCP 协议的 socket 编程</description>
+<title>2024年9月月度小结</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/2024年9月月度小结.html</link>
+<pubDate>Mon, 30 Sep 2024 08:25:00 +0800</pubDate>
+<lastBuildDate>Mon, 30 Sep 2024 23:22:00 +0800</lastBuildDate>
+<description>这个9月，总结一下就是，学习以外，该做的事都做了😊😢。</description>
 </item>
 <item>
-<title>大白话解释 select</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/大白话解释 select.html</link>
-<pubDate>Tue, 9 Jul 2024 10:55:00 +0800</pubDate>
-<lastBuildDate>Tue, 9 Jul 2024 17:10:00 +0800</lastBuildDate>
-<description>select 函数是 C 语言编程中用来实现多路 IO 复用的重要函数。你可以通过</description>
+<title>{提示词}(Prompt)工程已死</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/提示词工程已死.html</link>
+<pubDate>Sat, 28 Sep 2024 10:53:00 +0800</pubDate>
+<lastBuildDate>Mon, 30 Sep 2024 15:20:00 +0800</lastBuildDate>
+<description>``2024/09/30``</description>
 </item>
 <item>
-<title>参与开源入门教程</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/参与开源入门教程.html</link>
-<pubDate>Sun, 7 Jul 2024 21:12:00 +0800</pubDate>
-<lastBuildDate>Sun, 7 Jul 2024 21:36:00 +0800</lastBuildDate>
-<description>原文链接：[在校生如何在开源社区中成长？](https://www.zhihu.com/question/336820269/answer/762430975)</description>
+<title>本科教育的价值</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/本科教育的价值.html</link>
+<pubDate>Fri, 27 Sep 2024 09:10:00 +0800</pubDate>
+<lastBuildDate>Sat, 28 Sep 2024 23:37:00 +0800</lastBuildDate>
+<description>在我上了大学之后，我时常通过身边人和网络听到这样的话语：“大学里只能学到些皮毛，要学真东西还是要靠自学”、“大学大学，大不了自己学”。字里行间透着对本科教育的无奈。</description>
 </item>
 <item>
-<title>构建你自己的编译器</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/构建你自己的编译器.html</link>
-<pubDate>Sun, 7 Jul 2024 15:03:00 +0800</pubDate>
-<lastBuildDate>Sun, 7 Jul 2024 15:06:00 +0800</lastBuildDate>
-<description>原文地址：[Create Your Own Compiler](https://citw.dev/tutorial/create-your-own-compiler)</description>
+<title>{哨兵值和牙膏}(The sentinel toothpaste: a useful programming technique for everyday life)</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/哨兵值和牙膏.html</link>
+<pubDate>Thu, 26 Sep 2024 21:27:00 +0800</pubDate>
+<lastBuildDate>Thu, 26 Sep 2024 22:55:00 +0800</lastBuildDate>
+<description>原文链接：[The sentinel toothpaste: a useful programming technique for everyday life](https://dunkels.com/adam/sentinel-toothpaste/)</description>
 </item>
 <item>
-<title>从源码中学习</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/从源码中学习.html</link>
-<pubDate>Sun, 7 Jul 2024 14:48:00 +0800</pubDate>
-<lastBuildDate>Sun, 7 Jul 2024 14:57:00 +0800</lastBuildDate>
-<description>博客地址：[Learn from Source Code](https://coderscat.com/learn-from-source-code/)</description>
+<title>视频公开课的价值</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/视频公开课的价值.html</link>
+<pubDate>Thu, 26 Sep 2024 18:27:00 +0800</pubDate>
+<lastBuildDate>Thu, 26 Sep 2024 23:10:00 +0800</lastBuildDate>
+<description>我以前其实是看不上这种动辄十几小时的成套的视频课程的，直到前段时间，我开始学习数据库的实现原理。</description>
 </item>
 <item>
-<title>zmalloc</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/zmalloc.html</link>
-<pubDate>Fri, 28 Jun 2024 16:10:00 +0800</pubDate>
-<lastBuildDate>Fri, 28 Jun 2024 16:48:00 +0800</lastBuildDate>
-<description>``zmalloc`` 模块是 Redis 对 ``stdlib`` 中内存管理函数 ``malloc``、``realloc``、``free`` 等的再封装，Redis 内部的动态内存分配均通过此模块实现。</description>
+<title>懒执行块</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/懒执行块.html</link>
+<pubDate>Sun, 22 Sep 2024 23:27:00 +0800</pubDate>
+<lastBuildDate>Sun, 22 Sep 2024 23:50:00 +0800</lastBuildDate>
+<description>懒执行块可以暂存一些指令，延迟执行，这对于错误处理非常有用。</description>
 </item>
 </channel>
 </rss>
