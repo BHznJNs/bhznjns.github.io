@@ -52,7 +52,7 @@ Non-normal term VS. normal term: $$W + W + X' + Y = W + X' + Y$$
 | 6   | 1 | 1 | 0 | F(1,1,0)  | X·Y·Z′     | m6  |
 | 7   | 1 | 1 | 1 | F(1,1,1)  | X·Y·Z      | m7  |
 
-在 minterm 的对照表中，变量 X, Y, Z 的值都为 0；对应地，它们的补 X′, Y′, Z′ 的值都为 1。
+在 minterm 的对照表中，变量 X, Y, Z 的值都为 1；对应地，它们的补 X′, Y′, Z′ 的值都为 0。
 而 minterm 的项，即 m,,i,,，对应着第 i 行的变量组合，同时 i 也是 X, Y, Z 组成的二进制数的十进制表达。
 
 ### Canonical Sum
@@ -91,7 +91,7 @@ $$$
 | 6   | 1 | 1 | 0 | F(1,1,0) | X′+Y′+Z  | M6 |
 | 7   | 1 | 1 | 1 | F(1,1,1) | X′+Y′+Z′ | M7 |
 
-类似于 minterm，maxterm 的对照表中，变量 X, Y, Z 的值即为 1，它们的补 X′, Y′, Z′ 的值都为 0。
+类似于 minterm，maxterm 的对照表中，变量 X, Y, Z 的值即为 0，它们的补 X′, Y′, Z′ 的值都为 1。
 
 ### Canonical Product
 
