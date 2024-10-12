@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>{DRY}(Don't Repeat Yourself) 不重复原则</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/DRY 不重复原则.html</link>
+<pubDate>Sat, 12 Oct 2024 17:55:00 +0800</pubDate>
+<lastBuildDate>Sat, 12 Oct 2024 19:07:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>一千米跑进三分四十记录</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/一千米跑进三分四十记录.html</link>
 <pubDate>Fri, 11 Oct 2024 20:57:00 +0800</pubDate>
@@ -107,13 +114,6 @@
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/提示词工程已死.html</link>
 <pubDate>Sat, 28 Sep 2024 10:53:00 +0800</pubDate>
 <lastBuildDate>Mon, 30 Sep 2024 15:20:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>本科教育的价值</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/本科教育的价值.html</link>
-<pubDate>Fri, 27 Sep 2024 09:10:00 +0800</pubDate>
-<lastBuildDate>Sat, 28 Sep 2024 23:37:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>

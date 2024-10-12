@@ -37,7 +37,7 @@
 
 在实现 compaction 后，可以将剩余的记录按照 tuple id 排序，以提升查询效率（Time order to Tuple Id order）。
 
-__Sorted String Tables__(SSTables)
+实现例子：__Sorted String Tables__(SSTables) 在如下数据库中
 
 Universal Compaction(rocksdb) Level Compaction(leveldb)
 
