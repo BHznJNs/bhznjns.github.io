@@ -5,6 +5,20 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>与未来的自己对话</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/与未来的自己对话.html</link>
+<pubDate>Mon, 14 Oct 2024 19:26:00 +0800</pubDate>
+<lastBuildDate>Mon, 14 Oct 2024 19:34:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
+<title>程序设计的正交性</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/程序设计的正交性.html</link>
+<pubDate>Mon, 14 Oct 2024 19:15:00 +0800</pubDate>
+<lastBuildDate>Mon, 14 Oct 2024 19:25:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>{DRY}(Don't Repeat Yourself) 不重复原则</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/DRY 不重复原则.html</link>
 <pubDate>Sat, 12 Oct 2024 17:55:00 +0800</pubDate>
@@ -100,20 +114,6 @@
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/Markdown2Mindmap.html</link>
 <pubDate>Mon, 30 Sep 2024 15:18:00 +0800</pubDate>
 <lastBuildDate>Mon, 30 Sep 2024 15:38:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>2024年9月月度小结</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/2024年9月月度小结.html</link>
-<pubDate>Mon, 30 Sep 2024 08:25:00 +0800</pubDate>
-<lastBuildDate>Mon, 30 Sep 2024 23:22:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>{提示词}(Prompt)工程已死</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/提示词工程已死.html</link>
-<pubDate>Sat, 28 Sep 2024 10:53:00 +0800</pubDate>
-<lastBuildDate>Mon, 30 Sep 2024 15:20:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>
