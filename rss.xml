@@ -5,6 +5,20 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>2024年10月月度小结</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/2024年10月月度小结.html</link>
+<pubDate>Thu, 31 Oct 2024 18:59:00 +0800</pubDate>
+<lastBuildDate>Thu, 31 Oct 2024 22:11:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
+<title>轻量的博客分享网站</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/轻量的博客分享网站.html</link>
+<pubDate>Thu, 31 Oct 2024 18:44:00 +0800</pubDate>
+<lastBuildDate>Thu, 31 Oct 2024 18:58:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>使用 Rust 开发全栈应用</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/使用 Rust 开发全栈应用.html</link>
 <pubDate>Sun, 27 Oct 2024 13:53:00 +0800</pubDate>
@@ -100,20 +114,6 @@
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/软件开发中的破窗效应.html</link>
 <pubDate>Sun, 6 Oct 2024 12:41:00 +0800</pubDate>
 <lastBuildDate>Sun, 6 Oct 2024 12:56:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>快速上手 derive 过程宏</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/快速上手 derive 过程宏.html</link>
-<pubDate>Sat, 5 Oct 2024 21:25:00 +0800</pubDate>
-<lastBuildDate>Sun, 6 Oct 2024 10:08:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>读书最强的名牌大学生们读不了书</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/读书最强的名牌大学生们读不了书.html</link>
-<pubDate>Thu, 3 Oct 2024 10:05:00 +0800</pubDate>
-<lastBuildDate>Thu, 3 Oct 2024 15:39:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>
