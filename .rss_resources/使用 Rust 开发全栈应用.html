@@ -58,7 +58,7 @@ pub fn main() {
         &lt;SimpleCounter initial_value=3 /&gt;
     })
 }
-</code></pre><p>可以看到，在这个框架中，你能使用 <code>#[component]</code> 过程宏来定义组件，使用 <code>view!</code> 声明式宏来包含 HTML 元素并返回，也提供了 <code>signal</code> 以实现响应式。</p><p>据其官网介绍，leptos 具备比传统的 Vue、React 等前端框架更高的性能：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/杂谈/今日趣闻/.使用 Rust 开发全栈应用/performance-compare.png" alt="性能比较" loading="lazy" tabindex="0"></div><p>与此同时，leptos 也提供了后端开发的相关功能。下面的示例代码实现了一个处理表单请求的 api：</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">#[server(SaveFavorites, "/api")]
+</code></pre><p>可以看到，在这个框架中，你能使用 <code>#[component]</code> 过程宏来定义组件，使用 <code>view!</code> 声明式宏来包含 HTML 元素并返回，也提供了 <code>signal</code> 以实现响应式。</p><p>据其官网介绍，leptos 具备比传统的 Vue、React 等前端框架更高的性能：</p><div class="media-container"><img src="https://bhznjns.github.io/markdown-blog/static/今日趣闻/.使用 Rust 开发全栈应用/performance-compare.png" alt="性能比较" loading="lazy" tabindex="0"></div><p>与此同时，leptos 也提供了后端开发的相关功能。下面的示例代码实现了一个处理表单请求的 api：</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">#[server(SaveFavorites, "/api")]
 pub async fn save_favorites(
     favorite_cookie_type: String,
     favorite_color: String,
