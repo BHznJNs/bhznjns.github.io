@@ -5,10 +5,12 @@ import {
     FormulaBlock, CodeBlock,
     isIframePattern,
     DetailsBlock,
-    ChartBlock
+    ChartBlock,
+    Question,
+    Answer
 } from "./node.js"
 import {
-    listResolver, quoteResolver, tableResolver,
+    listResolver, quoteResolver, tableResolver, QAResolver,
     chartResolver, formulaResolver,
     codeResolver, iframeResolver, detailsResolver,
 } from "./resolvers.js"
@@ -37,6 +39,9 @@ export default function mdResolver(source) {
         } else
         if (List.isListPattern(l)) {
             nodes.push(listResolver(l, lines))
+        } else
+        if (Question.pattern(l) || Answer.pattern(l)) {
+            nodes.push(QAResolver(l, lines))
         } else
         if (Table.pattern(l)) {
             nodes.push(tableResolver(l, lines))
