@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>奇妙随想（1）</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/奇妙随想（1）.html</link>
+<pubDate>Mon, 4 Nov 2024 08:21:00 +0800</pubDate>
+<lastBuildDate>Mon, 4 Nov 2024 09:19:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>数据的处理和持久化</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/数据的处理和持久化.html</link>
 <pubDate>Sun, 3 Nov 2024 13:16:00 +0800</pubDate>
@@ -107,13 +114,6 @@
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/流媒体巨头 Spotify 的发展困境.html</link>
 <pubDate>Tue, 8 Oct 2024 08:56:00 +0800</pubDate>
 <lastBuildDate>Tue, 8 Oct 2024 10:03:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>前端开发速成，帮你快速实现自己的想法</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/前端开发速成，帮你快速实现自己的想法.html</link>
-<pubDate>Mon, 7 Oct 2024 11:25:00 +0800</pubDate>
-<lastBuildDate>Mon, 7 Oct 2024 23:16:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>
