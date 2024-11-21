@@ -5,10 +5,17 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>注意力自由和精力管理</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/注意力自由和精力管理.html</link>
+<pubDate>Thu, 21 Nov 2024 19:31:00 +0800</pubDate>
+<lastBuildDate>Thu, 21 Nov 2024 20:27:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>AI 赋能教育的三个阶段</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/AI 赋能教育的三个阶段.html</link>
 <pubDate>Thu, 21 Nov 2024 12:43:00 +0800</pubDate>
-<lastBuildDate>Thu, 21 Nov 2024 13:02:00 +0800</lastBuildDate>
+<lastBuildDate>Thu, 21 Nov 2024 19:32:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
@@ -345,13 +352,6 @@
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/面向独立开发者的代理宣传运营.html</link>
 <pubDate>Mon, 9 Sep 2024 15:11:00 +0800</pubDate>
 <lastBuildDate>Mon, 9 Sep 2024 15:23:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>现代 Cpp 学习</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/现代 Cpp 学习.html</link>
-<pubDate>Mon, 9 Sep 2024 11:43:00 +0800</pubDate>
-<lastBuildDate>Mon, 9 Sep 2024 11:56:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>
