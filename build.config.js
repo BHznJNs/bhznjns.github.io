@@ -105,7 +105,7 @@ export default {
      * defined the amount of the items in `rss.xml`
      * 定义 `rss.xml` 中包含的博文个数
      */
-    RSSCapacity: 16,
+    RSSCapacity: 50,
 
     /**
      * previewPort: Number
