@@ -5,10 +5,24 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>九宫格写作法</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/九宫格写作法.html</link>
+<pubDate>Tue, 3 Dec 2024 23:21:00 +0800</pubDate>
+<lastBuildDate>Tue, 3 Dec 2024 23:27:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
+<title>多屏使用</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/多屏使用.html</link>
+<pubDate>Tue, 3 Dec 2024 16:01:00 +0800</pubDate>
+<lastBuildDate>Tue, 3 Dec 2024 23:20:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>2024年11月月度小结</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/2024年11月月度小结.html</link>
 <pubDate>Sun, 1 Dec 2024 13:30:00 +0800</pubDate>
-<lastBuildDate>Sun, 1 Dec 2024 20:55:00 +0800</lastBuildDate>
+<lastBuildDate>Tue, 3 Dec 2024 16:00:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
@@ -338,20 +352,6 @@
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/视频公开课的价值.html</link>
 <pubDate>Thu, 26 Sep 2024 18:27:00 +0800</pubDate>
 <lastBuildDate>Thu, 26 Sep 2024 23:10:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>懒执行块</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/懒执行块.html</link>
-<pubDate>Sun, 22 Sep 2024 23:27:00 +0800</pubDate>
-<lastBuildDate>Sun, 22 Sep 2024 23:50:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>2024年暑假小结</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/2024年暑假小结.html</link>
-<pubDate>Tue, 17 Sep 2024 21:42:00 +0800</pubDate>
-<lastBuildDate>Tue, 17 Sep 2024 22:17:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>
