@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>SSH 使用指北</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/SSH 使用指北.html</link>
+<pubDate>Wed, 11 Dec 2024 15:19:00 +0800</pubDate>
+<lastBuildDate>Wed, 11 Dec 2024 15:33:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>让操作系统 Vim 化</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/让操作系统 Vim 化.html</link>
 <pubDate>Mon, 9 Dec 2024 00:03:00 +0800</pubDate>
@@ -345,13 +352,6 @@
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/Markdown2Mindmap.html</link>
 <pubDate>Mon, 30 Sep 2024 15:18:00 +0800</pubDate>
 <lastBuildDate>Mon, 30 Sep 2024 15:38:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>2024年9月月度小结</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/2024年9月月度小结.html</link>
-<pubDate>Mon, 30 Sep 2024 08:25:00 +0800</pubDate>
-<lastBuildDate>Mon, 30 Sep 2024 23:22:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>

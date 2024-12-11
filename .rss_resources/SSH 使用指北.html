@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH 使用指北</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<article>
+    <h1>SSH 使用指北</h1><p>本文转载自知乎文章：<a href="https://zhuanlan.zhihu.com/p/716963359" target="_blank">别再笨笨地使用SSH了</a></p><p>文章主要介绍被大多数人忽略的 <code>SSH config</code>，用来灵活批量配置服务器信息，配置跳板等等。</p><p>以下为原文：</p><hr><h2>SSH config</h2><p>SSH config 作用就是可以把 SSH 相关的信息都记录到一个配置文件，可以简化操作、节约时间。</p><p>SSH config 有一个系统级的，一个用户级的。一般普通用户只关注用户级的。文件路径为 <code>~/.ssh/config</code>。</p><h3>基本写法</h3><p>一般一个服务器写成一小段，形如：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">Host Server1
+    Hostname 172.16.0.1
+    User zhangsan
+    Port 22
+    ServerAliveInterval 180
+    IdentityFile ~/.ssh/secret_key.pem
+</code></pre><p>这段的含义为有一个服务器：</p><ol><li>我们为它起了个名字叫 Server1</li><li>它的 IP 是 172.16.0.1（也可以填 Hostname）</li><li>我在上面的用户名是 zhangsan</li><li>SSH 服务监听端口号为 22（即默认值，也可以不写这一行）</li><li>ServerAliveInterval 180 表示在建立连接后，每 180 秒客户端会向服务器发送一个心跳，避免用户长时间没操作连接中断</li><li>最后一行表示使用一个专用的密钥，如果没有专用的密钥则删除该行即可。</li></ol><p>登录这台服务器的话，输入：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ ssh Server1
+</code></pre><p>拷贝文件（反过来就是从服务器往本地下载文件）：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ scp /path/to/local/file Server1:/path/to/remote/
+</code></pre><p>可以看到，这样的好处有：</p><p>（1）简洁，不需要记忆 IP 地址、端口号</p><p>（2）可以保持连接</p><p>配置免密也相同，输入以下命令并输入密码：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ ssh-copy-id Server1
+</code></pre><h3>通配符</h3><p>如果有一批服务器都是相同的配置，更是可以用通配符统一处理：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">Host Server*
+    User zhangsan
+    Port 22
+    ServerAliveInterval 180
+
+Host Server1
+    Hostname 172.16.0.1
+
+Host Server2
+    Hostname 172.16.0.2
+
+Host Server3
+    Hostname 172.16.0.3
+</code></pre><p>相信读者已经猜到其中的含义。第一段表示所有名字为 Server 开头的服务器，他们的用户名都是 zhangsan，端口都是 22，同时都有保持连接的心跳。然后下面列了 3 台服务器，我们只需要指定它们的 IP 地址。</p><h3>多文件管理</h3><p>如果需要管理非常多的服务器，全写到一个文件里会很乱很难维护，也不方便共享。事实上，<code>~/.ssh/config</code> 中支持引用其它文件。我一般习惯新建一个这样的配置 <code>~/.ssh/config-cluster-shanghai</code>，在其中编写类似上文的内容。然后在 <code>~/.ssh/config</code> 的开头加入如下一行即可：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">Include config-cluster-shanghai
+</code></pre><p>事实上这里也可以用通配符，比如：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">Include config-*
+</code></pre><p>这样 <code>~/.ssh/</code> 目录下的所有 <code>config-</code> 开头的文件都会被引用到。</p><h3>跳板</h3><p>很多集群需要跳板机才可登录，我们需要先登录跳板机，再从跳板机登录内部机器。这会引入两个麻烦，一是登录要两次，如果配置 SSH config 还需要在跳板机也配置一份儿；二是拷贝文件十分麻烦，要拷贝两次。</p><p>对此可以这样写配置：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">Host Jumper
+    Hostname 1.2.3.4
+    User zhangsan
+
+Host Server*
+    User zhangsan
+    ProxyJump Jumper
+    ServerAliveInterval 180
+
+Host Server1
+    Hostname 172.16.0.1
+
+Host Server2
+    Hostname 172.16.0.2
+</code></pre><p>第一段为跳板机的登录方式，第二段中新增了一个 ProxyJump 字段，表示所有 Server 开头的服务器，在登录的时候都要从 Jumper 这个服务器跳转一下。这时候我们想登录 <code>172.16.0.1</code>，只需要直接输入：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ ssh Server1
+$ scp /path/to/local/file Server1:/path/to/remote/
+</code></pre><p>注意一个细节是，这种配置下我们是直接从本地登录内部服务器，所以在配置免密时，是需要把本地的公钥放到内部服务器的。</p><h2>SCP 服务器间拷贝文件</h2><p>scp 的基本用法相信大家都会，上文也多次提到。但如果想在两台服务器之间拷贝文件，事实上是可以在本地执行 scp 的：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ scp Server1:/path/to/file Server2:/path/to/file2
+</code></pre><p>这个命令要求 Server1 可以直接访问 Server2。如果不满足这个条件，可以用本机转发，只需要增加一个参数 <code>-3</code> 表示用本地机器当转发机：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ scp -3 Server1:/path/to/file Server2:/path/to/file2
+</code></pre><p>根据评论区的一些其它建议，额外补充两个实用辅助工具，一并推荐给大家。</p><h2>tssh</h2><p>tssh 可以理解成是 OpenSSH 的一个升级版客户端。它的主要能力有：</p><ol><li>快速在 SSH config 里搜索服务器</li><li>更高效方便地传文件</li><li>以一种简单的加密方式记住服务器密码</li></ol><h3>基本用法</h3><p>安装方式参见<a href="https://trzsz.github.io/ssh.html" target="_blank">官网</a>，基本上主流包管理器</p><p>都可以直接安装。在使用时，直接把 ssh 替换成 tssh 即可。在不加服务器名字直接输入 tssh 时，会弹出机器列表，按下 <code>/</code> 可以搜索文本（支持 Vim 键位）</p><h3>记住密码</h3><p>偶尔会遇到服务器不允许你把自己的公钥上传，这时可以使用记住密码的功能。输入以下命令，并输入密码：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ tssh --enc-secret
+Password or secret to be encoded: ***
+
+Encoded secret for configuration: 7f28291d196d1955afa8f24a0395d8dbd3a3951fc7a79ba3ac681e5113825c
+</code></pre><p>将它生成的这一长串 hash code</p><p>保存到你的 SSH config 中，例如，如果它是 Server1 的密码：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">Host Server1
+    Hostname 172.16.0.1
+    User zhangsan
+    #!! encPassword 7f28291d196d1955afa8f24a0395d8dbd3a3951fc7a79ba3ac681e5113825c
+</code></pre><p>所有 <code>#!!</code> 开头的注释会被 tssh 特殊处理，它会读取其中的字段。这样我们就没有明文保存密码。不过这个方式是对称加密，安全性相对低，还是建议大家优先用 SSH 公钥而不是这种对称加密。</p><p>同时，记得把 config 文件配置合理的权限：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ chmod 700 ~/.ssh && chmod 600 ~/.ssh/password ~/.ssh/config
+</code></pre><h3>传输文件</h3><p>tssh 有基于 trzsz 的文件传输功能。这个功能需要服务器上安装 trzsz。trzsz 有多种语言的实现，以 Go 语言实现的版本为例，可以参照<a href="https://trzsz.github.io/go" target="_blank">官网</a>中提示，直接用包管理器安装。</p><p>此外，一种比较通用的方式是用 release 安装，在 <a href="https://github.com/trzsz/trzsz-go/releases" target="_blank">GitHub Release</a> 上下载合适平台的 release 文件到本地，例如 trzsz_1.1.8_linux_x86_64.tar.gz ，放到本地位置 /path/to/trzsz_1.1.8_linux_x86_64.tar.gz。</p><p>对想安装的服务器执行以下命令：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ tssh --install-trzsz --trzsz-bin-path /path/to/trzsz_1.1.8_linux_x86_64.tar.gz &lt;host&gt;
+</code></pre><p>例如想在 Server1 上安装，就执行：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ tssh --install-trzsz --trzsz-bin-path /path/to/trzsz_1.1.8_linux_x86_64.tar.gz Server1
+</code></pre><p>它会安装两个命令到服务器的 <code>~/.local/bin/trz</code> 和 <code>~/.local/tsz</code>。可以考虑修改环境变量便于方便调用，例如如果你使用 bash：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ echo 'export PATH="$HOME/.local/bin:PATH"' &gt;&gt; ~/.bashrc
+$ source ~/.bashrc
+</code></pre><p>如果想上传文件到服务器，就在服务器上输入 trz ，随后会弹出一个文件管理器让你选文件。想要下载文件就输入 <code>tsz &lt;file on server&gt;</code>。（记住一定要用 tssh 登录服务器才可以使用这个功能，直接 ssh 到服务器上会不可用）。</p><h2>clustershell</h2><p>想要批量操作服务器，比较经典的工具有 pssh 和 pdsh，同时也有功能强大的 Ansible。clustershell 是我最近体验很好的工具，相比 pssh 和 pdsh 的功能更加强大，具备批量 interactive shell、集群分组、输出聚合、输出对比等功能。相比 Ansible 部署方便，使用简单，用法好记忆，擅长互动。因此非常适合集群快速批量操作、集群测试和临时维护。</p><p>安装方式请参考<a href="https://clustershell.readthedocs.io/en/latest/install.html" target="_blank">官网</a>。</p><h3>快速配置</h3><p>我总结了一个简单的使用方式是构建一个这样的目录，例如放在 <code>~/clustershell</code>：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">clustershell
+├── groups.conf
+└── groups.d
+    └── servers.cfg
+</code></pre><p>设置环境变量：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ echo 'export CLUSTERSHELL_CFGDIR=$HOME/clustershell"' &gt;&gt; ~/.bashrc
+$ source ~/.bashrc
+</code></pre><p><code>groups.conf</code> 编写以下内容不用动：</p><pre class="code-block" data-language="CONF"><code class="language-conf" tabindex="0"># ClusterShell node groups main configuration file
+#
+# Please see `man 5 groups.conf` and
+# http://clustershell.readthedocs.org/en/latest/config.html#node-groups
+# for further details.
+#
+# NOTE: This is a simple group configuration example file, not a
+#       default config file. Please edit it to fit your own needs.
+#
+[Main]
+
+# Default group source
+default: servers
+
+# Group source config directory list (space separated, use quotes if needed).
+# Examples are provided. Copy them from *.conf.example to *.conf to enable.
+#
+# $CFGDIR is replaced by the highest priority config directory found.
+# Default confdir value enables both system-wide and user configuration.
+confdir: $CFGDIR/groups.conf.d
+
+# New in 1.7, autodir defines a directory list (space separated, use quotes if
+# needed) where group data files will be auto-loaded.
+# Only *.yaml file are loaded. Copy *.yaml.example files to enable.
+# Group data files avoid the need of external calls for static config files.
+#
+# $CFGDIR is replaced by the highest priority config directory found.
+# Default autodir value enables both system-wide and user configuration.
+autodir: $CFGDIR/groups.d
+
+# Sections below also define group sources.
+#
+# NOTE: /etc/clustershell/groups is deprecated since version 1.7, thus if it
+#       doesn't exist, the "local.cfg" file from autodir will be used.
+#
+# See the documentation for $CFGDIR, $SOURCE, $GROUP and $NODE upcall special
+# variables. Please remember that they are substitued before the shell command
+# is effectively executed.
+#
+[servers]
+# flat file "group: nodeset" based group source using $CFGDIR/groups.d/servers.cfg
+# with backward support for /etc/clustershell/groups
+map: [ -f $CFGDIR/groups ] && f=$CFGDIR/groups || f=$CFGDIR/groups.d/servers.cfg; sed -n 's/^$GROUP:\(.*\)/\1/p' $f
+all: [ -f $CFGDIR/groups ] && f=$CFGDIR/groups || f=$CFGDIR/groups.d/servers.cfg; sed -n 's/^all:\(.*\)/\1/p' $f
+list: [ -f $CFGDIR/groups ] && f=$CFGDIR/groups || f=$CFGDIR/groups.d/servers.cfg; sed -n 's/^\([0-9A-Za-z_-]*\):.*/\1/p' $f
+</code></pre><p><code>groups.d/servers.conf</code> 编写：</p><pre class="code-block" data-language="CONF"><code class="language-conf" tabindex="0"># ClusterShell groups config servers.cfg
+#
+# Replace /etc/clustershell/groups
+#
+# Note: file auto-loaded unless /etc/clustershell/groups is present
+#
+# See also groups.d/cluster.yaml.example for an example of multiple
+# sources single flat file setup using YAML syntax.
+#
+# Feel free to edit to fit your needs.
+all: 172.16.0.[1-8]
+</code></pre><p>all 字段列出你的服务器列表，可以是 IP、Hostname 或者 SSH config 中的 Host 代称。</p><p>如果服务器很多，IP 无规律，可以使用 clustershell 包自带的 <code>cluset</code> 工具帮忙。例如你有一个 IP 列表，就可以输入 <code>cluset -f</code> （ -f 表示 fold，折叠 IP 的意思） ，然后一行一行输入 IP，按 <code>Ctrl-D</code> 结束。或者如果你把 IP 保存到了一个文件 iplist 中，也可以：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ cat iplist
+172.16.0.1
+172.16.0.2
+172.16.0.3
+172.16.0.4
+$ cluset -f &lt; iplist
+172.16.0.[1-4]
+</code></pre><h3>基本使用与服务器分组</h3><p>在 <code>groups.d/servers.cfg</code> 中增加新的字段即可：</p><pre class="code-block" data-language="CFG"><code class="language-cfg" tabindex="0"># ...
+all: 172.16.0.[1-8]
+group1: 172.16.0.[1-4]
+group2: 172.16.0.[5-8]
+</code></pre><p>输入以下命令对不同的服务器操作：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0"># 对所有服务器操作
+$ clush -a echo Hello
+
+# 对 group1 操作
+$ clush -g group1 echo Hello
+</code></pre><h3>输出聚合</h3><p>这个功能非常实用。只需要加上 -b 这个 flag，就会自动把输出相同的服务器合并输出：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ clush -g group1 -b echo Hello
+---------------
+172.16.0.[1-4]
+---------------
+Hello
+</code></pre><h3>Interactive Shell</h3><p>不加具体的命令时，可以进入 Interactive Shell，例如：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ clush -g group1 -b
+Enter 'quit' to leave this interactive mode
+Working with nodes: 172.16.0.[1-4]
+clush&gt; 
+</code></pre><p>然后就可以当一个正常的 Shell 使用。其中还有一些<a href="https://clustershell.readthedocs.io/en/latest/tools/clush.html#single-character-interactive-commands" target="_blank">特殊命令</a></p><h3>临时使用部分节点</h3><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ clush -w 172.16.0.[2-5] -b echo Hello
+</code></pre><h3>输出 diff</h3><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ clush -w 172.16.0.[2-5] --diff ls
+</code></pre><h3>文件分发和收集</h3><p>分发文件（<code>-v</code> 表示 verbose，多输出一些日志），只有一个路径时，会分发到所有机器的相同路径：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ clush -v -w 172.16.0.[2-5] --copy /tmp/foo
+$ clush -v -w 172.16.0.[2-5] --copy /tmp/foo /tmp/bar
+</code></pre><p>收集文件，会自动添加后缀：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">$ clush -v -w 172.16.0.[2-5] --rcopy /tmp/foo
+$ ls /tmp/foo.*
+/tmp/foo.172.16.0.2 /tmp/foo.172.16.0.3 /tmp/foo.172.16.0.4 /tmp/foo.172.16.0.5
+</code></pre>
+</article>
+</body>
+</html>
