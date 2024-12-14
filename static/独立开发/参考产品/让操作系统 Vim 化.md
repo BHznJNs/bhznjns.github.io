@@ -3,6 +3,7 @@
 ``2024/12/09``
 信息来源：[【自荐-效率工具】Vimo Rebinder 2.0 全新发布 - 让键盘操作更加丝滑！](https://meta.appinn.net/t/topic/63925)
 软件官网：[VimoLab](http://vimolab.com/)
+盈利途径：在微软和苹果应用商店售卖，永久版本 28 元
 
 @[演示视频](https://player.bilibili.com/player.html?isOutside=true&aid=113610944679685&bvid=BV1VZqVYwEfS&cid=27224638674&p=1)
 
