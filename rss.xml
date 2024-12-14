@@ -5,6 +5,20 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>建站相关工具集合</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/建站相关工具集合.html</link>
+<pubDate>Fri, 13 Dec 2024 22:17:00 +0800</pubDate>
+<lastBuildDate>Fri, 13 Dec 2024 22:24:00 +0800</lastBuildDate>
+<description> </description>
+</item>
+<item>
+<title>JaneReader 界面美观的现代 epub 阅读器</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/JaneReader 界面美观的现代 epub 阅读器.html</link>
+<pubDate>Fri, 13 Dec 2024 22:08:00 +0800</pubDate>
+<lastBuildDate>Fri, 13 Dec 2024 22:14:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>SSH 使用指北</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/SSH 使用指北.html</link>
 <pubDate>Wed, 11 Dec 2024 15:19:00 +0800</pubDate>
@@ -338,20 +352,6 @@
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/读书最强的名牌大学生们读不了书.html</link>
 <pubDate>Thu, 3 Oct 2024 10:05:00 +0800</pubDate>
 <lastBuildDate>Fri, 29 Nov 2024 19:46:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>现代人的原子化和展示欲</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/现代人的原子化和展示欲.html</link>
-<pubDate>Wed, 2 Oct 2024 13:33:00 +0800</pubDate>
-<lastBuildDate>Wed, 2 Oct 2024 13:55:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>Markdown to Mindmap</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Markdown2Mindmap.html</link>
-<pubDate>Mon, 30 Sep 2024 15:18:00 +0800</pubDate>
-<lastBuildDate>Mon, 30 Sep 2024 15:38:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>
