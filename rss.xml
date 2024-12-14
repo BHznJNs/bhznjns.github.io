@@ -5,6 +5,20 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>理解 Redis 源代码</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Redis note reference.html</link>
+<pubDate>Sat, 14 Dec 2024 21:42:00 +0800</pubDate>
+<lastBuildDate>Sat, 14 Dec 2024 21:43:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
+<title>WinSize 一个用键盘排列窗口的工具软件</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/WinSize 一个用键盘排列窗口的工具软件.html</link>
+<pubDate>Sat, 14 Dec 2024 21:05:00 +0800</pubDate>
+<lastBuildDate>Sat, 14 Dec 2024 21:28:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>Octoclip(章鱼速贴) —— 跨平台剪贴板同步工具</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/Octoclip 章鱼速贴-跨平台剪贴板同步工具.html</link>
 <pubDate>Sat, 14 Dec 2024 20:04:00 +0800</pubDate>
@@ -338,20 +352,6 @@
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/读书和人生.html</link>
 <pubDate>Sun, 6 Oct 2024 13:50:00 +0800</pubDate>
 <lastBuildDate>Sun, 6 Oct 2024 14:46:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>软件开发中的破窗效应</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/软件开发中的破窗效应.html</link>
-<pubDate>Sun, 6 Oct 2024 12:41:00 +0800</pubDate>
-<lastBuildDate>Sun, 6 Oct 2024 12:56:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>快速上手 derive 过程宏</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/快速上手 derive 过程宏.html</link>
-<pubDate>Sat, 5 Oct 2024 21:25:00 +0800</pubDate>
-<lastBuildDate>Sun, 6 Oct 2024 10:08:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>
