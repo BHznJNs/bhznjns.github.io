@@ -5,6 +5,13 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>知识管理：目标和方法</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/知识管理：目标和方法.html</link>
+<pubDate>Sun, 15 Dec 2024 19:28:00 +0800</pubDate>
+<lastBuildDate>Sun, 15 Dec 2024 20:25:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>理解 Redis 源代码</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/Redis note reference.html</link>
 <pubDate>Sat, 14 Dec 2024 21:42:00 +0800</pubDate>
@@ -345,13 +352,6 @@
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/我的编程技巧总结.html</link>
 <pubDate>Sun, 6 Oct 2024 18:41:00 +0800</pubDate>
 <lastBuildDate>Sun, 6 Oct 2024 18:59:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>读书和人生</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/读书和人生.html</link>
-<pubDate>Sun, 6 Oct 2024 13:50:00 +0800</pubDate>
-<lastBuildDate>Sun, 6 Oct 2024 14:46:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>
