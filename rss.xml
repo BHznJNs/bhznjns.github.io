@@ -5,6 +5,34 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>最简单的 CSS reset 样式</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/最简单的 CSS Reset 样式.html</link>
+<pubDate>Tue, 17 Dec 2024 20:47:00 +0800</pubDate>
+<lastBuildDate>Tue, 17 Dec 2024 20:51:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
+<title>在计算机图形界面中的居中难题</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/在计算机图形界面中的居中难题.html</link>
+<pubDate>Tue, 17 Dec 2024 20:18:00 +0800</pubDate>
+<lastBuildDate>Tue, 17 Dec 2024 20:45:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
+<title>为什么穷人更应该上大学？</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/为什么穷人更应该上大学？.html</link>
+<pubDate>Tue, 17 Dec 2024 19:30:00 +0800</pubDate>
+<lastBuildDate>Tue, 17 Dec 2024 19:52:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
+<title>游戏为什么能如此吸引人？</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/游戏为什么能如此吸引人？.html</link>
+<pubDate>Tue, 17 Dec 2024 19:29:00 +0800</pubDate>
+<lastBuildDate>Tue, 17 Dec 2024 20:12:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>知识管理：目标和方法</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/知识管理：目标和方法.html</link>
 <pubDate>Sun, 15 Dec 2024 19:28:00 +0800</pubDate>
@@ -64,7 +92,7 @@
 <title>想创业，先走出舒适区</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/想创业，先走出舒适区.html</link>
 <pubDate>Sun, 8 Dec 2024 22:57:00 +0800</pubDate>
-<lastBuildDate>Sun, 8 Dec 2024 23:54:00 +0800</lastBuildDate>
+<lastBuildDate>Tue, 17 Dec 2024 19:28:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
@@ -324,34 +352,6 @@
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/构建知识组合的指导方针和途径.html</link>
 <pubDate>Fri, 11 Oct 2024 11:22:00 +0800</pubDate>
 <lastBuildDate>Fri, 11 Oct 2024 11:35:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>自欺欺人式努力：优先中价值事务</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/自欺欺人式努力：优先中价值事务.html</link>
-<pubDate>Tue, 8 Oct 2024 15:02:00 +0800</pubDate>
-<lastBuildDate>Wed, 9 Oct 2024 15:31:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>流媒体巨头 Spotify 的发展困境</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/流媒体巨头 Spotify 的发展困境.html</link>
-<pubDate>Tue, 8 Oct 2024 08:56:00 +0800</pubDate>
-<lastBuildDate>Tue, 8 Oct 2024 10:03:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>前端开发速成，帮你快速实现自己的想法</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/前端开发速成，帮你快速实现自己的想法.html</link>
-<pubDate>Mon, 7 Oct 2024 11:25:00 +0800</pubDate>
-<lastBuildDate>Mon, 7 Oct 2024 23:16:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>我的编程技巧总结</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/我的编程技巧总结.html</link>
-<pubDate>Sun, 6 Oct 2024 18:41:00 +0800</pubDate>
-<lastBuildDate>Sun, 6 Oct 2024 18:59:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>
