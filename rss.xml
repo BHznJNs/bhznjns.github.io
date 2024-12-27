@@ -5,6 +5,20 @@
 <link>https://bhznjns.github.io/markdown-blog/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>VSCode 插件开发的小坑</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/VSCode 插件开发的小坑.html</link>
+<pubDate>Tue, 24 Dec 2024 20:40:00 +0800</pubDate>
+<lastBuildDate>Tue, 24 Dec 2024 21:05:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
+<title>电子笔记 vs. 纸质笔记</title>
+<link>https://bhznjns.github.io/markdown-blog/.rss_resources/电子笔记 vs. 纸质笔记.html</link>
+<pubDate>Mon, 23 Dec 2024 21:50:00 +0800</pubDate>
+<lastBuildDate>Tue, 24 Dec 2024 19:00:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>中文汉字转和制汉字</title>
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/中文汉字转和制汉字.html</link>
 <pubDate>Sat, 21 Dec 2024 10:49:00 +0800</pubDate>
@@ -338,20 +352,6 @@
 <link>https://bhznjns.github.io/markdown-blog/.rss_resources/程序设计的正交性.html</link>
 <pubDate>Mon, 14 Oct 2024 19:15:00 +0800</pubDate>
 <lastBuildDate>Mon, 14 Oct 2024 19:25:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>{DRY}(Don't Repeat Yourself) 不重复原则</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/DRY 不重复原则.html</link>
-<pubDate>Sat, 12 Oct 2024 17:55:00 +0800</pubDate>
-<lastBuildDate>Sat, 12 Oct 2024 19:07:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>一千米跑进三分四十记录</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/一千米跑进三分四十记录.html</link>
-<pubDate>Fri, 11 Oct 2024 20:57:00 +0800</pubDate>
-<lastBuildDate>Fri, 11 Oct 2024 21:15:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>
