@@ -2,356 +2,356 @@
 <rss version="2.0">
 <channel>
 <title>BHznJNs' Blog</title>
-<link>https://bhznjns.github.io/markdown-blog/</link>
+<link>https://bhznjns.github.io/</link>
 <description>一个 Markdown 静态博客站。</description>
 <item>
+<title>2024年 年度总结</title>
+<link>https://bhznjns.github.io/.rss_resources/2024年 年度总结.html</link>
+<pubDate>Sat, 28 Dec 2024 10:55:00 +0800</pubDate>
+<lastBuildDate>Sat, 28 Dec 2024 21:23:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
+<title>不刷手机</title>
+<link>https://bhznjns.github.io/.rss_resources/不刷手机.html</link>
+<pubDate>Sat, 28 Dec 2024 10:41:00 +0800</pubDate>
+<lastBuildDate>Sat, 28 Dec 2024 21:28:00 +0800</lastBuildDate>
+<description></description>
+</item>
+<item>
 <title>VSCode 插件开发的小坑</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/VSCode 插件开发的小坑.html</link>
+<link>https://bhznjns.github.io/.rss_resources/VSCode 插件开发的小坑.html</link>
 <pubDate>Tue, 24 Dec 2024 20:40:00 +0800</pubDate>
 <lastBuildDate>Tue, 24 Dec 2024 21:05:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>电子笔记 vs. 纸质笔记</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/电子笔记 vs. 纸质笔记.html</link>
+<link>https://bhznjns.github.io/.rss_resources/电子笔记 vs. 纸质笔记.html</link>
 <pubDate>Mon, 23 Dec 2024 21:50:00 +0800</pubDate>
 <lastBuildDate>Tue, 24 Dec 2024 19:00:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>中文汉字转和制汉字</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/中文汉字转和制汉字.html</link>
+<link>https://bhznjns.github.io/.rss_resources/中文汉字转和制汉字.html</link>
 <pubDate>Sat, 21 Dec 2024 10:49:00 +0800</pubDate>
 <lastBuildDate>Sat, 21 Dec 2024 10:59:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>一个被雇佣什么事都不做的日本人</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/一个被雇佣什么事都不做的日本人.html</link>
+<link>https://bhznjns.github.io/.rss_resources/一个被雇佣什么事都不做的日本人.html</link>
 <pubDate>Tue, 17 Dec 2024 22:28:00 +0800</pubDate>
 <lastBuildDate>Wed, 18 Dec 2024 00:01:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>最简单的 CSS reset 样式</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/最简单的 CSS Reset 样式.html</link>
+<link>https://bhznjns.github.io/.rss_resources/最简单的 CSS Reset 样式.html</link>
 <pubDate>Tue, 17 Dec 2024 20:47:00 +0800</pubDate>
 <lastBuildDate>Tue, 17 Dec 2024 20:51:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>在计算机图形界面中的居中难题</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/在计算机图形界面中的居中难题.html</link>
+<link>https://bhznjns.github.io/.rss_resources/在计算机图形界面中的居中难题.html</link>
 <pubDate>Tue, 17 Dec 2024 20:18:00 +0800</pubDate>
 <lastBuildDate>Tue, 17 Dec 2024 20:45:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>为什么穷人更应该上大学？</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/为什么穷人更应该上大学？.html</link>
+<link>https://bhznjns.github.io/.rss_resources/为什么穷人更应该上大学？.html</link>
 <pubDate>Tue, 17 Dec 2024 19:30:00 +0800</pubDate>
 <lastBuildDate>Tue, 17 Dec 2024 19:52:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>游戏为什么能如此吸引人？</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/游戏为什么能如此吸引人？.html</link>
+<link>https://bhznjns.github.io/.rss_resources/游戏为什么能如此吸引人？.html</link>
 <pubDate>Tue, 17 Dec 2024 19:29:00 +0800</pubDate>
 <lastBuildDate>Tue, 17 Dec 2024 20:12:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>知识管理：目标和方法</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/知识管理：目标和方法.html</link>
+<link>https://bhznjns.github.io/.rss_resources/知识管理：目标和方法.html</link>
 <pubDate>Sun, 15 Dec 2024 19:28:00 +0800</pubDate>
 <lastBuildDate>Sun, 15 Dec 2024 20:25:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>理解 Redis 源代码</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Redis note reference.html</link>
+<link>https://bhznjns.github.io/.rss_resources/Redis note reference.html</link>
 <pubDate>Sat, 14 Dec 2024 21:42:00 +0800</pubDate>
 <lastBuildDate>Sat, 14 Dec 2024 21:43:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>WinSize 一个用键盘排列窗口的工具软件</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/WinSize 一个用键盘排列窗口的工具软件.html</link>
+<link>https://bhznjns.github.io/.rss_resources/WinSize 一个用键盘排列窗口的工具软件.html</link>
 <pubDate>Sat, 14 Dec 2024 21:05:00 +0800</pubDate>
 <lastBuildDate>Sat, 14 Dec 2024 21:28:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>Octoclip(章鱼速贴) —— 跨平台剪贴板同步工具</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Octoclip 章鱼速贴-跨平台剪贴板同步工具.html</link>
+<link>https://bhznjns.github.io/.rss_resources/Octoclip 章鱼速贴-跨平台剪贴板同步工具.html</link>
 <pubDate>Sat, 14 Dec 2024 20:04:00 +0800</pubDate>
 <lastBuildDate>Sat, 14 Dec 2024 20:15:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>建站相关工具集合</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/建站相关工具集合.html</link>
+<link>https://bhznjns.github.io/.rss_resources/建站相关工具集合.html</link>
 <pubDate>Fri, 13 Dec 2024 22:17:00 +0800</pubDate>
 <lastBuildDate>Fri, 13 Dec 2024 22:24:00 +0800</lastBuildDate>
 <description> </description>
 </item>
 <item>
 <title>JaneReader 界面美观的现代 epub 阅读器</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/JaneReader 界面美观的现代 epub 阅读器.html</link>
+<link>https://bhznjns.github.io/.rss_resources/JaneReader 界面美观的现代 epub 阅读器.html</link>
 <pubDate>Fri, 13 Dec 2024 22:08:00 +0800</pubDate>
 <lastBuildDate>Sat, 14 Dec 2024 20:18:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>SSH 使用指北</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/SSH 使用指北.html</link>
+<link>https://bhznjns.github.io/.rss_resources/SSH 使用指北.html</link>
 <pubDate>Wed, 11 Dec 2024 15:19:00 +0800</pubDate>
 <lastBuildDate>Wed, 11 Dec 2024 15:33:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>让操作系统 Vim 化</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/让操作系统 Vim 化.html</link>
+<link>https://bhznjns.github.io/.rss_resources/让操作系统 Vim 化.html</link>
 <pubDate>Mon, 9 Dec 2024 00:03:00 +0800</pubDate>
 <lastBuildDate>Sat, 14 Dec 2024 20:26:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>想创业，先走出舒适区</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/想创业，先走出舒适区.html</link>
+<link>https://bhznjns.github.io/.rss_resources/想创业，先走出舒适区.html</link>
 <pubDate>Sun, 8 Dec 2024 22:57:00 +0800</pubDate>
 <lastBuildDate>Tue, 17 Dec 2024 19:28:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>在国内做独立开发难以盈利</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/在国内做独立开发难以盈利.html</link>
+<link>https://bhznjns.github.io/.rss_resources/在国内做独立开发难以盈利.html</link>
 <pubDate>Fri, 6 Dec 2024 23:37:00 +0800</pubDate>
 <lastBuildDate>Fri, 6 Dec 2024 23:49:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>多平台收藏夹聚合工具</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/多平台收藏夹聚合工具.html</link>
+<link>https://bhznjns.github.io/.rss_resources/多平台收藏夹聚合工具.html</link>
 <pubDate>Wed, 4 Dec 2024 19:53:00 +0800</pubDate>
 <lastBuildDate>Wed, 4 Dec 2024 20:29:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>九宫格写作法</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/九宫格写作法.html</link>
+<link>https://bhznjns.github.io/.rss_resources/九宫格写作法.html</link>
 <pubDate>Tue, 3 Dec 2024 23:21:00 +0800</pubDate>
 <lastBuildDate>Tue, 3 Dec 2024 23:27:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>多屏使用</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/多屏使用.html</link>
+<link>https://bhznjns.github.io/.rss_resources/多屏使用.html</link>
 <pubDate>Tue, 3 Dec 2024 16:01:00 +0800</pubDate>
 <lastBuildDate>Tue, 3 Dec 2024 23:20:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>2024年11月月度小结</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/2024年11月月度小结.html</link>
+<link>https://bhznjns.github.io/.rss_resources/2024年11月 月度小结.html</link>
 <pubDate>Sun, 1 Dec 2024 13:30:00 +0800</pubDate>
 <lastBuildDate>Tue, 3 Dec 2024 16:00:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>软件的价值</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/软件的价值.html</link>
+<link>https://bhznjns.github.io/.rss_resources/软件的价值.html</link>
 <pubDate>Sun, 1 Dec 2024 13:25:00 +0800</pubDate>
 <lastBuildDate>Sun, 1 Dec 2024 13:29:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>Kandu-跨平台的快捷环形菜单</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/Kandu-跨平台的快捷环形菜单.html</link>
+<link>https://bhznjns.github.io/.rss_resources/Kandu-跨平台的快捷环形菜单.html</link>
 <pubDate>Sun, 1 Dec 2024 09:19:00 +0800</pubDate>
 <lastBuildDate>Sat, 14 Dec 2024 20:15:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>对 PhD 一年级新生有什么建议？</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/对 PhD 一年级新生有什么建议？.html</link>
+<link>https://bhznjns.github.io/.rss_resources/对 PhD 一年级新生有什么建议？.html</link>
 <pubDate>Sun, 1 Dec 2024 09:10:00 +0800</pubDate>
 <lastBuildDate>Sun, 1 Dec 2024 09:17:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>如何写一份有效的技术简历？</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/如何写一份有效的技术简历？.html</link>
+<link>https://bhznjns.github.io/.rss_resources/如何写一份有效的技术简历？.html</link>
 <pubDate>Fri, 29 Nov 2024 19:50:00 +0800</pubDate>
 <lastBuildDate>Fri, 29 Nov 2024 20:22:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>抖音其实是佛教产品</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/抖音其实是佛教产品.html</link>
+<link>https://bhznjns.github.io/.rss_resources/抖音其实是佛教产品.html</link>
 <pubDate>Fri, 29 Nov 2024 19:31:00 +0800</pubDate>
 <lastBuildDate>Fri, 29 Nov 2024 19:41:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>为什么感觉现在的 bilibili 很没意思？</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/为什么感觉现在的 bilibili 很没意思？.html</link>
+<link>https://bhznjns.github.io/.rss_resources/为什么感觉现在的 bilibili 很没意思？.html</link>
 <pubDate>Thu, 28 Nov 2024 14:16:00 +0800</pubDate>
 <lastBuildDate>Thu, 28 Nov 2024 15:43:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>scrcpy-server 编译</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/scrcpy-server 编译.html</link>
+<link>https://bhznjns.github.io/.rss_resources/scrcpy-server 编译.html</link>
 <pubDate>Sat, 23 Nov 2024 22:20:00 +0800</pubDate>
 <lastBuildDate>Sat, 23 Nov 2024 22:27:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>垂直领域产品不适合在大众平台推广吗？</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/垂直领域产品不适合在大众平台推广吗？.html</link>
+<link>https://bhznjns.github.io/.rss_resources/垂直领域产品不适合在大众平台推广吗？.html</link>
 <pubDate>Sat, 23 Nov 2024 19:35:00 +0800</pubDate>
 <lastBuildDate>Sat, 23 Nov 2024 23:21:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>工具人的自我修养</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/工具人的自我修养.html</link>
+<link>https://bhznjns.github.io/.rss_resources/工具人的自我修养.html</link>
 <pubDate>Sat, 23 Nov 2024 18:50:00 +0800</pubDate>
 <lastBuildDate>Sat, 23 Nov 2024 18:58:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>注意力自由和精力管理</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/注意力自由和精力管理.html</link>
+<link>https://bhznjns.github.io/.rss_resources/注意力自由和精力管理.html</link>
 <pubDate>Thu, 21 Nov 2024 19:31:00 +0800</pubDate>
 <lastBuildDate>Thu, 21 Nov 2024 20:27:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>AI 赋能教育的三个阶段</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/AI 赋能教育的三个阶段.html</link>
+<link>https://bhznjns.github.io/.rss_resources/AI 赋能教育的三个阶段.html</link>
 <pubDate>Thu, 21 Nov 2024 12:43:00 +0800</pubDate>
 <lastBuildDate>Thu, 21 Nov 2024 19:32:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>在 Windows 上使用 Material You 风格桌面</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/在 Windows 上使用 Material You 风格桌面.html</link>
+<link>https://bhznjns.github.io/.rss_resources/在 Windows 上使用 Material You 风格桌面.html</link>
 <pubDate>Sun, 17 Nov 2024 14:41:00 +0800</pubDate>
 <lastBuildDate>Sat, 14 Dec 2024 20:17:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>AI 与写作</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/AI 与写作.html</link>
+<link>https://bhznjns.github.io/.rss_resources/AI 与写作.html</link>
 <pubDate>Sat, 16 Nov 2024 21:00:00 +0800</pubDate>
 <lastBuildDate>Wed, 20 Nov 2024 16:17:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>利用习惯堆叠养成好习惯</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/利用习惯堆叠养成好习惯.html</link>
+<link>https://bhznjns.github.io/.rss_resources/利用习惯堆叠养成好习惯.html</link>
 <pubDate>Thu, 7 Nov 2024 21:57:00 +0800</pubDate>
 <lastBuildDate>Thu, 7 Nov 2024 21:59:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>“赛博扫盲”真的有必要吗？</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/“赛博扫盲”真的有必要吗？.html</link>
+<link>https://bhznjns.github.io/.rss_resources/“赛博扫盲”真的有必要吗？.html</link>
 <pubDate>Wed, 6 Nov 2024 12:51:00 +0800</pubDate>
 <lastBuildDate>Wed, 6 Nov 2024 19:18:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>scrcpy 的键盘模拟</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/scrcpy 的键盘模拟.html</link>
+<link>https://bhznjns.github.io/.rss_resources/scrcpy 的键盘模拟.html</link>
 <pubDate>Tue, 5 Nov 2024 22:25:00 +0800</pubDate>
 <lastBuildDate>Tue, 5 Nov 2024 22:27:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>挖掘他人需求的妙方</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/挖掘他人需求的妙方.html</link>
+<link>https://bhznjns.github.io/.rss_resources/挖掘他人需求的妙方.html</link>
 <pubDate>Mon, 4 Nov 2024 18:00:00 +0800</pubDate>
 <lastBuildDate>Mon, 4 Nov 2024 18:05:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>AI 逐本溯源</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/AI 逐本溯源.html</link>
+<link>https://bhznjns.github.io/.rss_resources/AI 逐本溯源.html</link>
 <pubDate>Mon, 4 Nov 2024 17:36:00 +0800</pubDate>
 <lastBuildDate>Mon, 4 Nov 2024 17:54:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>奇妙随想（1）</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/奇妙随想（1）.html</link>
+<link>https://bhznjns.github.io/.rss_resources/奇妙随想（1）.html</link>
 <pubDate>Mon, 4 Nov 2024 08:21:00 +0800</pubDate>
 <lastBuildDate>Mon, 4 Nov 2024 09:19:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>数据的处理和持久化</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/数据的处理和持久化.html</link>
+<link>https://bhznjns.github.io/.rss_resources/数据的处理和持久化.html</link>
 <pubDate>Sun, 3 Nov 2024 13:16:00 +0800</pubDate>
 <lastBuildDate>Sun, 3 Nov 2024 14:02:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>抽象封装的泄露</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/抽象封装的泄露.html</link>
+<link>https://bhznjns.github.io/.rss_resources/抽象封装的泄露.html</link>
 <pubDate>Fri, 1 Nov 2024 22:29:00 +0800</pubDate>
 <lastBuildDate>Fri, 1 Nov 2024 23:20:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>自由职业并没有你想象的那么好</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/自由职业并没有你想象的那么好.html</link>
+<link>https://bhznjns.github.io/.rss_resources/自由职业并没有你想象的那么好.html</link>
 <pubDate>Fri, 1 Nov 2024 21:34:00 +0800</pubDate>
 <lastBuildDate>Fri, 1 Nov 2024 22:27:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>2024年10月月度小结</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/2024年10月月度小结.html</link>
+<link>https://bhznjns.github.io/.rss_resources/2024年10月 月度小结.html</link>
 <pubDate>Thu, 31 Oct 2024 18:59:00 +0800</pubDate>
 <lastBuildDate>Thu, 31 Oct 2024 22:11:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>轻量的博客分享网站</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/轻量的博客分享网站.html</link>
+<link>https://bhznjns.github.io/.rss_resources/轻量的博客分享网站.html</link>
 <pubDate>Thu, 31 Oct 2024 18:44:00 +0800</pubDate>
 <lastBuildDate>Thu, 31 Oct 2024 18:58:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>使用 Rust 开发全栈应用</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/使用 Rust 开发全栈应用.html</link>
+<link>https://bhznjns.github.io/.rss_resources/使用 Rust 开发全栈应用.html</link>
 <pubDate>Sun, 27 Oct 2024 13:53:00 +0800</pubDate>
 <lastBuildDate>Sun, 27 Oct 2024 14:35:00 +0800</lastBuildDate>
 <description></description>
 </item>
 <item>
 <title>《死亡笔记》漫谈</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/《死亡笔记》漫谈.html</link>
+<link>https://bhznjns.github.io/.rss_resources/《死亡笔记》漫谈.html</link>
 <pubDate>Tue, 15 Oct 2024 08:47:00 +0800</pubDate>
 <lastBuildDate>Tue, 15 Oct 2024 13:25:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>与未来的自己对话</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/与未来的自己对话.html</link>
-<pubDate>Mon, 14 Oct 2024 19:26:00 +0800</pubDate>
-<lastBuildDate>Mon, 14 Oct 2024 19:34:00 +0800</lastBuildDate>
-<description></description>
-</item>
-<item>
-<title>程序设计的正交性</title>
-<link>https://bhznjns.github.io/markdown-blog/.rss_resources/程序设计的正交性.html</link>
-<pubDate>Mon, 14 Oct 2024 19:15:00 +0800</pubDate>
-<lastBuildDate>Mon, 14 Oct 2024 19:25:00 +0800</lastBuildDate>
 <description></description>
 </item>
 </channel>

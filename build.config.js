@@ -4,7 +4,7 @@ export default {
      * the URL that this site deployed, is used to generate the rss.xml file
      * 此站点部署的 URL，用于生成 rss.xml 文件
      */
-    homepage: "https://bhznjns.github.io/markdown-blog/",
+    homepage: "https://bhznjns.github.io/",
 
     /**
      * title: String
@@ -113,6 +113,16 @@ export default {
      * 为预览服务器定义端口
      */
     previewPort: 3030,
+
+    /**
+     * extraScripts: Array<string>
+     * defined some extra JavaScript scripts that will be also loaded in the page
+     * 定义一些会在页面中加载的额外的 JavaScript 脚本
+     */
+    extraScripts: [
+        "https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW",
+        "./external.js",
+    ],
 
     /**
      * katexOptions: Object
