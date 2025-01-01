@@ -7,8 +7,21 @@
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
 <article>
     <h1>代码和注释</h1><p>当你刚刚开始学习编程时，你一定听到过类似于“代码中一定要写注释”的建议。</p><p>当你渐入佳境时，你可能也听过“少写注释，让代码成为自身的注释”这样的建议。</p><p>你可能会感到困惑：到底要不要写注释？或者说，到底什么时候才应该写注释？</p><h2>注释的作用</h2><div class="qa-block"><div class="question">注释还能有什么作用？不就是解释代码吗，这谁不知道。</div><div class="answer">注释当然是用来解释代码的，但你有想过何为注释，何为代码吗？</div></div><p>当我们需要使用计算机来做某个任务时，我们需要代码来告诉计算机该如何做，而注释，则是用来告诉我们自己，为什么要这么做。</p><p>也就是说，代码是开发者思考的结果，而注释则是思考的过程。</p><h2>什么时候才应该写注释</h2><p>为什么一些时候不需要写注释？因为在这些情况，代码——思考的结果本身也能够被当作思考的过程看待。</p><p>那反过来说，当思考的结果复杂到不能从中直接看出思考的过程时，就是该写注释的时候了。</p><p>这也能解释，为什么你需要“写简单的代码”。因为“写简单的代码”恰恰是能够同时被当作思考的结果和思考的过程的存在。</p>
+    <p><a href="https://bhznjns.github.io/#static/编程/代码和注释.md">点此查看原文</a></p>
 </article>
 </body>
 </html>

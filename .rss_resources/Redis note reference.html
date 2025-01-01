@@ -7,8 +7,21 @@
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
 <article>
     <h1>理解 Redis 源代码</h1><p><a href="https://wangziqi2013.github.io/article/2023/02/12/redis-notes.html" target="_blank">Understanding Redis Source Code</a></p>
+    <p><a href="https://bhznjns.github.io/#static/编程/源码解读/Redis/Redis note reference.md">点此查看原文</a></p>
 </article>
 </body>
 </html>

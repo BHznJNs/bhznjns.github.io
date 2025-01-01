@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
 <article>
     <h1>SSH 使用指北</h1><p>本文转载自知乎文章：<a href="https://zhuanlan.zhihu.com/p/716963359" target="_blank">别再笨笨地使用SSH了</a></p><p>文章主要介绍被大多数人忽略的 <code>SSH config</code>，用来灵活批量配置服务器信息，配置跳板等等。</p><p>以下为原文：</p><hr><h2>SSH config</h2><p>SSH config 作用就是可以把 SSH 相关的信息都记录到一个配置文件，可以简化操作、节约时间。</p><p>SSH config 有一个系统级的，一个用户级的。一般普通用户只关注用户级的。文件路径为 <code>~/.ssh/config</code>。</p><h3>基本写法</h3><p>一般一个服务器写成一小段，形如：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">Host Server1
     Hostname 172.16.0.1
@@ -158,6 +170,7 @@ $ clush -v -w 172.16.0.[2-5] --copy /tmp/foo /tmp/bar
 $ ls /tmp/foo.*
 /tmp/foo.172.16.0.2 /tmp/foo.172.16.0.3 /tmp/foo.172.16.0.4 /tmp/foo.172.16.0.5
 </code></pre>
+    <p><a href="https://bhznjns.github.io/#static/工具软件/SSH 使用指北.md">点此查看原文</a></p>
 </article>
 </body>
 </html>

@@ -7,10 +7,23 @@
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
 <article>
     <h1>scrcpy-server 编译</h1><p>Clone 项目：</p><pre class="code-block" data-language="BASH"><code class="language-bash" tabindex="0">git clone https://github.com/Genymobile/scrcpy
 </code></pre><p>在 Android Studio 中打开项目，跟随 IDE 指引配置好项目的 SDK、gradle 等</p><p>通过 MINGW64 的终端（Git 自带的 Git bash 或者 MSYS2）运行 shell 脚本：</p><pre class="code-block" data-language="BASH"><code class="language-bash" tabindex="0">./server/scripts/build-wrapper.sh ./server server/scrcpy-server release
 </code></pre><p><code>scrcpy-server</code> 可执行文件就会被构建在 <code>server</code> 目录下了。</p>
+    <p><a href="https://bhznjns.github.io/#static/工具软件/scrcpy-server 编译.md">点此查看原文</a></p>
 </article>
 </body>
 </html>

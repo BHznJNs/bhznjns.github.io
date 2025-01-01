@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
 <article>
     <h1>最简单的 CSS reset 样式</h1><p>原文：<a href="https://www.joshwcomeau.com/css/custom-css-reset/" target="_blank">A Modern CSS Reset</a></p><p>作者提供了一段非常精简的 CSS 代码，只有九条规则，实现 CSS Reset。</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">/* 1. Use a more-intuitive box-sizing model */
 *, *::before, *::after {
@@ -56,6 +68,7 @@ h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 </code></pre>
+    <p><a href="https://bhznjns.github.io/#static/编程/Web 前端/CSS/最简单的 CSS Reset 样式.md">点此查看原文</a></p>
 </article>
 </body>
 </html>

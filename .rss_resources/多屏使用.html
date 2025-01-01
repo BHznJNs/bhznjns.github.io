@@ -7,8 +7,21 @@
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
 <article>
     <h1>多屏使用</h1><p>近日，在我几个月前发的介绍自己购买安卓平板作电脑副屏的<a href="https://www.bilibili.com/video/BV1WJ4m1g7RC/" target="_blank">视频</a>下，出现了一条有趣的观众评论。</p><p>下面是我与这位观众的对话记录：</p><div class="qa-block"><div class="question">up主，这个平板当电脑附屏，分辨率能到多少阿，如果说平板的分辨率有3k的话，最近在纠结这个，我现在三块屏幕不够用，想加一块安卓平板当副屏来着</div><div class="answer">通过纯软件方案（spacedesk，moonlight）的话，最高不超过 1920x1200，使用 spacedesk 的话因为使用软解，延迟相对高一些；使用 moonlight 的话，因为 moonlight 会使用硬解，但是这个平板的gpu太拉胯，最高只有 1920x1080</div><div class="answer">所以建议要么买支持 usb-c 输入视频信号的，要么买性能好的</div><div class="question">我也不知道支不支持，<strong>最后买了小米pad7</strong></div><div class="answer">不过说实话，米板7的价格够买俩便携屏了吧</div><div class="question">主要是我有一块了，包里塞不下，只够塞一块平板了，我现在天天都是平板，笔记本，便携屏塞包里</div><div class="question">我有，<strong>一个屏幕常驻问chatgpt，一个屏幕改代码，一个屏幕记笔记的习惯，可能还需要一个屏幕百度或者github搜索或者挂向日葵看远程服务器</strong>来着。</div><div class="answer">我一直以为办公桌上摆五六个显示器是段子，没想到是真的</div><div class="question">是真的不够用，我不是科班出生的，我写代码只能面向chatgpt，要搜要查的东西一堆，桌面打开页面很多，有时候还要看别人和我聊天记录里面思路，我再捋捋来写代码，可能是差生文具多吧</div></div><p>从这段对话中可以看出，这位 B 友不差钱，能够在稍微了解后决定下单最新款的平板（小米 Pad 7 的价格 2299 元起步）。</p><p>稍微翻了翻这位 B 友的动态，可以获得这样的画像：</p><ul><li>武汉大学研究生</li><li>可能是人工智能相关专业（经常提到神经网络、模型训练）</li><li>身体可能不太好（经常发住院、手术相关动态）</li></ul><hr><p>另外一个使用场景，来自另一位来自 B 站的粉丝朋友。</p><p>这位 B 友需要经常使用 Adobe PhotoShop 和 Adobe Illustrator 这两个软件，推测可能是从事新闻传媒相关行业的从业人员。</p><p>这位 B 友的使用场景，可以概括如下：</p><ul><li>有两台电脑，一台高性能台式机，一台低性能轻薄本</li><li>轻薄本外接两台显示器，使用 Parsec 在其中一个显示器上显示台式机的画面，远程操控</li><li>两台显示器前有一块安卓平板作为副屏使用</li></ul>
+    <p><a href="https://bhznjns.github.io/#static/独立开发/用户场景/多屏使用.md">点此查看原文</a></p>
 </article>
 </body>
 </html>

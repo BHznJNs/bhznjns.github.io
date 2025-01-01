@@ -7,8 +7,21 @@
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
 <article>
     <h1>WinSize 一个用键盘排列窗口的工具软件</h1><p>项目地址：<a href="https://github.com/dmscode/WinSize" target="_blank">WinSize</a></p><p>信息来源：<a href="https://meta.appinn.net/t/topic/51969" target="_blank">WinSize 5.0 - 让窗口更听话一点点</a></p><p>盈利方式：完整功能版本通过<a href="https://afdian.com/item/d8fea58cb99c11eebcb75254001e7c00" target="_blank">爱发电</a>售卖，售价36元</p><p>使用指引：<a href="https://github.com/dmscode/WinSize/blob/master/%E5%85%A5%E9%97%A8%E5%BC%95%E5%AF%BC.md" target="_blank">WinSize/入门引导.md</a></p><hr><h2>功能特点</h2><ul><li><strong>窗口布局</strong>：将当前窗口移动到预设位置，并调整为对应大小</li><li><strong>快速布局</strong>：<code>LAlt</code>+鼠标右键，快速调整窗口位置（呼声很高，加回来了）</li><li><strong>大写锁定指示</strong>：当切换大写锁定时提示当前状态</li><li><strong>窗口置顶</strong>：切换窗口置顶</li><li>支持第三方软件调用，比如 Quicker、Utools 等，使窗口重定位融入你日常的工作流</li><li>支持在多显示器下窗口跨屏幕显示，一键全屏（覆盖全部屏幕），并可以更加灵活的设定</li></ul>
+    <p><a href="https://bhznjns.github.io/#static/独立开发/参考产品/WinSize 一个用键盘排列窗口的工具软件.md">点此查看原文</a></p>
 </article>
 </body>
 </html>

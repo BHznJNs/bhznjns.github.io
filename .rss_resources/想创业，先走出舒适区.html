@@ -7,8 +7,21 @@
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
 <article>
     <h1>想创业，先走出舒适区</h1><p>我这两天突然有了新的想法：做一个<a href="https://github.com/BHznJNs/hanzi2kanji" target="_blank">将中文汉字转换成和制汉字的在线应用</a>。</p><p>当我有了这个想法之后，我突然豁然开朗：<strong>想创业，要先走出自己舒适区，多去接触新东西</strong>。</p><p>原因很简单：</p><p>在自己的舒适区内，一切对我来说都是习以为常的，很难从中发现新的可以去发掘的痛点。</p><p>但如果走出了舒适区，情况就不一样了。在学习新的事物的时候，你肯定会遇到很多困难，其中就不乏有一些小的痛点没有被其它人所解决。</p><p>你甚至可以把需求细化，做一个专门针对特定人群的产品，例如<u>面向程序员的 UI 设计入门指南</u>、<u>产品经理如何快速开发产品原型</u>。</p><h2>产生想法的缘由</h2><p>为什么说我有了上面的想法之后豁然开朗，因为我发现了这个想法和我之前的项目<a href="https://github.com/BHznJNs/InputShare" target="_blank">输入流转</a>之间的共同点：<strong>我自己创造工具解决我在尝试新事物的过程中遇到的痛点</strong>。</p><ul><li>输入流转这个项目是我自己在尝试使用安卓平板来辅助电脑提高生产力过程中的尝试</li><ul><li>由于我的设备性能较弱，直接将电脑画面投屏到平板使用体验较差，于是我尝试模仿开源项目 deskflow，直接让电脑和平板共享键鼠</li><li>这个想法并不是我的原创，在我之前已经一些商业软件尝试做相同的事，也有定位相似的开源软件</li><li>与我的项目类似的商业软件都已缺少维护</li><li>定位相似的开源软件则无法解决我的痛点</li></ul><li>汉字2漢字这个项目则是我在学习日语的过程中发现的中文母语者在学习日语中容易遇到的问题：</li><ul><li>在阅读日语语句时看到了熟悉的汉字，但和中文中的汉字写法不同，没法直接用中文检索</li><li>这个痛点同样也早已有人尝试解决，但他们所做的只是单纯的转换，我则想要再进一步，直接一步到位给出读音和释义</li></ul></ul><h2>你的想法不一定要和别人不一样</h2><p>俗话说“太阳底下无新鲜事”，我能想到的肯定早有人想到过，大概率也已经有人付诸实践了。</p><p>但我不会因为别人已经做过而放弃，而是会进一步提出问题：</p><ul><li>如果已有的产品是商业闭源软件，这个软件近年是否还在更新？</li><ul><li>如果没有更新，这个软件是否有因为时间的流逝而逐渐不适配当下用户的需要？</li><li>如果有更新，能否做出差异化？</li></ul><li>如果已有的产品是开源软件，能否在这个产品的基础上让它更易用？</li></ul><p>甚至一些时候，你都不需要自己实现多少东西，只是做一个资源整合者，都没有问题。只要你能比原有的产品更好用、能解决新的问题，你做的资源整合就是有价值的。</p><hr><h2>写在后面的一点碎碎念</h2><p>这个想法一定程度上能解释，为什么我们所熟知的那些科技公司，无论是国内的腾讯、阿里、百度、小米，还是国外的微软、Google、Apple、Facebook，其创始人都具备至少大学的学历水平。</p><p>这与大学中的课程设置其实没有太大的关系，主要是因为在大学里，人确实会更多地接触新事物、新领域。</p><p>一个最简单的例子：在八九十年代，电脑在国内还是稀缺品，但如果你在这一时期上了大学，学了计算机专业，再接触到国外的成熟的互联网软件，你肯定会想到，能否在国内做类似的产品。</p><p>这大抵就是马化藤制作并发布 QICO 软件的过程。</p><hr><p><code>2024/12/17</code> 更新：</p><p>今天读到 <a href="https://quail.ink/hack-thinking/p/vol6-long-term-game-is-hard-but-right" target="_blank">长期游戏很困难，但很正确</a> 中的话，和我的想法不谋而合，在此记录：</p><blockquote><p>你必须自己花过很多钱购买某个服务/商品，才能理解那些客户的心理，才能更好地对他们销售</p><p>没有花过钱的人，会以己度人，推销自己认为重要的价值点</p></blockquote>
+    <p><a href="https://bhznjns.github.io/#static/独立开发/想创业，先走出舒适区.md">点此查看原文</a></p>
 </article>
 </body>
 </html>

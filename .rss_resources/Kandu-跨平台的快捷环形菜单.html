@@ -7,8 +7,21 @@
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
 <article>
     <h1>Kandu-跨平台的快捷环形菜单</h1><p><code>2024/12/01</code></p><p>软件官网：<a href="https://kando.menu/" target="_blank">https:<i>kando.menu/</i></a></p><p>盈利途径：软件免费提供，通过用户捐赠盈利</p><hr><div class="media-container"><iframe src="https://www.youtube.com/embed/vOE7EAlPUwE?si=9FuVY3fWXNybZTbD" title="Kando - A Free Cross-Platform Pie Menu" sandbox="allow-same-origin allow-scripts" loading="lazy">Kando - A Free Cross-Platform Pie Menu</iframe></div><p>一个有趣的小工具，也可以作为独立开发的参考。</p><p>来自小众软件论坛用户 <a href="https://meta.appinn.net/u/xiaokonglong" target="_blank">@xiaokonglong</a> 总结的优缺点如下：</p><p>优点:</p><ul><li>动效优雅</li><li>图标美观</li><li>操作模式新颖</li><li>支持记录鼠标按键操作</li><li>提升了轮盘操作的层级</li></ul><p>缺点:</p><ul><li>内存占用有点大.</li><li>只有英文</li><li>层级多即是优点也是缺点.</li></ul>
+    <p><a href="https://bhznjns.github.io/#static/独立开发/参考产品/Kandu-跨平台的快捷环形菜单.md">点此查看原文</a></p>
 </article>
 </body>
 </html>

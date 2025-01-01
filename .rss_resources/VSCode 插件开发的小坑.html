@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
 <article>
     <h1>VSCode 插件开发的小坑</h1><p>我今日尝试开发一个 VSCode 插件，按照 ChatGPT 的指引，我使用了命令</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">npm install -g yo generator-code
 yo code
@@ -15,6 +27,7 @@ yo code
     "vscode": "^1.92.0"
 }
 </code></pre>
+    <p><a href="https://bhznjns.github.io/#static/编程/Web 前端/VSCode 插件开发的小坑.md">点此查看原文</a></p>
 </article>
 </body>
 </html>

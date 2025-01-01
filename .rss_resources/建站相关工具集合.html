@@ -7,8 +7,21 @@
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
 <article>
     <h1>建站相关工具集合</h1><ul><li><a href="https://www.itdog.cn/http/" target="_blank">查询国内网站可访问度</a></li><li><a href="https://whoishostingthis.com/" target="_blank">查询网站服务器提供商</a></li><li><a href="https://whois.cloud.tencent.com" target="_blank">查询网站域名注册商</a></li><li><a href="https://seo.chinaz.com/" target="_blank">国内网站 SEO 查询</a></li></ul>
+    <p><a href="https://bhznjns.github.io/#static/独立开发/建站相关工具集合.md">点此查看原文</a></p>
 </article>
 </body>
 </html>

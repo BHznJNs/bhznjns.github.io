@@ -7,8 +7,21 @@
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
 <article>
     <h1>scrcpy 的键盘模拟</h1><p>原文：<a href="https://sh.alynx.one/posts/Simulate-Physical-Keyboard-in-Scrcpy-via-USB-HID-over-AOAv2/" target="_blank">通过 USB HID over AOAv2 在 scrcpy 里模拟真实键盘</a></p><hr><p>近来在开发的一个项目使用了 scrcpy 的组件，虽然我已经基本把 scrcpy 的源码看明白了，不过偶然刷到这篇文章对 scrcpy 的键盘处理讲解的挺明白的，遂收藏。</p>
+    <p><a href="https://bhznjns.github.io/#static/博客收藏/scrcpy 的键盘模拟.md">点此查看原文</a></p>
 </article>
 </body>
 </html>
