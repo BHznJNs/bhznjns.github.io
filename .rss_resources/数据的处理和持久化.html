@@ -45,7 +45,9 @@ appendLength(cur_tcp_stream, str(length))
                         break
             stream.tcp_length = input_string[:index]
 </code></pre><p>这里用了一种很繁琐的方式，将这个 CSV 格式字符串中的元素个数缩减到指定数量。</p><p>在经过这样的数据处理后，程序得以直接将这个长字符串写入 CSV 文件中。</p><hr><p>由于这个程序的目的是根据输入产生 CSV 文件，程序在处理数据的过程中，始终将数据以 CSV，即逗号分隔的字符串格式存储在内存中。这使得程序代码过于繁琐，可读性也很差。</p><p>但是，如果使用“数据和逻辑分离”的原则实现同样的逻辑，则应在处理数据时，使用更易于操作的数据结构存储在内存中。比如对于上面的 length，可以将其存储在一个列表中，由于列表操作方便，使用列表存储可以极大地简化代码，并提高可读性。在处理完数据后，再通过 <code>join</code> 方法生成目标的 CSV 格式字符串，输出到文件。</p>
-    <p><a href="https://bhznjns.github.io/#static/编程/数据的处理和持久化.md">点此查看原文</a></p>
+    <p><a href="https://bhznjns.github.io/#static/编程/数据的处理和持久化.md">
+        点此查看原文
+    </a></p>
 </article>
 </body>
 </html>
