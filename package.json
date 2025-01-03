@@ -7,18 +7,19 @@
   "type": "module",
   "scripts": {
     "preview": "node ./builder/scripts/preview.js",
+    "watch": "node ./builder/scripts/watch.js",
     "indexing": "node ./builder/scripts/indexing/index.js",
     "count": "node ./builder/scripts/count/index.js",
     "backup": "node ./builder/scripts/backup.js",
     "restore": "node ./builder/scripts/restore.js",
     "build": "npm run indexing && node ./builder/scripts/build/index.js",
-
     "compress": "rollup --config builder/rollup.config.js",
     "test": "mocha ./builder/test/*.test.js ./builder/test/*/*.test.js"
   },
   "author": "BHznJNs",
   "license": "CC-BY-4.0",
   "dependencies": {
+    "chokidar": "^4.0.3",
     "crypto-js": "^4.2.0",
     "echarts": "^5.4.3",
     "electron": "^28.2.0",
