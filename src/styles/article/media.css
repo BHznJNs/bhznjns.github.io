@@ -24,6 +24,12 @@ div.media-container {
         border-bottom-left-radius: 0;
     }
 }
+@media screen and (min-width: 768px) {
+    div.media-container.image {
+        width: fit-content;
+        max-width: 100%;
+    }
+}
 @media screen and (min-width: 960px) {
     /* PC style */
     div.media-container:not(blockquote div.media-container) {
@@ -37,10 +43,6 @@ div.media-container:hover {
     box-shadow: var(--shadow-md-2);
 }
 
-div.media-container.image {
-    width: fit-content;
-    max-width: 100%;
-}
 div.media-container img {
     width: 100%;
     vertical-align: bottom;
