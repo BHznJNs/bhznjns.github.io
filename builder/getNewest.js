@@ -42,13 +42,12 @@ class FileMonoStack {
     }
 }
 
-const ignoredFileNames = [...readmeFilename, ...reverseFilename]
 export default function getNewest(dir) {
     const fileStack = new FileMonoStack()
 
     for (const item of dir.items) {
         if (item instanceof File) {
-            if (ignoredFileNames.includes(item.name)) {
+            if (readmeFilename.includes(item.name)) {
                 continue
             }
             fileStack.push(item)

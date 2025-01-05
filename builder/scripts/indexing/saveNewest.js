@@ -1,8 +1,21 @@
 import { writeFileSync } from "node:fs"
 import config from "../../../build.config.js"
 import slice from "../../utils/slice.js"
-import isInIgnoredDir from "../../utils/isInIgnoredDir.js"
 import { indexFilePath } from "../../utils/path.js"
+
+function isInIgnoredDir(path, ignoredDirs) {
+    if (!ignoredDirs) {
+        return false
+    }
+
+    for (const dirName of ignoredDirs) {
+        if (path.startsWith(staticPath + dirName)) {
+            return true
+        }
+    }
+    return false
+}
+
 
 export default function(newestList) {
     const ignoreDirs = config.newestIgnoredDir

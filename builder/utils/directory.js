@@ -1,12 +1,17 @@
 import fs from "node:fs"
 import slice from "./slice.js"
 import { indexFilePath } from "./path.js"
-import { readmeFilename, reverseFilename } from "./filename.js"
+import { orderbyCreateTime, orderbyFilename, orderbyModifyTime, readmeFilename, reverseFilename } from "./filename.js"
+
+const ORDERBY_CREATE_TIME = 0
+const ORDERBY_MODIFY_TIME = 1
+const ORDERBY_FILENAME = 2
 
 export class Directory {
     name  = ""
     items = [] // [`Directory` | `File`]
     createTime = 0
+    modifyTime = 0
 
     constructor(name, createTime) {
         this.name = name
@@ -18,11 +23,14 @@ export class Directory {
     read(base="") {
         const dirPath = base + this.name
         const dirContent = fs.readdirSync(dirPath)
+        let orderby = ORDERBY_CREATE_TIME
+        let isReversed = false
 
         for (const item of dirContent) {
             const itemPath = dirPath + "/" + item
             const itemStat = fs.statSync(itemPath)
             const itemCreateTime = itemStat.birthtime.getTime()
+            const itemModifyTime = itemStat.mtime.getTime()
 
             if (itemStat.isDirectory()) {
                 if (item.startsWith(".")) {
@@ -31,15 +39,27 @@ export class Directory {
                 }
                 const subDir = new Directory(item, itemCreateTime)
                 subDir.read(dirPath + "/")
+                this.modifyTime = Math.max(this.modifyTime, subDir.modifyTime)
                 this.push(subDir)
             } else {
-                const itemModifyTime = itemStat.mtime.getTime()
+                if (orderbyCreateTime.includes(item)) {
+                    orderby = ORDERBY_CREATE_TIME; continue
+                } else if (orderbyModifyTime.includes(item)) {
+                    orderby = ORDERBY_MODIFY_TIME; continue
+                } else if (orderbyFilename.includes(item)) {
+                    orderby = ORDERBY_FILENAME; continue
+                }
+                if (reverseFilename.includes(item)) {
+                    isReversed = true; continue
+                }
+
                 const file = new File(
                     item,
                     itemPath,
                     itemCreateTime,
                     itemModifyTime,
                 )
+                this.modifyTime = Math.max(this.modifyTime, itemModifyTime)
                 this.push(file)
             }
         }
@@ -52,9 +72,19 @@ export class Directory {
                 return 1
             }
 
-            // newer at the fronter position
-            return b.createTime - a.createTime
+            if (orderby === ORDERBY_CREATE_TIME) {
+                // newer at the fronter position
+                return b.createTime - a.createTime
+            } else if (orderby === ORDERBY_MODIFY_TIME) {
+                return b.modifyTime - a.modifyTime
+            } else if (orderby === ORDERBY_FILENAME) {
+                // a-z order
+                return a.name.localeCompare(b.name)
+            }
         })
+        if (isReversed){
+            this.items.reverse()
+        }
     }
     indexing(indexName="static") {
         if (!fs.existsSync(indexFilePath)) {
@@ -64,16 +94,11 @@ export class Directory {
         const currentFiles = []
         const currentDirs  = []
         let directoryDescription
-        let isInversed = false
 
         for (const item of this.items) {
             if (item instanceof File) {
                 if (readmeFilename.includes(item.name)) {
                     directoryDescription = fs.readFileSync(item.path, "utf-8")
-                    continue
-                }
-                if (reverseFilename.includes(item.name)) {
-                    isInversed = true
                     continue
                 }
                 currentFiles.push(item.name)
@@ -82,16 +107,11 @@ export class Directory {
                 item.indexing(indexName + "+" + item.name)
             } else { /* unreachable */ }
         }
-    
-        if (isInversed) {
-            currentFiles.reverse()
-            currentDirs.reverse()
-        }
-        const currentDirItems = currentDirs.concat(currentFiles)
-    
+
+        const currentDirItems = currentDirs.concat(currentFiles)    
         const sliced = slice(currentDirItems)
         const count  = sliced.length
-    
+
         let index = 0
         for (const slice of sliced) {
             index += 1
