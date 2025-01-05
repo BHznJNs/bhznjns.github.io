@@ -1,7 +1,7 @@
-import { readdirSync, writeFileSync, readFileSync, statSync, unlinkSync } from "node:fs"
+import fs from "node:fs"
 import slice from "./slice.js"
-import isExist from "./isExist.js"
 import { indexFilePath } from "./path.js"
+import { readmeFilename, reverseFilename } from "./filename.js"
 
 export class Directory {
     name  = ""
@@ -17,11 +17,11 @@ export class Directory {
     }
     read(base="") {
         const dirPath = base + this.name
-        const dirContent = readdirSync(dirPath)
+        const dirContent = fs.readdirSync(dirPath)
 
         for (const item of dirContent) {
             const itemPath = dirPath + "/" + item
-            const itemStat = statSync(itemPath)
+            const itemStat = fs.statSync(itemPath)
             const itemCreateTime = itemStat.birthtime.getTime()
 
             if (itemStat.isDirectory()) {
@@ -57,8 +57,8 @@ export class Directory {
         })
     }
     indexing(indexName="static") {
-        if (!isExist(indexFilePath)) {
-            mkdirSync(indexFilePath)
+        if (!fs.existsSync(indexFilePath)) {
+            fs.mkdirSync(indexFilePath)
         }
 
         const currentFiles = []
@@ -68,11 +68,11 @@ export class Directory {
 
         for (const item of this.items) {
             if (item instanceof File) {
-                if (["README.md", "readme.md", "读我.md"].includes(item.name)) {
-                    directoryDescription = readFileSync(item.path, "utf-8")
+                if (readmeFilename.includes(item.name)) {
+                    directoryDescription = fs.readFileSync(item.path, "utf-8")
                     continue
                 }
-                if (item.name === "rev" || item.name === "倒序") {
+                if (reverseFilename.includes(item.name)) {
                     isInversed = true
                     continue
                 }
@@ -104,7 +104,7 @@ export class Directory {
                 // directory description only appear at page 1
                 indexFileContent.directoryDescription = directoryDescription
             }
-            writeFileSync(
+            fs.writeFileSync(
                 `${indexFilePath}${indexName}_${index}`,
                 JSON.stringify(indexFileContent)
             )
@@ -112,16 +112,16 @@ export class Directory {
     }
 
     static clear(path) {
-        if (!isExist(path)) {
+        if (!fs.existsSync(path)) {
             return
         }
     
-        const dirContent = readdirSync(path)
+        const dirContent = fs.readdirSync(path)
         for (const file of dirContent) {
             const filePath = path + file
-            const isFile = statSync(filePath).isFile()
+            const isFile = fs.statSync(filePath).isFile()
             if (isFile) {
-                unlinkSync(filePath)
+                fs.unlinkSync(filePath)
             }
         }
     }

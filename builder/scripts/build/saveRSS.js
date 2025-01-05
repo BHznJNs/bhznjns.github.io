@@ -1,14 +1,26 @@
-import { writeFileSync, mkdirSync } from "node:fs"
-import config from "../../../build.config.js"
+import fs from "node:fs"
 import { rssFileGenerator, rssItemGenerator } from "../../rss/index.js"
+import config from "../../../build.config.js"
 import { rssFilePath, rssResourcePath } from "../../utils/path.js"
-import isInIgnoredDir from "../../utils/isInIgnoredDir.js"
 import { execute } from "../../utils/renderer/index.js"
-import isExist from "../../utils/isExist.js"
+
+function isInIgnoredDir(path, ignoredDirs) {
+    if (!ignoredDirs) {
+        return false
+    }
+
+    for (const dirName of ignoredDirs) {
+        if (path.startsWith(staticPath + dirName)) {
+            return true
+        }
+    }
+    return false
+}
+
 
 export default function(newestItems) {
-    if (!isExist(rssResourcePath)) {
-        mkdirSync(rssResourcePath)
+    if (!fs.existsSync(rssResourcePath)) {
+        fs.mkdirSync(rssResourcePath)
     }
 
     const rssItemSize = config.RSSCapacity
@@ -22,5 +34,5 @@ export default function(newestItems) {
     execute() // render images
 
     const rssContent = rssFileGenerator(rssItems)
-    writeFileSync(rssFilePath, rssContent)
+    fs.writeFileSync(rssFilePath, rssContent)
 }

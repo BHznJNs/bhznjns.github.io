@@ -1,3 +1,4 @@
+import "./watch.js"
 import os from "node:os"
 import express from "express"
 import config from "../../build.config.js"

@@ -1,5 +1,5 @@
+import htmlEntityReplace from "./htmlEntityReplace.js";
 import config from "../../build.config.js"
-import htmlEntityReplace from "../utils/htmlEntityReplace.js";
 
 // input: [RssItem]
 // output: RssXmlString

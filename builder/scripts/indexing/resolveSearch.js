@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "node:fs"
+import fs from "node:fs"
 import mdResolver from "../../utils/markdown/index.js"
 import { indexFilePath } from "../../utils/path.js"
 import { DetailsBlock, Headline, List, Para, Quote } from "../../utils/markdown/node.js"
@@ -74,7 +74,7 @@ function getSearchIndexData(newestList) {
     for (let i=0; i<newestList.length; i++, currentId++) {
         const file = newestList[i]
 
-        const fileContent = readFileSync(file.path, "utf-8")
+        const fileContent = fs.readFileSync(file.path, "utf-8")
         const structure = mdResolver(fileContent)
         const articleRawContent = structure
             .map(nodeResolver)
@@ -110,6 +110,6 @@ export default async function(newestList) {
 "map":${indexData.map},
 "ctx":${indexData.ctx}\
 }`
-        writeFileSync(searchIndexPath(i), indexFileContent)
+        fs.writeFileSync(searchIndexPath(i), indexFileContent)
     }
 }

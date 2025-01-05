@@ -1,4 +1,5 @@
 import { Directory, File } from "./utils/directory.js"
+import { readmeFilename, reverseFilename } from "./utils/filename.js"
 
 class FileMonoStack {
     // `children`: where the data are stored,
@@ -41,10 +42,7 @@ class FileMonoStack {
     }
 }
 
-const ignoredFileNames = [
-    "README.md", "readme.md", "读我.md",
-    "rev", "倒序",
-]
+const ignoredFileNames = [...readmeFilename, ...reverseFilename]
 export default function getNewest(dir) {
     const fileStack = new FileMonoStack()
 
