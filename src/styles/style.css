@@ -43,6 +43,7 @@ body {
     margin: 0;
     background-color: var(--allpage-bg-color);
     font-family: var(--text-font);
+    overflow-x: hidden;
     transition: background .6s,
                 color .3s;
 }
