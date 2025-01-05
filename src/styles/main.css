@@ -27,46 +27,84 @@ main:not(.hidden) + #article-container {
 
 /* --- --- --- */
 
-main > ul {
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
-    list-style-type: none;
+
+main.disabled {
+    pointer-events: none;
+    opacity: .85;
+}
+
+#function-list li {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+#newest {
+    display: none !important;
+}
+#previous-dir {
+    font-family: var(--code-font);
+    font-size: 14px;
 }
 
 main[data-is-root="true"] #previous-dir {
     display: none;
 }
 main[data-is-root="true"] #newest {
-    display: block;
+    display: block !important;
 }
 
-ul#newest {
+#newest-header tr,
+#directory-header tr {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+}
+#newest-header.hidden,
+#directory-header.hidden {
     display: none;
 }
 
-main > ul li {
+#article-list, #function-list {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    list-style-type: none;
+}
+#article-list li,
+#previous-dir, #newest {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-items: start;
     color: var(--default-tx-color);
-    border: solid 2px var(--deep-bd-color);
+    border: solid 1px var(--deep-bd-color);
     border-radius: 4px;
     margin-bottom: 8px;
     padding: 6px 1rem;
     cursor: pointer;
     transition: color .3s,
-                background .3s;
+                background .3s,
+                padding .3s .05s;
 }
-.dark main > ul li {
-    border-color: var(--shallow-bd-color);
-}
-
-main > ul li:hover {
+#article-list li:hover,
+#previous-dir:hover, #newest:hover {
+    padding-top: 12px;
+    padding-bottom: 12px;
     color: var(--hovered-tx-color);
     background-color: var(--hovered-bg-color);
 }
 
-main.disabled {
-    pointer-events: none;
-    opacity: .85;
+#article-list li span {
+    width: auto;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#article-list li code {
+    margin: 0;
+}
+
+.dark #article-list li,
+.dark #previous-dir, .dark #newest {
+    border-color: var(--shallow-bd-color);
 }
 
 #article-list :not(li) {

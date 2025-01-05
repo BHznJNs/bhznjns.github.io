@@ -4,34 +4,34 @@ import keydownEvent from "../utils/dom/keydownEvent.js"
 import { scrollToTop } from "../utils/dom/scrollControl.js"
 
 export function newestItemRenderer(item) {
-    const createDate = new Date(item.timestamp)
+    const createDate = new Date(item.createTime)
     const formatedDate = new Intl.DateTimeFormat().format(createDate)
-    const dateEl  = el("code", formatedDate)
     const titleEl = el("span", item.title, {
         "class": "underline-target"
     })
-    return el("li",
-        [dateEl, el("text", ": "), titleEl],
-        {
-            tabindex: 0,
-            "class": "underline-through",
-            "data-target-blog": item.link,
-        }
-    )
+    const dateEl  = el("code", formatedDate)
+    return el("li", [titleEl, dateEl], {
+        "class": "underline-through",
+        "data-jumpto": item.link,
+        tabindex: 0,
+    })
 }
 export function directoryItemRenderer(item) {
-    const contentEl = el("span", item, {
+    const modityDate = new Date(item.modifyTime)
+    const formatedDate = new Intl.DateTimeFormat().format(modityDate)
+    const titleEl = el("span", item.name, {
         "class": "underline-target"
     })
-    return el("li", contentEl, {
+    const codeEl = el("code", formatedDate)
+    return el("li", [titleEl, codeEl], {
         "class": "underline-through",
+        "data-relative": item.name,
         tabindex: 0,
     })
 }
 
 const mainEl           = document.querySelector("main")
 const articleEl        = document.querySelector("article")
-const articleContainer = document.querySelector("#article-container")
 const articleList      = mainEl.querySelector("#article-list")
 const dirDescriptionEl = mainEl.querySelector("#directory-description")
 const pagingComponent  = mainEl.querySelector("paging-view")

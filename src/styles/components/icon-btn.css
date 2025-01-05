@@ -30,7 +30,7 @@
 }
 
 .dark .icon-btn {
-    border-width: 3px;
+    border-width: 2px;
 }
 
 .icon-btn img {
@@ -43,5 +43,3 @@
     transition: color .3s .15s,
                 transform .3s;
 }
-
-

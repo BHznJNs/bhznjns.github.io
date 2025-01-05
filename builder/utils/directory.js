@@ -101,9 +101,15 @@ export class Directory {
                     directoryDescription = fs.readFileSync(item.path, "utf-8")
                     continue
                 }
-                currentFiles.push(item.name)
+                currentFiles.push({
+                    name: item.name,
+                    modifyTime: item.modifyTime,
+                })
             } else if (item instanceof Directory) {
-                currentDirs.push(item.name + "/")
+                currentDirs.push({
+                    name: item.name + "/",
+                    modifyTime: item.modifyTime,
+                })
                 item.indexing(indexName + "+" + item.name)
             } else { /* unreachable */ }
         }

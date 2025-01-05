@@ -8,6 +8,9 @@ function propSetter(el, props) {
         }
         if (val instanceof Function) {
             el[key] = val
+        } else
+        if (val instanceof Array) {
+            el.setAttribute(key, val.join(" "))
         } else {
             el.setAttribute(key, val)
         }
@@ -17,7 +20,12 @@ function propSetter(el, props) {
 function propToString(props) {
     // input: {prop: "value"}
     // output: "prop='value'"
-    const htmlValueFormater = val => val.toString().replaceAll("\"", "&quot;") 
+    function htmlValueFormater(val) {
+        if (val instanceof Array) {
+            return val.join(" ").replaceAll("\"", "&quot;")
+        }
+        return val.toString().replaceAll("\"", "&quot;")
+    }
     const resultPropStr = Object.entries(props)
         .filter(([_, val]) => val != undefined)
         .map(([key, val]) => `${key}="${htmlValueFormater(val)}"`)

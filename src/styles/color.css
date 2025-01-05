@@ -40,7 +40,7 @@ body.dark {
 
     --shallow-bd-color: #616161;
     --deep-bd-color: #bdbdbd;
-    --btn-bd-color: #616161;
+    --btn-bd-color: #333;
 
     --default-link-unvisited-color: #64B5F6;
     --default-link-visited-color: #ff69b4;

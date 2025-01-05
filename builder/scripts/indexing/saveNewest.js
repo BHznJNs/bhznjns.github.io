@@ -33,9 +33,9 @@ export default function(newestList) {
             current: index,
             content: slice.map(item => {
                 return {
-                    title:     item.name,
-                    link:      item.path,
-                    timestamp: item.createTime
+                    title:      item.name,
+                    link:       item.path,
+                    createTime: item.createTime
                 }
             }),
         }))

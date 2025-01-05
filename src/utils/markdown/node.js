@@ -103,7 +103,7 @@ export class Quote {
         const innerNodes = this.children
             .map(node => node.toHTML())
         return el("blockquote", [headline].concat(innerNodes), {
-            "class": `alert ${this.type.description}`
+            "class": ["alert", this.type.description]
         })
     }
 
@@ -276,10 +276,7 @@ class MediaNode {
 
     static containerGenerator(content, type) {
         return el("div", content, {
-            "class": [
-                "media-container",
-                type ?? "",
-            ].join(" ")
+            "class": ["media-container", type ?? ""]
         })
     }
 
@@ -407,11 +404,11 @@ export class CodeBlock {
 
         const codeEl = el("code", this.content, {
             "class": langClass,
-            tabindex: 0
+            tabindex: 0,
         })
         return el("pre", codeEl, {
             "class": "code-block",
-            "data-language": langName
+            "data-language": langName,
         })
     }
 

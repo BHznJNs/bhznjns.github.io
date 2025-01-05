@@ -44,6 +44,7 @@ export default [
         plugins: [
             terser(),
             copy({
+                copyOnce: true,
                 targets: [
                     { /* images */
                         src: [

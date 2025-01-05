@@ -5,6 +5,8 @@ import indexRender, { newestItemRenderer, directoryItemRenderer } from "./indexR
 import { scrollToTop } from "../utils/dom/scrollControl.js"
 
 const mainEl = document.querySelector("main")
+const newestHeader = document.querySelector("#newest-header")
+const directoryHeader = document.querySelector("#directory-header")
 const articleEl = document.querySelector("article")
 const indexDirPath = "./.index/"
 
@@ -23,6 +25,8 @@ export async function hashChangeEvent(e) {
             + pageController.current()
         const newestIndex = await fetchJSON(indexPath)
         if (!newestIndex) return
+        newestHeader.classList.remove("hidden")
+        directoryHeader.classList.add("hidden")
         indexRender(newestIndex, newestItemRenderer)
     } else
     if (pathManager.isIn.directory()) {
@@ -33,6 +37,8 @@ export async function hashChangeEvent(e) {
             + pageController.current()
         const index = await fetchJSON(indexFilePath)
         if (!index) return
+        newestHeader.classList.add("hidden")
+        directoryHeader.classList.remove("hidden")
         indexRender(index, directoryItemRenderer)
     } else
     if (pathManager.isIn.article()) {
