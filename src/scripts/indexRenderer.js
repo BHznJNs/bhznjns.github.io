@@ -2,14 +2,13 @@ import articleRender from "./articleRenderer.js"
 import el from "../utils/dom/el.js"
 import keydownEvent from "../utils/dom/keydownEvent.js"
 import { scrollToTop } from "../utils/dom/scrollControl.js"
+import dateFormatter from "../utils/dateFormatter.js"
 
 export function newestItemRenderer(item) {
-    const createDate = new Date(item.createTime)
-    const formatedDate = new Intl.DateTimeFormat().format(createDate)
     const titleEl = el("span", item.title, {
         "class": "underline-target"
     })
-    const dateEl  = el("code", formatedDate)
+    const dateEl  = el("code", dateFormatter(item.createTime))
     return el("li", [titleEl, dateEl], {
         "class": "underline-through",
         "data-jumpto": item.link,
@@ -17,12 +16,10 @@ export function newestItemRenderer(item) {
     })
 }
 export function directoryItemRenderer(item) {
-    const modityDate = new Date(item.modifyTime)
-    const formatedDate = new Intl.DateTimeFormat().format(modityDate)
     const titleEl = el("span", item.name, {
         "class": "underline-target"
     })
-    const codeEl = el("code", formatedDate)
+    const codeEl = el("code", dateFormatter(item.modifyTime))
     return el("li", [titleEl, codeEl], {
         "class": "underline-through",
         "data-relative": item.name,
@@ -34,19 +31,22 @@ const mainEl           = document.querySelector("main")
 const articleEl        = document.querySelector("article")
 const articleList      = mainEl.querySelector("#article-list")
 const dirDescriptionEl = mainEl.querySelector("#directory-description")
+const updateTimeEl     = mainEl.querySelector("#update-time code")
 const pagingComponent  = mainEl.querySelector("paging-view")
 
 export default function indexRender(indexing, itemResolver) {
-    const {current, total} = indexing
+    const {current, total, updateTime} = indexing
     pagingComponent.setPage(current, total)
 
     // --- --- --- --- --- ---
-    
+
     // reset directory description
     dirDescriptionEl.innerHTML = ""
     if ("directoryDescription" in indexing) {
         articleRender(dirDescriptionEl, indexing.directoryDescription)
     }
+
+    updateTimeEl.textContent = updateTime ? dateFormatter(updateTime) : ""
 
     // reset articleList content
     const fragment = document.createDocumentFragment()

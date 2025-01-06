@@ -4,10 +4,18 @@ main {
     border-radius: 1rem;
     color: var(--default-tx-color);
     background-color: var(--default-bg-color);
+    box-shadow: var(--shadow-md-2);
+    transition: background .6s,
+                box-shadow .3s;
+}
+main:hover {
     box-shadow: var(--shadow-lg);
-    transition: background .6s;
 }
 
+main.disabled {
+    pointer-events: none;
+    opacity: .85;
+}
 main.hidden {
     /* the styles when the article element is shown */
     display: none;
@@ -27,28 +35,41 @@ main:not(.hidden) + #article-container {
 
 /* --- --- --- */
 
-
-main.disabled {
-    pointer-events: none;
-    opacity: .85;
+#function-list {
+    display: flex;
+    column-gap: 1rem;
+    row-gap: .5rem;
+    flex-wrap: wrap;
 }
-
 #function-list li {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    width: fit-content;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 0 !important;
 }
+#function-list li:hover {
+    color: var(--hovered-tx-color);
+    background-color: var(--hovered-bg-color);
+}
+
 #newest {
     display: none !important;
 }
 #previous-dir {
     font-family: var(--code-font);
-    font-size: 14px;
+}
+#update-time {
+    display: flex !important;
+    align-items: center;
 }
 
 main[data-is-root="true"] #previous-dir {
-    display: none;
+    display: none !important;
 }
-main[data-is-root="true"] #newest {
+main[data-is-newest="true"] #update-time {
+    display: none !important;
+}
+main[data-is-root="true"][data-is-newest="false"] #newest {
     display: block !important;
 }
 
@@ -68,14 +89,16 @@ main[data-is-root="true"] #newest {
     padding: 0;
     list-style-type: none;
 }
+
 #article-list li,
-#previous-dir, #newest {
+#function-list li {
     display: grid;
     grid-template-columns: 2fr 1fr;
     justify-items: start;
+    align-items: center;
     color: var(--default-tx-color);
-    border: solid 1px var(--deep-bd-color);
-    border-radius: 4px;
+    border: solid 1px var(--shallow-bd-color);
+    border-radius: .25rem;
     margin-bottom: 8px;
     padding: 6px 1rem;
     cursor: pointer;
@@ -83,8 +106,7 @@ main[data-is-root="true"] #newest {
                 background .3s,
                 padding .3s .05s;
 }
-#article-list li:hover,
-#previous-dir:hover, #newest:hover {
+#article-list li:hover {
     padding-top: 12px;
     padding-bottom: 12px;
     color: var(--hovered-tx-color);
@@ -98,19 +120,7 @@ main[data-is-root="true"] #newest {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-#article-list li code {
+#article-list code,
+#function-list code {
     margin: 0;
-}
-
-.dark #article-list li,
-.dark #previous-dir, .dark #newest {
-    border-color: var(--shallow-bd-color);
-}
-
-#article-list :not(li) {
-    /* 
-        prevents the event emits from the `code` and `span`
-        elements under the `li` element
-     */
-    pointer-events: none;
 }

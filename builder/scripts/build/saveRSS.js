@@ -1,7 +1,7 @@
 import fs from "node:fs"
 import { rssFileGenerator, rssItemGenerator } from "../../rss/index.js"
 import config from "../../../build.config.js"
-import { rssFilePath, rssResourcePath } from "../../utils/path.js"
+import { staticPath, rssFilePath, rssResourcePath } from "../../utils/path.js"
 import { execute } from "../../utils/renderer/index.js"
 
 function isInIgnoredDir(path, ignoredDirs) {

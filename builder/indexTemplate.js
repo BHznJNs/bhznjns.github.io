@@ -99,38 +99,28 @@ ${(config.enableRSS) ? `\
 const main = `\
 <main data-is-root=true>
     <header id="directory-description"></header>
-${config.enableNewest ? `\
-    <ul id="newest">
-        <li
-            tabindex="0"
-            onclick="location.hash = 'newest/'"
-        >
-            ${languageSelector("最新博文", "Newests")}
-        </li>
-    </ul>` : ""}
     <ul id="function-list">
 ${config.enableNewest ? `\
         <li
             id="newest"
             tabindex="0"
             onclick="location.hash = 'newest/'"
-        >
-            ${languageSelector("最新博文", "Newests")}
-        </li>` : ""}
+        >${languageSelector("最新博文", "Newests")}</li>` : ""}
         <li
             id="previous-dir"
             tabindex="0"
-        >
-            ../
+        >../</li>
+        <li id="update-time" tabindex="0">
+            ${languageSelector("最后更新：", "Last updated: ")}<code></code>
         </li>
     </ul>
-    <table class="newest-header">
+    <table id="newest-header">
         <thead><tr>
             <th>${languageSelector("名称", "Name")}</th>
             <th>${languageSelector("发布时间", "Publish Date")}</th>
         </tr></thead>
     </table>
-    <table class="directory-header">
+    <table id="directory-header">
         <thead><tr>
             <th>${languageSelector("名称", "Name")}</th>
             <th>${languageSelector("上次修改", "Last Modified")}</th>

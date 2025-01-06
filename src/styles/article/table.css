@@ -3,7 +3,7 @@
     margin: 1rem 0;
     overflow-x: auto;
     overflow-y: hidden;
-    border: 1px solid var(--shallow-bd-color);
+    border: 1px solid var(--table-bd-color);
     border-radius: 8px;
     box-sizing: border-box;
     box-shadow: var(--shadow-sm);
@@ -58,6 +58,6 @@ th {
     opacity: .85;
 }
 td {
-    border-top: 2px solid var(--shallow-bd-color);
+    border-top: 2px solid var(--table-bd-color);
     overflow: hidden;
 }

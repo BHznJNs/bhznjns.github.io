@@ -12,7 +12,7 @@ article:empty::before {
     min-width: 30vw;
     font-size: 2em;
     margin: .67em 0;
-    background-color: var(--shallow-bd-color);
+    background-color: var(--skeleton-bd-color);
     border-radius: 6px;
 }
 article:empty::after {
@@ -20,6 +20,6 @@ article:empty::after {
     width: 100%;
     font-size: 1em;
     margin: 1em 0;
-    background-color: var(--shallow-bd-color);
+    background-color: var(--skeleton-bd-color);
     border-radius: 4px;
 }

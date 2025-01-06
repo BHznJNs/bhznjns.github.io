@@ -1,3 +1,4 @@
+import { statSync } from "node:fs"
 import saveNewest from "./saveNewest.js"
 import saveSearchIndex from "./resolveSearch.js"
 import getNewest from "../../getNewest.js"
@@ -7,7 +8,8 @@ import { indexFilePath } from "../../utils/path.js"
 
 Directory.clear(indexFilePath)
 
-const staticDir = new Directory("static")
+const staticCreateTime = statSync("static").birthtime.getTime()
+const staticDir = new Directory("static", staticCreateTime)
 staticDir.read()
 staticDir.indexing()
 

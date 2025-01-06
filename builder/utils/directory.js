@@ -12,10 +12,13 @@ export class Directory {
     items = [] // [`Directory` | `File`]
     createTime = 0
     modifyTime = 0
+    updateTime = 0
 
     constructor(name, createTime) {
         this.name = name
         this.createTime = createTime
+        this.modifyTime = createTime
+        this.updateTime = createTime
     }
     push(item) {
         this.items.push(item)
@@ -40,6 +43,7 @@ export class Directory {
                 const subDir = new Directory(item, itemCreateTime)
                 subDir.read(dirPath + "/")
                 this.modifyTime = Math.max(this.modifyTime, subDir.modifyTime)
+                this.updateTime = Math.max(this.updateTime, subDir.updateTime)
                 this.push(subDir)
             } else {
                 if (orderbyCreateTime.includes(item)) {
@@ -60,6 +64,7 @@ export class Directory {
                     itemModifyTime,
                 )
                 this.modifyTime = Math.max(this.modifyTime, itemModifyTime)
+                this.updateTime = Math.max(this.updateTime, itemCreateTime)
                 this.push(file)
             }
         }
@@ -124,6 +129,7 @@ export class Directory {
             const indexFileContent = {
                 total: count,
                 current: index,
+                updateTime: this.updateTime,
                 content: slice,
             }
             if (index === 1 && directoryDescription !== undefined) {
