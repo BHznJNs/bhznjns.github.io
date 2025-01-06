@@ -1,4 +1,4 @@
-const cacheName = "MarkdownBlog-v0.1.0"
+const cacheName = "MarkdownBlog-v0.2.0"
 const necessaryResources = [
     "./dist/imgs/sun.svg",
     "./dist/imgs/moon.svg",

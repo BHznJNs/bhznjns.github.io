@@ -69,6 +69,7 @@ class PageController {
 
 class SearchBox extends FullscreenView {
     pageController = new PageController
+    resultCount = 0
 
     constructor() {
         super()
@@ -127,6 +128,7 @@ class SearchBox extends FullscreenView {
     }
 
     clear() {
+        this.resultCount = 0
         this.pageController.current = 0
         this.resultList.innerHTML = ""
         this.resultContainer.classList.remove("show")
@@ -142,6 +144,7 @@ class SearchBox extends FullscreenView {
             })
 
         const frac = document.createDocumentFragment()
+        this.resultCount += searchResult.length
         searchResult
             .map(itemElFactory)
             .forEach(el => frac.appendChild(el))
@@ -150,6 +153,17 @@ class SearchBox extends FullscreenView {
 
         this.loadMoreBtn.disabled = false
         this.loadMoreBtn.classList.toggle("show", this.pageController.hasMorePage)
+
+        if (this.resultCount < 10 && this.pageController.hasMorePage) {
+            setTimeout(() => this.#loadMore(), 100)
+        }
+    }
+
+    #loadMore() {
+        const searchText = this.input.value
+        this.loadMoreBtn.disabled = true
+        this.pageController.searchNext(searchText)
+            .then(this.#showSearchResults.bind(this))
     }
 
     #appendEvents() {
@@ -183,7 +197,7 @@ class SearchBox extends FullscreenView {
             const searchText = this.input.value
             this.pageController.search(searchText)
                 .then(this.#showSearchResults.bind(this))
-        }, 1000)
+        }, 500)
         this.searchBtn.addEventListener("click", searchThrottled)
         this.input.addEventListener("keydown", e => {
             if (e.key !== "Enter") {
@@ -193,12 +207,7 @@ class SearchBox extends FullscreenView {
         })
 
         // load more button click event
-        this.loadMoreBtn.addEventListener("click", () => {
-            const searchText = this.input.value
-            this.loadMoreBtn.disabled = true
-            this.pageController.searchNext(searchText)
-                .then(this.#showSearchResults.bind(this))
-        })
+        this.loadMoreBtn.addEventListener("click", this.#loadMore.bind(this))
     }
 }
 customElements.define("search-box", SearchBox)
