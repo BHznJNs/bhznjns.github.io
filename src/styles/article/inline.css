@@ -98,7 +98,7 @@ span.dim {
 }
 
 hr {
-    margin: 0 6vw .6rem;
+    margin: 0 6vw calc(1rem + 4px);
     padding: .3rem 0;
     border: none;
     border-bottom: 2px solid var(--deep-bd-color);
