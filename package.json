@@ -8,11 +8,12 @@
   "scripts": {
     "preview": "node ./builder/scripts/preview.js",
     "watch": "node ./builder/scripts/watch.js",
+    "build": "npm run indexing && npm run ssr && node ./builder/scripts/build/index.js",
+    "ssr": "node ./builder/scripts/ssr/index.js",
     "indexing": "node ./builder/scripts/indexing/index.js",
     "count": "node ./builder/scripts/count/index.js",
     "backup": "node ./builder/scripts/backup.js",
     "restore": "node ./builder/scripts/restore.js",
-    "build": "npm run indexing && node ./builder/scripts/build/index.js",
 
     "dev": "rollup --watch --config builder/rollup.config.js",
     "compress": "rollup --config builder/rollup.config.js",
@@ -22,7 +23,6 @@
   "license": "CC-BY-4.0",
   "dependencies": {
     "chokidar": "^4.0.3",
-    "crypto-js": "^4.2.0",
     "echarts": "^5.4.3",
     "electron": "^28.2.0",
     "express": "^4.18.2",

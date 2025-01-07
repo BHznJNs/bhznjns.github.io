@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进制</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1><ruby data-notation="Radix">进制<rp>(</rp>,<rt>Radix</rt>,<rp>)</rp></ruby></h1><p>Most significant bit (MSB) 二进制最左边一位</p><p>Least significant bit (LSB) 二进制最右边一位</p><h2>X进制转十进制</h2><p>任意进制转十进制：<span class="math"><img src="./katex-50d5c9511197d709f931fd13490239f1.png"></span></p><ul><li>p: number of digits (from 0 to p-1)</li><li>d<sub>i</sub>: value of digit at position I</li><li>r: base or radix</li><li>A digit in position i has weight ri</li></ul><p>同理，对于二进制转十进制：<span class="math"><img src="./katex-b17f8d0a7983df8371dc11f580703d9a.png"></span></p><details><div class="math"><img src="./katex-be3b388223203f0348818d730e530464.png" alt=""></div><summary> 一些计算例</summary></details><h2>十进制到二进制</h2><div class="math"><img src="./katex-df4e9a379d0ef5b7c650ca80332bcc75.png" alt=""></div><h2>十六进制</h2><p>十六进制使用十六个数字：0-9 以及 <ruby data-notation="10">A<rp>(</rp>,<rt>10</rt>,<rp>)</rp></ruby>, <ruby data-notation="11">B<rp>(</rp>,<rt>11</rt>,<rp>)</rp></ruby>, <ruby data-notation="12">C<rp>(</rp>,<rt>12</rt>,<rp>)</rp></ruby>, <ruby data-notation="13">D<rp>(</rp>,<rt>13</rt>,<rp>)</rp></ruby>, <ruby data-notation="14">E<rp>(</rp>,<rt>14</rt>,<rp>)</rp></ruby>, <ruby data-notation="15">F<rp>(</rp>,<rt>15</rt>,<rp>)</rp></ruby></p><p>十六进制数通常写作：</p><div class="math"><img src="./katex-4dde0a13e9c8a5594785373788e29c3e.png" alt=""></div><h2>十六进制和二进制转换</h2><details><div class="table"><table><thead><tr><th>Binary</th><th>Hex</th><th>Binary</th><th>Hex</th></tr></thead><tbody><tr><td>0000</td><td>0</td><td>1000</td><td>8</td></tr><tr><td>0001</td><td>1</td><td>1001</td><td>9</td></tr><tr><td>0010</td><td>2</td><td>1010</td><td>A</td></tr><tr><td>0011</td><td>3</td><td>1011</td><td>B</td></tr><tr><td>0100</td><td>4</td><td>1100</td><td>C</td></tr><tr><td>0101</td><td>5</td><td>1101</td><td>D</td></tr><tr><td>0110</td><td>6</td><td>1110</td><td>E</td></tr><tr><td>0111</td><td>7</td><td>1111</td><td>F</td></tr></tbody></table></div><summary> 二进制——十六进制对照表</summary></details><p><strong>二进制到十六进制</strong>：从 LSB 开始，每四位对应一个十六进制树，不足四位则补零</p><p><strong>十六进制到二进制</strong>：把每一个十六进制数对应到四位二进制数</p>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/数字系统与微处理器设计/进制.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

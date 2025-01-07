@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>矩估计</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>矩估计</h1><p>总体的期望 = 样本均值</p><details><p>对于样本 <span class="math"><img src="./katex-53fd294956c125200888c950a8c4e9fd.png"></span>，有概率密度函数</p><div class="math"><img src="./katex-97a3ec84d0f93d3f8d12f8ffc0f7fb8f.png" alt=""></div><p>其中 <span class="math"><img src="./katex-7259c2b206134631f2517a6aa66bd1bb.png"></span>，为未知参数，求 a 的矩估计量。</p><div class="math"><img src="./katex-1aa548c719b3ba6ff3d8811a159138e3.png" alt=""></div><summary>例题 1</summary></details>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/概率论与统计/矩估计.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

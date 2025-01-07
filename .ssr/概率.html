@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>概率</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>概率</h1><p><span class="math"><img src="./katex-c2f209ff6eaa8536318ead1dc01a86af.png"></span> 即事件 A 发生的概率</p><ul><li><span class="math"><img src="./katex-5aa3d3366d9ef343439c8ae22c28aced.png"></span></li><li><span class="math"><img src="./katex-76e21f1e70cf668da5eb613ad6e0fee6.png"></span></li><li><span class="math"><img src="./katex-45776ff176570b967cb13ff898edbce0.png"></span></li><li>对于互斥事件 <span class="math"><img src="./katex-b02d53d522143362b6b10fa842841142.png"></span></li><li>P(\overline{A}) = 1 - P(A)</li><li><span class="math"><img src="./katex-35b74216370f74865a2bf4171d02595a.png"></span></li><li>对于任意事件 <span class="math"><img src="./katex-cd6787bf3b6995483e196ad5e10fa248.png"></span></li></ul><h2><ruby data-notation="古典概型 / 等可能概型">Equally Likely Outcomes Model<rp>(</rp>,<rt>古典概型 / 等可能概型</rt>,<rp>)</rp></ruby></h2><ul><li>样本空间中的元素数量确定</li><li>每个元素发生的可能性相同，均为 <span class="math"><img src="./katex-582b5bc3dffa761197a5246e888b6590.png"></span></li><li><span class="math"><img src="./katex-5c88862d88b82625abbf1b305d6f0c8f.png"></span></li></ul><h3><ruby data-notation="排列">Permutations<rp>(</rp>,<rt>排列</rt>,<rp>)</rp></ruby></h3><div class="math"><img src="./katex-b4debc4fbd06b2234226536d80582cf9.png" alt=""></div><h3><ruby data-notation="组合">Combinations<rp>(</rp>,<rt>组合</rt>,<rp>)</rp></ruby></h3><div class="math"><img src="./katex-ef2659e0b0b42155244a2aa66274cb90.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/概率论与统计/概率.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

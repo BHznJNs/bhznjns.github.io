@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC 与 RL 电路</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>RC 与 RL 电路</h1><h2>电容放电公式</h2><p>电容放电电压随时间变化公式：</p><div class="math"><img src="./katex-4b87037ae0cd546af6163c56ab6f5690.png" alt=""></div><p>在这里的时间常数 <span class="math"><img src="./katex-a6f317b268ae825d94f832f970af607c.png"></span>：</p><div class="math"><img src="./katex-a41667e68507dd15ebd4c74c7bf48c42.png" alt=""></div><h2>电容在 RC 电路中的充电公式</h2><p>电容充电电压随时间变化公式：</p><div class="math"><img src="./katex-c19e284dd897c3f8b121c6d28da61141.png" alt=""></div><hr><h2>电感放电公式</h2><p>电容放电电流随时间变化公式：</p><div class="math"><img src="./katex-f36def4abe0e45c2ca401a14adde12e6.png" alt=""></div><p>在这里的时间常数 <span class="math"><img src="./katex-a6f317b268ae825d94f832f970af607c.png"></span>：</p><div class="math"><img src="./katex-4b3fe16b6c54674978a636c73ef2a1ce.png" alt=""></div><h2>电感在 RL 电路中的充电公式</h2><p>电感充电电压随时间变化公式：</p><div class="math"><img src="./katex-8d7beab3e9634b5d40e338be8cd55a5f.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电路装置/RC 与 RL 电路.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

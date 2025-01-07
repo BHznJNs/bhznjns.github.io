@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初值定理和终值定理</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1><ruby data-notation="Initial Value Theorem">初值定理<rp>(</rp>,<rt>Initial Value Theorem</rt>,<rp>)</rp></ruby>和<ruby data-notation="Final Value Theorem">终值定理<rp>(</rp>,<rt>Final Value Theorem</rt>,<rp>)</rp></ruby></h1><h2>初值定理</h2><div class="math"><img src="./katex-cc63d7776e2763c2fd08135f842ba6dd.png" alt=""></div><h2>终值定理</h2><div class="math"><img src="./katex-98867e69a2d478a3ee527e27661c87a9.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/系统分析与控制/初值定理和终值定理.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时序逻辑电路</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>时序逻辑电路 | Sequential logic elements</h1><div class="qa-block"><div class="question">时序逻辑电路和我们之前学的电路有什么不同？</div><div class="answer">我们之前学的电路叫作<ruby data-notation="Combinational Circuits">组合逻辑电路<rp>(</rp>,<rt>Combinational Circuits</rt>,<rp>)</rp></ruby>，时序逻辑电路和组合逻辑电路最大的不同就是，时序逻辑电路具有<strong>记忆</strong>能力，它能够存储和保持状态。</div></div><hr><h2>双稳态电路 | Bistable</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.时序逻辑电路/bistable.png" alt="Bistable" loading="lazy" tabindex="0"></div><h2><ruby data-notation="Asynchronouse">异步<rp>(</rp>,<rt>Asynchronouse</rt>,<rp>)</rp></ruby>和<ruby data-notation="Synchronous">同步<rp>(</rp>,<rt>Synchronous</rt>,<rp>)</rp></ruby>的区别</h2><p>异步时序电路能够不受时钟周期影响，在任意时间发生变化；</p><p>同步时序电路只能伴随时钟信号变化而随之变化。</p><h2>锁存器 | Latches</h2><h3>S-R Latch</h3><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.时序逻辑电路/S-R Latch.png" alt="S-R Latches" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.时序逻辑电路/S-R Latch True Table.png" alt="S-R Latches True Table" loading="lazy" tabindex="0"></div><ul><li>when, Q = 1 and Q' = 0 → SET STATE (or 1-state)</li><li>when, Q = 0 and Q' = 1 → CLEAR STATE (or 0-state)</li></ul><p><strong>Unpredictable states</strong>:</p><ol><li><code>S</code> 和 <code>R</code> 同时从 1 变为 0</li><li><code>S</code> 或 <code>R</code> 发生脉冲（即突然变为 1 又变为 0）</li></ol><h4>使能</h4><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.时序逻辑电路/S-R Latch with enable.webp" alt="S-R Latches with enable" loading="lazy" tabindex="0"></div><p>C = 0 时，无视 S 和 R 的输入，保持之前的状态</p><h3>D Latch</h3><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.时序逻辑电路/D Latch.webp" alt="D Latch" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.时序逻辑电路/D Latch True Table.png" alt="D Latch True Table" loading="lazy" tabindex="0"></div><ul><li>The D latch holds data when C=0.</li><li>The D latch updates the output when C=1</li></ul><p>– If D = 1, Q » 1 → SET State</p><p>– If D = 0, Q » 0 → CLEAR State </p>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/数字系统与微处理器设计/时序逻辑电路.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

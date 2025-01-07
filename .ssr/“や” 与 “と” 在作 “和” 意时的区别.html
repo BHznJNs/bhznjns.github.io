@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>“や” 与 “と” 在作 “和” 意时的区别</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>“や” 与 “と” 在作 “和” 意时的区别</h1><p>根据 Quora 上的<a href="https://www.quora.com/Japanese-language-Difference-between-ya-and-to-Both-mean-and-but-Im-not-sure-where-they-differ" target="_blank">这篇文章</a>，</p><p>“や” 与 “と” 在作 “和” 意时的区别如下：</p><p>“と” 有隐含者列举已经完成之意。如例句：</p><p><ruby data-notation="にわ">庭<rp>(</rp>,<rt>にわ</rt>,<rp>)</rp></ruby>に<ruby data-notation="ねこ">猫<rp>(</rp>,<rt>ねこ</rt>,<rp>)</rp></ruby>と<ruby data-notation="いぬ">犬<rp>(</rp>,<rt>いぬ</rt>,<rp>)</rp></ruby>がいます。</p><p>院子里有猫和狗。</p><p>这句话中使用 “と” 则隐含有 “院子里没有其它动物” 之意。</p><p>而 “や” 则相反，其隐含着列举并未完成。如同样的例句</p><p><ruby data-notation="にわ">庭<rp>(</rp>,<rt>にわ</rt>,<rp>)</rp></ruby>に<ruby data-notation="ねこ">猫<rp>(</rp>,<rt>ねこ</rt>,<rp>)</rp></ruby>や<ruby data-notation="いぬ">犬<rp>(</rp>,<rt>いぬ</rt>,<rp>)</rp></ruby>がいます。</p><p>院子里有猫和狗。</p><p>这句话中使用 “や” 则隐含有 “院子里还有其它动物，只是未列举出来” 之意。</p>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/日语/“や” 与 “と” 在作 “和” 意时的区别.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

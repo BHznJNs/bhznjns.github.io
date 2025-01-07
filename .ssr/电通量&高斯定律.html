@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电通量&高斯定律</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>电通量 & 高斯定律 | Electric Flux & Gauss's Law</h1><h2>电通量 | Electric Flux</h2><div class="math"><img src="./katex-f03fa6ad918073514073b79dc9a7fa3b.png" alt=""></div><div class="math"><img src="./katex-ce37191f79b6db1e9096987c960da8c2.png" alt=""></div><h2>高斯定律 | Gauss's Law</h2><p>对于一个点电荷，取以该点为球心，半径为 R 的球面为高斯面，其电通量</p><div class="math"><img src="./katex-02ea8366b6e986ef5ee6b7e0bcc40998.png" alt=""></div><p>对于一条具有电荷密度 <span class="math"><img src="./katex-c6a6eb61fd9c6c913da73b3642ca147d.png"></span> 的无限长直导线，取圆柱体作为高斯面。由于延导线方向的电场分量抵消，故只需计算圆柱体侧面积。</p><div class="math"><img src="./katex-64ed9e09a1a92714a1d7153df6ddd9d9.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电磁学与电机导论/电通量&高斯定律.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

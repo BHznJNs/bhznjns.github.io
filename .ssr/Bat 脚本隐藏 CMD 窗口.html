@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bat 脚本隐藏 CMD 窗口</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <pre class="code-block" data-language="DOS"><code class="language-dos" tabindex="0">@echo off
+if "%1" == "h" goto begin
+mshta vbscript:createobject("wscript.shell").run("""%~nx0"" h",0)(window.close)&&exit
+:begin
+REM
+
+:: 其它代码
+</code></pre>
+    <p><a href="https://bhznjns.github.io/#static/工具软件/Bat 脚本隐藏 CMD 窗口.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

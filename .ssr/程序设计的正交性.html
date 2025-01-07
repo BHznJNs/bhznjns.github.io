@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>程序设计的正交性</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>程序设计的正交性</h1><h2>什么是正交性</h2><blockquote><p>在计算科学中，这个术语象征着<strong>独立性</strong>或<strong>解耦性</strong>。对于两个或多个事物，其中一个的改变不影响其他任何一个，则这些事物是正交的。</p><p>在良好设计的系统中，数据库相关代码应该和用户界面保持正交：你可以变更界面但不应影响数据库，切换数据库而不必更换界面。</p></blockquote><h2>测试正交性的小方法</h2><p>当你规划好组件后，问问自己：如一个特别功能背后的需求发生显著改变，有多少模块会受影响？对于一个正交系统，答案应该是<strong>“一个”</strong>。</p><h2>保持正交性的方法</h2><h3>保持代码解耦</h3><p>编写害羞的代码——模块不会向其他模块透露任何不必要的信息，也不依赖于其他模块的实现。试试最少知识原则。</p><p>例如：类的属性和方法尽量使用 private，只使用部分 public 方法向外部暴露必须的信息。</p><h3>避免全局数据</h3><p>这正是函数式编程的特点之一，尽量不对函数外的程序状态进行修改。</p><blockquote><p>只要代码引用全局数据，就会将自己绑定到共享该数据的其他组件上。即使只打算对全局数据进行读操作，也可能引发问题（例如突然需要将代码改为多线程的情形）。</p><p>一般来说，如果总是显式地将任何需要的上下文传递给模块，那么代码会更容易理解和维护。</p></blockquote><h3>避免相似的函数</h3><p>对于几个看起来很相似的函数——或许在开头和结尾的地方共享了公共代码，但是每个函数都有不同的中心算法。</p><p>可以尝试使用<a href="#static/读书笔记/重构-改善既有的代码设计/枚举变继承，状态代多态.md">策略模式</a>重构。</p>
+    <p><a href="https://bhznjns.github.io/#static/读书笔记/程序员修炼之道/程序设计的正交性.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

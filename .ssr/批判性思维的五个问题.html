@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>批判性思维的五个问题</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>批判性思维的五个问题</h1><blockquote><p>批判性思维本身就是一门完整的学科，我们鼓励你仔细研究和学习这门学科。现在先在这里起个头，问几个值得思考的问题。</p></blockquote><h2>问“五个为什么”</h2><p>我最喜欢的咨询技巧是：至少问五次“为什么”。就是说，每当有</p><p>了答案后，还要追问“为什么”。像个烦人的四岁小孩那样经常性重复</p><p>提问，不过记得要比小朋友更有礼貌。这样做可以让你更接近本源。</p><h2>谁从中受益</h2><p>虽然听起来有点世俗，不过追踪钱的流动更容易理清脉络。其他</p><p>人或其他组织的利益可能和你自己的一致，也可能不一致。</p><h2>有什么背景</h2><p>每件事都发生在它自己的背景下，这也是为何“能解决所有问题”</p><p>的方案通常不存在，而那些兜售“最佳实践”的书或文章实际上经不起</p><p>推敲。“最适合谁”是一个值得考虑的好问题，类似的还有先决条件是</p><p>什么、后果是什么，以及是短期的还是长期的。</p><h2>什么时候在哪里可以工作起来</h2><p>是在什么情况下？太晚了吗？太早了吗？不要停留在一阶思维下</p><p>（接下来会发生什么），要进行二阶思考：当它结束后还会发生什</p><p>么？</p><h2>为什么这是个问题</h2><p>是否存在一个基础模型？这个基础模型是怎么工作的？</p>
+    <p><a href="https://bhznjns.github.io/#static/读书笔记/程序员修炼之道/批判性思维的五个问题.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

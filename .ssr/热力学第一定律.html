@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热力学第一定律</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>热力学第一定律</h1><h2>系统和边界 | Systems and Boundaries</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/工程热力学/.热力学第一定律/系统和边界.png" alt="图例" loading="lazy" tabindex="0"></div><h3>系统的封闭与开放</h3><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/工程热力学/.热力学第一定律/系统的封闭与开放.png" alt="图例" loading="lazy" tabindex="0"></div><h4>封闭系统 | Closed systems</h4><p>A closed system, also known as a control mass, consists of a fixed amount of mass, and no mass can cross its boundary - an isolated system.</p><h4>开放系统 | Open systems</h4><ul><li>An open system, also called a <strong>control volume</strong> (cv), is a properly selected region in space. </li><li>Both mass and energy can cross the boundary of a control volume. </li><li>Any arbitrary region in space can be selected as a control volume. </li><li>There are no concrete rules for the selection, depending on convenience of analysis.</li></ul><h2>能量的形式 | Forms of energy</h2><p>动能 | Kinetic energy</p><p><span class="math"><img src="./katex-5f6a292a60d11ac93192fece04c53090.png"></span></p><p>势能 | Potential energy</p><p><span class="math"><img src="./katex-1eb15f27714b70130ab908478a3f4ab5.png"></span></p><p>内能 | Internal energy</p><p><span class="math"><img src="./katex-4c614360da93c0a041b22e537de151eb.png"></span></p><p>静止系统的总能量 | Total energy of a system (non-flowing)</p><p><span class="math"><img src="./katex-7548f3b3d3e88b167f175459ce142345.png"></span></p><h2>热力学第一定律 | First Law of Thermodynamics</h2><p>The first law of thermodynamics, is also known as the conservation of energy principle.</p><blockquote><p>Energy can be neither created nor destroyed during a process, it can only change forms.</p></blockquote><p>According to the first law, the energy balance of a system</p><div class="math"><img src="./katex-f1adbb30553f446f07d211bdc9940feb.png" alt="热力学第一定律"></div><h2>热力学第一定律等式 | Equation of First Law of Thermodynamics</h2><p><span class="math"><img src="./katex-f21091cfe63bda061f66de5671fc4703.png"></span></p><h2>能量转换效率 | Energy Conversion Efficiency</h2><p><code>Efficiency</code> = <code>Desired Output</code> / <code>Required Iuput</code></p><hr><h2>例题</h2><p>A rigid tank contains a hot fluid that is cooled while being stirred by a paddle wheel. Initially, the internal energy of the fluid is 800 kJ. During the cooling process, the fluid loses 500 kJ of heat, and the paddle wheel does 100 kJ of work on the fluid.</p><p>Determine the final internal energy of the fluid.</p><p>知识点：热力学第一定律等式</p><p>由于水箱静止，不存在动能和势能变化：<span class="math"><img src="./katex-bdd57f45f8e2e954d893a8bde6fadbdb.png"></span>，系统的能量变化为内能变化 <span class="math"><img src="./katex-db241565c67d773f15f0f7967a9a56a9.png"></span>。</p><p>对于<ruby data-notation="closed system">封闭系统<rp>(</rp>,<rt>closed system</rt>,<rp>)</rp></ruby>，没有<ruby data-notation="mass flow">质量流动<rp>(</rp>,<rt>mass flow</rt>,<rp>)</rp></ruby>；水箱体积恒定，无移动边界功。</p><p>使用公式 <span class="math"><img src="./katex-f21091cfe63bda061f66de5671fc4703.png"></span>，</p><div class="math"><img src="./katex-d405fa1cbc6abd1ba14f845dd8886068.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/工程热力学/热力学第一定律.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

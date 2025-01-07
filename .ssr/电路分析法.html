@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电路分析法</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>电路分析法 | Circuit Analysis Methods</h1><h2>Kirchhoff’s Current Laws (KCL)</h2><p><strong>Definition: </strong></p><blockquote><p>电路中的节点即为电路中两个或多个元件连接处。</p><p>在电路中的任意节点，流入节点的电流总和等于流出的电流总和。</p><hr><p>A node is a point in a circuit where two or more components meet.</p><p>At any node in an electrical circuit, the sum of currents flowing into a node is equal to the sum of currents flowing out of that node</p></blockquote><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.电路分析法/KCL 图例.png" alt="KCL 图例" loading="lazy" tabindex="0"></div><h2>Kirchhoff’s Voltage Law (KVL)</h2><p><strong>Definition: </strong></p><blockquote><p>回路即为电路中的闭合路线，从同一个节点开始和结束。</p><p>在任一时刻，电路回路中电压下降的和（或者等价地，电压上升的代数和）等于零。</p><p>或者说，在回路中每个组件上降的电压和每个组件上升的电压和相等。</p><hr><p>A loop is a closed path in a circuit, starting and ending at the same point.</p><p>At any instant the algebraic sum of the voltage drops (or , equivalently, the algebraic sum of voltage rises) around any loop in a circuit is equal to zero.</p></blockquote><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.电路分析法/KVL 图例.png" alt="KVL 图例" loading="lazy" tabindex="0"></div><hr><h2>特勒根定理 | Tellegen's theorem</h2><p>电路中产生的功率与吸收的功率之和为零。</p><p>In any circuit, the sum of the powers associated with each component is equal to zero. In other words: the total power delivered to the circuit is equal to the total power adsorbed from the circuit.</p><p><strong>例：</strong></p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.电路分析法/特勒根定理例题.png" alt="特勒根定理例题" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-e80284a12f1472f3f709209bef736298.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电路装置/电路分析法.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

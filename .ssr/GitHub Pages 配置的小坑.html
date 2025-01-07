@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages 配置的小坑</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>Github Pages 配置的一个小坑</h1><p>众所周知，<code>Github Page</code> 默认是使用 <a href="https://jekyllcn.com/docs/home/" target="_blank">jekyll</a> 来构建静态站点的，但对于不使用 jekyll 的用户来说，可能会因此遇到一些小坑，比如我今天遇到的这个: 无法访问以 <code>.</code> 号开头的文件/文件夹。</p><p>这是 Github 的默认配置导致的，详见此文: <a href="https://docs.github.com/zh/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll" target="_blank">Github Pages 与 jekyll</a>。</p><blockquote><p>默认情况下，Jekyll 不会构建以下文件或文件夹：</p><ul><li>位于名为 /node_modules 或 /vendor 的文件夹中</li><li>以 <code>_</code> <code>.</code> 或 <code>#</code> 开头</li><li>以 <code>~</code> 结尾</li></ul></blockquote><p>那么解决方法也很简单，在网站的根目录下创建文件 <code>.nojekyll</code> 即可。</p>
+    <p><a href="https://bhznjns.github.io/#static/工具软件/GitHub Pages 配置的小坑.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

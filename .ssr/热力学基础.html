@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热力学基础</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>热力学基础</h1><h2>温度 | Temperature</h2><h3>计量单位 | Scales</h3><ul><li>Celsius scale</li><li>Fahrenheit scale</li><li>Kelvin scale</li><li>Rankine scale</li></ul><h2>第零定律 | Zeroth Law of Thermodynamic</h2><p>If two bodies are in thermal equilibrium with a third body, they are also in thermal equilibrium with each other.</p><h2>过程与循环 | Processes and Cycle</h2><ul><li>Any change that a system undergoes from one equilibrium state to another is called a process.</li><li>A series of states through which a system passes during a process is called the path.</li><li>A system is said to have undergone a cycle if it returns to its initial state at the end of the process.</li></ul><h3>一些常见过程别称</h3><ul><li>Constant temperature process - <strong>Isothermal</strong> process</li><li>Constant pressure process - <strong>Isobaric</strong> process</li><li>Constant volume process - <strong>Isometric</strong> process or <strong>isochoric</strong> process</li><li>Adiabatic Process - no heat is transferred.</li><ul><li>If the process happens so quickly that there is no time to transfer heat,</li><li>or If a system is very well insulated from its surroundings.</li></ul><li>Polytropic process - occurs with an interchange of both heat and work between the inside and outside.</li></ul><h2>系统与边界 | Systems and Boundary</h2><ul><li>System: a quantity of matter or a region in space chosen for study.</li><li>Surrounding: the mass or region outside the system.</li><li>Boundary: the real or imaginary surface that separates the system from its surroundings.</li></ul><h2>理想气体法则 | Ideal Gas Laws</h2><h3>Boyle’s Law (1662)</h3><p><span class="math"><img src="./katex-53f92c19ddc2ef9e005821a072c46640.png"></span> Constant <strong>temperature</strong></p><h3>Charles' law (1780) (Joseph Louis Gay-Lussac in 1802)</h3><p><span class="math"><img src="./katex-d3e63046e00f47687c77aa9c62ae7eef.png"></span> Constant <strong>pressure</strong></p><h3>Combined ideal gas law</h3><div class="math"><img src="./katex-b335a8c14f4b50fb03abbd3ca48b9a00.png" alt=""></div><h2>比热容 | Specific heat capacity</h2><p>需要记忆的值：</p><p>定压比热：<span class="math"><img src="./katex-310d309a6fb4daa06c5cab3053effb68.png"></span>，定容比热：<span class="math"><img src="./katex-e93084b05daa5edee8b027ff76f6494e.png"></span></p><div class="math"><img src="./katex-39887786d342f0b2c1c6a154e03ab836.png" alt=""></div><p>三者关系：</p><div class="math"><img src="./katex-c8614c4770a16ff24f9bb8e7e82530cd.png" alt=""></div><h2>内能和热含量 | Internal Energy and Enthalpy</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/工程热力学/.热力学基础/内能和热含量.png" alt="内能和热含量" loading="lazy" tabindex="0"></div><h2>多方过程 | Polytropic Process</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/工程热力学/.热力学基础/多方过程.png" alt="多方过程" loading="lazy" tabindex="0"></div><hr><h2>例题</h2><p>A piston–cylinder device initially contains 0.7 m<sup>3</sup> of air at 100 kPa and 80°C. The air is now compressed to 0.1 m<sup>3</sup> in such a way that the temperature inside the cylinder remains constant. Determine the work done during this process.</p><p>知识点：<a href="#static/学习笔记/工程热力学/非流动过程.md">边界移动功</a></p><p>此题中温度不变，使用公式：<span class="math"><img src="./katex-2f8d3d9d1d0a67383b0f19eb96280946.png"></span></p><p>将 <span class="math"><img src="./katex-96f8c1f6cbf9ae1921ac52a90e8b2ea1.png"></span> 代入上式，得 <span class="math"><img src="./katex-80c3f5baf11c39b0f5b067c64328b5be.png"></span></p>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/工程热力学/热力学基础.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

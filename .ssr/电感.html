@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电感</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>电感 | Inductor</h1><h2>性质</h2><p><span class="math"><img src="./katex-ffccf2d92e71f58d8135be99d4790ced.png"></span>, 这里的因数 L 是电容的自感系数或者感应系数（self-inductance constant OR inductance），单位：H(Henry)。</p><h2>理想电感 | The ideal inductor</h2><p>在直流电路下，由于电流不变，因此电感两端的电压为零（可以看作短路）。</p><h2>电感的能量计算 | The energy on a inductor</h2><div class="math"><img src="./katex-eacedf1ab56b53b7488d050dc5cd12a3.png" alt=""></div><hr><h2>电感的串联 | Series Connections of Inductors</h2><div class="math"><img src="./katex-fc8bb4ae06f1511e1878bbb5118c243f.png" alt=""></div><h2>电感的并联 | Parallel Connection of Inductors</h2><div class="math"><img src="./katex-35856ff5e4e72c29f44d861d0960f88d.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电路装置/电感.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

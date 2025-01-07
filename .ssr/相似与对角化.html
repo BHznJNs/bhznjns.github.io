@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相似与对角化</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>相似与对角化 | Similarity & Diagonalization</h1><h2>矩阵相似</h2><p>对于 A，B 两个 <span class="math"><img src="./katex-50f17e5c11d610b19c0471830dc4dda1.png"></span> 的矩阵，若存在可逆矩阵 p 使得</p><div class="math"><img src="./katex-8b49e5630e197e135d0631add4c085b9.png" alt=""></div><p>则 A 与 B 相似。</p><h2>矩阵对角化</h2><p>对于一个 <span class="math"><img src="./katex-50f17e5c11d610b19c0471830dc4dda1.png"></span> 的矩阵 A，如果有</p><div class="math"><img src="./katex-576e7dd6f260982ba72469dd7f435c1a.png" alt=""></div><p>其中 D 为对角矩阵，则 A <strong>可对角化</strong>。</p><h3>对角化过程计算</h3><p>对于 <span class="math"><img src="./katex-0d7bd8d05c82067f4a72d909599a3e89.png"></span> 可对角化矩阵 A，取其特征值 <span class="math"><img src="./katex-c6a6eb61fd9c6c913da73b3642ca147d.png"></span>；</p><p>对于每一个特征值 <span class="math"><img src="./katex-06dfcf3b2c231351f49940fb9396f3dc.png"></span>，取对应特征向量 <span class="math"><img src="./katex-b17d30899a9047efcf74e562297dea22.png"></span>。</p><p>则对角矩阵 D 为：</p><div class="math"><img src="./katex-be62bf02cabda7614bf584b7088f6ed7.png" alt=""></div><p>特征向量矩阵 p：</p><div class="math"><img src="./katex-992d35f22dab413bfed09e0c6015db5a.png" alt=""></div><h3>验证对角化</h3><p>计算 <span class="math"><img src="./katex-2b76b16d711bcb5b622d68a0562fcdb6.png"></span> 与 <span class="math"><img src="./katex-f3d5d740c27ce645171420859ca0de82.png"></span>，若其值相等，则正确。</p>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/线性代数/相似与对角化.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

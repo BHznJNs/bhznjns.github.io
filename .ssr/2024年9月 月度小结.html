@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024年9月 月度小结</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>2024年9月月度小结</h1><h2>输出</h2><p>这个9月，总结一下就是，学习以外，该做的事都做了😊😢。</p><p>这个月算上笔记，我产出博客28篇，博客的总字数突破八万。</p><h2>课程学习</h2><p>数据库课程 15445 看了三课半😰，课程作业完成到 Project2 Hash Index 的一半。</p><h2>自媒体</h2><p>B 站投稿了两个视频，标题均为 《C++ 迷惑行为，把 C++ 写成 Rust？》，共获得 1.5 万的播放量，涨粉约 30。我在这个过程中又学到了不少的 C++ 特性。</p><h2>运动</h2><p>我在接近月末的一次跑步时，跑到4km以上，算是近期比较长的距离了。就是跑完后膝盖有点受不了，我还是觉得，我可能需要一双专门的跑鞋，我也搜索了一些跑鞋的相关知识，我打算这学期把每周的跑量提升到10km，毕竟还是得多跑一些才对得起我花的跑鞋的钱💰。</p>
+    <p><a href="https://bhznjns.github.io/#static/阶段小结/2024年9月 月度小结.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

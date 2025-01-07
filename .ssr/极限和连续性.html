@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极限和连续性</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>极限和连续性 | Limits and continuity</h1><h2>二元函数的极限定义 | Definition</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/偏导数/.极限和连续性/二元函数的极限定义.png" alt="二元函数的极限定义" loading="lazy" tabindex="0"></div><p>极限不存在条件：如果从任意两个方向上得到的极限不同，则极限不存在。</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/偏导数/.极限和连续性/极限不存在条件.png" alt="极限不存在条件" loading="lazy" tabindex="0"></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/偏导数/极限和连续性.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

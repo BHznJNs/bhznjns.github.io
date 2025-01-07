@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类定义与类实例化</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>类定义</h1><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@&lt;class-name&gt; {
+    property: Type
+    method(param: Type) {
+        # method body
+        this.property = ... # 类方法中可使用 this 获取当前示例
+    }
+}
+</code></pre><p>匿名类：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">variable = ${
+    property: Type
+    new(param: Type) {
+        # constructor
+    }
+    method(param: Type) {
+        # method body
+    }
+}
+</code></pre><p>类实例化：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">instance = &lt;class-name&gt;(param) # calls constructor
+instance = &lt;class-name&gt; { property: &lt;value&gt; }
+instance = &lt;class-name&gt; {
+    property1: &lt;value1&gt;
+    property2: &lt;value2&gt;
+    property3: &lt;value3&gt;
+}
+</code></pre><p>使用示例：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@Point {
+    x: Number
+    y: Number
+    distanceFromOrigin() {
+        return math.sqrt(x ^ 2 + y ^ 2)
+    }
+}
+
+point1 = Point(1, 1)
+point2 = Point{ x: 1, y: 1 }
+</code></pre>
+    <p><a href="https://bhznjns.github.io/#static/编程/集成计算环境 ICE/2.0 版本语法草案/类定义与类实例化.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

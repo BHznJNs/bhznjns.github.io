@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隐微分求解</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>隐微分求解 | Implicit differentiation</h1><h2>方法</h2><p>将方程转化为二元函数，再通过公式</p><div class="math"><img src="./katex-e6ee72c9ecd247810d257f7a2e187840.png" alt="隐微分求解公式"></div><p>进行求解。</p><h2>例题</h2><p>Find <span class="math"><img src="./katex-d8ba4afe808679595d07bfca1e43afc6.png"></span> if <span class="math"><img src="./katex-b65e53f567af3d9a9c58cd1030a40563.png"></span></p><p>设 <span class="math"><img src="./katex-1b8f572c65e447233d0cbf360eaf6135.png"></span></p><p>由上述公式 <span class="math"><img src="./katex-f9dd8f4aad6cc3102a73c1a8e44ffd40.png"></span> 即可求解。</p>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/偏导数/隐微分求解.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

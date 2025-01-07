@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点分析</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>节点分析 | Nodal Analysis</h1><h2>Essential node</h2><p>连接三个或更多电路元件的节点被称为 essential node。</p><p>Nodes with three or more connections are called essential nodes.</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.节点分析/Essential node 图例.png" alt="Essential node 图例" loading="lazy" tabindex="0"></div><hr><h2>Nodal Analysis 使用</h2><p>选择具有较多连接的节点为参考点（接地点）</p><p>Choose a node with many connections as reference node</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.节点分析/Nodal Analysis 使用图例.webp" alt="Nodal Analysis 使用图例" loading="lazy" tabindex="0"></div><p>列式技巧：<strong>将当前计算的节点假设为较高电位</strong>，<strong>将流出的电流放在等式左侧，流入电流放在等式右侧</strong>。</p><div class="math"><img src="./katex-fd8ff590a80cd64d2c39293a82e4a37c.png" alt=""></div><hr><h2>对于存在电压源的电路</h2><p>对于存在电压源的电路，由于经过电压源的电流无法计算，则<strong>将电压源两侧的节点视为一个节点</strong>，此节点为<strong>超节点（supernode）</strong>。</p><h2>例题</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.节点分析/超节点例题1图例.png" alt="超节点例题1图例" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-2d023d3904a1b2c19f3744c42a31bc63.png" alt=""></div><hr><p>对于超节点作为参考点的情况：</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.节点分析/超节点例题2图例.png" alt="超节点例题2图例" loading="lazy" tabindex="0"></div><p>因为 node4 为参考点，node2 与 node4 之间有 10V 的电压提升，故 node2 的电压为 10V。</p><p>接下来的步骤便如之前所示。</p>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电路装置/节点分析.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

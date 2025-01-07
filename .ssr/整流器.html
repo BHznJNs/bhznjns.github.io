@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>整流器</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>整流器 | Rectifier</h1><h2>定义</h2><p>整流器是一种用于将交流电转换成直流电的电子元件。</p><blockquote><p>A rectifier is an electrical device that converts alternating current (AC), which periodically reverses direction, to direct current (DC), which flows in only one direction.</p><p>-- <a href="https://en.wikipedia.org/wiki/Rectifier" target="_blank">Wikipedia</a></p></blockquote><h2>半波整流 | Half-Wave Rectifier</h2><p>对于一个正弦波，如下图所示：</p><div class="media-container"><img src="./echarts-4e76c6eb1d33f07fe1d22bc7c89712d4.png"></div><p>在一个半波整流电路中，随着输入电压变化，输出电压会发生如下所示的变化：</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.整流器/Conduction region.png" alt="Conduction region" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.整流器/Nonconduction region.png" alt="Nonconduction region" loading="lazy" tabindex="0"></div><p>对于一个交流电源输入，经过一个半波整流器，对于其输出的直流电有：</p><div class="math"><img src="./katex-32aa5de1845b19506e6f09903ca165b5.png" alt=""></div><blockquote class="alert note"><p class="alert-title">Notes</p><ul><li>A real diode does not start conducting until forward signal exceeds V<sub>D</sub> ≈ 0.7 V</li><li>In reverse direction there is a very small leakage current</li><li>The peak output voltage: <strong>V<sub>p</sub> = V<sub>m</sub> - 0.7</strong></li><li>The average output voltage is a small positive value: V<sub>d</sub> = V<sub>out, avg</sub>  = 0.318 V<sub>p</sub></li></ul><p>对于公式中的一些记号：</p><ul><li>V<sub>m</sub> = V<sub>max</sub>: maximum voltage from the transformer </li><li>V<sub>p</sub> = V<sub>peek</sub>: peak voltage applied to the load</li></ul></blockquote><h3>峰值逆电压 | Peak Inverse Voltage</h3><p>最大的可施加在稳流器上而不使其损坏的反向电压。</p><p>The maximum reverse-bias voltage that can be applied before entering the breakdown region is called: the peak inverse voltage (referred to simply as the <strong>PIV rating</strong>), or the peak reverse voltage (denoted the <strong>PRV rating</strong>).</p><div class="math"><img src="./katex-022bf3409e348d8eb952383d9fc23013.png" alt=""></div><blockquote class="alert note"><p class="alert-title">笔记</p><p>理论上 PIV 的值可以为任何大于 V<sub>m</sub> 的值，但为了安全起见，一些时候会取 V<sub>m</sub> 的倍数，如两倍。</p></blockquote><h2>RMS 等效电压 | RMS Voltage equivalent</h2><p>正弦波形的 RMS 等效电压等同于 <span class="math"><img src="./katex-3f72232f1ec4b19621ff730dca0764bc.png"></span>。</p><h2>全波整流 | Full-Wave Rectification</h2><p>全波整流示例电路</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.整流器/全波整流示例电路1.png" alt="全波整流示例电路1" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.整流器/全波整流示例电路2.png" alt="全波整流示例电路2" loading="lazy" tabindex="0"></div><blockquote class="alert note"><p class="alert-title">笔记</p><ul><li>In reverse direction there is a very small leakage current</li><li>Because of centre-tap, <strong>RMS voltage for each half section = V<sub>RMS</sub> / 2</strong></li><li>For peak output voltage, only one diode conducts at a time, so still have <strong>V<sub>p</sub> = V<sub>m</sub> - 0.7 (same as half-wave)</strong></li><li>However, now we have twice the average output voltage <strong>V<sub>out, avg</sub> = 0.636 V</strong></li><li>Still have to specify PIV rating</li><ul><li><strong>PIV > 2 V<sub>m</sub> − 0.7 V</strong>, usually select <strong>double</strong> this value</li></ul></ul></blockquote><h3>桥式整流器 | Bridge Rectifier</h3><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.整流器/桥式整流器图示.webp" alt="桥式整流器图示" loading="lazy" tabindex="0"></div><blockquote class="alert note"><p class="alert-title">笔记</p><ul><li>In reverse direction, there is still a very small leakage current</li><li>For peak output voltage, two diodes conduct at a time so <strong>V<sub>p</sub> = V<sub>m</sub> − 1.4</strong></li><li>The same average output voltage as two-diode rectifier, <strong>V<sub>dc</sub> = 0.636 V<sub>p</sub></strong></li><li>Have to specify PIV rating, but with no centre-tap, it is the same as for half-wave rectifier: <strong>PIV > V<sub>m</sub> − 0.7</strong>, usually allow a factor of 2</li></ul></blockquote><hr><h2>整流器总结</h2><div class="table"><table><thead><tr><th>整流器类型</th><th>理想 V,,dc,,</th><th>实际 V,,dc,,</th><th>PIV</th></tr></thead><tbody><tr><td>半波整流器</td><td>V<sub>dc</sub> = 0.318 V<sub>m</sub></td><td>V<sub>dc</sub> = 0.318 (V<sub>m</sub> - 0.7)</td><td>~ 2 * V<sub>m</sub></td></tr><tr><td>中心抽头整流器</td><td>V<sub>dc</sub> = 0.636 V<sub>m</sub></td><td>V<sub>dc</sub> = 0.636 (V<sub>m</sub> - 0.7)</td><td>~ 2 * (2 V<sub>m</sub> - 0.7)</td></tr><tr><td>桥式整流器</td><td>V<sub>dc</sub> = 0.636 V<sub>m</sub></td><td>V<sub>dc</sub> = 0.636 (V<sub>m</sub> - 1.4)</td><td>~ 2 * (V<sub>m</sub> - 0.7)</td></tr></tbody></table></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电子器件与电路原型/整流器.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

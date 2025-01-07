@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>向量函数的基本属性</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>向量函数的基本属性</h1><h2>向量函数的导数 | Derivatives</h2><p>Let <span class="math"><img src="./katex-3458d2890cd48be4a4c759f2211b9b76.png"></span>,</p><p><span class="math"><img src="./katex-d13b6685af74a2477ecf2a215644f0d1.png"></span></p><h2>单位切向量 | Unit tangent vector</h2><p><span class="math"><img src="./katex-809d84325185896339bbc29043669786.png"></span></p><h2>单位法向量 | The unit normal vector</h2><p>主单位法向量 The principal unit normal vector</p><p><span class="math"><img src="./katex-aa18f431e92723316aa29352acb39f9a.png"></span></p><p>副法向量 The binormal vector</p><p><span class="math"><img src="./katex-5e6c5fe2ed0376a05e795c451d82d952.png"></span></p><hr><h2>法平面 | Normal plane</h2><p>曲线 C 的点 P 上，由法向量 N 和副法向量 B 在决定的平面，即该点的法平面。法平面由所有与切向量正交的线组成。</p><h2>密切平面 | Osculating plane</h2><p>曲线 C 的点 P 上，由切向量 T 和法向量 N 在决定的平面，即该点的密切平面。</p>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/向量函数/向量函数的基本属性.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

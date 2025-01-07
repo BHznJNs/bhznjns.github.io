@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下划线动画</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>下划线动画</h1><p><code>2023/6/10</code></p><hr><p>本文是一个使用 CSS <code>::before</code> 伪类实现 (使用 <code>::after</code> 效果相同) 的下划线动画。</p><hr><p>首先，在需要添加动画的元素添加 <code>position</code> 属性</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">.target-element {
+    position: relative;
+}
+</code></pre><p>接着实现伪类，</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">.target-element::before {
+    /* 这两行代码是为了让伪类成为 block 元素 */
+    display: block;
+    content: " ";
+    /* 添加 absolute 定位 */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    /* 伪类自身表现样式 */
+    width: 0;
+    border-bottom: solid 2px #333;
+    /* 过渡动画控制 */
+    transition: .3s;
+}
+</code></pre><p>再实现 <code>hover</code> 时的伪类表现效果：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">.target-element:hover::before {
+    width: 100%;
+}
+</code></pre>
+    <p><a href="https://bhznjns.github.io/#static/编程/Web 前端/CSS/下划线动画.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

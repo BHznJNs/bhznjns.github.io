@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BJT</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>BJT DC</h1><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.BJT/BJT_DC1.png" alt="BJT DC analysis" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-cc13be5251a901b68e8da3c484500f12.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电子电路与系统设计/BJT.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

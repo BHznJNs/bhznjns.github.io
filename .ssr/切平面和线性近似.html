@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>切平面和线性近似</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>切平面和线性近似 | Tangent planes & Linear approximations</h1><h2>切平面 | Tangent planes</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/偏导数/.切平面和线性近似/切平面计算公式.png" alt="切平面计算公式" loading="lazy" tabindex="0"></div><h3>法线方程</h3><div class="math"><img src="./katex-cf92d7ee8b2c9609b2b6a1ae699fae27.png" alt=""></div><h2>线性近似 | Linear approximations</h2><p>函数 f 在 <code>(a, b)</code> 点上的线性近似或者说切面近似</p><p><strong>Linear approximation</strong> or the <strong>tangent plane approximation</strong> of f at <code>(a, b)</code></p><p>f(x, y) ≈ f(a, b) + f<sub>x</sub>(a, b)(x - a) + f<sub>y</sub>(a, b)(y - b)</p><h2>微分 | Differentials</h2><p>对于二元函数 f(x, y)，有 z = f(x, y)，于是，z 的微分即为函数 f 的全微分（total differential）。</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/偏导数/.切平面和线性近似/微分.png" alt="切平面计算公式" loading="lazy" tabindex="0"></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/偏导数/切平面和线性近似.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

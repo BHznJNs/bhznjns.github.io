@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三次法则</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>三次法则 </h1><p>Don Roberts 给了我一条准则：第一次做某件事时只管去做；第二次做类似的</p><p>事会产生反感，但无论如何还是可以去做；第三次再做类似的事，你就应该重构。</p><p>正如老话说的：事不过三，三则重构。</p>
+    <p><a href="https://bhznjns.github.io/#static/读书笔记/重构-改善既有的代码设计/三次法则.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

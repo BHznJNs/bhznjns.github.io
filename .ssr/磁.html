@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>磁</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>磁 | Magnetism</h1><h2>磁力 | Magnetic Force</h2><div class="math"><img src="./katex-842bf0df708105d3c2d14a0316538939.png" alt=""></div><p>对于一个电荷的磁力</p><div class="math"><img src="./katex-ac95649fe7b3f0282cf8d3017b8d7dc7.png" alt=""></div><p>对于长直导线的磁力</p><div class="math"><img src="./katex-c5fad3286c61b50c025fe4ac31868d97.png" alt=""></div><h2>毕奥-萨伐尔定律 | Biot-Savart Law</h2><div class="math"><img src="./katex-958eac863b954a642a65453fa6a61cd3.png" alt=""></div><h2>磁化强度 | Magnetisation</h2><div class="math"><img src="./katex-fbf433510db16aeac80d8f474a2cceb7.png" alt=""></div><ul><li>H: magnetic field strength</li><li><span class="math"><img src="./katex-c9faf6ead2cd2c2187bd943488de1d0a.png"></span>: <ruby data-notation="permeability">磁导率<rp>(</rp>,<rt>permeability</rt>,<rp>)</rp></ruby></li><li><span class="math"><img src="./katex-3a84341711ab951b21f1b4e7295baa0e.png"></span>: <ruby data-notation="permeability of free space">真空磁导率<rp>(</rp>,<rt>permeability of free space</rt>,<rp>)</rp></ruby> (constant)</li><li><span class="math"><img src="./katex-4242968b9f08bce37f3e6a702db37498.png"></span>: <ruby data-notation="relative permeability">相对磁导率<rp>(</rp>,<rt>relative permeability</rt>,<rp>)</rp></ruby></li></ul>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电磁学与电机导论/磁.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>面向视频平台的屎里陶金</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>面向视频平台的屎里陶金</h1><h2>现状</h2><p>由于创作门槛降低、AIGC 技术发展等因素，当今的互联网上信息爆炸，而有用的信息却没有同比增长而被垃圾信息埋没。</p><p>以哔哩哔哩、抖音、快手为代表的 UGC 视频平台更是此现象的重灾区。</p><h2>痛点</h2><p>在以哔哩哔哩、抖音、快手为代表的 UGC 视频平台上通过平台自带的搜索工具搜寻信息时，搜索结果往往会充斥大量的低质视频、包含软广而有用信息较少的视频和 AI 生成的有用信息较少的视频。</p><p>由于视频相比于文章类信息载体的特性，在大量视频中过滤出真正有用的视频往往要比过滤文章更耗费时间。</p><h2>想法</h2><ol><li>用户选择平台（哔哩哔哩、抖音、快手等平台选其一 OR 多选），输入搜索项</li><li>系统自动从用户选中的平台进行搜索，自动下载并分析搜索结果</li><li>将搜索结果中信息含量较高的视频返回给用户</li></ol><h2>问题</h2><ol><li>给用户的内容都来自其它平台，可能面临版权等法律问题</li><li>过滤算法，如何判断一个视频是否值得花费这个视频的时长观看？</li></ol>
+    <p><a href="https://bhznjns.github.io/#static/独立开发/创业想法/面向视频平台的屎里陶金.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

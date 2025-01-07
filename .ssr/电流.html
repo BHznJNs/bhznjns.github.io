@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电流</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>电流 | Current</h1><h2>定义</h2><div class="math"><img src="./katex-847542dbef3feca00dc673eced9ff7fa.png" alt=""></div><h2>电流密度 | Current density</h2><p>电流密度 <span class="math"><img src="./katex-bc847cc3f7ea0af6cc911b5b9cbfc624.png"></span></p><div class="math"><img src="./katex-136efc048ecb078a0bef065deb39cc3e.png" alt=""></div><p><span class="math"><img src="./katex-a2ab7d71a0f07f388ff823293c147d21.png"></span>: 电导率 | electrical conductivity</p><h2>电阻率 | Resistivity</h2><div class="math"><img src="./katex-b88168ed3c5ab28ed763e1a7f7429356.png" alt=""></div><h2>电流连续性 | Current Continuity</h2><div class="math"><img src="./katex-414512bb38a8f44957b149815f30255e.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电磁学与电机导论/电流.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

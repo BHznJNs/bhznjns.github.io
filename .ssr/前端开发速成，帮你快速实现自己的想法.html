@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端开发速成，帮你快速实现自己的想法</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>前端开发速成，帮你快速实现自己的想法</h1><p>本文的适用对象：</p><ul><li><del>想要成为专业 Web 前端工程师的人</del></li><li>想要通过 Web 技术快速实现自己的应用，有一定编程基础的人</li></ul><hr><h2>我为什么写这份教程（可跳过）</h2><p>网络上目前有的教程，对于只是想要快速实现自己应用的人来说，有太多累赘的内容。</p><p>我的一位好友深受此害。他是一位 AI 算法开发者，想要给他设计的算法写一个图形界面以便于使用。向 AI 咨询过后，他决定使用 Web 技术。这个选择很正确，目前来说 Web 技术绝对是图形界面开发最好用、开发效率最高同时学习成本最低的技术栈。但是，由于他所看的教程，他的页面一直都使用原生的 HTML、JavaScript、CSS 编写，不仅界面的开发效率低下，而且界面的呈现效果也不令人满意。</p><p>我看到后，决定帮他一把。在我的帮助下，他成功在两小时内使用 Vue.js 和 Vuetify 重写了他原来的界面。</p><hr><p>下面是正文。</p><h2>导入</h2><p>首先，暂时忘记你在其它前端教程中看到的内容，抛开什么 HTML、JavaScript、CSS，统统别管。</p><p>你只需要知道以下几个东西，就可以进入下一步了：</p><h3>标签</h3><p>这是一个标签：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;div&gt;&lt;/div&gt;
+</code></pre><p>这也是一个标签：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;img /&gt;
+</code></pre><h3>标签嵌套</h3><p>标签中能包含内容：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;div&gt;标签中包含的内容&lt;/div&gt;
+</code></pre><p>标签中能嵌套另一个标签：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;div&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>一个标签代表页面中的一个元素。</p><p>那什么是元素？就像你正在看的这个段落，这就是一个元素。类似地，一个按钮、一个文本框、一张图片都是一个元素。网页由一个又一个的元素组成。</p><h2>使用框架</h2><p>你现在已经掌握了学习前端开发必须的基础知识，对，就是这么简单。接下来，让我们开始学习前端开发框架的使用吧！</p><h3>为什么要使用框架（可跳过）</h3><ol><li>简化代码，减少样板代码</li><li>使项目代码更易于维护</li><li>可以更方便地使用开源组件</li><li>提高个人和团队的开发效率</li></ol><h3>框架选择（可跳过）</h3><p>如果你读过菜鸟教程、MDN 等常用的前端开发教程，或者你向 AI 询问关于前端框架的选择，你大概率会获得以下回答：</p><details><p>Web 前端开发框架可以帮助开发者更高效地构建用户界面，同时提供了一些预设的功能来处理常见的开发任务。以下是一些常用的 Web 前端开发框架：</p><ol><li>React - 由 Facebook 维护，React 是一个用于构建用户界面的 JavaScript 库。它主要用于构建 UI 组件，并且因其虚拟 DOM 的概念和高效的性能而受到欢迎。</li><li>Angular - 由 Google 支持，Angular 是一个完整的前端框架，用于创建动态 Web 应用程序。它使用 TypeScript 作为主要语言，提供了强大的模板系统、依赖注入等特性。</li><li>Vue.js - Vue（发音类似于“view”）是另一个流行的前端框架，它的设计目标是通过尽可能简单的 API 来实现数据驱动的数据绑定和组合式视图组件。</li><li>Svelte - Svelte 是一种新的方法来构建 Web 应用程序。它在编译时将你的应用程序转换为优化后的 vanilla JavaScript 代码，这使得最终生成的应用可以更加小巧和快速。</li></ol><p>这些框架各有特色，选择哪一个取决于项目需求、团队熟悉度和个人偏好等因素。随着技术的发展，还有可能出现新的前端框架或现有框架的新版本。因此，在开始新项目之前了解最新的趋势和技术是很重要的。</p><summary> AI 回答问题：请问常用的 Web 前端开发框架有哪些？</summary></details><p>这里我们选择 Vue.js，原因有三：</p><ol><li>Vue.js 相比于其它框架对小白更友好、更易于上手使用</li><li>开发者为国人，中文资料充足</li><li>框架知名度较高，社区支持完善</li></ol><h3>Vue.js 框架导入</h3><p>首先，到 <a href="https://nodejs.org/zh-cn" target="_blank">Node.js 官网</a>下载并安装最新版本 Node.js。安装完成后，在命令行下运行下面命令</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">npm install -g cnpm --registry=https://registry.npmmirror.com
+</code></pre><blockquote class="alert warning"><p class="alert-title">注意</p><p>在下文，如果你无法正常使用 npm（Node.js 的包管理工具），请使用 cnpm 作为替代。</p></blockquote><p>跟随 <a href="https://cn.vuejs.org/guide/quick-start.html#creating-a-vue-application" target="_blank">Vue.js 官方文档</a>创建新的 Vue 项目，或直接阅读下面内容（复制自官方部分文档，有部分改动）</p><details><blockquote class="alert important"><p class="alert-title">前提条件</p><ul><li>熟悉命令行</li><li>已安装 18.3 或更高版本的 Node.js <span class="dim">:</span></li></ul></blockquote><p>在本节中，我们将介绍如何在本地搭建 Vue <a href="https://cn.vuejs.org/guide/extras/ways-of-using-vue#single-page-application-spa" target="_blank">单页应用</a>。创建的项目允许我们使用 Vue 的<a href="https://cn.vuejs.org/guide/scaling-up/sfc" target="_blank">单文件组件</a> (SFC)。</p><p>确保你安装了最新版本的 <a href="https://nodejs.org/" target="_blank">Node.js</a>，并且你的当前工作目录正是打算创建项目的目录。在命令行中运行以下命令：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">npm create vue@latest
+</code></pre><p>这一指令将会安装并执行 <code>create-vue</code>，它是 Vue 官方的项目脚手架工具。你将会看到一些诸如 TypeScript 和测试支持之类的可选功能提示（这些都可以不用管，选 No 即可）：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">✔ Project name: … &lt;your-project-name&gt;
+✔ Add TypeScript? … No / Yes
+✔ Add JSX Support? … No / Yes
+✔ Add Vue Router for Single Page Application development? … No / Yes
+✔ Add Pinia for state management? … No / Yes
+✔ Add Vitest for Unit testing? … No / Yes
+✔ Add an End-to-End Testing Solution? … No / Cypress / Nightwatch / Playwright
+✔ Add ESLint for code quality? … No / Yes
+✔ Add Prettier for code formatting? … No / Yes
+✔ Add Vue DevTools 7 extension for debugging? (experimental) … No / Yes
+
+Scaffolding project in ./&lt;your-project-name&gt;...
+Done.
+</code></pre><p>在项目创建完成后，在之前的命令行下运行以下命令：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">cd &lt;your-project-name&gt;
+npm install
+npm run dev
+</code></pre><p>在你的命令行中出现如下字样之后：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">VITE v5.4.8  ready in 1624 ms
+
+➜  Local:   http://localhost:5173/
+➜  Network: use --host to expose
+➜  press h + enter to show help
+</code></pre><p>在浏览器中打开终端中单词“Local”后的<a href="http://localhost:5173/" target="_blank">链接</a>，不出意外，你能看到如下页面：</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.前端开发速成，帮你快速实现自己的想法/Vue 初始界面.png" alt="初始界面" loading="lazy" tabindex="0"></div><summary> 创建 Vue 项目</summary></details><p>Congratulations! 你已经完成了基础的项目搭建，接下来你需要安装合适的代码编辑器及配套的插件。</p><details><p>官方推荐使用 <a href="https://code.visualstudio.com/" target="_blank">VSCode</a> 和 VSCode 上的<a href="https://marketplace.visualstudio.com/items?itemName=Vue.volar" target="_blank">官方插件</a>配合使用。</p><p>如果你偏好使用其它开发环境，请根据官方的 <a href="https://cn.vuejs.org/guide/scaling-up/tooling#ide-support" target="_blank">IDE 支持</a>进行配置。</p><summary> 代码编辑器及配套的插件</summary></details><p>下面会以使用 VSCode 进行说明。</p><h3>Vue.js 框架基础使用</h3><p>在完成了 Vue 项目的创建后，请先在 VSCode 中打开项目文件夹。</p><p>在项目的 <code>src</code> 文件夹中，删除其中的 <code>assets</code> 和 <code>components</code> 文件夹下所有文件。</p><p>将 <code>main.js</code> 的内容改为如下：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">import { createApp } from 'vue'
+import App from './App.vue'
+
+createApp(App).mount('#app')
+</code></pre><p>将 <code>App.vue</code> 的内容改为如下：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;template&gt;
+  &lt;!--  --&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  // 
+}
+&lt;/script&gt;
+</code></pre><p>打开 Vue 官方文档的<a href="https://cn.vuejs.org/guide/essentials/template-syntax.html" target="_blank">模版语法</a>章节，<strong>将界面左上角的“API 风格偏好”设为“选项式”</strong>。</p><p>让我们直奔<a href="https://cn.vuejs.org/guide/essentials/template-syntax.html#text-interpolation" target="_blank">文本插值</a>部分。</p><p>让我们打开 <code>App.vue</code> 文件，先把 <code>script</code> 标签中的注释改成以下代码：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">data() {
+    return {
+        message: "Hello World!"
+    }
+}
+</code></pre><p>这段代码定义了名为 <code>message</code> 的字符串数据，其值为 <code>"Hello World!"</code>。</p><p>类似地，你可以像这样定义更多数据：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">data() {
+    return {
+        counter: 0,
+        message: "Hello World!",
+        anotherMessage: "Foo bar",
+    }
+}
+</code></pre><p>我们定义了数据，要如何展示在页面上？我们前面看到<a href="https://cn.vuejs.org/guide/essentials/template-syntax.html" target="_blank">模版语法</a>就能在这里发挥作用了。</p><p>让我们更改 <code>template</code> 中的内容：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;div&gt;{{ message }}&lt;/div&gt;
+</code></pre><p>现在再打开浏览器界面，你能看到：</p><div class="media-container"><iframe id="iframe_1" title="" srcdoc="<div>Hello World!</div>
+" sandbox="allow-scripts"></iframe></div><p>你现在已经学会了 Vue.js 的基础使用，让我们进入下一步。</p><h2>使用组件库</h2><h3>什么是组件库？</h3><p>上面有提到，你的网页由各种元素组成。对于一个复杂的页面，其中会有成千上万个元素。直接管理这些元素的复杂度非常高。于是我们将组成同一功能的所有元素进行封装，称其为“组件”。通常来说，一个组件提供一个特定功能，如处理用户输入、进行视频播放等。</p><p>而组件库，则是聚合了前端界面开发时常用功能所对应组件的库。</p><blockquote class="alert warning"><p class="alert-title">注意</p><p>组件库往往依赖与所使用的框架。</p><p>换句话说，如果一个组件库基于框架 A，而你的项目使用框架 B，你大概率没法在你的项目中使用这个组件库。</p></blockquote><h3>组件库的选择</h3><details><p>使用 Vue.js 框架进行前端开发时，有许多流行的组件库可供选择。这些组件库提供了丰富的UI组件，帮助开发者快速构建出美观且功能齐全的用户界面。以下是一些常用的 Vue.js 组件库：</p><ol><li><strong>Vuetify</strong></li><ul><li>Vuetify 是基于 Google 的 Material Design 规范的 Vue.js UI 库。它提供了一整套 Material Design 风格的组件，并且支持自定义主题。</li></ul><li><strong>Element</strong></li><ul><li>Element 是由饿了么团队推出的一套桌面端组件库，基于 Vue 2.x。它为开发者提供了丰富而全面的组件集，设计上追求简洁、一致性和易用性。</li></ul><li><strong>Quasar Framework</strong></li><ul><li>Quasar 是一个完整的框架，不仅包含了大量的UI组件，还提供了构建工具和CLI来帮助开发者创建SPA、PWA、SSR、移动端应用等。</li></ul><li><strong>BootstrapVue</strong></li><ul><li>BootstrapVue 将 Bootstrap 4 和 Vue.js 结合起来，使得开发者可以使用熟悉的Bootstrap样式和布局来构建Vue应用。</li></ul><li><strong>Ant Design of Vue (antd-vue)</strong></li><ul><li>Ant Design 是蚂蚁金服出品的企业级产品设计体系，antd-vue 是其官方提供的 Vue 实现版本，提供了高质量的企业级UI设计。</li></ul><li><strong>Buefy</strong></li><ul><li>Buefy 是轻量级的 Vue.js UI 组件库，基于 Bulma CSS 框架。它易于集成，具有响应式特性，并且不需要额外的JavaScript依赖。</li></ul><li><strong>Vue Material</strong></li><ul><li>Vue Material 是遵循 Material Design 规范的另一个 Vue.js 组件库，它提供了一系列的Material风格组件。</li></ul><li><strong>Vant</strong></li><ul><li>Vant 是有赞前端团队开发的一套轻量、可靠的移动端 Vue 组件库，非常适合用于移动Web应用。</li></ul><li><strong>Mint UI</strong></li><ul><li>Mint UI 是由饿了么前端团队开发的一个基于 Vue.js 的移动端组件库，特点是按需加载组件，减少不必要的加载时间。</li></ul></ol><p>每个组件库都有自己的特点和优势，选择哪一个取决于项目需求、设计风格偏好以及团队成员对特定库的熟悉程度。在选择组件库之前，建议查看各个库的文档和示例，以确保它们能够满足你的具体要求。</p><summary> AI 的回答（可跳过）：请问使用 Vue.js 框架开发前端页面时，有哪些常用的组件库可供选择？</summary></details><p>组件库的选择主要基于个人喜好，我们选择 AI 回答中第一位的 Vuetify 作为示例。</p><h3>Vuetify 组件库导入</h3><p>让我们先关闭前面的 Vue 项目，跟着 <a href="https://vuetifyjs.com/en/getting-started/installation/" target="_blank">Vuetify 的官方文档</a>（或者你也可以直接看下面的内容，我摘抄了文档中关键的部分，有少量改动）安装并新建一个使用 Vuetify 组件库的项目。</p><details><p>确保你安装了最新版本的 Node.js，并且你的当前工作目录正是打算创建项目的目录。在命令行中运行以下命令：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">npm create vuetify@latest
+</code></pre><p>接下来，安装程序会给出一些提示选项：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">? Project name: ❯ vuetify-project
+? Which preset would you like to install? » Barebones (Only Vue & Vuetify)
+? Use TypeScript?: ❯ No / Yes
+? Would you like to install dependencies with yarn, npm, or pnpm?:
+  ❯ yarn
+    npm
+    pnpm
+    bun
+    none
+? Install Dependencies? ... No / Yes
+</code></pre><ul><li>Project name: 请输入你自己喜欢的名称，这里以 “vuetify-project” 为例</li><li>Which preset would you like to install?: <code>Barebones (Only Vue & Vuetify)</code></li><li>Use TypeScript: <code>No</code></li><li>Would you like to install dependencies with yarn, npm, or pnpm?: <code>npm</code></li><li>Install Dependencies?: <code>Yes</code></li></ul><p>待其安装完成后，在命令行下输入下面两行命令：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">cd vuetify-project # 这里是你自己设置的项目名称
+npm run dev
+</code></pre><p>待命令行中出现如下字样后：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">VITE v5.4.8  ready in 3183 ms
+
+➜  Local:   http://localhost:3000/
+➜  Network: use --host to expose
+➜  press h + enter to show help
+</code></pre><p>在浏览器中打开终端中单词“Local”后的<a href="http://localhost:3000/" target="_blank">链接</a>，不出意外，你能看到如下页面：</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.前端开发速成，帮你快速实现自己的想法/Vuetify 初始界面.png" alt="初始界面" loading="lazy" tabindex="0"></div><summary> Vuetify 项目创建</summary></details><p>You did it! 你已经完成了使用 Vuetify 组件库的项目搭建，接下来请在 VSCode 中打开该项目，并进入下一步。</p><h3>Vuetify 组件库使用</h3><p>请打开项目的 <code>src</code> 目录，删除 <code>assets</code> 和 <code>components</code> 文件夹下的所有文件。</p><p>将 <code>App.vue</code> 文件改为如下所示：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;template&gt;
+  &lt;v-app&gt;
+    &lt;v-main&gt;
+      &lt;!--  --&gt;
+    &lt;/v-main&gt;
+
+  &lt;/v-app&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  // 
+}
+&lt;/script&gt;
+</code></pre><p>把 <code>plugins</code> 目录下的 <code>vuetify.js</code> 文件改成如下所示：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">/**
+ * plugins/vuetify.js
+ *
+ * Framework documentation: https://vuetifyjs.com`
+ */
+
+// Styles
+import '@mdi/font/css/materialdesignicons.css'
+import 'vuetify/styles'
+
+// Composables
+import { createVuetify } from 'vuetify'
+
+// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+export default createVuetify()
+</code></pre><p>现在，我们要<strong>正式开始写页面了</strong>。</p><p>我们先看看上文提到的我的好友使用原生开发（即不使用框架开发）完成的界面</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.前端开发速成，帮你快速实现自己的想法/原界面.jpg" alt="原界面" loading="lazy" tabindex="0"></div><p>让我们现在开始尝试使用框架和组件库重写一个相同布局的界面吧！</p><hr><p>我们先在 <code>components</code> 目录下新建一个名为 <code>SideDrawer.vue</code> 的文件，这是页面中的侧边栏组件。</p><p>让我们根据 Vuetify 文档中的<a href="https://vuetifyjs.com/en/components/navigation-drawers/" target="_blank">这一篇</a>来完成这个组件</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;!-- SideDrawer.vue --&gt;
+&lt;template&gt;
+&lt;v-navigation-drawer permanent&gt;
+  &lt;v-list-item title="文件列表"&gt;&lt;/v-list-item&gt;
+  &lt;v-divider&gt;&lt;/v-divider&gt;
+  &lt;!-- ``btn`` 即 button，按钮组件 --&gt;
+  &lt;v-btn block&gt;新建&lt;/v-btn&gt;
+  &lt;v-btn block&gt;删除&lt;/v-btn&gt;
+&lt;/v-navigation-drawer&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+    // 
+}
+&lt;/script&gt;
+</code></pre><details><p>你可能注意到了上面这段代码中的陌生之处：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;v-navigation-drawer permanent&gt;
+...
+&lt;/v-navigation-drawer&gt;
+</code></pre><p>这里的 <code>permanent</code> 即是 <code>v-navigation-drawer</code> 标签的属性。</p><p>一般来说，标签的属性使用键值对的格式，上面的代码等效于：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;v-navigation-drawer :permanent="true"&gt;
+...
+&lt;/v-navigation-drawer&gt;
+</code></pre><p>后面的这段代码</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;v-list-item title="文件列表"&gt;&lt;/v-list-item&gt;
+</code></pre><p>等效于：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;v-list-item :title="'文件列表'"&gt;&lt;/v-list-item&gt;
+</code></pre><p>一个组件标签支持的属性可以在组件库的文档中查看。如上面的 <code>v-navigation-drawer</code> 标签支持的属性可以<a href="https://vuetifyjs.com/en/api/v-navigation-drawer/" target="_blank">在此</a>查看。</p><summary> 补充：标签属性</summary></details><p>在 <code>App.vue</code> 中引入这个组件以在页面中展示它</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;!-- App.vue --&gt;
+&lt;template&gt;
+  &lt;v-app&gt;
+    &lt;v-main&gt;
+      &lt;!--  --&gt;
+    &lt;/v-main&gt;
+    
+    &lt;SideDrawer /&gt;
+  &lt;/v-app&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+// 使用 ``import`` 语句导入组件以使用该组件
+import SideDrawer from './components/SideDrawer.vue';
+
+export default {
+  // 
+}
+&lt;/script&gt;
+</code></pre><p>现在整个界面的样子：</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.前端开发速成，帮你快速实现自己的想法/Preview1.png" alt="预览图1" loading="lazy" tabindex="0"></div><p>很好！让我们再创建一个界面底栏的组件。类似地，在 <code>components</code> 目录下新建一个名为 <code>BottomBar.vue</code> 的文件，这是页面中的底栏组件。</p><p>我们依然使用 Vuetify 的<a href="https://vuetifyjs.com/en/components/bottom-navigation/" target="_blank">对应的组件</a>来开发</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;!-- BottomBar.vue --&gt;
+&lt;template&gt;
+&lt;v-footer app&gt;
+    &lt;v-text-field
+        density="compact"
+        rounded="pill"
+        variant="solo-filled"
+        flat hide-details
+    &gt;&lt;/v-text-field&gt;
+    &lt;v-btn class="ml-2" icon="mdi-magnify"&gt;&lt;/v-btn&gt;
+&lt;/v-footer&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+    // 
+}
+&lt;/script&gt;
+</code></pre><p>现在，我们的界面是这样：</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.前端开发速成，帮你快速实现自己的想法/Preview2.png" alt="预览图2" loading="lazy" tabindex="0"></div>
+    <p><a href="https://bhznjns.github.io/#static/编程/Web 前端/前端开发速成，帮你快速实现自己的想法.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

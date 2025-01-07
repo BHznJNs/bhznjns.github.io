@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曲线积分</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>曲线积分</h1><h2>第一类：对弧长的曲线积分</h2><p>公式如下：</p><div class="math"><img src="./katex-f8b228374a0e0e7af104af798fde58d1.png" alt=""></div><h2>第二类：对坐标的曲线积分</h2><p>公式如下：</p><div class="math"><img src="./katex-cef7fa2a9b69a85307137cb31e8f92fa.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/重积分/曲线积分.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

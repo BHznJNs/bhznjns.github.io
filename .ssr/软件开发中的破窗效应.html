@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>软件开发中的破窗效应</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>软件开发中的破窗效应</h1><blockquote><p>在城市中心，有些建筑干净漂亮，而另一些则破落不堪。为什么会这样？一些犯罪和城市衰败领域的研究人员发现了一个有趣的触发机制，只需一样东西就能非常迅速地把一幢干净完好的宜居建筑变成一个破败的废弃物。</p><p>一扇破窗。</p><p>一扇破损的窗户，只要一段时间不去修理，建筑中的居民就会潜移默化地产生一种被遗弃的感觉——当权者不关心这幢建筑的感觉。然后，其他的窗户也开始损坏，居民开始乱丢废物，墙上开始出现涂鸦，建筑开始出现严重的结构性损坏。在一段看上去很短的时间内，建筑的损坏程度就足以打消业主们想修好它的期望，被遗弃的感觉最终变成了现实。</p></blockquote><p>这即是破窗效应。</p><p>在软件开发中，同样存在着“破窗”（糟糕的设计、错误的决定、低劣的代码）。</p><p>如果你把项目中的破窗搁置不管，这种漠视会加速软件代码腐烂的过程。</p><p>对于代码中的破窗，每发现一个就应该赶紧修一个。如果没有足够的时间完全修好，那么就把它钉起来。你可以注释掉那些糟糕的代码，显示一行“尚未实现”的信息，或用假数据先替代一下。采取行动，预防进一步的损害发生，表明一切尽在你的掌握中。</p><hr><blockquote><p>一扇破窗——一段设计糟糕的代码，一个让团队在整个项目周期内都必须要遵守的糟糕管理决定——就是一切衰退的开始。如果你发现自己正处在有几扇破窗的项目中，就非常容易陷入这样的想法——“反正代码所有其他部分都是一坨屎，我只是随大流而已。”项目运作在这个时间点前是不是一直良好并不重要。在最初启发“破窗理论”的实验中，一辆废弃的汽车完好无损地停放了一个星期。但是一旦有一块玻璃被打破，这辆车在几个小时内就会被扒光并翻了个底朝天。</p><p>出于同样原因，如果身处一个健康团队，你们项目的代码如此完美——编写清晰、设计优良、简洁优雅——你就会倾向于格外地小心，不把它弄糟。</p></blockquote>
+    <p><a href="https://bhznjns.github.io/#static/读书笔记/程序员修炼之道/软件开发中的破窗效应.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

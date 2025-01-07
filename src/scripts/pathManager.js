@@ -6,7 +6,6 @@ import { scrollToTop } from "../utils/dom/scrollControl.js"
 
 const mainEl = document.querySelector("main")
 const newestHeader = document.querySelector("#newest-header")
-console.log(newestHeader)
 const directoryHeader = document.querySelector("#directory-header")
 const articleEl = document.querySelector("article")
 const indexDirPath = "./.index/"

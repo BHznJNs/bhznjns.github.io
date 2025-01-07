@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多语言字数统计</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>多语言字数统计</h1><p>在实现本项目的字数统计功能时，需要编写一个用来统计多语言混合文本的函数。</p><p>鉴于没有找着现成好用的库，于是我决定自己编写一个。</p><p>实现逻辑倒也简单：语言可以分为中日韩和其它语言，对于中日韩语，对每个字符单独计数；对其它语言，则按照单词来计数。</p><p>我们可以通过正则表达式来分别实现。</p><p>对于中日韩语，我们可以使用如下正则表达式：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const cjkPattern = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/gu
+</code></pre><p>其中的 <code>\p{Script=Han}</code> 是 JavaScript 正则表达式 <ruby data-notation="Unicode property escapes">Unicode 属性转义<rp>(</rp>,<rt>Unicode property escapes</rt>,<rp>)</rp></ruby> 的语法，该语法在 ES9（ES2018）中加入。使用该语法，你无需使用类似于 <code>[\u4e00-\u9fa5]</code> 这种指定 Unicode 编码范围的方式指定中文，使代码更简洁易懂。此正则表达式可以匹配字符串中的每一个中文字符、日文假名和韩文字符。</p><p>类似地，我们还有如下正则表达式，可以匹配西欧多门语言（法语、德语、西班牙语等）、希腊字母、阿拉伯字母、西里尔字母和数字。</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const euPattern = /[A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF]+/g
+const grPattern = /\p{Script=Greek}+/gu
+const arPattern = /\p{Script=Arabic}+/gu
+const cyPattern = /\p{Script=Cyrillic}+/gu
+const numberPattern = /(\-|\+)?\d+(\.\d+)?/g
+</code></pre><p>对于给定的字符串和一个匹配规则，可以写出如下代码：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">let para    // 给定的字符串
+let pattern // 给定的匹配规则
+
+const matched = para.match(pattern)
+// 如果无匹配结果，``match`` 的返回值为 null
+const count = matched !== null ? matched.length : 0
+</code></pre><p>所以我们的最终实现如下：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const cjkPattern = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/gu
+const euPattern = /[A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF]+/g
+const grPattern = /\p{Script=Greek}+/gu
+const arPattern = /\p{Script=Arabic}+/gu
+const cyPattern = /\p{Script=Cyrillic}+/gu
+const nuPattern = /(\-|\+)?\d+(\.\d+)?/g
+
+const patternList = [
+    cjkPattern,
+    euPattern,
+    grPattern,
+    arPattern,
+    cyPattern,
+    numberPattern,
+]
+
+function countWord(para="") {
+    if (para.length === 0) {
+        // 对于空字符串
+        return 0
+    }
+
+    const totalCount = patternList
+        .map(pattern =&gt; {
+            const matched = para.match(pattern)
+            const count   = matched !== null ? matched.length : 0
+            return count
+        })
+        .reduce((accumulator, current) =&gt;
+            accumulator += current)
+    
+    return totalCount
+}
+</code></pre>
+    <p><a href="https://bhznjns.github.io/#static/编程/Web 前端/多语言字数统计.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

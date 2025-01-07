@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>直流电机</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>直流电机 | DC Motor</h1><h2>理想直流电机 | Ideal DC Motor</h2><p>线圈产生电压公式：</p><div class="math"><img src="./katex-fc017f01bec0f1312c8c24d68fca6a0b.png" alt=""></div><ul><li><span class="math"><img src="./katex-62e18d0b22da522f703160525f3ac4a1.png"></span>: armature generated voltage</li><li><span class="math"><img src="./katex-a5f3c6a11b03839d46af9fb43c97c188.png"></span>: armature constant. Depend on the number of turns and the method of interconnecting the armature coils.</li><li><span class="math"><img src="./katex-3078b39dc93df455957d74113acc12b4.png"></span>: total flux of the field system</li><li><span class="math"><img src="./katex-75b88a1987b33f78f5a8b7ebdf5f2618.png"></span>: rotational speed</li></ul><p>Angular velocity <span class="math"><img src="./katex-75b88a1987b33f78f5a8b7ebdf5f2618.png"></span>(rad/s) & revolutions per second:</p><div class="math"><img src="./katex-79ee783f7f37d562e857a59326ffa192.png" alt=""></div><p>Revolutions per minute (rpm):</p><div class="math"><img src="./katex-cbf38baa3c51f1fa350e4ddcdbd0c47b.png" alt=""></div><p>产生扭矩公式：</p><div class="math"><img src="./katex-6a641809698a0f6d959ac3bf81c6c638.png" alt=""></div><ul><li>T<sub>d</sub>: developed torque (Nm)</li><li>i<sub>a</sub>: armature current (A)</li></ul><hr><p>Voltage on armature:</p><div class="math"><img src="./katex-c7909a490cb50c56e55424b97af87d6f.png" alt=""></div><p>当扭矩负载较低时，电流 i<sub>a</sub> 可忽略不计，此时电机转速：</p><div class="math"><img src="./katex-9049b4f4ac5372e55f6292c8428f176a.png" alt=""></div><h3>能量效率和损失 | Efficiency: energy conversion and power loss</h3><div class="math"><img src="./katex-7e52abbc6dc15bfe3def3637f0428e3b.png" alt=""></div><ul><li><span class="math"><img src="./katex-cd38329cc7631919d1679d55a0fce0c1.png"></span>: armature electrical input power</li><li><span class="math"><img src="./katex-3cfb4ff3765cce84afd43dcb24d8545d.png"></span>: power lost in resistance</li><li><span class="math"><img src="./katex-6d706ae58df626dfd630deccc7342909.png"></span>: developed gross mechanical power</li></ul><div class="math"><img src="./katex-57521c4aeb6c7fede2d973b827e5a24c.png" alt=""></div><ul><li><span class="math"><img src="./katex-2513e546a51dc571bda3d6b600f65685.png"></span>: developed torque</li><li><span class="math"><img src="./katex-425801eab1cf896cb55b2f975e11330d.png"></span>: shaft torque (output)</li><li><span class="math"><img src="./katex-499d34d232c0d5e3f54d73df75da3ba3.png"></span>: mechanical loss torque</li></ul>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电磁学与电机导论/直流电机.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

@@ -1,8 +1,9 @@
 import proc from "node:child_process"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
-import Crypto from "crypto-js"
 import qrcodeRenderer from "./qrcode.js"
+import { ssrResourcePath } from "../path.js"
+import calculateMD5 from "../md5.js"
 // import echartsRenderer from "./echarts.js"
 
 const __filename = fileURLToPath(import.meta.url)
@@ -83,15 +84,19 @@ function renderEnd() {
 }
 
 export function render(chartContent, type) {
-    const outputDir = "./.rss_resources/"
     const extname = [
         "flowchart",
         "sequence",
         "railroad",
         "qrcode",
     ].includes(type) ? "svg" : "png"
-    const filename = `${type}-${Crypto.MD5(chartContent).toString()}.${extname}`
-    taskQueue.push(chartContent, type, outputDir + filename)
+    const md5 = calculateMD5(chartContent)
+    const filename = `${type}-${md5}.${extname}`
+    if (globalThis.__SSRCache__.get(filename) !== undefined) {
+        return filename
+    }
+    globalThis.__SSRCache__.set(filename, md5)
+    taskQueue.push(chartContent, type, path.join(ssrResourcePath, filename))
     return filename
 }
 

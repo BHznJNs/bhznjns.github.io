@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交流电路导入</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>交流电路导入 | AC (sinusoidal) currents and voltages</h1><h2>余弦波形 | Sinusoidal Signals</h2><div class="math"><img src="./katex-11c920e8cf01efab22e8ddba6f70bb51.png" alt="余弦波形基本属性"></div><h3>余弦波的相变 | The Phase of a Sinusoidal</h3><div class="math"><img src="./katex-421ea6b0ee3f755136966865e7e86735.png" alt="余弦波的相变"></div><p>相当于相比原函数向左位移了 <span class="math"><img src="./katex-8647849adb8a781d3118a78d14437d33.png"></span> seconds。</p><blockquote><p>注意：<span class="math"><img src="./katex-1ed346930917426bc46d41e22cc525ec.png"></span> 使用弧度制单位！</p></blockquote><hr><h2>交流电路的平均功率</h2><p>交流电路中的有效电流和有效电压：</p><div class="math"><img src="./katex-f25272014a0cec2cedc32ded09699c38.png" alt="有效电流和有效电压"></div><p>root-mean-square(RMS) 电流和电压：</p><div class="math"><img src="./katex-6cc0778dc9cd468fc48a5aa2102a015b.png" alt="RMS 电流和电压"></div><p>交流电路的平均功率（对于电阻）：</p><div class="math"><img src="./katex-00a9d284cc48b93a1c71d4cbb2897531.png" alt="平均功率"></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电路装置/交流电路导入.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

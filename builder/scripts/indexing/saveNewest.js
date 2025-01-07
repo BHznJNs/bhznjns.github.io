@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs"
+import { writeFile } from "node:fs/promises"
 import config from "../../../build.config.js"
 import slice from "../../utils/slice.js"
 import { indexFilePath } from "../../utils/path.js"
@@ -17,7 +17,7 @@ function isInIgnoredDir(path, ignoredDirs) {
 }
 
 
-export default function(newestList) {
+export default async function(newestList) {
     const ignoreDirs = config.newestIgnoredDir
     const filtered = newestList.filter(item =>
         !isInIgnoredDir(item.path, ignoreDirs)
@@ -26,9 +26,10 @@ export default function(newestList) {
     const count  = sliced.length
 
     let index = 0
+    let tasks = []
     for (const slice of sliced) {
         index += 1
-        writeFileSync(indexFilePath + "newest_" + index, JSON.stringify({
+        const task = writeFile(indexFilePath + "newest_" + index, JSON.stringify({
             total: count,
             current: index,
             content: slice.map(item => {
@@ -39,5 +40,7 @@ export default function(newestList) {
                 }
             }),
         }))
+        tasks.push(task)
     }
+    await Promise.all(tasks)
 }

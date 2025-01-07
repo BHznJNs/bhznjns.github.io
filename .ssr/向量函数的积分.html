@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>向量函数的积分</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>向量函数的积分</h1><h2>定义</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/向量函数/.向量函数的积分/向量函数积分定义1.png" alt="向量函数积分定义" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/向量函数/.向量函数的积分/向量函数积分定义2.png" alt="向量函数积分定义" loading="lazy" tabindex="0"></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/向量函数/向量函数的积分.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

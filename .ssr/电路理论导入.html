@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电路理论导入</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>电路理论导入 | Introduction</h1><h2>三个假设前提 | Three Assumptions</h2><ol><li>electrical effects happen <strong>instantaneously</strong> throughout the system.</li><li>We assume that the net charge on every component in the system is always zero.</li><li>We assume that there is no magnetic coupling between the components of a system.</li></ol><h2>电荷 | Charge</h2><p>q Coulomb (C)</p><h2>电流 | Current</h2><p>Flow of electric charge in a conductor</p><p>i = dq / dt</p><p>Unit: Ampere (A)</p><h2>电压 | Voltage</h2><p>This potential energy difference per charge.</p><p>v = dw / dq</p><p>Unit: Volt (V)</p><h2>电阻 | Resistance</h2><div class="math"><img src="./katex-c7757a1366d9a9e4ceae868dcf36b26c.png" alt=""></div><h3>电阻率 | Resistivity</h3><div class="math"><img src="./katex-23b089943edeeea43e2e03ac59cd5f8b.png" alt=""></div><h2>电导 | Conductance</h2><p>电阻的倒数 | The reciprocal of the resistance.</p><p>G = 1 / R</p><p>Unit: siemens(S)</p>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电路装置/电路理论导入.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

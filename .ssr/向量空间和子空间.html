@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>向量空间和子空间</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>向量空间和子空间 | Vector Spaces and Subspaces</h1><h2>向量空间概念</h2><p>一个向量空间，即一个向量集合。该集合满足以下特性：</p><ol><li>任一集合中向量与任意标量的乘积同样在该集合中</li><li>任意两个向量的任意线性组合也在该集合中</li></ol><h2>子空间概念</h2><p>任意子空间都是一个向量空间，因此子空间具有向量空间的所有性质。</p><p>任意向量空间同时也是更大的向量空间的子空间。</p><details><p>只有零向量的空间，即 <span class="math"><img src="./katex-25ca085b93d5c9ff1ba695a060a5042a.png"></span></p><summary> {零子空间}(Zero Subspace)</summary></details><h2>生成空间 | Span</h2><p>设两个向量 <span class="math"><img src="./katex-3acc50957be2d7e71a7ae2429e49d273.png"></span>，</p><p><span class="math"><img src="./katex-fcf87b9aee134d5a0f32d544bf3e7470.png"></span> 即为由集合 <span class="math"><img src="./katex-c454c9762a6dc72cba59760fc1ed439b.png"></span> 生成的子空间。</p><p>该子空间中元素为集合中所有元素的任意线性组合的集合。</p><h3>零空间 | Null Space</h3><p>对于矩阵 A，其对应的零空间定义为：</p><div class="math"><img src="./katex-9e80b80d5faef488c806045c49594ac3.png" alt=""></div><h3>列空间 | Column Space</h3><p>对于 <span class="math"><img src="./katex-fbfeb9c8459fee5a2bd529c07b881153.png"></span> 的矩阵 A，其可以看作是 n 个向量的组合 <span class="math"><img src="./katex-efdca419dccf11abc9a6217e97e8fbe2.png"></span>，其列空间</p><div class="math"><img src="./katex-583090150eb2c696bb4a074927f3974c.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/线性代数/向量空间和子空间.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二进制运算</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>二进制运算</h1><h2><ruby data-notation="Addition">加法<rp>(</rp>,<rt>Addition</rt>,<rp>)</rp></ruby></h2><p>和十进制加法相同，从低位加到高位，如果结果大于 1 则进位。</p><details><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0"> 190  10111110
++141  10001101
+--------------
+ 331 101001011
+</code></pre><summary> 例</summary></details><h2><ruby data-notation="Subtraction">减法<rp>(</rp>,<rt>Subtraction</rt>,<rp>)</rp></ruby></h2><p>将减法转化为加法进行计算，可以复用加法结构（加法器）。</p><h2><ruby data-notation="Shift">移位<rp>(</rp>,<rt>Shift</rt>,<rp>)</rp></ruby></h2><ul><li>Shift left:</li><ul><li>SL</li><li>LSL (logic shift left)</li><li>&lt;&lt;1</li></ul><li>Logic shift right: 所有位右移后最高位补零</li><ul><li>LSR (logic shift right)</li><li>LRS (logic right shift)</li><li>SR (shift right)</li><li>&gt;&gt;1</li></ul><li>Arithmetic shift right: 所有位右移后最高位补上原来最高位的值</li><ul><li>ASR (arithmetic shift right)</li><li>ARS (arithmetic right shift)</li></ul></ul><h2><ruby data-notation="Multiplication by powers of 2">乘以 2 的幂<rp>(</rp>,<rt>Multiplication by powers of 2</rt>,<rp>)</rp></ruby></h2><p>一个数乘以 2<sup>x</sup> 即左移 x 位</p><p>对于无符号：</p><p>如果左移过多，使最左的 1 溢出，则会导致计算结果错误。</p><p>对于补码：</p><p>如果左移后，符号位发生变化，则会导致计算结果错误。</p><h2><ruby data-notation="Divisions by powers of 2">除以 2 的幂<rp>(</rp>,<rt>Divisions by powers of 2</rt>,<rp>)</rp></ruby></h2><p>根据编码方式使用算术右移或逻辑右移。</p><p>对于无符号，使用逻辑右移</p><p>对于补码，使用算术右移</p><h2>Flags</h2><ul><li>Carry flag: indicates an error when the result of anoperation on binary (unsigned) numbers cannot berepresented with the chosen bit-width.</li><li>Overflow flag: indicates an error when the result of an operation on 2’s complement numbers cannot be represented with the chosen bit-width.</li><li>Sign flag (S or N): indicates that the MSB is set; i.e. the number is negative if it were in 2’s complement.</li><li>Zero flag (Z): indicates that the result of the arithmetic operation is zero.</li></ul>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/数字系统与微处理器设计/二进制运算.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

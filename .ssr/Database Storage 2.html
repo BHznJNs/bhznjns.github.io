@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Storage 2</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>Database Storage (2)</h1><h3>Potential problems with the slotted page design</h3><ul><li>Fragmentation</li><li>Useless Dist I/O</li><li>Random Disk I/O</li></ul><h2>Log-Structured Storage</h2><p>使用日志记录的方式保存对 tuple 的修改（通常有两种修改方式 <code>PUT</code> 和 <code>DELETE</code>），新的记录只需附加在日志文件末尾而无需查询先前的记录。</p><ul><li>每条记录必须包含要修改的 tuple 的标识符</li><li>PUT 操作的记录要包含 tuple 内容</li><li>DELETE 操作把 tuple 标记为被删除</li></ul><hr><p>当一页写满时，DBMS 会将其写入硬盘并开始写入下一页，从而减少硬盘读写次数</p><ul><li>All disk writes are sequential.</li><li>On-disk pages are <strong>immutable</strong>.</li></ul><hr><p>要从一个给定的 tuple id 查询对应的数据，DBSM 会以从新到旧的顺序查询日志，这可能会耗费很长时间并且要对硬盘进行多次读取。</p><p>在内存中维护一个索引，这个索引能够将 tuple id 映射到对应最新的那条日志记录</p><ul><li>If log record is in-memory, just read it.</li><li>If log record is on a disk page, retrieve it.</li><li>We will discuss indexes in two weeks.</li></ul><h3>Compaction</h3><p>通过串联数个日志文件中的记录，移除其中不需要的记录，组成新的日志文件。</p><p>对于每个 tuple id 对应的日志记录，只需保存最新的一条，这可以减少日志占用的硬盘空间，实现 compaction。</p><p>在实现 compaction 后，可以将剩余的记录按照 tuple id 排序，以提升查询效率（Time order to Tuple Id order）。</p><p>实现例子：<u>Sorted String Tables</u>(SSTables) 在如下数据库中</p><p>Universal Compaction(rocksdb) Level Compaction(leveldb)</p><h3>Downsides</h3><ul><li>Write-Amplification</li><li>Compaction is Expensive</li></ul><h2>Tuple Storage</h2><p><strong>INTEGER</strong>/<strong>BIGINT</strong>/<strong>SMALLINT</strong>/<strong>TINYINT</strong></p><ul><li>C/C++ Representation</li></ul><p><strong>FLOAT</strong>/<strong>REAL</strong> vs. <strong>NUMERIC</strong>/<strong>DECIMAL</strong></p><ul><li>IEEE-754 Standard / Fixed-point Decimals</li></ul><p><strong>VARCHAR</strong>/<strong>VARBINARY</strong>/<strong>TEXT</strong>/<strong>BLOB</strong>(variable length)</p><ul><li>Header with length, followed by data bytes.</li><li>Need to worry about collations / sorting.</li></ul><p><strong>TIME</strong>/<strong>DATE</strong>/<strong>TIMESTAMP</strong></p><ul><li>32/64-bit integer of (micro)seconds since Unix epoch</li></ul><h3>Large Values</h3><p>通常，一个 tuple 的大小不能大于单个页的大小。</p><p>对于一些大于单页大小限制的数据，DBMS 会使用<ruby data-notation="Overflow">溢出<rp>(</rp>,<rt>Overflow</rt>,<rp>)</rp></ruby>存储页存储该数据，在原来的页本该存储该数据的位置会留下说明该溢出页存储位置的数据。</p><ul><li>Postgres: TOAST (&gt;2KB)</li><li>MySQL: Overflow (&gt;½ size of page)</li><li>SQL Server: Overflow (&gt;size of page)</li></ul><h3>External Value Storage</h3><p>当需要在数据库中存入大量文本，图片、视频、音频等多媒体文件，二进制文件如 PDF 文件、Excel 表格等时，可以使用<ruby data-notation="External Value Storage">外部值存储<rp>(</rp>,<rt>External Value Storage</rt>,<rp>)</rp></ruby>。</p><ul><li>向字段中存入指向另外硬盘文件或位于远程服务器上文件的引用（通常为 URI/URL）而不是直接存入数据</li><li>当需要读数据时，从数据库获取文件引用再对文件进行读取</li><li>DBSM 通常无法操作外部文件</li><ul><li>No durability protections『</li><li>No transaction protections『</li></ul></ul><h3>System Catalogs</h3><p>Stores meta-data about databases</p><ul><li>Tables, columns, indexes, views</li><li>Users, permissions</li><li>Internal statistics</li></ul><h4>Access Table Schema</h4><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">-- Postgres
+\d;
+</code></pre><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">-- MySQL
+SHOW TABLES;
+</code></pre><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">-- SQLite
+.tables
+</code></pre>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/数据库系统-CMU-15445/Database Storage 2.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

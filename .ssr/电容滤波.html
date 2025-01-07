@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电容滤波</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>电容滤波 | Capacitor Smoothing Circuit</h1><h2>图例</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.电容滤波/电容滤波电路示例.png" alt="电容滤波电路示例" loading="lazy" tabindex="0"></div><h2>波纹系数 | Ripple Factor</h2><div class="math"><img src="./katex-7c4c70f1ed1a13dc927ac55c7193bbe1.png" alt="Ripple Factor 公式"></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电子器件与电路原型/电容滤波.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

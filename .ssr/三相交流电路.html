@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三相交流电路</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>三相交流电路 | 3-phase AC systems</h1><div class="math"><img src="./katex-4b0d1179b2d7cd3e138b48f1125935d4.png" alt=""></div><h2>Star Connection</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电磁学与电机导论/.三相交流电路/star_connected_current.png" alt="star connected current sample picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-e19f200e0cd823b6b817d661532853ab.png" alt=""></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电磁学与电机导论/.三相交流电路/star_connected_voltage.png" alt="star connected voltage sample picture" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电磁学与电机导论/.三相交流电路/star_connected_relationships.png" alt="star connected relationships picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-694126c632a85a5b5283d15e2512ec70.png" alt=""></div><h2>Delta Connection</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电磁学与电机导论/.三相交流电路/delta_connected_voltage.png" alt="delta connected voltage sample picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-307b129c1a4ad948a5321090b47a235b.png" alt=""></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电磁学与电机导论/.三相交流电路/delta_connected_current.png" alt="delta connected current sample picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-242638273ba51a6b5027031b74452765.png" alt=""></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电磁学与电机导论/.三相交流电路/delta_connected_relationships.png" alt="delta connected relationships picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-ac015ddd298ce94223ee66f3b70c8dd6.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电磁学与电机导论/三相交流电路.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

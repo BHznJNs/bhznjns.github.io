@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern SQL</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>Modern SQL</h1><p></p><p>SQL is based on <strong>bags</strong>(duplicates & defined order) not <strong>sets</strong>(no duplicates & no order)</p><h2>Aggregates</h2><ul><li><strong>AVG(col)</strong> Return average col value</li><li><strong>MIN(col)</strong> Return minimum col value</li><li><strong>MAX(col)</strong> Return maximum col value</li><li><strong>SUM(col)</strong> Return sum of values in col</li><li><strong>COUNT(col)</strong> Return count of values for col</li></ul><p>使用 <code>GROUP BY</code> 分组数据</p><p>使用 <code>HAVING</code> 筛选 <code>GROUP BY</code> 分组后的数据</p><h2>String Operations</h2><p>不同的数据库对字符串有不同的处理方式，你可能无法直接在一个数据库中使用在另一个数据库中能够正常工作的 SQL。</p><div class="table"><table><thead><tr><th></th><th>String Case</th><th>String Quotes</th></tr></thead><tbody><tr><td>SQL-92</td><td>Sensitive</td><td>Single Only</td></tr><tr><td>Postgres</td><td>Sensitive</td><td>Single Only</td></tr><tr><td>MySQL</td><td>Insensitive</td><td>Single/Double</td></tr><tr><td>SQLite</td><td>Sensitive</td><td>Single/Double</td></tr><tr><td>MSSQL</td><td>Sensitive</td><td>Single Only</td></tr><tr><td>Oracle</td><td>Sensitive</td><td>Single Only</td></tr></tbody></table></div><h3>用 LIKE 来进行字符串匹配</h3><ul><li>用 <code>'%'</code> 匹配任意子字符串</li><li>用 <code>'_'</code> 匹配任意单个字符</li></ul><h2>Date / Time Operations</h2><p>当前时间</p><p>日期差值计算</p><h2>Output Redirection</h2><p>将通过一些操作产生的表插入到一个已存在的表或新表中。</p><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">CREATE TABLE CourseIds (
+  SELECT DISTINCT cid FROM enrolled);
+</code></pre><h2>Output Control</h2><ul><li><code>ORDER BY</code> 将输出的表按照其中某一列以升序或降序排序</li><li><code>LIMIT</code> 限制输出的表的元组数量，也可以设置偏移量</li></ul><h2>Nested Queries</h2><p>SQL 不止可以从现有的表中进行操作，产生新表，也可以对其它操作产生的表进一步操作，产生新表。</p><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">SELECT name FROM student
+  WHERE sid IN (SELECT sid FROM enrolled)
+</code></pre><p>针对子查询的操作符：</p><ul><li><code>ALL</code> <ruby data-notation="Must satisfy expression for all rows in the sub-query">将主查询中的元组与子查询中的所有元组进行比较，当所有比较通过时条件成立<rp>(</rp>,<rt>Must satisfy expression for all rows in the sub-query</rt>,<rp>)</rp></ruby></li><li><code>ANY</code> <ruby data-notation="Must satisfy expression for at least one row in the sub-query">与 ALL 相似，但只要与子查询中任一元组满足条件即可<rp>(</rp>,<rt>Must satisfy expression for at least one row in the sub-query</rt>,<rp>)</rp></ruby>.</li><li><code>IN</code> Equivalent to '=ANY()' .</li><li><code>EXISTS</code> <ruby data-notation="At least one row is returned without comparing it to an attribute in outer query">检查子查询，当子查询返回至少一个元组时条件成立<rp>(</rp>,<rt>At least one row is returned without comparing it to an attribute in outer query</rt>,<rp>)</rp></ruby></li></ul><h2>Window Functions</h2><ul><li>Aggregation functions: 即上文提及的 Aggregates</li><li>Special window functions:</li><ul><li><code>ROW_NUMBER()</code> count of the current row</li><li><code>RANK()</code> Order position of the current row</li></ul></ul><p>选取 <code>enrolled</code> 表中所有的元组并附加行号</p><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">SELECT *, ROW_NUMBER() OVER () AS row_num
+  FROM enrolled
+</code></pre><p>选取每门课成绩第二高的学生</p><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">SELECT * FROM (
+  SELECT *, RANK() OVER (PARTITION BY cid
+    ORDER BY grade ASC) AS rank
+  FROM enrolled) AS ranking
+WHERE ranking.rank = 2
+</code></pre><h2>Common Table Expressions</h2><p>将查询结果存到临时的表中</p><p>示例：</p><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">WITH cteName AS (
+  SELECT 1
+)
+SELECT * FROM cteName
+</code></pre><p>在 CTE 中绑定新的列名：</p><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">WITH cteName (col1, col2) AS (
+  SELECT 1, 2
+)
+SELECT col1 + col2 FROM cteName
+</code></pre><p>使用 <code>RECURSIVE</code> 以在 CTE 中使用自身：</p><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">WITH RECURSIVE cteSource (counter) AS (
+  (SELECT 1)
+  UNION ALL
+  (SELECT counter + 1 FROM cteSource
+    WHERE counter &lt; 10)
+)
+SELECT * FROM cteSource
+</code></pre>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/数据库系统-CMU-15445/Modern SQL.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

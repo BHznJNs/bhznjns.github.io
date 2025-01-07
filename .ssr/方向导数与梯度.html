@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方向导数与梯度</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>方向导数与梯度 | Directional Derivatives and the Gradient Vector</h1><h2>方向导数 | Directional Derivatives</h2><p>对于函数 <span class="math"><img src="./katex-dcb4b11103c790ee2a644f948a572a40.png"></span>，在方向 <span class="math"><img src="./katex-8c9aac40bbfe019d37e739ccf1222dd3.png"></span> 上的方向向量：</p><div class="math"><img src="./katex-ce8bf3d9553beaaa4e8bffcfbd626785.png" alt="方向向量公式"></div><hr><h2>梯度向量 | Gradient Vector</h2><p>对于函数 <span class="math"><img src="./katex-dcb4b11103c790ee2a644f948a572a40.png"></span>，其梯度</p><div class="math"><img src="./katex-0d55897af57e1caa3df92d878d37bda3.png" alt="梯度向量公式"></div><hr><h3>方向导数与梯度向量的关系</h3><p>方向导数即为梯度向量与该方向的<strong>单位向量</strong>的点乘</p><div class="math"><img src="./katex-ba0a28872ba61af1bd2deef6a97500fc.png" alt=""></div><p>梯度向量方向的方向导数最大，即</p><div class="math"><img src="./katex-af5d7bb93523b69001921ff5e8f0e257.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/偏导数/方向导数与梯度.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

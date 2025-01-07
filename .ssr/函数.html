@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>函数定义</h1><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@&lt;function-name&gt;(param: Type) {
+    # function body
+}
+</code></pre><p>函数中使用 <code>return</code> 关键字返回值</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@&lt;function-name&gt;(param: Type) {
+    return &lt;value&gt;
+}
+</code></pre><p>默认参数</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@&lt;function-name&gt;(param: Type = &lt;default-value&gt;) {
+    # function body
+}
+</code></pre><p>可变参数数量</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@&lt;function-name&gt;(param: Type, ..rest) {
+    # rest 为剩余参数组成的裸数组
+}
+</code></pre><p>匿名函数：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">&lt;variable-name&gt; = @(param: Type) {
+    # function body
+}
+</code></pre><hr><p>使用示例：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@fibonacci(i: Number) {
+    if i &lt; 0 {
+        println("Error: input should be larger than 0")
+    }
+    if i == 1 | i == 2 {
+        return 1
+    }
+    return fibonacci(i - 1) + fibonnaci(i - 2)
+}
+</code></pre>
+    <p><a href="https://bhznjns.github.io/#static/编程/集成计算环境 ICE/2.0 版本语法草案/函数.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

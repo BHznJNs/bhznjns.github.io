@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>向量函数与其切线</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>向量函数与其切线</h1><h2>向量函数求导定义</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/向量函数/.向量函数与其切线/向量函数求导定义.png" alt="向量函数求导定义" loading="lazy" tabindex="0"></div><h2>速度向量与加速度向量</h2><p><code>v(t)</code> 是 <code>r(t)</code> 的速度向量和切线向量。</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/向量函数/.向量函数与其切线/速度向量与加速度向量.png" alt="速度向量与加速度向量" loading="lazy" tabindex="0"></div><p><code>T(t)</code> 单位切线向量</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/向量函数/.向量函数与其切线/单位切线向量.png" alt="单位切线向量" loading="lazy" tabindex="0"></div><h2>向量函数求导法则</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/向量函数/.向量函数与其切线/向量函数求导法则.png" alt="向量函数求导法则" loading="lazy" tabindex="0"></div><h1>单元公式总结</h1><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/向量函数/.向量函数与其切线/向量函数求导法则.png" alt="单元公式总结" loading="lazy" tabindex="0"></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/向量函数/向量函数与其切线.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

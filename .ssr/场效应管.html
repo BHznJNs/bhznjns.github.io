@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>场效应管</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>场效应管 | Field Effect Transistors (FETs)</h1><h2>结型场效应管 | Junction Field Effect Transistor (JFET)</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.场效应管/结型场效应管图示.png" alt="结型场效应管图示" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.场效应管/结型场效应管特性图1.png" alt="结型场效应管特性图1" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.场效应管/结型场效应管特性图2.png" alt="结型场效应管特性图2" loading="lazy" tabindex="0"></div><p>结型场效应管有如下性质：</p><ol><li><span class="math"><img src="./katex-ec58c93854c48ee4f4b43876f7a234ca.png"></span></li><li>当 <span class="math"><img src="./katex-15add27ab9aeea4365d992dcb20b1c43.png"></span> 时，<span class="math"><img src="./katex-ec5fc0c3008064a5f5cab938d5b756de.png"></span> 饱和</li><li>在 <span class="math"><img src="./katex-ec5fc0c3008064a5f5cab938d5b756de.png"></span> 饱和前，有 <span class="math"><img src="./katex-c5b56ae237b1df853b2b642883e4f803.png"></span></li><li>当 <span class="math"><img src="./katex-b6f74e879bc845f4dba0e15afc125b6d.png"></span> 时，<span class="math"><img src="./katex-a443e2fd56591c0c1789433ccbbcb218.png"></span> (Cut off)</li><li>当 <span class="math"><img src="./katex-aa4cdf9362b4d52091d765f3e1c16ad0.png"></span>，<span class="math"><img src="./katex-1eb0d1a845c8f35e16126ff81e2773fa.png"></span> (Pinch-off)</li><li><span class="math"><img src="./katex-e01121c8b0d138d2e59f7a8c99ddc312.png"></span>, <span class="math"><img src="./katex-311bf071233ec73b45128802bdbd557f.png"></span></li></ol><h2>金属氧化物半导体场效应晶体管 | Metal Oxide Semiconductor Field Effect Transistor (MOSFET)</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.场效应管/金属氧化物半导体场效应晶体管图示.png" alt="金属氧化物半导体场效应晶体管图示" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.场效应管/金属氧化物半导体场效应晶体管特性图.png" alt="金属氧化物半导体场效应晶体管特性图" loading="lazy" tabindex="0"></div><p>金属氧化物半导体场效应晶体管有如下性质：</p><ol><li>当 <span class="math"><img src="./katex-19cb4d349554a95fae2372d19a6a2f35.png"></span> 时，MOSFET 流通</li><li>当有电流通过 MOSFET 时，有 <span class="math"><img src="./katex-d17d3ea673a90733b0de475bbf4d730d.png"></span></li></ol><h2>脉宽调制 | Pulse Width Modulation (PWM)</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.场效应管/脉宽调制图示.png" alt="脉宽调制图示" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-2024bd6054f74497fe0fe55da1557fc0.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电子器件与电路原型/场效应管.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

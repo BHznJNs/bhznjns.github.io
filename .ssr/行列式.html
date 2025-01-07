@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行列式</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>行列式 | Determinants</h1><h2><ruby data-notation="minor">余子式<rp>(</rp>,<rt>minor</rt>,<rp>)</rp></ruby>和<ruby data-notation="cofactor">代数余子式<rp>(</rp>,<rt>cofactor</rt>,<rp>)</rp></ruby></h2><p>对于第 i 行第 j 列的余子式即将行列式去掉第 i 行和第 j 列后剩下元素组成的新行列式。</p><p>对于第 i 行第 j 列的代数余子式即其余子式乘上系数 <span class="math"><img src="./katex-b5eebcdb6770a8dff40a8461d70c94ba.png"></span>。</p><h2>行列式展开</h2><p>一个行列式对其某一行或某一列展开即将该行所有元素乘上其代数<strong>余子式</strong>的<strong>和</strong>。</p><p>例如，行列式 A 对于其第一行的展开表示为：</p><div class="math"><img src="./katex-84fbd690757df5c287871d0b1a2be2c0.png" alt=""></div><h2>行列式基本操作</h2><p>设 A 为原矩阵，B 为操作后产生的矩阵。</p><div class="table"><table><thead><tr><th>操作描述</th><th>操作结果</th></tr></thead><tbody><tr><td>一行加到另一行</td><td><span class="math"><img src="./katex-3e59bf8cc584c4187c875c7e071228e0.png"></span></td></tr><tr><td>两行交换</td><td><span class="math"><img src="./katex-a5e1232c06cb70be3b82ecb6470768c8.png"></span></td></tr><tr><td>一行乘上常数 k</td><td><span class="math"><img src="./katex-6bed095b1d602305ecadca172a59a8d9.png"></span></td></tr><tr><td>转置</td><td><span class="math"><img src="./katex-19b52709985ada158257e45ab5faa1d3.png"></span></td></tr><tr><td>矩阵乘法</td><td><span class="math"><img src="./katex-0d99fedd115bda61269f30550fdce413.png"></span></td></tr></tbody></table></div><h2>克莱姆法则 | Cramer's Rules</h2><p>对于一个方程组</p><div class="math"><img src="./katex-02cfa7c7536d04bb863dec1aa3e8544f.png" alt=""></div><p>有解</p><div class="math"><img src="./katex-a2a8e93c326bb6c8afb27b75fa012e55.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/线性代数/行列式.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Algorithms</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>Join Algorithms</h1><h2>Operation Output</h2><details><h3>Early Materialization</h3><p><strong>定义</strong>：在 <ruby data-notation="早期物化">Early Materialization<rp>(</rp>,<rt>早期物化</rt>,<rp>)</rp></ruby>中，数据库会在 JOIN 操作过程中尽早地将中间结果物化（即实际存储到临时表或内存中）。这意味着在完成部分 JOIN 步骤后，数据库会立即生成一个中间结果集，并将其存储下来。</p><p><strong>优点</strong>：</p><ul><li>可以减少后续操作中的计算量，因为一些数据已经被提前过滤或聚合了。</li><li>对于某些查询，可以提高性能，尤其是在 JOIN 后的数据集比原始表小很多的情况下。</li></ul><p><strong>缺点</strong>：</p><ul><li>需要额外的存储空间来保存中间结果。</li><li>如果中间结果非常大，可能会导致大量的 I/O 操作，从而降低性能。</li><li>在某些情况下，可能会产生不必要的物化步骤，如果这些中间结果随后被大量过滤掉的话。</li></ul><h3>Late Materialization</h3><p><strong>定义</strong>：在 <ruby data-notation="晚期物化">Late Materialization<rp>(</rp>,<rt>晚期物化</rt>,<rp>)</rp></ruby>中，数据库会尽量延迟物化过程，直到 JOIN 操作的最后阶段才生成最终的结果集。这意味着在 JOIN 的过程中，尽可能保持数据流式处理，只在必要时才进行物化。</p><p><strong>优点</strong>：</p><ul><li>减少了中间结果的存储需求，节省了存储空间。</li><li>可以更有效地利用缓存，因为在整个 JOIN 过程中，数据可以一直保留在内存中而不必写入磁盘。</li><li>有助于优化器更好地选择执行计划，因为它可以看到完整的逻辑结构。</li></ul><p><strong>缺点</strong>：</p><ul><li>如果 JOIN 操作非常复杂或者涉及的数据量非常大，流式处理可能会增加 CPU 的负担。</li><li>在某些情况下，可能需要多次扫描相同的表，这可能导致性能下降。</li></ul><summary> Early Materialization & Late Materialization</summary></details><h2>Cost Analysis Criteria</h2><p>Assume:</p><ul><li>M pages in table R, m tuples in R</li><li>N pages in table S, n tuples in S</li></ul><p>使用 IO 次数来衡量<ruby data-notation="cost">开销<rp>(</rp>,<rt>cost</rt>,<rp>)</rp></ruby></p><h3>Join VS Cross-Product</h3><p><strong>R⨝S</strong> is the most common operation and thus must be carefully optimized.</p><p><strong>R×S</strong> followed by a selection is inefficient because the cross-product is large.</p><p>There are many algorithms for reducing join cost, but no algorithm works well in all scenarios.</p><h2>Join Algorithms</h2><h3>Nested Loop Join</h3><p>对于数据量小的时候（比如内存可以完全容纳），直接使用嵌套循环进行 Join 操作的开销通常也可接受。</p><details><p>Pseudo-code for R⨝S:</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">foreach tuple r ∈ R:  // outer table
+ foreach tuple s ∈ S: // inner table
+  if r and s match then emit
+</code></pre><p><strong>Cost</strong>: M + (m ∙ N)</p><blockquote class="alert note"><p class="alert-title">笔记</p><p>这里的开销计算以没有页缓存为前提。</p></blockquote><p>这里将表 R 看做 outer table，S 看作 inner table。</p><p>这里的 M 由外层遍历产生，为遍历 R 的每一个 tuple，<strong>需要 M 次</strong>。</p><p>在读取 R 中的一个 page 之后，遍历其中的 tuple，对每个 tuple，都遍历一遍 S 中的每一个 tuple 进行比较。</p><p>遍历 S 中的 tuple 需要<strong>进行 N 次 IO</strong>，即需要读取 S 的每一个 page。</p><p>由于 R 中有 m 个 tuple，故需要<strong>遍历 m 次</strong> S 中的 tuple。</p><h3>Optimization</h3><p>Example database:</p><ul><li>Table R: M = 1000, m = 100,000</li><li>Table S: N = 500, n = 40,000</li><li>0.1 ms / IO</li></ul><p>R as outer table, S as inner table:</p><p><span class="math"><img src="./katex-99edd9973b599f0a3439ae17dac6ffb2.png"></span></p><p>S as outer table, R as inner table:</p><p><span class="math"><img src="./katex-5b4b9a1c5e4eb680917f1ae29e8cde17.png"></span></p><p>通过使用数据量更小的表作为 outer table，可以一定程度优化 Join 计算性能。</p><summary> Naive Nested Loop Join</summary></details><details><p>Pseudo code:</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">foreach block B_R ∈ R:
+ foreach block B_S ∈ S:
+  foreach tuple r ∈ B_R:
+   foreach tuple s ∈ B_s:
+    if r and s match then emit
+</code></pre><p><strong>Cost</strong>: M + (M ∙ N)</p><p>在 Nested Loop Join 中，对每个 outer table 中的 tuple 都遍历一遍 inner table。</p><p>在 Block Nested Loop Join 中，则变为对每个 outer table 中的 page 都遍历一遍 inner table，从而减少对 inner table 遍历的次数，减少总的 IO 次数。</p><p>和 Nested Loop Join 中相同，使用数据量更小的表作为 outer table。</p><h3>Optimization</h3><p>假设<ruby data-notation="buffer page">缓存池<rp>(</rp>,<rt>buffer page</rt>,<rp>)</rp></ruby>中可以容纳 B 个 page。</p><ul><li>outer table 中的 page 使用 <strong>B - 2</strong> 个 buffer page</li><li>inner table 中的 page 使用 1 个 buffer page</li><li>计算结果使用 1 个 buffer page</li></ul><p>Pseudo-code:</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">foreach B - 2 pages p_R ∈ R:
+ foreach page p_S ∈ S:
+  foreach tuple r ∈ B - 2 pages:
+   foreach tuple s ∈ p_s:
+    if r and s match then emit
+</code></pre><p><strong>Cost</strong>: <span class="math"><img src="./katex-72b71c0e959a3ded1b32ddb8ea5fd392.png"></span></p><h3>一种理想情况</h3><p>如果缓存池中能够容纳 outer table，即 <span class="math"><img src="./katex-4274e85fbc62d8375ed97806aad8caf4.png"></span></p><p><strong>Cost</strong>: M + N</p><summary> Block Nested Loop Join</summary></details><details><p>Pseudo-code:</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">foreach tuple r ∈ R:
+ foreach tuple s ∈ Index(r_i = s_j):
+  if r and s match then emit
+</code></pre><p>Assume the cost of each index probe is some constant <code>C</code> per tuple.</p><p><strong>Cost</strong>: M + (m ∙ C)</p><blockquote><p>注：对于一张表，比较常用的索引为 B+ 树</p></blockquote><summary> Index Nested Loop Join</summary></details><h3>Sort-Merge Join</h3><details><h3>Phase #1: Sort (排序阶段)</h3><ul><li><strong>目的</strong>：确保两个参与连接的表都基于它们的连接键进行了排序。</li><li><strong>过程</strong>：对每个表中的数据根据一个或多个指定的连接键进行排序。可以使用任何适合的排序算法来完成这一步骤，比如快速排序、堆排序等。</li><li><strong>注意事项</strong>：这个排序过程是独立于外部归并排序（external merge sort）的排序/合并阶段的。也就是说，这里提到的排序是指为了准备执行Sort-Merge Join而特别进行的步骤，并不是指在其他上下文中可能发生的排序操作。</li></ul><h3>Phase #2: Merge (合并阶段)</h3><ul><li><strong>目的</strong>：通过遍历两个已经排好序的表来找到匹配的记录，并输出这些匹配的结果。</li><li><strong>过程</strong>：</li><ul><li>使用游标（cursor）分别指向两个已排序表的开始位置。</li><li>比较当前游标所指向的记录的连接键值。</li><li>如果两个游标的键值相等，则找到了一条匹配记录；将此记录组合起来作为结果集的一部分，并同时移动两个游标到下一个位置。</li><li>如果某个游标的键值小于另一个，则仅移动具有较小键值的那个游标，直到找到相等的键值或达到该表的末尾。</li><li>根据不同的连接类型（如内连接inner join、左外连接left outer join等），可能需要处理不匹配的情况。例如，在执行左外连接时，如果右表没有与之对应的行，则仍然需要输出左表的行，此时可能会涉及到回溯（backtracking）以正确构造输出行。</li></ul></ul><summary> 过程</summary></details><p>Pseudo-code:</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">sort R,S on join keys
+cursor_R ← R_sorted, cursor_S ← S_sorted
+while cursor_R and cursor_S:
+ if cursor_R &gt; cursor_S:
+  increment cursor_S 
+ if cursor_R &lt; cursor_S:
+  increment cursor_R
+  backtrack cursor_s (if necessary)
+ elif cursor_R and cursor_S match:
+  emit
+  increment cursor_S
+</code></pre><p><strong>Cost</strong>:</p><ul><li>Sort Cost (R): 2M ∙ (1 + ⌈ logB-1 ⌈M / B⌉ ⌉)</li><li>Sort Cost (S): 2N ∙ (1 + ⌈ logB-1 ⌈N / B⌉ ⌉)</li><li>Merge Cost: (M + N)</li><li>Total Cost: Sort + Merge</li></ul><details><p>参与 Join 运算的两张表的<ruby data-notation="join attribute">连接属性<rp>(</rp>,<rt>join attribute</rt>,<rp>)</rp></ruby>已经被排序好。</p><summary> 理想情况</summary></details><details><p>最坏情况即为两个关系（表）中的所有元组（行）的<ruby data-notation="join attribute">连接属性<rp>(</rp>,<rt>join attribute</rt>,<rp>)</rp></ruby>都具有相同的值。</p><p>在这种情况下，Sort-Merge Join 算法需要对每一个来自第一个表的元组与第二个表中的每一个元组进行比较。因为所有的连接键都是相同的，所以算法不能跳过任何一行来寻找下一个不同的键值；它必须检查每一对可能的组合。</p><p><strong>Cost</strong>: <span class="math"><img src="./katex-8d1c89c3d1bd87e1ce6afe341f65276a.png"></span></p><summary> 最坏情况和开销</summary></details><h3>Hash Join</h3><details><h3>Phase #1: Build (构建阶段)</h3><p>使用哈希函数 <code>h<sub>1</sub></code>，扫描 outer table，对每一个 tuple 的 join attribute 进行哈希运算后使用哈希值将该 tuple 插入哈希表。</p><p>使用<ruby data-notation="linear probing">线性探测<rp>(</rp>,<rt>linear probing</rt>,<rp>)</rp></ruby>哈希表往往效果更好。</p><h3>Phase #2: Probe (探测阶段)</h3><p>扫描 inner table，通过每一个 tuple 的 join attribute 的哈希值在哈希表中找到对应的 outer table 中的匹配项</p><hr><p>Pseudo-code:</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">build hash table HT_R for R
+foreach tuple s ∈ S
+ output, if h_1(s) ∈ HT_R
+</code></pre><h3>哈希表键和值的内容</h3><p><strong>Key</strong>: The attribute(s) that the query is joining on</p><ul><li>The hash table needs to store the key to verify that we have a correct match, in case of hash collisions.</li></ul><p><strong>Value</strong>: It varies per DBMS</p><ul><li>Depends on what the next query operators will do with the output from the join</li><li>Early vs. Late Materialization</li></ul><h3>Optimization: Probe Filter</h3><p>在 Build 阶段为 outer table 构建一个 filter，如 Bloom Filter，在对哈希表查询时，先对 filter 查询。</p><ul><li>Check the filter before probing the hash table</li><li>Fast because the filter fits in CPU cache</li><li>Sometimes called <u>sideways information passing</u></li></ul><summary> Simple Hash Join Algorithm</summary></details><details><p>适合在哈希表无法完全存储在内存中时使用。又被称为 <u>GRACE Hash Join</u>。</p><h3>构建过程</h3><p>对两个参与 Join 运算的表都使用相同的哈希函数构建各自的<ruby data-notation="partitioned">分块<rp>(</rp>,<rt>partitioned</rt>,<rp>)</rp></ruby>哈希表。</p><h3>探测过程</h3><p>将两个表对应的分块哈希表进行逐块的比较，将索引范围相同的块放在一起比较。</p><hr><h3>Edge Cases</h3><p>如果在构建中，一个分块的大小大到内存无法容纳，则用另一个哈希函数递归地对其进行分块。</p><ul><li>Repeat as needed</li><li>Eventually hash join the corresponding (sub-)partitions</li></ul><hr><p><strong>Cost</strong>:</p><ul><li>No recursive partitioning: 3(M + N)</li><ul><li>Partition phase: 2(M + N)</li><ul><li>Read + write both tables</li></ul><li>Probe phase: M + N</li><ul><li>Read both tables (in total, one partition at a time)</li></ul></ul></ul><h3>Optimization: Hybrid Hash Join</h3><p>对于键值倾斜（即某一特定键值出现得较为频繁）的表较为有效。</p><p>键值倾斜的情况下，特定分块会高频出现匹配项（即热点分块）。可以将热点分块暂存在内存中，并优先进行该分块的匹配。</p><blockquote><p>Difficult to get to work correctly. Rarely done in practice.</p></blockquote><summary> Partitioned Hash Join</summary></details><h4>Hash Join Observations</h4><p>The inner table can be <strong>any size</strong>.</p><ul><li>Only outer table (or its partitions) need to <strong>fit in memory</strong></li></ul><p>If we know the size of the outer table, then we can use a static hash table.</p><ul><li>Less computational overhead</li></ul><p>If we do not know the size, then we must use a dynamic hash table or allow for overflow pages.</p><h2>Summary</h2><div class="table"><table><thead><tr><th>Algorithm</th><th>IO Cost</th><th>Example</th></tr></thead><tbody><tr><td>Naïve Nested Loop Join</td><td>M + (m ∙ N)</td><td>1.3 hours</td></tr><tr><td>Block Nested Loop Join</td><td><span class="math"><img src="./katex-72b71c0e959a3ded1b32ddb8ea5fd392.png"></span></td><td>0.55 seconds</td></tr><tr><td>Index Nested Loop Join</td><td>M + (m ∙ C)</td><td>Variable</td></tr><tr><td>Sort-Merge Join</td><td>M + N + (sort cost)</td><td>0.75 seconds</td></tr><tr><td>Hash Join</td><td>3 ∙ (M + N)</td><td>0.45 seconds</td></tr></tbody></table></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/数据库系统-CMU-15445/Join Algorithms.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

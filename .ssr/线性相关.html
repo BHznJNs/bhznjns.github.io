@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>线性相关</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>线性相关 | Linear Dependence</h1><h2>齐次式 | Homogeneous Equation</h2><div class="math"><img src="./katex-5553a6a1d349723229769d3975e6557a.png" alt=""></div><h2>线性相关判断</h2><p>对于一个齐次式 <span class="math"><img src="./katex-a765325d09454e5dba39573c8d4e5d8f.png"></span>，</p><p>若其只具有零解，则向量 A <ruby data-notation="linear independent">线性无关<rp>(</rp>,<rt>linear independent</rt>,<rp>)</rp></ruby>；</p><p>若其具有非零解，则向量 A <ruby data-notation="linear dependent">线性相关<rp>(</rp>,<rt>linear dependent</rt>,<rp>)</rp></ruby>。</p><p>由此可推出，对于零向量 <span class="math"><img src="./katex-f309dd437fc3d0f188e46e396dcf70d4.png"></span>，</p><p>由于 <span class="math"><img src="./katex-56a269873de38550f3a1cb5c2ba22bb5.png"></span> 具有无穷个解，故零向量线性相关。</p><h2>线性组合 | Linear Conbination</h2><p>对于一组向量</p><div class="math"><img src="./katex-12e8e30c8c0b3765b9d55a6cd3ee0a63.png" alt=""></div><p>对于另外一个向量 <span class="math"><img src="./katex-a4eeae9e1030d965fc163d43515b2437.png"></span>，若有一组数 <span class="math"><img src="./katex-d6289f8ca656b4b2cea15fe42b199da9.png"></span> 使其满足：</p><div class="math"><img src="./katex-3a14f53cbce59e4c0da090581bed40a1.png" alt=""></div><p>则称向量 V 为该组向量的线性组合。</p><h3>向量组的线性相关</h3><p>对于上述方程，可以转化为：</p><div class="math"><img src="./katex-a3fd24fd2e9d42d2b3f6828761d27b10.png" alt=""></div><p>将该式转化为齐次式，即</p><div class="math"><img src="./katex-4ab55c5da098f3411f6d0e3c68106e89.png" alt=""></div><p>与前文相同，</p><p>若该齐次式只具有零解，则该向量组线性无关；</p><p>若该齐次式具有非零解，则该向量组线性相关。</p>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/线性代数/线性相关.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极坐标系积分</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>极坐标系积分</h1><p>对于一个二重积分 <span class="math"><img src="./katex-7b15e30fafae3c51e48d43f21c5b1c02.png"></span>，我们可以将其转化为柱坐标系：</p><div class="math"><img src="./katex-cd5d86e17c6a4c46413512bac240dd0c.png" alt=""></div><p>其中，</p><div class="math"><img src="./katex-d82b7ea7e3199cb8a28b782102342f74.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/重积分/极坐标系积分.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

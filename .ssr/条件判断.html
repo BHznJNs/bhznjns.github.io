@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件判断</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>条件判断</h1><h2>if..elif..else 条件分支</h2><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">if condition {
+    # ...
+}
+</code></pre><p>可以使用 <code>back</code> 关键字中断 if，返回上一作用域</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">if condition {
+    back
+    # here will not be executed
+}
+</code></pre><p><code>back</code> 关键字可以携带返回值：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">&lt;variable-name&gt; := if condition {
+    back &lt;backed-value&gt;
+    # here will not be executed
+}
+# now &lt;variable-name&gt; is defined with &lt;backed-value&gt;
+</code></pre><hr><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">if condition {
+    # ...
+} else {
+    # ...
+}
+</code></pre><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">if condition {
+    # ...
+} elif condition {
+    # ...
+} else {
+    # ...
+}
+</code></pre><h2>match 条件分支</h2><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">match &lt;matched-value&gt; {
+    &lt;expected-value1&gt;: {
+        # do something for &lt;expected-value1&gt;
+        # no need to break
+    }
+    &lt;expected-value2&gt;: {
+        # do something for &lt;expected-value2&gt;
+    }
+    _: {
+        # default resolver
+    }
+}
+</code></pre><p>match 表达式中也可以使用 <code>back</code> 关键字：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">&lt;variable-name&gt; = match &lt;matched-value&gt; {
+    &lt;expected-value1&gt;: {
+        back &lt;backed-value1&gt;
+        # here will not be executed
+    }
+    &lt;expected-value2&gt;: {
+        back &lt;backed-value2&gt;
+        # here will not be executed
+    }
+}
+</code></pre><p>match 表达式中的 if..elif..else 语法糖：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">match &lt;matched-value&gt; {
+    &lt;expected-value&gt;: {
+        if condition1 {
+            # do something
+        } elif condition2 {
+            # do something
+        } else {
+            # do something
+        }
+    }
+}
+</code></pre><p>等效于：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">match &lt;matched-value&gt; {
+    &lt;expected-value&gt; if condition1 {
+        # do something
+    } elif condition2 {
+        # do something
+    } else {
+        # do something
+    }
+}
+</code></pre>
+    <p><a href="https://bhznjns.github.io/#static/编程/集成计算环境 ICE/2.0 版本语法草案/条件判断.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

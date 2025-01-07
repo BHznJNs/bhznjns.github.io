@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快速上手 derive 过程宏</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>快速上手 derive 过程宏</h1><p>参考资料：<a href="https://course.rs/advance/macro.html#%E7%94%A8%E8%BF%87%E7%A8%8B%E5%AE%8F%E4%B8%BA%E5%B1%9E%E6%80%A7%E6%A0%87%E8%AE%B0%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81" target="_blank">Rust 语言圣经</a></p><hr><h2>创建子项目</h2><p>由于<ruby data-notation="A proc-macro crate can only export proc-macros">一个 proc-macro 项目只能导出过程宏<rp>(</rp>,<rt>A proc-macro crate can only export proc-macros</rt>,<rp>)</rp></ruby>，如果你需要在项目中使用过程宏，你必须要在项目下创建子项目，将其作为 proc-macro crate。</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0"># 项目根目录下，对于 derive 过程宏，项目名称通常以 ``_derive`` 结尾
+cargo new [proc-macro-name]_derive --lib
+</code></pre><p>在子项目中，启用 <code>proc-macro</code>，安装相关依赖</p><pre class="code-block" data-language="TOML"><code class="language-toml" tabindex="0">syn = {version = "2.0.79", features = ["full"]}
+# 由于 rust 自带的 quote 宏处于 unstable 阶段，使用第三方库代替
+quote = "1.0.37"
+</code></pre><h2>实现</h2><p>由于子项目只用于导出过程宏，设为 lib 包根。打开子项目 <code>src</code> 目录下的 <code>lib.rs</code> 文件。</p><p>我们先写下宏的大纲</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">#[proc_macro_derive(MacroName)]
+pub fn any_function_name(input: TokenStream) -&gt; TokenStream {
+    todo!()
+}
+</code></pre><p>下面以一个用于自动实现 trait 的宏为例</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">#[proc_macro_derive(FieldNamesDerive)]
+pub fn resolve_struct_field_names(input: TokenStream) -&gt; TokenStream {
+    todo!()
+}
+</code></pre><p>这个宏用于自动为结构体实现 FieldNamesTrait，这个 trait 应该返回结构体的所有字段名称，但由于 rust 运行时的限制，我们必须借助宏在编译时获取这些字段名称，将其打包入编译产物，再在运行时通过 trait 中的方法对外暴露这些字段名称。</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">pub trait FieldNamesTrait {
+    fn fields() -&gt; Vec&lt;&'static str&gt;;
+}
+</code></pre><p>实际上，你可以给 derive 过程宏和 trait 相同的名称，不过为了易于下文区分，我们继续。</p><p>rust 的宏非常灵活，你可以通过宏直接对源代码在编译时进行 AST 层面的操作。</p><h3>获取字段列表</h3><p>我们先使用 <code>syn</code> 库对输入的 TokenStream 进行解析，获取 AST</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">let ast = syn::parse::&lt;syn::ItemStruct&gt;(input).expect("failed to parse input");
+</code></pre><p>对于一个结构体，其 AST 结构大致如下（来自 Rust 语言圣经）：</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">pub struct User&lt;'a T&gt; {
+    pub name: &'a T,
+}
+</code></pre><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">// vis，可视范围            ident，标识符    generic，范型    fields: 结构体的字段
+   pub           struct   User            &lt;'a, T&gt;         {
+
+// vis   ident   type
+   pub   name:   &'a T,
+
+}
+</code></pre><p>于是我们可以这样获取结构体字段名称列表：</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">fn field_ident_resolver(field: &syn::Field) -&gt; &'static str {
+    let field_string = field.ident.as_ref().unwrap().to_string();
+    let leaked = Box::leak(field_string.into_boxed_str());
+    return leaked;
+}
+
+let field_names = ast.fields
+    .iter()
+    .map(field_ident_resolver)
+    .collect::&lt;Vec&lt;&'static str&gt;&gt;();
+</code></pre><p>这里我们将所有字段通过 <code>Box<span class="dim">leak</span></code> 转化为 <code>&'static str</code> 类型的字符串，由于宏在编译时被处理，这样这些字段名称可以直接被打包进最终编译产物。</p><p>我们再编写产生“为结构体实现 trait”的代码，<del>挺起来有点绕口</del></p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">let struct_name = &ast.ident;
+// 这里的 quote 宏可以通过其中的代码产生对应的 TokenStream
+let output_impl = quote::quote! {
+    impl ListedFieldNames for #type_name {
+        fn fields() -&gt; Vec&lt;&'static str&gt; {
+            return vec![#(#field_names),*];
+        }
+    }
+};
+</code></pre><p>最终，我们将“为结构体实现 trait”的代码返回，这些代码会被附加到我们的结构体定义后，一同被编译</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">// 正常应该返回的类型为 ``proc_macro::TokenStream``，
+// 但由于我们使用了第三方库，这里的 ``output_impl`` 实际类型虽然也叫 ``TokenStream``，
+// 但和 ``proc_macro`` 中定义的不同，故需要调用其 ``into`` 方法将其转换为我们需要的类型。
+return output_impl.into();
+</code></pre>
+    <p><a href="https://bhznjns.github.io/#static/编程/Rust/快速上手 derive 过程宏.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

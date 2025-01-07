@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于 Google reCaptcha 的小坑</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>关于 Google reCaptcha 的小坑</h1><p><code>2023/7/19</code></p><hr><p>本文主要内容搬运了该文章：<a href="https://blog.azurezeng.com/recaptcha-use-in-china/" target="_blank">reCaptcha人机验证无法显示和CSP问题解决方案</a>，在此对原作者表示感谢！</p><p>在国内，由于众所周知的原因，我们是无法访问谷歌的大多数服务的。很不幸，其中也包括谷歌的验证码服务 reCaptcha。也因此，我们在使用一些国外公司（如微软）提供的一些服务时，会出现验证码无法加载的情况，严重影响这些服务的正常使用。</p><p>本文会简单的介绍在不翻墙的前提下如何正常访问使用了 Google reCaptcha 的服务。</p><hr><h2>浏览器安装 Header Editor 插件</h2><p>对于不同浏览器安装插件的过程这里不再赘述，有需要者可以查看原文。</p><h2>插件配置</h2><p>在安装插件后打开管理界面，新建规则，设置为如下图所示：</p><div class="media-container"><img src="https://bhznjns.github.io/static/工具软件/.关于 Google reCaptcha 的小坑/插件配置.png" alt="插件配置" loading="lazy" tabindex="0"></div><p>URL 放在这里，方便复制：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">https://www.google.com/recaptcha/api.js
+
+https://recaptcha.net/recaptcha/api.js
+</code></pre><p>在插件被启用之后，刷新你所需要访问的网页，其现在大概率可以正常访问了。</p><h2>还不能正常使用？</h2><p>这大概率是因为网站 Content-Security-Policy 内容安全政策的原因。你可以访问<a href="static/其它/.关于 Google reCaptcha 的小坑/GoogleRedirect.json">这里</a>，下载 JSON 后，打开刚才安装的浏览器插件的管理界面，选择上面的<code>导出和导入</code>，将此 JSON 文件导入，再尝试使用你所需要访问的网页。</p><h2>一条 FAQ (同样搬自原文)</h2><div class="qa-block"><div class="question">我按照这个方案做了但是还是看不到验证码</div><div class="answer">尝试 ping 一下，看下能不能连接到 recaptcha.net。</div></div><p>如果提示连接超时，则需要将能连接的 recaptcha.net IP 加入 hosts 列表中。</p><p>可以用网络上的超级 ping 工具获取其他的 recaptcha.net IP。比如使用站长之家的 ping 工具: <a href="http://ping.chinaz.com/recaptcha.net" target="_blank">传送门</a></p><p>通过 ping 可以测试所获取到的 IP 是否能连接。如果可以连接，把这个 IP 加入 hosts 即可解决该问题。</p>
+    <p><a href="https://bhznjns.github.io/#static/工具软件/关于 Google reCaptcha 的小坑.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通过 DNS 服务获取域名对应 Host</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>通过 DNS 服务获取域名对应 Host</h1><p>在编写 TCP/HTTP 客户端请求程序时，通过 DNS 服务获取域名对应的 IP 地址是非常常见的需求。</p><p>针对这一需求，在使用 Rust 进行开发时，我们主要有两种方式来实现。 </p><h2>标准库</h2><p>Rust 的 <code>std<span class="dim">net</span></code> 标准库中有一个名为 <code>ToSocketAddrs</code> 的 trait，它可以将表示主机地址的字符串转化为 <code>SocketAddr</code> 的迭代器，也可以对域名调用操作系统的 DNS 查询函数获取对应的 IP 地址，同样返回 <code>SocketAddr</code> 的迭代器。</p><p><code>tokio</code> 的内部使用此方式实现 DNS 查询。见<a href="https://github.com/tokio-rs/tokio/blob/master/tokio/src/net/addr.rs" target="_blank">此文件183行</a></p><blockquote class="alert important"><p class="alert-title">重要</p><p>使用 <code>ToSocketAddrs</code> 解析主机地址时必须带上端口，如</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">"127.0.0.1:4000".to_socket_addrs();
+"localhost:4000".to_socket_addrs();
+"google.com:80".to_socket_addrs();
+</code></pre><hr><p>你也可以使用 IP/域名 + 端口 的元组来解析，像这样：</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">("127.0.0.1", 4000).to_socket_addrs();
+("localhost", 4000).to_socket_addrs();
+("google.com", 80).to_socket_addrs();
+</code></pre></blockquote><h2>操作系统 C 库</h2><p>Rust 具备调用 C 库的能力，在库<a href="https://crates.io/crates/dns-lookup" target="_blank">dns-lookup</a>的源码中，其调用了操作系统的 <code>getaddrinfo</code> 函数。</p><p>如果你使用 C 语言进行过 socket 网络编程，你对 <code>gethostbyname</code> 这个函数应该不陌生。</p><p>根据 <a href="https://stackoverflow.com/questions/52727565/client-in-c-use-gethostbyname-or-getaddrinfo" target="_blank">StackOverflow 上的这篇帖子</a>，<code>gethostbyname()</code> 和 <code>gethostbyaddr()</code> 这两个函数不被鼓励使用，因为它们并不具备对 IPv6 的支持。而 <code>getaddrinfo()</code> 和 <code>getnameinfo()</code> 正对应着上文的两个函数，并且它们支持 IPv6。</p>
+    <p><a href="https://bhznjns.github.io/#static/编程/Rust/通过 DNS 服务获取域名对应 Host.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

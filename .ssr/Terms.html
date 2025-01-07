@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>Terms</h1><p>对于一些量：<span class="math"><img src="./katex-6244a36a9596c09977a3d7ecc17713df.png"></span></p><h2>Product Term</h2><p>single literal, or product of two or more literals:</p><div class="math"><img src="./katex-792c233eac5298ac9947b7bbc4184247.png" alt=""></div><h3>Sum-of-product expression</h3><div class="math"><img src="./katex-907756b7597ef059d961582d7155cc3d.png" alt=""></div><h2>Sum Term</h2><p>single literal, or sum of two or more literals:</p><div class="math"><img src="./katex-acc73fcefc5ca3c0a1a2fdb15db3e319.png" alt=""></div><h3>Product-of-sum expression</h3><div class="math"><img src="./katex-654f7496e7a95b924aa9b9195e5149bc.png" alt=""></div><h2>Normal term</h2><p>Product or sum term in which no variable appears more than once.</p><p>Non-normal term VS. normal term: <span class="math"><img src="./katex-165a5ec25e20d3815b9f9b2fbd529cb5.png"></span></p><h2>Minterm</h2><div class="table"><table><thead><tr><th>Row</th><th>X</th><th>Y</th><th>Z</th><th>F</th><th>Minterm</th><th>m*</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td><td>0</td><td>F(0,0,0)</td><td>X′·Y′·Z′</td><td>m0</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>F(0,0,1)</td><td>X′·Y′·Z</td><td>m1</td></tr><tr><td>2</td><td>0</td><td>1</td><td>0</td><td>F(0,1,0)</td><td>X′·Y·Z′</td><td>m2</td></tr><tr><td>3</td><td>0</td><td>1</td><td>1</td><td>F(0,1,1)</td><td>X′·Y·Z</td><td>m3</td></tr><tr><td>4</td><td>1</td><td>0</td><td>0</td><td>F(1,0,0)</td><td>X·Y′·Z′</td><td>m4</td></tr><tr><td>5</td><td>1</td><td>0</td><td>1</td><td>F(1,0,1)</td><td>X·Y′·Z</td><td>m5</td></tr><tr><td>6</td><td>1</td><td>1</td><td>0</td><td>F(1,1,0)</td><td>X·Y·Z′</td><td>m6</td></tr><tr><td>7</td><td>1</td><td>1</td><td>1</td><td>F(1,1,1)</td><td>X·Y·Z</td><td>m7</td></tr></tbody></table></div><p>在 minterm 的对照表中，变量 X, Y, Z 的值都为 1；对应地，它们的补 X′, Y′, Z′ 的值都为 0。</p><p>而 minterm 的项，即 m<sub>i</sub>，对应着第 i 行的变量组合，同时 i 也是 X, Y, Z 组成的二进制数的十进制表达。</p><h3>Canonical Sum</h3><p>将真值表中输出为真的所有行相加</p><details><p>对于表格：</p><div class="table"><table><thead><tr><th>X</th><th>Y</th><th>Z</th><th>f</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>0</td><td>1</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td></tr></tbody></table></div><p>取其中 f 值为 1 的所有行的 minterm 相加：</p><div class="math"><img src="./katex-702077393befc9b1f7088a2eb50a478e.png" alt=""></div><summary> 用例</summary></details><h2>Maxterm</h2><div class="table"><table><thead><tr><th>Row</th><th>X</th><th>Y</th><th>Z</th><th>F(X,Y,Z)</th><th>Maxterm</th><th>M*</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td><td>0</td><td>F(0,0,0)</td><td>X+Y+Z</td><td>M0</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>F(0,0,1)</td><td>X+Y+Z′</td><td>M1</td></tr><tr><td>2</td><td>0</td><td>1</td><td>0</td><td>F(0,1,0)</td><td>X+Y′+Z</td><td>M2</td></tr><tr><td>3</td><td>0</td><td>1</td><td>1</td><td>F(0,1,1)</td><td>X+Y′+Z′</td><td>M3</td></tr><tr><td>4</td><td>1</td><td>0</td><td>0</td><td>F(1,0,0)</td><td>X′+Y+Z</td><td>M4</td></tr><tr><td>5</td><td>1</td><td>0</td><td>1</td><td>F(1,0,1)</td><td>X′+Y+Z′</td><td>M5</td></tr><tr><td>6</td><td>1</td><td>1</td><td>0</td><td>F(1,1,0)</td><td>X′+Y′+Z</td><td>M6</td></tr><tr><td>7</td><td>1</td><td>1</td><td>1</td><td>F(1,1,1)</td><td>X′+Y′+Z′</td><td>M7</td></tr></tbody></table></div><p>类似于 minterm，maxterm 的对照表中，变量 X, Y, Z 的值即为 0，它们的补 X′, Y′, Z′ 的值都为 1。</p><h3>Canonical Product</h3><p>将真值表中输出为假的所有行相乘</p><details><p>对于表格：</p><div class="table"><table><thead><tr><th>X</th><th>Y</th><th>Z</th><th>f1</th><th>f2</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td><td><strong>0</strong></td></tr><tr><td>0</td><td>0</td><td>1</td><td>1</td><td><strong>0</strong></td></tr><tr><td>0</td><td>1</td><td>0</td><td><strong>0</strong></td><td><strong>0</strong></td></tr><tr><td>0</td><td>1</td><td>1</td><td><strong>0</strong></td><td>1</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td><strong>0</strong></td></tr><tr><td>1</td><td>0</td><td>1</td><td><strong>0</strong></td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td><td><strong>0</strong></td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr></tbody></table></div><div class="math"><img src="./katex-af7d9e8c1f08889a055a5ed0d25838a3.png" alt=""></div><summary> 用例</summary></details>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/数字系统与微处理器设计/Terms.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

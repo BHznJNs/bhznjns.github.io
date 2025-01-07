@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>介绍</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>介绍</h1><h2>基础行操作 | ELEMENTARY ROW OPERATIONS</h2><ol><li><strong>Replacement</strong> Replace one row by the sum of itself and a multiple of another row.</li><li><strong>Interchange</strong> Interchange two rows.</li><li><strong>Scaling</strong> Multiply all entries in a row by a nonzero constant.</li></ol><ol><li>以一行与另一行的和来替换一行。</li><li>交换两行。</li><li>将一行乘以一个非零常数。</li></ol><h2>方程组判别</h2><p>对于一个三元方程组的解，有如下情况</p><ul><li>有唯一解：方程组可以转化为下面形式的矩阵</li></ul><div class="math"><img src="./katex-9d22d98dd3a25c3efb9500b5cfb57230.png" alt=""></div><ul><li>有无穷个解：方程组对应的矩阵在简化后有一行全为零</li></ul><div class="math"><img src="./katex-219123084a07761ecaed5376ce715401.png" alt=""></div><ul><li>无解：方程组对应的矩阵在简化后出现形如 <span class="math"><img src="./katex-834fd7d941ff3d52fff2763296caf849.png"></span> 的列。</li></ul>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/线性代数/介绍.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

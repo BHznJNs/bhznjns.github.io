@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电容</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>电容 | Capacitor</h1><h2>性质</h2><p>电容两板上的电荷数与两板间的电压成正比：<span class="math"><img src="./katex-20406a46e9dddc31c35a9b76ee251190.png"></span></p><p>这里的因数 C（capacitance, unit: 1 Farad[F]）</p><h2>理想电容 | Ideal Capacitor</h2><div class="math"><img src="./katex-ec2781072a523996c32cf7af23e3ea42.png" alt=""></div><p>由于在直流（DC）电路下电流和电压都为常数，因此直流电路下通过电容的电流恒等于零（相当于开路）。</p><h2>电容的能量计算 | The energy on a Capacitance</h2><div class="math"><img src="./katex-7f0ebddb4c91e057be349c304577e796.png" alt=""></div><hr><h2>电容的串联 | Series connection of capacitors</h2><div class="math"><img src="./katex-263ebbbbf4f6269b1ef83ab35913dd4d.png" alt=""></div><h2>电容的并联 | Parallel connection of capacitors</h2><div class="math"><img src="./katex-3e58510e162d6948e9bdfcdb2abc7f03.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电路装置/电容.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最值问题</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>最值问题</h1><h2>局部极值</h2><p>局部极值点满足 <span class="math"><img src="./katex-a68196e8ddf961d565c69c277ea30f80.png"></span></p><p>使用二阶偏导数判断局部极值点：</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/偏导数/.最值问题/二阶偏导数判断局部极值点.webp" alt="二阶偏导数判断局部极值点" loading="lazy" tabindex="0"></div><p>其中，<code>c</code> 情况的点被称为“鞍点“。</p><h2>绝对极值</h2><p>对于一个闭合曲面，求其绝对最大、最小值：</p><ol><li>找曲面内的局部极值点（critical point）</li><li>找边界上极值点</li><li>取其最大、最小点作为该曲面的绝对极值点</li></ol><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/偏导数/.最值问题/绝对极值求法.png" alt="绝对极值求法" loading="lazy" tabindex="0"></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/偏导数/最值问题.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

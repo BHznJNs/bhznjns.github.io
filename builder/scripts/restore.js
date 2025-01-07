@@ -10,8 +10,7 @@ function restoreDir(dir, path) {
     // restore current directory
     utimesSync(dirPath, {
         btime: dir.createTime,
-        atime: undefined,
-        mtime: undefined,
+        mtime: dir.modifyTime,
     })
 
     for (const item of dir.items) {
@@ -24,7 +23,6 @@ function restoreDir(dir, path) {
             utimesSync(item.path, {
                 btime: item.createTime,
                 mtime: item.modifyTime,
-                atime: undefined,
             })
         }
     }

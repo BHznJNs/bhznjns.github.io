@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叠加原理</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>叠加原理 | The Superposition Theorem</h1><h2>Disabled current sources and voltage sources</h2><p>对于电压源，将其替换为短路；对于电流源，将其替换为开路。</p><hr><h2>例题</h2><p>对于电路，要求电压 v<sub>0</sub> 和电路 i<sub>0</sub></p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.叠加原理/叠加原理例题图1.png" alt="叠加原理例题图1" loading="lazy" tabindex="0"></div><p>则要计算在单个电压源作用下的电压和电流，再进行叠加。</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.叠加原理/叠加原理例题图2.png" alt="叠加原理例题图2" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.叠加原理/叠加原理例题图3.png" alt="叠加原理例题图3" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-d9af6bbe309287228125a5b245817d8f.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/电路装置/叠加原理.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

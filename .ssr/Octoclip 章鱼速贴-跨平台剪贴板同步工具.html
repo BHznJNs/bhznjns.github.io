@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octoclip 章鱼速贴-跨平台剪贴板同步工具</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>Octoclip(章鱼速贴) —— 跨平台剪贴板同步工具</h1><p>软件官网：<a href="https://octoclip.app/" target="_blank">章鱼速贴</a></p><p>信息来源：<a href="https://meta.appinn.net/t/topic/57285" target="_blank">【开发者自荐】Octoclip - 跨平台设备复制粘贴</a></p><p>盈利途径：软件目前为免费提供，暂无盈利途径，但作者有盈利计划</p><hr><h2>软件特色</h2><ul><li><strong>跨平台</strong>：支持在iOS、Android、Windows、macOS 上无缝工作</li><li><strong>支持多种通用剪贴格式</strong>：包括文本、富文本、图片、文件、链接以及颜色等</li><li><strong>云同步</strong>：支持通过OneDrive、Dropbox、Google Drive等云服务同步所有剪贴</li></ul>
+    <p><a href="https://bhznjns.github.io/#static/独立开发/参考产品/Octoclip 章鱼速贴-跨平台剪贴板同步工具.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

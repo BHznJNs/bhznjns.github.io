@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>基 | Bases</h1><h2>线性无关集合 | Linear Independent Sets</h2><p>设有一个向量集合 <span class="math"><img src="./katex-f75181ce747e8d5b909a9dcaddf8a67c.png"></span>，若方程</p><div class="math"><img src="./katex-9a32fb1ba585be59277d207f4a3b5af8.png" alt=""></div><p>只有零解，则集合 V 线性无关。</p><h2>秩 | Rank</h2><p>矩阵的秩即矩阵的行向量中极大线性无关组中元素的个数。</p>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/线性代数/基.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

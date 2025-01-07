@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>质心和转动惯量</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>质心和转动惯量</h1><h2>质心 | Centers of Mass</h2><h3>力矩 | Moments</h3><p>关于 x / y 轴的力矩：</p><div class="math"><img src="./katex-8d0684e5e20ab23ae806ff94e5c86c22.png" alt=""></div><p>x / y 方向的质心坐标：</p><div class="math"><img src="./katex-e9e26d78365b440b28480fac520a5781.png" alt=""></div><h2>转动惯量 | Moment of Inertia</h2><p>平面绕 x / y 轴旋转的转动惯量：</p><div class="math"><img src="./katex-5de7bb34464166156f9b7f67090202ab.png" alt=""></div><p>关于原点的转动惯量：</p><div class="math"><img src="./katex-1e10007ed1845b753a8fda41ff1a8fcf.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/重积分/质心和转动惯量.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

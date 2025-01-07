@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2_全局变量</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>全局变量</h1><p>全局变量定义了取代运行时而在编译器被分配的内存区域。</p><p>全局变量的定义必须被初始化。</p><p>全局变量可以在其它转换单元中声明，在这种情况下，全局变量无需被初始化。</p><p>全局变量可以可选地指定一个链接类型。</p><p>全局变量的定义和声明都可能有显式的 section 来放置并且可能会有</p><p>...todo...</p><p>例如，下面这行代码定义了一个在一个占据数个地址空间的全局变量，并且具有初始化，section 和对齐：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@G = addrspace(5) constant float 1.0, section "foo", align 4
+</code></pre><p>下面这个例子单纯地声明了一个全局变量：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@G = external global i32
+</code></pre><p>下面这个例子定义了一个用在线程内部的全局变量并且带有 <code>initialexec</code> TLS 模型（？）：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">@G = thread_local(initialexec) global i32 0, align 4
+</code></pre>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/编译原理/LLVM/2_全局变量.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

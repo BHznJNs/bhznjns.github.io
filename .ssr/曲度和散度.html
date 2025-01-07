@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曲度和散度</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>曲度和散度 | Curl and Divergence</h1><p>定义 <span class="math"><img src="./katex-511dd3d88eb15ff4080086fcc53f9821.png"></span></p><h2>梯度 | Gradient</h2><div class="math"><img src="./katex-8caff93fb96ff912cfc387e1087f1659.png" alt=""></div><hr><p>对于向量函数 <span class="math"><img src="./katex-adc5a10326766e8a82c5a98ac46c0836.png"></span></p><h2>曲度 | Curl</h2><div class="math"><img src="./katex-7f34a90006c34040f243f6964689089b.png" alt=""></div><h2>散度 | Divergence</h2><div class="math"><img src="./katex-b750b8898045888a617d712e23a599cc.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/重积分/曲度和散度.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

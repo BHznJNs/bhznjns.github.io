@@ -1,12 +1,11 @@
 import { Directory, File } from "./utils/directory.js"
-import { readmeFilename, reverseFilename } from "./utils/filename.js"
+import { orderby, readmeFilename, reverseFilename } from "./utils/filename.js"
 
 class FileMonoStack {
     // `children`: where the data are stored,
-    // the biggest at the the leftest and
-    // the smallest at the rightest.
+    // the biggest at the begin and
+    // the smallest at the end.
     children = []
-    constructor() {}
 
     #insert = (index, item) =>
         this.children.splice(index, 0, item)
@@ -42,12 +41,13 @@ class FileMonoStack {
     }
 }
 
+const ignoredFiled = [...readmeFilename, ...reverseFilename, ...orderby]
 export default function getNewest(dir) {
     const fileStack = new FileMonoStack()
 
     for (const item of dir.items) {
         if (item instanceof File) {
-            if (readmeFilename.includes(item.name)) {
+            if (ignoredFiled.includes(item.name)) {
                 continue
             }
             fileStack.push(item)

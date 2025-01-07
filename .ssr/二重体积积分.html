@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二重体积积分</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>二重体积积分</h1><h2>长方形区域积分</h2><p>对于二元函数 <span class="math"><img src="./katex-dcb4b11103c790ee2a644f948a572a40.png"></span>，要求其所构成的体积，有积分</p><div class="math"><img src="./katex-29dc05f202129705db548547e2ba6e8d.png" alt=""></div><h2>一般形状区域积分</h2><p>对于一般形状的体积积分（如图所示），</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/重积分/.二重体积积分/一般形状区域积分图示.jpg" alt="一般形状区域积分图示" loading="lazy" tabindex="0"></div><p>则有：</p><div class="math"><img src="./katex-66c57be46d88cbf304cebb197e6417e4.png" alt=""></div><h2>二重积分求面积</h2><p>当二重积分内的函数 <span class="math"><img src="./katex-38ba852bf6d28bc53b23a776d7bed65a.png"></span> 时，积分所求即为面积</p><div class="math"><img src="./katex-ad025363114b6313593b94b542df1932.png" alt=""></div>
+    <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/重积分/二重体积积分.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>

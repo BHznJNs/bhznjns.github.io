@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>与未来的自己对话</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+    <h1>与未来的自己对话</h1><p><code>2024/10/14</code></p><p>内容来源：<a href="https://www.ifanr.com/1602189?utm_source=pocket_shared" target="_blank">这个 AI 让我和 60 岁的自己聊天，治好了我的精神内耗</a></p><hr><p>虽然本文的标题很神奇，但很可惜，能让你穿越时空和未来的自己对话的时光机还不存在。不过，时下火热的 AI 技术可以作为平替，模拟未来的你与你对话。</p><p>这个来自 MIT 的 AI 项目地址在此：<a href="https://futureyou.life/" target="_blank">Future You</a></p><p>这个项目会通过一系列的问题，包括你当下的感受以及对未来的展望，生成一个虚拟的未来的你。</p><p>据 Future You 团队研究，与 AI 对话能够<strong>减轻焦虑感，增强幸福感</strong>，甚至让你感觉和未来的自己联系更加紧密。</p>
+    <p><a href="https://bhznjns.github.io/#static/今日趣闻/与未来的自己对话.md">
+        点此查看原文
+    </a></p>
+</article>
+</body>
+</html>
