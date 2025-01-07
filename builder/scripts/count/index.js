@@ -9,10 +9,13 @@ function countFile(path) {
     const content = readFileSync(path, "utf-8")
     const structure = mdResolver(content)
     const wordCount = structure.reduce((accumulator, current) => {
-        if (typeof current.count() === "string") {
-            console.log(current)
+        const count = current.count()
+        if (typeof count !== "number") {
+            console.warn("Unexpected count: ", count)
+            console.warn("Occured by node: ", current)
+            return accumulator
         }
-        return accumulator + current.count()}
+        return accumulator + count}
     , 0)
     return wordCount
 }

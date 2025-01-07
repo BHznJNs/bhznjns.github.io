@@ -1,6 +1,6 @@
 # BJT DC Analysis
 
-## I,,C versus V,,CE,,
+## I,,C,, versus V,,CE,,
 
 图像从左到右分别为：Saturation, Active, Breakdown
 
@@ -57,4 +57,27 @@ $$$
 
 ![BJT AC 等效电路](.BJT/BJT AC Equivalent.png)
 
+1. 使用等效电路代替电路中的 BJT
+2. 将 DC 源看作接地
+3. 将 电容看作导线
 
+## {共发射极放大器}(Common-emitter Amplifier)
+
+![共发射极放大器图例](.BJT/Common-emitter amplifier.png)
+
+>>>计算发射极电阻 r,,e,,
+计算基极电压 V,,B,,
+$$$
+V_B = \cfrac{R_2}{R_1 + R_2} V_{CC}
+$$$
+
+计算发射极电流 I,,E,,
+$$$
+I_E = \cfrac{V_E}{R_E} = \cfrac{V_B - 0.7}{R_E}
+$$$
+
+发射极电阻 r,,e,,
+$$$
+r_e = \cfrac{V_T}{I_E} = \cfrac{25 mV}{I_E}
+$$$
+>>>
