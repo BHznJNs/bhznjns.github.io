@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1>Sorting & Aggregations</h1><h2>In memory sorting</h2><p>当内存中有足够的空间容纳数据时，可以使用类似于快速排序的内存内排序方式；反之，我们要使用一些基于硬盘的排序方式。</p><hr><h2>Top-N Heap Sort</h2><p>假设有下面这样一段 SQL 查询：</p><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">SELECT * FROM enrolled 
+<h1>Sorting & Aggregations</h1><h2>In memory sorting</h2><p>当内存中有足够的空间容纳数据时，可以使用类似于快速排序的内存内排序方式；反之，我们要使用一些基于硬盘的排序方式。</p><hr><h2>Top-N Heap Sort</h2><p>假设有下面这样一段 SQL 查询：</p><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">SELECT * FROM enrolled 
   ORDER BY sid
 FETCH FIRST 4 ROWS
   WITH TIES
@@ -44,9 +44,10 @@ FETCH FIRST 4 ROWS
  WHERE s.sid = e.sid
  GROUP BY cid
 </code></pre>
-    <p><a href="https://bhznjns.github.io/#static/学习笔记/数据库系统-CMU-15445/Sorting & Aggregations.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/数据库系统-CMU-15445/Sorting & Aggregations.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1>大白话解释 select</h1><p>select 函数是 C 语言编程中用来实现多路 IO 复用的重要函数。你可以通过</p><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">#include &lt;sys/select.h&gt;
+<h1>大白话解释 select</h1><p>select 函数是 C 语言编程中用来实现多路 IO 复用的重要函数。你可以通过</p><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">#include &lt;sys/select.h&gt;
 </code></pre><p>来使用它。</p><hr><h2>前置知识：文件描述符</h2><p><ruby data-notation="File description">文件描述符<rp>(</rp>,<rt>File description</rt>,<rp>)</rp></ruby>，常被缩写为 fd，是 Unix 及类 Unix 系统中对于文件操作、网络操作等 IO 操作的统一抽象，将socket、标准输入输出、文件等用同一套接口来操作，这也是 Linux “万物皆文件”的由来。</p><h2>定义</h2><p>select 函数的定义如下：</p><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">int select(int nfds, fd_set *readset, fd_set *writeset, fd_set *exceptset,struct timeval *timeout);
 </code></pre><h3><code>nfds</code></h3><p>select 函数内部要监听的文件描述符的最高值。</p><p>也就是说，select 函数会监听在输入的文件描述符集合中，从 <code>0 ~ (nfds - 1)</code> 这一范围内的文件描述符，因此实际传入参数时往往需要加一，像这样：</p><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">select(fd + 1, ...);
 </code></pre><h3><code>readset</code>, <code>writeset</code>, <code>exceptset</code></h3><p>文件描述符的集合，分别对应读操作、写操作、异常。</p><p>我们可以使用 <code>FD_SET</code> 宏来将一个文件描述符加入集合，像这样：</p><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">int fd;
@@ -139,9 +139,10 @@ else {
 
 // ...
 </code></pre><h2>总结</h2><p>从上面的代码，我们应该可以较明了的理解 select 函数的作用：监听多个文件描述符的多个状态（读、写、异常），当任一文件描述符至少有一个状态可用时，或到达设定的超时时间时，select 函数返回，返回值为可用的状态总数。</p><p>例如，在使用 socket 处理多个请求的情况下，可以将多个 socket 放进同一个读文件描述符集合，对这一集合使用 select 进行监听，当任一 socket 都可读时，进行处理；或超时时，对已经可读的 socket 进行处理。</p><h2>FAQs</h2><h3>“但是程序在等待 select 函数返回时明明是阻塞的啊，为什么说 select 函数是用于I/O多路复用的一个重要函数呢？”</h3><p>这是一个很好的问题。尽管select()函数在调用期间会阻塞当前线程，直到至少有一个描述符就绪或超时发生，但这里的关键点在于“多路复用”，即select()允许<strong>一个进程或线程</strong>同时监控<strong>多个</strong>文件描述符，而不需要为每个描述符创建一个独立的线程或进程。</p>
-    <p><a href="https://bhznjns.github.io/#static/编程/Linux/大白话解释 select.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/编程/Linux/大白话解释 select.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

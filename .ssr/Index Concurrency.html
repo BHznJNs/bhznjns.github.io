@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1>Index Concurrency</h1><h2>Latch Modes</h2><p><strong>Read Mode</strong></p><ul><li>Multiple threads can read the same object at the same time.</li><li>A thread can acquire the read latch if another thread has it in read mode.</li></ul><p><strong>Write Mode</strong></p><ul><li>Only one thread can access the object.</li><li>A thread cannot acquire a write latch if another thread has it in any mode.</li></ul><h2>Latch Implementations</h2><h3>Test-and-Set Spin Latch (TAS)</h3><p>使用一个 atomic 的值表示锁，在请求锁时尝试更改该值，若以被锁上则循环等待直到其它线程解锁。</p><ul><li>Very efficient (single instruction to latch/unlatch)</li><li>Non-scalable, not cache friendly, not OS friendly.</li></ul><pre class="code-block" data-language="CPP"><code class="language-cpp" tabindex="0">std::atomic&lt;bool&gt; latch;
+<h1>Index Concurrency</h1><h2>Latch Modes</h2><p><strong>Read Mode</strong></p><ul><li>Multiple threads can read the same object at the same time.</li><li>A thread can acquire the read latch if another thread has it in read mode.</li></ul><p><strong>Write Mode</strong></p><ul><li>Only one thread can access the object.</li><li>A thread cannot acquire a write latch if another thread has it in any mode.</li></ul><h2>Latch Implementations</h2><h3>Test-and-Set Spin Latch (TAS)</h3><p>使用一个 atomic 的值表示锁，在请求锁时尝试更改该值，若以被锁上则循环等待直到其它线程解锁。</p><ul><li>Very efficient (single instruction to latch/unlatch)</li><li>Non-scalable, not cache friendly, not OS friendly.</li></ul><pre class="code-block" data-language="CPP"><code class="language-cpp" tabindex="0">std::atomic&lt;bool&gt; latch;
 // ...
 while (latch.test_and_set(…)) {
  // Retry? Yield? Abort?
@@ -31,9 +31,10 @@ m.lock();
 // Do something special...
 m.unlock();
 </code></pre><h3>Reader-Writer Latches</h3><ul><li>Allows for concurrent readers. Must manage read/write queues to avoid starvation.</li><li>Can be implemented on top of spinlocks.</li><li>Example: <code>std<span class="dim">shared_mutex</span></code>, <code>pthread_rwlock</code></li></ul><hr><h2>Hash Table Latching</h2><h3>Page Latches</h3><h3>Slot Latches</h3><hr><h2>B+ Tree Concurrency Control</h2><p>Two types of problems:</p><ul><li>Threads trying to <strong>modify</strong> the contents of a node at the same time.</li><li>One thread <strong>traversing</strong> the tree <strong>while</strong> another thread <strong>splits/merges</strong> nodes.</li></ul><h3>Latch Crabbing / Coupling</h3><p>定义“安全”的节点：更新时不进行分裂和合并的节点</p><ul><li>Not full (on insertion)</li><li>More than half-full (on deletion)</li></ul><p>为了让 B+ 树能被多个线程同时进行访问和修改，在访问节点时，在访问过程中将根节点到目标节点上所有节点进行上锁，只有当遍历到“安全”的节点时，才能释放其祖先节点的锁。</p><p><strong>Find</strong>: Start at root and traverse down the tree:</p><ul><li>Acquire R latch on child,→ Then unlatch parent.</li><li>Repeat until we reach the leaf node.</li></ul><p><strong>Insert / Delete</strong>: Start at root and go down, obtaining W latches as needed. Once child is latched, check if it is safe:</p><ul><li>If child is safe, release all latches on ancestors</li></ul><h4>Better Latching Algorithm</h4><p>由于上面的方法在对 B+ 树进行修改操作时必须对根节点以及部分内部节点上锁，在性能上有所不足。</p><p>多数对 B+ 树的修改都不会造成分裂或合并，可以先假设修改操作不会造成分裂或合并，在遍历树时使用读锁。如果遍历发现这次修改操作确实需要进行分裂或合并，再使用上面的方法（即使用写锁）重新遍历并更新。</p><p>This approach optimistically assumes that only leaf node will be modified; if not, R latches set on the first pass to leaf are wasteful.</p><ul><li>Set latches as if for search, get to leaf, and set W latch on leaf.</li><li>If leaf is not safe, release all latches, and restart thread using previous insert/delete protocol with write latches.</li></ul><h4>叶子节点间的并发</h4><p>在只进行读操作时，无需特殊操作。</p><p>当一个线程要读取兄弟节点，而另一个线程正在写入该兄弟节点时，可以选择在经过几次获取锁的尝试后 kill 读取线程。</p>
-    <p><a href="https://bhznjns.github.io/#static/学习笔记/数据库系统-CMU-15445/Index Concurrency.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/数据库系统-CMU-15445/Index Concurrency.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

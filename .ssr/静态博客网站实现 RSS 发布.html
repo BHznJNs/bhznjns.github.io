@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1>静态博客网站实现 RSS 发布</h1><h2>RSS 发布原理</h2><p>网站发布 RSS 本质上就是更新网站的 <code>rss.xml</code> (或者 <code>atom.xml</code>)，订阅者则可以通过 RSS 阅读器来获取网站最新的 RSS 文件，从而获知网站网站的最新动态。</p><p>因此，RSS 发布的核心就是生成 <code>rss.xml</code> 文件。</p><h2>RSS 文件格式</h2><p>要知道如何生成 <code>rss.xml</code> 文件，我们就需要先知道文件的大致格式。</p><p>以下是 RSS 2.0 的 <code>rss.xml</code> 基本格式：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+<h1>静态博客网站实现 RSS 发布</h1><h2>RSS 发布原理</h2><p>网站发布 RSS 本质上就是更新网站的 <code>rss.xml</code> (或者 <code>atom.xml</code>)，订阅者则可以通过 RSS 阅读器来获取网站最新的 RSS 文件，从而获知网站网站的最新动态。</p><p>因此，RSS 发布的核心就是生成 <code>rss.xml</code> 文件。</p><h2>RSS 文件格式</h2><p>要知道如何生成 <code>rss.xml</code> 文件，我们就需要先知道文件的大致格式。</p><p>以下是 RSS 2.0 的 <code>rss.xml</code> 基本格式：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
 &lt;rss version="2.0"&gt;
 
 &lt;channel&gt;
@@ -109,9 +109,10 @@ const timezone = () =&gt; {
 const timeFormater = date =&gt;
     `${weekDay(date)}, ${date.getDate()} ${month(date)} ${date.getFullYear()} ${time(date)} ${timezone(date)}`
 </code></pre><p>修改如上代码后再次部署，再在 RSS 阅读器中查看，你会发现你的博客已经按照发布时间排序好了，并且对于每篇博客也会显示对应的发布时间。</p><p>本文完，感谢阅读。</p>
-    <p><a href="https://bhznjns.github.io/#static/编程/Web 前端/静态博客网站实现 RSS 发布.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/编程/Web 前端/静态博客网站实现 RSS 发布.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

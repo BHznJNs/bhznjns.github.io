@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1>枚举变继承，状态代多态</h1><p>来看看这个例子吧：</p><p>我们正在做一个影片租赁管理系统，系统有三种影片类型普通影片、儿童影片、新发售影片，它们分别有自己的租赁计费方法 <code>getCharge</code>。</p><p>于是，我们先创建了一个 <code>Movie</code> 类，定义了三种影片类型对应的影片编号和统一的 <code>getCharge</code> 方法：</p><pre class="code-block" data-language="JAVA"><code class="language-java" tabindex="0">class Movie {
+<h1>枚举变继承，状态代多态</h1><p>来看看这个例子吧：</p><p>我们正在做一个影片租赁管理系统，系统有三种影片类型普通影片、儿童影片、新发售影片，它们分别有自己的租赁计费方法 <code>getCharge</code>。</p><p>于是，我们先创建了一个 <code>Movie</code> 类，定义了三种影片类型对应的影片编号和统一的 <code>getCharge</code> 方法：</p><pre class="code-block" data-language="JAVA"><code class="language-java" tabindex="0">class Movie {
     public int priceCode;
     public static int REGULAR = 0;
     public static int CHILDRENS = 1;
@@ -222,9 +222,10 @@ class SequenceChartType {
     // ...
 }
 </code></pre><p>但在具体实现每一种鸟类时，你可能会发现这么个问题：不是所有鸟类都会飞，不是所有鸟类都会迁徙...多数鸟的行为共性可能对于部分鸟类并不适用。</p><p>你自然想到，可以在子类中覆盖不需要的方法。但这种做法的弊端很明显：所有不会飞的鸟的子类都需要覆盖 fly 方法，这样重写的工作量是相当大的。</p><p>你又想到第二种方法：设计子抽象类。如把不会飞的鸟类单独设计一个 <code>FlightlessBird</code> 子类，单独作为不会飞的鸟类的父类，但是这种做法也不够灵活，不会飞的鸟类有单独的类，不会飞也不会叫的鸟类是否也需要有单独的类，以此类推。</p><p>于是就有了第三种，以组合代继承的策略模式：将飞行、游泳、迁徙等存在于部分鸟类中的行为特征单独写成类，在不同的鸟的类中根据是否会飞、是否进行迁徙等来组合这些行为类。</p>
-    <p><a href="https://bhznjns.github.io/#static/读书笔记/重构-改善既有的代码设计/枚举变继承，状态代多态.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/读书笔记/重构-改善既有的代码设计/枚举变继承，状态代多态.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

@@ -118,6 +118,11 @@ main[data-is-root="true"][data-is-newest="false"] #newest {
     background-color: var(--hovered-bg-color);
 }
 
+#article-list li > *,
+#function-list li > * {
+    pointer-events: none;
+}
+
 #article-list li span {
     width: auto;
     max-width: 100%;

@@ -15,9 +15,7 @@ function pageTemplate(title, body, origin) {
     <link rel="stylesheet" href="../dist/style.min.css">
 </head>
 <body>
-<script>
 ${inlineDarkmodeSwitcherScript}
-</script>
 <article>
 ${body}
 <p><a href="${config.homepage + "#" + origin}">

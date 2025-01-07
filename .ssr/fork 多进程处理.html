@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1>fork 多进程处理</h1><h2>fork 创建子进程</h2><p>fork 函数能复制当前进程，创建一个具有相同数据的子进程，通过在调用 fork 函数后在父子进程中判断 fork 函数的返回值以区分父子进程的行为。</p><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">pid_t child_pid = fork();
+<h1>fork 多进程处理</h1><h2>fork 创建子进程</h2><p>fork 函数能复制当前进程，创建一个具有相同数据的子进程，通过在调用 fork 函数后在父子进程中判断 fork 函数的返回值以区分父子进程的行为。</p><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">pid_t child_pid = fork();
 
 if (child_pid == -1) {
     // error
@@ -35,9 +35,10 @@ int exitcode = WEXITSTATUS(statloc);
 int bysignal = WIFSIGNALED(statloc);
 </code></pre><p>对于 <code>waitpid</code>, <code>wait3</code>, <code>wait4</code> 函数，可以将其设置为 <code>WNOHANG</code> 使其立即返回。</p><h2>使用 kill 中断子进程</h2><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">kill(child_pid, SIGKILL);
 </code></pre>
-    <p><a href="https://bhznjns.github.io/#static/编程/Linux/fork 多进程处理.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/编程/Linux/fork 多进程处理.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1><ruby data-notation="Don't Repeat Yourself">DRY<rp>(</rp>,<rt>Don't Repeat Yourself</rt>,<rp>)</rp></ruby> 不重复原则</h1><blockquote><p>在一个系统中，每一处知识都必须单一、明确、权威地表达。</p></blockquote><p>这与我在博客<a href="#static/博客收藏/我的编程技巧总结.md">我的编程技巧总结</a>中记录的“在所有地方使用同一个称呼”有异曲同工之妙，不过这里的不重复不止针对源代码，而是“不在两个或更多地方表达相同的东西”。</p><blockquote><p>DRY 针对的是你对知识和意图的复制。它强调的是，在两个地方表达的东西其实是相同的，只是表达方式有可能完全不同。</p></blockquote><h2>文档中的重复</h2><details><p>看看下面这一段代码：</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">// 格式化输出 “1 + 2” 的结果
+<h1><ruby data-notation="Don't Repeat Yourself">DRY<rp>(</rp>,<rt>Don't Repeat Yourself</rt>,<rp>)</rp></ruby> 不重复原则</h1><blockquote><p>在一个系统中，每一处知识都必须单一、明确、权威地表达。</p></blockquote><p>这与我在博客<a href="#static/博客收藏/我的编程技巧总结.md">我的编程技巧总结</a>中记录的“在所有地方使用同一个称呼”有异曲同工之妙，不过这里的不重复不止针对源代码，而是“不在两个或更多地方表达相同的东西”。</p><blockquote><p>DRY 针对的是你对知识和意图的复制。它强调的是，在两个地方表达的东西其实是相同的，只是表达方式有可能完全不同。</p></blockquote><h2>文档中的重复</h2><details><p>看看下面这一段代码：</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">// 格式化输出 “1 + 2” 的结果
 println!("{}", 1 + 2);
 </code></pre><p>就是很明显的重复。这段代码中的注释直接描述了代码的作用，使得这段代码的意图实际被描述了两次。一旦代码本身需要变更，我们就必须更新两个地方。几乎可以肯定，用不了多久，注释和代码就会变得不同步。</p><summary> 第一个例子</summary></details><h2>并非所有的代码重复都是知识的重复</h2><details><p>看看下面这一段代码：</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">def vatidate_age(value):
     validate_type(value, int)
@@ -70,9 +70,10 @@ private:
     }
 };
 </code></pre><blockquote><p>这个例子也阐明了一个重要的问题：无论什么时候，只要模块暴露出数据结构，就意味着，所有使用这个数据结构的代码和模块的实现产生了耦合。但凡有可能，都应采用一组访问器函数来读写对象的属性。如果未来需要增加功能，这样做能让事情更容易一些。</p><p>这个访问器函数的用法与Meyer的“统一访问”原则一致。该原则记录在《面向对象软件构造》一书中，它是这样说的：</p><p>一个模块提供的所有服务都应该通过统一的约定来提供，该约定不应表露出其内部实现是基于储存还是基于运算的</p></blockquote>
-    <p><a href="https://bhznjns.github.io/#static/读书笔记/程序员修炼之道/DRY 不重复原则.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/读书笔记/程序员修炼之道/DRY 不重复原则.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

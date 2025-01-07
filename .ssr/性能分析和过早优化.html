@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>性能分析和过早优化</title>
+    <link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+<h1>性能分析和过早优化</h1><p>这几天在写<del>预习</del>复习笔记的时候，看着我的博客首页，怎么看怎么别扭。</p><p>于是想到将博客的样式优化一番。</p><p>在优化完样式后，我又想到，能不能给博客加一个文件监听功能。</p><hr><p>先介绍一下背景：我的博客虽然内容完全是从 markdown 文件在客户端动态渲染的，但是前端需要有索引文件来获取 markdown 文件的列表。这就导致，我每次添加文章后都需要运行命令更新索引文件，才能在预览服务器上看到新增的文章。</p><p>在文件监听上，我使用了 GPT 推荐的 <code>chokidar</code> 库来监听，这个库提供了较标准库更方便的文件系统 api 供调用。</p><p>然后我就遇到问题了：由于是监听文件变化时更新，那么更新的速度应该是要尽量快的。而更新全部的索引文件需要遍历 <code>static/</code> 目录下所有的文件。</p><p>由于遍历文件属于 IO 操作，我误以为这个过程的性能比较差，然后就开始进行增量更新的尝试。</p><p>这个尝试并不顺利。我在花了几个小时后缓了缓，突然想到，<strong>有没有可能，我并不需要做这些优化？</strong></p><p>我使用 <code>console.time</code> 进行的粗略的耗时分析，发现在目前，我的博客中共有两百余篇文章的情况下，重新全量生成一次索引文件的耗时<strong>只有一百毫秒不到</strong>。甚至我目前的代码中，每一个写入操作都是使用同步的 <code>writeFileSync</code>。</p><p>我意识到这一点后，立马删除了全部的增量更新相关的代码，把监听文件更新时的回调改为调用原有的全量更新，并将原有的同步文件写入改为异步写入。</p><hr><p>写完代码后，突然意识到这简直是最好的过早优化的反面教材。</p><p>看来以后在尝试优化代码前，最好都先尝试进行下性能分析，确定是否真的需要优化。</p>
+<p><a href="https://bhznjns.github.io/#static/编程/性能分析和过早优化.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+</body>
+</html>

@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1>HTML 实现拼音注音及美化</h1><p><code>2024/01/01</code></p><hr><p>这个需求放在五六年前可能实现起来还会麻烦一些，但是现在，主流浏览器都已经支持（并且兼容性良好）用于东亚文字注音的 HTML 标签 <code>&lt;ruby&gt;</code>。</p><h2>用法</h2><p>这一标签的用法十分简单，看如下代码：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;ruby&gt;
+<h1>HTML 实现拼音注音及美化</h1><p><code>2024/01/01</code></p><hr><p>这个需求放在五六年前可能实现起来还会麻烦一些，但是现在，主流浏览器都已经支持（并且兼容性良好）用于东亚文字注音的 HTML 标签 <code>&lt;ruby&gt;</code>。</p><h2>用法</h2><p>这一标签的用法十分简单，看如下代码：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;ruby&gt;
   汉 &lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;han&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt; 字 &lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;zi&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;
 &lt;/ruby&gt;
 </code></pre><p>将需要注音的汉字直接放在 <code>&lt;ruby&gt;</code> 下，将拼音写在 <code>&lt;rt&gt;</code> 标签下，<code>&lt;rp&gt;</code> 标签用于兼容不支持 <code>&lt;ruby&gt;</code> 标签的浏览器。</p><p>在支持 <code>&lt;ruby&gt;</code> 标签的浏览器下，上面这段 HTML 代码看起来会像这样：</p><div class="media-container"><iframe id="iframe_1" title="" srcdoc="<ruby>
@@ -146,9 +146,10 @@ ruby:hover .notation-container {
 <ruby><span class=&quot;notation-container&quot;><span>ming tian</span></span><span class=&quot;text-container&quot;><span>明天</span></span><rp>(</rp><rt>ming tian</rt><rp>)</rp></ruby>
 测试测试
 " sandbox="allow-scripts"></iframe></div>
-    <p><a href="https://bhznjns.github.io/#static/编程/Web 前端/HTML 实现拼音注音及美化.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/编程/Web 前端/HTML 实现拼音注音及美化.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

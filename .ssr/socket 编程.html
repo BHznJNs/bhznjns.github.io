@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1>socket 编程</h1><p>本文针对使用 TCP 协议的 socket 编程</p><h2>服务端</h2><h3>创建 socket</h3><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">int socket_fd = socket(AF_INET, SOCK_STREAM, 0);
+<h1>socket 编程</h1><p>本文针对使用 TCP 协议的 socket 编程</p><h2>服务端</h2><h3>创建 socket</h3><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">int socket_fd = socket(AF_INET, SOCK_STREAM, 0);
 if (socket_fd == -1) {
     panic("socket: %s\n", strerror(errno));
 }
@@ -88,9 +88,10 @@ if (status_code == -1 && errno != EINPROGRESS) {
     panic("connect: %s\n", strerror(errno));
 }
 </code></pre><p>连接之后可以使用 <code>read</code> / <code>recv</code> 或者 <code>write</code> / <code>send</code> 进行数据传输</p>
-    <p><a href="https://bhznjns.github.io/#static/编程/Linux/socket 编程.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/编程/Linux/socket 编程.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1>zmalloc</h1><p><code>zmalloc</code> 模块是 Redis 对 <code>stdlib</code> 中内存管理函数 <code>malloc</code>、<code>realloc</code>、<code>free</code> 等的再封装，Redis 内部的动态内存分配均通过此模块实现。</p><h2>zmalloc 函数实现解析</h2><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">static size_t used_memory = 0;
+<h1>zmalloc</h1><p><code>zmalloc</code> 模块是 Redis 对 <code>stdlib</code> 中内存管理函数 <code>malloc</code>、<code>realloc</code>、<code>free</code> 等的再封装，Redis 内部的动态内存分配均通过此模块实现。</p><h2>zmalloc 函数实现解析</h2><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">static size_t used_memory = 0;
 
 void *zmalloc(size_t size) {
     void *ptr = malloc(size+sizeof(size_t));
@@ -104,9 +104,10 @@ used_memory += size+sizeof(size_t); // 记录已使用内存
     free(realptr);
 }
 </code></pre>
-    <p><a href="https://bhznjns.github.io/#static/编程/源码解读/Redis/1.0/zmalloc.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/编程/源码解读/Redis/1.0/zmalloc.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

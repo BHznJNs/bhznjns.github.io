@@ -42,7 +42,6 @@ export default function indexRender(index, itemResolver) {
 
     // reset directory description
     dirDescriptionEl.innerHTML = ""
-    console.log(index)
     if ("dirDescription" in index) {
         articleRender(dirDescriptionEl, index.dirDescription)
     }

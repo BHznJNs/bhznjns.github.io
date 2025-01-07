@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1>内嵌 HTML 的 iframe 标签实现动态高度</h1><p><code>2023/12/27</code></p><hr><h2>内嵌 HTML 的 iframe</h2><p>HTML 的 <code>iframe</code> 标签有属性 <code>srcdoc</code>，你可以使用这一属性直接将一段 HTML 代码内嵌在另一份 HTML 文档中，就像这样：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;iframe srcdoc="&lt;h1&gt;Hello World!&lt;/h1&gt;"&gt;&lt;/iframe&gt;
+<h1>内嵌 HTML 的 iframe 标签实现动态高度</h1><p><code>2023/12/27</code></p><hr><h2>内嵌 HTML 的 iframe</h2><p>HTML 的 <code>iframe</code> 标签有属性 <code>srcdoc</code>，你可以使用这一属性直接将一段 HTML 代码内嵌在另一份 HTML 文档中，就像这样：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;iframe srcdoc="&lt;h1&gt;Hello World!&lt;/h1&gt;"&gt;&lt;/iframe&gt;
 </code></pre><p>展示效果：</p><div class="media-container"><iframe id="iframe_1" title="" srcdoc="<iframe srcdoc='<h1>Hello World!</h1>'></iframe>
 " sandbox="allow-scripts"></iframe></div><h2>实现动态高度</h2><p>本文中通过 <code>postMessage</code> 在 iframe 内部向父窗口发送 iframe 内容的高度信息。</p><p>首先，我们需要在被内嵌的 HTML 代码中加入如下代码：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">&lt;script&gt;
 // 在 iframe 加载完成时执行
@@ -53,9 +53,10 @@ window.addEventListener("load", (e) =&gt; {
     targetIframeEl.style.height = height + "px"
 }, false)
 </code></pre>
-    <p><a href="https://bhznjns.github.io/#static/编程/Web 前端/内嵌 HTML 的 iframe 标签实现动态高度.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/编程/Web 前端/内嵌 HTML 的 iframe 标签实现动态高度.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

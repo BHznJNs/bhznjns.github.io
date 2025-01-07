@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1>哈夫曼树与哈夫曼编码</h1><h2><ruby data-notation="Huffman-tree">哈夫曼树<rp>(</rp>,<rt>Huffman-tree</rt>,<rp>)</rp></ruby></h2><p>设有一棵二叉树，其只有叶子节点有值，对于每个叶子节点设节点上的值为该叶子节点的<strong>权重</strong>，设该节点到根节点所经过的边的条数为该节点到根节点的<strong>路径长度</strong>，树的所有节点的权重与到根节点的路径长度的和为<strong>树的带权路径长度</strong>。</p><p>哈夫曼树是一种针对于二叉树的改良，它将二叉树中较大的值放在离根节点较近的叶子节点，使得树的带权路径长度最小。</p><h3>构造哈夫曼树</h3><p>设一组数 <code>{2, 4, 5, 3}</code>，将其每个数转化为一个二叉树节点，组成数组 <code>[2, 4, 5, 3]</code>；</p><p>构造新二叉树，取出数组中值最小和次小的两个树节点，作为新二叉树树的左右子树，新节点的值即为左右子树的值之和，再将新二叉树插回数组，重复此步骤直到数组中只剩下一棵二叉树。</p><ol><li>取出节点 <code>2</code> 和 <code>3</code>，作为新二叉树的左右子树，将新二叉树插回数组，此时数组为 <code>[4, 5, 5]</code></li><li>取出节点 <code>4</code> 和 <code>5</code>，作为新二叉树的左右子树，将新二叉树插回数组，此时数组为 <code>[5, 9]</code></li><li>取出节点 <code>5</code> 和 <code>9</code>，作为新二叉树的左右子树，将新二叉树插回数组，此时数组为 <code>[ 14 ]</code>。</li></ol><p>最终可能的二叉树如下，这两棵树的带权路径长度相同，均为28：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0"> [14]      |     [14]
+<h1>哈夫曼树与哈夫曼编码</h1><h2><ruby data-notation="Huffman-tree">哈夫曼树<rp>(</rp>,<rt>Huffman-tree</rt>,<rp>)</rp></ruby></h2><p>设有一棵二叉树，其只有叶子节点有值，对于每个叶子节点设节点上的值为该叶子节点的<strong>权重</strong>，设该节点到根节点所经过的边的条数为该节点到根节点的<strong>路径长度</strong>，树的所有节点的权重与到根节点的路径长度的和为<strong>树的带权路径长度</strong>。</p><p>哈夫曼树是一种针对于二叉树的改良，它将二叉树中较大的值放在离根节点较近的叶子节点，使得树的带权路径长度最小。</p><h3>构造哈夫曼树</h3><p>设一组数 <code>{2, 4, 5, 3}</code>，将其每个数转化为一个二叉树节点，组成数组 <code>[2, 4, 5, 3]</code>；</p><p>构造新二叉树，取出数组中值最小和次小的两个树节点，作为新二叉树树的左右子树，新节点的值即为左右子树的值之和，再将新二叉树插回数组，重复此步骤直到数组中只剩下一棵二叉树。</p><ol><li>取出节点 <code>2</code> 和 <code>3</code>，作为新二叉树的左右子树，将新二叉树插回数组，此时数组为 <code>[4, 5, 5]</code></li><li>取出节点 <code>4</code> 和 <code>5</code>，作为新二叉树的左右子树，将新二叉树插回数组，此时数组为 <code>[5, 9]</code></li><li>取出节点 <code>5</code> 和 <code>9</code>，作为新二叉树的左右子树，将新二叉树插回数组，此时数组为 <code>[ 14 ]</code>。</li></ol><p>最终可能的二叉树如下，这两棵树的带权路径长度相同，均为28：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0"> [14]      |     [14]
   |        |      ||
 |---|      |   |------|
 5  [9]     |  [5]    [9]
@@ -40,9 +40,10 @@ if (darkModeMediaQuery) {
 |---|  |---|
 a   b  c   d
 </code></pre><p>则 a, b, c, d 的编码分别为：</p><div class="table"><table><thead><tr><th>字符</th><th>编码</th></tr></thead><tbody><tr><td>a</td><td>00</td></tr><tr><td>b</td><td>01</td></tr><tr><td>c</td><td>10</td></tr><tr><td>d</td><td>11</td></tr></tbody></table></div>
-    <p><a href="https://bhznjns.github.io/#static/读书笔记/数据结构与算法/哈夫曼树与哈夫曼编码.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/读书笔记/数据结构与算法/哈夫曼树与哈夫曼编码.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

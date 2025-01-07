@@ -20,7 +20,7 @@ if (darkModeMediaQuery) {
 }
 </script>
 <article>
-    <h1>SET 命令</h1><p><code>SET</code> 命令是 Redis 最基础的命令，因此我们从此开始。</p><p>SET 命令</p><ul><li>定义：<code>src/server.h -- setCommand</code></li><li>实现：<code>src/t_string.c</code></li></ul><h2>用法</h2><p>SET 命令是用于设置一个键的字符串值，这意味着其参数的 value 部分一定会被作为字符串解析。</p><p>SET 命令有 <code>O(1)</code> 的时间复杂度。</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">SET key value [NX | XX] [GET] [EX seconds | PX milliseconds | EXAT unix-time-seconds | PXAT unix-time-milliseconds | KEEPTTL]
+<h1>SET 命令</h1><p><code>SET</code> 命令是 Redis 最基础的命令，因此我们从此开始。</p><p>SET 命令</p><ul><li>定义：<code>src/server.h -- setCommand</code></li><li>实现：<code>src/t_string.c</code></li></ul><h2>用法</h2><p>SET 命令是用于设置一个键的字符串值，这意味着其参数的 value 部分一定会被作为字符串解析。</p><p>SET 命令有 <code>O(1)</code> 的时间复杂度。</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">SET key value [NX | XX] [GET] [EX seconds | PX milliseconds | EXAT unix-time-seconds | PXAT unix-time-milliseconds | KEEPTTL]
 </code></pre><h2>实现</h2><h3>SET 命令入口</h3><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">// src/t_string.c
 void setCommand(client *c) {
     robj *expire = NULL;
@@ -138,9 +138,10 @@ void setKey(client *c, redisDb *db, robj *key, robj *val, int flags) {
     if (!(flags & SETKEY_NO_SIGNAL)) signalModifiedKey(c,db,key);
 }
 </code></pre>
-    <p><a href="https://bhznjns.github.io/#static/编程/源码解读/Redis/server/SET 命令.md">
-        点此查看原文
-    </a></p>
+<p><a href="https://bhznjns.github.io/#static/编程/源码解读/Redis/server/SET 命令.md">
+    点此查看原文
+</a></p>
 </article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>
