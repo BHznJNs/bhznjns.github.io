@@ -3,6 +3,7 @@ import { sitemapTimeFormatter } from "./timeFormatter.js"
 import config from "../../../build.config.js"
 import { File } from "../../utils/directory.js"
 import { sitemapPath } from "../../utils/path.js"
+import { escapeSitemapXML } from "./escapeResolver.js"
 
 function template(lastUpdate, links) {
     return `\
@@ -22,7 +23,7 @@ class SitemapItem {
      * @param {number} modifyTime A timestamp
      */
     constructor(link, modifyTime) {
-        this.link = link
+        this.link = escapeSitemapXML(link)
         this.modifyTime = sitemapTimeFormatter(modifyTime)
     }
     toString() {

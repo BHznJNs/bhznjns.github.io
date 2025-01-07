@@ -1,4 +1,4 @@
-import htmlEntityReplace from "./htmlEntityReplace.js"
+import { escapeRSSXML } from "./escapeResolver.js"
 import { rssTimeFormatter } from "./timeFormatter.js"
 import config from "../../../build.config.js"
 import { File } from "../../utils/directory.js"
@@ -24,8 +24,8 @@ export class RSSItem {
      */
     static from(file) {
         const rssItem = new RSSItem()
-        rssItem.title         = file.nameWithoutExt
-        rssItem.link          = config.homepage + file.ssrPath
+        rssItem.title         = escapeRSSXML(file.nameWithoutExt)
+        rssItem.link          = escapeRSSXML(config.homepage + file.ssrPath)
         rssItem.pubTime       = file.createTime
         rssItem.lastBuildTime = file.modifyTime
         return rssItem
@@ -43,7 +43,7 @@ export default function(items) {
 <channel>
 <title>${config.title ? config.title : "Markdown Blog"}</title>
 <link>${config.homepage ? config.homepage : "https://bhznjns.github.io/markdown-blog-template"}</link>
-${config.description ? `<description>${htmlEntityReplace(config.description)}</description>` : ""}
+${config.description ? `<description>${escapeRSSXML(config.description)}</description>` : ""}
 ${(config.RSSExtraHeader && config.RSSExtraHeader.length) ? config.RSSExtraHeader : ""}`
     const RssTemplateAfter = `</channel>
 </rss>`
