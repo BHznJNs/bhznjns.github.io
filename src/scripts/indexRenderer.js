@@ -34,23 +34,24 @@ const dirDescriptionEl = mainEl.querySelector("#directory-description")
 const updateTimeEl     = mainEl.querySelector("#update-time code")
 const pagingComponent  = mainEl.querySelector("paging-view")
 
-export default function indexRender(indexing, itemResolver) {
-    const {current, total, updateTime} = indexing
+export default function indexRender(index, itemResolver) {
+    const {current, total, updateTime} = index
     pagingComponent.setPage(current, total)
 
     // --- --- --- --- --- ---
 
     // reset directory description
     dirDescriptionEl.innerHTML = ""
-    if ("directoryDescription" in indexing) {
-        articleRender(dirDescriptionEl, indexing.directoryDescription)
+    console.log(index)
+    if ("dirDescription" in index) {
+        articleRender(dirDescriptionEl, index.dirDescription)
     }
 
     updateTimeEl.textContent = updateTime ? dateFormatter(updateTime) : ""
 
     // reset articleList content
     const fragment = document.createDocumentFragment()
-    indexing.content
+    index.content
         .map(itemResolver)
         .forEach(el => fragment.appendChild(el))
     articleList.innerHTML = ""

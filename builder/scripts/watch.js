@@ -1,9 +1,13 @@
 import fs from "node:fs"
 import path from "node:path"
 import chokidar from "chokidar"
+import getNewest from "../getNewest.js"
 import saveIndex from "./indexing/saveIndex.js"
+import saveNewest from "./indexing/saveNewest.js"
+import config from "../../build.config.js"
 import { staticPath } from "../utils/path.js"
 import { readmeFilename } from "../utils/filename.js"
+import { traversal } from "../utils/directory.js"
 import debounce from "../../src/utils/debounce.js"
 
 async function update() {

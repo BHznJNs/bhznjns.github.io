@@ -22,12 +22,12 @@ export default async function saveIndex(directory, recursive=true) {
 
     const currentFiles = []
     const currentDirs  = []
-    let directoryDescription
+    let dirDescription
 
     for (const item of directory.items) {
         if (item instanceof File) {
             if (readmeFilename.includes(item.name)) {
-                directoryDescription = fs.readFileSync(item.path, "utf-8")
+                dirDescription = fs.readFileSync(item.path, "utf-8")
                 continue
             }
             currentFiles.push({
@@ -64,9 +64,9 @@ export default async function saveIndex(directory, recursive=true) {
             isReversed: directory.isReversed,
             orderby: directory.orderby,
         }
-        if (index === 1 && directoryDescription !== undefined) {
+        if (index === 1 && dirDescription !== undefined) {
             // directory description only appear at page 1
-            indexFileContent.directoryDescription = directoryDescription
+            indexFileContent.dirDescription = dirDescription
         }
         const task = fs.promises.writeFile(
             path.join(indexFilePath, pathToIndexFilename(directory.path, index)),

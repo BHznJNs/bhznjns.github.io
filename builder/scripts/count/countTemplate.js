@@ -1,11 +1,11 @@
 import { writeFileSync } from "node:fs"
-import { formatEchartsDate, insertDataIntoMap } from "./utils.js"
-import { countHTMLPath } from "../../utils/path.js"
-import languageSelector from "../../../src/utils/languageSelector.js"
 import {
     header, navigator, footer,
     inlineDarkmodeSwitcherScript,
-} from "../../indexTemplate.js"
+} from "../../htmlPublicSnippets.js"
+import { formatEchartsDate, insertDataIntoMap } from "./utils.js"
+import { countHTMLPath } from "../../utils/path.js"
+import languageSelector from "../../../src/utils/languageSelector.js"
 
 const now = Date.now()
 const oneYear = 365 * 24 * 60 * 60 * 1000

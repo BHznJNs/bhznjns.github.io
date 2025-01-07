@@ -8,7 +8,7 @@
   "scripts": {
     "preview": "node ./builder/scripts/preview.js",
     "watch": "node ./builder/scripts/watch.js",
-    "build": "npm run indexing && npm run ssr && node ./builder/scripts/build/index.js",
+    "build": "npm run indexing && npm run ssr && node ./builder/scripts/build.js",
     "ssr": "node ./builder/scripts/ssr/index.js",
     "indexing": "node ./builder/scripts/indexing/index.js",
     "count": "node ./builder/scripts/count/index.js",

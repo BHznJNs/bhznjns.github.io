@@ -2,12 +2,12 @@ import path from "node:path"
 import config from "../../../build.config.js"
 import renderer from "../../utils/markdown/index.js"
 import languageSelector from "../../../src/utils/languageSelector.js"
+import { footer, inlineDarkmodeSwitcherScript } from "../../htmlPublicSnippets.js"
 
-const htmlLang = languageSelector("zh-CN", "en")
 function pageTemplate(title, body, origin) {
     return `\
 <!DOCTYPE html>
-<html lang="${htmlLang}">
+<html lang="${languageSelector("zh-CN", "en")}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,23 +16,15 @@ function pageTemplate(title, body, origin) {
 </head>
 <body>
 <script>
-const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
-const darkModeSwitcher = () => {
-    const isDarkMode = darkModeMediaQuery.matches
-    document.body.classList.toggle("dark" ,  isDarkMode)
-    document.body.classList.toggle("light", !isDarkMode)
-}
-if (darkModeMediaQuery) {
-    darkModeMediaQuery.addListener(darkModeSwitcher)
-    darkModeSwitcher()
-}
+${inlineDarkmodeSwitcherScript}
 </script>
 <article>
-    ${body}
-    <p><a href="${config.homepage + "#" + origin}">
-        ${languageSelector("点此查看原文", "Click here to read original article")}
-    </a></p>
+${body}
+<p><a href="${config.homepage + "#" + origin}">
+    ${languageSelector("点此查看原文", "Click here to read original article")}
+</a></p>
 </article>
+${footer}
 </body>
 </html>`
 }

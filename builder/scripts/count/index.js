@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs"
-import { Directory } from "../../utils/directory.js"
+import countTemplate from "./countTemplate.js"
 import getNewest from "../../getNewest.js"
+import { traversal } from "../../utils/directory.js"
 import { countHTMLPath } from "../../utils/path.js"
 import mdResolver from "../../utils/markdown/index.js"
-import countTemplate from "./countTemplate.js"
 
 function countFile(path) {
     const content = readFileSync(path, "utf-8")
@@ -33,8 +33,7 @@ function getFileCatalog(path) {
 
 
 try { unlinkSync(countHTMLPath) } catch {}
-const staticDir = new Directory("static")
-staticDir.read()
+const staticDir = traversal("static")
 const newests = getNewest(staticDir)
 
 // total word count & write dates & catalogs
