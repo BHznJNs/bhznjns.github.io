@@ -1,9 +1,7 @@
-import path from "node:path"
 import htmlEntityReplace from "./htmlEntityReplace.js"
-import rssTimeFormater from "./formatTime.js"
+import { rssTimeFormatter } from "./timeFormatter.js"
 import config from "../../../build.config.js"
 import { File } from "../../utils/directory.js"
-import { ssrResourcePath } from "../../utils/path.js"
 
 export class RSSItem {
     title         = ""
@@ -15,8 +13,8 @@ export class RSSItem {
         return `<item>
 <title>${this.title}</title>
 <link>${this.link}</link>
-<pubDate>${rssTimeFormater(this.pubTime)}</pubDate>
-<lastBuildDate>${rssTimeFormater(this.lastBuildTime)}</lastBuildDate>
+<pubDate>${rssTimeFormatter(this.pubTime)}</pubDate>
+<lastBuildDate>${rssTimeFormatter(this.lastBuildTime)}</lastBuildDate>
 </item>`
     }
 
@@ -27,7 +25,7 @@ export class RSSItem {
     static from(file) {
         const rssItem = new RSSItem()
         rssItem.title         = file.nameWithoutExt
-        rssItem.link          = config.homepage + ssrResourcePath + file.nameWithoutExt + ".html"
+        rssItem.link          = config.homepage + file.ssrPath
         rssItem.pubTime       = file.createTime
         rssItem.lastBuildTime = file.modifyTime
         return rssItem

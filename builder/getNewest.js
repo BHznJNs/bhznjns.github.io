@@ -2,9 +2,10 @@ import { Directory, File } from "./utils/directory.js"
 import { orderby, readmeFilename, reverseFilename } from "./utils/filename.js"
 
 class FileMonoStack {
-    // `children`: where the data are stored,
-    // the biggest at the begin and
-    // the smallest at the end.
+    /**
+     * @description the biggest at the begin and the smallest at the end.
+     * @type {File[]}
+     */
     children = []
 
     #insert = (index, item) =>

@@ -1,6 +1,7 @@
 import fs from "node:fs"
 import path from "node:path"
 import { orderbyCreateTime, orderbyFilename, orderbyModifyTime, reverseFilename } from "./filename.js"
+import { ssrResourcePath } from "./path.js"
 
 const ORDERBY_CREATE_TIME = 0
 const ORDERBY_MODIFY_TIME = 1
@@ -131,9 +132,11 @@ export class Directory {
 
 export class File {
     constructor(name, filePath, createTime, modifyTime) {
+        const filenameWithoutExt = path.basename(name, path.extname(name))
         this.name = name
-        this.nameWithoutExt = path.basename(name, path.extname(name))
+        this.nameWithoutExt = filenameWithoutExt
         this.path = filePath
+        this.ssrPath = ssrResourcePath + filenameWithoutExt + ".html"
         this.createTime = createTime
         this.modifyTime = modifyTime
     }

@@ -25,12 +25,16 @@ const getTimezone = () => {
     return (timezone >= 0 ? "+" : "-") + addLeadingZero((timezone * 100).toString(), 4)
 }
 
-export default function rssTimeFormater(timestamp) {
+export function rssTimeFormatter(timestamp) {
     const date           = new Date(timestamp)
     const weekDay        = getWeekDay(date)
     const day_month_year = `${date.getDate()} ${getMonth(date)} ${date.getFullYear()}`
     const time           = getTime(date)
     const timezone       = getTimezone(date)
     return `${weekDay}, ${day_month_year} ${time} ${timezone}`
+}
 
+export function sitemapTimeFormatter(timestamp) {
+    const date = new Date(timestamp)
+    return date.toISOString()
 }

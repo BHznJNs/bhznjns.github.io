@@ -35,6 +35,12 @@ export default {
     language: "zh",
 
     /**
+     * allowSearchEngine: Boolean
+     * 如果为 true，则生成面向搜索引擎的 `robots.txt` 和 `sitemap.xml` 文件
+     */
+    allowSearchEngine: true,
+
+    /**
      * enableFab: Boolean
      * used to enable / disable the FAB buttons
      * 用来启用/禁用浮动操作按钮

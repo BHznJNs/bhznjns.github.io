@@ -6,6 +6,8 @@ export const ssrCachePath = ".ssr/cache.json"
 export const indexHTMLPath = "index.html"
 export const countHTMLPath = "count.html"
 export const backupFilePath = "backup.json"
+export const robotsTxtPath = "robots.txt"
+export const sitemapPath = "sitemap.xml"
 
 export function normalizePath(filePath) {
     return filePath.replace(/\\/g, "/")
