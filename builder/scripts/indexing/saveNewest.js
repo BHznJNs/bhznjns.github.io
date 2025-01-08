@@ -1,5 +1,5 @@
 import { writeFile } from "node:fs/promises"
-import config from "../../../build.config.js"
+import { config } from "../../utils/loadConfig.js"
 import slice from "../../utils/slice.js"
 import { indexFilePath } from "../../utils/path.js"
 

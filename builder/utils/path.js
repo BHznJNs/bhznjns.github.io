@@ -5,7 +5,7 @@ export const ssrResourcePath = ".ssr/"
 export const ssrCachePath = ".ssr/cache.json"
 export const indexHTMLPath = "index.html"
 export const countHTMLPath = "count.html"
-export const backupFilePath = "backup.json"
+export const backupFilePath = "user/backup.json"
 export const robotsTxtPath = "robots.txt"
 export const sitemapPath = "sitemap.xml"
 

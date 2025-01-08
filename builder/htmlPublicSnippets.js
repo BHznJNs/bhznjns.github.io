@@ -1,20 +1,18 @@
-import { writeFileSync } from "node:fs"
-import config from "../build.config.js"
-import { indexHTMLPath } from "./utils/path.js"
+import { config } from "./utils/loadConfig.js"
 import renderer from "../src/utils/markdown/index.js"
 import languageSelector from "../src/utils/languageSelector.js"
 
-export const header = `\
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="color-scheme" content="light dark">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-${config.description ? `    <meta name="description" content="${config.description}">` : ""}
-    <title>${config.title ? config.title : "MarkdownBlog"}</title>
-    <link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="./dist/style.min.css">
-</head>`
+export const htmlLang = languageSelector("zh-CN", "en")
+
+export const header = (title, description) => `\
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">\
+${description ? `\n<meta name="description" content="${description}">` : ""}
+<title>${title}</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">`
 
 export const inlineDarkmodeSwitcherScript = `\
 <script>

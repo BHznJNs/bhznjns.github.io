@@ -1,10 +1,10 @@
-import saveNewest from "./saveNewest.js"
-import saveSearchIndex from "./resolveSearch.js"
 import getNewest from "../../getNewest.js"
-import config from "../../../build.config.js"
+import saveNewest from "./saveNewest.js"
+import saveIndex from "./saveIndex.js"
+import saveSearchIndex from "./resolveSearch.js"
+import { config } from "../../utils/loadConfig.js"
 import { traversal } from "../../utils/directory.js"
 import { staticPath } from "../../utils/path.js"
-import saveIndex from "./saveIndex.js"
 
 const staticDir = traversal(staticPath)
 await saveIndex(staticDir, false)

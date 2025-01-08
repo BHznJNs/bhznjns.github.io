@@ -1,6 +1,6 @@
 import umdImporter from "../umd.js"
 import ChartImporter from "./importer.js"
-import config from "../../../../build.config.js"
+import { config } from "../../../utils/loadConfig.js"
 
 const { qrcodeOptions: globalQRCodeOptions } = config
 

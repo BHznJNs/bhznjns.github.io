@@ -1,12 +1,12 @@
 import "../styles/components/fab.css"
 import pathManager from "../scripts/pathManager.js"
-import config from "../../build.config.js"
+import importStyle from "../scripts/importers/style.js"
+import { config } from "../utils/loadConfig.js"
 import el from "../utils/dom/el.js"
 import { scrollToTop } from "../utils/dom/scrollControl.js"
 import languageSelector from "../utils/languageSelector.js"
 import { downsizeText, enlargeText } from "../scripts/textScaler.js"
 import eventbus from "../utils/eventbus/inst.js"
-import importStyle from "../scripts/importers/style"
 
 const fabItem = (imgName, title) => el("button",
     el("img", "", {

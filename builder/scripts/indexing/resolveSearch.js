@@ -1,11 +1,11 @@
 import fs from "node:fs"
+import { config } from "../../utils/loadConfig.js"
 import mdResolver from "../../utils/markdown/index.js"
 import { indexFilePath } from "../../utils/path.js"
 import { DetailsBlock, Headline, List, Para, Quote } from "../../utils/markdown/node.js"
 import flexsearch from "../../../src/libs/flexsearch/flexsearch.bundle.module.min.js"
 import countWord, { tokenize } from "../../../src/utils/countWord.js"
 import { getRawContent } from "../../../src/utils/markdown/inline.js"
-import config from "../../../build.config.js"
 
 const indexFactory = () => new flexsearch.Index({
         preset: "default",

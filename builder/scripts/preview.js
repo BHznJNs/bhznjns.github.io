@@ -1,7 +1,7 @@
 import "./watch.js"
 import os from "node:os"
 import express from "express"
-import config from "../../build.config.js"
+import { config } from "../utils/loadConfig.js"
 
 const app = express()
 const port = config.previewPort

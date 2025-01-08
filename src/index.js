@@ -2,11 +2,11 @@ import "./styles/style.css"
 import "./styles/components/skeleton.css"
 
 import "./scripts/mainManager.js"
-import config from "../build.config.js"
 import pageController from "./components/paging.js"
 import pathManager from "./scripts/pathManager"
 import { setIframeTheme } from "./scripts/iframeController.js"
 import importStyle from "./scripts/importers/style.js"
+import { config } from "./utils/loadConfig.js"
 import keydownEvent from "./utils/dom/keydownEvent.js"
 import eventbus from "./utils/eventbus/inst.js"
 

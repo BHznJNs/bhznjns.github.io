@@ -1,6 +1,6 @@
 import ChartImporter from "./importer.js"
 import umdImporter from "../umd.js"
-import config from "../../../../build.config.js"
+import { config } from "../../../utils/loadConfig.js"
 
 globalThis.raphael = null
 const { flowchartOptions } = config

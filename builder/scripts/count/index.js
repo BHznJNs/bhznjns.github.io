@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs"
+import fs from "node:fs"
 import countTemplate from "./countTemplate.js"
 import getNewest from "../../getNewest.js"
 import { traversal } from "../../utils/directory.js"
@@ -6,7 +6,7 @@ import { countHTMLPath } from "../../utils/path.js"
 import mdResolver from "../../utils/markdown/index.js"
 
 function countFile(path) {
-    const content = readFileSync(path, "utf-8")
+    const content = fs.readFileSync(path, "utf-8")
     const structure = mdResolver(content)
     const wordCount = structure.reduce((accumulator, current) => {
         const count = current.count()
@@ -34,8 +34,7 @@ function getFileCatalog(path) {
     return pathWithoutStatic.substring(0, firstSlashIndex)
 }
 
-
-try { unlinkSync(countHTMLPath) } catch {}
+unlinkSync(countHTMLPath)
 const staticDir = traversal("static")
 const newests = getNewest(staticDir)
 
@@ -54,4 +53,5 @@ for (const file of newests.children) {
 // start writing date
 const firstArticle = newests.children[newests.length - 1]
 const startTime = firstArticle.createTime
-countTemplate(startTime, metadataList, totalWordCount)
+const pageContent = countTemplate(startTime, metadataList, totalWordCount)
+fs.writeFileSync(countHTMLPath, pageContent)

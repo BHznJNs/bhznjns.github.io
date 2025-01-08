@@ -1,4 +1,4 @@
-import config from "../../build.config.js"
+import { config } from "./loadConfig.js"
 
 const currentLang = config.language
 const langList = ["zh", "en"]

@@ -1,10 +1,10 @@
-import { writeFileSync } from "node:fs"
 import {
     header, navigator, footer,
     inlineDarkmodeSwitcherScript,
+    htmlLang,
 } from "../../htmlPublicSnippets.js"
+import { config } from "../../utils/loadConfig.js"
 import { formatEchartsDate, insertDataIntoMap } from "./utils.js"
-import { countHTMLPath } from "../../utils/path.js"
 import languageSelector from "../../../src/utils/languageSelector.js"
 
 const now = Date.now()
@@ -212,8 +212,14 @@ export default function (startTime, metadataList, totalWordCount) {
 
     const template = `\
 <!DOCTYPE html>
-<html lang="${languageSelector("zh-CN", "en")}">
-${header}
+<html lang="${htmlLang}">
+<head>
+${header(
+    (config.title ?? "MarkdownBlog") +
+        languageSelector("站点统计", "Statistics"),
+    config.description)
+}
+</head>
 <body>
 ${inlineDarkmodeSwitcherScript}
 ${navigator}
@@ -224,5 +230,5 @@ ${footer}
 ${injectedScript}
 </body>
 </html>`
-    writeFileSync(countHTMLPath, template)
+    return template
 }

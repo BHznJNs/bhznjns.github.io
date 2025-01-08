@@ -1,8 +1,8 @@
-import config from "../../../../build.config.js"
+import ChartImporter from "./importer.js"
+import { config } from "../../../utils/loadConfig.js"
 import debounce from "../../../utils/debounce.js"
 import eventbus from "../../../utils/eventbus/inst.js"
 import mergeObj from "../../../utils/mergeObj.js"
-import ChartImporter from "./importer.js"
 
 let [
     echarts,

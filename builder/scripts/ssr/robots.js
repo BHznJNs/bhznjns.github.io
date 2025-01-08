@@ -1,5 +1,5 @@
 import fs from "node:fs"
-import config from "../../../build.config.js"
+import { config } from "../../utils/loadConfig.js"
 import { robotsTxtPath, sitemapPath } from "../../utils/path.js"
 
 const template = `\

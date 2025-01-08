@@ -1,6 +1,6 @@
 import importStyle from "./style.js"
 import DynamicImporter from "./dynamicImporter.js"
-import config from "../../../build.config.js"
+import { config } from "../../utils/loadConfig.js"
 
 const { katexOptions } = config
 

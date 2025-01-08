@@ -138,7 +138,7 @@ export default {
      */
     extraScripts: [
         "https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW",
-        "./external.js",
+        "./user/external.js",
     ],
 
     /**

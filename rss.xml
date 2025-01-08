@@ -3,8 +3,7 @@
 <channel>
 <title>BHznJNs' Blog</title>
 <link>https://bhznjns.github.io/</link>
-<description>一个 Markdown 静态博客站。</description>
-<follow_challenge>
+<description>一个 Markdown 静态博客站。</description><follow_challenge>
     <feedId>96181789796736000</feedId>
     <userId>96180252670732288</userId>
 </follow_challenge><item>
@@ -257,5 +256,4 @@
 <link>https://bhznjns.github.io/.ssr/抽象封装的泄露.html</link>
 <pubDate>Fri, 1 Nov 2024 22:29:00 +0800</pubDate>
 <lastBuildDate>Fri, 1 Nov 2024 23:20:00 +0800</lastBuildDate>
-</item></channel>
-</rss>
+</item></channel></rss>

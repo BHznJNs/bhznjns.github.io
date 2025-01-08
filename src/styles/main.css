@@ -50,6 +50,7 @@ main:not(.hidden) + #article-container {
     padding-top: 8px;
     padding-bottom: 8px;
     margin-bottom: 0 !important;
+    border-width: 2px !important;
     border-color: var(--deep-bd-color) !important;
 }
 #function-list li:hover {

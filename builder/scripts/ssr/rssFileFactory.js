@@ -1,6 +1,6 @@
 import { escapeRSSXML } from "./escapeResolver.js"
 import { rssTimeFormatter } from "./timeFormatter.js"
-import config from "../../../build.config.js"
+import { config } from "../../utils/loadConfig.js"
 import { File } from "../../utils/directory.js"
 
 export class RSSItem {
@@ -42,11 +42,10 @@ export default function(items) {
 <rss version="2.0">
 <channel>
 <title>${config.title ? config.title : "Markdown Blog"}</title>
-<link>${config.homepage ? config.homepage : "https://bhznjns.github.io/markdown-blog-template"}</link>
-${config.description ? `<description>${escapeRSSXML(config.description)}</description>` : ""}
-${(config.RSSExtraHeader && config.RSSExtraHeader.length) ? config.RSSExtraHeader : ""}`
-    const RssTemplateAfter = `</channel>
-</rss>`
+<link>${config.homepage ? config.homepage : "https://bhznjns.github.io/markdown-blog-template"}</link>\
+${config.description ? `\n<description>${escapeRSSXML(config.description)}</description>` : ""}\
+${config.RSSExtraHeader ? config.RSSExtraHeader : ""}`
+    const RssTemplateAfter = "</channel></rss>"
 
     const itemsString = items.map(item => item.toString()).join("");
     return RssTemplateBefore + itemsString + RssTemplateAfter

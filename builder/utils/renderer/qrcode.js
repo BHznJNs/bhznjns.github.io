@@ -1,5 +1,5 @@
 import QRCode from "../../../src/libs/qrcode-svg/qrcode.js"
-import config from "../../../build.config.js"
+import { config } from "../loadConfig.js"
 
 const { qrcodeOptions: globalQRCodeOptions } = config
 

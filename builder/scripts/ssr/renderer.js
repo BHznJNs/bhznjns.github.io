@@ -1,18 +1,18 @@
 import path from "node:path"
-import config from "../../../build.config.js"
+import {
+    footer, header, htmlLang,
+    inlineDarkmodeSwitcherScript,
+} from "../../htmlPublicSnippets.js"
+import { config } from "../../utils/loadConfig.js"
 import renderer from "../../utils/markdown/index.js"
 import languageSelector from "../../../src/utils/languageSelector.js"
-import { footer, inlineDarkmodeSwitcherScript } from "../../htmlPublicSnippets.js"
 
 function pageTemplate(title, body, origin) {
     return `\
 <!DOCTYPE html>
-<html lang="${languageSelector("zh-CN", "en")}">
+<html lang="${htmlLang}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title}</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+${header(title)}
 </head>
 <body>
 ${inlineDarkmodeSwitcherScript}

@@ -2,8 +2,9 @@ import { writeFileSync } from "node:fs"
 import {
     header, navigator, footer,
     inlineDarkmodeSwitcherScript,
+    htmlLang,
 } from "../htmlPublicSnippets.js"
-import config from "../../build.config.js"
+import { config } from "../utils/loadConfig.js"
 import { indexHTMLPath } from "../utils/path.js"
 import languageSelector from "../../src/utils/languageSelector.js"
 
@@ -53,28 +54,24 @@ ${config.enableCatalog
 
 const template = `\
 <!DOCTYPE html>
-<html lang="${languageSelector("zh-CN", "en")}">
-${header}
-<body>
-<script src="./dist/index.min.js" type="module" defer></script>
-${inlineDarkmodeSwitcherScript}
-${config.enableSearch
-    ? "<search-box></search-box>"
-    : ""
-}
-${config.enableFab
-    ? "<fab-icon></fab-icon>"
-    : ""
-}
-${navigator}
-${main}
-${article}
-${footer}
+<html lang="${htmlLang}">
+<head>
+${header(config.title ?? "MarkdownBlog", config.description)}
 ${config.extraScripts
     .map((scriptPath) =>
         `<script async src="${scriptPath}"></script>`)
     .join("")
 }
+</head>
+<body>
+<script src="./dist/index.min.js" type="module" defer></script>
+${inlineDarkmodeSwitcherScript}
+${config.enableSearch ? "<search-box></search-box>": ""}
+${config.enableFab ? "<fab-icon></fab-icon>" : ""}
+${navigator}
+${main}
+${article}
+${footer}
 </body>
 </html>`
 writeFileSync(indexHTMLPath, template)

@@ -1,5 +1,5 @@
 import electron from "electron"
-import config from "../../../build.config.js"
+import { config } from "../loadConfig.js"
 
 const { app, BrowserWindow, ipcMain } = electron
 

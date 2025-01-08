@@ -1,6 +1,6 @@
-import importStyle from "../style.js"
-import config from "../../../../build.config.js"
 import ChartImporter from "./importer.js"
+import importStyle from "../style.js"
+import { config } from "../../../utils/loadConfig.js"
 
 const { language, ganttOptions } = config
 

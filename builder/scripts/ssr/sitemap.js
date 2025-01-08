@@ -1,9 +1,9 @@
 import fs from "node:fs"
 import { sitemapTimeFormatter } from "./timeFormatter.js"
-import config from "../../../build.config.js"
+import { escapeSitemapXML } from "./escapeResolver.js"
+import { config } from "../../utils/loadConfig.js"
 import { File } from "../../utils/directory.js"
 import { sitemapPath } from "../../utils/path.js"
-import { escapeSitemapXML } from "./escapeResolver.js"
 
 function template(lastUpdate, links) {
     return `\
