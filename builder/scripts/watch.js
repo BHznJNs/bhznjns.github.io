@@ -15,7 +15,7 @@ async function update() {
     await saveIndex(staticDir)
 
     const newests = getNewest(staticDir)
-    if (config.enableNewest) {
+    if (config.newest.enable) {
         await saveNewest(newests.children)
     }
 }

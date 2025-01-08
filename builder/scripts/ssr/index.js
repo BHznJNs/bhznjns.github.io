@@ -52,7 +52,7 @@ class SSRResourceCache {
     }
 }
 
-if (config.enableRSS) {
+if (config.rss.enable) {
     if (!fs.existsSync(ssrResourcePath)) {
         fs.mkdirSync(ssrResourcePath)
     }
@@ -84,8 +84,8 @@ if (config.enableRSS) {
         tasks.push(fs.promises.writeFile(file.ssrPath, rendered))
     }
 
-    const rssCapacity = config.RSSCapacity
-    const rssIgnoredDirs = config.RSSIgnoredDir
+    const rssCapacity = config.rss.size
+    const rssIgnoredDirs = config.rss.ignoredDir
     const rssItems = newestItems.children
         .filter(item => !isInIgnoredDir(item.path, rssIgnoredDirs))
         .slice(0, rssCapacity)

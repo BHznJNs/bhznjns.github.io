@@ -23,7 +23,9 @@ class SitemapItem {
      * @param {number} modifyTime A timestamp
      */
     constructor(link, modifyTime) {
-        this.link = escapeSitemapXML(link)
+        const escaped = escapeSitemapXML(link)
+        const encoded = encodeURI(escaped)
+        this.link = encoded
         this.modifyTime = sitemapTimeFormatter(modifyTime)
     }
     toString() {

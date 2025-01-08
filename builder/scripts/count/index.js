@@ -34,7 +34,6 @@ function getFileCatalog(path) {
     return pathWithoutStatic.substring(0, firstSlashIndex)
 }
 
-unlinkSync(countHTMLPath)
 const staticDir = traversal("static")
 const newests = getNewest(staticDir)
 

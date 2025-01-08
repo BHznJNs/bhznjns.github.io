@@ -44,7 +44,7 @@ export default function(items) {
 <title>${config.title ? config.title : "Markdown Blog"}</title>
 <link>${config.homepage ? config.homepage : "https://bhznjns.github.io/markdown-blog-template"}</link>\
 ${config.description ? `\n<description>${escapeRSSXML(config.description)}</description>` : ""}\
-${config.RSSExtraHeader ? config.RSSExtraHeader : ""}`
+${config.rss.extraMetadata ? config.rss.extraMetadata : ""}`
     const RssTemplateAfter = "</channel></rss>"
 
     const itemsString = items.map(item => item.toString()).join("");

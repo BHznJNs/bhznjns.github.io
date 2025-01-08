@@ -1,6 +1,5 @@
 import el from "../dom/el.js"
 import countWord from "../countWord.js"
-import htmlEntityReplace from "../htmlEntityReplace.js"
 import getInterval from "./utils/getInterval.js"
 
 // identifier character to HTML tag
@@ -290,6 +289,10 @@ export function getRawContent(source) {
 }
 
 export function parseEntry(source) {
+    const htmlEntityReplace = source => source
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+
     const tokens = parser(source)
     const resultHTML = tokens
         .filter(token =>

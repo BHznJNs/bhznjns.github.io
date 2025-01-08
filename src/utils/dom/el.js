@@ -58,8 +58,11 @@ function selfClosingTag(tagName, props) {
     return `<${tagName}${props ? " " + propToString(props) : ""}>`
 }
 
-export default function el(tagName, content, props=null) {
-    if (typeof content === "object") {
+export default function el(tagName, content="", props=null) {
+    const isContentPlainObj = content !== null
+        && typeof content === "object"
+        && content.constructor === Object
+    if (isContentPlainObj) {
         // allow pass props as content
         props = content
         content = ""

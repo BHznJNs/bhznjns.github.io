@@ -10,9 +10,9 @@ const staticDir = traversal(staticPath)
 await saveIndex(staticDir)
 
 const newests = getNewest(staticDir)
-if (config.enableNewest) {
+if (config.newest.enable) {
     await saveNewest(newests.children)
 }
-if (config.enableSearch) {
+if (config.search.enable) {
     await saveSearchIndex(newests.children)
 }

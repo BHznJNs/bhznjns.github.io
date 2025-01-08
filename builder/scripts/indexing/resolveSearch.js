@@ -53,7 +53,7 @@ function nodeResolver(node) {
 
 function getSearchIndexData(newestList) {
     const dataList = []
-    const wordCountThreshold = config.searchPageThreshold
+    const wordCountThreshold = config.search.pageThreshold
 
     let currentId    = 0
     let currentCount = 0
