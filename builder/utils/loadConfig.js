@@ -1,2 +1,3 @@
 const configPath = "../../user/build.config.js"
-export const config = await import(configPath)
+/** @type {import("../../user/build.config").SiteConfig} */
+export const config = (await import(configPath)).default

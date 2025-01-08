@@ -13,13 +13,13 @@ import eventbus from "./utils/eventbus/inst.js"
 importStyle("dist/chunks/skeleton.min.css")
 
 // import optional components
-if (config.enableFab) {
+if (config.fab.enable) {
     import("./components/fab.js")
 }
-if (config.enableSearch) {
+if (config.search.enable) {
     import("./components/searchBox.js")
 }
-if (config.enableCatalog) {
+if (config.catalog.enable) {
     function passEvent() {
         if (isToShow) {
             eventbus.emit("article-rendered", items)

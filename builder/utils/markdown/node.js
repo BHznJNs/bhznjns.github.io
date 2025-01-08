@@ -129,7 +129,7 @@ export class Image extends MediaNode {
 
     toHTML() {
         const actualUrl = MediaNode.srcUrlResolver(this.source)
-        const imageEl = el("img", "", {
+        const imageEl = el("img", {
             src: actualUrl,
             alt: this.description,
             loading: "lazy",
@@ -264,7 +264,7 @@ export class FormulaBlock {
     count = () => countWord(this.content)
     toHTML() {
         const filename = render(this.content, "katex")
-        const formulaImage = el("img", "", {
+        const formulaImage = el("img", {
             src: "./" + filename,
             alt: this.description,
         })
@@ -342,7 +342,7 @@ export class ChartBlock {
             return ""
         }
         const chartImage = render(this.content, this.#type)
-        const chartEl = el("img", "", {
+        const chartEl = el("img", {
             src: "./" + chartImage
         })
         const container = el("div", chartEl, {

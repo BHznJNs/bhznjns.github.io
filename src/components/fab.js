@@ -38,12 +38,12 @@ class FabIcon extends HTMLElement {
         this.#subItems.backToTop        = fabItem("back-to-top"   , languageSelector("返回顶部"       , "Back to Top"   ))
         this.#subItems.enlargeText      = fabItem("zoom-in"       , languageSelector("放大文本"       , "Enlarge Text"  ))
         this.#subItems.downsizeText     = fabItem("zoom-out"      , languageSelector("缩小文本"       , "Downsize Text" ))
-        if (config.enableCatalog) {
+        if (config.catalog.enable) {
             this.#subItems.catalogSwitcher =
                 fabItem("catalog", languageSelector("开启/关闭菜单" , "Open/Close Catalog"))
         }
 
-        const subFabItem = config.fabOrdering
+        const subFabItem = config.fab.buttons
             .map(fabItem => this.#subItems[fabItem])
             .filter(fabItem => fabItem !== undefined)
         for (const [index, item] of Object.entries(subFabItem)) {

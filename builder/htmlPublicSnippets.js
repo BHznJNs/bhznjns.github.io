@@ -40,7 +40,7 @@ export const navigator = `\
         <span class="underline-target">${languageSelector("主页", "Home")}</span>
     </a>
     <span>
-${(config.enableSearch) ? `\
+${(config.search.enable) ? `\
         <button
             id="search-btn"
             class="icon-btn"
@@ -51,7 +51,7 @@ ${(config.enableSearch) ? `\
                 alt="${languageSelector("搜索", "Search")}"
             >
         </button>` : ""}
-${(config.enableRSS) ? `\
+${(config.rss.enable) ? `\
         <a
             id="rss-icon"
             class="icon-btn"

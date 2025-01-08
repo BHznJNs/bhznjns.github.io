@@ -17,15 +17,19 @@ function propSetter(el, props) {
     }
 }
 
+/**
+ * { prop: "value" } => "prop='value'"
+ * @param {Object} props 
+ * @returns {string}
+ */
 function propToString(props) {
-    // input: {prop: "value"}
-    // output: "prop='value'"
     function htmlValueFormater(val) {
         if (val instanceof Array) {
             return val.join(" ").replaceAll("\"", "&quot;")
         }
         return val.toString().replaceAll("\"", "&quot;")
     }
+
     const resultPropStr = Object.entries(props)
         .filter(([_, val]) => val != undefined)
         .map(([key, val]) => `${key}="${htmlValueFormater(val)}"`)
@@ -50,7 +54,17 @@ function contentSetter(el, content) {
     }
 }
 
-export default function el(tagName, content="", props=null) {
+function selfClosingTag(tagName, props) {
+    return `<${tagName}${props ? " " + propToString(props) : ""}>`
+}
+
+export default function el(tagName, content, props=null) {
+    if (typeof content === "object") {
+        // allow pass props as content
+        props = content
+        content = ""
+    }
+
     if ("document" in globalThis) {
         // in browser
         if (tagName === "text") {
@@ -71,10 +85,10 @@ export default function el(tagName, content="", props=null) {
                 return content
             case "hr":
             case "br":
-                return `<${tagName}>`
+                return selfClosingTag(tagName)
             case "img":
             case "input":
-                return `<${tagName} ${props ? propToString(props) : ""}>`
+                return selfClosingTag(tagName, props)
         }
         return `<${tagName}${props ? " " + propToString(props) : ""}>${content}</${tagName}>`
     }

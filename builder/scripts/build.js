@@ -7,12 +7,13 @@ import {
 import { config } from "../utils/loadConfig.js"
 import { indexHTMLPath } from "../utils/path.js"
 import languageSelector from "../../src/utils/languageSelector.js"
+import el from "../../src/utils/dom/el.js"
 
 const main = `\
 <main data-is-root=true>
     <header id="directory-description"></header>
     <ul id="function-list">
-${config.enableNewest ? `\
+${config.newest.enable ? `\
         <li
             id="newest"
             tabindex="0"
@@ -44,7 +45,7 @@ ${config.enableNewest ? `\
 
 const article = `\
 <div id="article-container">
-${config.enableCatalog
+${config.catalog.enable
     ? "<article-catalog></article-catalog>"
     : ""
 }
@@ -57,17 +58,21 @@ const template = `\
 <html lang="${htmlLang}">
 <head>
 ${header(config.title ?? "MarkdownBlog", config.description)}
+${config.extraMetadata
+    .map(item => el("meta", item))
+    .join("")
+}
 ${config.extraScripts
     .map((scriptPath) =>
-        `<script async src="${scriptPath}"></script>`)
+        el("script", { async: true, src: scriptPath}))
     .join("")
 }
 </head>
 <body>
 <script src="./dist/index.min.js" type="module" defer></script>
 ${inlineDarkmodeSwitcherScript}
-${config.enableSearch ? "<search-box></search-box>": ""}
-${config.enableFab ? "<fab-icon></fab-icon>" : ""}
+${config.search.enable ? el("search-box"): ""}
+${config.fab.enable    ? el("fab-icon")  : ""}
 ${navigator}
 ${main}
 ${article}

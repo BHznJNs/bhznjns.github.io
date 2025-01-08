@@ -7,7 +7,7 @@ import { traversal } from "../../utils/directory.js"
 import { staticPath } from "../../utils/path.js"
 
 const staticDir = traversal(staticPath)
-await saveIndex(staticDir, false)
+await saveIndex(staticDir)
 
 const newests = getNewest(staticDir)
 if (config.enableNewest) {

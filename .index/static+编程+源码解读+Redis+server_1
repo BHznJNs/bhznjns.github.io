@@ -1,1 +1,1 @@
-{"total":1,"current":1,"content":[{"name":"SET 命令.md","createTime":1719562193837,"modifyTime":1719562193837}],"createTime":1719562193837,"updateTime":1719562193837,"isReversed":false,"orderby":0,"directoryDescription":"``redis-server`` 是 Redis 最核心的部分，从中入手可以较快了解 Redis 底层的网络请求处理、数据存储、命令执行等机制。"}
+{"total":1,"current":1,"content":[{"name":"SET 命令.md","createTime":1719562193837,"modifyTime":1719562193837}],"createTime":1719562193837,"updateTime":1719562193837,"isReversed":false,"orderby":0,"dirDescription":"``redis-server`` 是 Redis 最核心的部分，从中入手可以较快了解 Redis 底层的网络请求处理、数据存储、命令执行等机制。"}

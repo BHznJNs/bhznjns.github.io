@@ -39,7 +39,7 @@ export default function articleRender(articleEl, mdText) {
     globalThis.__IframeCounter__ = 0
 
     const structure = mdResolver(mdText)
-    if (config.enableCatalog) {
+    if (config.catalog.enable) {
         const headlineItems = getHeadlines(structure)
         eventbus.emit("article-rendered", headlineItems)
     }
