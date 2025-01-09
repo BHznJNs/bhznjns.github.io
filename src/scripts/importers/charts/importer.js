@@ -1,6 +1,6 @@
 import DynamicImporter from "../dynamicImporter.js"
+import UnOverridedError from "../UnOverridedError.js"
 import languageSelector from "../../../utils/languageSelector.js"
-import UnOverridedError from "../../../utils/unOverridedError.js"
 
 export default class ChartImporter extends DynamicImporter {
     static loadErrMsg   = languageSelector("图表加载失败", "Chart load error")

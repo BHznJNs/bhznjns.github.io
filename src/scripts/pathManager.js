@@ -44,9 +44,9 @@ export async function hashChangeEvent(e) {
     if (pathManager.isIn.article()) {
         // open article
         articleEl.innerHTML = ""
-        mainEl.classList.add("hidden")
         const articleContent = await fetchMD("./" + hash)
         if (!articleContent) return
+        mainEl.classList.add("hidden")
         articleRender(articleEl, articleContent)
     } else {
         pathManager.homepage()

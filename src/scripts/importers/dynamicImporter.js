@@ -1,5 +1,5 @@
+import UnOverridedError from "./UnOverridedError.js"
 import languageSelector from "../../utils/languageSelector.js"
-import UnOverridedError from "../../utils/unOverridedError.js"
 
 export default class DynamicImporter {
     static loadErrMsg   = languageSelector("加载失败", "load error")
