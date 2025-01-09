@@ -28,6 +28,12 @@ $$$
 V_{out} = - (V_1 \cfrac{R_F}{R_1} + V_2 \cfrac{R_F}{R_2})
 $$$
 
+## Difference Amplifier
+
+![Difference amplifier circuit](.Operational Amplifier/Difference Amplifier.png)
+$$$
+V_{out} = (V_2 - V_1)\cfrac{R_2}{R_1}
+$$$
 
 - - -
 

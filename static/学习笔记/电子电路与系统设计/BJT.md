@@ -78,13 +78,13 @@ $$$
 
 发射极电阻 r,,e,,
 $$$
-r_e = \cfrac{V_T}{I_E} = \cfrac{25 mV}{I_E}
+r_e = \cfrac{V_T}{I_E} = \cfrac{26 mV}{I_E}
 $$$
 >>>
 
 >>>输入输出阻抗计算
 $$$
-R_{in} = R_1 \parallel R_2 \parallel R_{in(base)}\\
+R_{in} = R_1 \parallel R_2 \parallel R_{in(base)}, R_{in(base)} = (1 + \beta)r_e'\\
 R_{out} = R_C
 $$$
 >>>
@@ -97,9 +97,11 @@ $$$
 ![BJT class A equivalent](.BJT/Class A Equivalent.png)
 
 >>>增益计算
+$$$
 V_{in} = i_b r_{be} + (i_b + \beta i_b) R_E\\
 V_{out} = (i_b + \beta i_b) R_E\\
 A_v \approx 1
+$$$
 >>>
 
 >>>例题 1

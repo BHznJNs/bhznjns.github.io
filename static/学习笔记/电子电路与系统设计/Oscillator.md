@@ -9,4 +9,14 @@ Device producing a continuous alternating waveform without requiring any input.
 
 ## Wien Bridge Oscillator
 
+振荡频率：$$f_0 = \cfrac{1}{2 \pi RC}$$
+
+## Colpitts Oscillator
+
+振荡频率：$$f_0 = \cfrac{1}{2 \pi \sqrt{L C_{eq}}}, C_{eq} = \cfrac{C_1 C_2}{C_1 + C_2}$$
+
+## Hartley Oscillator
+
+振荡频率：$$f_0 = \cfrac{1}{2 \pi \sqrt{C L_{eq}}}, L_{eq} = L_1 + L_2 + 2M$$
+
 
