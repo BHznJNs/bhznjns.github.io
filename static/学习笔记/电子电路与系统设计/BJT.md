@@ -81,3 +81,45 @@ $$$
 r_e = \cfrac{V_T}{I_E} = \cfrac{25 mV}{I_E}
 $$$
 >>>
+
+>>>输入输出阻抗计算
+$$$
+R_{in} = R_1 \parallel R_2 \parallel R_{in(base)}\\
+R_{out} = R_C
+$$$
+>>>
+
+## BJT Power Amplifiers
+
+### Class A: Emitter Follower
+
+![BJT class A circuit](.BJT/Class A.png)
+![BJT class A equivalent](.BJT/Class A Equivalent.png)
+
+>>>增益计算
+V_{in} = i_b r_{be} + (i_b + \beta i_b) R_E\\
+V_{out} = (i_b + \beta i_b) R_E\\
+A_v \approx 1
+>>>
+
+>>>例题 1
+![class A example 1](.BJT/Class A Example 1.png)
+
+### 计算 R,,1,, 和 R,,2,,
+在中点偏置下，$$V_{CE} = V_E = \frac{1}{2} V_{CC}$$
+$$$
+I_C = I_E = \cfrac{V_E}{R_E}\\
+I_b = \cfrac{I_C}{\beta}\\
+V_B = V_E + V_{BE}\\
+R_2 = \cfrac{V_B}{I_b * 10}\\
+V_{CC} = I_b * 10 (R_1 + R_2)\\
+$$$
+
+### 计算 Power dissipated
+对于电阻：$$P_R = I_R^2 R$$
+对于三极管：$$P_{TR} = I_C V_{CE}$$
+>>>
+
+### Class B
+
+![BJT class B circuit](.BJT/Class B.png)

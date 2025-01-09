@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oscillator</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<article>
+<h1>Oscillator</h1><p>Device producing a continuous alternating waveform without requiring any input.</p><p>由一个放大器和一个反馈电路组成。</p><ol><li>The total loop gain must be unity <span class="math"><img src="./katex-f3b65c56554444c352e1c483ce7bfb51.png"></span></li><li>The total phase shift at the oscillation frequency, f<sub>0</sub>, must be either <span class="math"><img src="./katex-426051c07ccb1600324ed5b746d37185.png"></span></li></ol><h2>Wien Bridge Oscillator</h2>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/电子电路与系统设计/Oscillator.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+</body>
+</html>

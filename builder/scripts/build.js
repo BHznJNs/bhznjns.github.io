@@ -62,14 +62,15 @@ ${config.extraMetadata
     .map(item => el("meta", item))
     .join("")
 }
+<script src="./dist/index.min.js" type="module" defer></script>
 ${config.extraScripts
     .map((scriptPath) =>
-        el("script", { async: true, src: scriptPath}))
+        // use `defer` to prevent user script blocking page loading
+        el("script", { defer: true, src: scriptPath}))
     .join("")
 }
 </head>
 <body>
-<script src="./dist/index.min.js" type="module" defer></script>
 ${inlineDarkmodeSwitcherScript}
 ${config.search.enable ? el("search-box"): ""}
 ${config.fab.enable    ? el("fab-icon")  : ""}

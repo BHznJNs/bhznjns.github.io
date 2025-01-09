@@ -3,7 +3,7 @@ function propSetter(el, props) {
         return
     }
     for (const [key, val] of Object.entries(props)) {
-        if (val === undefined) {
+        if (val === undefined || val === false) {
             continue
         }
         if (val instanceof Function) {
@@ -31,8 +31,10 @@ function propToString(props) {
     }
 
     const resultPropStr = Object.entries(props)
-        .filter(([_, val]) => val != undefined)
-        .map(([key, val]) => `${key}="${htmlValueFormater(val)}"`)
+        .filter(([_, val]) => val !== undefined || val !== false)
+        .map(([key, val]) => {
+            if (typeof val === "boolean") { return key }
+            return`${key}="${htmlValueFormater(val)}"`})
         .join(" ")
     return resultPropStr
 }
