@@ -1,7 +1,6 @@
 import {
-    header, navigator, footer,
+    header, navigator, footer, htmlLang,
     inlineDarkmodeSwitcherScript,
-    htmlLang,
 } from "../../htmlPublicSnippets.js"
 import { config } from "../../utils/loadConfig.js"
 import { formatEchartsDate, insertDataIntoMap } from "./utils.js"
@@ -160,7 +159,7 @@ function injectedScriptGenerator(lastYearData, multiYearData, multiCatalogData) 
 
     const injectedScript = `\
 <script type="module">
-import echartsImporter from "./src/scripts/importers/charts/echarts.js"
+import echartsImporter from "../dist/echarts.min.js"
 
 document.querySelector("#last-year").__ChartOptions__ = ${JSON.stringify(lastYearOption)}
 document.querySelector("#past-years").__ChartOptions__ = ${JSON.stringify(pastYearsOption)}
@@ -217,16 +216,16 @@ export default function (startTime, metadataList, totalWordCount) {
 ${header(
     (config.title ?? "MarkdownBlog") +
         languageSelector("站点统计", "Statistics"),
-    config.description)
+    config.description, "../")
 }
 </head>
 <body>
-${inlineDarkmodeSwitcherScript}
-${navigator}
+${inlineDarkmodeSwitcherScript("../")}
+${navigator("../")}
 <article>
 ${bodyContent}
 </article>
-${footer}
+${footer("../")}
 ${injectedScript}
 </body>
 </html>`

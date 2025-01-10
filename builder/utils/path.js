@@ -1,13 +1,12 @@
 export const staticPath = "static/"
 export const indexFilePath = ".index/"
-export const rssFilePath = "rss.xml"
+export const rssFilePath = "user/rss.xml"
 export const ssrResourcePath = ".ssr/"
 export const ssrCachePath = ".ssr/cache.json"
+export const ssrListPath  = ".ssr/ssr-list.html"
 export const indexHTMLPath = "index.html"
-export const countHTMLPath = "count.html"
+export const countHTMLPath = "user/count.html"
 export const backupFilePath = "user/backup.json"
-export const robotsTxtPath = "robots.txt"
-export const sitemapPath = "sitemap.xml"
 
 export function normalizePath(filePath) {
     return filePath.replace(/\\/g, "/")

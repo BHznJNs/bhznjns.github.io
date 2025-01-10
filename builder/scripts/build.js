@@ -5,12 +5,23 @@ import {
     htmlLang,
 } from "../htmlPublicSnippets.js"
 import { config } from "../utils/loadConfig.js"
-import { indexHTMLPath } from "../utils/path.js"
+import { indexHTMLPath, ssrListPath } from "../utils/path.js"
 import languageSelector from "../../src/utils/languageSelector.js"
 import el from "../../src/utils/dom/el.js"
 
+const noscript = `\
+<noscript>
+<link rel="stylesheet" href="./dist/noscript.min.css">
+<main id="noscript-main">
+    <p>${languageSelector(
+        `你的浏览器似乎禁用了 JavaScript，你可以点此<a href="${ssrListPath}">查看最新的文章</a>。`,
+        `Your browser seems to have JavaScript disabled. You can click here to <a href="${ssrListPath}">view the latest articles</a>.`,
+    )}</p>
+</main>
+</noscript>`
+
 const main = `\
-<main data-is-root=true>
+<main id="script-main" data-is-root=true>
     <header id="directory-description"></header>
     <ul id="function-list">
 ${config.newest.enable ? `\
@@ -52,7 +63,6 @@ ${config.catalog.enable
 <article></article>
 </div>`
 
-
 const template = `\
 <!DOCTYPE html>
 <html lang="${htmlLang}">
@@ -71,13 +81,14 @@ ${config.extraScripts
 }
 </head>
 <body>
-${inlineDarkmodeSwitcherScript}
+${noscript}
+${inlineDarkmodeSwitcherScript()}
 ${config.search.enable ? el("search-box"): ""}
 ${config.fab.enable    ? el("fab-icon")  : ""}
-${navigator}
+${navigator()}
 ${main}
 ${article}
-${footer}
+${footer()}
 </body>
 </html>`
 writeFileSync(indexHTMLPath, template)

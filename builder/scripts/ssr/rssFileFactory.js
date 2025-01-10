@@ -1,7 +1,19 @@
-import { escapeRSSXML } from "./escapeResolver.js"
 import { rssTimeFormatter } from "./timeFormatter.js"
 import { config } from "../../utils/loadConfig.js"
 import { File } from "../../utils/directory.js"
+
+function escapeRSSXML(str) {
+    return str.replace(/[&<>'"]/g, function (char) {
+        switch (char) {
+            case '&': return '&amp;'
+            case '<': return '&lt;'
+            case '>': return '&gt;'
+            case '"': return '&quot;'
+            case "'": return '&apos;'
+            default: return char
+        }
+    })
+}
 
 export class RSSItem {
     title         = ""
@@ -25,7 +37,7 @@ export class RSSItem {
     static from(file) {
         const rssItem = new RSSItem()
         rssItem.title         = escapeRSSXML(file.nameWithoutExt)
-        rssItem.link          = escapeRSSXML(config.homepage + file.ssrPath)
+        rssItem.link          = escapeRSSXML(new URL(file.ssrPath, config.homepage).toString())
         rssItem.pubTime       = file.createTime
         rssItem.lastBuildTime = file.modifyTime
         return rssItem

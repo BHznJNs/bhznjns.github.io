@@ -3,13 +3,12 @@ import path from "node:path"
 import rssFileFactory, { RSSItem } from "./rssFileFactory.js"
 import { analyze, renderToHTML } from "./ssrItemRenderer.js"
 import getNewest from "../../getNewest.js"
-import generateRobots from "./robots.js"
-import generateSitemap from "./sitemap.js"
 import { config } from "../../utils/loadConfig.js"
 import { traversal } from "../../utils/directory.js"
-import { staticPath, rssFilePath, ssrResourcePath, ssrCachePath } from "../../utils/path.js"
+import { staticPath, rssFilePath, ssrResourcePath, ssrCachePath, ssrListPath } from "../../utils/path.js"
 import { execute as executeImagesRendering } from "../../utils/renderer/index.js"
 import calculateMD5 from "../../utils/md5.js"
+import staticList from "./ssrList.js"
 
 function isInIgnoredDir(path, ignoredDirs) {
     if (!ignoredDirs) {
@@ -77,7 +76,7 @@ if (config.rss.enable) {
         }
 
         globalThis.__SSRCache__.set(file.path, currentMD5)
-        globalThis.__ResourcePath__ = config.homepage + path.dirname(file.path)
+        globalThis.__ResourcePath__ = new URL(path.dirname(file.path), config.homepage).toString()
         globalThis.__IframeCounter__ = 0
         const rendered = renderToHTML(file.path, fileContent)
         globalThis.__ResourcePath__ = undefined
@@ -91,16 +90,13 @@ if (config.rss.enable) {
         .slice(0, rssCapacity)
         .map(article => RSSItem.from(article))
     const rssContent = rssFileFactory(rssItems)
-
-    if (config.allowSearchEngine) {
-        generateRobots()
-        generateSitemap(staticDir.modifyTime, newestItems.children)
-    }
+    const ssrListContent = staticList(newestItems.children)
 
     await Promise.all([
         ...tasks,
         executeImagesRendering(),
         fs.promises.writeFile(rssFilePath, rssContent),
+        fs.promises.writeFile(ssrListPath, ssrListContent),
         fs.promises.writeFile(ssrCachePath, JSON.stringify(globalThis.__SSRCache__.cache))
     ])
 }

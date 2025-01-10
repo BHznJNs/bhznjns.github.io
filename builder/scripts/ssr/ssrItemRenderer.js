@@ -2,6 +2,7 @@ import path from "node:path"
 import {
     footer, header, htmlLang,
     inlineDarkmodeSwitcherScript,
+    navigator,
 } from "../../htmlPublicSnippets.js"
 import { config } from "../../utils/loadConfig.js"
 import renderer from "../../utils/markdown/index.js"
@@ -15,14 +16,15 @@ function pageTemplate(title, body, origin) {
 ${header(title)}
 </head>
 <body>
-${inlineDarkmodeSwitcherScript}
+${inlineDarkmodeSwitcherScript()}
+${navigator("../", false, true)}
 <article>
 ${body}
 <p><a href="${config.homepage + "#" + origin}">
     ${languageSelector("点此查看原文", "Click here to read original article")}
 </a></p>
 </article>
-${footer}
+${footer()}
 </body>
 </html>`
 }

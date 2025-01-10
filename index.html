@@ -14,6 +14,12 @@
 <script defer src="https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW"></script><script defer src="./user/external.js"></script>
 </head>
 <body>
+<noscript>
+<link rel="stylesheet" href="./dist/noscript.min.css">
+<main id="noscript-main">
+    <p>你的浏览器似乎禁用了 JavaScript，你可以点此<a href=".ssr/ssr-list.html">查看最新的文章</a>。</p>
+</main>
+</noscript>
 <script>
 const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
 const darkModeSwitcher = () => {
@@ -30,67 +36,63 @@ if (darkModeMediaQuery) {
 <fab-icon></fab-icon>
 <nav>
     <a
-        id="homepage"
-        class="icon-btn underline-side left"
-        href="./"
-        onclick="globalThis.__CurrentPage__=1"
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="./"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="./dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><button
+    id="search-btn"
+    class="icon-btn"
+    title="搜索"
+>
+    <img
+        src="./dist/imgs/search.svg"
+        alt="搜索"
     >
-        <img src="./dist/imgs/homepage.svg" alt="主页">
-        <span class="underline-target">主页</span>
-    </a>
-    <span>
-        <button
-            id="search-btn"
-            class="icon-btn"
-            title="搜索"
+</button><a
+    id="rss-icon"
+    class="icon-btn"
+    href="./user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="./dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="./dist/imgs/sun.svg"
+            alt="亮色模式图标"
         >
-            <img
-                src="./dist/imgs/search.svg"
-                alt="搜索"
-            >
-        </button>
-        <a
-            id="rss-icon"
-            class="icon-btn"
-            href="./rss.xml"
-            title="RSS 订阅"
-        >
-            <img
-                src="./dist/imgs/rss.svg"
-                alt="RSS 订阅"
-            >
-        </a>
-        <span>
-            <span
-                id="light-btn"
-                class="icon-btn"
-                role="button"
-                tabindex="0"
-                title="亮色模式"
-                onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
-            >
-                <img
-                    src="./dist/imgs/sun.svg"
-                    alt="亮色模式图标"
-                >
-            </span>
-            <span
-                id="dark-btn"
-                class="icon-btn"
-                role="button"
-                tabindex="0"
-                title="黑暗模式"
-                onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
-            >
-                <img
-                    src="./dist/imgs/moon.svg"
-                    alt="黑暗模式图标"
-                >
-            </span>
-        </span>
     </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="./dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
 </nav>
-<main data-is-root=true>
+<main id="script-main" data-is-root=true>
     <header id="directory-description"></header>
     <ul id="function-list">
         <li
@@ -125,6 +127,6 @@ if (darkModeMediaQuery) {
 <article-catalog></article-catalog>
 <article></article>
 </div>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

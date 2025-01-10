@@ -362,12 +362,6 @@ export interface SiteConfig {
     pageSize: number
 
     /**
-     * - If true, generates `robots.txt` and `sitemap.xml` files for search engines.
-     * - 如果为 true，生成面向搜索引擎的 `robots.txt` 和 `sitemap.xml`。
-     */
-    allowSearchEngine: boolean
-
-    /**
      * - Additional JavaScript scripts for the page.
      * - 页面加载的额外 JavaScript 脚本。
      */

@@ -1,3 +1,4 @@
+import path from "node:path"
 import terser from "@rollup/plugin-terser"
 import dynamicImportVariables from "@rollup/plugin-dynamic-import-vars"
 import copy from "rollup-plugin-copy"
@@ -18,13 +19,34 @@ function componentStyleResolver(componentName) {
     })
 }
 
+function cssEntryFactory(filename) {
+    return {
+        input: `src/styles/${filename}.css`,
+        output: {
+            file: `dist/${filename}.min.css`,
+        },
+        plugins: [
+            postcss({
+                extract: true,
+            }),
+        ],
+    }
+}
+
 export default [
     {
-        input: "src/index.js",
+        input: {
+            main: "src/index.js",
+            module: "src/scripts/importers/charts/echarts.js",
+        },
         output: {
             dir: "dist/",
             format: "es",
-            entryFileNames: "index.min.js",
+            entryFileNames: (chunk) => {
+                const extname = path.extname(chunk.facadeModuleId)
+                const originalName = path.basename(chunk.facadeModuleId, extname)
+                return `${originalName}.min.js`
+            },
             chunkFileNames: "chunks/[name].min.js",
             sourcemap: true,
         },
@@ -161,5 +183,7 @@ export default [
                 }
             }
         ]
-    }
+    },
+    cssEntryFactory("ssr-list"),
+    cssEntryFactory("noscript"),
 ]

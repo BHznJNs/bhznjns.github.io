@@ -33,8 +33,3 @@ export function rssTimeFormatter(timestamp) {
     const timezone       = getTimezone(date)
     return `${weekDay}, ${day_month_year} ${time} ${timezone}`
 }
-
-export function sitemapTimeFormatter(timestamp) {
-    const date = new Date(timestamp)
-    return date.toISOString()
-}
