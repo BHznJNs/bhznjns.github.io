@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>交流电路功率</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>交流电路功率</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>交流电路功率 | Power in AC Circuit</h1><blockquote><p>推导过程：</p><div class="math"><img src="./katex-39a518642b8b9e1118c33e6f2863881c.png" alt=""></div><p>Where <span class="math"><img src="./katex-e5b46970cde100eb34e7b1ea61b440d8.png"></span> is constant part, <span class="math"><img src="./katex-5e2e37fcc34b93cc958c78037e67a1cb.png"></span> is time varying part.</p><p>With formula <span class="math"><img src="./katex-791e7d3d233c707136ee5dfda3e81dc8.png"></span>,</p><div class="math"><img src="./katex-0a80404d7fc75498855a2d15eeabf341.png" alt=""></div><p>Let <span class="math"><img src="./katex-9853a6657f1d597840f3dd81bfeb9ea8.png"></span> and <span class="math"><img src="./katex-3e936df243423ad4a930c8819fd3b4ec.png"></span>,</p><div class="math"><img src="./katex-13d751b66f47f962a396e13024ae3d7b.png" alt=""></div></blockquote><p>其中，</p><ul><li><span class="math"><img src="./katex-109a65ab8d8857467258b21e31450296.png"></span>: <strong>the real power</strong>, unit: 1W</li><li><span class="math"><img src="./katex-e1646da4e8b9977495d5b6869a37208c.png"></span>: <strong>the reactive power</strong>, unit: 1VAR(VAR: Volt Ampere Reactive)</li><li><span class="math"><img src="./katex-e0d52f2de561834b6d8fef92a8d871a8.png"></span>: <strong>the apparent power</strong>, unit: 1VA(VA: Volt Ampere)</li></ul><p>这里的 <span class="math"><img src="./katex-bf948ce7e1a2084dd9ffd5b46b6cf6c7.png"></span> 即为<ruby data-notation="power factor">功率系数<rp>(</rp>,<rt>power factor</rt>,<rp>)</rp></ruby>，定义了<ruby data-notation="apparent power">视在功率<rp>(</rp>,<rt>apparent power</rt>,<rp>)</rp></ruby> <code>S</code> 转化为<ruby data-notation="real power">实际功率<rp>(</rp>,<rt>real power</rt>,<rp>)</rp></ruby> <code>P</code> 的比例：</p><div class="math"><img src="./katex-eb525eb83bb275b854e6c5ff7e223eb4.png" alt=""></div><h2>复数功率 | The Complex Power</h2><p>由于电压、电流的相量和阻抗都是复数的值，所以把复数的功率定义为：</p><div class="math"><img src="./katex-3f47259e5362e50a4565457527891a27.png" alt=""></div><hr><p>S 的复数表达是由两个复数乘积而来，其中一个是电压，另一个是电流的共轭。</p><div class="math"><img src="./katex-86e03efc1b459600379d4c01453933b7.png" alt=""></div>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/电路装置/交流电路功率.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

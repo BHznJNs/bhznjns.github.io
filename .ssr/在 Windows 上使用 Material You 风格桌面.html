@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在 Windows 上使用 Material You 风格桌面</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在 Windows 上使用 Material You 风格桌面</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>在 Windows 上使用 Material You 风格桌面</h1><p><code>2024/11/17</code></p><p>信息来源：<a href="https://www.youtube.com/watch?v=j0sSBe7RcR0" target="_blank">How to get Pixel UI on Windows 11 | Customize Windows 11 Desktop</a></p><p>相关项目：<a href="https://github.com/Runixe786/MD3-Windows" target="_blank">MD3-Windows</a></p><p>盈利途径：通过 <a href="https://buymeacoffee.com/sahilseth2s/e/331439" target="_blank">Buy-me-a-coffee</a>, <a href="https://telegra.ph/Pro-Membership-10-09" target="_blank">Telegraph</a> 两个途径售卖 Pro 版本，Pro 版本提供更多主题和小部件</p><hr><p>这个介绍了如何在 Windows 上通过 rainmeter 实现类似与原生安卓上的 Material You 风格的桌面。</p><p>值得注意的是，MD3-Windows 这个项目提供了一个 Pro 版本，在 Pro 版本下，桌面的小部件可以拥有更多的可选样式。</p>
 <p><a href="https://bhznjns.github.io/#static/独立开发/参考产品/在 Windows 上使用 Material You 风格桌面.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

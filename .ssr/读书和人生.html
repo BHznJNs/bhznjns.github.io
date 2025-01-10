@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>读书和人生</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书和人生</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>读书和人生</h1><p><code>2024/10/06</code></p><p>内容来源：<a href="https://sspai.com/post/90963" target="_blank">重新认识读书这件小事：谈我的「读书之道」</a></p><hr><p>AI 对音视频进行总结的过程本质上是将音视频内容转化为精炼文字的过程。但对于很多视频，在使用 AI 进行总结的过程中会丢失大量的信息，导致总结的结果完全无用。</p><blockquote><p>正如那些 meme 视频里，抽象的声画表现正是搞笑感的来源之一，VLOG 通过画面和旁白传达出的氛围，比赛最后的绝杀时刻，播客节目里在那个短暂语境下的插科打诨……这些信息只能去亲身感受才能获得，AI 当然无法把它们总结下来。</p></blockquote><p>现在的视频软件往往提供“倍速播放”的功能，在使用该功能后，视频中内容里「动」和「参与」才能获得的那些信息往往会被无视，而观者在观看加速后的视频时，往往会更留意视频中的字幕而不是画面。因此，倍速播放功能对于视频主要内容都在字幕和念白的那类视频十分实用，而对于这种视频，应用 AI 总结往往能获得更好的效果。</p><blockquote><p>那我们完全可以得出：那些能够被 AI 完美总结的视频和播客，本质上讲就是文本转语音的产物。</p></blockquote><hr><h2>读烂书同样有用</h2><blockquote><p>在我们各方面都还比较年轻的时候，会遇到很多烂书，面对经典也有读不动的时候。但伴随着我们阅历的增长，mindset 的更新，烂书看得也够多，信息识别的能力上来了，我们会在头脑中建立一种框架，培养出一种阅读的感觉，从而在以后的读书过程中，配合目录，大概看个三分之一，就能够透过直觉来判断这本书是否值得读下去。这时再回来「啃」那些经典和名著，也比之前要顺畅许多，也更能明白它们何以称为经典，其实就像你做任何事一样，看书也是一门技术活，越做越顺手。</p></blockquote><h2>广读书</h2><p>通过读那种面向新手的入门级经典读物，你可以快速建立对一个新领域的基本框架。你可以借此增加知识面，培养出一种「交叉学科思维」。</p><p>这即现代高度分工化社会几乎已消失殆尽的「通识教育」精神。「通识教育」与学校里那种所谓的「多学科」有本质区别，</p><blockquote><p>通识教育培养「贵族」，现代教育培养「工人」。</p></blockquote><h2>你不一定非要从书中获得什么</h2><blockquote><p>有那种真的能改变人生的书吗？当然有。但与其说是这些书改变了你，不如说它们就是那个进度条的终点，一直在某个地方等待着，当时机成熟你就会遇到它们，把之前路上的无数个检查点串联起来，达成「改变」。所以，不光是某本书的内容，更是这整个读书过程的方方面面填满了这个进度条。</p><p>保持长期读书，关键在于「去仪式感」。</p><p>别把读书当成一件「正事」，就把读书当成一件普通到不能再普通的小事，和吃饭喝水没啥区别，不是什么 old school 的风雅之事。电子书还是实体书？怎么作笔记？怎么写读后感？忽略这些外在因素，先读起来再说。</p></blockquote>
 <p><a href="https://bhznjns.github.io/#static/今日趣闻/读书和人生.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

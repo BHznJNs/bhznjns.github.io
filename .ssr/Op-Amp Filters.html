@@ -22,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
-<h1>Op-Amp Filters</h1><p>Cut-off frequency: <span class="math"><img src="./katex-7e3914227029895256588da3557b361b.png"></span></p><h2>Low Pass Filter</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.Op-Amp Filters/Low Pass Filter.png" alt="Low pass filter circuit" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.Op-Amp Filters/Low Pass Filter extra.png" alt="Low pass filter extra circuit" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-fb999800ab599aa5406324d262251f94.png" alt=""></div><h2>High Pass Filter</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.Op-Amp Filters/High Pass Filter.png" alt="High pass filter circuit" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.Op-Amp Filters/High Pass Filter extra.png" alt="High pass filter circuit extra" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-9733aeb19f1698714462fa608ce1f547.png" alt=""></div>
+<h1>Op-Amp Filters</h1><p>Cut-off frequency: <span class="math"><img src="./katex-7e3914227029895256588da3557b361b.png"></span></p><h2>Low Pass Filter</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.Op-Amp Filters/Low Pass Filter.png" alt="Low pass filter circuit" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.Op-Amp Filters/Low Pass Filter extra.png" alt="Low pass filter extra circuit" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-fb999800ab599aa5406324d262251f94.png" alt=""></div><h2>High Pass Filter</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.Op-Amp Filters/High Pass Filter.png" alt="High pass filter circuit" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.Op-Amp Filters/High Pass Filter extra.png" alt="High pass filter circuit extra" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-9733aeb19f1698714462fa608ce1f547.png" alt=""></div>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/电子电路与系统设计/Op-Amp Filters.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

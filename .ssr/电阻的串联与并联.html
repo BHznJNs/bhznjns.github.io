@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>电阻的串联与并联</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电阻的串联与并联</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
-<h1>电阻的串联与并联</h1><h2>电阻串联 | Resistors in Series</h2><div class="math"><img src="./katex-754fe54e20ac125f2a8d727b10d8b649.png" alt=""></div><h2>电阻并联 | Resistors in Parallel</h2><div class="math"><img src="./katex-2fd4d44abd9598d2648ae7e748099ea5.png" alt=""></div><h2>串并联的简化 | Series-Parallel Simplification</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.电阻的串联与并联/串并联的简化图例1.png" alt="串并联的简化图例1" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.电阻的串联与并联/串并联的简化图例2.png" alt="串并联的简化图例2" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.电阻的串联与并联/串并联的简化图例3.png" alt="串并联的简化图例3" loading="lazy" tabindex="0"></div><hr><h2>分压 | Voltage Divider</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.电阻的串联与并联/分压图例.png" alt="分压图例" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-31a84fd0fd38065cef850c6f618d4007.png" alt=""></div><h2>分流 | Current Division</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电路装置/.电阻的串联与并联/分流图例.png" alt="分流图例" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-5918d244ecff8df9e6bc4b792225f2ed.png" alt=""></div><hr><h2>电压源串联 | Voltage Sources in Series</h2><p>多个电压源串联可以等效为一个电压源</p><div class="math"><img src="./katex-748a70930f9abe0d9f8f5674d34c7d5b.png" alt=""></div><h2>电流源并联 | Current Sources in Parallel</h2><p>多个电流源并联可以等效为一个电流源</p><div class="math"><img src="./katex-1d8646340cb89409e394bc308179ab95.png" alt=""></div>
+<h1>电阻的串联与并联</h1><h2>电阻串联 | Resistors in Series</h2><div class="math"><img src="./katex-754fe54e20ac125f2a8d727b10d8b649.png" alt=""></div><h2>电阻并联 | Resistors in Parallel</h2><div class="math"><img src="./katex-2fd4d44abd9598d2648ae7e748099ea5.png" alt=""></div><h2>串并联的简化 | Series-Parallel Simplification</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E8%B7%AF%E8%A3%85%E7%BD%AE/.电阻的串联与并联/串并联的简化图例1.png" alt="串并联的简化图例1" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E8%B7%AF%E8%A3%85%E7%BD%AE/.电阻的串联与并联/串并联的简化图例2.png" alt="串并联的简化图例2" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E8%B7%AF%E8%A3%85%E7%BD%AE/.电阻的串联与并联/串并联的简化图例3.png" alt="串并联的简化图例3" loading="lazy" tabindex="0"></div><hr><h2>分压 | Voltage Divider</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E8%B7%AF%E8%A3%85%E7%BD%AE/.电阻的串联与并联/分压图例.png" alt="分压图例" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-31a84fd0fd38065cef850c6f618d4007.png" alt=""></div><h2>分流 | Current Division</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E8%B7%AF%E8%A3%85%E7%BD%AE/.电阻的串联与并联/分流图例.png" alt="分流图例" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-5918d244ecff8df9e6bc4b792225f2ed.png" alt=""></div><hr><h2>电压源串联 | Voltage Sources in Series</h2><p>多个电压源串联可以等效为一个电压源</p><div class="math"><img src="./katex-748a70930f9abe0d9f8f5674d34c7d5b.png" alt=""></div><h2>电流源并联 | Current Sources in Parallel</h2><p>多个电流源并联可以等效为一个电流源</p><div class="math"><img src="./katex-1d8646340cb89409e394bc308179ab95.png" alt=""></div>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/电路装置/电阻的串联与并联.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

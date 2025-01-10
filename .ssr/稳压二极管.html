@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>稳压二极管</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>稳压二极管</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
-<h1>稳压二极管 | Zener Diode Regulation</h1><h2>稳压电路示例 | Regulator Circuit</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.稳压二极管/稳压电路示例.png" alt="稳压电路示例" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-58cb2990ca472d09cc6ca704068a06f6.png" alt=""></div><blockquote class="alert note"><p class="alert-title">稳压二极管与普通二极管的区别</p><p>普通二极管具有单向导电性，假如它被反向击穿，不具可逆性，将永久损坏。</p><p>而稳压二极管正是利用了它的反向击穿的特性，当被反向击穿时，稳压二极管反向电阻降低到一个很小的数值，在这个低阻区中电流增加而电压则保持恒定（即保持为 V<sub>z</sub>），且不会被损坏。</p></blockquote>
+<h1>稳压二极管 | Zener Diode Regulation</h1><h2>稳压电路示例 | Regulator Circuit</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E5%99%A8%E4%BB%B6%E4%B8%8E%E7%94%B5%E8%B7%AF%E5%8E%9F%E5%9E%8B/.稳压二极管/稳压电路示例.png" alt="稳压电路示例" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-58cb2990ca472d09cc6ca704068a06f6.png" alt=""></div><blockquote class="alert note"><p class="alert-title">稳压二极管与普通二极管的区别</p><p>普通二极管具有单向导电性，假如它被反向击穿，不具可逆性，将永久损坏。</p><p>而稳压二极管正是利用了它的反向击穿的特性，当被反向击穿时，稳压二极管反向电阻降低到一个很小的数值，在这个低阻区中电流增加而电压则保持恒定（即保持为 V<sub>z</sub>），且不会被损坏。</p></blockquote>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/电子器件与电路原型/稳压二极管.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

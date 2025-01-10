@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>数据类型</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据类型</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>数据类型</h1><h2>基础数据类型</h2><p>int 类型（允许无限大的数），通过不带有小数点的数字字面量创建，如 <code>1</code></p><p>float 类型（f64），通过带有小数点的数字字面量创建，如 <code>3.14</code></p><ul><li>float 类型通过 Epsilon 消除误差，使得诸如 <code>0.1 + 0.2 == 0.3</code> 的表达式为真</li></ul><p>boolean 类型，通过全局常量 <code>true</code> 和 <code>false</code> 获取和使用</p><p>unique 类型，通过标准库内置函数 <code>unique</code> 创建，该类型保证每次创建的值唯一，即 <code>unique("key") != unique("key")</code> 的值为真</p><h2>基础数据结构</h2><p>基础数据结构在语义上不具备方法和属性等对象的性质，但运行时可以通过在读取其属性和调用其方法时创建对象操作数据结构的方式实现类似对象的效果。</p><h3>字符串类型</h3><p>通过双引号和单引号创建，</p><p>如 <code>'string1'</code> <code>"string2"</code></p><p>可通过中引号 + 整数的方式读取字符</p><p>如 <code>string[0]</code></p><h3>数组类型</h3><p>使用中括号创建，</p><p>如 <code>[1, 2, 3]</code></p><p>可通过中引号 + 整数的方式读写值</p><p>如 <code>arr[0]</code> <code>arr[0] = <value></code></p><h3>集合类型</h3><p>通过大括号创建，集合的元素通过逗号分割，</p><p>如 <code>{1, 2, 3}</code></p><p>集合中值相同的元素会被合并，原则上，只应将基础类型（数字、布尔值、unique、裸字符串）作为集合的元素</p><h3>字典类型</h3><p>通过大括号创建，字典的键可使用引号包裹（可选），字典中元素可使用逗号进行分割，</p><p>如 <code>{"a": 1, b: 2}</code></p><p>可通过中引号 + 字符串的方式读取和设置键值对</p><p>如 <code>dict["key"]</code> <code>dict["key"] = <value></code></p><blockquote><p>上述数据结构的方法会在后面介绍。</p></blockquote>
 <p><a href="https://bhznjns.github.io/#static/编程/集成计算环境 ICE/2.0 版本语法草案/数据类型.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

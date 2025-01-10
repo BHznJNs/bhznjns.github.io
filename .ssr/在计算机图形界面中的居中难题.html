@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在计算机图形界面中的居中难题</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在计算机图形界面中的居中难题</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
-<h1>在计算机图形界面中的居中难题</h1><p>原文：<a href="https://tonsky.me/blog/centering/" target="_blank">Hardest Problem in Computer Science: Centering Things</a></p><p>让文字，尤其是和图标组合的文字竖直居中一直是计算机图形界面设计实现中的难题，甚至连谷歌、微软这样的大公司都有做不到位的情况。</p><h2>解决办法</h2><h3>不要使用 icon font</h3><p>作者给了一张自测图，告诉你在哪些情况下不要使用 icon font（然而实际上，你在所有情况下都不应该使用）</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.在计算机图形界面中的居中难题/diagram@2x.png" alt="不要使用 icon font" loading="lazy" tabindex="0"></div><h3>让图标在视觉上更对称</h3><p>你可以通过将图标嵌套在一个稍大一些的矩形中，尝试将这个矩形进行居中处理来使这个图标在视觉上更对称。</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.在计算机图形界面中的居中难题/icons_baked@2x.png" alt="让图标在视觉上更对称" loading="lazy" tabindex="0"></div>
+<h1>在计算机图形界面中的居中难题</h1><p>原文：<a href="https://tonsky.me/blog/centering/" target="_blank">Hardest Problem in Computer Science: Centering Things</a></p><p>让文字，尤其是和图标组合的文字竖直居中一直是计算机图形界面设计实现中的难题，甚至连谷歌、微软这样的大公司都有做不到位的情况。</p><h2>解决办法</h2><h3>不要使用 icon font</h3><p>作者给了一张自测图，告诉你在哪些情况下不要使用 icon font（然而实际上，你在所有情况下都不应该使用）</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/.在计算机图形界面中的居中难题/diagram@2x.png" alt="不要使用 icon font" loading="lazy" tabindex="0"></div><h3>让图标在视觉上更对称</h3><p>你可以通过将图标嵌套在一个稍大一些的矩形中，尝试将这个矩形进行居中处理来使这个图标在视觉上更对称。</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/.在计算机图形界面中的居中难题/icons_baked@2x.png" alt="让图标在视觉上更对称" loading="lazy" tabindex="0"></div>
 <p><a href="https://bhznjns.github.io/#static/编程/Web 前端/在计算机图形界面中的居中难题.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

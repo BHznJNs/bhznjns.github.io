@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>视频公开课的价值</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频公开课的价值</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>视频公开课的价值</h1><p>我以前其实是看不上这种动辄十几小时的成套的视频课程的，直到前段时间，我开始学习数据库的实现原理。</p><p>开始时，我 clone 了 Redis 最新版本的源码，研究了十来天后，经一位大佬指点，转而开始阅读 Redis 1.0 版本的源码。</p><p>大概过了一个多月吧，当然这一段时间我没有都耗在源码上，只是前后大概过了一个多月，我大致明白了 Redis 1.0 版本的运行机制。</p><p>这其实挺符合我以往的自学方式，即优先学习各类文字资料，在实在无法理解时再寻求更易懂的视频资料。我一直都觉得这样是更高效的方式，我学习各种编程语言、各种框架、算法和数据结构都是如此，但这回似乎不太管用了。</p><h2>接触 15-445 课程的契机</h2><p>在学习 Redis 源码的过程中，我一直心怀疑问：有多少公司招数据库内核开发岗位的，我能找到工作吗？</p><p>在 B 站搜索数据库内核开发相关的视频时，我多次看到视频的评论区提到了 15-445 这个来自美国 CMU 的公开课程。 </p><p>我抱着系统学习数据库相关知识的想法搜索了这个课程的相关资料并开始学习。</p><h2>课程本身</h2><p>15-445 课程设置相当系统，从现代 C++ 关键特性到数据库实现的各种核心概念，应有尽有。</p><p>我由此总结了使用视频公开课相比于自学的主要几点优势：</p><ol><li>知识更加系统全面</li><li>学习路线更平缓</li><li>有一节一节的课程，更能看到自己的学习进度</li></ol><h2>何时应该使用视频课学习</h2><p>虽然使用视频课程学习有诸多好处，但我也不认为你应该通过视频课程学习所有知识。</p><p>我认为，你可以在开始学习某个新领域时使用视频课。譬如，你是个编程小白，想要学习编程，跟着一个<i>知名</i>的视频公开课程学习大概率要比自己学习高效得多；但如果你已经有熟悉的编程语言，已经对编程的常见概念有了理解，你要学习新编程语言时大可以使用纯文本的教程 OR 文档，这也往往更为高效。</p><blockquote><p>⚠️注意我这里提到了“知名”，也就是说，当你选择看公开课学习时，应尽量选择较为知名的课程，最好是知名机构提供的课程，如果你要学计算机，看 MIT 的公开课大概率要好过看不知名培训机构的课程。</p></blockquote>
 <p><a href="https://bhznjns.github.io/#static/杂谈/视频公开课的价值.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

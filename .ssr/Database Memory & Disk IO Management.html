@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Database Memory & Disk IO Management</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Database Memory & Disk IO Management</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,6 +22,55 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>Database Memory & Disk IO Management</h1><p>How the DBMS manages its memory and move data back-and-forth from disk.</p><p>Spatial Control:</p><ul><li>Where to write pages on disk.</li><li>The goal is to keep pages that are used together often as physically close together as possible on disk.</li></ul><p>Temporal Control:</p><ul><li>When to read pages into memory, and when to write them to disk.</li><li>The goal is to minimize the number of stalls from having to read data from disk.</li></ul><hr><h2>Locks VS. Latches</h2><p>简单来说,</p><p>Locks 处理的是数据库层面的并发问题，保证在多用户环境下对数据库中的逻辑结构（如表、行等）进行并发访问时的数据一致性；</p><p>Latches 处理的是数据库内部实现层面的并发问题，用来保护数据库内部的数据结构（如内存中的缓冲池、索引树节点等），避免在同一时间内被不同的内部线程或进程并发访问而导致的问题。</p><p>Locks:</p><ul><li>Protects the database's logical contents from other transactions.</li><li>Held for transaction duration.</li><li>Need to be able to rollback changes.</li></ul><p>Latches:</p><ul><li>Protects the critical sections of the DBMS's internal data structure from other threads.</li><li>Held for operation duration.</li><li>Do not need to be able to rollback changes.</li></ul><h2>Page Directory VS. Page Table</h2><p>Page Directory is the mapping from <strong>page ids</strong> to <strong>page locations in the database files</strong>.</p><ul><li>All changes must be recorded on disk to allow the DBMS to find on restart.</li></ul><p>Page Table is the mapping from <strong>page ids</strong> to <strong>a copy of the page in buffer pool frames</strong>.</p><ul><li>This is an in-memory data structure that does not need to be stored on disk.</li></ul><h2>Buffer Pool</h2><h3>Meta Data</h3><ul><li>Dirty Flag</li><li>Pin/Reference Counter</li><li>Access Tracking Information</li></ul><h3>Optimizations</h3><h4>Multiple Buffer Pools</h4><p>使用多个缓存池有助于减少 Latches 对性能带来的影响。</p><details><p>Approach #1: Object Id</p><ul><li>Embed an object identifier in record ids and then maintain a mapping from objects to specific buffer pools.</li></ul><p>Approach #2: Hashing</p><ul><li>Hash the page id to select whichbuffer pool to access.</li></ul><summary> 在使用多个缓存池时，如何确定应该从哪个缓存池获取数据</summary></details><h4>Pre-Fetching</h4><p>预测接下来可能要从硬盘读取的 Page，提前读取并缓存</p><ul><li>Sequential Scans</li><li>Index Scans</li></ul><h4><ruby data-notation="共享查询">Scan Sharing<rp>(</rp>,<rt>共享查询</rt>,<rp>)</rp></ruby></h4><p>例如：</p><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">SELECT SUM(val) FROM A;
 SELECT AVG(val) FROM A;
@@ -27,6 +79,6 @@ SELECT AVG(val) FROM A;
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

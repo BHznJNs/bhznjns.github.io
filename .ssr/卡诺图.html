@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>卡诺图</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卡诺图</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
-<h1>卡诺图 | Karnaugh maps</h1><p>通过图形化方式较为直观地辅助<strong>简化</strong>电路表达式。</p><p>两变量到四变量的卡诺图示例：</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.卡诺图/图例.png" alt="图例" loading="lazy" tabindex="0"></div><h2>逻辑函数到卡诺图</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.卡诺图/转换过程.png" alt="转换过程" loading="lazy" tabindex="0"></div><blockquote class="alert warning"><p class="alert-title">注意</p><p>卡诺图中使用 Gray Code，即 00, 01, 11, 10</p><p>这样可以使卡诺图中每个相邻的格子只有一位不同。</p></blockquote><details><p><span class="math"><img src="./katex-484cf2bc64194ed75b55c1c5b4872939.png"></span> 对应的卡诺图如下：</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.卡诺图/转换用例1.png" alt="转换用例1" loading="lazy" tabindex="0"></div><summary> 一个例子</summary></details><h2>卡诺图的使用</h2><p><strong>画圈</strong>的三点注意⚠️：</p><ol><li>圈出相邻的“1”，只能圈成矩形并且只能圈 2<sup>n</sup> 个格子</li><li>优先圈大的格子，由大圈到小</li><li>让每个“1”都至少被圈到一次</li></ol><p>画完圈后，每个圈对应一个 Product Term，将每个圈对应的 Term 相加即为简化后的逻辑函数。</p><details><p>原函数：<span class="math"><img src="./katex-6d76ff2ca4e2700467c848293adc14ea.png"></span></p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.卡诺图/转换用例2.png" alt="转换用例2" loading="lazy" tabindex="0"></div><p>简化后函数：<span class="math"><img src="./katex-2537eedb42d3fcdac40670c6218acb07.png"></span></p><summary> 另一个例子</summary></details><details><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.卡诺图/转换用例3.png" alt="转换用例3" loading="lazy" tabindex="0"></div><summary> 还不懂？再看看这个例子</summary></details><hr><h2>Don't Care Conditions</h2><p>在一些时候，真值表中的一些输入组合可以不用考虑。</p><p>对于这些输入组合，其对应的卡诺图格子可以不被圈到。</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.卡诺图/DontCareCondition.png" alt="Don't Care Conditions Sample" loading="lazy" tabindex="0"></div><h2>多输出电路</h2><p>对于多输出电路，化简步骤如下：</p><ol><li>画出每个输出对应的卡诺图</li><li>找出在多张卡诺图中均为 1 的格子</li><li>对于每张卡诺图，排除公共项后进行化简</li><li>对于每张卡诺图的化简结果，加上公共项的单独化简结果</li></ol><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.卡诺图/多输出电路示例.png" alt="多输出电路示例" loading="lazy" tabindex="0"></div><h2>使用 NAND 和 NOR 门代替 AND 和 OR 门</h2><p>可以使用<ruby data-notation="NAND">与非<rp>(</rp>,<rt>NAND</rt>,<rp>)</rp></ruby>代替<ruby data-notation="Invert-OR">非 + 或<rp>(</rp>,<rt>Invert-OR</rt>,<rp>)</rp></ruby>。</p><p>由于 NAND(NOR) 门比 AND(OR) 门更简单，使用 NAND(NOR) 门代替 AND(OR) 门能够简化电路：</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/数字系统与微处理器设计/.卡诺图/NAND&NOR.png" alt="NAND & NOR" loading="lazy" tabindex="0"></div>
+<h1>卡诺图 | Karnaugh maps</h1><p>通过图形化方式较为直观地辅助<strong>简化</strong>电路表达式。</p><p>两变量到四变量的卡诺图示例：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E5%AD%97%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8%E8%AE%BE%E8%AE%A1/.卡诺图/图例.png" alt="图例" loading="lazy" tabindex="0"></div><h2>逻辑函数到卡诺图</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E5%AD%97%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8%E8%AE%BE%E8%AE%A1/.卡诺图/转换过程.png" alt="转换过程" loading="lazy" tabindex="0"></div><blockquote class="alert warning"><p class="alert-title">注意</p><p>卡诺图中使用 Gray Code，即 00, 01, 11, 10</p><p>这样可以使卡诺图中每个相邻的格子只有一位不同。</p></blockquote><details><p><span class="math"><img src="./katex-484cf2bc64194ed75b55c1c5b4872939.png"></span> 对应的卡诺图如下：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E5%AD%97%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8%E8%AE%BE%E8%AE%A1/.卡诺图/转换用例1.png" alt="转换用例1" loading="lazy" tabindex="0"></div><summary> 一个例子</summary></details><h2>卡诺图的使用</h2><p><strong>画圈</strong>的三点注意⚠️：</p><ol><li>圈出相邻的“1”，只能圈成矩形并且只能圈 2<sup>n</sup> 个格子</li><li>优先圈大的格子，由大圈到小</li><li>让每个“1”都至少被圈到一次</li></ol><p>画完圈后，每个圈对应一个 Product Term，将每个圈对应的 Term 相加即为简化后的逻辑函数。</p><details><p>原函数：<span class="math"><img src="./katex-6d76ff2ca4e2700467c848293adc14ea.png"></span></p><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E5%AD%97%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8%E8%AE%BE%E8%AE%A1/.卡诺图/转换用例2.png" alt="转换用例2" loading="lazy" tabindex="0"></div><p>简化后函数：<span class="math"><img src="./katex-2537eedb42d3fcdac40670c6218acb07.png"></span></p><summary> 另一个例子</summary></details><details><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E5%AD%97%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8%E8%AE%BE%E8%AE%A1/.卡诺图/转换用例3.png" alt="转换用例3" loading="lazy" tabindex="0"></div><summary> 还不懂？再看看这个例子</summary></details><hr><h2>Don't Care Conditions</h2><p>在一些时候，真值表中的一些输入组合可以不用考虑。</p><p>对于这些输入组合，其对应的卡诺图格子可以不被圈到。</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E5%AD%97%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8%E8%AE%BE%E8%AE%A1/.卡诺图/DontCareCondition.png" alt="Don't Care Conditions Sample" loading="lazy" tabindex="0"></div><h2>多输出电路</h2><p>对于多输出电路，化简步骤如下：</p><ol><li>画出每个输出对应的卡诺图</li><li>找出在多张卡诺图中均为 1 的格子</li><li>对于每张卡诺图，排除公共项后进行化简</li><li>对于每张卡诺图的化简结果，加上公共项的单独化简结果</li></ol><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E5%AD%97%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8%E8%AE%BE%E8%AE%A1/.卡诺图/多输出电路示例.png" alt="多输出电路示例" loading="lazy" tabindex="0"></div><h2>使用 NAND 和 NOR 门代替 AND 和 OR 门</h2><p>可以使用<ruby data-notation="NAND">与非<rp>(</rp>,<rt>NAND</rt>,<rp>)</rp></ruby>代替<ruby data-notation="Invert-OR">非 + 或<rp>(</rp>,<rt>Invert-OR</rt>,<rp>)</rp></ruby>。</p><p>由于 NAND(NOR) 门比 AND(OR) 门更简单，使用 NAND(NOR) 门代替 AND(OR) 门能够简化电路：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E5%AD%97%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8%E8%AE%BE%E8%AE%A1/.卡诺图/NAND&NOR.png" alt="NAND & NOR" loading="lazy" tabindex="0"></div>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/数字系统与微处理器设计/卡诺图.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

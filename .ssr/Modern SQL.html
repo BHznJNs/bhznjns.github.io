@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern SQL</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern SQL</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,6 +22,55 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>Modern SQL</h1><p></p><p>SQL is based on <strong>bags</strong>(duplicates & defined order) not <strong>sets</strong>(no duplicates & no order)</p><h2>Aggregates</h2><ul><li><strong>AVG(col)</strong> Return average col value</li><li><strong>MIN(col)</strong> Return minimum col value</li><li><strong>MAX(col)</strong> Return maximum col value</li><li><strong>SUM(col)</strong> Return sum of values in col</li><li><strong>COUNT(col)</strong> Return count of values for col</li></ul><p>使用 <code>GROUP BY</code> 分组数据</p><p>使用 <code>HAVING</code> 筛选 <code>GROUP BY</code> 分组后的数据</p><h2>String Operations</h2><p>不同的数据库对字符串有不同的处理方式，你可能无法直接在一个数据库中使用在另一个数据库中能够正常工作的 SQL。</p><div class="table"><table><thead><tr><th></th><th>String Case</th><th>String Quotes</th></tr></thead><tbody><tr><td>SQL-92</td><td>Sensitive</td><td>Single Only</td></tr><tr><td>Postgres</td><td>Sensitive</td><td>Single Only</td></tr><tr><td>MySQL</td><td>Insensitive</td><td>Single/Double</td></tr><tr><td>SQLite</td><td>Sensitive</td><td>Single/Double</td></tr><tr><td>MSSQL</td><td>Sensitive</td><td>Single Only</td></tr><tr><td>Oracle</td><td>Sensitive</td><td>Single Only</td></tr></tbody></table></div><h3>用 LIKE 来进行字符串匹配</h3><ul><li>用 <code>'%'</code> 匹配任意子字符串</li><li>用 <code>'_'</code> 匹配任意单个字符</li></ul><h2>Date / Time Operations</h2><p>当前时间</p><p>日期差值计算</p><h2>Output Redirection</h2><p>将通过一些操作产生的表插入到一个已存在的表或新表中。</p><pre class="code-block" data-language="SQL"><code class="language-sql" tabindex="0">CREATE TABLE CourseIds (
   SELECT DISTINCT cid FROM enrolled);
@@ -51,6 +103,6 @@ SELECT * FROM cteSource
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

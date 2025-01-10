@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>课程导入</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>课程导入</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
-<h1>课程导入</h1><h2>二极管 | Diode</h2><h3>半导体 | Semiconductor</h3><h3>P-N 结 | PN junction</h3><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.课程导入/n-type.png" alt="n-type" loading="lazy" tabindex="0"></div><p>N-type doping: Elements with 5 valence electrons are introduced as impurity to semiconductor</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.课程导入/p-type.png" alt="p-type" loading="lazy" tabindex="0"></div><p>P-type doping: Elements with 3 valence electrons are introduced as impurity to semiconductor</p><h3>P-N 结二极管</h3><p><ruby data-notation="Three bias conditions">三种偏转情况<rp>(</rp>,<rt>Three bias conditions</rt>,<rp>)</rp></ruby>：<strong>zero bias</strong>, <strong>forward bias</strong> and <strong>reverse bias</strong></p><p>Forward Biasing</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.课程导入/Forward Biasing.png" alt="Forward Biasing" loading="lazy" tabindex="0"></div><p>Reserve Biasing</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.课程导入/Reserve Biasing.png" alt="Reserve Biasing" loading="lazy" tabindex="0"></div><p><strong>Zener region</strong>: in the diode’s reverse-bias region, At some point the reverse bias voltage is so large the diode breaks down and the reverse current increases dramatically.</p><ul><li>This maximum voltage is called <strong>avalanche breakdown voltage</strong> </li><li>The current is called <strong>avalanche current</strong></li></ul><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子器件与电路原型/.课程导入/Zener region.png" alt="Zener region" loading="lazy" tabindex="0"></div><h2>二极管测试 | Diode Testing</h2><ul><li>Diode checker</li><li>Ohmmeter</li><li>Curve tracer</li></ul><p>Silicon diode ≅ 0.7V</p><p>Germanium diode ≅ 0.3V</p>
+<h1>课程导入</h1><h2>二极管 | Diode</h2><h3>半导体 | Semiconductor</h3><h3>P-N 结 | PN junction</h3><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E5%99%A8%E4%BB%B6%E4%B8%8E%E7%94%B5%E8%B7%AF%E5%8E%9F%E5%9E%8B/.课程导入/n-type.png" alt="n-type" loading="lazy" tabindex="0"></div><p>N-type doping: Elements with 5 valence electrons are introduced as impurity to semiconductor</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E5%99%A8%E4%BB%B6%E4%B8%8E%E7%94%B5%E8%B7%AF%E5%8E%9F%E5%9E%8B/.课程导入/p-type.png" alt="p-type" loading="lazy" tabindex="0"></div><p>P-type doping: Elements with 3 valence electrons are introduced as impurity to semiconductor</p><h3>P-N 结二极管</h3><p><ruby data-notation="Three bias conditions">三种偏转情况<rp>(</rp>,<rt>Three bias conditions</rt>,<rp>)</rp></ruby>：<strong>zero bias</strong>, <strong>forward bias</strong> and <strong>reverse bias</strong></p><p>Forward Biasing</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E5%99%A8%E4%BB%B6%E4%B8%8E%E7%94%B5%E8%B7%AF%E5%8E%9F%E5%9E%8B/.课程导入/Forward Biasing.png" alt="Forward Biasing" loading="lazy" tabindex="0"></div><p>Reserve Biasing</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E5%99%A8%E4%BB%B6%E4%B8%8E%E7%94%B5%E8%B7%AF%E5%8E%9F%E5%9E%8B/.课程导入/Reserve Biasing.png" alt="Reserve Biasing" loading="lazy" tabindex="0"></div><p><strong>Zener region</strong>: in the diode’s reverse-bias region, At some point the reverse bias voltage is so large the diode breaks down and the reverse current increases dramatically.</p><ul><li>This maximum voltage is called <strong>avalanche breakdown voltage</strong> </li><li>The current is called <strong>avalanche current</strong></li></ul><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E5%99%A8%E4%BB%B6%E4%B8%8E%E7%94%B5%E8%B7%AF%E5%8E%9F%E5%9E%8B/.课程导入/Zener region.png" alt="Zener region" loading="lazy" tabindex="0"></div><h2>二极管测试 | Diode Testing</h2><ul><li>Diode checker</li><li>Ohmmeter</li><li>Curve tracer</li></ul><p>Silicon diode ≅ 0.7V</p><p>Germanium diode ≅ 0.3V</p>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/电子器件与电路原型/课程导入.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

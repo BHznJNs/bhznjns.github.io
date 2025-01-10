@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>连续性随机变量</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>连续性随机变量</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>连续型随机变量</h1><h2>概率分布函数 CDF</h2><div class="math"><img src="./katex-a27b214bc38e1731482a3715465397be.png" alt=""></div><h2>概率密度函数 PDF</h2><div class="math"><img src="./katex-accfe4071d7e8c093fe98e5561f8891d.png" alt=""></div><p>性质：</p><ol><li><span class="math"><img src="./katex-c99bb89e2859f281647a5408cfdb77ab.png"></span></li><li><span class="math"><img src="./katex-2d9e92252a7948fe55e818a9476b57ac.png"></span></li></ol><h2>连续型的常见分布</h2><h3><ruby data-notation="Uniform Distribution">均匀分布<rp>(</rp>,<rt>Uniform Distribution</rt>,<rp>)</rp></ruby></h3><p>对于连续均匀分布，随机变量 X 在区间 <span class="math"><img src="./katex-022022f289db140169cd9514f74ee648.png"></span> 内均匀分布。</p><p>其概率密度函数：</p><div class="math"><img src="./katex-163e6b040cf348b843087706ae4b7e16.png" alt=""></div><p>其概率分布函数：</p><div class="math"><img src="./katex-f8b3d235be47dc7b1d3f423d780067ac.png" alt=""></div><h3><ruby data-notation="Exponential Distribution">指数分布<rp>(</rp>,<rt>Exponential Distribution</rt>,<rp>)</rp></ruby></h3><p>其概率密度函数：</p><div class="math"><img src="./katex-dca4e8f0d47f9f422f158152b8dc54e8.png" alt=""></div><p>其概率分布函数：</p><div class="math"><img src="./katex-0d808a5caeb54239cda12200f04895a6.png" alt=""></div><h3><ruby data-notation="Normal Distribution">正态分布<rp>(</rp>,<rt>Normal Distribution</rt>,<rp>)</rp></ruby></h3><div class="math"><img src="./katex-548b890ec9d682a4e0cf82d477a6f6ee.png" alt=""></div><p>性质：</p><ol><li>关于 <span class="math"><img src="./katex-c9176c82b75e67bc81dc46bd2525ab2e.png"></span> 对称</li><li><span class="math"><img src="./katex-c9176c82b75e67bc81dc46bd2525ab2e.png"></span> 时 <span class="math"><img src="./katex-50bbd36e1fd2333108437a2ca378be62.png"></span> 最大，<span class="math"><img src="./katex-057200da36c1d343262a5a60cc864ab7.png"></span></li></ol><p>标准正态分布：</p><div class="math"><img src="./katex-8d7c013c7d0c8e73538339d41958fd9b.png" alt=""></div><p>非标准正态分布的标准化：</p><div class="math"><img src="./katex-be55146798c16b6f3380c32e88a43b3e.png" alt=""></div>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/概率论与统计/连续性随机变量.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

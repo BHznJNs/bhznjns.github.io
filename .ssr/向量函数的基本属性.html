@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>向量函数的基本属性</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>向量函数的基本属性</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>向量函数的基本属性</h1><h2>向量函数的导数 | Derivatives</h2><p>Let <span class="math"><img src="./katex-3458d2890cd48be4a4c759f2211b9b76.png"></span>,</p><p><span class="math"><img src="./katex-d13b6685af74a2477ecf2a215644f0d1.png"></span></p><h2>单位切向量 | Unit tangent vector</h2><p><span class="math"><img src="./katex-809d84325185896339bbc29043669786.png"></span></p><h2>单位法向量 | The unit normal vector</h2><p>主单位法向量 The principal unit normal vector</p><p><span class="math"><img src="./katex-aa18f431e92723316aa29352acb39f9a.png"></span></p><p>副法向量 The binormal vector</p><p><span class="math"><img src="./katex-5e6c5fe2ed0376a05e795c451d82d952.png"></span></p><hr><h2>法平面 | Normal plane</h2><p>曲线 C 的点 P 上，由法向量 N 和副法向量 B 在决定的平面，即该点的法平面。法平面由所有与切向量正交的线组成。</p><h2>密切平面 | Osculating plane</h2><p>曲线 C 的点 P 上，由切向量 T 和法向量 N 在决定的平面，即该点的密切平面。</p>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/向量函数/向量函数的基本属性.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

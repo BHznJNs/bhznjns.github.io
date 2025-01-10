@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>快速上手 derive 过程宏</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>快速上手 derive 过程宏</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,6 +22,55 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>快速上手 derive 过程宏</h1><p>参考资料：<a href="https://course.rs/advance/macro.html#%E7%94%A8%E8%BF%87%E7%A8%8B%E5%AE%8F%E4%B8%BA%E5%B1%9E%E6%80%A7%E6%A0%87%E8%AE%B0%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81" target="_blank">Rust 语言圣经</a></p><hr><h2>创建子项目</h2><p>由于<ruby data-notation="A proc-macro crate can only export proc-macros">一个 proc-macro 项目只能导出过程宏<rp>(</rp>,<rt>A proc-macro crate can only export proc-macros</rt>,<rp>)</rp></ruby>，如果你需要在项目中使用过程宏，你必须要在项目下创建子项目，将其作为 proc-macro crate。</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0"># 项目根目录下，对于 derive 过程宏，项目名称通常以 ``_derive`` 结尾
 cargo new [proc-macro-name]_derive --lib
@@ -75,6 +127,6 @@ return output_impl.into();
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

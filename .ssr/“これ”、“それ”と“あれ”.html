@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>“これ”、“それ”と“あれ”</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>“これ”、“それ”と“あれ”</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>“これ”、“それ” と “あれ” | 指示代词</h1><p>我在学习日语时常常分不清 “それ” 和 “あれ”，以及 “これ” 和 “この” 的用法，今在浏览油管时看到相关视频，觉条理清晰，在此记录。</p><p>原视频：</p><ul><li><a href="https://www.youtube.com/watch?v=d6UnRexUg5A" target="_blank">これ / それ / あれ | Minna no Nihongo | Lesson 2</a></li><li><a href="https://www.youtube.com/watch?v=RqDs_jctpls" target="_blank">ここ / そこ / あそこ / どこ | Minna no Nihongo | Lesson 3</a></li></ul><hr><h2>“これ”、“それ” と “あれ”</h2><p>“これ” 指代离说话者较近的物体，“それ” 指代离听者较近的物体，“あれ” 指代离两者都较远的物体。</p><p>对于 ”この“、”その“、”あの“，”ここ“、”そこ“、”あそこ“ 等也是同理，</p><p>”ここ“ 指代离说话者较近的地方，”そこ“ 指代离听者较近的地方，”あそこ“ 指代离两者都较远的地方。</p><h2>“これ” 和 “この” 的区别</h2><p>“この” 后可直接加名词，而 “これ” 不行。</p><p>例句：</p><blockquote><p><strong>これ</strong>は本です。</p><p><strong>この本</strong>は私のです。</p></blockquote><p>对于 “それ”、“あれ” 也是类似。</p><hr><h2>“こちら”、“そちら” と “あちら”</h2><p>“こちら”，“そちら” 和 “あちら” 可以作为 “ここ”、“そこ” 和 “あそこ” 的礼貌用法，</p><p>同时也具有指代方向，或指代人。</p><p>另外 “こっち”、“そっち” と “あっち” 是 “こちら”、“そちら” と “あちら” 的口语用法。</p>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/日语/“これ”、“それ”と“あれ”.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

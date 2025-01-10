@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>矩阵运算</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>矩阵运算</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>矩阵运算 | Matrix Operations</h1><h2>一些定义</h2><h3>矩阵项记法</h3><p>对于一个 <span class="math"><img src="./katex-fbfeb9c8459fee5a2bd529c07b881153.png"></span> 的矩阵 A，其第 i 行第 j 列的项可记为 <span class="math"><img src="./katex-6781228e0a0a6072d89c076e9a5ab4db.png"></span>。</p><h3>矩阵对角项 | diagonal entries</h3><p>位于矩阵<ruby data-notation="即左上到右下的对角线">主对角线<rp>(</rp>,<rt>即左上到右下的对角线</rt>,<rp>)</rp></ruby>上的元素。</p><h3>对角矩阵 | diagonal matrix</h3><p>非对角项全为零的 <span class="math"><img src="./katex-50f17e5c11d610b19c0471830dc4dda1.png"></span> 矩阵。</p><h3>单位矩阵 | identity matrix</h3><p>对角项值全为 1 的特殊对角矩阵。</p><h3>零矩阵 | zero matrix</h3><p>所有项的值为 0 的矩阵。</p><h3>矩阵相等</h3><p>对于两个相等的矩阵，其具有相同的行数和列数，且相同位置的项的值相同。</p><h3>矩阵相加</h3><p>对于两个同为 <span class="math"><img src="./katex-fbfeb9c8459fee5a2bd529c07b881153.png"></span> 的矩阵 A 与 B，则 <span class="math"><img src="./katex-99979132b6724219a868c19463d30d32.png"></span> 即为将 A 与 B 相同位置的项相加。</p><blockquote class="alert warning"><p class="alert-title">注意</p><p>无法对行数或列数不同的两个矩阵相加。</p></blockquote><h3>标量相乘 | Scalar multiplication</h3><p>对于一个标量 r 和一个矩阵 A，对其进行标量相乘即将该矩阵的每一项乘上该标量。</p><h3>矩阵相乘 | Matrix multiplication</h3><p>对于一个 <span class="math"><img src="./katex-6bfb727b656d02ac43818be9f0eb9951.png"></span> 的矩阵 A 和 <span class="math"><img src="./katex-68fa8105b2a60ff4e4d4e355bd19d685.png"></span> 的矩阵 B，如：</p><div class="math"><img src="./katex-29f46caa73da9765a33b7d9ed8d8d512.png" alt=""></div><blockquote class="alert warning"><p class="alert-title">注意</p><p>多数情况下，<span class="math"><img src="./katex-f78c86e24eee6115984e1fa7554311b6.png"></span></p><p>对于 <span class="math"><img src="./katex-6a996a5776e445355f0a3d5d4fc6116b.png"></span> 的特殊矩阵 A B，其被成为<ruby data-notation="commuting matrices">可交换矩阵<rp>(</rp>,<rt>commuting matrices</rt>,<rp>)</rp></ruby></p></blockquote><h3>矩阵转置 | Matrix Transpose</h3><p>对于 <span class="math"><img src="./katex-fbfeb9c8459fee5a2bd529c07b881153.png"></span> 的矩阵 A，其转置应为 <span class="math"><img src="./katex-6bfb727b656d02ac43818be9f0eb9951.png"></span> 的矩阵 A<sup>T</sup>。</p><div class="math"><img src="./katex-c5ca9aaef5c61d3fd5eff1649039f9b1.png" alt=""></div><details><ol><li><span class="math"><img src="./katex-901b1ede82f978c535240ab0a9e78f20.png"></span></li><li><span class="math"><img src="./katex-8779bfbd5e934f8e8368c6fbd5e93b72.png"></span></li><li><span class="math"><img src="./katex-ccbaa8ad63aa1f6082fdbd8a2a4621b0.png"></span></li><li><span class="math"><img src="./katex-361d565369a19f32631af09da1ed7b6d.png"></span></li></ol><summary> 矩阵转置性质</summary></details><h3>矩阵的逆 | Matrix Inverse</h3><p>对于一个矩阵 A，若有矩阵 C 使得 <span class="math"><img src="./katex-b60b4ceaa294a5aaaae094b5ff2c8983.png"></span> 且 <span class="math"><img src="./katex-2806dd2d91fa2e27dfb96bb5c8bf58cb.png"></span>，则 C 为 A 的逆。</p><details><ol><li><span class="math"><img src="./katex-d48c2f13e84904912395fa07b3b13439.png"></span></li><li><span class="math"><img src="./katex-1dd01ec1d8e1444ec8e5db92dd1b9726.png"></span></li><li><span class="math"><img src="./katex-9e8804f57257ea9e167d26a0634fab23.png"></span></li></ol><summary> 矩阵的逆的性质</summary></details><blockquote class="alert note"><p class="alert-title">矩阵求逆</p><p>对于矩阵</p><div class="math"><img src="./katex-07208b36244a1e90758290d2867f272a.png" alt=""></div><p>有增广矩阵</p><div class="math"><img src="./katex-85de5bccc1788dd26dfc7850ef7c9895.png" alt=""></div><p>在矩阵基本行变换后，使得</p><div class="math"><img src="./katex-6277f80db03acd43d48b78415c0023e6.png" alt=""></div><p>则矩阵</p><div class="math"><img src="./katex-95ca6bd48b8bde81faff6c6753415b38.png" alt=""></div><hr><p>特别地，对于一个二阶矩阵，其逆</p><div class="math"><img src="./katex-8effbfcad31b7e6134adf46a799032e2.png" alt=""></div></blockquote>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/线性代数/矩阵运算.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

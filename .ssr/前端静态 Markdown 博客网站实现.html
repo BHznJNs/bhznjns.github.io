@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>前端静态 Markdown 博客网站实现</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>前端静态 Markdown 博客网站实现</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,6 +22,55 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>前端静态 Markdown 博客网站实现</h1><p><code>2023/7/7</code></p><hr><p>本文主要介绍了本站的实现原理，本文实现仅供参考。</p><hr><p>如果你访问过本站，你可能会对本站作为一个部署于 Github Page 上的静态网站，是如何实现类似于动态网站的功能感到好奇。如果你看过了本站的部分代码，你可能也会对本站是如何渲染 Markdown 文档感到好奇。</p><p>本文主要分为<strong>三</strong>个部分：</p><ol><li>Markdown 文档的编译（md -&gt; html）</li><li>网站静态文件索引的实现（indexing）</li><li>前端路由的实现（hash）及路由到静态文件的映射</li></ol><hr><h2>Markdown 文档的编译</h2><p>这一部分其实算是本站最复杂的一部分，因为这个简易的编译器是我自己写的（😀</p><p>当然你如果嫌麻烦之类的，也可以用现成的 npm 包（e.g. <a href="https://marked.js.org/" target="_blank">marked</a>），效果相同。</p><p>为了防止文章篇幅过长，这里就不贴我的代码实现了，贴个<a href="https://github.com/BHznJNs/markdown-blog/blob/master/src/utils/markdown/index.js" target="_blank"> Github 上的代码地址</a>，有感兴趣的小伙伴可以看一下~~</p><h3>网站静态文件索引的实现</h3><p>这一部分又可以分成<strong>三</strong>个小部分：</p><ol><li>静态文件遍历</li><li>分页函数实现</li><li>创建并写入索引数据</li></ol><p>在完成了这三个部分之后，你可以参考<a href="https://github.com/BHznJNs/markdown-blog/blob/master/builder.js" target="_blank">这里</a>，将代码整合到一个脚本中，在你每次对静态文件进行改动（增添、删减等）时对其调用。</p><h3>静态文件遍历</h3><p>这一步非常简单，下面直接贴上我的代码实现：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const fs = require("node:fs")
 
@@ -194,7 +246,7 @@ async function hashEvent() {
 window.onload = hashEvent
 // hash 改变时调用是为了便于控制在按键点击时改变界面。
 window.addEventListener("hashchange", hashEvent)
-</code></pre><h2>项目预览</h2><p>最后，当你写完一篇博客的时候，肯定会有想要先在本地预览的需求。</p><p>首先，如果你的代码组织使用了 ES Module，你是无法通过在浏览器直接打开 HTML 文件的方式来预览的，即使这个项目基本所有的代码都写在前端。如下图，你大概率会因为同源策略而无法加载索引文件。浏览器报错如下图所示：</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.前端静态 Markdown 博客网站实现/Error Image.png" alt="错误图例" loading="lazy" tabindex="0"></div><h3>我的解决方式</h3><p>在本地安装 Express <code>npm i express`。</code></p><p>在项目根目录新建<code>preview.js</code></p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const express = require("express")
+</code></pre><h2>项目预览</h2><p>最后，当你写完一篇博客的时候，肯定会有想要先在本地预览的需求。</p><p>首先，如果你的代码组织使用了 ES Module，你是无法通过在浏览器直接打开 HTML 文件的方式来预览的，即使这个项目基本所有的代码都写在前端。如下图，你大概率会因为同源策略而无法加载索引文件。浏览器报错如下图所示：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/.前端静态 Markdown 博客网站实现/Error Image.png" alt="错误图例" loading="lazy" tabindex="0"></div><h3>我的解决方式</h3><p>在本地安装 Express <code>npm i express`。</code></p><p>在项目根目录新建<code>preview.js</code></p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const express = require("express")
 const app = express()
 
 const port = 3000
@@ -222,6 +274,6 @@ app.listen(port, () =&gt; {
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

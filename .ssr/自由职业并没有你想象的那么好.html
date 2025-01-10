@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自由职业并没有你想象的那么好</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自由职业并没有你想象的那么好</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>自由职业并没有你想象的那么好</h1><p>摘自<a href="https://www.ruanyifeng.com/blog/2024/11/weekly-issue-323.html" target="_blank">阮一峰的博客</a></p><p>原文：<a href="https://medium.com/mr-plan-publication/why-freelancing-isnt-the-dream-it-s-made-out-to-be-730b6f355681" target="_blank">Why Freelancing isnt the Dream it's Made Out to Be</a></p><hr><p>很多人会觉得，当自由职业者成为自己的老板会很爽很自由，然而事实可能并非如你所愿。自由职业，尤其是在刚刚起步的初期，你会面临巨大的压力。压力来源如下：</p><ol><li>自由职业是不可预测的。客户随时会消失，你可能尽了最大努力，还是连续几周没有一个项目。</li><li>自由职业不会带来财务保障。你某一次的报酬可能看起来不错，但一旦考虑到税收、保险和费用，你很快就会意识到，自由职业并不具备传统工作所具有的财务缓冲。</li><li>自由职业不具有扩展性。你一个人就是整个公司，销售、会计、客服都要管，这意味着你能承受的工作量很有限；你想多做几个项目，很可能会精疲力尽。你也很难提高收费。</li><li>自由职业意味着在家工作，在家工作意味着没有同事可以交流，没有办公室文化，也没有饮水机八卦，只有你和你的电脑。这种孤独会比你想象的更快地导致倦怠。</li></ol>
 <p><a href="https://bhznjns.github.io/#static/今日趣闻/自由职业并没有你想象的那么好.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

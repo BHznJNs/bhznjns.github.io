@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>上手一个代码库的十个好问题</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上手一个代码库的十个好问题</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>上手一个代码库的十个好问题</h1><p>原文：<a href="https://mannes.tech/10-questions-codebase/" target="_blank">10 Great Questions To Ask To Become Familiar With a Huge Codebase</a></p><hr><p>你通过了面试，被雇用了，你很开心。但当你开始阅读公司的代码库，面对大量的陌生代码，你感到无所适从。</p><p>理解代码库的第一步，问出下面这几个问题：</p><hr><h2>理解目的</h2><ul><li>“这个项目的目的是什么？”（要解决什么问题）</li><li>“这个软件做了什么？”</li></ul><h2>项目过往</h2><ul><li>“这个项目是什么时候开始的？”</li><li>“谁创建了这个项目以及，这个项目团队最初有多少人？”</li><li>“在过去几年中有多少人经受了这个项目？”</li></ul><h2>初窥架构</h2><ul><li>”通过项目依赖（如 package.json）了解项目所使用的技术“</li><li>”项目近期进行过的或正在进行的重要重构？“</li><li>”项目使用的架构理念？“</li></ul><h2>熟悉流程</h2><ul><li>”给项目提交 PR 的流程？“</li><li>”发布 release 的流程？“</li></ul><hr><h2>前三周的三点建议</h2><ul><li>完成任务，问问题；</li><li>如果可能，结对编程；</li><li>让团队知道新员工培训的情况，及时报告过期的文档和代码库中不明了的部分。</li></ul><p>同时，你需要知道的三点：</p><ul><li>你需要（从源码）在本地跑起项目；</li><li>你需要熟悉从分配任务到合并 PR 的流程；</li><li>你需要大致的了解代码库，但无需特别深入。</li></ul>
 <p><a href="https://bhznjns.github.io/#static/译文/上手一个代码库的十个好问题.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

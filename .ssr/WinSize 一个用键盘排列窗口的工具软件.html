@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WinSize 一个用键盘排列窗口的工具软件</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WinSize 一个用键盘排列窗口的工具软件</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>WinSize 一个用键盘排列窗口的工具软件</h1><p>项目地址：<a href="https://github.com/dmscode/WinSize" target="_blank">WinSize</a></p><p>信息来源：<a href="https://meta.appinn.net/t/topic/51969" target="_blank">WinSize 5.0 - 让窗口更听话一点点</a></p><p>盈利方式：完整功能版本通过<a href="https://afdian.com/item/d8fea58cb99c11eebcb75254001e7c00" target="_blank">爱发电</a>售卖，售价36元</p><p>使用指引：<a href="https://github.com/dmscode/WinSize/blob/master/%E5%85%A5%E9%97%A8%E5%BC%95%E5%AF%BC.md" target="_blank">WinSize/入门引导.md</a></p><hr><h2>功能特点</h2><ul><li><strong>窗口布局</strong>：将当前窗口移动到预设位置，并调整为对应大小</li><li><strong>快速布局</strong>：<code>LAlt</code>+鼠标右键，快速调整窗口位置（呼声很高，加回来了）</li><li><strong>大写锁定指示</strong>：当切换大写锁定时提示当前状态</li><li><strong>窗口置顶</strong>：切换窗口置顶</li><li>支持第三方软件调用，比如 Quicker、Utools 等，使窗口重定位融入你日常的工作流</li><li>支持在多显示器下窗口跨屏幕显示，一键全屏（覆盖全部屏幕），并可以更加灵活的设定</li></ul>
 <p><a href="https://bhznjns.github.io/#static/独立开发/参考产品/WinSize 一个用键盘排列窗口的工具软件.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

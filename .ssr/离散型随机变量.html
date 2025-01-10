@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>离散型随机变量</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>离散型随机变量</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>随机变量和离散分布</h1><h2>随机变量</h2><p>对于一个样本空间 S，有样本点 <span class="math"><img src="./katex-55e66c6f3b675ba856cdcb12e0789c2f.png"></span></p><p>存在一个 real-valued function X 使得 <span class="math"><img src="./katex-9cde76d4b175bf6da62a15e72dd313c6.png"></span>，这里的 X 即为<ruby data-notation="random variable">随机变量<rp>(</rp>,<rt>random variable</rt>,<rp>)</rp></ruby></p><div class="math"><img src="./katex-420947df7b71d760fb602ff45ad96ed6.png" alt=""></div><p>随机变量分为<strong>离散型随机变量</strong>和<strong>连续型随机变量</strong>。顾名思义，离散型随机变量表示随机变量的值是离散的，连续型随机变量表示随机变量的值是连续的。</p><ul><li>离散型随机变量：变量个数是有限个或者无限可列个【关键是可列】</li><li>非离散型随机变量：变量个数是无限不可列个。非离散型中特殊的一种是连续型，即随机变量处处连续。</li></ul><h2><ruby data-notation="Cumulative Distribution Function, CDF">概率分布函数<rp>(</rp>,<rt>Cumulative Distribution Function, CDF</rt>,<rp>)</rp></ruby></h2><p>给出一个随机变量 x，求其落在某区间 <span class="math"><img src="./katex-a33b8ca44ded30abf82b7dca332e9a96.png"></span> 内的概率</p><p>分布函数<span class="math"><img src="./katex-d76f2c4d6bdf142af5106c3f36e9e970.png"></span>有如下特性：</p><ol><li>Nondecreasing: <span class="math"><img src="./katex-19eb2fc7fb7f75d1d5f481b96d61d8ba.png"></span></li><li>Bounded: <span class="math"><img src="./katex-0c696158da10c00d61ed5b6a75e7b794.png"></span></li><li>Continuity from the right: <span class="math"><img src="./katex-880e3b7342c100ad6bf849a76b5a9584.png"></span></li></ol><h2>概率到概率分布函数的转换</h2><p>对于 <span class="math"><img src="./katex-80ecd3315d25eb61e637bf32610451d4.png"></span>，有：</p><ul><li><span class="math"><img src="./katex-db9e1f82345fc62b6731d19151b937c8.png"></span></li><li><span class="math"><img src="./katex-8aad6786221a235697722e720a3ca1aa.png"></span></li><li><span class="math"><img src="./katex-8599ec063b21b11ccf9164e5ebdc9c68.png"></span></li><li><span class="math"><img src="./katex-ea9eb7aa7b26f0382a6e5f66f34e3128.png"></span></li></ul><h2><ruby data-notation="Probability Function">概率质量函数<rp>(</rp>,<rt>Probability Function</rt>,<rp>)</rp></ruby></h2><p>其实<u>概率质量函数值</u>即为<u>概率在该点的变化率</u>。</p><div class="math"><img src="./katex-973fb49ba005624f8e42a539b6d88bd2.png" alt=""></div><h2>离散分布</h2><h3><ruby data-notation="Bernoulli Distribution">伯努利分布<rp>(</rp>,<rt>Bernoulli Distribution</rt>,<rp>)</rp></ruby></h3><p>x 取值范围只有 0 和 1，（成功或失败）。</p><div class="math"><img src="./katex-10df4d1b5511f49ef846aa054a81b4db.png" alt=""></div><p>记作 <span class="math"><img src="./katex-681a5867951f81e336714ef41d213f9a.png"></span></p><p>对于伯努利分布，有分布函数：</p><ol><li><span class="math"><img src="./katex-ab60be666e81b4041b40b0e054960bbf.png"></span></li><li><span class="math"><img src="./katex-49812fd9a8279c2a0ab4de9abfdf8450.png"></span></li><li><span class="math"><img src="./katex-576fb410ef7295ce1973503714c85d46.png"></span></li></ol><h3><ruby data-notation="Binomial Distribution">二项分布<rp>(</rp>,<rt>Binomial Distribution</rt>,<rp>)</rp></ruby></h3><p>进行 n 次实验，每次实验成功概率为 p</p><p>记作 <span class="math"><img src="./katex-57504d4efea38aec5f775de95116b96f.png"></span></p><div class="math"><img src="./katex-e14b906f78f252377d7537ca39e11cf3.png" alt=""></div><h3><ruby data-notation="Poisson Distribution">泊松分布<rp>(</rp>,<rt>Poisson Distribution</rt>,<rp>)</rp></ruby></h3><p>在一个固定的时间或空间区间内某一事件发生的次数，比如在一段时间内的网站点击率、放射性衰变数、电话呼叫到达次数等。λ 表示单位时间或空间内事件发生的<u>平均次数</u>。</p><p>对于 <span class="math"><img src="./katex-b8715536fc1e0f058fcb007997ec1fc4.png"></span>，记作 <span class="math"><img src="./katex-253e0b60f4e6baf479eb053cc958b730.png"></span></p><div class="math"><img src="./katex-ca703882307ecc625783a90797928958.png" alt=""></div><blockquote class="alert note"><p class="alert-title">笔记</p><p>如果一个二项分布的试验次数 n 很大而成功的概率 p 很小，则可以把 np 近似看作 <span class="math"><img src="./katex-c6a6eb61fd9c6c913da73b3642ca147d.png"></span>，用泊松分布来近似二项分布以减少计算量。</p></blockquote>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/概率论与统计/离散型随机变量.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

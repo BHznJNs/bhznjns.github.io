@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>估计量偏差</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>估计量偏差</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>估计量偏差</h1><p>估计量的<ruby data-notation="bias">偏差<rp>(</rp>,<rt>bias</rt>,<rp>)</rp></ruby></p><div class="math"><img src="./katex-1974ea9899c777c1ec5549ed383d48b2.png" alt=""></div><p><ruby data-notation="Mean squared error">均方误差<rp>(</rp>,<rt>Mean squared error</rt>,<rp>)</rp></ruby>，越小越好</p><div class="math"><img src="./katex-ef21ec0fccc1693f40fa4722d35aa180.png" alt=""></div><details><p>对于样本 <span class="math"><img src="./katex-53fd294956c125200888c950a8c4e9fd.png"></span>，有四个估计量：</p><div class="math"><img src="./katex-9289a64ff79c70b5d0b61d9725ae9561.png" alt=""></div><p>求其中的无偏估计量以及无偏估计量中误差最小的估计量。</p><p>对于上面三个估计量的偏差：</p><div class="math"><img src="./katex-381d9cf56ba6f7abd12546b7912d3ee8.png" alt=""></div><p>则 <span class="math"><img src="./katex-2452fee413f58bb9509e88d80d4b9f8d.png"></span> 和 <span class="math"><img src="./katex-698564d9c5a7b9b4ca14287c97b6103f.png"></span> 都为无偏估计量。</p><p>再计算 <span class="math"><img src="./katex-2452fee413f58bb9509e88d80d4b9f8d.png"></span> 和 <span class="math"><img src="./katex-698564d9c5a7b9b4ca14287c97b6103f.png"></span> 的均方误差：</p><div class="math"><img src="./katex-b86021c5a7e2003ba7e7c9d79e30ee18.png" alt=""></div><p>故答案为 <span class="math"><img src="./katex-698564d9c5a7b9b4ca14287c97b6103f.png"></span>。</p><summary>例题 1</summary></details>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/概率论与统计/估计量偏差.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

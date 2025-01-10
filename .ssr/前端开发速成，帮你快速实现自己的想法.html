@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>前端开发速成，帮你快速实现自己的想法</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>前端开发速成，帮你快速实现自己的想法</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,6 +22,55 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>前端开发速成，帮你快速实现自己的想法</h1><p>本文的适用对象：</p><ul><li><del>想要成为专业 Web 前端工程师的人</del></li><li>想要通过 Web 技术快速实现自己的应用，有一定编程基础的人</li></ul><hr><h2>我为什么写这份教程（可跳过）</h2><p>网络上目前有的教程，对于只是想要快速实现自己应用的人来说，有太多累赘的内容。</p><p>我的一位好友深受此害。他是一位 AI 算法开发者，想要给他设计的算法写一个图形界面以便于使用。向 AI 咨询过后，他决定使用 Web 技术。这个选择很正确，目前来说 Web 技术绝对是图形界面开发最好用、开发效率最高同时学习成本最低的技术栈。但是，由于他所看的教程，他的页面一直都使用原生的 HTML、JavaScript、CSS 编写，不仅界面的开发效率低下，而且界面的呈现效果也不令人满意。</p><p>我看到后，决定帮他一把。在我的帮助下，他成功在两小时内使用 Vue.js 和 Vuetify 重写了他原来的界面。</p><hr><p>下面是正文。</p><h2>导入</h2><p>首先，暂时忘记你在其它前端教程中看到的内容，抛开什么 HTML、JavaScript、CSS，统统别管。</p><p>你只需要知道以下几个东西，就可以进入下一步了：</p><h3>标签</h3><p>这是一个标签：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;div&gt;&lt;/div&gt;
 </code></pre><p>这也是一个标签：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;img /&gt;
@@ -49,7 +101,7 @@ npm run dev
 ➜  Local:   http://localhost:5173/
 ➜  Network: use --host to expose
 ➜  press h + enter to show help
-</code></pre><p>在浏览器中打开终端中单词“Local”后的<a href="http://localhost:5173/" target="_blank">链接</a>，不出意外，你能看到如下页面：</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.前端开发速成，帮你快速实现自己的想法/Vue 初始界面.png" alt="初始界面" loading="lazy" tabindex="0"></div><summary> 创建 Vue 项目</summary></details><p>Congratulations! 你已经完成了基础的项目搭建，接下来你需要安装合适的代码编辑器及配套的插件。</p><details><p>官方推荐使用 <a href="https://code.visualstudio.com/" target="_blank">VSCode</a> 和 VSCode 上的<a href="https://marketplace.visualstudio.com/items?itemName=Vue.volar" target="_blank">官方插件</a>配合使用。</p><p>如果你偏好使用其它开发环境，请根据官方的 <a href="https://cn.vuejs.org/guide/scaling-up/tooling#ide-support" target="_blank">IDE 支持</a>进行配置。</p><summary> 代码编辑器及配套的插件</summary></details><p>下面会以使用 VSCode 进行说明。</p><h3>Vue.js 框架基础使用</h3><p>在完成了 Vue 项目的创建后，请先在 VSCode 中打开项目文件夹。</p><p>在项目的 <code>src</code> 文件夹中，删除其中的 <code>assets</code> 和 <code>components</code> 文件夹下所有文件。</p><p>将 <code>main.js</code> 的内容改为如下：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">import { createApp } from 'vue'
+</code></pre><p>在浏览器中打开终端中单词“Local”后的<a href="http://localhost:5173/" target="_blank">链接</a>，不出意外，你能看到如下页面：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/.前端开发速成，帮你快速实现自己的想法/Vue 初始界面.png" alt="初始界面" loading="lazy" tabindex="0"></div><summary> 创建 Vue 项目</summary></details><p>Congratulations! 你已经完成了基础的项目搭建，接下来你需要安装合适的代码编辑器及配套的插件。</p><details><p>官方推荐使用 <a href="https://code.visualstudio.com/" target="_blank">VSCode</a> 和 VSCode 上的<a href="https://marketplace.visualstudio.com/items?itemName=Vue.volar" target="_blank">官方插件</a>配合使用。</p><p>如果你偏好使用其它开发环境，请根据官方的 <a href="https://cn.vuejs.org/guide/scaling-up/tooling#ide-support" target="_blank">IDE 支持</a>进行配置。</p><summary> 代码编辑器及配套的插件</summary></details><p>下面会以使用 VSCode 进行说明。</p><h3>Vue.js 框架基础使用</h3><p>在完成了 Vue 项目的创建后，请先在 VSCode 中打开项目文件夹。</p><p>在项目的 <code>src</code> 文件夹中，删除其中的 <code>assets</code> 和 <code>components</code> 文件夹下所有文件。</p><p>将 <code>main.js</code> 的内容改为如下：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">import { createApp } from 'vue'
 import App from './App.vue'
 
 createApp(App).mount('#app')
@@ -94,7 +146,7 @@ npm run dev
 ➜  Local:   http://localhost:3000/
 ➜  Network: use --host to expose
 ➜  press h + enter to show help
-</code></pre><p>在浏览器中打开终端中单词“Local”后的<a href="http://localhost:3000/" target="_blank">链接</a>，不出意外，你能看到如下页面：</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.前端开发速成，帮你快速实现自己的想法/Vuetify 初始界面.png" alt="初始界面" loading="lazy" tabindex="0"></div><summary> Vuetify 项目创建</summary></details><p>You did it! 你已经完成了使用 Vuetify 组件库的项目搭建，接下来请在 VSCode 中打开该项目，并进入下一步。</p><h3>Vuetify 组件库使用</h3><p>请打开项目的 <code>src</code> 目录，删除 <code>assets</code> 和 <code>components</code> 文件夹下的所有文件。</p><p>将 <code>App.vue</code> 文件改为如下所示：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;template&gt;
+</code></pre><p>在浏览器中打开终端中单词“Local”后的<a href="http://localhost:3000/" target="_blank">链接</a>，不出意外，你能看到如下页面：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/.前端开发速成，帮你快速实现自己的想法/Vuetify 初始界面.png" alt="初始界面" loading="lazy" tabindex="0"></div><summary> Vuetify 项目创建</summary></details><p>You did it! 你已经完成了使用 Vuetify 组件库的项目搭建，接下来请在 VSCode 中打开该项目，并进入下一步。</p><h3>Vuetify 组件库使用</h3><p>请打开项目的 <code>src</code> 目录，删除 <code>assets</code> 和 <code>components</code> 文件夹下的所有文件。</p><p>将 <code>App.vue</code> 文件改为如下所示：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;template&gt;
   &lt;v-app&gt;
     &lt;v-main&gt;
       &lt;!--  --&gt;
@@ -123,7 +175,7 @@ import { createVuetify } from 'vuetify'
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify()
-</code></pre><p>现在，我们要<strong>正式开始写页面了</strong>。</p><p>我们先看看上文提到的我的好友使用原生开发（即不使用框架开发）完成的界面</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.前端开发速成，帮你快速实现自己的想法/原界面.jpg" alt="原界面" loading="lazy" tabindex="0"></div><p>让我们现在开始尝试使用框架和组件库重写一个相同布局的界面吧！</p><hr><p>我们先在 <code>components</code> 目录下新建一个名为 <code>SideDrawer.vue</code> 的文件，这是页面中的侧边栏组件。</p><p>让我们根据 Vuetify 文档中的<a href="https://vuetifyjs.com/en/components/navigation-drawers/" target="_blank">这一篇</a>来完成这个组件</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;!-- SideDrawer.vue --&gt;
+</code></pre><p>现在，我们要<strong>正式开始写页面了</strong>。</p><p>我们先看看上文提到的我的好友使用原生开发（即不使用框架开发）完成的界面</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/.前端开发速成，帮你快速实现自己的想法/原界面.jpg" alt="原界面" loading="lazy" tabindex="0"></div><p>让我们现在开始尝试使用框架和组件库重写一个相同布局的界面吧！</p><hr><p>我们先在 <code>components</code> 目录下新建一个名为 <code>SideDrawer.vue</code> 的文件，这是页面中的侧边栏组件。</p><p>让我们根据 Vuetify 文档中的<a href="https://vuetifyjs.com/en/components/navigation-drawers/" target="_blank">这一篇</a>来完成这个组件</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;!-- SideDrawer.vue --&gt;
 &lt;template&gt;
 &lt;v-navigation-drawer permanent&gt;
   &lt;v-list-item title="文件列表"&gt;&lt;/v-list-item&gt;
@@ -166,7 +218,7 @@ export default {
   // 
 }
 &lt;/script&gt;
-</code></pre><p>现在整个界面的样子：</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.前端开发速成，帮你快速实现自己的想法/Preview1.png" alt="预览图1" loading="lazy" tabindex="0"></div><p>很好！让我们再创建一个界面底栏的组件。类似地，在 <code>components</code> 目录下新建一个名为 <code>BottomBar.vue</code> 的文件，这是页面中的底栏组件。</p><p>我们依然使用 Vuetify 的<a href="https://vuetifyjs.com/en/components/bottom-navigation/" target="_blank">对应的组件</a>来开发</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;!-- BottomBar.vue --&gt;
+</code></pre><p>现在整个界面的样子：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/.前端开发速成，帮你快速实现自己的想法/Preview1.png" alt="预览图1" loading="lazy" tabindex="0"></div><p>很好！让我们再创建一个界面底栏的组件。类似地，在 <code>components</code> 目录下新建一个名为 <code>BottomBar.vue</code> 的文件，这是页面中的底栏组件。</p><p>我们依然使用 Vuetify 的<a href="https://vuetifyjs.com/en/components/bottom-navigation/" target="_blank">对应的组件</a>来开发</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;!-- BottomBar.vue --&gt;
 &lt;template&gt;
 &lt;v-footer app&gt;
     &lt;v-text-field
@@ -184,11 +236,11 @@ export default {
     // 
 }
 &lt;/script&gt;
-</code></pre><p>现在，我们的界面是这样：</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/.前端开发速成，帮你快速实现自己的想法/Preview2.png" alt="预览图2" loading="lazy" tabindex="0"></div>
+</code></pre><p>现在，我们的界面是这样：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/.前端开发速成，帮你快速实现自己的想法/Preview2.png" alt="预览图2" loading="lazy" tabindex="0"></div>
 <p><a href="https://bhznjns.github.io/#static/编程/Web 前端/前端开发速成，帮你快速实现自己的想法.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2024年 暑假小结</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2024年 暑假小结</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>2024年暑假小结</h1><p>今天是九月十七日，中秋节。我从明天起有课，于是今天就是我长达近三个月的暑假的最后一天。这个暑假我自认为有不少收获，在此记下。</p><h2>实习</h2><p>从暑假初到七月底，我进行了一次前端实习。关于这次实习的总结见此：<a href="#static/阶段小结/实习一个月后的一点感想.md">实习一个月后的一点感想</a>。</p><h2>确定方向</h2><p>在实习结束后，我摆了十来天，看了剧，打了游戏，也好好思考了今后的发展。我经过一番搜索，认为数据库内核开发方向的就业应该还是可以的，并且也通过招聘网站发现了两家在招实习生的数据库公司。自此，目标明确。</p><h2>15445 和 C++</h2><p>我开始学习 CMU 15445 课程，在做课程的 Project 时，由于课程项目 bustub 使用 C++ 作为开发语言，且经过搜索，我发现许多主流数据库也使用 C++ 作为主要开发语言，我便开始学习现代 C++，关于学习方法可以见这篇博客：<a href="#static/编程/Cpp/现代 Cpp 学习.md">现代 Cpp 学习</a></p><p>在我具备 C 语言开发和 Rust 语言开发的基础下，还是挺快地，具备了使用 C++ 来开发课程项目的能力。截至这天晚上，课程的 Project 1 就快要完成。</p><h2>健身</h2><p>在假期中，我也没有停止锻炼身体。在八月在校期间，我每隔一天固定来到学校体育场练习引体向上，到现在，我从学期初的只能拉一下，到现在的最高能拉上四下，进步显著。</p><p>同时，经过这一学期加上暑假的跑步练习，现在已经能够比较稳定地跑到三千米大关。</p><p>此外，在上网冲浪时刷了一些跑步相关文章，其中提到的几点很让我受用：</p><ul><li>跑步脚步着地时使用脚前掌或脚掌先着地，再过渡到全脚着地，而不是使用脚后跟着地的方式，有助于减少跑步对膝盖的损伤。</li></ul><blockquote><p>这里提一点，根据 B 站 UP 主跑步的子章老师的说法，如果你的跑鞋减震性能较好，也可以使用脚后跟着地的方式跑步，并且跑步时要注意着地要轻，不发出太大声音。</p></blockquote><ul><li>循序渐进增加强度，对新手来说增加里程比提速更重要。</li></ul>
 <p><a href="https://bhznjns.github.io/#static/阶段小结/2024年 暑假小结.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我们都只是暂时的健全人</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我们都只是暂时的健全人</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>“我们都只是暂时的健全人”</h1><p>原文：<a href="https://blog.jim-nielsen.com/2023/temporarily-abled/" target="_blank">“We're All Just Temporarily Abled”</a></p><p>这句话引自 Cindy Lee —— “我们都只是暂时的健全人”。我第一次听到这句话是在<a href="https://practical-accessibility.today/" target="_blank"><ruby data-notation="Sara's course">萨拉课堂<rp>(</rp>,<rt>Sara's course</rt>,<rp>)</rp></ruby></a>上，而我再次想起这句话，是在今年（2023）的六月六日。</p><p>那一天，我与家人在海滩上度假。在尝试一些海滩项目时，或许是因为我年龄已经不适合做那些事了，总之，我的膝盖被伤到了。</p><p>我马上意识到了问题的严重性。</p><p>我倒在沙滩上无法爬起，任凭海浪冲过。在几个浪潮过后，我挣扎着回到家人身边。</p><p>这已是三个月前的事，而我的腿仍未完全复原。它恢复得很好，也很慢。医生告诉我：“有一件事需要知道：这不是几天或几周就能康复的，至少需要数个月”。</p><p>在那之后，我想要趁着孩子们的暑假，尽量充实这段时光，但我的行动却受到了伤痛的限制。</p><p>通过这件事，我更加留意于身边的无障碍设施：楼梯旁的扶手、建筑出入口处的斜坡、建筑内的电梯等，这些我很少留意的事物现在则对我尤其重要。“我们都只是暂时的健全人”这句话浮现于我的脑海。在<a href="https://blog.jim-nielsen.com/2023/practical-accessibility/" target="_blank"><ruby data-notation="my notes on Sarah's course">萨拉课堂的笔记<rp>(</rp>,<rt>my notes on Sarah's course</rt>,<rp>)</rp></ruby></a>中有这么一句话：</p><blockquote><p>五分之一的人身有残疾。百分百的人在他们的一生中都有过不同程度的残疾。</p></blockquote><p>我原先认为，“残疾”很容易被认为是有或无的事物。但现在，我知道了“残疾”并非绝对的二元区分，而是一个变化多端、连续演进的过程。它或多或少地出现在我们每一个人的生命——“百分百的人”的生命中，</p><p>人总是这样，在失去某一样事物后才懂得珍惜。</p><p>（在此自我反思一小会）</p><p>我知道我是被命运所优待的。我的膝盖逐渐地在康复，并且幸运的是，我的工作也只需要坐在办公桌旁就能完成。</p><p>我现在更加地感到感激，不仅是为我所拥有的健全身体，更是为我所见的无障碍设施和制造它们的人们。</p>
 <p><a href="https://bhznjns.github.io/#static/译文/我们都只是暂时的健全人.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

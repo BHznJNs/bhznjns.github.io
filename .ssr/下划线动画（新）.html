@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>下划线动画（新）</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>下划线动画（新）</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,6 +22,55 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>下划线动画（新）</h1><p><code>2023/12/20</code></p><hr><p>原本之前是<a href="#static/Web 前端/CSS/下划线动画.md">写过一次</a>的，之所以再发一回主要是因为看到的<a href="https://www.bilibili.com/video/BV1Rb4y1g7bp/" target="_blank"> B 站上的一个视频</a>，觉得这种实现更加实用，在此记录。</p><hr><h2>实现思路</h2><p>利用 CSS inline box 的特性，使用 CSS 的 <code>background</code> 属性，实现在多行文本下也能轻松实现下划线动画。这种方案的优势是不涉及伪元素，实现更加灵活；但同时劣势就是由于利用了 inline box 的特性，对于 <code>div</code> 等 block box 元素无法实现理想效果。</p><h2>具体实现</h2><p>示例使用的 HTML 结构如下：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;span&gt;content content content &lt;br&gt; content content content&lt;/span&gt;
 </code></pre><p>在需要实现下划线动画的元素添加如下样式：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">span {
@@ -35,7 +87,7 @@ if (darkModeMediaQuery) {
 </code></pre><p>在设置放上鼠标时的样式：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">span:hover {
     background-size: 100% 2px;
 }
-</code></pre><p>目前的效果如下：</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/CSS/.下划线动画（新）/sceenshot1.gif" alt="sceenshot1" loading="lazy" tabindex="0"></div><p>更进一步，要想实现下面👇这样的效果：</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/Web 前端/CSS/.下划线动画（新）/sceenshot2.gif" alt="sceenshot1" loading="lazy" tabindex="0"></div><p>则要对上面的 CSS 代码进行一点小修改：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">/* 将原本的背景位置从左下角改为右下角 */
+</code></pre><p>目前的效果如下：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/CSS/.下划线动画（新）/sceenshot1.gif" alt="sceenshot1" loading="lazy" tabindex="0"></div><p>更进一步，要想实现下面👇这样的效果：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/CSS/.下划线动画（新）/sceenshot2.gif" alt="sceenshot1" loading="lazy" tabindex="0"></div><p>则要对上面的 CSS 代码进行一点小修改：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">/* 将原本的背景位置从左下角改为右下角 */
 span {
     background-position: right bottom;
 }
@@ -67,6 +119,6 @@ span:hover {
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

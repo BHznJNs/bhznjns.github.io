@@ -22,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
-<h1>BJT DC Analysis</h1><h2>I<sub>C</sub> versus V<sub>CE</sub></h2><p>图像从左到右分别为：Saturation, Active, Breakdown</p><p>绘制<ruby data-notation="load line">负载线<rp>(</rp>,<rt>load line</rt>,<rp>)</rp></ruby>：</p><ul><li>在 I<sub>C</sub> 轴上找到点 <span class="math"><img src="./katex-9f24213e0d33d83d8c472b58314bbcc5.png"></span></li><li>在 V<sub>CE</sub> 轴上找到点 <span class="math"><img src="./katex-e984becfc5785ade6beb419f3f5ea194.png"></span></li><li>将两点相连</li></ul><p>负载线与图像的交点即晶体管的<ruby data-notation="Quiescent Point">静态工作点<rp>(</rp>,<rt>Quiescent Point</rt>,<rp>)</rp></ruby>。</p><h2>四种 DC Biasing Configuration</h2><h3>Base Biasing</h3><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.BJT/Base biasing.png" alt="Base biasing 电路图" loading="lazy" tabindex="0"></div><p>使用一个电阻 R<sub>B</sub> 连接在基极和电源 V<sub>CC</sub> 之间，基极电流由 R<sub>B</sub> 控制。</p><div class="math"><img src="./katex-cc13be5251a901b68e8da3c484500f12.png" alt=""></div><h3>Collect Feedback Biasing</h3><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.BJT/Collect feedback biasing.png" alt="Collect feedback biasing 电路图" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.BJT/Collect feedback biasing extra.png" alt="Collect feedback biasing 电路图" loading="lazy" tabindex="0"></div><p>集电极通过一个反馈电阻 R<sub>C</sub>​ 连接到基极</p><div class="math"><img src="./katex-788a20d15d04353632ca627006fc5ba8.png" alt=""></div><h3>Emitter Biasing</h3><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.BJT/Emitter biasing.png" alt="Emitter biasing 电路图" loading="lazy" tabindex="0"></div><p>在发射极引入一个电阻 R<sub>E</sub> 和额外的电压降​，利用负反馈稳定工作点。</p><h3>Voltage Divider Biasing</h3><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.BJT/Voltage divider biasing.png" alt="Voltage divider biasing 电路图" loading="lazy" tabindex="0"></div><p>基极通过分压电阻网络 R<sub>1</sub>​ 和 R<sub>2</sub>​ 偏置，提供稳定的基极电压。</p><h1>BJT AC Analysis</h1><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.BJT/BJT AC Equivalent.png" alt="BJT AC 等效电路" loading="lazy" tabindex="0"></div><ol><li>使用等效电路代替电路中的 BJT</li><li>将 DC 源看作接地</li><li>将 电容看作导线</li></ol><h2><ruby data-notation="Common-emitter Amplifier">共发射极放大器<rp>(</rp>,<rt>Common-emitter Amplifier</rt>,<rp>)</rp></ruby></h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.BJT/Common-emitter amplifier.png" alt="共发射极放大器图例" loading="lazy" tabindex="0"></div><details><p>计算基极电压 V<sub>B</sub></p><div class="math"><img src="./katex-1a3bc6aaeee5df4f9e2cf14e63cd69dd.png" alt=""></div><p>计算发射极电流 I<sub>E</sub></p><div class="math"><img src="./katex-6be5aad1764d9567fd4778774fd2c02c.png" alt=""></div><p>发射极电阻 r<sub>e</sub></p><div class="math"><img src="./katex-e1e7c48a261d2a6abfdbbb8e96eb8832.png" alt=""></div><summary>计算发射极电阻 r,,e,,</summary></details><details><div class="math"><img src="./katex-650ed9d4c37b15d3ac325dc7438a5faf.png" alt=""></div><summary>输入输出阻抗计算</summary></details><h2>BJT Power Amplifiers</h2><h3>Class A: Emitter Follower</h3><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.BJT/Class A.png" alt="BJT class A circuit" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.BJT/Class A Equivalent.png" alt="BJT class A equivalent" loading="lazy" tabindex="0"></div><details><div class="math"><img src="./katex-1344d32c38ccc7b2813c9197ef035a76.png" alt=""></div><summary>增益计算</summary></details><details><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.BJT/Class A Example 1.png" alt="class A example 1" loading="lazy" tabindex="0"></div><h3>计算 R<sub>1</sub> 和 R<sub>2</sub></h3><p>在中点偏置下，<span class="math"><img src="./katex-59628c121959e03c30d12a6b59dc1374.png"></span></p><div class="math"><img src="./katex-f72c0d0c840462c1c1d13c17b19408d2.png" alt=""></div><h3>计算 Power dissipated</h3><p>对于电阻：<span class="math"><img src="./katex-a7710ef523afd3243b19c395da6fd7f8.png"></span></p><p>对于三极管：<span class="math"><img src="./katex-70dbffa521538a5fb29c977abcab4bfc.png"></span></p><summary>例题 1</summary></details><h3>Class B</h3><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.BJT/Class B.png" alt="BJT class B circuit" loading="lazy" tabindex="0"></div>
+<h1>BJT DC Analysis</h1><h2>I<sub>C</sub> versus V<sub>CE</sub></h2><p>图像从左到右分别为：Saturation, Active, Breakdown</p><p>绘制<ruby data-notation="load line">负载线<rp>(</rp>,<rt>load line</rt>,<rp>)</rp></ruby>：</p><ul><li>在 I<sub>C</sub> 轴上找到点 <span class="math"><img src="./katex-9f24213e0d33d83d8c472b58314bbcc5.png"></span></li><li>在 V<sub>CE</sub> 轴上找到点 <span class="math"><img src="./katex-e984becfc5785ade6beb419f3f5ea194.png"></span></li><li>将两点相连</li></ul><p>负载线与图像的交点即晶体管的<ruby data-notation="Quiescent Point">静态工作点<rp>(</rp>,<rt>Quiescent Point</rt>,<rp>)</rp></ruby>。</p><h2>四种 DC Biasing Configuration</h2><h3>Base Biasing</h3><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.BJT/Base biasing.png" alt="Base biasing 电路图" loading="lazy" tabindex="0"></div><p>使用一个电阻 R<sub>B</sub> 连接在基极和电源 V<sub>CC</sub> 之间，基极电流由 R<sub>B</sub> 控制。</p><div class="math"><img src="./katex-cc13be5251a901b68e8da3c484500f12.png" alt=""></div><h3>Collect Feedback Biasing</h3><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.BJT/Collect feedback biasing.png" alt="Collect feedback biasing 电路图" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.BJT/Collect feedback biasing extra.png" alt="Collect feedback biasing 电路图" loading="lazy" tabindex="0"></div><p>集电极通过一个反馈电阻 R<sub>C</sub>​ 连接到基极</p><div class="math"><img src="./katex-788a20d15d04353632ca627006fc5ba8.png" alt=""></div><h3>Emitter Biasing</h3><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.BJT/Emitter biasing.png" alt="Emitter biasing 电路图" loading="lazy" tabindex="0"></div><p>在发射极引入一个电阻 R<sub>E</sub> 和额外的电压降​，利用负反馈稳定工作点。</p><h3>Voltage Divider Biasing</h3><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.BJT/Voltage divider biasing.png" alt="Voltage divider biasing 电路图" loading="lazy" tabindex="0"></div><p>基极通过分压电阻网络 R<sub>1</sub>​ 和 R<sub>2</sub>​ 偏置，提供稳定的基极电压。</p><h1>BJT AC Analysis</h1><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.BJT/BJT AC Equivalent.png" alt="BJT AC 等效电路" loading="lazy" tabindex="0"></div><ol><li>使用等效电路代替电路中的 BJT</li><li>将 DC 源看作接地</li><li>将 电容看作导线</li></ol><h2><ruby data-notation="Common-emitter Amplifier">共发射极放大器<rp>(</rp>,<rt>Common-emitter Amplifier</rt>,<rp>)</rp></ruby></h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.BJT/Common-emitter amplifier.png" alt="共发射极放大器图例" loading="lazy" tabindex="0"></div><details><p>计算基极电压 V<sub>B</sub></p><div class="math"><img src="./katex-1a3bc6aaeee5df4f9e2cf14e63cd69dd.png" alt=""></div><p>计算发射极电流 I<sub>E</sub></p><div class="math"><img src="./katex-6be5aad1764d9567fd4778774fd2c02c.png" alt=""></div><p>发射极电阻 r<sub>e</sub></p><div class="math"><img src="./katex-e1e7c48a261d2a6abfdbbb8e96eb8832.png" alt=""></div><summary>计算发射极电阻 r,,e,,</summary></details><details><div class="math"><img src="./katex-650ed9d4c37b15d3ac325dc7438a5faf.png" alt=""></div><summary>输入输出阻抗计算</summary></details><h2>BJT Power Amplifiers</h2><h3>Class A: Emitter Follower</h3><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.BJT/Class A.png" alt="BJT class A circuit" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.BJT/Class A Equivalent.png" alt="BJT class A equivalent" loading="lazy" tabindex="0"></div><details><div class="math"><img src="./katex-1344d32c38ccc7b2813c9197ef035a76.png" alt=""></div><summary>增益计算</summary></details><details><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.BJT/Class A Example 1.png" alt="class A example 1" loading="lazy" tabindex="0"></div><h3>计算 R<sub>1</sub> 和 R<sub>2</sub></h3><p>在中点偏置下，<span class="math"><img src="./katex-59628c121959e03c30d12a6b59dc1374.png"></span></p><div class="math"><img src="./katex-f72c0d0c840462c1c1d13c17b19408d2.png" alt=""></div><h3>计算 Power dissipated</h3><p>对于电阻：<span class="math"><img src="./katex-a7710ef523afd3243b19c395da6fd7f8.png"></span></p><p>对于三极管：<span class="math"><img src="./katex-70dbffa521538a5fb29c977abcab4bfc.png"></span></p><summary>例题 1</summary></details><h3>Class B</h3><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.BJT/Class B.png" alt="BJT class B circuit" loading="lazy" tabindex="0"></div>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/电子电路与系统设计/BJT.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

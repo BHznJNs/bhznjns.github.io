@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>“や” 与 “と” 在作 “和” 意时的区别</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>“や” 与 “と” 在作 “和” 意时的区别</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>“や” 与 “と” 在作 “和” 意时的区别</h1><p>根据 Quora 上的<a href="https://www.quora.com/Japanese-language-Difference-between-ya-and-to-Both-mean-and-but-Im-not-sure-where-they-differ" target="_blank">这篇文章</a>，</p><p>“や” 与 “と” 在作 “和” 意时的区别如下：</p><p>“と” 有隐含者列举已经完成之意。如例句：</p><p><ruby data-notation="にわ">庭<rp>(</rp>,<rt>にわ</rt>,<rp>)</rp></ruby>に<ruby data-notation="ねこ">猫<rp>(</rp>,<rt>ねこ</rt>,<rp>)</rp></ruby>と<ruby data-notation="いぬ">犬<rp>(</rp>,<rt>いぬ</rt>,<rp>)</rp></ruby>がいます。</p><p>院子里有猫和狗。</p><p>这句话中使用 “と” 则隐含有 “院子里没有其它动物” 之意。</p><p>而 “や” 则相反，其隐含着列举并未完成。如同样的例句</p><p><ruby data-notation="にわ">庭<rp>(</rp>,<rt>にわ</rt>,<rp>)</rp></ruby>に<ruby data-notation="ねこ">猫<rp>(</rp>,<rt>ねこ</rt>,<rp>)</rp></ruby>や<ruby data-notation="いぬ">犬<rp>(</rp>,<rt>いぬ</rt>,<rp>)</rp></ruby>がいます。</p><p>院子里有猫和狗。</p><p>这句话中使用 “や” 则隐含有 “院子里还有其它动物，只是未列举出来” 之意。</p>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/日语/“や” 与 “と” 在作 “和” 意时的区别.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

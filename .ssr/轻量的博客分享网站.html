@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>轻量的博客分享网站</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>轻量的博客分享网站</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>轻量的博客分享网站</h1><p>今天发现的一个小网站 <a href="https://www.essay.ink/essays" target="_blank">Essay</a>。关于创建者对该网站的期望可以参见此文：<a href="https://www.essay.ink/essays/khqzudksdkkhekarwmid" target="_blank">关于产品的思考</a>。简单来说，如果你希望有一个能够表达自己的公开空间（就像本站），不希望有点赞、阅读量等功能使写作变得功利，也不希望有评论、算法推荐功能让这个空间变得乌烟瘴气，那么这个网站应该很适合你。</p><hr><p>以下内容摘抄自该站的用户内容：</p><blockquote><p>@Eltrac:</p><p>不一定要把「要做就做到最好」的思想应用到每一件事情上，要根据事情的「重要性」和对自己的「价值」来权衡做到什么程度，做事不只有「尽心尽力」和「敷衍了事」两个极端。</p><p>今天我写完了某个不那么重要的选修课的 3000 字论文，其实我只写了大纲和开头，然后就把这些东西交给 AI，让 AI 写完了剩下的。实际上，做到这个程度，我就已经对论文的主题「有所思考和见解」了，这是这门没那么重要的课程对我来说可以达到的意义。为了达成这个意义，我并没有花太多时间，让它挤占其他更重要的事情的时间，但我也确实收获了我能从中收获的东西。</p><p>我认为，做事时，尤其是做自己不太愿意做的事情之前，可以思考目的和动机，或者自己能收获到的东西，以及自己做到什么程度就算有收获了。对于没那么重要的事情，做到完美太累，敷衍了事也没意义，怎么选都让自己难受——折中或许是最好的选择。</p></blockquote><blockquote><p>@Anna:</p><p>什么叫做成长 就是不再害怕独行 人生总有孤立无援的时刻 没有亲人的理解 没有朋友的鼓励 没有爱人的陪伴 可是这又能如何呢 从前我害怕一个人 害怕一个人吃饭逛街 现在的我 喜欢一个人独处 我承认这是被迫的 接受的过程中流了好多眼泪 但我拥有了一个无所畏惧的自己 我永远为自己骄傲.</p></blockquote><blockquote><p>@Ironben</p><p>做产品和种树是一样的——撒下一颗种子，松土施肥让其成长。早期的构建是在做种子，MVP就是一颗能用的种子。撒下种子后，如果种子不发芽，有人会怀疑可能是种子不对，于是不断改造种子，松土施肥这种事全然不顾。</p><p>多数情况下，只要浇水施肥得当，种子就能破土发芽。</p><p>等见着了阳光，一切都有可能。</p></blockquote>
 <p><a href="https://bhznjns.github.io/#static/今日趣闻/轻量的博客分享网站.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

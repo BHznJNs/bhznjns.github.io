@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>抽象封装的泄露</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抽象封装的泄露</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>抽象封装的泄露</h1><p>原文地址：<a href="https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/" target="_blank">The Law of Leaky Abstractions</a></p><p>此文作者 Joel Spolsky 曾任知名技术论坛网站 StackOverflow 的 CEO，此文虽作于 2002 年，但对于 22 年后的我仍有启发，故此记录。</p><hr><p>TCP 协议以可靠性著称，它保证了数据能够完整、有序地到达目的地。但与此同时，被 TCP 协议封装的 IP 协议却是不可靠的：它不保证你发送的数据能无损、有序地到达。</p><p>在计算机中，像这样的抽象比比皆是：</p><ul><li>编程语言中的字符串：它能让你对字符串的操作像操作数字一样简单</li><li>操作系统的文件系统：它将无数的比特所在的磁盘抽象成文件夹和其中的文件</li></ul><p>让我们回到 TCP 协议，我们说过 TCP 的可靠性，但这只是一定程度上的。如果你的网线被剪断，你能请求就永远不可能被传输成功。这就是我所说的<i>抽象泄露</i>。</p><p>TCP 是一个在不可靠的网络设施基础建立的可靠抽象，但在一些时候，基础设施的不可靠仍会透过这一层抽象，影响到使用抽象的你。</p><p>这种抽象泄露的例子同样比比皆是：</p><ul><li>遍历一个二维数组时，按行遍历和按列遍历的效率可能会天差地别</li><li>在使用 SQL 查询时，<code>where a=b and b=c and a=c</code> 就是比结果相同的 <code>where a=b and b=c</code> 更快</li><li>在使用 C++ 字符串类时，你可以通过 <code>s + "bar"</code> 拼接字符串，却不能使用 <code>"foo" + "bar"</code></li><li>...</li></ul><p>由于抽象泄露十分普遍且不可避免，学习底层原理就成了成为优秀的程序员必做的事。如果你不了解 <code>char *</code> 和 STL string 的区别，你就会震惊于 <code>s + "bar"</code> 能够正常运行而 <code>"foo" + "bar"</code> 过不了编译。</p>
 <p><a href="https://bhznjns.github.io/#static/博客收藏/抽象封装的泄露.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

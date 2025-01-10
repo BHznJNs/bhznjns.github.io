@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>电容</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电容</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>电容 | Capacitor</h1><h2>性质</h2><p>电容两板上的电荷数与两板间的电压成正比：<span class="math"><img src="./katex-20406a46e9dddc31c35a9b76ee251190.png"></span></p><p>这里的因数 C（capacitance, unit: 1 Farad[F]）</p><h2>理想电容 | Ideal Capacitor</h2><div class="math"><img src="./katex-ec2781072a523996c32cf7af23e3ea42.png" alt=""></div><p>由于在直流（DC）电路下电流和电压都为常数，因此直流电路下通过电容的电流恒等于零（相当于开路）。</p><h2>电容的能量计算 | The energy on a Capacitance</h2><div class="math"><img src="./katex-7f0ebddb4c91e057be349c304577e796.png" alt=""></div><hr><h2>电容的串联 | Series connection of capacitors</h2><div class="math"><img src="./katex-263ebbbbf4f6269b1ef83ab35913dd4d.png" alt=""></div><h2>电容的并联 | Parallel connection of capacitors</h2><div class="math"><img src="./katex-3e58510e162d6948e9bdfcdb2abc7f03.png" alt=""></div>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/电路装置/电容.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

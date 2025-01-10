@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rust 命令行输入语法高亮实现 (1)</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rust 命令行输入语法高亮实现 (1)</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,6 +22,55 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>Rust 命令行交互语法高亮实现 (1)</h1><p><code>2023/6/14</code></p><p>本文主要介绍笔者对于 <a href="https://github.com/BHznJNs/Calculator.rs" target="_blank">Calculator.rs</a> 中<code>repl</code>下<strong>语法高亮</strong>的实现方式。</p><hr><h2>实现前提：<code>raw_mode</code>的启用</h2><p>通常来说，我们在使用 rust 时，要想获取用户输入，就必须调用 rust 标准库中的<code>io::stdin().readline</code>函数。</p><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">use std::io::{self, Write};
 
@@ -441,7 +493,7 @@ KeyCode::Char(ch) =&gt; {
     render(tokens).unwrap();
 }
 ...
-</code></pre><hr><p>最终实现效果如下：</p><div class="media-container"><img src="https://bhznjns.github.io/static/编程/集成计算环境 ICE/.语法高亮实现(1)/test-screenshot.png" alt="效果图" loading="lazy" tabindex="0"></div><hr><h2>完整代码如下</h2><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">extern crate crossterm;
+</code></pre><hr><p>最终实现效果如下：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/%E9%9B%86%E6%88%90%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%20ICE/.语法高亮实现(1)/test-screenshot.png" alt="效果图" loading="lazy" tabindex="0"></div><hr><h2>完整代码如下</h2><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">extern crate crossterm;
 
 use std::io::{self, stdout, Write};
 use std::collections::VecDeque;
@@ -835,6 +887,6 @@ fn main() {
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

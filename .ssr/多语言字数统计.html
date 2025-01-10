@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>多语言字数统计</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多语言字数统计</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,6 +22,55 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>多语言字数统计</h1><p>在实现本项目的字数统计功能时，需要编写一个用来统计多语言混合文本的函数。</p><p>鉴于没有找着现成好用的库，于是我决定自己编写一个。</p><p>实现逻辑倒也简单：语言可以分为中日韩和其它语言，对于中日韩语，对每个字符单独计数；对其它语言，则按照单词来计数。</p><p>我们可以通过正则表达式来分别实现。</p><p>对于中日韩语，我们可以使用如下正则表达式：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const cjkPattern = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/gu
 </code></pre><p>其中的 <code>\p{Script=Han}</code> 是 JavaScript 正则表达式 <ruby data-notation="Unicode property escapes">Unicode 属性转义<rp>(</rp>,<rt>Unicode property escapes</rt>,<rp>)</rp></ruby> 的语法，该语法在 ES9（ES2018）中加入。使用该语法，你无需使用类似于 <code>[\u4e00-\u9fa5]</code> 这种指定 Unicode 编码范围的方式指定中文，使代码更简洁易懂。此正则表达式可以匹配字符串中的每一个中文字符、日文假名和韩文字符。</p><p>类似地，我们还有如下正则表达式，可以匹配西欧多门语言（法语、德语、西班牙语等）、希腊字母、阿拉伯字母、西里尔字母和数字。</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const euPattern = /[A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF]+/g
@@ -70,6 +122,6 @@ function countWord(para="") {
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

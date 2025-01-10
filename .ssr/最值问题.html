@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最值问题</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最值问题</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
-<h1>最值问题</h1><h2>局部极值</h2><p>局部极值点满足 <span class="math"><img src="./katex-a68196e8ddf961d565c69c277ea30f80.png"></span></p><p>使用二阶偏导数判断局部极值点：</p><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/偏导数/.最值问题/二阶偏导数判断局部极值点.webp" alt="二阶偏导数判断局部极值点" loading="lazy" tabindex="0"></div><p>其中，<code>c</code> 情况的点被称为“鞍点“。</p><h2>绝对极值</h2><p>对于一个闭合曲面，求其绝对最大、最小值：</p><ol><li>找曲面内的局部极值点（critical point）</li><li>找边界上极值点</li><li>取其最大、最小点作为该曲面的绝对极值点</li></ol><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/高等数学/偏导数/.最值问题/绝对极值求法.png" alt="绝对极值求法" loading="lazy" tabindex="0"></div>
+<h1>最值问题</h1><h2>局部极值</h2><p>局部极值点满足 <span class="math"><img src="./katex-a68196e8ddf961d565c69c277ea30f80.png"></span></p><p>使用二阶偏导数判断局部极值点：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E5%81%8F%E5%AF%BC%E6%95%B0/.最值问题/二阶偏导数判断局部极值点.webp" alt="二阶偏导数判断局部极值点" loading="lazy" tabindex="0"></div><p>其中，<code>c</code> 情况的点被称为“鞍点“。</p><h2>绝对极值</h2><p>对于一个闭合曲面，求其绝对最大、最小值：</p><ol><li>找曲面内的局部极值点（critical point）</li><li>找边界上极值点</li><li>取其最大、最小点作为该曲面的绝对极值点</li></ol><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E5%81%8F%E5%AF%BC%E6%95%B0/.最值问题/绝对极值求法.png" alt="绝对极值求法" loading="lazy" tabindex="0"></div>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/高等数学/偏导数/最值问题.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

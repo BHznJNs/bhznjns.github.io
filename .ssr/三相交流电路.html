@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>三相交流电路</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三相交流电路</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
-<h1>三相交流电路 | 3-phase AC systems</h1><div class="math"><img src="./katex-4b0d1179b2d7cd3e138b48f1125935d4.png" alt=""></div><h2>Star Connection</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电磁学与电机导论/.三相交流电路/star_connected_current.png" alt="star connected current sample picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-e19f200e0cd823b6b817d661532853ab.png" alt=""></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电磁学与电机导论/.三相交流电路/star_connected_voltage.png" alt="star connected voltage sample picture" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电磁学与电机导论/.三相交流电路/star_connected_relationships.png" alt="star connected relationships picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-694126c632a85a5b5283d15e2512ec70.png" alt=""></div><h2>Delta Connection</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电磁学与电机导论/.三相交流电路/delta_connected_voltage.png" alt="delta connected voltage sample picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-307b129c1a4ad948a5321090b47a235b.png" alt=""></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电磁学与电机导论/.三相交流电路/delta_connected_current.png" alt="delta connected current sample picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-242638273ba51a6b5027031b74452765.png" alt=""></div><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电磁学与电机导论/.三相交流电路/delta_connected_relationships.png" alt="delta connected relationships picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-ac015ddd298ce94223ee66f3b70c8dd6.png" alt=""></div>
+<h1>三相交流电路 | 3-phase AC systems</h1><div class="math"><img src="./katex-4b0d1179b2d7cd3e138b48f1125935d4.png" alt=""></div><h2>Star Connection</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E7%A3%81%E5%AD%A6%E4%B8%8E%E7%94%B5%E6%9C%BA%E5%AF%BC%E8%AE%BA/.三相交流电路/star_connected_current.png" alt="star connected current sample picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-e19f200e0cd823b6b817d661532853ab.png" alt=""></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E7%A3%81%E5%AD%A6%E4%B8%8E%E7%94%B5%E6%9C%BA%E5%AF%BC%E8%AE%BA/.三相交流电路/star_connected_voltage.png" alt="star connected voltage sample picture" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E7%A3%81%E5%AD%A6%E4%B8%8E%E7%94%B5%E6%9C%BA%E5%AF%BC%E8%AE%BA/.三相交流电路/star_connected_relationships.png" alt="star connected relationships picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-694126c632a85a5b5283d15e2512ec70.png" alt=""></div><h2>Delta Connection</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E7%A3%81%E5%AD%A6%E4%B8%8E%E7%94%B5%E6%9C%BA%E5%AF%BC%E8%AE%BA/.三相交流电路/delta_connected_voltage.png" alt="delta connected voltage sample picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-307b129c1a4ad948a5321090b47a235b.png" alt=""></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E7%A3%81%E5%AD%A6%E4%B8%8E%E7%94%B5%E6%9C%BA%E5%AF%BC%E8%AE%BA/.三相交流电路/delta_connected_current.png" alt="delta connected current sample picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-242638273ba51a6b5027031b74452765.png" alt=""></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E7%A3%81%E5%AD%A6%E4%B8%8E%E7%94%B5%E6%9C%BA%E5%AF%BC%E8%AE%BA/.三相交流电路/delta_connected_relationships.png" alt="delta connected relationships picture" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-ac015ddd298ce94223ee66f3b70c8dd6.png" alt=""></div>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/电磁学与电机导论/三相交流电路.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

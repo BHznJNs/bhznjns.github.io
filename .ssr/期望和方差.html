@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>期望和方差</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>期望和方差</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>期望和方差</h1><h2><ruby data-notation="Expectation">期望<rp>(</rp>,<rt>Expectation</rt>,<rp>)</rp></ruby></h2><p>对于离散变量：</p><div class="math"><img src="./katex-af14bc5e11f46fbe5d13124cbc4fdb5a.png" alt=""></div><p>对于连续变量：</p><div class="math"><img src="./katex-16fcb277d74d619bb6c45c369c0ffb29.png" alt=""></div><p>性质：</p><ol><li>For <span class="math"><img src="./katex-b9179ed6a8e575470c457c0e660edebc.png"></span>, <span class="math"><img src="./katex-1bae239656201f17f86521a23f1d6b28.png"></span></li><li><span class="math"><img src="./katex-724e8bfee34aa81ef7eacbc4025bc408.png"></span></li><li>For independent variables, <span class="math"><img src="./katex-4983e96506d41e51790d4a6c0ad661b4.png"></span></li></ol><h2><ruby data-notation="Variance">方差<rp>(</rp>,<rt>Variance</rt>,<rp>)</rp></ruby></h2><div class="math"><img src="./katex-41e434aa7b717ebe9e5b9028ee3c08fe.png" alt=""></div><hr><h2>一些常见分布的期望和方差</h2><div class="table"><table><thead><tr><th>分布</th><th>期望</th><th>方差</th></tr></thead><tbody><tr><td><span class="math"><img src="./katex-84619f2817ae3196099c3f3ccbcd47fa.png"></span></td><td><span class="math"><img src="./katex-8bac794a0cb5f4602bb4a5cae9740409.png"></span></td><td><span class="math"><img src="./katex-05700ecaa62862e09311b9768131c1de.png"></span></td></tr><tr><td><span class="math"><img src="./katex-17ee95c6186d50502478c1eccac05c8f.png"></span></td><td><span class="math"><img src="./katex-c2bbc976c61f9c4a2f18c0c18948c265.png"></span></td><td><span class="math"><img src="./katex-2ba2e92e9cd17a4846f052cc256d5b5d.png"></span></td></tr><tr><td><span class="math"><img src="./katex-b106ec35e299f7f6c271c909c47b492a.png"></span></td><td><span class="math"><img src="./katex-a57e36678c5d2eefa0705bbd8497a846.png"></span></td><td><span class="math"><img src="./katex-3434b451e2d187bc27b4b488cbf1eb72.png"></span></td></tr><tr><td><span class="math"><img src="./katex-3a626f3d1830d18a7eb60a19cc711a5c.png"></span></td><td><span class="math"><img src="./katex-831bb3e46e3927c7343a348a03da07f1.png"></span></td><td><span class="math"><img src="./katex-2b74c1edc0834653b8835c4e49cfbbb9.png"></span></td></tr><tr><td><span class="math"><img src="./katex-f6631fe5ebaec94c2261b651e9cc283a.png"></span></td><td><span class="math"><img src="./katex-9ea1989ecc2c77b2a3041235266ca508.png"></span></td><td><span class="math"><img src="./katex-3effeb4bb76929ccc1cba6bacce3a882.png"></span></td></tr></tbody></table></div>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/概率论与统计/期望和方差.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RC 与 RL 电路</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RC 与 RL 电路</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>RC 与 RL 电路</h1><h2>电容放电公式</h2><p>电容放电电压随时间变化公式：</p><div class="math"><img src="./katex-4b87037ae0cd546af6163c56ab6f5690.png" alt=""></div><p>在这里的时间常数 <span class="math"><img src="./katex-a6f317b268ae825d94f832f970af607c.png"></span>：</p><div class="math"><img src="./katex-a41667e68507dd15ebd4c74c7bf48c42.png" alt=""></div><h2>电容在 RC 电路中的充电公式</h2><p>电容充电电压随时间变化公式：</p><div class="math"><img src="./katex-c19e284dd897c3f8b121c6d28da61141.png" alt=""></div><hr><h2>电感放电公式</h2><p>电容放电电流随时间变化公式：</p><div class="math"><img src="./katex-f36def4abe0e45c2ca401a14adde12e6.png" alt=""></div><p>在这里的时间常数 <span class="math"><img src="./katex-a6f317b268ae825d94f832f970af607c.png"></span>：</p><div class="math"><img src="./katex-4b3fe16b6c54674978a636c73ef2a1ce.png" alt=""></div><h2>电感在 RL 电路中的充电公式</h2><p>电感充电电压随时间变化公式：</p><div class="math"><img src="./katex-8d7beab3e9634b5d40e338be8cd55a5f.png" alt=""></div>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/电路装置/RC 与 RL 电路.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>交流电机</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>交流电机</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>交流电机 | AC Motor</h1><h2>同步电机 | Synchronous Motor</h2><div class="math"><img src="./katex-987b8ab432266afce80859a5f6ac421f.png" alt=""></div><ul><li>f: 频率（Hz）</li><li>p: 极数的一半</li></ul><p>旋转方向的扭矩：</p><div class="math"><img src="./katex-42bfc7bf2c7da208fe9b8514f7a3f0e7.png" alt=""></div><ul><li>V: terminal voltage per phase</li><li>E: excitation voltage per phase (the voltage induced by the magnetised rotor)</li><li>ω<sub>s</sub>: synchronous angular velocity</li><li>X<sub>s</sub>: synchronous reactance (the effective reactance of one phase of the stator winding)</li><li>δ: torque angle</li></ul><p>转子与同步电机旋转磁场的<ruby data-notation="slip speed"><strong>速度差</strong><rp>(</rp><rt>slip speed</rt><rp>)</rp></ruby>：</p><div class="math"><img src="./katex-fde2a58caeffb42b32a5fdd768f8dc58.png" alt=""></div><ul><li>N<sub>s</sub>: 同步电机磁场转速</li><li>N<sub>r</sub>: 转子转速</li></ul><p><ruby data-notation="fractional slip">速度差的比值<rp>(</rp>,<rt>fractional slip</rt>,<rp>)</rp></ruby>：</p><div class="math"><img src="./katex-565d20024fce69e9d9b6ffeabd9e6b4c.png" alt=""></div><p>转子转速：</p><div class="math"><img src="./katex-a77171c0e6f6c49efffa31bf0ad4f316.png" alt=""></div><h3>能量转化</h3><p>Power transferred to rotor:</p><div class="math"><img src="./katex-a3fb8d0b78cbbf4c70ba9c479cb97a07.png" alt=""></div><ul><li>T<sub>d</sub>: Developed torque</li></ul><p>Developed mechanical power:</p><div class="math"><img src="./katex-db2650263dbcaf2e48870798730e5244.png" alt=""></div><p>Power lost in rotor resistance (or electrical power output from the rotor):</p><div class="math"><img src="./katex-2e9df6a287e640152c217f6ad8fe3b1e.png" alt=""></div><p>Rotor efficiency:</p><div class="math"><img src="./katex-de0a34a4054d8647e041a5b15ba5762e.png" alt=""></div><hr><p>Overall efficiency:</p><div class="math"><img src="./katex-081890f79a9d0d5b6fea4b9e1556acd8.png" alt=""></div><ul><li>T<sub>s</sub>: Shaft torque</li><li>T<sub>l</sub>: Loss torque</li></ul>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/电磁学与电机导论/交流电机.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kandu-跨平台的快捷环形菜单</title>
-    <link rel="stylesheet" href="../dist/style.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kandu-跨平台的快捷环形菜单</title>
+<link rel="shortcut icon" href="./dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./dist/style.min.css">
 </head>
 <body>
 <script>
@@ -19,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
 <h1>Kandu-跨平台的快捷环形菜单</h1><p><code>2024/12/01</code></p><p>软件官网：<a href="https://kando.menu/" target="_blank">https:<i>kando.menu/</i></a></p><p>盈利途径：软件免费提供，通过用户捐赠盈利</p><hr><div class="media-container"><iframe src="https://www.youtube.com/embed/vOE7EAlPUwE?si=9FuVY3fWXNybZTbD" title="Kando - A Free Cross-Platform Pie Menu" sandbox="allow-same-origin allow-scripts" loading="lazy">Kando - A Free Cross-Platform Pie Menu</iframe></div><p>一个有趣的小工具，也可以作为独立开发的参考。</p><p>来自小众软件论坛用户 <a href="https://meta.appinn.net/u/xiaokonglong" target="_blank">@xiaokonglong</a> 总结的优缺点如下：</p><p>优点:</p><ul><li>动效优雅</li><li>图标美观</li><li>操作模式新颖</li><li>支持记录鼠标按键操作</li><li>提升了轮盘操作的层级</li></ul><p>缺点:</p><ul><li>内存占用有点大.</li><li>只有英文</li><li>层级多即是优点也是缺点.</li></ul>
 <p><a href="https://bhznjns.github.io/#static/独立开发/参考产品/Kandu-跨平台的快捷环形菜单.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>

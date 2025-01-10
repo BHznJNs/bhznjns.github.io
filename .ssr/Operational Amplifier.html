@@ -22,12 +22,61 @@ if (darkModeMediaQuery) {
     darkModeSwitcher()
 }
 </script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
 <article>
-<h1>Operational Amplifier</h1><h2>Buffer</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.Operational Amplifier/Buffer.png" alt="Buffer circuit" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-3cb693c7a16799cdfc52dce1be6309af.png" alt=""></div><h2>Non-Inverting Amplifier</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.Operational Amplifier/Non-Inverting Amplifier.png" alt="Non-Inverting amplifier circuit" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-f03891bb0d7a61940bda715f4d905906.png" alt=""></div><h2>Inverting Amplifier</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.Operational Amplifier/Inverting Amplifier.png" alt="Inverting amplifier circuit" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-b01c85530f78a9e776fa693adec90cf9.png" alt=""></div><h2>Summation Amplifier</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.Operational Amplifier/Summation Amplifier.png" alt="Summation amplifier circuit" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-63258179c582a2d8acafb12012d7e91e.png" alt=""></div><h2>Difference Amplifier</h2><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.Operational Amplifier/Difference Amplifier.png" alt="Difference amplifier circuit" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-f1a7f1163130854cfbc35c059b447209.png" alt=""></div><hr><details><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.Operational Amplifier/例题 1.png" alt="例题 1 电路图" loading="lazy" tabindex="0"></div><p>对于 V<sub>2</sub>，有增益 <span class="math"><img src="./katex-4c48d556786393fe8ddd2ab2cb4817f9.png"></span></p><p>对于 V<sub>3</sub>，有增益 <span class="math"><img src="./katex-f0d686998580cc6754b9c29c0b3bd045.png"></span></p><summary>例题 1</summary></details><details><div class="media-container"><img src="https://bhznjns.github.io/static/学习笔记/电子电路与系统设计/.Operational Amplifier/例题 2.png" alt="例题 2 电路图" loading="lazy" tabindex="0"></div><p>V<sub>in</sub> = +0.1V，求输出电压。</p><p>先计算左上角放大器的输出电压：<span class="math"><img src="./katex-3196b4e4047c102d60ace97e055a2f72.png"></span></p><p>左下角放大器电路为 buffer，其输出电压：<span class="math"><img src="./katex-55f3d09b34b3fa1ff423fb9a44d2c0b7.png"></span></p><p>右侧放大器电路为 Summation amplifier，其输出电压：<span class="math"><img src="./katex-3622602a0942cf65bbeb2e48384bd5d7.png"></span></p><summary>例题 2</summary></details>
+<h1>Operational Amplifier</h1><h2>Buffer</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.Operational Amplifier/Buffer.png" alt="Buffer circuit" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-3cb693c7a16799cdfc52dce1be6309af.png" alt=""></div><h2>Non-Inverting Amplifier</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.Operational Amplifier/Non-Inverting Amplifier.png" alt="Non-Inverting amplifier circuit" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-f03891bb0d7a61940bda715f4d905906.png" alt=""></div><h2>Inverting Amplifier</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.Operational Amplifier/Inverting Amplifier.png" alt="Inverting amplifier circuit" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-b01c85530f78a9e776fa693adec90cf9.png" alt=""></div><h2>Summation Amplifier</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.Operational Amplifier/Summation Amplifier.png" alt="Summation amplifier circuit" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-63258179c582a2d8acafb12012d7e91e.png" alt=""></div><h2>Difference Amplifier</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.Operational Amplifier/Difference Amplifier.png" alt="Difference amplifier circuit" loading="lazy" tabindex="0"></div><div class="math"><img src="./katex-f1a7f1163130854cfbc35c059b447209.png" alt=""></div><hr><details><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.Operational Amplifier/例题 1.png" alt="例题 1 电路图" loading="lazy" tabindex="0"></div><p>对于 V<sub>2</sub>，有增益 <span class="math"><img src="./katex-4c48d556786393fe8ddd2ab2cb4817f9.png"></span></p><p>对于 V<sub>3</sub>，有增益 <span class="math"><img src="./katex-f0d686998580cc6754b9c29c0b3bd045.png"></span></p><summary>例题 1</summary></details><details><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/.Operational Amplifier/例题 2.png" alt="例题 2 电路图" loading="lazy" tabindex="0"></div><p>V<sub>in</sub> = +0.1V，求输出电压。</p><p>先计算左上角放大器的输出电压：<span class="math"><img src="./katex-3196b4e4047c102d60ace97e055a2f72.png"></span></p><p>左下角放大器电路为 buffer，其输出电压：<span class="math"><img src="./katex-55f3d09b34b3fa1ff423fb9a44d2c0b7.png"></span></p><p>右侧放大器电路为 Summation amplifier，其输出电压：<span class="math"><img src="./katex-3622602a0942cf65bbeb2e48384bd5d7.png"></span></p><summary>例题 2</summary></details>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/电子电路与系统设计/Operational Amplifier.md">
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
 </body>
 </html>
