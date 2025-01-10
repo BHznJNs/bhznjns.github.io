@@ -13,7 +13,7 @@ function pageTemplate(title, body, origin) {
 <!DOCTYPE html>
 <html lang="${htmlLang}">
 <head>
-${header(title)}
+${header(title, undefined, "../")}
 </head>
 <body>
 ${inlineDarkmodeSwitcherScript()}
