@@ -1,8 +1,8 @@
 import fs from "node:fs"
-import countTemplate from "./countTemplate.js"
 import getNewest from "../../getNewest.js"
+import countTemplate from "../../templates/count.js"
 import { traversal } from "../../utils/directory.js"
-import { countHTMLPath } from "../../utils/path.js"
+import { countPagePath } from "../../utils/path.js"
 import mdResolver from "../../utils/markdown/index.js"
 
 function countFile(path) {
@@ -53,4 +53,4 @@ for (const file of newests.children) {
 const firstArticle = newests.children[newests.length - 1]
 const startTime = firstArticle.createTime
 const pageContent = countTemplate(startTime, metadataList, totalWordCount)
-fs.writeFileSync(countHTMLPath, pageContent)
+fs.writeFileSync(countPagePath, pageContent)

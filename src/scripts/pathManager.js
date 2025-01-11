@@ -2,13 +2,40 @@ import pageController from "../components/paging.js"
 import { fetchJSON, fetchMD } from "./fetchResources.js"
 import articleRender from "./articleRenderer.js"
 import indexRender, { newestItemRenderer, directoryItemRenderer } from "./indexRenderer.js"
+import dynamicPrefetch from "./importers/prefetch.js"
 import { scrollToTop } from "../utils/dom/scrollControl.js"
 
 const mainEl = document.querySelector("main")
 const newestHeader = document.querySelector("#newest-header")
 const directoryHeader = document.querySelector("#directory-header")
 const articleEl = document.querySelector("article")
-const indexDirPath = "./.index/"
+
+async function prefetchResources(contents) {
+    const currentHash = location.hash.slice(1)
+    const tasks = []
+    for (const item of contents) {
+        if (tasks.length >= 40) {
+            break
+        }
+        if (!item.name.endsWith("/")) {
+            continue
+        }
+        const targetIndexPath = getIndexPathFromHash(currentHash + item.name)
+        tasks.push(dynamicPrefetch(targetIndexPath, "fetch"))
+    }
+    await Promise.all(tasks)
+}
+
+function getIndexPathFromHash(hash=location.hash.slice(1)) {
+    const dirPath = "./.index/"
+    const path = hash
+        .split("/")
+        .slice(0, -1) // remove the last `/`
+    const targetPath = dirPath
+        + path.join("+") + "_"
+        + pageController.current()
+    return targetPath
+}
 
 export async function hashChangeEvent(e) {
     if (!location.hash) {
@@ -20,10 +47,7 @@ export async function hashChangeEvent(e) {
 
     if (pathManager.isIn.newestPage()) {
         // open newest page
-        const indexPath = indexDirPath
-            + "newest_"
-            + pageController.current()
-        const newestIndex = await fetchJSON(indexPath)
+        const newestIndex = await fetchJSON(getIndexPathFromHash())
         if (!newestIndex) return
         newestHeader.classList.remove("hidden")
         directoryHeader.classList.add("hidden")
@@ -31,14 +55,11 @@ export async function hashChangeEvent(e) {
     } else
     if (pathManager.isIn.directory()) {
         // open directory
-        const splited = hash.split("/").slice(0, -1)
-        const indexFilePath = indexDirPath
-            + splited.join("+") + "_"
-            + pageController.current()
-        const index = await fetchJSON(indexFilePath)
+        const index = await fetchJSON(getIndexPathFromHash())
         if (!index) return
         newestHeader.classList.add("hidden")
         directoryHeader.classList.remove("hidden")
+        prefetchResources(index.content)
         indexRender(index, directoryItemRenderer)
     } else
     if (pathManager.isIn.article()) {

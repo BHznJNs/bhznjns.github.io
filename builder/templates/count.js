@@ -1,10 +1,10 @@
 import {
     header, navigator, footer, htmlLang,
     inlineDarkmodeSwitcherScript,
-} from "../../htmlPublicSnippets.js"
-import { config } from "../../utils/loadConfig.js"
-import { formatEchartsDate, insertDataIntoMap } from "./utils.js"
-import languageSelector from "../../../src/utils/languageSelector.js"
+} from "./snippets.js"
+import { config } from "../utils/loadConfig.js"
+import { formatEchartsDate, insertDataIntoMap } from "../scripts/count/utils.js"
+import languageSelector from "../../src/utils/languageSelector.js"
 
 const now = Date.now()
 const oneYear = 365 * 24 * 60 * 60 * 1000

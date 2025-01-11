@@ -1,7 +1,7 @@
-import { config } from "./utils/loadConfig.js"
-import renderer from "../src/utils/markdown/index.js"
-import languageSelector from "../src/utils/languageSelector.js"
-import el from "../src/utils/dom/el.js"
+import { config } from "../utils/loadConfig.js"
+import renderer from "../../src/utils/markdown/index.js"
+import languageSelector from "../../src/utils/languageSelector.js"
+import el from "../../src/utils/dom/el.js"
 
 export const htmlLang = languageSelector("zh-CN", "en")
 

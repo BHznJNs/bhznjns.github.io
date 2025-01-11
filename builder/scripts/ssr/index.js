@@ -3,12 +3,12 @@ import path from "node:path"
 import rssFileFactory, { RSSItem } from "./rssFileFactory.js"
 import { analyze, renderToHTML } from "./ssrItemRenderer.js"
 import getNewest from "../../getNewest.js"
+import staticList from "../../templates/ssrList.js"
 import { config } from "../../utils/loadConfig.js"
 import { traversal } from "../../utils/directory.js"
 import { staticPath, rssFilePath, ssrResourcePath, ssrCachePath, ssrListPath } from "../../utils/path.js"
 import { execute as executeImagesRendering } from "../../utils/renderer/index.js"
 import calculateMD5 from "../../utils/md5.js"
-import staticList from "./ssrList.js"
 
 function isInIgnoredDir(path, ignoredDirs) {
     if (!ignoredDirs) {

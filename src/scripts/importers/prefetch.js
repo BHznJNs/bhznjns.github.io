@@ -2,10 +2,10 @@
  * @param {string} path 
  * @param {"script" | "style" | "image" | "font" | "fetch"} as_
  */
-export default function preloadResource(path, as_) {
+export default function dynamicPrefetch(path, as_) {
     return new Promise((resolve, reject) => {
         const linkEl = document.createElement("link")
-        linkEl.rel = "preload"
+        linkEl.rel = "prefetch"
         linkEl.href = path
         linkEl.as = as_
 

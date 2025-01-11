@@ -17,3 +17,9 @@ span.math img {
     height: calc(1em + 16px);
     vertical-align: middle;
 }
+
+body.dark span.math img,
+body.dark div.math img {
+    /* convert white background into #161616 */
+    filter: invert(.915);
+}

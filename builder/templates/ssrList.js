@@ -1,11 +1,11 @@
 import {
     htmlLang, header, navigator, footer,
     inlineDarkmodeSwitcherScript,
-} from "../../htmlPublicSnippets.js"
-import { config } from "../../utils/loadConfig.js"
-import { File } from "../../utils/directory.js"
-import el from "../../../src/utils/dom/el.js"
-import languageSelector from "../../../src/utils/languageSelector.js"
+} from "./snippets.js"
+import { config } from "../utils/loadConfig.js"
+import { File } from "../utils/directory.js"
+import el from "../../src/utils/dom/el.js"
+import languageSelector from "../../src/utils/languageSelector.js"
 
 function timeAgo(timestamp) {
     const cnIntervalUnits = {
@@ -66,6 +66,9 @@ ${config.extraScripts
 }
 </head>
 <body>
+<noscript>
+<link rel="stylesheet" href="./dist/noscript.min.css">
+</noscript>
 ${inlineDarkmodeSwitcherScript()}
 ${config.search.enable ? el("search-box"): ""}
 ${config.fab.enable    ? el("fab-icon")  : ""}

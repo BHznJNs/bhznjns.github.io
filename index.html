@@ -14,12 +14,6 @@
 <script defer src="https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW"></script><script defer src="./user/external.js"></script>
 </head>
 <body>
-<noscript>
-<link rel="stylesheet" href="./dist/noscript.min.css">
-<main id="noscript-main">
-    <p>你的浏览器似乎禁用了 JavaScript，你可以点此<a href=".ssr/ssr-list.html">查看最新的文章</a>。</p>
-</main>
-</noscript>
 <script>
 const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
 const darkModeSwitcher = () => {
@@ -92,6 +86,12 @@ if (darkModeMediaQuery) {
     </span>
 </span></span>
 </nav>
+<noscript>
+<link rel="stylesheet" href="./dist/noscript.min.css">
+<main id="noscript-main">
+    <p>你的浏览器似乎禁用了 JavaScript，你可以点此<a href=".ssr/index.html">查看最新的文章</a>。</p>
+</main>
+</noscript>
 <main id="script-main" data-is-root=true>
     <header id="directory-description"></header>
     <ul id="function-list">

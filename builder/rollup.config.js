@@ -21,7 +21,7 @@ function componentStyleResolver(componentName) {
 
 function cssEntryFactory(filename) {
     return {
-        input: `src/styles/${filename}.css`,
+        input: `src/styles/standalone-entry/${filename}.css`,
         output: {
             file: `dist/${filename}.min.css`,
         },
@@ -151,6 +151,7 @@ export default [
             postcss({
                 include: [
                     "src/styles/*.css",
+                    "!src/styles/standalone-entry/**",
                     "src/libs/highlight-es/*.css",
                     "src/styles/components/paging.css",
                 ],
