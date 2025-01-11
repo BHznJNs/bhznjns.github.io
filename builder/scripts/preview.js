@@ -28,10 +28,10 @@ const server = http.createServer(app)
 app.use("/preview", express.static("./"))
 
 // --- LiveReload WebSocket server start ---
+/** @type {WebSocket | null} */
 let websocket = null
 if (liveReload) {
     const wss = new WebSocketServer({ server })
-    /** @type {WebSocket | null} */
     wss.on("listening",  () => console.log("Live server listening on port:", port))
     wss.on("connection", ws => websocket = ws)
     wss.on("close",      () => websocket = null)
