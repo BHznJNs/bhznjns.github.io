@@ -47,8 +47,9 @@ export default function entry(onChangeCallback) {
         .on("unlinkDir", update)
         .on("change"   , debounce((filePath) => {
             if (readmeFilename.includes(path.basename(filePath))) {
-                update(); onChangeCallback()
+                update();
             }
+            onChangeCallback()
         }, 100))
 }
 

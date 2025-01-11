@@ -16,27 +16,29 @@ export class LiveReloadWSClient {
         if (!LiveReloadWSClient.isAbleToConnect) {
             return
         }
-        this.ws = new WebSocket(this.wsServerURL)
-        this.ws.addEventListener("open", () => {
+        const socket = this.ws = new WebSocket(this.wsServerURL)
+        socket.addEventListener("open", () => {
             this.retryCount  = 0
             this.retryInterval = LiveReloadWSClient.defaultRetryInterval
             this.isConnected = true
-            console.log("LiveReload WebSocket connected.")
+            console.log("[LiveReload] WebSocket connected.")
         })
-        this.ws.addEventListener("message", event => {
+        socket.addEventListener("message", event => {
+            console.log("[LiveReload] WebSocket signal received: ", event)
             if (event.data === "refresh") {
                 location.reload()
             }
         })
-        this.ws.addEventListener("error", event => {
-            console.error("LiveReload WebSocket error occurred:", event)
-            this.isConnected = false
-            this.reconnect()
+        socket.addEventListener("error", event => {
+            console.error("[LiveReload] WebSocket error occurred:", event)
+            this.close()
         })
-        this.ws.addEventListener("close", () => {
-            console.warn("LiveReload WebSocket connection closed.")
-            this.isConnected = false
-            this.reconnect()
+        socket.addEventListener("close", event => {
+            console.warn("[LiveReload] WebSocket connection closed.")
+            this.close()
+            if (event.code !== 1000) {
+                this.reconnect()
+            }
         })
     }
     reconnect() {
@@ -57,6 +59,11 @@ export class LiveReloadWSClient {
             this.retryCount += 1
             this.connect()
         }, this.retryInterval)
+    }
+    close() {
+        this.isConnected = false
+        this.ws && this.ws.close()
+        this.ws = null
     }
 
     static isAbleToConnect = isOnPreviewServer() && ("WebSocket" in window)

@@ -35,18 +35,29 @@ const server = http.createServer(app)
 app.use("/preview", express.static("./"))
 
 // --- LiveReload WebSocket server start ---
-/** @type {WebSocket | null} */
-let websocket = null
+/** @type {Set<WebSocket>} */
+const wsSet = new Set()
 if (liveReload) {
     const wss = new WebSocketServer({ server })
-    wss.on("listening",  () => console.log("Live server listening on port:", port))
-    wss.on("connection", ws => websocket = ws)
-    wss.on("close",      () => websocket = null)
+    wss.on("listening",  () =>
+        console.log("[LiveReload] Live server listening on port:", port))
+    wss.on("connection", (ws, req) => {
+        console.log("[LiveReload] Received connection from:", req.socket.remoteAddress)
+        ws.on("error", () => wsSet.delete(ws))
+        ws.on("close", () => wsSet.delete(ws))
+        wsSet.add(ws)
+    })
+    wss.on("error", err =>
+        console.error("[LiveReload] Caught an error:", err))
+    wss.on("close", () => {
+        console.log("[LiveReload] Live server closed.")
+        wsSet.clear()
+    })
 }
 // --- LiveReload WebSocket server end ---
 
 startWatch(() => {
-    websocket && websocket.send("refresh")
+    wsSet.forEach(ws => ws.send("refresh"))
 })
 
 const LAN_IP = getLANIpAddress()
