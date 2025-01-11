@@ -72,6 +72,8 @@ ${config.extraMetadata
     .join("")
 }
 <script src="./dist/index.min.js" type="module" defer></script>
+<link rel="preload" href=".index/static_1" as="fetch">
+<link rel="preload" href=".index/newest_1" as="fetch">
 ${config.extraScripts
     .map((scriptPath) =>
         // use `defer` to prevent user script blocking page loading
