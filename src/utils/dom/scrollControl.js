@@ -36,7 +36,6 @@ export function scrollToTop() {
  */
 export function ensureScrollTo(scrollController, predicate) {
     function scrollEnd() {
-        console.log("scrollEnd")
         if (predicate()) {
             window.removeEventListener("scroll", debounced)
         } else {

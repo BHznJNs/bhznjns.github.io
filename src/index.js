@@ -9,6 +9,7 @@ import importStyle from "./scripts/importers/style.js"
 import { config } from "./utils/loadConfig.js"
 import keydownEvent from "./utils/dom/keydownEvent.js"
 import eventbus from "./utils/eventbus/inst.js"
+import startLiveReload from "./utils/liveReload.js"
 
 importStyle("dist/chunks/skeleton.min.css")
 
@@ -83,6 +84,7 @@ window.addEventListener("message", e => {
     targetIframeEl.style.height = height + "px"
 })
 
+startLiveReload()
 if ("serviceWorker" in navigator) {
     // if support service worker, register
     navigator.serviceWorker

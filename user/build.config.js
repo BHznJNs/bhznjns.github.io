@@ -5,8 +5,12 @@ export default {
     description: "一个 Markdown 静态博客站。",
     footer: `::[字数统计](//user/count.html) | Powered by [MarkdownBlog](https://github.com/BHznJNs/markdown-blog)::`,
     language: "zh",
-    previewPort: 3030,
     pageSize: 20,
+
+    preview: {
+        port: 3030,
+        liveReload: true,
+    },
 
     catalog: {
         enable: true

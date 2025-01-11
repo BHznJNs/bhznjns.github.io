@@ -1,10 +1,9 @@
-import "./watch.js"
 import os from "node:os"
+import http from "node:http"
+import { WebSocketServer } from "ws"
 import express from "express"
+import startWatch from "./watch.js"
 import { config } from "../utils/loadConfig.js"
-
-const app = express()
-const port = config.previewPort
 
 function getLANIpAddress() {
     const ifaces = os.networkInterfaces()
@@ -22,18 +21,32 @@ function getLANIpAddress() {
     }
 }
 
+const { port, liveReload } = config.preview
+
+const app = express()
+const server = http.createServer(app)
 app.use("/preview", express.static("./"))
-app.use("/rss_resources", express.static("./.rss_resources"))
+
+// --- LiveReload WebSocket server start ---
+let websocket = null
+if (liveReload) {
+    const wss = new WebSocketServer({ server })
+    /** @type {WebSocket | null} */
+    wss.on("listening",  () => console.log("Live server listening on port:", port))
+    wss.on("connection", ws => websocket = ws)
+    wss.on("close",      () => websocket = null)
+}
+// --- LiveReload WebSocket server end ---
+
+startWatch(() => {
+    websocket && websocket.send("refresh")
+})
 
 const LAN_IP = getLANIpAddress()
-if (LAN_IP) {
-    app.listen(port, "0.0.0.0", () => {
-        // listen in LAN
+server.listen(port, "0.0.0.0", () => {
+    // listen in both LAN and localhost
+    if (LAN_IP) {
         console.log(`Listening: http://${LAN_IP}:${port}/preview/`)
-    })
-}
-
-app.listen(port, () => {
-    // listen in localhost
+    }
     console.log(`Listening: http://localhost:${port}/preview/`)
 })

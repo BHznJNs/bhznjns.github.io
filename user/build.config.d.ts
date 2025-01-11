@@ -1,3 +1,17 @@
+interface PreviewConfig {
+    /**
+     * - Port ID for the preview server.
+     * - 预览服务器端口。
+     */
+    port: number
+
+    /**
+     * - Set `true` to enable auto refresh for the preview server.
+     * - 设为 `true` 以为预览服务器启用自动刷新。
+     */
+    liveReload: boolean
+}
+
 interface FABConfig {
     /**
      * - Enable or disable FAB buttons.
@@ -350,12 +364,6 @@ export interface SiteConfig {
     language: "zh" | "en"
 
     /**
-     * - Port ID for the preview server.
-     * - 预览服务器端口。
-     */
-    previewPort: number
-
-    /**
      * - Number of items per page.
      * - 每页展示的博文数。
      */
@@ -372,6 +380,8 @@ export interface SiteConfig {
      * - 页面上额外的自定义元数据。
      */
     extraMetadata: Metadata[]
+
+    preview: PreviewConfig,
 
     fab: FABConfig
     catalog: CatalogConfig

@@ -20,10 +20,12 @@ async function update() {
     }
 }
 
-(function entry() {
+export default function entry(onChangeCallback) {
+    onChangeCallback = onChangeCallback instanceof Function ? onChangeCallback : () => {}
     if (!fs.existsSync(staticPath)) {
         return
     }
+
     const watcher = chokidar.watch(staticPath, {
         ignored: /^\./, // ignore hidden files & folders
         persistent: true,
@@ -43,9 +45,13 @@ async function update() {
         .on("unlink"   , update)
         .on("addDir"   , update)
         .on("unlinkDir", update)
-        .on("change"   , (filePath) => {
+        .on("change"   , debounce((filePath) => {
             if (readmeFilename.includes(path.basename(filePath))) {
-                debounce(() => update(), 100)
+                update(); onChangeCallback()
             }
-        })
-})()
+        }, 100))
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+    entry()
+}

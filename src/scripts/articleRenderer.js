@@ -88,10 +88,7 @@ export default function articleRender(articleEl, mdText) {
         const targetScrollPos = Number.parseInt(lastLeavePos)
         ensureScrollTo(
             () => scrollToPos(targetScrollPos),
-            () => {
-                console.log(currentScrollTop(), targetScrollPos)
-                return targetScrollPos - currentScrollTop() < 100
-            }
+            () => targetScrollPos - currentScrollTop() < 100
         )
     })
 }
