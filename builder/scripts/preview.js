@@ -7,18 +7,25 @@ import { config } from "../utils/loadConfig.js"
 
 function getLANIpAddress() {
     const ifaces = os.networkInterfaces()
+    let lanIP = null
 
-    for (const dev in ifaces) {
-        const iface = ifaces[dev]
-
-        for (let i = 0; i < iface.length; i++) {
-            const { family, address, internal } = iface[i]
-
-            if (family === "IPv4" && address !== "127.0.0.1" && !internal) {
-                return address
+    for (const [name, interfaces] of Object.entries(ifaces)) {
+        if (name.includes("*") || !Array.isArray(interfaces)) {
+            continue
+        }
+        for (const iface of interfaces) {
+            if (iface.family !== "IPv4" ||
+                iface.internal ||
+                iface.address === "127.0.0.1"
+            ) { continue }
+            if (/wlan|wifi|wireless/i.test(name)) {
+                // the IP of WLAN is prefered
+                return iface.address
             }
+            lanIP = iface.address
         }
     }
+    return lanIP || "Unable to determine LAN IP"
 }
 
 const { port, liveReload } = config.preview
