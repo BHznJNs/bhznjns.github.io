@@ -2,6 +2,7 @@ import highlightRender from "./importers/highlight.js"
 import katexRender from "./importers/katex.js"
 import chartRender from "./importers/charts/index.js"
 
+import { allIframeLoaded, setIframeTheme } from "./iframeController.js"
 import el from "../utils/dom/el.js"
 import mdResolver from "../utils/markdown/index.js"
 import keydownEvent from "../utils/dom/keydownEvent.js"
@@ -9,8 +10,7 @@ import eventbus from "../utils/eventbus/inst.js"
 import { config } from "../utils/loadConfig.js"
 import { Headline } from "../utils/markdown/node.js"
 import languageSelector from "../utils/languageSelector.js"
-import { scrollToPos } from "../utils/dom/scrollControl.js"
-import { allIframeLoaded, setIframeTheme } from "./iframeController.js"
+import { currentScrollTop, ensureScrollTo, scrollToPos } from "../utils/dom/scrollControl.js"
 import { parseEntry } from "../utils/markdown/inline.js"
 
 const emptyArticlePlaceHolder = languageSelector("空文章", "Empty Article")
@@ -78,13 +78,20 @@ export default function articleRender(articleEl, mdText) {
         sessionStorage.removeItem("last-leave-page")
         sessionStorage.removeItem("last-leave-position")
 
-        if (window.scrollY > 0) {
+        if (currentScrollTop() > 0) {
             // when is scrolled, skip position restoring
             return
         }
         if (location.hash !== lastLeavePage) {
             return
         }
-        scrollToPos(Number.parseInt(lastLeavePos))
+        const targetScrollPos = Number.parseInt(lastLeavePos)
+        ensureScrollTo(
+            () => scrollToPos(targetScrollPos),
+            () => {
+                console.log(currentScrollTop(), targetScrollPos)
+                return targetScrollPos - currentScrollTop() < 100
+            }
+        )
     })
 }
