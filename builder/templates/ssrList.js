@@ -54,16 +54,6 @@ ${config.extraMetadata
     .join("")
 }
 <link rel="stylesheet" href="../dist/ssr-list.min.css">
-${config.extraScripts
-    .map((scriptPath) =>
-        el("script", {
-            defer: true,
-            src: scriptPath.startsWith("http")
-                ? scriptPath
-                : "../" + scriptPath
-        }))
-    .join("")
-}
 </head>
 <body>
 <noscript>

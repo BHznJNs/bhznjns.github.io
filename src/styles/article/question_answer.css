@@ -1,4 +1,7 @@
 div.qa-block {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
     margin: 1rem 0;
 }
 
