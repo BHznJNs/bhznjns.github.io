@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一阶系统</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1><ruby data-notation="First Order System">一阶系统<rp>(</rp>,<rt>First Order System</rt>,<rp>)</rp></ruby></h1><div class="math"><img src="./katex-4a046da06c400e48005ea696c40a853c.png" alt=""></div><ul><li>k<sub>s</sub>: the gain of the system</li><li>τ: the time constant</li></ul><blockquote class="alert caution"><p class="alert-title">警告</p><p>在计算一阶系统的 k<sub>s</sub> 和 τ 时，需要把分母转化为 <span class="math"><img src="./katex-93009977ce3232112513e85b25b2b4e3.png"></span> 的形式</p></blockquote><h2>Unit-Step Response</h2><div class="math"><img src="./katex-5846e91bdc39857b9266ca2b0a5f4e49.png" alt=""></div><h2>Unit-Ramp Response</h2><div class="math"><img src="./katex-685bbe19c4dd4163c581b3f2a9871ff2.png" alt=""></div><h2>Unit-Impulse Response</h2><div class="math"><img src="./katex-f4ab3f50ab762de6891f75ede3309680.png" alt=""></div>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/系统分析与控制/一阶系统.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+</body>
+</html>

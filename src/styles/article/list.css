@@ -8,12 +8,12 @@ li {
 }
 
 ol {
-    padding-left: 1em;
+    padding-left: 0;
     list-style: none;
     overflow-wrap: break-word;
 }
 ul {
-    margin-left: 1em;
+    margin-left: 0;
     padding-left: 1.625em;
     overflow-wrap: break-word;
 }
@@ -21,6 +21,15 @@ ul {
 ol li,
 ul li {
     margin-bottom: .25em;
+}
+
+ol > ul,
+ul > ul {
+    margin-left: 1rem;
+}
+ol > ol,
+ul > ol {
+    padding-left: 1rem;
 }
 
 ul > li {

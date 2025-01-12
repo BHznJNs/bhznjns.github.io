@@ -103,17 +103,6 @@ export class Directory {
         })
     }
 
-    find(query) {
-        const targetIndex = this.items.findIndex(item => item.name === query)
-        return targetIndex === -1 ? null : this.items[targetIndex]
-    }
-    replace(query, obj) {
-        const targetIndex = this.items.findIndex(item => item.name === query)
-        if (targetIndex !== -1) {
-            this.items[targetIndex] = obj
-        }
-    }
-
     static clear(path) {
         if (!fs.existsSync(path)) {
             return

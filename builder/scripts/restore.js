@@ -1,23 +1,23 @@
 import { readFileSync } from "node:fs"
 import { utimesSync } from "utimes"
 import { backupFilePath } from "../utils/path.js"
+import { Directory } from "../utils/directory.js"
 
-const backupData = JSON.parse(readFileSync(backupFilePath, "utf-8"))
-
-function restoreDir(dir, path) {
-    const dirPath = path + dir.name + "/"
-
+/**
+ * @param {Directory} dir
+ */
+function restoreDir(dir) {
     // restore current directory
-    utimesSync(dirPath, {
+    utimesSync(dir.path, {
         btime: dir.createTime,
         mtime: dir.modifyTime,
     })
 
     for (const item of dir.items) {
-        const isDir = "items" in item
+        const isDir = Object.hasOwn(item, "items") 
         if (isDir) {
             // restore sub directory
-            restoreDir(item, dirPath)
+            restoreDir(item)
         } else {
             // restore sub file
             utimesSync(item.path, {
@@ -27,4 +27,5 @@ function restoreDir(dir, path) {
         }
     }
 }
-restoreDir(backupData, "./")
+const backupData = JSON.parse(readFileSync(backupFilePath, "utf-8"))
+restoreDir(backupData)

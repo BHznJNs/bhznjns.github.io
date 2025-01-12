@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>二阶系统</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1><ruby data-notation="Second Order System">二阶系统<rp>(</rp>,<rt>Second Order System</rt>,<rp>)</rp></ruby></h1><div class="math"><img src="./katex-4d93e81518d4c9f5c85fca81a168b6a3.png" alt=""></div><ul><li>k<sub>s</sub>: the gain of the system</li><li>ζ: <ruby data-notation="阻尼比">the damping coefficient<rp>(</rp>,<rt>阻尼比</rt>,<rp>)</rp></ruby></li><li>ω<sub>n</sub>: the natural frequency</li></ul><details><div class="math"><img src="./katex-e4c09acb655bd70210d4ec669d85975a.png" alt=""></div><summary>{damped natural frequency}(实际振荡频率)</summary></details><details><div class="table"><table><thead><tr><th>阻尼比 ζ</th><th>系统行为</th><th>优点</th><th>缺点</th></tr></thead><tbody><tr><td>ζ = 0</td><td>持续振荡，无衰减</td><td>振荡频率明确</td><td>永不稳定</td></tr><tr><td>0 &lt; ζ &lt; 1</td><td>衰减振荡</td><td>快速响应</td><td>存在超调</td></tr><tr><td>ζ = 1</td><td>无振荡，快速稳定</td><td>无超调，响应速度快</td><td>调节时间相对略长</td></tr><tr><td>ζ &gt; 1</td><td>无振荡，缓慢稳定</td><td>极度稳定</td><td>响应速度慢，调整时间长</td></tr></tbody></table></div><h3>ζ = 0（无阻尼，Undamped）</h3><ul><li>系统没有任何阻尼（如完全理想的弹簧-质量系统，没有摩擦）。</li><li>输出会以自然频率（ω<sub>n</sub>​）持续振荡，没有振幅衰减。</li><li>系统的响应是纯正弦波振荡。</li></ul><h3>0 &lt; ζ &lt; 1（欠阻尼，Underdamped）</h3><ul><li>系统有一定阻尼，但不足以完全抑制振荡。</li><li>输出会以实际振荡频率（<span class="math"><img src="./katex-46887d5d8329865e40d19e579c104500.png"></span>​）振荡，同时振幅逐渐衰减。</li><li>存在<ruby data-notation="Overshoot">超调<rp>(</rp>,<rt>Overshoot</rt>,<rp>)</rp></ruby>：输出会超过目标值，然后逐渐趋于稳定。</li></ul><h3>ζ = 1（临界阻尼，Critically Damped）</h3><ul><li>系统具有刚好足够的阻尼以避免振荡。</li><li>输出快速趋近目标值，无振荡，但仍可能有一个较小的超调。</li></ul><h3>ζ &gt; 1（过阻尼，Overdamped）</h3><ul><li>阻尼过大，系统的响应非常缓慢，输出不会振荡。</li><li>系统趋于目标值的速度比临界阻尼慢，但更稳定。</li></ul><summary>阻尼比 ζ</summary></details><h2>Transient-Response Specifications</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E6%8E%A7%E5%88%B6/.二阶系统/Transient-response specifications.png" alt="Transient-response specifications 图例" loading="lazy" tabindex="0"></div><ol><li>Delay time t<sub>d</sub>: 系统响应达到目标值的 50% 所需的时间。</li><li>Rise time t<sub>r</sub>: 系统响应从初始值（通常为 10% 的最终值）上升到最终值的 90% 所需的时间。</li><li>Peak time t<sub>p</sub>: 系统响应首次达到最大值（超调点）所需的时间。</li><li>Maximum (percent) overshoot M<sub>p</sub></li><ul><li>系统响应超过目标值的最大偏差，相对于目标值的百分比。</li><li><span class="math"><img src="./katex-f8f3db792d84d351451d2f232540753f.png"></span></li></ul><li>Settling time t<sub>s</sub>: 系统响应进入并保持在目标值一定范围（通常为 ±2% 或 ±5%）内所需的时间。</li></ol>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/系统分析与控制/二阶系统.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+</body>
+</html>
