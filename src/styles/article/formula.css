@@ -9,9 +9,6 @@ div.math {
     line-height: 1.75;
     box-sizing: border-box;
 }
-span.math {
-    font-size: 1.125rem;
-}
 span.math img {
     /* for server side rendered formula */
     height: calc(1em + 16px);

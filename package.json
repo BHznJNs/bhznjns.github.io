@@ -25,7 +25,6 @@
     "electron": "^28.2.0",
     "express": "^4.21.2",
     "html2canvas": "^1.4.1",
-    "rollup-plugin-postcss": "^4.0.2",
     "utimes": "^5.2.1",
     "ws": "^8.18.0"
   },
