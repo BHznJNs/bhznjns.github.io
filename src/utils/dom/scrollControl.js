@@ -2,6 +2,8 @@ import debounce from "../debounce.js"
 
 export const currentScrollTop = () =>
     window.scrollY || document.documentElement.scrollTop
+export const maxScrollTop = () =>
+    document.documentElement.scrollHeight - document.documentElement.clientHeight
 
 /**
  * @description scroll to specific position
@@ -36,7 +38,8 @@ export function scrollToTop() {
  */
 export function ensureScrollTo(scrollController, predicate) {
     function scrollEnd() {
-        if (predicate()) {
+        const isAtPageBottom = Math.abs(maxScrollTop() - currentScrollTop()) < 10
+        if (isAtPageBottom || predicate()) {
             window.removeEventListener("scroll", debounced)
         } else {
             scrollController()
