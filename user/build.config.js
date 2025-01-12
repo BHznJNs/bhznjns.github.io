@@ -31,7 +31,7 @@ export default {
         ignoredDir: ["学习笔记/"],
         extraMetadata: `\
 <follow_challenge>
-    <feedId>96181789796736000</feedId>
+    <feedId>101282540872310784</feedId>
     <userId>96180252670732288</userId>
 </follow_challenge>`,
     },
