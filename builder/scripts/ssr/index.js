@@ -71,7 +71,9 @@ if (config.rss.enable) {
         const isInCache  = MD5InCache !== undefined
 
         if (isInCache && currentMD5 === MD5InCache) {
+            globalThis.__ResourcePath__ = new URL(path.dirname(file.path), config.homepage).toString()
             analyze(fileContent)
+            globalThis.__ResourcePath__ = undefined
             continue
         }
 

@@ -34,7 +34,52 @@ https://recaptcha.net/recaptcha/api.js
 
 ## 还不能正常使用？
 
-这大概率是因为网站 Content-Security-Policy 内容安全政策的原因。你可以访问[这里](//static/其它/.关于 Google reCaptcha 的小坑/GoogleRedirect.json)，下载 JSON 后，打开刚才安装的浏览器插件的管理界面，选择上面的``导出和导入``，将此 JSON 文件导入，再尝试使用你所需要访问的网页。
+这大概率是因为网站 Content-Security-Policy 内容安全政策的原因。你可以复制下面的 JSON，
+```json
+{
+	"request": [
+		{
+			"enable": true,
+			"name": "Google APIs",
+			"ruleType": "redirect",
+			"matchType": "regexp",
+			"pattern": "^http(s?)://ajax\\.googleapis\\.com/(.*)",
+			"exclude": "",
+			"isFunction": false,
+			"action": "redirect",
+			"to": "https://gapis.geekzu.org/ajax/$2",
+			"group": "Google Redirect"
+		},
+		{
+			"enable": true,
+			"name": "reCaptcha",
+			"ruleType": "redirect",
+			"matchType": "regexp",
+			"pattern": "^http(s?)://(?:www\\.|recaptcha\\.|)google\\.com/recaptcha/(.*)",
+			"exclude": "",
+			"isFunction": false,
+			"action": "redirect",
+			"to": "https://recaptcha.net/recaptcha/$2",
+			"group": "Google Redirect"
+		}
+	],
+	"sendHeader": [],
+	"receiveHeader": [
+		{
+			"enable": true,
+			"name": "Content Security Policy Header Modification",
+			"ruleType": "modifyReceiveHeader",
+			"matchType": "all",
+			"pattern": "",
+			"exclude": "",
+			"isFunction": true,
+			"code": "let rt = detail.type;\nif (rt === 'script' || rt === 'stylesheet' || rt === 'main_frame' || rt === 'sub_frame') {\n  for (let i in val) {\n    if (val[i].name.toLowerCase() === 'content-security-policy') {\n      let s = val[i].value;\n      s = s.replace(/googleapis\\.com/g, '$& https://gapis.geekzu.org');\n      s = s.replace(/recaptcha\\.google\\.com/g, '$& https://recaptcha.net');\n      s = s.replace(/google\\.com/g, '$& https://recaptcha.net');\n      s = s.replace(/gstatic\\.com/g, '$& https://*.gstatic.cn');\n      val[i].value = s;\n    }\n  }\n}",
+			"group": "Google Redirect"
+		}
+	]
+}
+```
+打开刚才安装的浏览器插件的管理界面，选择上面的``导出和导入``，将此 JSON 文件导入，再尝试使用你所需要访问的网页。
 
 ## 一条 FAQ (同样搬自原文)
 

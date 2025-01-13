@@ -5,6 +5,7 @@ import {
 import { config } from "../utils/loadConfig.js"
 import { File } from "../utils/directory.js"
 import el from "../../src/utils/dom/el.js"
+import dateFormatter from "../../src/utils/dateFormatter.js"
 import languageSelector from "../../src/utils/languageSelector.js"
 
 function timeAgo(timestamp) {
@@ -57,7 +58,7 @@ ${config.extraMetadata
 </head>
 <body>
 <noscript>
-<link rel="stylesheet" href="./dist/noscript.min.css">
+<link rel="stylesheet" href="../dist/noscript.min.css">
 </noscript>
 ${inlineDarkmodeSwitcherScript()}
 ${config.search.enable ? el("search-box"): ""}
@@ -81,11 +82,16 @@ ${footer()}
 export default function(articles) {
     const links = articles
         .slice(0, 2500)
-        .map(file =>
-            el("li", [
-                el("a", file.name, {
-                    href: config.homepage + file.ssrPath }),
-                el("p", timeAgo(file.createTime) + languageSelector("发布", " published"))]))
+        .map(file => {
+            const linkEl = el("a", file.name, {
+                href: config.homepage + file.ssrPath
+            })
+            const publishTime = el("code", dateFormatter(file.createTime))
+            const dateEl = el("p", languageSelector(
+                "发布于 " + publishTime,
+                "Published on " + publishTime,
+            ))
+            return el("li", [linkEl, dateEl]) })
         .join("")
     const fileContent = template(links)
     return fileContent

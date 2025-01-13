@@ -62,6 +62,8 @@ export default [
             /libs\/railroad-diagrams/,
             /libs\/qrcode-svg/,
             /libs\/flexsearch/,
+            /libs\/flexsearch/,
+            /libs\/resolve-pathname/,
         ],
         plugins: [
             terser(),
@@ -141,7 +143,11 @@ export default [
                     { /* flexsearch */
                         src: "src/libs/flexsearch/flexsearch.bundle.module.min.js",
                         dest: "dist/libs/flexsearch/"
-                    }
+                    },
+                    { /* resolve-pathname */
+                        src: "src/libs/resolve-pathname/index.js",
+                        dest: "dist/libs/resolve-pathname/"
+                    },
                 ],
             }),
             componentStyleResolver("fab"),
@@ -151,9 +157,9 @@ export default [
             postcss({
                 include: [
                     "src/styles/*.css",
-                    "!src/styles/standalone-entry/**",
                     "src/libs/highlight-es/*.css",
                     "src/styles/components/paging.css",
+                    "!src/styles/standalone-entry/**",
                 ],
                 extract: "style.min.css",
                 plugins: [

@@ -2,6 +2,7 @@ import {
     header, navigator, footer,
     inlineDarkmodeSwitcherScript,
     htmlLang,
+    loadExtraScripts,
 } from "./snippets.js"
 import { config } from "../utils/loadConfig.js"
 import { ssrListPath } from "../utils/path.js"
@@ -84,12 +85,7 @@ ${noscript}
 ${main}
 ${article}
 ${footer()}
-${config.extraScripts
-    .map((scriptPath) =>
-        el("script", { async: true, src: scriptPath}))
-    .join("")
-}
+${loadExtraScripts()}
 </body>
 </html>`
-
 export default template

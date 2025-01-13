@@ -90,7 +90,7 @@ if (darkModeMediaQuery) {
 <noscript>
 <link rel="stylesheet" href="./dist/noscript.min.css">
 <main id="noscript-main">
-    <p>你的浏览器似乎禁用了 JavaScript，你可以点此<a href=".ssr/index.html">查看最新的文章</a>。</p>
+    <p>你的浏览器似乎禁用了 JavaScript，你可以点此<a href="pages/index.html">查看最新的文章</a>。</p>
 </main>
 </noscript>
 <main id="script-main" data-is-root=true>
@@ -129,6 +129,14 @@ if (darkModeMediaQuery) {
 <article></article>
 </div>
 <footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW"></script><script async src="./user/external.js"></script>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","./user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
 </body>
 </html>

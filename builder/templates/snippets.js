@@ -1,3 +1,4 @@
+import path from "node:path"
 import { config } from "../utils/loadConfig.js"
 import renderer from "../../src/utils/markdown/index.js"
 import languageSelector from "../../src/utils/languageSelector.js"
@@ -112,6 +113,22 @@ export function navigator(
     ${homepageBtn}
     <span>${searchBtn}${rssBtn}${themeTogglingBtn}</span>
 </nav>`
+}
+
+export function loadExtraScripts(base="./") {
+    return `\
+<script>window.addEventListener("load", () => {
+    const scripts = ${JSON.stringify(
+        config.extraScripts.map(item =>
+            path.posix.join(base, item))
+    )}
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>`
 }
 
 export function footer() {

@@ -1,6 +1,7 @@
 import {
     htmlLang, header, navigator, footer,
     inlineDarkmodeSwitcherScript,
+    loadExtraScripts,
 } from "./snippets.js"
 import { config } from "../utils/loadConfig.js"
 import languageSelector from "../../src/utils/languageSelector.js"
@@ -22,6 +23,7 @@ ${body}
 </a></p>
 </article>
 ${footer()}
+${loadExtraScripts("../")}
 </body>
 </html>`
 }

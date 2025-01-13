@@ -72,7 +72,7 @@ if (darkModeMediaQuery) {
 </span></span>
 </nav>
 <article>
-<h1>下划线动画（新）</h1><p><code>2023/12/20</code></p><hr><p>原本之前是<a href="#static/Web 前端/CSS/下划线动画.md">写过一次</a>的，之所以再发一回主要是因为看到的<a href="https://www.bilibili.com/video/BV1Rb4y1g7bp/" target="_blank"> B 站上的一个视频</a>，觉得这种实现更加实用，在此记录。</p><hr><h2>实现思路</h2><p>利用 CSS inline box 的特性，使用 CSS 的 <code>background</code> 属性，实现在多行文本下也能轻松实现下划线动画。这种方案的优势是不涉及伪元素，实现更加灵活；但同时劣势就是由于利用了 inline box 的特性，对于 <code>div</code> 等 block box 元素无法实现理想效果。</p><h2>具体实现</h2><p>示例使用的 HTML 结构如下：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;span&gt;content content content &lt;br&gt; content content content&lt;/span&gt;
+<h1>下划线动画（新）</h1><p><code>2023/12/20</code></p><hr><p>原本之前是<a href="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/下划线动画.md">写过一次</a>的，之所以再发一回主要是因为看到的 <a href="https://www.bilibili.com/video/BV1Rb4y1g7bp/" target="_blank">B 站上的一个视频</a>，觉得这种实现更加实用，在此记录。</p><hr><h2>实现思路</h2><p>利用 CSS inline box 的特性，使用 CSS 的 <code>background</code> 属性，实现在多行文本下也能轻松实现下划线动画。这种方案的优势是不涉及伪元素，实现更加灵活；但同时劣势就是由于利用了 inline box 的特性，对于 <code>div</code> 等 block box 元素无法实现理想效果。</p><h2>具体实现</h2><p>示例使用的 HTML 结构如下：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;span&gt;content content content &lt;br&gt; content content content&lt;/span&gt;
 </code></pre><p>在需要实现下划线动画的元素添加如下样式：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">span {
     /* 为元素设置背景 */
     background-image: linear-gradient(to right, #333, #333);
@@ -87,7 +87,7 @@ if (darkModeMediaQuery) {
 </code></pre><p>在设置放上鼠标时的样式：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">span:hover {
     background-size: 100% 2px;
 }
-</code></pre><p>目前的效果如下：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/CSS/.下划线动画（新）/sceenshot1.gif" alt="sceenshot1" loading="lazy" tabindex="0"></div><p>更进一步，要想实现下面👇这样的效果：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/CSS/.下划线动画（新）/sceenshot2.gif" alt="sceenshot1" loading="lazy" tabindex="0"></div><p>则要对上面的 CSS 代码进行一点小修改：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">/* 将原本的背景位置从左下角改为右下角 */
+</code></pre><p>目前的效果如下：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/.%E4%B8%8B%E5%88%92%E7%BA%BF%E5%8A%A8%E7%94%BB%EF%BC%88%E6%96%B0%EF%BC%89/sceenshot1.gif" alt="sceenshot1" loading="lazy" tabindex="0"></div><p>更进一步，要想实现下面👇这样的效果：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/.%E4%B8%8B%E5%88%92%E7%BA%BF%E5%8A%A8%E7%94%BB%EF%BC%88%E6%96%B0%EF%BC%89/sceenshot2.gif" alt="sceenshot1" loading="lazy" tabindex="0"></div><p>则要对上面的 CSS 代码进行一点小修改：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">/* 将原本的背景位置从左下角改为右下角 */
 span {
     background-position: right bottom;
 }

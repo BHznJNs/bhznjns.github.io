@@ -118,7 +118,7 @@ class MediaNode {
             actualUrl = rawUrl
         } else {
             const path = globalThis.__ResourcePath__
-            actualUrl = path + "/" + rawUrl
+            actualUrl = new URL(rawUrl, path).toString()
         }
         return actualUrl
     }

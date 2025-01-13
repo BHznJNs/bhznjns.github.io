@@ -1,6 +1,7 @@
 import el from "../dom/el.js"
 import countWord from "../countWord.js"
 import getInterval from "./utils/getInterval.js"
+import resolvePathname from "../../libs/resolve-pathname/index.js"
 
 // identifier character to HTML tag
 const KeyToken_TagName_map = new Map([
@@ -82,25 +83,36 @@ class LinkToken {
     count = () => 0
     toHTML() {
         const displayContent = parseEntry(this.content)
-        if (this.address.startsWith("http")) {
-            // internet links
+        try {
+            new URL(this.address)
             return el("a", displayContent, {
                 href: this.address,
                 target: "_blank"
             })
-        }
+        } catch { /* if not a full URL */ }
 
         if (this.address.startsWith("//")) {
             // relative link for some extra HTML files
             return el("a", displayContent, {
                 href: this.address.slice(2),
             })
+        } else if (this.address.startsWith("/")) {
+            // static resources or links relative to `static` directory
+            const actualAddress = "static" + this.address
+            return el("a", displayContent, {
+                href: "#" + actualAddress
+            })
         }
 
-        // static resources or links
-        const actualAddress = "static/" + this.address
+        let base
+        if ("location" in globalThis) {
+            base = location.hash
+        } else {
+            base = globalThis.__ResourcePath__
+        }
+        const actualAddress = resolvePathname(this.address, base)
         return el("a", displayContent, {
-            href: "#" + actualAddress
+            href: actualAddress
         })
     }
 }
