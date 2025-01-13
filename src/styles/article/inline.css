@@ -50,6 +50,7 @@ code:not(pre code) {
 a::before {
     display: inline-block;
     content: "🔗";
+    font-size: .875em;
 }
 a:link {
     color: var(--default-link-unvisited-color);
