@@ -65,7 +65,7 @@ ${config.search.enable ? el("search-box"): ""}
 ${config.fab.enable    ? el("fab-icon")  : ""}
 ${navigator("../", false, true)}
 <main>
-<h1>${languageSelector("最新 1000 篇博文", "Latest 1000 Articles")}</h1>
+<h1>${languageSelector("最新 2500 篇博文", "Latest 2500 Articles")}</h1>
 <ul id="latest-list">
     ${links}
 </ul>
