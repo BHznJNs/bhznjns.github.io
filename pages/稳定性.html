@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>稳定性</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1><ruby data-notation="Stability">稳定性<rp>(</rp>,<rt>Stability</rt>,<rp>)</rp></ruby></h1><h2><ruby data-notation="Marginally stable">临界稳定<rp>(</rp>,<rt>Marginally stable</rt>,<rp>)</rp></ruby></h2><p>特征方程在虚轴（jω轴）上有简单根，且其他根都在左半平面，则这个系统处于<strong>临界稳定状态</strong>。</p><h2>Routh stability criterion</h2><p>取传递函数的分母为特征多项式：</p><div class="math"><img src="./katex-c30036ab7288e332889a77d0d5bc0421.png" alt=""></div><p>构造 Routh 数组：</p><div class="math"><img src="./katex-de4addcfd9f9554e9085748151dd9a37.png" alt=""></div><blockquote class="alert note"><p class="alert-title">笔记</p><ul><li>没有符号变化：所有根都具有负实部，系统是稳定的。</li><li>符号变化 k 次：存在 k 个具有正实部的根，系统是不稳定的。</li><li>特殊情况：如果第一列中出现零</li><ul><li>第一列为零，但该行的其他元素非零：</li><ul><li>需要用一个小正值 ϵ 替换零来完成分析。</li></ul><li>第一列为零，并且该行的其他元素也为零：</li><ul><li>使用上一行（即零行的上一行）对应的特征多项式，求它对 s 的导数。</li><li>用求得导数的系数代替全零行，继续计算 Routh 数组。</li></ul></ul></ul></blockquote>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/系统分析与控制/稳定性.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["../https:/www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
