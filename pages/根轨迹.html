@@ -72,7 +72,7 @@ if (darkModeMediaQuery) {
 </span></span>
 </nav>
 <article>
-<h1><ruby data-notation="Root Locus">根轨迹<rp>(</rp>,<rt>Root Locus</rt>,<rp>)</rp></ruby></h1><p>对于一个传递函数：</p><div class="math"><img src="./katex-cb75026eaad39d65802a8b08fa0f843c.png" alt=""></div><ol><li>设：</li><ul><li>n: the number of poles</li><li>m: the number of zeros</li></ul><li>在 s-平面上标记所有的开环极点（用“×”表示）和开环零点（用“○”表示）</li><li>根轨迹的分支数量等于系统的开环<strong>极点数量 n</strong></li><li>渐近线的角度为：<span class="math"><img src="./katex-5460f57377286ae154d6bfd08c837219.png"></span>, (把 k 看作 0)</li><li>渐近线与实轴的交点位置：<span class="math"><img src="./katex-ee1af8bae1058a6b9e6beb76bac5c451.png"></span></li><li>对传递函数的分母进行求导，使其等于 0：<span class="math"><img src="./katex-7390d7d4d52d162c2c9c266c7ef73c4b.png"></span></li><li>将结果中不在根轨迹上的根移除，使用在根轨迹上的根绘制根轨迹。</li><li>通过构造 Routh 数组来<strong>确定根轨迹与虚轴的交点</strong>。</li></ol>
+<h1><ruby data-notation="Root Locus">根轨迹<rp>(</rp>,<rt>Root Locus</rt>,<rp>)</rp></ruby></h1><p>对于一个传递函数：</p><div class="math"><img src="./katex-cb75026eaad39d65802a8b08fa0f843c.png" alt=""></div><ol><li>设：</li><ul><li>n: the number of poles</li><li>m: the number of zeros</li></ul><li>在 s-平面上标记所有的开环极点（用“×”表示）和开环零点（用“○”表示）</li><li>根轨迹的分支数量等于系统的开环<strong>极点数量 n</strong></li><li>渐近线的角度为：<span class="math"><img src="./katex-5460f57377286ae154d6bfd08c837219.png"></span>, (把 k 看作 0)</li><li>渐近线与实轴的交点位置：<span class="math"><img src="./katex-ee1af8bae1058a6b9e6beb76bac5c451.png"></span></li><li>通过 <strong>1 + G(s)H(s) = 0</strong>，使 K 关于 s 的导数等于 0：<span class="math"><img src="./katex-7390d7d4d52d162c2c9c266c7ef73c4b.png"></span></li><li>将结果中不在根轨迹上的根移除，使用在根轨迹上的根绘制根轨迹。</li><li>通过构造 Routh 数组来<strong>确定根轨迹与虚轴的交点</strong>。</li></ol>
 <p><a href="https://bhznjns.github.io/#static/学习笔记/系统分析与控制/根轨迹.md">
     点此查看原文
 </a></p>
