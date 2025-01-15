@@ -1,4 +1,4 @@
-# {稳定性}(Stability)
+# 稳定性和 Routh 判定法
 
 ## {临界稳定}(Marginally stable)
 

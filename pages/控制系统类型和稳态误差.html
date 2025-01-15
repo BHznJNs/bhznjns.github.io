@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="color-scheme" content="light dark">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>根轨迹</title>
+<title>控制系统类型和稳态误差</title>
 <link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="../dist/style.min.css">
 </head>
@@ -72,8 +72,8 @@ if (darkModeMediaQuery) {
 </span></span>
 </nav>
 <article>
-<h1><ruby data-notation="Root Locus">根轨迹<rp>(</rp>,<rt>Root Locus</rt>,<rp>)</rp></ruby></h1><p>对于一个传递函数：</p><div class="math"><img src="./katex-cb75026eaad39d65802a8b08fa0f843c.png" alt=""></div><ol><li>设：</li><ul><li>n: the number of poles</li><li>m: the number of zeros</li></ul><li>在 s-平面上标记所有的开环极点（用“×”表示）和开环零点（用“○”表示）</li><li>根轨迹的分支数量等于系统的开环<strong>极点数量 n</strong></li><li>渐近线的角度为：<span class="math"><img src="./katex-5460f57377286ae154d6bfd08c837219.png"></span>, (把 k 看作 0)</li><li>渐近线与实轴的交点位置：<span class="math"><img src="./katex-ee1af8bae1058a6b9e6beb76bac5c451.png"></span></li><li>对传递函数的分母进行求导，使其等于 0：<span class="math"><img src="./katex-7390d7d4d52d162c2c9c266c7ef73c4b.png"></span></li><li>将结果中不在根轨迹上的根移除，使用在根轨迹上的根绘制根轨迹。</li><li>通过构造 Routh 数组来<strong>确定根轨迹与虚轴的交点</strong>。</li></ol>
-<p><a href="https://bhznjns.github.io/#static/学习笔记/系统分析与控制/根轨迹.md">
+<h1>控制系统类型和稳态误差</h1><p>对于不同的系统类型和不同的输入类型，在<ruby data-notation="Unity feedback">反馈为 1<rp>(</rp>,<rt>Unity feedback</rt>,<rp>)</rp></ruby> 时，对应的稳态误差：</p><div class="table"><table><thead><tr><th></th><th>Step</th><th>Ramp</th><th>Acceleration</th></tr></thead><tbody><tr><td>Type 0</td><td><span class="math"><img src="./katex-c504c6529d44e1177d781e9335b26283.png"></span></td><td><span class="math"><img src="./katex-7ed9abff4dafd78d08e616c899412e92.png"></span></td><td><span class="math"><img src="./katex-7ed9abff4dafd78d08e616c899412e92.png"></span></td></tr><tr><td>Type 1</td><td>0</td><td><span class="math"><img src="./katex-54c38b76cf0a7c35796f5e25307bd6c9.png"></span></td><td><span class="math"><img src="./katex-7ed9abff4dafd78d08e616c899412e92.png"></span></td></tr><tr><td>Type 2</td><td>0</td><td>0</td><td><span class="math"><img src="./katex-5ad6b9eb260fa8eab5212d747d6c4eab.png"></span></td></tr></tbody></table></div><h2>稳态误差 E<sub>ss</sub> 计算方法</h2><p>设系统的输入为 R(s)，输出为 Y(s)，增益 G(s)，反馈 H(s)</p><p>则误差为：E(s) = R(s) - Y(s)H(s)</p><div class="math"><img src="./katex-eb20bab9c364d064e3981db832274003.png" alt=""></div>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/系统分析与控制/控制系统类型和稳态误差.md">
     点此查看原文
 </a></p>
 </article>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="color-scheme" content="light dark">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>根轨迹</title>
+<title>稳定性和 Routh 判定法</title>
 <link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="../dist/style.min.css">
 </head>
@@ -72,8 +72,8 @@ if (darkModeMediaQuery) {
 </span></span>
 </nav>
 <article>
-<h1><ruby data-notation="Root Locus">根轨迹<rp>(</rp>,<rt>Root Locus</rt>,<rp>)</rp></ruby></h1><p>对于一个传递函数：</p><div class="math"><img src="./katex-cb75026eaad39d65802a8b08fa0f843c.png" alt=""></div><ol><li>设：</li><ul><li>n: the number of poles</li><li>m: the number of zeros</li></ul><li>在 s-平面上标记所有的开环极点（用“×”表示）和开环零点（用“○”表示）</li><li>根轨迹的分支数量等于系统的开环<strong>极点数量 n</strong></li><li>渐近线的角度为：<span class="math"><img src="./katex-5460f57377286ae154d6bfd08c837219.png"></span>, (把 k 看作 0)</li><li>渐近线与实轴的交点位置：<span class="math"><img src="./katex-ee1af8bae1058a6b9e6beb76bac5c451.png"></span></li><li>对传递函数的分母进行求导，使其等于 0：<span class="math"><img src="./katex-7390d7d4d52d162c2c9c266c7ef73c4b.png"></span></li><li>将结果中不在根轨迹上的根移除，使用在根轨迹上的根绘制根轨迹。</li><li>通过构造 Routh 数组来<strong>确定根轨迹与虚轴的交点</strong>。</li></ol>
-<p><a href="https://bhznjns.github.io/#static/学习笔记/系统分析与控制/根轨迹.md">
+<h1>稳定性和 Routh 判定法</h1><h2><ruby data-notation="Marginally stable">临界稳定<rp>(</rp>,<rt>Marginally stable</rt>,<rp>)</rp></ruby></h2><p>特征方程在虚轴（jω轴）上有简单根，且其他根都在左半平面，则这个系统处于<strong>临界稳定状态</strong>。</p><h2>Routh stability criterion</h2><p>取传递函数的分母为特征多项式：</p><div class="math"><img src="./katex-c30036ab7288e332889a77d0d5bc0421.png" alt=""></div><p>构造 Routh 数组：</p><div class="math"><img src="./katex-de4addcfd9f9554e9085748151dd9a37.png" alt=""></div><blockquote class="alert note"><p class="alert-title">笔记</p><ul><li>没有符号变化：所有根都具有负实部，系统是稳定的。</li><li>符号变化 k 次：存在 k 个具有正实部的根，系统是不稳定的。</li><li>特殊情况：如果第一列中出现零</li><ul><li>第一列为零，但该行的其他元素非零：</li><ul><li>需要用一个小正值 ϵ 替换零来完成分析。</li></ul><li>第一列为零，并且该行的其他元素也为零：</li><ul><li>使用上一行（即零行的上一行）对应的特征多项式，求它对 s 的导数。</li><li>用求得导数的系数代替全零行，继续计算 Routh 数组。</li></ul></ul></ul></blockquote>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/系统分析与控制/稳定性和 Routh 判定法.md">
     点此查看原文
 </a></p>
 </article>

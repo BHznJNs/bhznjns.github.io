@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="color-scheme" content="light dark">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>根轨迹</title>
+<title>相位裕度和增益裕度</title>
 <link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="../dist/style.min.css">
 </head>
@@ -72,8 +72,8 @@ if (darkModeMediaQuery) {
 </span></span>
 </nav>
 <article>
-<h1><ruby data-notation="Root Locus">根轨迹<rp>(</rp>,<rt>Root Locus</rt>,<rp>)</rp></ruby></h1><p>对于一个传递函数：</p><div class="math"><img src="./katex-cb75026eaad39d65802a8b08fa0f843c.png" alt=""></div><ol><li>设：</li><ul><li>n: the number of poles</li><li>m: the number of zeros</li></ul><li>在 s-平面上标记所有的开环极点（用“×”表示）和开环零点（用“○”表示）</li><li>根轨迹的分支数量等于系统的开环<strong>极点数量 n</strong></li><li>渐近线的角度为：<span class="math"><img src="./katex-5460f57377286ae154d6bfd08c837219.png"></span>, (把 k 看作 0)</li><li>渐近线与实轴的交点位置：<span class="math"><img src="./katex-ee1af8bae1058a6b9e6beb76bac5c451.png"></span></li><li>对传递函数的分母进行求导，使其等于 0：<span class="math"><img src="./katex-7390d7d4d52d162c2c9c266c7ef73c4b.png"></span></li><li>将结果中不在根轨迹上的根移除，使用在根轨迹上的根绘制根轨迹。</li><li>通过构造 Routh 数组来<strong>确定根轨迹与虚轴的交点</strong>。</li></ol>
-<p><a href="https://bhznjns.github.io/#static/学习笔记/系统分析与控制/根轨迹.md">
+<h1><ruby data-notation="Phase Margin and Gain Margin">相位裕度和增益裕度<rp>(</rp>,<rt>Phase Margin and Gain Margin</rt>,<rp>)</rp></ruby></h1><p>在博德图上找：</p><ul><li>对于 Phase Margin, PM:</li><ul><li>在幅值图上找 0 dB 点，对应相位图的偏移量为 ϕ</li><li><span class="math"><img src="./katex-7e9c494aaa05c0f0dbf5975d22112212.png"></span></li></ul><li>对于 Gain Margin, GM: </li><ul><li>在相位图找 -180° 点，对应幅值图中的点取负的值为 GM</li></ul></ul><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/.%E7%9B%B8%E4%BD%8D%E8%A3%95%E5%BA%A6%E5%92%8C%E5%A2%9E%E7%9B%8A%E8%A3%95%E5%BA%A6/Positive%20PM%20and%20GM.png" alt="Positive PM and GM" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/.%E7%9B%B8%E4%BD%8D%E8%A3%95%E5%BA%A6%E5%92%8C%E5%A2%9E%E7%9B%8A%E8%A3%95%E5%BA%A6/Negative%20PM%20and%20GM.png" alt="Negative PM and GM" loading="lazy" tabindex="0"></div>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/系统分析与控制/相位裕度和增益裕度.md">
     点此查看原文
 </a></p>
 </article>
