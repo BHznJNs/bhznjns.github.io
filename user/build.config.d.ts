@@ -68,6 +68,12 @@ interface NewestConfig {
     enable: boolean
 
     /**
+     * - The page size for the newest pages, is the global `pageSize` as default.
+     * - 最新博文页面的单页文章数量，默认使用全局的 `pageSize`。
+     */
+    pageSize: number
+
+    /**
      * - Directories ignored by the newest articles feature, relative to `static`.
      * - 最新博文功能忽略的文件夹，相对于 `static`。
      */

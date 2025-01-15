@@ -22,7 +22,7 @@ export default async function(newestList) {
     const filtered = newestList.filter(item =>
         !isInIgnoredDir(item.path, ignoredDir)
     )
-    const sliced = slice(filtered)
+    const sliced = slice(filtered, config.newest.pageSize || config.pageSize)
     const count  = sliced.length
 
     let index = 0

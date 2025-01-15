@@ -37,6 +37,7 @@ export default {
     },
     newest: {
         enable: true,
+        pageSize: 40,
         ignoredDir: [],
     },
     search: {

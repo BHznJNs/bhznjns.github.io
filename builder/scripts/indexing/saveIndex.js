@@ -4,6 +4,7 @@ import slice from "../../utils/slice.js"
 import { Directory, File } from "../../utils/directory.js"
 import { indexFilePath, normalizePath } from "../../utils/path.js"
 import { readmeFilename } from "../../utils/filename.js"
+import { config } from "../../utils/loadConfig.js"
 
 function pathToIndexFilename(path, index) {
     const normalizedPath = normalizePath(path)
@@ -48,7 +49,7 @@ export default async function saveIndex(directory, recursive=true) {
     }
 
     const currentDirItems = currentDirs.concat(currentFiles)    
-    const sliced = slice(currentDirItems)
+    const sliced = slice(currentDirItems, config.pageSize)
     const count  = sliced.length
 
     let index = 0
