@@ -71,11 +71,11 @@ if (config.rss.enable) {
         const isInCache  = MD5InCache !== undefined
 
         globalThis.__ResourcePath__ = new URL(path.dirname(file.path), config.homepage).toString()
-        // if (isInCache && currentMD5 === MD5InCache) {
-        //     analyze(fileContent)
-        //     globalThis.__ResourcePath__ = undefined
-        //     continue
-        // }
+        if (isInCache && currentMD5 === MD5InCache) {
+            analyze(fileContent)
+            globalThis.__ResourcePath__ = undefined
+            continue
+        }
 
         globalThis.__SSRCache__.set(file.path, currentMD5)
         globalThis.__IframeCounter__ = 0
