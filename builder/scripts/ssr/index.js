@@ -70,15 +70,14 @@ if (config.rss.enable) {
         const MD5InCache = globalThis.__SSRCache__.get(file.path)
         const isInCache  = MD5InCache !== undefined
 
-        if (isInCache && currentMD5 === MD5InCache) {
-            globalThis.__ResourcePath__ = new URL(path.dirname(file.path), config.homepage).toString()
-            analyze(fileContent)
-            globalThis.__ResourcePath__ = undefined
-            continue
-        }
+        globalThis.__ResourcePath__ = new URL(path.dirname(file.path), config.homepage).toString()
+        // if (isInCache && currentMD5 === MD5InCache) {
+        //     analyze(fileContent)
+        //     globalThis.__ResourcePath__ = undefined
+        //     continue
+        // }
 
         globalThis.__SSRCache__.set(file.path, currentMD5)
-        globalThis.__ResourcePath__ = new URL(path.dirname(file.path), config.homepage).toString()
         globalThis.__IframeCounter__ = 0
         const rendered = renderToHTML(file.path, fileContent)
         globalThis.__ResourcePath__ = undefined

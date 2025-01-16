@@ -113,13 +113,15 @@ class MediaNode {
     }
 
     static srcUrlResolver(rawUrl) {
-        let actualUrl
-        if (rawUrl.startsWith("http")) {
-            actualUrl = rawUrl
-        } else {
-            const path = globalThis.__ResourcePath__
-            actualUrl = new URL(rawUrl, path).toString()
-        }
+        try {
+            new URL(rawUrl)
+            if (rawUrl.startsWith("data")) {
+                return rawUrl
+            }
+        } catch {}
+
+        const path = globalThis.__ResourcePath__
+        const actualUrl = new URL(rawUrl, path + "/").toString()
         return actualUrl
     }
 }

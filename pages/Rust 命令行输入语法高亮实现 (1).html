@@ -493,7 +493,7 @@ KeyCode::Char(ch) =&gt; {
     render(tokens).unwrap();
 }
 ...
-</code></pre><hr><p>最终实现效果如下：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/%E9%9B%86%E6%88%90%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%20ICE/.语法高亮实现(1)/test-screenshot.png" alt="效果图" loading="lazy" tabindex="0"></div><hr><h2>完整代码如下</h2><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">extern crate crossterm;
+</code></pre><hr><p>最终实现效果如下：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/%E9%9B%86%E6%88%90%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%20ICE/.%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE%E5%AE%9E%E7%8E%B0(1)/test-screenshot.png" alt="效果图" loading="lazy" tabindex="0"></div><hr><h2>完整代码如下</h2><pre class="code-block" data-language="RUST"><code class="language-rust" tabindex="0">extern crate crossterm;
 
 use std::io::{self, stdout, Write};
 use std::collections::VecDeque;
@@ -887,6 +887,15 @@ fn main() {
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["../https:/www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
 </body>
 </html>

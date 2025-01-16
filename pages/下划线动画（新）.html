@@ -87,7 +87,7 @@ if (darkModeMediaQuery) {
 </code></pre><p>在设置放上鼠标时的样式：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">span:hover {
     background-size: 100% 2px;
 }
-</code></pre><p>目前的效果如下：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/.%E4%B8%8B%E5%88%92%E7%BA%BF%E5%8A%A8%E7%94%BB%EF%BC%88%E6%96%B0%EF%BC%89/sceenshot1.gif" alt="sceenshot1" loading="lazy" tabindex="0"></div><p>更进一步，要想实现下面👇这样的效果：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/.%E4%B8%8B%E5%88%92%E7%BA%BF%E5%8A%A8%E7%94%BB%EF%BC%88%E6%96%B0%EF%BC%89/sceenshot2.gif" alt="sceenshot1" loading="lazy" tabindex="0"></div><p>则要对上面的 CSS 代码进行一点小修改：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">/* 将原本的背景位置从左下角改为右下角 */
+</code></pre><p>目前的效果如下：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/CSS/.%E4%B8%8B%E5%88%92%E7%BA%BF%E5%8A%A8%E7%94%BB%EF%BC%88%E6%96%B0%EF%BC%89/sceenshot1.gif" alt="sceenshot1" loading="lazy" tabindex="0"></div><p>更进一步，要想实现下面👇这样的效果：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Web%20%E5%89%8D%E7%AB%AF/CSS/.%E4%B8%8B%E5%88%92%E7%BA%BF%E5%8A%A8%E7%94%BB%EF%BC%88%E6%96%B0%EF%BC%89/sceenshot2.gif" alt="sceenshot1" loading="lazy" tabindex="0"></div><p>则要对上面的 CSS 代码进行一点小修改：</p><pre class="code-block" data-language="CSS"><code class="language-css" tabindex="0">/* 将原本的背景位置从左下角改为右下角 */
 span {
     background-position: right bottom;
 }
@@ -119,6 +119,15 @@ span:hover {
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["../https:/www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
 </body>
 </html>

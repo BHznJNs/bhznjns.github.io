@@ -292,15 +292,18 @@ class MediaNode {
     }
 
     static srcUrlResolver(rawUrl) {
-        let actualUrl
-        if (rawUrl.startsWith("http") || rawUrl.startsWith("data")) {
-            actualUrl = rawUrl
-        } else {
-            const hash = location.hash.slice(1)
-            // get the parent directory path
-            const currentPath = hash.split("/").slice(0, -1).join("/")
-            actualUrl = currentPath + "/" + rawUrl
-        }
+        try {
+            new URL(rawUrl)
+            if (rawUrl.startsWith("data")) {
+                return rawUrl
+            }
+        } catch {}
+
+        const hash = location.hash.slice(1)
+        // get the parent directory path
+        // todo?: replace with path-resolve
+        const currentPath = hash.split("/").slice(0, -1).join("/")
+        const actualUrl = currentPath + "/" + rawUrl
         return actualUrl
     }
 }
