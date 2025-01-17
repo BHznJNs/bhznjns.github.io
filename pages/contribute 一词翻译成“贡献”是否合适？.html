@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>contribute 一词翻译成“贡献”是否合适？</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>contribute 一词翻译成“贡献”是否合适？</h1><blockquote class="alert note"><p class="alert-title">笔记</p><p>本文主要针对开源软件项目协作的场景。</p></blockquote><hr><p>近日，我的开源项目 <a href="https://github.com/BHznJNs/InputShare" target="_blank">InputShare</a> 收到了一则和使用体验优化相关的 issue。这一则 issue 直接给出了一个合适的解决方案，我在测试过后回复：“感谢你的支持！”。</p><p>后来我又想到，在英文语境下，这种时候我可能就会回复“Thanks for your contributions!”，但是感觉如果直接使用这一则英文回复对应的中文“感谢你的贡献！”，就会感觉有些不对。</p><hr><p>仔细一想，发现是“贡献”一词的问题。</p><p>“贡献一词”中，“献”字还算偏中性，但“贡”字就有点不平等的感觉了。</p><p>我尝试搜索“贡字组词”，必应的结果中排在最前的就是：“贡品，贡赋，进贡，纳贡，贡献”。</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E6%9D%82%E8%B0%88/.contribute%20%E4%B8%80%E8%AF%8D%E7%BF%BB%E8%AF%91%E6%88%90%E2%80%9C%E8%B4%A1%E7%8C%AE%E2%80%9D%E6%98%AF%E5%90%A6%E5%90%88%E9%80%82%EF%BC%9F/%E8%B4%A1%E5%AD%97%E7%BB%84%E8%AF%8D%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C.png" alt="贡字组词搜索结果" loading="lazy" tabindex="0"></div><p>这五个词都带有不平等的意味，贡字本身其实就暗含着一方对另一方的不平等，也难怪“贡献”一词在上述的语境下会感到很怪。</p><hr><p>我的语文水平一般，于是我咨询了语言专家 GPT，它给出的答复如下：</p><blockquote><h2>中文中的“贡献”在开源语境中的适配性</h2><p>中文的“贡献”在某些语境下，可能因为传统文化背景被解读为“付出”或“牺牲”的意味，确实不如英&gt; 文中的 contribute 那么轻松和中性。如果担心歧义，可以在开源语境中换用其他翻译，比如：</p><ol><li>参与：更强调协作和平等。</li><ul><li>"Contribute to open source" → “参与开源”。</li><li>"Contributors are welcome" → “欢迎参与者”。</li></ul><li>投入：表达对资源（时间、知识、精力）的分享。</li><ul><li>"How to contribute to this project" → “如何为这个项目投入力量”。</li></ul><li>支持：如果是非代码方面的帮助（如提供资金、反馈），可以用“支持”。</li><ul><li>"Contribute financially to this project" → “为这个项目提供资金支持”。</li></ul><li>协助或共建：强调协同开发的合作精神。</li><ul><li>"Contribute to our community" → “协助建设我们的社区”或“共同建设我们的社区”。</li></ul></ol></blockquote>
+<p><a href="https://bhznjns.github.io/#static/杂谈/contribute 一词翻译成“贡献”是否合适？.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["../https:/www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
