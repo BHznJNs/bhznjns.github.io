@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>提供主流订阅制 SaaS 服务的一次性付费替代品的网站</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>提供主流订阅制 SaaS 服务的一次性付费替代品的网站</h1><p><code>2025/01/20</code></p><p>信息来源：<a href="https://www.producthunt.com/posts/f-cksubscription" target="_blank">F*ckSubscription: Simple, one-time payment alternatives to popular SaaS tools.</a></p><hr><h2>项目介绍</h2><p>这是一个提供主流订阅制 SaaS 服务的一次性付费替代品的网站。开发者自称只有19岁，并且想要构建一些一次性付费的软件替代主流的订阅制SaaS服务。</p><p>从 PH 的评论区能看出，有很多人对于现在大火的 SaaS 服务感到厌倦，有些人甚至会使用专门的软件来管理各种 SaaS 的订阅费用（有趣的是，这些管理 SaaS 订阅的软件同样是 SaaS）。</p><p>由于这个项目号称以低廉的价格买断 SaaS 服务，评论区中也有不少人提出对后续服务器成本和运营成本的担忧。</p><p>有人提到，他在许多应用市场中都见过类似的应用，但其中 40% 的应用都已经停止运行了。</p><h2>个人观点</h2><p>近年来随着人们对数据安全、个人隐私，以及更重要的经济下行，自部署类开源项目越来越丰富。</p><p>但是正如 PH 上的评论所指，SaaS 之所以是 SaaS，就是因为需要进行持续的运营，有持续的支出。并且随着用户数的增长，程序的维护成本也会水涨船高。通过一次买断的方式售卖 SaaS 服务按我的认知来说是不可持续的。</p><p>不过这个项目的 Landing Page 设计得挺好看的 <a href="https://www.fcksubscription.com/" target="_blank">F*ck Subscription</a>，是比较偏卡通可爱的风格。之后要做 Landing Page 的话可以参考。</p>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/提供主流订阅制 SaaS 服务的一次性付费替代品的网站.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["../https:/www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
