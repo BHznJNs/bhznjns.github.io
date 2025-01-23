@@ -32,7 +32,6 @@ export default function entry(onChangeCallback) {
         ignoreInitial: true,
         depth: Infinity,
     })
-    console.log("Start watching static directory.")
     process.on("SIGINT", () => {
         console.log("Closing watcher...")
         watcher.close().then(() => {
@@ -51,6 +50,8 @@ export default function entry(onChangeCallback) {
             }
             onChangeCallback()
         }, 100))
+    update()
+    console.log("Start watching static directory.")
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
