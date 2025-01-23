@@ -119,8 +119,14 @@ export function loadExtraScripts(base="./") {
     return `\
 <script>window.addEventListener("load", () => {
     const scripts = ${JSON.stringify(
-        config.extraScripts.map(item =>
-            path.posix.join(base, item))
+        config.extraScripts.map(item => {
+            try {
+                new URL(item)
+                return item
+            } catch {
+                return path.posix.join(base, item)
+            }
+        })
     )}
     for (const script of scripts) {
         const scriptEl = document.createElement("script")
