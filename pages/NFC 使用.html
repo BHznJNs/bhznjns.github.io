@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NFC 使用</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>NFC 使用</h1><h2>手机 NFC 功能使用</h2><h3>支付宝“碰一碰”支付</h3><p>相关视频：<a href="https://www.bilibili.com/video/BV1vH4y1w7WV" target="_blank">支付宝"碰一下"用了NFC，却不是NFC支付？【差评君】</a></p><blockquote><p>说白就是通过 NFC 传输付款码</p></blockquote><h3>用手机代替交通卡、门禁卡</h3><p>相关视频：<a href="https://www.bilibili.com/video/BV1MG411174r" target="_blank">是谁还不会用NFC乘坐公交地铁</a></p><blockquote><p>见到过香港地铁扫码过闸机器和刷卡nfc机器分开，nfc畅通无阻，扫码嘛。。。。总会有人卡住</p></blockquote><blockquote><p>不用亮屏就能刷，靠一下就好，不用拿实体卡，也不用找二维码，边看视频边刷也行</p></blockquote><h2>NFC 贴纸使用</h2><h3>快捷手机屏幕镜像（对于小米设备）</h3><p>相关视频：<a href="https://www.bilibili.com/video/BV1L5411i7r5?t=356.7" target="_blank">几毛钱NFC标签，解锁超小米碰碰贴体验</a></p><h3>NFC 配合智能家居使用</h3><p>相关视频：<a href="https://www.bilibili.com/video/BV1SR4y1o7PA" target="_blank">全家贴满NFC，一碰触发便捷指令是种什么神奇的体验。</a></p><details><blockquote><p>我觉得最大的意义其实是认清人类一个操作直觉。</p><p>现在所谓的智能化，往往要你一步步按照逻辑来操作一样机器。</p><p>比如语音助手，先呼出→确认其被触发→说出指令→确认其成功完成命令。</p><p>比如设定倒计时→盯着屏幕，重置时间→按下</p><p>又比如各种智能中控面板，你得找准功能再按下</p><p>我就见到我哥们家的厕所，连大灯都集成到触摸面板里去了，<strong>晚上上厕所得从16个触摸区域里按到其中一个才能开灯</strong>。</p><p>还比如<strong>啥按钮恨不得取消，集成到屏幕里去的各种新能源车</strong>。</p><p>其实，少走两步路并不是便捷的全部，<strong>一个操作能让使用者更少的思考，更多的利用人条件反射，才是最省心省力的</strong>。</p><blockquote><p>对。。我们学校之前打热水一直用水卡，方便，一贴就有水</p><p>现在非要搞什么小程序，真的方便了吗？</p><p>你得确保你支付宝有钱，不然就扣花呗，还得费劲打开小程序，不带手机还没法扫码。。</p></blockquote></blockquote><blockquote><p>如果能使用手环触发就好了</p><blockquote><p>现在的手环可以连接手机，理论上只要手环触发 NFC，再向手机发送对应的信号由手机实际触发即可。而且手环基本都会戴着，但手机在家里不会每时每刻拿着</p></blockquote></blockquote><summary> 一些评论</summary></details><h3>NFC 快捷播放音乐</h3><p>视频教程：<a href="https://www.bilibili.com/video/BV17uWLexEGS" target="_blank">【教程】NFC芯片写入，靠近就能播放音乐啦~</a></p><h3>NFC 启动应用</h3><p>视频教程：<a href="https://www.bilibili.com/video/BV1NC4y167GC" target="_blank">NFC游戏启动卡制作教程(无需NFC tasks)</a></p>
+<p><a href="https://bhznjns.github.io/#static/独立开发/用户场景/NFC 使用.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
