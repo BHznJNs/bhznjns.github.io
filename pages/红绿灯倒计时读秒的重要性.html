@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>红绿灯倒计时读秒的重要性</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>红绿灯倒计时读秒的重要性</h1><p><code>2025/01/25</code></p><p>信息来源：<a href="https://www.bilibili.com/video/BV1vAcdeGERU" target="_blank">取消红绿灯倒计时读秒，直到看到南京红绿灯，这才是为百姓服务</a></p><hr><p>在新国标红绿灯发布之后，很多地方都把红绿灯的倒计时取消了。但南京反其道而行之，不仅没有取消红绿灯的倒计时，反而把倒计时的读秒牌加大。</p><p>加大到什么程度？从当前的路口就可以可以看见下一个路口的红绿灯的读秒，甚至如果路口间距没那么长的话，你可以看见两三个红绿灯路口的读秒。你在这个路口的时候，就可以知道后面几个路口的状况。</p><blockquote><p>我不需要去考虑红绿灯还有多久，我能不能过得去，我也不需要考虑我跟到这个后面了，尤其是前面车不多的时候，那个红绿灯可能绿了很久了，红了很久了，我到底能不能过，不需要去猜测</p><p>我可以清晰明了的知道我能不能过，很早我就做出预判，是不是该踩刹车，这样它不香吗？甚至我能预判到下个路口，甚至下下个路口，我能不能过去。</p></blockquote><h2>观众评论</h2><blockquote><p>没有读秒，大家只能看到是绿灯，都不知道剩余时间能否足够通过，但为了通勤效率，大家都很忙，只能加速踩油门想着过绿灯，此刻如果绿灯突然跳黄，你说司机该怎么办？为了不闯红灯只能踩急刹车，或者不顾一切尝试再提速冲过去，无论驾驶员做出哪种选择，都对路口行人的安全造成了更大的潜在危险，此时路口如果有闯红灯的行人，非机动车，那直接会造成惨烈结果，读秒的初衷，就是让驾驶员看到路口能否通过的情况，根据读秒是选择减速等下一个绿灯，还是提速通过。</p></blockquote><blockquote><p>有人说取消计时是让你不抢灯，然而现实是你不知道何时变灯，老远看到绿灯肯定不会减速，快到面前的时候跳灯了有人会加速冲过去，有人一脚急刹还有的停路中间的。一大部分了遇到这种情况那一瞬间心里是会纠结的到底过还是不过</p></blockquote><blockquote><p>我拿完驾驶证之后第一次上路的时候如果不开导航的话，就知道没读秒有多难受了，很多灯都没有读秒而且即便是有数字牌也不会亮，尤其是开手动挡的新手没读秒起步真的很慢。</p><p>在绿灯短的情况下万一起步熄火了就等吧，绿着灯都过不去，而且不同路口绿灯闪烁时间也不一样，有的闪三秒有的闪五秒，我姥姥住的小区门口那个信号灯的绿灯甚至能闪八秒。第一次过那个路口遇到闪灯我就直接减速，差点被后面怼到车屁股（虽然追尾基本上是后车全责，还是多一事不如少一事更好）</p><p>反而有读秒的情况下就可以提前做起步动作，还有根据距离、车流量、车速什么的判断一次性能过几个灯</p></blockquote><blockquote><p>简单的说，提供的信息越多，司机可以用来参考的信息就越多，驾驶就更安全</p></blockquote>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/红绿灯倒计时读秒的重要性.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
