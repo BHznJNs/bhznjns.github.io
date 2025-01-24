@@ -110,7 +110,7 @@ export class Quote {
     static pattern = source =>
         (source === ">") || source.startsWith("> ")
     static alertPattern = source =>
-        /^\[(.*)+\].*/.test(source)
+        /^\[(.+?)\](?:(\s+)(.*))?$/.test(source)
 
     static NormalTypeEnum    = Symbol("normal")
     static NoteTypeEnum      = Symbol("note")
