@@ -73,7 +73,7 @@ if (darkModeMediaQuery) {
 </nav>
 <article>
 <h1>密码该如何存储到数据库</h1><p>原视频：[面试经常被问到-密码你是如何存储的？</p><p>](https:<i>www.bilibili.com/video/BV1eppeevEmH)</i></p><hr><h2>不推荐做法</h2><ul><li>直接明文存储，泄露风险大</li><li>直接存储密码对应哈希值，易受彩虹表攻击</li></ul><h2>推荐做法</h2><p>在插入新的密码时，随机生成<ruby data-notation="salt">盐值<rp>(</rp>,<rt>salt</rt>,<rp>)</rp></ruby>，盐值可直接明文存储在数据库中；</p><p>通过将盐值与原始密码组合成新字符串，对这个新字符串进行哈希运算，产生哈希值存入数据库中。</p>
-<p><a href="https://bhznjns.github.io/#static/博客收藏/密码该如何存储到数据库.md">
+<p><a href="https://bhznjns.github.io/#static/内容收藏/密码该如何存储到数据库.md">
     点此查看原文
 </a></p>
 </article>
