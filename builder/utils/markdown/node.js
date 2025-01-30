@@ -69,6 +69,7 @@ Answer.prototype.count = function() {
 
 export {
     Headline,
+    EmptyLine,
     Para,
     Quote,
     Divider,
@@ -88,9 +89,9 @@ class MediaNode {
     description = ""    
     constructor(mdText) {
         mdText = mdText.substr(2)
-        this.description = getInterval(mdText, "]")
+        this.description = getInterval(mdText, "[", "]")
         mdText = mdText.substr(this.description.length + 2)
-        this.source = getInterval(mdText, ")")
+        this.source = getInterval(mdText, "(", ")")
     }
 
     count = () => 0

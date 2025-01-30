@@ -46,6 +46,15 @@ export class Para {
     }
 }
 
+export class EmptyLine {
+    tagName = "br"
+
+    toHTML() {
+        return el(this.tagName)
+    }
+    static pattern = source => ["\\\\", "  "].includes(source)
+}
+
 export class Quote {
     children = []
     title    = ""
@@ -62,7 +71,7 @@ export class Quote {
 
         let defaultTitle
         const titleLine  = children[0].content
-        const targetType = getInterval(titleLine.slice(1), "]")
+        const targetType = getInterval(titleLine.slice(1), "[", "]")
         switch (targetType.toLowerCase()) {
             case "note": case "笔记":
                 this.type = Quote.NoteTypeEnum
@@ -269,9 +278,9 @@ class MediaNode {
     description = ""    
     constructor(mdText) {
         mdText = mdText.substr(2)
-        this.description = getInterval(mdText, "]")
+        this.description = getInterval(mdText, "[", "]")
         mdText = mdText.substr(this.description.length + 2)
-        this.source = getInterval(mdText, ")")
+        this.source = getInterval(mdText, "(", ")")
     }
 
     static containerGenerator(content, type) {

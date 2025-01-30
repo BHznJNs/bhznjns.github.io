@@ -1,10 +1,11 @@
 // ("abc]", "]") -> "abc"
-export default function getInterval(text, endSign, includeEscape=false) {
+export default function getInterval(text, startSign, endSign, includeEscape=false) {
     if (!text.includes(endSign)) {
         return null
     }
 
     let intervalText = ""
+    let signCount = 0
     let isEscape = false
 
     while (text.length) {
@@ -17,7 +18,17 @@ export default function getInterval(text, endSign, includeEscape=false) {
                 continue
             }
         }
+        if (ch === startSign && !isEscape) {
+            signCount += 1
+            intervalText += ch
+            continue
+        }
         if (ch === endSign && !isEscape) {
+            if (signCount > 0) {
+                signCount -= 1
+                intervalText += ch
+                continue
+            }
             break
         }
         intervalText += ch

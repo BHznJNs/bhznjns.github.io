@@ -1,5 +1,6 @@
 import {
-    Headline, Quote, Divider,
+    Headline, EmptyLine,
+    Quote, Divider,
     List, Para, Table,
     Image, Audio, Video,
     FormulaBlock, CodeBlock,
@@ -7,7 +8,7 @@ import {
     DetailsBlock,
     ChartBlock,
     Question,
-    Answer
+    Answer,
 } from "./node.js"
 import {
     listResolver, quoteResolver, tableResolver,
@@ -31,6 +32,9 @@ export default function mdResolver(source) {
 
         if (Headline.pattern(l)) {
             nodes.push(new Headline(l))
+        } else
+        if (EmptyLine.pattern(l)) {
+            nodes.push(new EmptyLine)
         } else
         if (Divider.pattern(l)) {
             nodes.push(new Divider)

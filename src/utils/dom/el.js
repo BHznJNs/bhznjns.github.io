@@ -43,7 +43,11 @@ function contentSetter(el, content) {
     if (content instanceof Array) {
         // array of html element
         for (const childEl of content) {
-            el.appendChild(childEl)
+            if (typeof childEl === "string") {
+                el.appendChild(document.createTextNode(childEl))
+            } else {
+                el.appendChild(childEl)
+            }
         }
     } else if (content instanceof HTMLElement) {
         // single element

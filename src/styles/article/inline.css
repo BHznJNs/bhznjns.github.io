@@ -145,3 +145,28 @@ ruby:hover rt {
     opacity: 0;
 }
 /* phonetic notation end */
+
+/* detail start */
+span.detail {
+    position: relative;
+    cursor: pointer;
+    text-decoration: underline wavy var(--default-tx-color);
+}
+span.detail > div.detail-content {
+    position: absolute;
+    bottom: calc(-100% - 2px);
+    left: 50%;
+    width: max-content;
+    padding: 2px 6px;
+    background-color: var(--default-bg-color);
+    border-radius: 4px;
+    cursor: auto;
+    opacity: 1;
+    transform: translateX(-50%);
+    transition: opacity .3s;
+}
+span.detail[data-collapse] > div.detail-content {
+    opacity: 0;
+    pointer-events: none;
+}
+/* detail end */

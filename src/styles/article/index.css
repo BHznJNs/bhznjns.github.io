@@ -15,7 +15,6 @@ article {
     border-radius: 1rem;
     color: var(--default-tx-color);
     background-color: var(--default-bg-color);
-    overflow-x: hidden;
     box-shadow: var(--shadow-lg);
     box-sizing: border-box;
     transition: margin-right .3s,
@@ -32,6 +31,7 @@ body > article:first-child {
 
 #article-container {
     width: 100%;
+    overflow-x: hidden;
 }
 @media screen and (min-width: 768px) {
     #article-container {

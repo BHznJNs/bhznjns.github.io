@@ -19,6 +19,7 @@ const KeyToken_TagName_map = new Map([
 const PairedParenMap = new Map([
     ["[", "]"],
     ["{", "}"],
+    ["<", ">"],
 ])
 
 // --- --- --- --- --- ---
@@ -138,6 +139,29 @@ class PhoneticToken {
         })
     }
 }
+class DetailToken {
+    constructor(content, detail) {
+        this.content = content
+        this.detail  = detail
+    }
+
+    count = () =>
+        countEntry(this.content) +
+        countEntry(this.detail)
+    toHTML() {
+        const detailEl = el("div", parseEntry(this.detail), {
+            "class": "detail-content",
+        })
+        return el("span", [this.content, detailEl], {
+            "class": "detail",
+            "data-collapse": true,
+            onclick(e) {
+                e.stopPropagation()
+                e.target.toggleAttribute("data-collapse")
+            }
+        })
+    }
+}
 
 // --- --- --- --- --- ---
 
@@ -153,6 +177,8 @@ function parser(source) {
             targetTokenType = LinkToken
         } else if (tokenSign === "{") {
             targetTokenType = PhoneticToken
+        } else if (tokenSign === "<") {
+            targetTokenType = DetailToken
         } else { /* unreachable */ }
         return targetTokenType
     }
@@ -211,7 +237,7 @@ function parser(source) {
         }
 
         // special inline rules resolve
-        if (["[", "{"].includes(ch) && !isInKey && !isEscape) {
+        if (["[", "{", "<"].includes(ch) && !isInKey && !isEscape) {
             const specialTokenSign = ch
             const pairedTokenSign = PairedParenMap.get(specialTokenSign)
 
@@ -220,7 +246,7 @@ function parser(source) {
 
             let removedContent = specialTokenSign
             // the actual displayed content for special inline elements
-            const displayContent = getInterval(source, pairedTokenSign, true)
+            const displayContent = getInterval(source, specialTokenSign, pairedTokenSign, true)
             if (displayContent != null) {
                 removedContent += source.slice(0, displayContent.length + 1)
                 source = source.substr(displayContent.length + 1)
@@ -229,7 +255,7 @@ function parser(source) {
                 removedContent += nextCh
                 if (nextCh === "(") {
                     // the hidden displayed content for special inline elements
-                    const hiddenContent = getInterval(source, ")")
+                    const hiddenContent = getInterval(source, "(", ")")
                     if (hiddenContent != null) {
                         let targetTokenType = getSpecialTokenClass(specialTokenSign)
                         source = source.substr(hiddenContent.length + 1)
