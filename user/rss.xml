@@ -7,6 +7,11 @@
     <feedId>101282540872310784</feedId>
     <userId>96180252670732288</userId>
 </follow_challenge><item>
+<title>笔记双向链接</title>
+<link>https://bhznjns.github.io/pages/%E7%AC%94%E8%AE%B0%E5%8F%8C%E5%90%91%E9%93%BE%E6%8E%A5.html</link>
+<pubDate>Tue, 4 Feb 2025 18:49:00 +0800</pubDate>
+<lastBuildDate>Tue, 4 Feb 2025 18:50:00 +0800</lastBuildDate>
+</item><item>
 <title>2025年1月 月度小结</title>
 <link>https://bhznjns.github.io/pages/2025%E5%B9%B41%E6%9C%88%20%E6%9C%88%E5%BA%A6%E5%B0%8F%E7%BB%93.html</link>
 <pubDate>Sun, 2 Feb 2025 13:23:00 +0800</pubDate>
@@ -15,7 +20,7 @@
 <title>使用场景</title>
 <link>https://bhznjns.github.io/pages/%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF.html</link>
 <pubDate>Fri, 31 Jan 2025 09:48:00 +0800</pubDate>
-<lastBuildDate>Fri, 31 Jan 2025 11:18:00 +0800</lastBuildDate>
+<lastBuildDate>Tue, 4 Feb 2025 18:49:00 +0800</lastBuildDate>
 </item><item>
 <title>使用流程</title>
 <link>https://bhznjns.github.io/pages/%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B.html</link>
@@ -251,9 +256,4 @@
 <link>https://bhznjns.github.io/pages/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%84%9F%E8%A7%89%E7%8E%B0%E5%9C%A8%E7%9A%84%20bilibili%20%E5%BE%88%E6%B2%A1%E6%84%8F%E6%80%9D%EF%BC%9F.html</link>
 <pubDate>Thu, 28 Nov 2024 14:16:00 +0800</pubDate>
 <lastBuildDate>Thu, 28 Nov 2024 15:43:00 +0800</lastBuildDate>
-</item><item>
-<title>scrcpy-server 编译</title>
-<link>https://bhznjns.github.io/pages/scrcpy-server%20%E7%BC%96%E8%AF%91.html</link>
-<pubDate>Sat, 23 Nov 2024 22:20:00 +0800</pubDate>
-<lastBuildDate>Sat, 23 Nov 2024 22:27:00 +0800</lastBuildDate>
 </item></channel></rss>
