@@ -2,6 +2,7 @@ import { countEntry, parseEntry } from "./inline.js"
 import el from "../dom/el.js"
 import languageSelector from "../languageSelector.js"
 import getInterval from "./utils/getInterval.js"
+import resolvePathname from "../../libs/resolve-pathname/index.js"
 
 export class Headline {
     constructor(content) {
@@ -303,17 +304,19 @@ class MediaNode {
     static srcUrlResolver(rawUrl) {
         try {
             new URL(rawUrl)
-            if (rawUrl.startsWith("data")) {
-                return rawUrl
-            }
-        } catch {}
+            return rawUrl
+        } catch { /* if not a full URL */ }
 
-        const hash = location.hash.slice(1)
-        // get the parent directory path
-        // todo?: replace with path-resolve
-        const currentPath = hash.split("/").slice(0, -1).join("/")
-        const actualUrl = currentPath + "/" + rawUrl
-        return actualUrl
+        if (rawUrl.startsWith("//")) {
+            // relative link for some extra HTML files
+            return rawUrl.slice(2)
+        } else if (rawUrl.startsWith("/")) {
+            // static resources or links relative to `static` directory
+            return "static" + rawUrl
+        }
+
+        const base = location.hash.slice(1)
+        return resolvePathname(rawUrl, base)
     }
 }
 
