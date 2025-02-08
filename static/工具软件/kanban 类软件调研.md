@@ -222,6 +222,7 @@ UI 界面乍一看不错，但细看有些粗糙。
 #### [Takma](https://github.com/jam53/Takma)
 
 一个还在活跃的项目，虽然只有 23 个 star（截止此文完成）但是却有超过十门语言的支持--我怀疑这个项目之所以现在还活跃就是因为要支持的语言太丰富--
+支持将数据存储到指定文件夹，可以指定到网盘自动备份的文件夹实现自动备份数据。
 目前基本功能已经算是完备，但是 UI 界面还有较大提升空间。
 
 ![Takma UI 截图](https://github.com/jam53/Takma/raw/master/Documentation/Pictures/TakmaBoardScreen_Quality90_Effort10.avif)
