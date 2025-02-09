@@ -57,7 +57,7 @@ Trello 作为一个商业软件来说非常好用，支持：
 免费用户可以创建无限的面板和任务，但是只能创建两个工作区。
 
 - 相比于 Trello，支持在同一工作区内共享标签。
-- 支持从 Trello、jira、shortcut 导入数据。
+- 支持从 Trello、Jira、Shortcut 导入数据。
 
 ![SuperThread UI 截图](.kanban 类软件调研/SuperThread UI.png)
 
