@@ -1,16 +1,33 @@
 # kanban 类软件调研
 
-我最开始使用的 kanban 类软件是 [trello](https://trello.com/)。
+## 太长不看
+
+如果你觉得自己需要 kanban 类软件，但有不明确具体需求，可以使用 Trello，原因如下：
+1. 很多同类应用支持从 Trello 导入数据
+2. 功能全面
+3. 所属公司规模较大，不容易跑路
+
+在你明确自己的需求后，可以根据以下条件在对应类别中进行选择：
+- 希望开箱即用，有多端同步功能的：
+  - 商业软件（SaaS）
+- 希望数据能够离线编辑的：
+  - 商业软件（一次性付费）、离线客户端、离线独立网页
+- 看重数据安全性和隐私的：
+  - 开源软件、商业软件（一次性付费）（候补）
+
+- - -
+
+我最开始使用的 kanban 类软件是 [Trello](https://Trello.com/)。
 
 ![Trello 界面截图](.kanban 类软件调研/Trello UI.png)
 
-trello 作为一个商业软件来说非常好用，支持：
+Trello 作为一个商业软件来说非常好用，支持：
 - 多端同步
 - 离线编辑
 - 富文本编辑
 - 丰富的模板
 - 等...
-但是 trello 同样也有一些限制：
+但是 Trello 同样也有一些限制：
 - 无法在多个看板间共享标签
 - 对于免费用户有 10 个面板数的限制（貌似可以通过创建多个工作区来规避）
 - 数据全部存储于云端（但是支持导出）
@@ -23,15 +40,11 @@ trello 作为一个商业软件来说非常好用，支持：
 
 ### [Jira](https://www.atlassian.com/software/jira)
 
-同为 atlassian 公司的产品，更偏向于软件开发领域。也因此，能够直接导入 trello 的数据
+同为 atlassian 公司的产品，更偏向于软件开发领域。也因此，能够直接导入 Trello 的数据
 但是界面过于冗杂，个人觉得并不好用
 ![Jira 的看板界面](.kanban 类软件调研/Default Board - 看板 - Jira.png)
 
-可以看到，在整个界面中，有过半的空间被与看板本身无关的元素占据，比起 trello 还是有些鸡肋。
-
-### [Asana](https://asana.com)
-
-仅提供数天的免费试用，无免费服务。
+可以看到，在整个界面中，有过半的空间被与看板本身无关的元素占据，比起 Trello 还是有些鸡肋。
 
 ### [Todoist](https://www.todoist.com/)
 
@@ -40,11 +53,11 @@ trello 作为一个商业软件来说非常好用，支持：
 
 ### [SuperThread](https://superthread.com/)
 
-功能上和 trello 很相近，
+功能上和 Trello 很相近，
 免费用户可以创建无限的面板和任务，但是只能创建两个工作区。
 
-- 相比于 trello，支持在同一工作区内共享标签。
-- 支持从 trello、jira、shortcut 导入数据。
+- 相比于 Trello，支持在同一工作区内共享标签。
+- 支持从 Trello、jira、shortcut 导入数据。
 
 ![SuperThread UI 截图](.kanban 类软件调研/SuperThread UI.png)
 
@@ -60,22 +73,12 @@ trello 作为一个商业软件来说非常好用，支持：
 ### [Plaky](https://plaky.com/)
 
 对于免费用户提供无限的面板数量和面板中的任务数量，但是对每个面板有{字段}(field)数的限制。
-个人觉得操作上不如 trello 那种界面顺手。
+个人觉得操作上不如 Trello 那种界面顺手。
 
 ### [Zenkit](https://app.zenkit.com/)
 
-同样是团队管理向的 kanban 应用，功能相对于 trello 更简单一些
+同样是团队管理向的 kanban 应用，功能相对于 Trello 更简单一些
 免费用户创建<面板数>(25)和<项目数>(500)同样有限制。
-
-### [Stack](https://getstacksapp.com/)
-
-不提供 Web 端，只能下载客户端使用。但有提供 Windows、MacOS、Linux 三端的客户端。
-界面设计很棒：
-
-![Stack UI 界面](.kanban 类软件调研/Stack UI.png)
-
-免费版的限制较多，只能创建 3 个面板。
-但是并非订阅制，而是一次性买断制，通过 License 激活，售价 49$。
 
 ### [MeisterTask](https://www.meistertask.com)
 
@@ -85,7 +88,7 @@ trello 作为一个商业软件来说非常好用，支持：
 ### [flet](https://flat.app/)
 
 专注于 kanban 这一功能，界面十分简洁。
-支持从 trello、monday、clickup、notion 导入数据
+支持从 Trello、monday、clickup、notion 导入数据
 也能和 GitHub、slack 等应用集成。
 
 ### [height](https://height.app)
@@ -103,7 +106,7 @@ trello 作为一个商业软件来说非常好用，支持：
 ### [nino](https://nino.app)
 
 少见的使用 Material Design 的 kanban 应用
-不是专门的 kanban 应用，除看板外也能创建其它一些类型的在线文档，如画布、表格等，也能够创建用于团队交流的频道（类似 discord）。
+不是专门的 kanban 应用，除看板外也能创建其它一些类型的在线文档，如画布、表格等，也能够创建用于团队交流的类似 discord 的频道。
 --比起 kanban，更类似于 notion 或者 office（？）--
 免费用户有一万个节点的限制。
 
@@ -113,16 +116,30 @@ trello 作为一个商业软件来说非常好用，支持：
 
 ![Timestripe 截图](.kanban 类软件调研/Timestripe screenshot.png)
 
+## 商业软件（一次性付费）
+
+### [Stack](https://getstacksapp.com/)
+
+不提供 Web 端，只能下载客户端使用。但有提供 Windows、MacOS、Linux 三端的客户端。
+界面设计很棒：
+
+![Stack UI 界面](.kanban 类软件调研/Stack UI.png)
+
+免费版的限制较多，只能创建 3 个面板。
+但是并非订阅制，而是一次性买断制，通过 License 激活，售价 49$。
+
 ### [Brisqi](https://brisqi.com/)
 
 离线优先的 kanban 应用。
-但同样需要购买付费版本以解除面板数量等的限制。
+但同样需要购买付费版本以解除面板数量等的限制，##但是限制在一台设备激活使用##。
 优点是一次性付费，无订阅，售价 29.99$。
 
 - - -
 
 另外一些没什么特点的：
 
+- [Asana](https://asana.com)
+  - 仅提供数天的免费试用，无免费服务。--因为知名度较高，所以列在这里--
 - [Clickup](https://clickup.com/)
 - [Monday](https://monday.com)
 - [Quire](https://quire.io/)
@@ -147,7 +164,7 @@ trello 作为一个商业软件来说非常好用，支持：
 
 #### [Planka](https://planka.app/)
 
-界面和功能都和 trello 相近，如果希望在团队内使用自部署服务替代 trello，可以考虑。
+界面和功能都和 Trello 相近，如果希望在团队内使用自部署服务替代 Trello，可以考虑。
 
 #### [Kanboard](https://github.com/kanboard/)
 
@@ -205,7 +222,7 @@ UI 界面设计还算不错
 ![Focalboard UI](https://github.com/mattermost-community/focalboard/raw/main/website/site/static/img/hero.jpg)
 
 支持从如下软件导入数据：
-- trello
+- Trello
 - Jira
 - Asana
 - Notion
@@ -213,11 +230,9 @@ UI 界面设计还算不错
 
 #### [Kanri](https://github.com/kanriapp/kanri)
 
-![alt text](https://private-user-images.githubusercontent.com/57040351/287510253-fa7a9d79-3847-47cb-8325-6715477879f4.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzkwMTA2MDEsIm5iZiI6MTczOTAxMDMwMSwicGF0aCI6Ii81NzA0MDM1MS8yODc1MTAyNTMtZmE3YTlkNzktMzg0Ny00N2NiLTgzMjUtNjcxNTQ3Nzg3OWY0LmdpZj9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAyMDglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMjA4VDEwMjUwMVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTg1MTUwZjNhMGE3MzY5YTJkMGNmMmJlZjFhNThjYjgzMGRiOTA4Y2FlN2YyYWFkZGYzNzJhMDAwNDRlN2M1YzImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.4Zs-Wz7r4cWXbbDlZiPa8MdQPaz7rcjECra97gF2Z2o)
-
 UI 界面乍一看不错，但细看有些粗糙。
 使用 tauri 构建，内存占用和硬盘占用都很小。
-支持从 trello 和 GitHub project 导入数据（但我自己尝试后发现无法正常导入 trello 的数据）。
+支持从 Trello 和 GitHub project 导入数据（但我自己尝试后发现无法正常导入 Trello 的数据）。
 
 #### [Takma](https://github.com/jam53/Takma)
 
@@ -257,6 +272,6 @@ UI 界面乍一看不错，但细看有些粗糙。
 - 编辑要便捷，最好点开马上就能编辑
   - 有些软件（尤其是 SaaS 类软件）的编辑体验很糟糕
 - UI 不能太丑，至少要看得过去
-- 数据能导出备份，最好要能导入 trello 的数据
+- 数据能导出备份，最好要能导入 Trello 的数据
 
 其实还有浏览器插件形态的 kanban 应用，不过不符合我的需求所以没有记录。
