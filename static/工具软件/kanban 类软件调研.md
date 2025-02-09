@@ -58,6 +58,7 @@ Trello 作为一个商业软件来说非常好用，支持：
 
 - 相比于 Trello，支持在同一工作区内共享标签。
 - 支持从 Trello、Jira、Shortcut 导入数据。
+- 集成了在线的共享文档
 
 ![SuperThread UI 截图](.kanban 类软件调研/SuperThread UI.png)
 
@@ -108,13 +109,20 @@ Trello 作为一个商业软件来说非常好用，支持：
 少见的使用 Material Design 的 kanban 应用
 不是专门的 kanban 应用，除看板外也能创建其它一些类型的在线文档，如画布、表格等，也能够创建用于团队交流的类似 discord 的频道。
 --比起 kanban，更类似于 notion 或者 office（？）--
-免费用户有一万个节点的限制。
+免费用户有一万个节点的限制（对于 kanban，一个任务算一个节点）。
+
+![nino UI 界面](.kanban 类软件调研/nino ui.png)
 
 ### [Timestripe](https://timestripe.com)
 
 使用看板进行从眼前到一辈子的人生管理，UI 设计很棒。
+- 内置 30 天编程挑战、21 天写作挑战等可供个人自己打卡使用
+- 除传统的 kanban 外，社区也提供了如 OKR、GTD、AGILE、Pomodoro、RAID、CRM 等模版
+- 提供类似 GitHub 的活跃日历
 
 ![Timestripe 截图](.kanban 类软件调研/Timestripe screenshot.png)
+
+多提一嘴，Timestripe 团队把传统的产品官网中用于 SEO 的 Blog 界面做成了[杂志](https://timestripe.com/magazine/)的样子，很有创意。
 
 ## 商业软件（一次性付费）
 
@@ -271,7 +279,9 @@ UI 界面乍一看不错，但细看有些粗糙。
   - 除看板外的功能，有的软件会加入 AI Chat、协作文档之类的功能以区别于其它软件，这种功能对我来说完全冗余
 - 编辑要便捷，最好点开马上就能编辑
   - 有些软件（尤其是 SaaS 类软件）的编辑体验很糟糕
-- UI 不能太丑，至少要看得过去
+- UI 不能太丑，至少要看得过去。不求精美，但求清晰
+  - 对于任务管理类软件，任务的主次一定要一目了然
+  - 如果是用于软件开发，一定要能标注 Bug, Feature
 - 数据能导出备份，最好要能导入 Trello 的数据
 
 其实还有浏览器插件形态的 kanban 应用，不过不符合我的需求所以没有记录。

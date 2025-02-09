@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 不是一个产品，只是一个功能</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>AI 不是一个产品，只是一个功能</h1><p>原文地址：<a href="https://1q43.blog/post/10736/" target="_blank">不要轻易地走进 AI Native（AI 原生）</a></p><hr><p>作者用的上海地铁的例子非常贴切：“用户不会因为乘坐地铁使用的支付方式是支付宝就坐地铁，也不会因为付费用的 App 广告多就不坐地铁。”</p><p>由此引出一个观点：</p><blockquote><p>如果你的需求对应的品类里，有一个成熟方案和一个 AI Native 新秀，你应当毫不犹豫的选择前者，等待前者补充 AI 功能，而不是尝试后者，等待后者完善主功能。</p></blockquote><p>对此观点的一个很好的例子：</p><blockquote><p>被视为颠覆 Google 的 Perplexity。截至目前，Perplexity 的搜索结果来自 Bing 和一部分自建索引。</p><p>这意味着，<strong>传统搜索引擎是 Perplexity 向用户交付产品的关键上游</strong></p></blockquote><p>Perplexity 为了减少对传统搜索引擎的依赖而选择完全自建网页索引系统，这无异于“为了支付宝而建一条地铁”。</p><hr><p>另外还有来自<a href="https://ameow.xyz/archives/weekly-051" target="_blank">猫鱼周刊</a>的实例：</p><blockquote><p>技术圈很火的 Cursor，没有重新开发编辑器，只是基于 VSCode 深度开发，打磨 AI 编辑的体验；很火的 Arc 浏览器，也没有重新开发浏览器内核，基于 Chrome 重新打磨了 UI 和一些 AI 相关的功能；Midjourney 一开始甚至没有开发自己的网站和界面，而是基于 Discord 进行交互。</p></blockquote>
+<p><a href="https://bhznjns.github.io/#static/内容收藏/AI 不是一个产品，只是一个功能.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
