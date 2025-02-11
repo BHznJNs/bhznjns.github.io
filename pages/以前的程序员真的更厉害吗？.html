@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>以前的程序员真的更厉害吗？</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>以前的程序员真的更厉害吗？</h1><p>今天闲来无事，在刷知乎的时候，看到了这条回答：</p><p><a href="https://www.zhihu.com/question/8715804536/answer/97597973494" target="_blank">以前内存普遍很小时，程序员们为了压缩内存，都有过什么巧思？ - Javen的回答</a></p><p>不出意外，评论区中的众多网友开始了对当代程序员的口诛笔伐：</p><blockquote><p>在知乎上，编这种程序的不叫程序员，只有使用苹果电脑写互联网代码的才叫程序员[捂嘴][飙泪笑]</p></blockquote><blockquote><p>现在绝大多数叫码农。大专毕业一脑袋糨子会CVX加上GPT。OK，上岗996去了。什么代码压缩、什么优化，去他地，先干完KPI再说[惊喜]</p></blockquote><p>我有一个暴论：<strong>现代技术的进步让 CPU 性能和内存大小都快速地增长，就是为了能让程序员不用把时间和精力耗费在细枝末节的代码优化上。</strong></p><p>道理很简单，技术的进步终究是为人服务的。用户是人，开发者同样也是人。</p><p>技术的进步使软件能有更好看的界面和更强大的功能，用户自然是受益者；</p><p>技术的进步让开发者能更方便地开发出更高级的功能，这样开发者才会是技术进步的受益者。</p><hr><p>从另一个角度来看，人都是逐利的。</p><p>对代码进行的各种优化实际上会让代码的可维护性降低，同时还会消耗开发者大量的时间和精力。这样吃力不讨好的行为，开发人员自然不会轻易去做。</p><p>而且现代的设备性能普遍过剩，对代码进行各种优化带来的提升往往微不足道，抠那么几毫秒的运行时间对于用户的感知也是几乎没有。</p><details><p>我在刚开始写代码时 B 站和知乎刷得不少，现在想来真的是被这种言论给忽悠瘸了，写代码时也总想着这样写或许性能更好些。</p><p>但是，就如上文所写，进行各种优化不仅耗时耗力，而且实际的感知也不明显。正确的做法还是应该在保证完成的前提下尽可能保持代码的可读性，在有性能瓶颈处再另行优化。</p><summary> 一点小牢骚</summary></details>
+<p><a href="https://bhznjns.github.io/#static/杂谈/以前的程序员真的更厉害吗？.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
