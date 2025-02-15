@@ -154,7 +154,7 @@ span.detail {
 }
 span.detail > div.detail-content {
     position: absolute;
-    bottom: calc(-100% - 2px);
+    bottom: calc(-100% - 8px);
     left: 50%;
     width: max-content;
     padding: 2px 6px;
