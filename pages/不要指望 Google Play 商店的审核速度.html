@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不要指望 Google Play 商店的审核速度</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>不要指望 Google Play 商店的审核速度</h1><p><code>2025/02/15</code></p><p>信息来源：<a href="https://www.reddit.com/r/FlutterDev/comments/1ip1xxc/regarding_google_play_store_review_delay_and/" target="_blank">Regarding Google Play store review delay and unreliability</a></p><hr><p>帖子的楼主于一月十二日在 Google Play 商店提交了 App 的上架申请，直到 33 天后的二月十四日（帖子的发布日），对 App 的审核仍然没有任何进展。</p><p>在楼主等待的第二十天，他向 Google Play console support 询问情况，在十天后，得到如下回复：</p><blockquote><p>We understand that you want to follow-up on the review of your app. Please be informed that our review process may take up to or even more than 7 days depending on the review volume and complexity of the checking. We’ll do our best to complete the review as soon as we can.</p></blockquote><details><p>有趣的是作者提到，Google Play 审核的这 33 天甚至比作者向政府申请注册公司花费的时间还要久。</p><p>即使苹果应用商店的审核使用人工的方式审查应用，也比 Google Play 的审核更可靠。</p><summary> 有趣的是</summary></details><hr><h2>原贴评论</h2><blockquote><p>如果你在 Google Play 搜索我的应用的名称，但是在名称的两个单词间加上一个空格，你就无法在搜索结果中看到我的应用。但与此同时，你能在搜索结果中看到与搜索词毫不相干的各种垃圾游戏。</p></blockquote><blockquote><p>即使你只是稍微修改了你的应用描述中的拼写错误，Google Play 也需要数天的时间审核。</p></blockquote><blockquote><p>我的应用通常需要大约 24 小时完成审核。我总是先发布到测试轨道等待两周时间，然后在发布下一个测试版本时，将之前的版本提升为正式版本。</p><p>另外，你可以尝试 <a href="https://shorebird.dev/" target="_blank">Shorebird</a> 来热更新你的 Flutter 应用。</p></blockquote>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/不要指望 Google Play 商店的审核速度.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
