@@ -64,6 +64,7 @@ ol > li::before {
     background-color: var(--default-tx-color);
     border-radius: var(--border-radius-value);
     font-weight: normal;
+    font-family: var(--code-font);
     transition: inherit;
 }
 
