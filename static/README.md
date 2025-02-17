@@ -1,1 +1,1 @@
-# [BHznJNs](https://github.com/BHznJNs) 的 Markdown 静态博客站。
+# 我是[BHznJNs](https://github.com/BHznJNs)，这是我的博客，也是我的第二大脑。
