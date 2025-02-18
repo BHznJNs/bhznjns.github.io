@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>“大きい”和“大きな”的区别</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>“大きい”和“大きな”的区别</h1><p>原视频：<a href="https://www.bilibili.com/video/BV1jZAgeRE4w/" target="_blank">「大きい」和「大きな」到底有什么差别？【学生常搞错的日语】</a></p><h2>太长不看</h2><p>「大きい」是一类形容词，表示客观的大 ；「大きな」是连体词，表示主观的大。</p><div class="table"><table><thead><tr><th>大きい + 名詞</th><th>大きな + 名詞</th></tr></thead><tbody><tr><td>頻度·中</td><td>頻度·高</td></tr><tr><td>客観的(数値)</td><td>主観的(感情)</td></tr><tr><td>物理的</td><td>物理&抽象的(慣用句)</td></tr><tr><td>+形式名詞(の、もの、こと、ほう etc.)</td><td>+一般名詞</td></tr><tr><td>会話</td><td>文章(新聞、小説、歌詞etc.) 親しみ、温かみ</td></tr></tbody></table></div><hr><h2>一、词性不同</h2><p>“大きい”是い形容词，后面直接加名词，不能加“の”和“な”。</p><p>“大きな”看上去是な形容词，但实际是和“この”、“いわゆる”等一样，都属于连体词。</p><details><p>な形容词可以直接加名词，也可以形变为以“だ”结尾。如：</p><p>静かな公園</p><p>静かだ</p><p>静かだった</p><summary>な形容词的特点</summary></details><details><p>不像形容词那样有多种变化，且后面一定跟着名词。</p><summary>连体词的特点</summary></details><h2>二、主客观性</h2><p>在表示客观上一个东西比另一个东西大/小时，应该使用“大きい”/“小さい”。如：</p><blockquote><p>先生、大きい鍋を使いますか、</p><p>それとも小さい鍋を使いますか？</p></blockquote><p>而在表示主观上一个东西很大时，应该使用“大きな”。如：</p><blockquote><p>わあ、大きな鍋ですね！</p></blockquote><h2>三、具象抽象性</h2><p>“大きい”多接具象的事物</p><p>“大きな”多接抽象的事物，如“責任”、“問題”、“誤解”等。</p><details><p>“大きい口”表示实际上尺寸很大的嘴</p><p>”大きな口を叩く“表示夸大其词</p><p>“大きい顔”表示尺寸很大的脸</p><p>“大きな顔をする”表示做坏事毫不在意，不觉得愧疚</p><summary>一个小例子</summary></details><h2>四、后跟形式名词或一般名词</h2><p>“大きい”后可以跟形式名词，如“の”、“もの”、“こと”、“ほう”等。</p><p>“大きな”后只能跟一般名词。</p><details><p>形式名词通常是用来指代东西的，类似于英语中的代词。如：</p><p>この、大きい<strong>の</strong>はいくらですか</p><p>小さい<strong>時</strong>…</p><p>小さい<strong>頃</strong>…</p><summary>什么是形式名词</summary></details>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/日语/“大きい”和“大きな”的区别.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
