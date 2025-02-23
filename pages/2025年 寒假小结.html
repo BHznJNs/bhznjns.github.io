@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025年 寒假小结</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>2025 年寒假小结</h1><p>这个寒假里完成的事和我预先计划的差得挺大：</p><ul><li class="task-list-item"><input type="checkbox" checked>历史输入（因实现难度过高，放弃）</li><li class="task-list-item"><input type="checkbox" checked>博客系统取名（定下来的是：Blog as Second Brain，缩写为 BaSB）</li><li class="task-list-item"><input type="checkbox" checked>博客系统视频制作</li><li class="task-list-item"><input type="checkbox" checked>InputShare 安卓客户端 优化</li><li class="task-list-item"><input type="checkbox" checked>InputShare <strong>宣传</strong>视频制作</li><li class="task-list-item"><input type="checkbox" checked><ruby data-notation="NFC PLinkD">电纸链接<rp>(</rp>,<rt>NFC PLinkD</rt>,<rp>)</rp></ruby></li><li class="task-list-item"><input type="checkbox" checked>电纸链接 宣传演示视频（赶在最后一天完成）</li></ul><p>不过还好，最重要的电纸链接完成了，视频拍摄和剪辑也搞了大半。开学后就可以开始着手于上架到应用商店了。</p><p>除了电纸链接外，还有 <a href="https://github.com/BHznJNs/subtitle_typewriter" target="_blank">subtitle_typewriter</a> 这个项目。虽然使用方式很原始，不过够我自己用了。之所以写了这个项目，主要还是我想在我的视频中加上配音，但是不想自己配音也不想用 AI 配音，于是想到能不能模仿逆转裁判的形式。</p><hr><h2>运动健康</h2><p>这个假期开始时我就入手了老早就想买的红米手环，具体的使用体验可以看之前的<a href="#static/购物体验/红米手环 3 一个月使用体验.md">这篇文章</a>。</p><p>在买了这个手环之后，我出门跑步终于不用带着手机了。毕竟现在的手机也不轻，拿着跑多少有些别扭。</p><p>寒假一个月下来共跑步六次，总和 18 公里，不多也不少。</p><h2>输出</h2><h3>博客</h3><p>这个月来共输出 26 篇博客，频率基本是一天一篇了。但和以往不同的是，我把三篇文章在小众软件论坛做了分享：</p><ol><li><a href="https://meta.appinn.net/t/topic/66266" target="_blank">花了一天时间，调研了 40 个 Kanban（看板） 类软件</a></li><li><a href="https://meta.appinn.net/t/topic/66396" target="_blank">以前的程序员真的更厉害吗？</a></li><li><a href="https://meta.appinn.net/t/topic/66566" target="_blank">红米手环 3 一个月使用体验</a></li></ol><p>同时也将其中的第一和第三篇文章在少数派网站上也进行了发布。</p><p>由于我在发布的文章中有带有原文的地址，这也给我的博客站带来了一些流量。</p><h3>自媒体</h3><p>在假期的最后一天，我完成了电纸链接这个项目的视频演示的制作。</p><p>在<a href="https://www.bilibili.com/video/BV1NKA2eTEBJ/" target="_blank">这个视频</a>中我尝试了新的风格，视频中完全没有任何 BGM，配音也是使用 subtitle_typewriter 生成的使用逆转裁判中的音效的配音。</p><p>视频内容的编排也与以往有些不同，以往我只是平铺直叙地展示软件的使用过程，这次我则是在视频剪辑完成之后稍微缓了半天，想到把自己放在观众的角度。如果我是观众，我也不愿意看以往的这种视频，<strong>看了半天也不明白软件是做什么用的</strong>。于是在视频的开头把软件使用的结果进行了先行展示。</p><p>在制作视频封面的时候，我参考了<a href="https://space.bilibili.com/10979326" target="_blank">小众软件</a>和<a href="https://space.bilibili.com/313573880" target="_blank">果核次元</a>的封面风格，做的封面总算像点样子。</p><h2>家人</h2><h3>意料之外的 AI 热潮</h3><p>这次回家给我的最大感触来自 DeepSeek。我发现以往信息闭塞的父母居然很快地“追”到了时下热点，尽管他们都不会读 DeepSeek 这一名称。在家族的餐桌上，我发现 DeepSeek 更是在中年人中带起了一阵 AI 热潮。父辈们对 AI 作曲、文生视频等我已司空见惯的技术夸夸其谈，时不时问问我这个”相关专业“的大学生的意见，我也只好马马虎虎应付过去。</p><h3>我的老弟</h3><p>我的父母时常对我的老弟的中考焦虑，这次回家我特地以可乐等他喜爱的零食作诱饵，带着他到附近开放的学校中跑步练习，虽然成效甚微，但至少我也教了他一些热身和跑步时的技巧，好过没有吧。</p><p>我还和我老妈分享了我用了一年多的多邻国，我认为这个软件设计讨喜，或许能对英语不足的老弟有些帮助。</p>
+<p><a href="https://bhznjns.github.io/#static/阶段小结/2025年 寒假小结.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
