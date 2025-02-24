@@ -24,6 +24,9 @@ function propSetter(el, props) {
  */
 function propToString(props) {
     function htmlValueFormater(val) {
+        if (val === undefined) {
+            return ''
+        }
         if (val instanceof Array) {
             return val.join(" ").replaceAll("\"", "&quot;")
         }

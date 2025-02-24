@@ -182,7 +182,7 @@ export class List {
 class TaskListItem {
     constructor(content, prefix) {
         this.content = content
-        this.isChecked = prefix[3] === "x" || prefix[3] === "*"
+        this.isChecked = TaskListItem.checkedSignList.includes(prefix[3])
     }
     count() {
         return countEntry(this.content)
@@ -190,14 +190,15 @@ class TaskListItem {
     toHTML() {
         const inputEl = el("input", "", {
             type: "checkbox",
-            checked: this.isChecked ? true : undefined,
+            checked: this.isChecked,
         })
-        const contentEl = el("text", this.content)
-        const listItemEl = el("li", [inputEl, contentEl], {
+        const inline = parseEntry(this.content)
+        const listItemEl = el("li", [inputEl, ...inline], {
             "class": "task-list-item"
         })
         return listItemEl
     }
+    static checkedSignList = ["*", "x"]
 }
 
 export class QABlock {

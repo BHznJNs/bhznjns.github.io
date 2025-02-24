@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="color-scheme" content="light dark">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>面向独立开发者的代理宣传运营</title>
+<title>Flutter NFC 冷启动小坑</title>
 <link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="../dist/style.min.css">
 </head>
@@ -72,8 +72,8 @@ if (darkModeMediaQuery) {
 </span></span>
 </nav>
 <article>
-<h1>面向独立开发者的代理宣传运营</h1><h2>痛点</h2><p>独立开发者往往专注于技术和产品本身，他们对产品的实现了如执掌却不知如何让更多人了解自己的产品。</p><p>他们可能尝试过通过社交媒体来宣传自己的产品，但碍于剪辑技术、文案水平等因素并没有太大的成效。</p><h2>现状</h2><p>独立软件往往十分小众，真正知道并使用的人很少，因此在社交媒体上也产生了很多专门介绍各种优质而又小众的软件的博主。</p><p>这些独立软件小众的原因主要有二：</p><ol><li>其所解决的需求绝大多数人遇不上</li><li>其知名度过低，有相关需求的人不知道该软件的存在</li></ol><h2>想法</h2><p>类似于游戏领域，很多游戏的开发商和发行商并不是同一家公司，开发商专注于游戏本身的开发和内容的完善，而发行商则专注于宣传游戏，让游戏卖得更好。</p><p>这里的想法也是类似。给独立开发者做代理，让开发者专注于产品本身，合作将独立软件做得更好。</p>
-<p><a href="https://bhznjns.github.io/#static/独立开发/想法仓库/面向独立开发者的代理宣传运营.md">
+<h1>Flutter NFC 冷启动小坑</h1><p>最近在<a href="https://github.com/BHznJNs/NFC-PLinkD" target="_blank">电纸链接</a>这个项目上花了很多时间。这个项目的主要功能和 NFC 相关，自然地，也要有“通过 NFC 启动”这一 Feature。</p><p>但是我发现，当通过 NFC 启动后，（在 release 下）应用启动后是没有任何界面元素的。</p><p>我后来尝试了在 debug 下通过 NFC 启动，得到了如下报错：</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/.Flutter%20NFC%20%E5%86%B7%E5%90%AF%E5%8A%A8%E5%B0%8F%E5%9D%91/NFC%20Launch%20Error.jpg" alt="NFC 冷启动小坑屏幕截图" loading="lazy" tabindex="0"></div><p>最后还是在 Stackoverflow 上找到的答案：<a href="https://stackoverflow.com/a/61165393/28207463" target="_blank">A global key was used multiple times inside one widgets child list</a></p><blockquote><p>In my case this error happened because I had a initialRoute property set, while instead I should set the home property: </p><p>在 <code>MaterialApp</code> 下不使用 <code>initialRoute</code>，而是使用 <code>home</code> 定义应用启动后显示的页面。</p></blockquote>
+<p><a href="https://bhznjns.github.io/#static/编程/Flutter NFC 冷启动小坑.md">
     点此查看原文
 </a></p>
 </article>

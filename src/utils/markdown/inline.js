@@ -337,7 +337,6 @@ export function parseEntry(source) {
             // remove empty TextToken
             !(token instanceof TextToken && !token.content.length))
         .map(token => token.toHTML())
-
     if (typeof window !== "object" && source === resultHTML[0]) {
         // for server rendering
         return htmlEntityReplace(source)
