@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>使用 Syncthing 备份项目代码</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>使用 Syncthing 备份软件项目代码</h1><details><p>最近买了一台二手手机用于应用测试，买前想着要买个存储大点的设备，可以兼作 U 盘使用。</p><p>当到手后发现，如果直接使用有线链接，并不能直接当作 U 盘使用（买前没有做好功课的后果😭）。</p><p>然后一番摸索，装上 <a href="https://github.com/jing332/AListFlutter" target="_blank">AListFlutter</a> 后当作 Webdav 文件服务器使用，再在电脑端安装 RaiDrive，把手机的存储挂载到电脑的文件管理器下，作为虚拟磁盘使用。</p><p>但是由于这台二手手机的存储读写速率堪忧，如果直接将软件安装在上面的话，很有可能会出现打不开的情况。</p><summary>背景</summary></details><p>我看着手边还剩将近 100 GB 存储空间的闲置手机陷入了沉思，开始查询一些可以安装在安卓手机上的自部署服务。在<a href="https://github.com/Elbullazul/awesome-android-selfhosted" target="_blank">这个列表</a>中找到了 <a href="https://github.com/Catfriend1/syncthing-android" target="_blank">syncthing-android</a> 这个项目。</p><p>在手机上安装之后，再在安装电脑端 <a href="https://github.com/Bill-Stewart/SyncthingWindowsSetup" target="_blank">SyncthingWindowsSetup</a>，经过一番配置后（由于这两个项目都提供了图形界面，配置很方便）。</p><p>但是这里有一个小坑：需要配置忽略模式防止备份不必要的文件。这是我目前使用的忽略模式：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">**/node_modules/
+**/build/
+**/target/
+**/.dart_tool/
+**/__pycache__/
+</code></pre><p>除了程序代码外，游戏存档、手机相册等都可以通过这种方式进行自动备份。</p>
+<p><a href="https://bhznjns.github.io/#static/工具软件/使用 Syncthing 备份项目代码.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSS + 推荐算法</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>RSS + 推荐算法</h1><h2>背景</h2><p>在我的手机上的 RSS 阅读器中，我已经订阅了超过 80 个网站。</p><p>随着订阅数量的增加，我发现我已经完全没有办法看完所有更新的文章。只能有选择地，优先看某一分类的订阅的更新，这就使其它的订阅形同虚设。</p><p>在我的订阅中，有的一日数更，有的数日甚至数周一更。对于一日数更类型的网站，往往其中只有一小部分的内容是我感兴趣的。</p><p>于是我需要一个推荐列表，帮助我把我可能感兴趣的、对我可能有用的文章筛选出来。</p><h2>形态</h2><p>一个长期运行的服务程序，最好是一个自部署服务，将推荐算法筛选出的文章组成新的 RSS 订阅。</p><h2>功能</h2><p>根据用户提供的 opml 文件对 RSS 订阅列表进行定期轮询，在获取到新文章后，访问原文抓取原文内容，通过推荐算法处理获取到的内容，判断是否应该加入推荐列表。</p><ul><li>可以根据用户提供的 RSS 订阅列表初步判断用户喜好。</li><li>应该提供给用户点赞和点踩的功能以辅助改进推荐算法。</li></ul><h2>参考项目</h2><h3><a href="https://yakread.com/" target="_blank">Yakread</a></h3><p>功能上基本符合我的设想，支持导入 opml，也支持 newsletter 订阅。</p><p>网站的盈利模式很简单：在文章列表中插入广告，如果不想看广告则可以氪金去除广告。</p><p>但缺点也很明显：</p><ol><li>要使用 newsletter 功能需要使用网站提供的邮箱，这会导致如果未来要从这个服务迁移，会很困难</li><li>对于 RSS 订阅的文章列表，很多人可能很难接受其中被插入广告</li></ol>
+<p><a href="https://bhznjns.github.io/#static/独立开发/想法仓库/RSS + 推荐算法.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
