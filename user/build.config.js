@@ -49,6 +49,10 @@ export default {
         {
             name: "google-site-verification",
             content: "ElMW-j35zgO3DvJAbuU9gQHdwKF4f6Xf0u7nUVAhiyw"
+        },
+        {
+            name: "msvalidate.01",
+            content: "D238928E66FF020B87E0798FE763EC54"
         }
     ],
     extraScripts: [
