@@ -3,10 +3,15 @@
 <channel>
 <title>BHznJNs' Blog</title>
 <link>https://bhznjns.github.io/</link>
-<description>一个 Markdown 静态博客站。</description><follow_challenge>
+<description>我是 BHznJNs，这是我的博客，也是我的第二大脑。</description><follow_challenge>
     <feedId>101282540872310784</feedId>
     <userId>96180252670732288</userId>
 </follow_challenge><item>
+<title>开关与提交按钮不能一起使用</title>
+<link>https://bhznjns.github.io/pages/%E5%BC%80%E5%85%B3%E4%B8%8E%E6%8F%90%E4%BA%A4%E6%8C%89%E9%92%AE%E4%B8%8D%E8%83%BD%E4%B8%80%E8%B5%B7%E4%BD%BF%E7%94%A8.html</link>
+<pubDate>Wed, 12 Mar 2025 19:52:00 +0800</pubDate>
+<lastBuildDate>Wed, 12 Mar 2025 20:01:00 +0800</lastBuildDate>
+</item><item>
 <title>npm 在挂代理之后的小坑</title>
 <link>https://bhznjns.github.io/pages/npm%20%E5%9C%A8%E6%8C%82%E4%BB%A3%E7%90%86%E4%B9%8B%E5%90%8E%E7%9A%84%E5%B0%8F%E5%9D%91.html</link>
 <pubDate>Fri, 7 Mar 2025 23:10:00 +0800</pubDate>
@@ -251,9 +256,4 @@
 <link>https://bhznjns.github.io/pages/%E5%A5%88%E5%A5%8E%E6%96%AF%E7%89%B9%E5%9B%BE.html</link>
 <pubDate>Wed, 15 Jan 2025 09:33:00 +0800</pubDate>
 <lastBuildDate>Wed, 15 Jan 2025 10:23:00 +0800</lastBuildDate>
-</item><item>
-<title>根轨迹</title>
-<link>https://bhznjns.github.io/pages/%E6%A0%B9%E8%BD%A8%E8%BF%B9.html</link>
-<pubDate>Tue, 14 Jan 2025 14:53:00 +0800</pubDate>
-<lastBuildDate>Wed, 15 Jan 2025 23:16:00 +0800</lastBuildDate>
 </item></channel></rss>

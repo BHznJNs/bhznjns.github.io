@@ -1,9 +1,9 @@
-/** @type {import("./build.config.d.ts").SiteConfig} */
+/** @type {import("basb-cli/types").SiteConfig} */
 export default {
     homepage: "https://bhznjns.github.io/",
     title: "BHznJNs' Blog",
-    description: "一个 Markdown 静态博客站。",
-    footer: `::[字数统计](//user/count.html) | [静态目录](//pages/) | Powered by [MarkdownBlog](https://github.com/BHznJNs/markdown-blog)::`,
+    description: "我是 BHznJNs，这是我的博客，也是我的第二大脑。",
+    footer: `::[字数统计](//user/count.html) | [静态目录](//pages/) | Powered by [BaSB](https://github.com/BHznJNs/BaSB)::`,
     language: "zh",
     pageSize: 20,
 
@@ -28,7 +28,6 @@ export default {
     rss: {
         enable: true,
         size: 50,
-        ignoredDir: ["学习笔记/"],
         extraMetadata: `\
 <follow_challenge>
     <feedId>101282540872310784</feedId>
@@ -38,7 +37,6 @@ export default {
     newest: {
         enable: true,
         pageSize: 40,
-        ignoredDir: [],
     },
     search: {
         enable: true,
