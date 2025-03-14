@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025年2月末及3月上半总结</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>2025 年 2 月末及 3 月上半总结</h1><p>由于寒假结束后 2 月就只剩十天不到，于是把这几天的总结与下一篇要写的总结（也就是本文）合并了。</p><h2>新学期我的改变</h2><p>我更社牛了点。以往我不敢主动与陌生人交谈，但是这段时间里，我借由一些契机认识了几位原本绝不可能认识的同龄人。<del>当然这也能归因于大学生比较好套近乎。</del></p><h2>软著申请</h2><p>我在<a href="https://github.com/BHznJNs/NFC-PLinkD" target="_blank">电纸链接</a>这个项目写得差不多之后，开始着手于将应用上架到国内的安卓应用商店。在一番调查之后，我发现要上架到国内手机厂商的应用商店少不了两个条件：企业资质和软著。</p><p>我琢磨着，申请个软著一来可以用来之后上架应用，二来还能加学分，挺划算的，花了半天多的时间把软著的材料整理好，进行了申请。</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E9%98%B6%E6%AE%B5%E5%B0%8F%E7%BB%93/.2025%E5%B9%B42%E6%9C%88%E6%9C%AB%E5%8F%8A3%E6%9C%88%E4%B8%8A%E5%8D%8A%E6%80%BB%E7%BB%93/%E8%BD%AF%E8%91%97%E7%94%B3%E8%AF%B7%E6%88%AA%E5%9B%BE.png" alt="软著申请截图" loading="lazy" tabindex="0"></div><p>顺便吐槽一下，我在申请前有看了一些申请软著的文章作为参考，但是这些文章无一例外都提到要将申请文件邮寄到版权中心，导致我一直都觉得申请软著很麻烦，拖了很久。结果我自己实践了之后发现<strong>根本不需要邮寄东西</strong>。</p><h2>开发</h2><p>在一些渠道尝试推广了电纸链接之后，和之前的一些用户也聊了聊，在讨论之后，决定加入“链接到笔记软件”的功能。</p><p>最近花了四五天的时间把我的博客系统给重构了一下。<del>本来寒假前就计划要做的但是我太拖了😭😭</del></p><p>把所有功能封装到一个 <a href="https://www.npmjs.com/package/basb-cli" target="_blank">npm 包</a>中，方便更新资源文件。另外还给统计界面添加了每月统计的图表。</p><h2>运动</h2><p>说来也惭愧，开学到现在二十多天，只出门运动了两次。虽然这段时间的天气确实不太好，但这也不能为我的惰性作开脱。希望下半月我能多出门跑一跑。</p><h2>写作</h2><p>三月上半月由于基本处于上课-写代码的循环中，在博客输出上较前几个月少了很多，在添加了每月统计的图表后就更明显了。</p>
+<p><a href="https://bhznjns.github.io/#static/阶段小结/2025年2月末及3月上半总结.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
