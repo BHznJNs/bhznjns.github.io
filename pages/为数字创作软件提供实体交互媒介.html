@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>为数字创作软件提供实体交互媒介</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>为数字创作软件提供实体交互媒介</h1><p>信息来源：<a href="https://www.bilibili.com/video/BV1ZS9tYDErw/" target="_blank">数字时代下我们丢失的触感</a></p><p>相关视频：<a href="https://www.bilibili.com/video/BV1UM4m197u4/" target="_blank">是被阉割的青春还是无敌的性价比？【TourBox Lite青春版快捷控制器测评】</a></p><p>官网：<a href="https://www.tourboxtech.cn/" target="_blank">tourboxtech.cn</a> <a href="https://www.tourboxtech.com/" target="_blank">tourboxtech.com</a></p><blockquote><p>创意灵感不应该被繁琐的操作方式所干扰。</p><p>产品开发的初衷，源自于创始人在日常处理照片与视频的过程中发现，为打字而生的键盘用于操作创意软件，复杂且缓慢。在创意的过程中，总会因为操作问题而被打断灵感与思路。</p><p>市场上缺乏能够真正解决问题的产品，除了传统的鼠标与键盘，创意者缺乏更为趁手的人机交互工具，去直觉、快捷的操控创意软件。</p></blockquote><hr><h2>这是什么？</h2><p>这是一个类似于游戏手柄的控制器，旨在用实体的按键、旋钮、滚轮等更直观、更符合直觉的交互方式来替代 PS、PR 等创意专业软件的键盘快捷键。</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E4%BB%8A%E6%97%A5%E8%B6%A3%E9%97%BB/.%E4%B8%BA%E6%95%B0%E5%AD%97%E5%88%9B%E4%BD%9C%E8%BD%AF%E4%BB%B6%E6%8F%90%E4%BE%9B%E5%AE%9E%E4%BD%93%E4%BA%A4%E4%BA%92%E5%AA%92%E4%BB%8B/Tourbox%20%E9%BB%91%E8%89%B2.png" alt="Tourbox 黑色" loading="lazy" tabindex="0"></div><p>这个控制器乍一看看不出用途，但官网很贴心地附上了很多实际使用时的视频，非常直观（顺便吐槽一下，这个产品的官网虽然设计很棒，但是对性能要求有点高，点进网站后电脑风扇就开始转了）：</p><details><div class="media-container"><iframe src="https://www.tourboxtech.cn/digital-painting/" title="数字绘画" sandbox="allow-same-origin allow-scripts" loading="lazy">数字绘画</iframe></div><div class="media-container"><iframe src="https://www.tourboxtech.cn/photo-editing/" title="摄影后期" sandbox="allow-same-origin allow-scripts" loading="lazy">摄影后期</iframe></div><div class="media-container"><iframe src="https://www.tourboxtech.cn/video-editing/" title="视频后期" sandbox="allow-same-origin allow-scripts" loading="lazy">视频后期</iframe></div><summary> 使用场景</summary></details><h2>一些评论</h2><blockquote><p>其实是在为内容创作软件本身不到位的ux设计在额外买单</p></blockquote><blockquote><p>需要专用键盘的软件我只有达芬奇和LR，这俩软件各有各的专用键盘，轮不到这玩意儿</p><blockquote><p>我的桌面和我的钱袋容不下这两个主哈哈，都好贵，后面我也是权衡下选择了博主这个机器，主要是看中它无论哪个软件都能适配和自定义~</p></blockquote></blockquote>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/为数字创作软件提供实体交互媒介.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
