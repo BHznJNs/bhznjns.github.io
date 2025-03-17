@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在小红书进行推广的可行性</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>在小红书进行推广的可行性</h1><p>今天在刷知乎时，看到了这样一篇文章：<a href="https://zhuanlan.zhihu.com/p/28802288664" target="_blank">小红书快成为新一代的 App Store 了？</a>，我突然发现，小红书貌似也是独立开发者不错的推广渠道。</p><p>其实我也不是没有尝试过小红书这个渠道，在 InputShare 这个项目发布之初，我就尝试过在小红书发软文推广，但是文章根本没有人看，我就认为这个平台并不是很适合软件推广。</p><p>看到上面提到的这篇文章后，我大受鼓舞，马上打开小红书，关注了文中提到的这些开发者，打算模仿他们的图文编排进行推广。</p><p>但很快我就发现不对劲，这些开发者有一个共同的特点，他们都专注于 iOS 应用的开发。</p><p>这不止是因为 iOS 平台的用户付费率高和 iOS 平台的防盗版机制强，还有更重要的原因。</p><h2>应用分发渠道</h2><p>安卓平台的应用分发渠道很多样，安卓的用户往往更倾向于使用手机自带的应用商店（如小米应用商店、华为应用商店等），这就导致在分发应用时，有两个选择：</p><ol><li>要么就尽量上架所有常见的应用商店</li><li>要么指明在某个应用商店下载，然后在文章中贴上下载链接或二维码。</li></ol><p>第一条路需要耗费大量的时间精力处理，对独立开发者很不友好。而对于第二条路，小红书官方其实是不鼓励用户在文章中加入链接和二维码的，这就把第二条路也堵上了。</p><p>iOS 平台几乎唯一的应用分发渠道就是苹果官方的 App Store，这就使得应用开发者完全不需要在推广文中贴上下载链接或者二维码，只需要提到应用名称，感兴趣的读者就会自行到 App Store 下载使用。</p><p>另外，国内很多应用商店要求企业资质才能上架应用，而苹果应用商店也接受个人开发者。</p><hr><p>那小红书是不是就不适合安卓独立开发者做推广呢？也不是，安卓开发者或许也有一些途径来辅助项目的推广分发：</p><ol><li>上架到 Google Play</li><ul><li>我发现有部分的小红书安卓用户会在看到不错的应用时尝试在 Google Play 上根据应用名称寻找对应应用，哪怕不上架到国内平台，上架到 Google Play 也能起到一定分发效果</li></ul><li>上架到国内的较为知名的第三方应用商店，并在推广文中指明在该应用商店下载</li><ul><li>比如豌豆荚、应用宝等较为知名的第三方应用商店，其上架难度往往较那些手机厂商的应用商店要低一些</li></ul><li>做官方网站，并做好 SEO，让感兴趣的用户可以直接搜到你的官网并下载</li></ol>
+<p><a href="https://bhznjns.github.io/#static/独立开发/在小红书进行推广的可行性.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
