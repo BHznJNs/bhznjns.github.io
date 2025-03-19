@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我开始写日志了</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>我开始写日志了</h1><h2>开始写日志的一些原因</h2><p>起因是我在一天里做了一些事，但这些事又不足以形成一篇博客，我就想到，能不能把这些事记在日记中。</p><p>那为什么标题是“写日志”而不是“写日记”呢？</p><p>答案当然是：<del>正经人谁写日记啊</del>我只在日志中记下一天里做的值得记录的事，这个形式更贴近日志而不是日记。</p><hr><p>我之前总是觉得写日志（或者说每日总结）用处不大，还要专门空出时间来写，投入产出比太低，不如不写。</p><p>但我最近发现，完全可以用碎片时间，比如饭后来写日志，写下刚刚过去的半天发生的值得记录的事。</p><hr><p>另外，我目前写阶段总结都是一月一更，这就常常遇到一个问题，就是在我写总结的时候，我已经忘记了很多这个月里发送的事了，而写日志能够很好地补上这个漏洞。</p><p>并且，通过写日志，我也能很直观地看出我的这一天有没有被浪费。毕竟被浪费的一天能够以空白的形式在日志中最直观地体现出来。</p><h2>数据同步</h2><p>因为日志中的内容大多是一些一天里所做事情的流水账，再加上涉及一些隐私信息，其实是不适合同步到云端的，而更适合在本地保存的同时自己做一些备份。</p><p>并且由于日志中的一些内容会在之后写进总结中，其实对于很久之前的日志数据，即使丢失也不会有很大影响。</p>
+<p><a href="https://bhznjns.github.io/#static/杂谈/我开始写日志了.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
