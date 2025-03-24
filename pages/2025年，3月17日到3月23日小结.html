@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025年，3月17日到3月23日小结</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>2025 年，3 月 17 日到 3 月 23 日小结</h1><p>本周我开始写日志了，详见<a href="#static/杂谈/我开始写日志了.md">我开始写日志了</a>。也是得益于写日志，我也开始写每周总结了。</p><p>之前为什么不写每周总结，很大原因就是觉得一周内发生的事太少，写成周记缺少内容。但在开始写日志后，我发现其实一周的时间还是能做很多事的，周记里还是有东西可写的，遂开始写每周总结。</p><h2>编程开发</h2><p>这一周把 InputShare 的安卓端进行了重构，效果很好，一下解决了好几个 issues 提到的问题。这个重构拖了很久，终于给完成了。</p><p>在办了 MasterCard 之后，原本想尝试将电纸链接上架到 Google Play，但是看网上说 Google Play 的上架坑很多，就想着先放一放。后来想起来可以尝试把 InputShare 上架 Microsoft Store，同样要用 Visa 或者 MasterCard，注册开发者账号交了 116 人民币（16 美元），填了信息，顺利进入审核阶段。</p><p>在录制 InputShare 英文版演示视频时想到能不能把 UI 界面重构一下，于是录视频的事先放一放，开始尝试使用 tkinter 以外的 Python GUI 框架进行重构。具体可以看这篇博客：<a href="https://bhznjns.github.io/static/%E9%98%B6%E6%AE%B5%E5%B0%8F%E7%BB%93/static/编程/Python/一次 Python GUI 框架的选择.md">一次 Python GUI 框架的选择</a>。</p><h2>写作输出</h2><p>这一周共写博客 7 篇，但不同以往的是，这一周的博客中技术相关的内容更多了一些。</p><h2>内容输入</h2><p>这周看油管的时间貌似变多了不少，发现了两个日语 Vlog YouTuber：</p><ul><li><a href="https://www.youtube.com/channel/UChAQQ9at2MDlXjvQX3vL3Yw" target="_blank">敷嶋てとら ch.</a></li><li><a href="https://www.youtube.com/@ikechan0920" target="_blank">いけちゃん</a></li></ul><p>顺便吐槽一下这个いけちゃん，她的<a href="https://www.youtube.com/watch?v=BjNBsLGtfXo" target="_blank">这一条视频</a>被推荐给我非常多次，出于好奇点进去看了看，感觉内容确实还行，观感不错，遂关注。</p><h2>运动健身</h2><p>这一周共跑步一次，大抵是由于太久没有运动，里程实在有些短，并且跑的过程中小腿的酸胀感很明显。</p><h2>其它</h2><p>通过一些渠道得知中国银行提供 Visa 和 MasterCard 的借记卡的办理，还特地去查了<a href="https://linux.do/t/topic/173844" target="_blank">攻略</a>，但没想到意外的顺利，只是我去的那家银行没有 Visa 卡，只有 MasterCard。</p><p>中国银行的 MasterCard 借记卡貌似没有年费，除了开卡时交的 5 元开卡费就没有别的开销了。</p>
+<p><a href="https://bhznjns.github.io/#static/阶段小结/每周小结/2025年，3月17日到3月23日小结.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
