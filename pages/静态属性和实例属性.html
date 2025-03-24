@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>静态属性和实例属性</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>静态属性和实例属性</h1><p>非常惭愧，在开发维护 <a href="https://github.com/BHznJNs/InputShare" target="_blank">InputShare</a> 这个项目数月之后我才注意到了这个问题。</p><h2>什么问题呢？</h2><p>很简单，我混淆了 Python 中静态属性和实例属性的语法。</p><p>类的静态属性语法如下：</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">class Class:
+    static_property_name = "value"
+</code></pre><p>实例属性的语法如下：</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">class Class:
+    def __init__(self):
+        instance_property_name = "value"
+</code></pre><h2>为什么会混淆？</h2><p>看起来很好区分，对吧？那我为什么会混淆呢？<del>当然是写 JavaScript 写的。</del>因为在 JavaScript 中的实例属性可以这么写：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">class Class {
+    // 这是实例属性
+    propertyName1 = "value"
+
+    constructor() {
+        // 这也是实例属性
+        this.propertyName2 = "value"
+    }
+}
+</code></pre><h2>具体是怎么混淆的？</h2><p>这就导致我在 InputShare 的代码中，常常出现明明是实例属性，却写成了静态属性，比如：</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">class MouseButtonStateStore:
+    def __init__(self):
+        self.mouse_button = HID_MouseButton.MOUSE_BUTTON_NONE.value
+
+    def mouse_down(self, button: HID_MouseButton):
+        self.mouse_button |= button.value
+
+    def mouse_up(self, button: HID_MouseButton):
+        self.mouse_button ^= button.value
+</code></pre><p>上面这段代码在改前是这样的：</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">class MouseButtonStateStore:
+    mouse_button: int = HID_MouseButton.MOUSE_BUTTON_NONE.value
+
+    def mouse_down(self, button: HID_MouseButton):
+        self.mouse_button |= button.value
+
+    def mouse_up(self, button: HID_MouseButton):
+        self.mouse_button ^= button.value
+</code></pre><h2>那为什么之前没有发现？</h2><p>如上面的代码所示，我即使使用了静态属性，但是<strong>在实例方法中依然是使用 <code>self.xx</code> 来读写属性</strong>，这是其一。</p><p>其二，我经过全局搜索发现，<strong>所有涉及的类都只被实例化了一次</strong>。</p><p>其三，软件的功能基本可以正常工作，只是偶尔出现的卡顿可能与这个问题有关。</p><p>也就是说，理论上，在修改前后，代码的整体逻辑很相近，只是埋了一个以后要拓展功能时很可能会踩的坑。</p>
+<p><a href="https://bhznjns.github.io/#static/编程/Python/静态属性和实例属性.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>

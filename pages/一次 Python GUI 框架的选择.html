@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一次 Python GUI 框架的选择</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>一次 Python GUI 框架的选择</h1><h2>为什么要使用 Python 写 GUI 程序？</h2><p>这得说到我最近在维护的开源项目 <a href="https://github.com/BHznJNs/InputShare" target="_blank">InputShare</a> 了。</p><p>这个项目最开始是没有图形界面的，我想着使用 Python 的话一方面能够快速验证，另一方面 Python 的社区资源足够丰富，就选择使用 Python 编写原型。</p><p>在软件基本可用后，我想着给它加上一个易用的图形界面方便我自己使用，也能让软件方便推广。此时我依然延续了原型设计的思维，选择了我还算熟悉并且能够快速做出界面的 tkinter 和 <a href="https://customtkinter.tomschimansky.com/" target="_blank">CustomTkinter</a></p><p>但是在最近，我想要改动设置界面，将设置项进行分组，并添加新的设置项，我发现相关的 UI 代码很难修改。</p><p>同时，我尝试使用英文版本界面录制推广视频时，意外发现 CustomTkinter 没有自带文本溢出换行！我需要手动在文本中添加 <code>\n</code> 来实现换行！</p><p>于是我开始尝试使用其它的 Python GUI 框架进行重构。</p><h2>我调研了哪些替代品？</h2><p>大概内容可以参考<a href="https://github.com/BHznJNs/InputShare/issues/32" target="_blank">这个 issue</a></p><p>我先后调研了如下 GUI 框架：</p><h3><a href="https://flet.dev/" target="_blank">Flet</a></h3><p>看起来很好，是 Flutter 的 Python 封装，跨平台性很好，并且自带多平台构建支持。</p><p>经过基本了解后我发现 Flet 并不很适用于 InputShare 这种主要运行在后台的应用，使用这个框架可能需要大幅重构项目，遂放弃。</p><h3>PyQt + <a href="https://qfluentwidgets.com/" target="_blank">QFluentWidgets</a></h3><p>基于成熟的 PyQt，并且使用的 fluent design 也足够美观。</p><p>但是我在尝试的过程中发现其文档并不好懂，很多好用一些的组件需要付费，并且官方的 Gallery 实例的性能并不好，目测只有 30 帧。</p><h3><a href="https://github.com/r0x0r/pywebview" target="_blank">pywebview</a></h3><p>封装了原生的 Webview 并提供 Python Binding，可以使用 Web 前端代码开发界面，也提供了 Python 和 JavaScript 的通信支持，看起来很美好。</p><p>但是这个库控制的窗口没有黑暗模式的支持，即使<a href="https://github.com/r0x0r/pywebview/issues/1494" target="_blank">当系统处于黑暗模式时，窗口的边框依然处于日间模式</a>。</p><p>我尝试过将窗口设为无边框，库倒是有将 DOM 元素设为窗口可拖拽区域的支持，但是在无边框模式下窗口<a href="https://github.com/r0x0r/pywebview/issues/1510" target="_blank">无法被鼠标调整大小</a>。</p><p>遂放弃。</p><h3><a href="https://github.com/webui-dev/webui" target="_blank">webui</a></h3><p>这个项目另辟蹊径，使用系统安装的浏览器作为应用窗口，并提供包含 Python 在内的多语言支持。</p><p>但是在我把示例代码跑起来后就发现了问题，如<a href="https://github.com/webui-dev/webui/issues/550" target="_blank">这个 issue</a> 中所示。遂放弃。</p><h3>PyQt + QtWebEngine（尝试中）</h3><p>我在放弃 webui 后想到，要展示前端界面，我未必非得用专门的框架。像 PyQt 这样框架就已经有成熟的 Webview 支持了。</p><p>我在成功把内嵌 Webview 的 Qt 窗口运行之后，尝试封装一个<a href="https://github.com/BHznJNs/PyQWebWindow" target="_blank">专门的库</a>用于展示前端界面。<del>为了这盘醋包了顿饺子了属于是</del>。</p><h2>这个经历给了我两个教训</h2><ol><li>Python 真的不适合用于图形界面程序开发。</li><li>引自《程序员修炼之道》，不要把原型用于产品。</li></ol><p>文章最后，是《程序员修炼之道》的原文引用：</p><blockquote><h2>不要把原型用于产品</h2><p>在开始任何基于代码的原型开发之前，请确保每个人都理解，正在编写的是一次性代码。原型可能有着欺骗性的外表，对那些不知道这只是原型的人产生吸引力。你必须非常清楚地表明该代码是用完即弃的，它并不完整也不可能做到完整。</p><p>如果你觉得所在的环境或文化中，原型代码的目的很有可能被误解，那么最好使用曳光弹的方法。这样，最后你可以做出一个坚实的框架，在此基础上进行未来的开发。</p></blockquote>
+<p><a href="https://bhznjns.github.io/#static/编程/Python/一次 Python GUI 框架的选择.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
