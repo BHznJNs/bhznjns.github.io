@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一个用在电脑副屏中的“操作系统”</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>一个用在电脑副屏中的“操作系统”</h1><p>官网：<a href="https://www.apps.vip/" target="_blank">天天工作台，开源免费的副屏“操作系统”</a></p><p>知识库：</p><ul><li><a href="https://www.yuque.com/tswork/mqon1y" target="_blank">想天工作台文档（许久未更新）</a></li><li><a href="https://www.yuque.com/tswork/browser/tmpomo" target="_blank">想天浏览器文档</a></li></ul><p>介绍视频合集：<a href="https://space.bilibili.com/167397379/lists/1123374?type=season" target="_blank">副屏“操作系统”</a></p><hr><h2>功能总结</h2><ul><li>展示软件快捷键 https:<i>www.bilibili.com/video/BV1yu4y1s7vk</i></li><li>辅助点击快捷键 https:<i>www.bilibili.com/video/BV1f34y1c7yS</i></li><li>快速启动 https:<i>www.bilibili.com/video/BV1ta4y1C7hv</i></li><li>桌面小组件，天气、日历、热点等</li><li>AI 助手</li><li>游戏助手，CPU、GPU 状态检测</li></ul><h2>阶梯式的使用体验改进路线（值得借鉴）</h2><blockquote><p>考虑到不是每一位用户都是五屏大佬。我们为大家提供一条渐进式的体验改进路线。</p><p>阶段 1: 主屏窗口化使用。使用简便。</p><p>阶段 2: 手机、平板模拟便携屏使用。</p><p>阶段 3: 购置便携屏，设备专用。去购买推荐适配款</p><p>阶段 4: 多屏联动，多副屏分工合作。</p></blockquote><h2>盈利途径</h2><p>暂无，源代码部分<a href="https://gitee.com/tsbrowser/xiangtian-workbench" target="_blank">开源</a></p><p>目前有免费提供的企业版，之后可能会售卖商业使用许可</p>
+<p><a href="https://bhznjns.github.io/#static/独立开发/参考产品/一个用在电脑副屏中的“操作系统”.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
