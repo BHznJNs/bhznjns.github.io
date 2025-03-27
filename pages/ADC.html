@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADC</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>ADC</h1><h2>模数转换计算</h2><p>对于电压 3.5V，其在模数转换之后的值：</p><div class="math"><img src="./katex-1476a9c55f826c727acbb83c77e07c1c.png" alt=""></div><h2>ADC Frequency</h2><div class="math"><img src="./katex-21771d5bf106063f581abe47fc3ec4a2.png" alt=""></div><p>Prescaler values: 2, 4, 8, 16, 32, 64 and 128</p><h2>ADC Multiplexer Selection Register (ADMUX)</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/.ADC/ADMUX.png" alt="ADMUX Bits" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/.ADC/ADMUX%20REFS.png" alt="ADMUX REFS" loading="lazy" tabindex="0"></div><h2>ADC Control and Status Register A (ADCSRA)</h2><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/.ADC/ADCSRA.png" alt="ADCSRA Bits" loading="lazy" tabindex="0"></div><ul><li>Bit 7 – ADEN – ADC Enable </li><li>Bit 6 – ADSC – ADC Start Conversion</li><li>Bits 2:0 – ADPS2:0 – ADC Prescaler Select Bits</li></ul><div class="table"><table><thead><tr><th>ADPS2</th><th>ADPS1</th><th>ADPS0</th><th>Division Factor</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td><td>2</td></tr><tr><td>0</td><td>0</td><td>1</td><td>2</td></tr><tr><td>0</td><td>1</td><td>0</td><td>4</td></tr><tr><td>0</td><td>1</td><td>1</td><td>8</td></tr><tr><td>1</td><td>0</td><td>0</td><td>16</td></tr><tr><td>1</td><td>0</td><td>1</td><td>32</td></tr><tr><td>1</td><td>1</td><td>0</td><td>64</td></tr><tr><td>1</td><td>1</td><td>1</td><td>128</td></tr></tbody></table></div><details><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">ADCSRA = (1&lt;&lt;ADEN)|(1&lt;&lt;ADPS2)|(1&lt;&lt;ADPS1)|(1&lt;&lt;ADPS0);
+</code></pre><summary> 用例：Prescaler of 128</summary></details><h2>例程：读取 ADC 中的值</h2><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">void adc_init() {
+    ADMUX |= 0b11000000; // internal ref, analog channel 0
+    ADCSRA = (1&lt;&lt;ADEN)|(1&lt;&lt;ADPS2)|(1&lt;&lt;ADPS1)|(1&lt;&lt;ADPS0);// ADC Enable and prescaler of 128
+}
+
+int main(void) {
+    while (1) {
+        int val;
+        ADCSRA |= (1&lt;&lt;ADSC); // start single conversion, write “1” to ADSC
+        while (ADCSRA & (1&lt;&lt;ADSC)); // wait for conversion to complete
+        // ADSC becomes “0” again
+        val= ADC; //read ADC value                            
+    }
+}
+</code></pre>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/嵌入式系统/ADC.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>

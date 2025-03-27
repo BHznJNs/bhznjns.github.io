@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中断</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>中断 | Interrupts</h1><h2>启用/禁用 中断</h2><p><code>sei()</code> Set enable interrupt</p><p><code>cli()</code> Clear interrupt enable</p><h2>中断函数体编程</h2><ol><li>Keep it short</li><li>Don't use <code>delay()</code>, serial prints</li><li>No input variables or returned values </li><li>All changes have to be made on global variables</li><li>Shared variables should be declared "volatile" </li></ol><h2>中断控制寄存器</h2><p>EIMSK(External interrupt mask register)</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/.%E4%B8%AD%E6%96%AD/EIMSK.png" alt="EIMSK Bits" loading="lazy" tabindex="0"></div><p>EICRA(External interrupt control register A) and EICRB(External interrupt control register B)</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/.%E4%B8%AD%E6%96%AD/EICRA.png" alt="EICRA Bits" loading="lazy" tabindex="0"></div><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/.%E4%B8%AD%E6%96%AD/EICRB.png" alt="EICRB Bits" loading="lazy" tabindex="0"></div><div class="table"><table><thead><tr><th>ISCn1</th><th>ISCn0</th><th>Description</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>The low level of INTn generates an interrupt request</td></tr><tr><td>0</td><td>1</td><td>Any edge of INTn generates asynchronously an interrupt request</td></tr><tr><td>1</td><td>0</td><td>The falling edge of INTn generates asynchronously an interrupt request</td></tr><tr><td>1</td><td>1</td><td>The rising edge of INTn generates asynchronously an interrupt request</td></tr></tbody></table></div><h2>直接端口操作例程</h2><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">#include &lt;avr/io.h&gt;
+#include &lt;avr/interrupt.h&gt;
+
+int main(void) {
+    DDRD &= (0&lt;&lt;PD2); // PD2 is an input
+    DDRD |= (1&lt;&lt;PD1); // PD1 is an output
+    EIMSK |= (1&lt;&lt;INT2); // Enable INT2
+    EICRA &=0b11001111; // Low level INT2 generates an interrupt
+    sei(); // Enable global interrupt
+    while (1) {
+        // Do nothing
+    }
+}
+
+ISR (INT2_vect) {
+    PORTD &= (0&lt;&lt;PD1); //Turn on LED
+}
+</code></pre><h2>Arduino 例程</h2><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">void setup() {
+    pinMode(20, OUTPUT); // PD1 is an output
+    pinMode(19, INPUT); // button connected at digital pin 19 (PD2)
+    attachInterrupt(digitalPinToInterrupt(19), pin_ISR, CHANGE); // Attach an interrupt to the ISR vector 
+}
+void loop() {
+    // Do nothing!
+} 
+void pin_ISR() { 
+    digitalWrite(20, LOW);
+}
+</code></pre>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/嵌入式系统/中断.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timer&Counter</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>计时器/计数器</h1><p>以 CPU 频率 16MHz 为例（time period: <span class="math"><img src="./katex-5775257313865c9211c9e1daeef35968.png"></span>）</p><p>使用 Prescaler 已降低时钟频率：<span class="math"><img src="./katex-f4e4e093fb40acd9f46dd2b473023d05.png"></span></p><div class="table"><table><thead><tr><th>Prescaler</th><th>Clock frequency</th><th>8 bit Timer (max delay)</th><th>16 bit Timer (max delay)</th></tr></thead><tbody><tr><td>8</td><td>2MHz</td><td>0.128ms</td><td>32.768ms</td></tr><tr><td>64</td><td>250KHz</td><td>1.024ms</td><td>262.144ms</td></tr><tr><td>256</td><td>62.5KHz</td><td>4.096ms</td><td>1,048.576ms</td></tr><tr><td>1024</td><td>15.625KHz</td><td>16.384ms</td><td>4,194.304ms</td></tr></tbody></table></div><h2>两个计算公式</h2><div class="math"><img src="./katex-04c62b27c2ab5fecddf03e4e946450aa.png" alt=""></div><blockquote class="alert note"><p class="alert-title">Note</p><p>Timer count 的值必须是一个整型且必须在范围 <span class="detail" data-collapse onclick="onclick(e) {
+                e.stopPropagation()
+                e.target.toggleAttribute(&quot;data-collapse&quot;)
+            }">(0 - 255)<div class="detail-content">对于 8-bit 计数器</div></span> 或 <span class="detail" data-collapse onclick="onclick(e) {
+                e.stopPropagation()
+                e.target.toggleAttribute(&quot;data-collapse&quot;)
+            }">(0 - 65,535)<div class="detail-content">对于 16-bit 计数器</div></span> 内</p></blockquote><h2>相关寄存器</h2><h3>Timer/Counter0 registers: TCNT0</h3><p>存储计时器计数器当前的值</p><h3>Timer/Counter Control Register: TCCR0B</h3><div class="media-container"><img src="https://bhznjns.github.io/static/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/.Timer&Counter/TCCR0B.png" alt="TCCR0B Bits" loading="lazy" tabindex="0"></div><div class="table"><table><thead><tr><th>CS02</th><th>CS01</th><th>CS00</th><th>Description</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td><td>No clock source (Timer/Counter stopped)</td></tr><tr><td>0</td><td>0</td><td>1</td><td>clk<sub><u>I/O</u></sub> (No prescaling)</td></tr><tr><td>0</td><td>1</td><td>0</td><td>clk<sub><u>I/O</u></sub>/8 (From prescaler)</td></tr><tr><td>0</td><td>1</td><td>1</td><td>clk<sub><u>I/O</u></sub>/64 (From prescaler)</td></tr><tr><td>1</td><td>0</td><td>0</td><td>clk<sub><u>I/O</u></sub>/256 (From prescaler)</td></tr><tr><td>1</td><td>0</td><td>1</td><td>clk<sub><u>I/O</u></sub>/1024 (From prescaler)</td></tr><tr><td>1</td><td>1</td><td>0</td><td>External clock source on T0 pin. Clock on falling edge</td></tr><tr><td>1</td><td>1</td><td>1</td><td>External clock source on T0 pin. Clock on rising edge</td></tr></tbody></table></div><h2>计时器例程</h2><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">#include &lt;avr/io.h&gt;
+
+void timer0_init() {
+    TCCR0B |= (1 &lt;&lt; CS02)|(1 &lt;&lt; CS00);// set up timer with prescaler = 1024
+    TCNT0 = 0;// initialize counter
+}
+
+int main(void) {
+    DDRL |= (1&lt;&lt;PL0); // connect LED to pin PL0
+    timer0_init();    // initilise timer 0
+    while (1) {
+        if (TCNT0 &gt;=124) { // check if timer count reach 124 
+            PORTL ^= (1&lt;&lt;PL0); // toggles the LED
+            TCNT0=0; // reset counter
+        }
+    }
+}
+</code></pre><h2>计时器中断</h2><p>当计时器溢出时调用中断。</p><h3>Timer/Counter0  Interrupt Flag Register TIFR0</h3><p>TOV0 (0th bit) </p><ul><li>Set to one whenever TIMER0 overflows</li><li>Reset to zero whenever the Interrupt Service Routine (ISR) is executed</li></ul><h3>例程</h3><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">ISR(TIMER0_OVF_vect) {
+    // TIMER0 overflow interrupt service routine. 
+    // This ISR is called automatically whenever TCNT0 overflows
+    tot_overflow++; // count the number of overflows
+}
+int main(void) {
+    DDRL |= (1 &lt;&lt; PL0); // connect LED to PL0
+    timer0_init(); // initialise Timer0
+    while (1) {
+        if (tot_overflow &gt;= 12) { // check if no. of overflows = 12
+            if (TCNT0 &gt;= 53) {    // check if the timer count reaches 53
+                PORTL ^= (1 &lt;&lt; PL0); // toggles the led
+                TCNT0 = 0;           // reset the counter
+                tot_overflow = 0;    // reset the overflow counter
+            }
+        }
+    }
+}
+</code></pre>
+<p><a href="https://bhznjns.github.io/#static/学习笔记/嵌入式系统/Timer&Counter.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
