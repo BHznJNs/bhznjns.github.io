@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一次失败的类库开发经历</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>一次失败的类库开发经历</h1><h2>背景</h2><p>这两周以来，我的所有开发上的精力全都花在了 <a href="https://github.com/BHznJNs/PyQWebWindow" target="_blank">PyQWebWindow</a> 这个库的 IPC 模块。</p><p>我从开始开发时就定好了目标：最终要实现<a href="https://www.electronjs.org/docs/latest/tutorial/ipc" target="_blank">类似于 Electron 中 IpcMain 和 IpcRenderer 的效果</a>。即，允许用户在主进程和渲染进程中通过 <code>.on</code> 函数来监听彼此进程发出的事件，也能通过 <code>.emit</code> 来向彼此提交事件。两个进程间的通信应该是<strong>完全异步</strong>的，不能让监听阻塞各自进程的主线程。</p><p>但是我忽视了编程语言间的区别。Electron 之所以会采用事件驱动的模式，很大一部分原因是<strong>由于 Node.js 本身对于异步编程和事件驱动的模式具备更完善的支持</strong>。</p><h2>具体来说</h2><p>举个最简单的例子，如果我在 Node.js 中定义了一个异步函数，</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">async function test() {
+    setTimeout(() =&gt; {
+        console.log("test")
+    }, 1000)
+}
+</code></pre><p>我可以直接通过函数调用的方式异步地调用这个函数，让解释器在主线程自动空闲时执行这个函数</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">test()
+</code></pre><hr><p>而在 Python 中，我同样可以定义一个异步函数，</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">async def test():
+    await asyncio.sleep(1)
+    print("test")
+</code></pre><p>但在 Python 中，如果只是直接执行这个函数，是不会有任何效果的</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">test()
+# returns: `&lt;coroutine object test at 0x0000024858A33140&gt;`
+</code></pre><p>我必须使用 <code>asyncio.run</code> 来调用这个函数，这个函数内的语句才会被实际调用：</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">asyncio.run(test()) # 这会阻塞主线程
+</code></pre><p>在 Node.js 中，执行一个异步函数底层上是创建了一个异步任务，并将这个任务推进全局的任务栈中，其实 Python 中也是支持这样的操作的：</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">asyncio.create_task(test()) # 这会自动创建异步任务并推入全局的任务栈
+</code></pre><p>但问题在于，<code>asyncio.create_task</code> 方法必须在 <code>asyncio.run</code> 方法创建的异步事件循环中执行才能正常工作，这就绕回了前面提到的问题了。</p><h2>底层原因</h2><p>这个失败实际上是由于 Python 和 Node.js 两个编程语言的底层设计差异。</p><p>在 Node.js 中，顶层作用域可以被视为一个异步上下文，也因此，Node.js 是支持顶层 await 的。</p><p>而在 Python 中，顶层作用域就是一个普通的同步上下文，用户需要调用 <code>asyncio.run</code>，在这个方法传入的异步函数内才是异步的上下文。</p>
+<p><a href="https://bhznjns.github.io/#static/编程/Python/一次失败的类库开发经历.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
