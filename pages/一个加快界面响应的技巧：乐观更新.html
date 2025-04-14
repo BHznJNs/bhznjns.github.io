@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一个加快界面响应的技巧：乐观更新</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>一个加快界面响应的技巧：乐观更新</h1><details><p>今天在观看 B 站视频的时候，刷到一条关于 React 中的<ruby data-notation="React Server Components">RSC<rp>(</rp>,<rt>React Server Components</rt>,<rp>)</rp></ruby> 的讨论：</p><blockquote><div class="qa-block"><div class="question">请教下为什么要用 RSC，用了有什么代价</div><div class="answer">SSR 的好处是既可以有和 SPA 相同的 TTFB，动态场景下又比 SPA 快（因为数据请求是在服务端做的）。传统服务端渲染 MPA 虽然 FPC 快，但是 TTFB 优化完全就没有，和 FPC 是同时发生的。举个例子，用户点击按钮应该瞬间跳转到对应的页面，UI 应该尽可能快地给予用户交互反馈，哪怕数据还没有请求到。如果是传统服务端 MPA，所有操作都依赖于服务端相应，那么你的页面在服务端响应之前是不可能变化的。网络请求时间一长用户就会觉得这个交互不响应，最典型的反馈就是狂点按钮。而 SSR 本质上是取了 MPA 和 SPA 的长处，在用户点击按钮的时候就可以立马做出相应，优化 TTFB；而数据获取又采用了 MPA 的方案在服务端跑，返回回来渲染好的静态 html 和需要 hydrate 的动态部分。问题在于很多开发者并不知道这些，他们只知道 SRC 是潮流，应该多用，结果是 loading.tsx 和 suspense 都没有，导致用户交互的时候完全返祖和 MPA 等效，TTFB 和 FCP 同时完成，最终效果还不如原先 MPA 架构</div></div></blockquote><summary> 背景：关于 RSC 的讨论</summary></details><p>我在查询 RSC 的相关资料时，发现它可以通过加快部分的 UI 交互反馈从而提升用户体验。</p><h2>实现原理</h2><p>具体来说，就是在用户交互后，在前端马上给予<span class="detail" data-collapse onclick="onclick(e) {
+                e.stopPropagation()
+                e.target.toggleAttribute(&quot;data-collapse&quot;)
+            }">操作成功的反馈<div class="detail-content">即“乐观”</div></span>，同时向后端发送请求。</p><p>待后端返回后，如果操作成功，则 UI 保持更新状态；如果操作失败，就需要回滚 UI 到之前的状态，并向用户显示错误信息。</p><h2>使用场景</h2><p>假设你有一个显示点赞数量的组件，当用户进行点赞操作后，可以在向后端发送请求的同时在 UI 上立刻显示点赞成功的效果（如点赞数量加一、组件图标变化、点赞动画等）。</p><p>待后端返回操作结果后，如果操作成功，则 UI 状态不变，依然是点赞成功的状态；如果操作失败，则将 UI 的点赞效果取消，并向用户显示点赞失败的提示。</p>
+<p><a href="https://bhznjns.github.io/#static/编程/Web 前端/一个加快界面响应的技巧：乐观更新.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
