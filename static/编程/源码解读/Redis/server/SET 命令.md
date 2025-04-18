@@ -33,7 +33,7 @@ void setCommand(client *c) {
         return;
     }
 
-    // 当进行 SET 操作时， argv[2] 即为 value，
+    // 当进行 SET 操作时，argv[2] 即为 value，
     // 此处对 value 进行字符串的编码处理。
     c->argv[2] = tryObjectEncoding(c->argv[2]);
     // SET 操作的内部实现
@@ -119,7 +119,7 @@ void setGenericCommand(client *c, int flags, robj *key, robj *val, robj *expire,
 这个函数有点长，不过我们可以先集中于其中的 ``setKey`` 函数。
 
 ```c
-src/db.c
+// src/db.c
 void setKey(client *c, redisDb *db, robj *key, robj *val, int flags) {
     int keyfound = 0;
 
@@ -148,4 +148,3 @@ void setKey(client *c, redisDb *db, robj *key, robj *val, int flags) {
     if (!(flags & SETKEY_NO_SIGNAL)) signalModifiedKey(c,db,key);
 }
 ```
-
