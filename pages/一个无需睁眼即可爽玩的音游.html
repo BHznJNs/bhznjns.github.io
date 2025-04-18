@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一个无需睁眼即可爽玩的音游</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>一个无需睁眼即可爽玩的音游</h1><h2>用户痛点</h2><p>对于很多有眼部疾病的人（暂时 or 永久），他们需要有一个不看手机的娱乐方式。</p><p>即使没有眼部疾病，对于很多由于工作需要长时用眼的群体（如程序员），他们在业余时同样需要一个不费眼的娱乐途径。</p><h2>市场空缺</h2><p>现有不费眼的娱乐途径较少</p><details><ol><li>干家务</li><li>出门健身</li><li>学做饭</li><li>听播客 or 小说 or 广播剧</li><li>学种乐器</li><li>冥想</li><li>社交（和真人或者 AI）</li></ol><summary>经过小红书搜索，总结了几点</summary></details><p>但是，你猜猜为什么会有人问出“有什么不用眼睛的娱乐方式？”这种问题？他们不知道有这些不用眼的娱乐方式吗？</p><p>上述的这些途径要么有一定门槛（如学乐器、社交），要么需要有一定自驱力（如做家务、出门健身）。</p><p>也恰恰是因为这两点，市场需要有一个不用眼睛的即时的娱乐方式。</p><h2>设想</h2><h3>形态</h3><p>手机游戏或面向移动端的网页游戏。</p><h3>交互</h3><p>视觉是人最重要也是效率最高的从外界获取信息的渠道，没有视觉就需要集合其它的感官来共同代偿。</p><p>这个游戏可以设计成共同使用听觉和触觉（即振动）的交互方式。于是我想到，音游就是很典型的依赖听觉的游戏品类。</p><p>可以设计成类似于<a href="https://musedash.peropero.net/" target="_blank">喵斯快跑</a>的模式，将屏幕分为左右两半边，各自分管对应区域的判定。</p><p>玩家需要完全按照曲子的节奏来点击屏幕，在成功判定后，游戏会给出振动的响应。玩家点击得越准，振动越强烈。</p><h3>其它</h3><p>可以模仿喵斯快跑加入二次元要素，以增强对玩家的吸引力。</p><h2>盈利模式</h2><p>同样可以模仿喵斯快跑，设置一些可供付费购买的曲子。</p>
+<p><a href="https://bhznjns.github.io/#static/独立开发/想法仓库/一个无需睁眼即可爽玩的音游.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
