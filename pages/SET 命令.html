@@ -85,7 +85,7 @@ void setCommand(client *c) {
         return;
     }
 
-    // 当进行 SET 操作时， argv[2] 即为 value，
+    // 当进行 SET 操作时，argv[2] 即为 value，
     // 此处对 value 进行字符串的编码处理。
     c-&gt;argv[2] = tryObjectEncoding(c-&gt;argv[2]);
     // SET 操作的内部实现
@@ -161,7 +161,7 @@ void setGenericCommand(client *c, int flags, robj *key, robj *val, robj *expire,
         replaceClientCommandVector(c, argc, argv);
     }
 }
-</code></pre><p>这个函数有点长，不过我们可以先集中于其中的 <code>setKey</code> 函数。</p><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">src/db.c
+</code></pre><p>这个函数有点长，不过我们可以先集中于其中的 <code>setKey</code> 函数。</p><pre class="code-block" data-language="C"><code class="language-c" tabindex="0">// src/db.c
 void setKey(client *c, redisDb *db, robj *key, robj *val, int flags) {
     int keyfound = 0;
 
@@ -194,7 +194,7 @@ void setKey(client *c, redisDb *db, robj *key, robj *val, int flags) {
     点此查看原文
 </a></p>
 </article>
-<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/markdown-blog" target="_blank">MarkdownBlog</a></span></p></footer>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
 <script>window.addEventListener("load", () => {
     const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
     for (const script of scripts) {
