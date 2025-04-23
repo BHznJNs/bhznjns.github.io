@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="color-scheme" content="light dark">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RSS + 推荐算法</title>
+<title>Flutter 应用开发常用工具</title>
 <link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="../dist/style.min.css">
 </head>
@@ -72,8 +72,8 @@ if (darkModeMediaQuery) {
 </span></span>
 </nav>
 <article>
-<h1>RSS + 推荐算法</h1><h2>背景</h2><p>在我的手机上的 RSS 阅读器中，我已经订阅了超过 80 个网站。</p><p>随着订阅数量的增加，我发现我已经完全没有办法看完所有更新的文章。只能有选择地，优先看某一分类的订阅的更新，这就使其它的订阅形同虚设。</p><p>在我的订阅中，有的一日数更，有的数日甚至数周一更。对于一日数更类型的网站，往往其中只有一小部分的内容是我感兴趣的。</p><p>于是我需要一个推荐列表，帮助我把我可能感兴趣的、对我可能有用的文章筛选出来。</p><h2>形态</h2><p>一个长期运行的服务程序，最好是一个自部署服务，将推荐算法筛选出的文章组成新的 RSS 订阅。</p><h2>功能</h2><p>根据用户提供的 opml 文件对 RSS 订阅列表进行定期轮询，在获取到新文章后，访问原文抓取原文内容，通过推荐算法处理获取到的内容，判断是否应该加入推荐列表。</p><ul><li>可以根据用户提供的 RSS 订阅列表初步判断用户喜好。</li><li>应该提供给用户点赞和点踩的功能以辅助改进推荐算法。</li></ul><h2>参考项目</h2><h3><a href="https://yakread.com/" target="_blank">Yakread</a></h3><p>功能上基本符合我的设想，支持导入 opml，也支持 newsletter 订阅。</p><p>网站的盈利模式很简单：在文章列表中插入广告，如果不想看广告则可以氪金去除广告。</p><p>但缺点也很明显：</p><ol><li>要使用 newsletter 功能需要使用网站提供的邮箱，这会导致如果未来要从这个服务迁移，会很困难</li><li>对于 RSS 订阅的文章列表，很多人可能很难接受其中被插入广告</li></ol><p><code>2025/04/20</code> 更新：</p><p>在一段时间的轻度使用后。我发现 Yakread 的可用性还是差了些。</p><p>我最初认为难以接受的插入广告，由于广告的密度不高反倒感觉还可忍受；但是除广告外，还有名为 <code>Discover</code> 的内容推荐。这就导致，作为一个 RSS 阅读器，其中的内容却大多来自我的订阅以外的网站。</p>
-<p><a href="https://bhznjns.github.io/#static/独立开发/想法仓库/RSS + 推荐算法.md">
+<h1>Flutter 应用开发常用工具</h1><h2>在线工具</h2><p>基于 Material You Icon 生成应用图标</p><ul><li><a href="https://icon.kitchen/i/" target="_blank">IconKitchen</a></li></ul><p>从图片直接生成应用颜色主题</p><ul><li><a href="https://material-foundation.github.io/material-theme-builder/" target="_blank">Material Theme Builder</a></li></ul><h2>Flutter Plugin</h2><p>根据用户主题色动态配色：</p><ul><li>dynamic_color</li></ul><p>根据一张图片自动生成应用全平台图标：</p><ul><li>flutter_launcher_icons</li></ul>
+<p><a href="https://bhznjns.github.io/#static/编程/Flutter/Flutter 应用开发常用工具.md">
     点此查看原文
 </a></p>
 </article>
