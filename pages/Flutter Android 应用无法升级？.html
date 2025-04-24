@@ -73,7 +73,78 @@ if (darkModeMediaQuery) {
 </nav>
 <article>
 <h1>Flutter Android 应用无法升级？</h1><p>在刚开始开发 Flutter 应用时，我就注意到了一个问题，Flutter 应用的版本号很特殊，像这样：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">version: 1.0.0+1
-</code></pre><p>我在开发时其实已经遇到问题了，具体表现就是没法直接安装 release 版本安装包，需要卸载当前已经安装的版本再安装。</p><p>我当时没太在意，只是以为是 debug 版本和 release 版本不兼容，直到后来有个用户和我反馈说应用无法升级到新版本，我才重视起来。</p><p>经过一番查询，我发现是 <code>build-number</code> 导致的，即版本号后边的那个数字。build-number 对应的是 <code>AndroidManifest.xml</code> 中的 <code>versionCode</code>，需要在每次版本更新后递增。</p>
+</code></pre><p>我在开发时其实已经遇到问题了，具体表现就是没法直接安装 release 版本安装包，需要卸载当前已经安装的版本再安装。</p><p>我当时没太在意，只是以为是 debug 版本和 release 版本不兼容，直到后来有个用户和我反馈说应用无法升级到新版本，我才重视起来。</p><p>经过一番查询，我发现是 <code>build-number</code> 导致的，即版本号后边的那个数字。build-number 对应的是 <code>AndroidManifest.xml</code> 中的 <code>versionCode</code>，需要在每次版本更新后递增。</p><hr><h2>其实应用签名也有影响（<code>2025/04/24</code> 更新）</h2><p>后来发现，由于 Flutter 应用的构建默认使用 Debug 的签名，会导致每次构建使用的签名不一致，使得新版本无法安装。需要使用 keytool 创建签名文件，在构建时使用自己的签名。</p><details><p>keytool 为 JDK 自带的二进制程序，可以在安装 JDK 后，在 `jdk/bin/` 目录下找到。</p><summary>找不到 keytool？</summary></details><h3>创建签名密钥</h3><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">keytool -genkey -v -keystore &lt;密钥名称&gt;.jks -alias &lt;密钥别名&gt; -keyalg RSA -keysize 2048 -validity 30000
+</code></pre><p>在调用上述命令后，程序会提示填入 keystore 的密码、别名的密码、名称等信息，依次填写即可。</p><p>有的时候可能不会提示填写别名的密码，此时别名的密码与 keystore 的密码相同。</p><p>在完成后，需要妥善保存密钥文件与对应密码。</p><h3>在 CI 中使用签名</h3><h4>创建密钥文件的 Base64 编码</h4><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0"># Unix
+base64 -w 0 &lt;你的密钥库名称&gt;.jks
+# Windows
+[System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes("&lt;你的密钥库名称&gt;.jks"))
+</code></pre><h4>在 GitHub 仓库中添加 Secrets</h4><p>在你的 GitHub 仓库页面，进入 Settings -&gt; Secrets and variables -&gt; Actions -&gt; New repository secret.</p><p>添加以下 secrets：</p><ul><li>SIGNING_KEYSTORE: 粘贴上面 Base64 编码的密钥库文件内容。</li><li>SIGNING_KEYSTORE_PASSWORD: 输入你生成密钥时设置的密钥库密码。</li><li>SIGNING_KEY_ALIAS: 输入你设置的密钥别名。</li><li>SIGNING_KEY_PASSWORD: 输入你设置的密钥别名密码。</li></ul><h4>配置 <code>build.gradle.kts</code> 使用签名</h4><p>在 <code>android/app/build.gradle.kts</code> 中进行修改。</p><p>在文件头部添加：</p><pre class="code-block" data-language="KOTLIN"><code class="language-kotlin" tabindex="0">import java.util.Properties
+import java.io.FileInputStream
+
+val signingPropertiesFile = file("signing.properties")
+val signingProperties = Properties()
+
+if (signingPropertiesFile.exists()) {
+    signingProperties.load(FileInputStream(signingPropertiesFile))
+    println("&gt;&gt;&gt; Loaded signing.properties")
+} else {
+    println("&gt;&gt;&gt; signing.properties not found. Release build might not be signed correctly.")
+}
+
+// 从 properties 中读取值
+val storeFileProp = signingProperties.getProperty("storeFile")
+val storePasswordProp = signingProperties.getProperty("storePassword")
+val keyAliasProp = signingProperties.getProperty("keyAlias")
+val keyPasswordProp = signingProperties.getProperty("keyPassword")
+</code></pre><p>在 android 块中添加：</p><pre class="code-block" data-language="KOTLIN"><code class="language-kotlin" tabindex="0">android {
+    // ... 其他 android 块内的配置，例如 compileSdk, defaultConfig, etc.
+
+    signingConfigs {
+        // 创建一个名为 "release" 的 signing config
+        create("release") {
+            // 只有在 signing.properties 文件存在且属性都被读取到时才应用配置
+            if (storeFileProp != null && storePasswordProp != null && keyAliasProp != null && keyPasswordProp != null) {
+                storeFile = file(storeFileProp)
+                storePassword = storePasswordProp
+                keyAlias = keyAliasProp
+                keyPassword = keyPasswordProp
+            } else {
+                println("&gt;&gt;&gt; Incomplete signing properties. Release build may not be signed correctly.")
+            }
+        }
+    }
+    // 修改原有的 buildTypes 块
+    buildTypes {
+        release {
+            if (storeFileProp != null) {
+                // 使用前面创建的 "release" signing config
+                signingConfig = signingConfigs.getByName("release")
+            } else {
+                println("&gt;&gt;&gt; Release build signing config not applied.")
+            }
+        }
+    }
+}
+</code></pre><h4>配置 GitHub Actions 脚本</h4><p>在构建 APK 的步骤前加入如下两步：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">steps:
+  # ... 其他 steps (如 checkout, setup flutter)
+
+  - name: Decode Keystore
+    working-directory: ${{ env.APK_BUILD_DIR }}
+    run: |
+      echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 -d &gt; android/app/my_app_release_key.jks
+    shell: bash
+
+  - name: Create Signing Properties
+    working-directory: ${{ env.APK_BUILD_DIR }}
+    run: |
+      echo "storeFile=my_app_release_key.jks" &gt; android/app/signing.properties
+      echo "storePassword=${{ secrets.SIGNING_KEYSTORE_PASSWORD }}" &gt;&gt; android/app/signing.properties
+      echo "keyAlias=${{ secrets.SIGNING_KEY_ALIAS }}" &gt;&gt; android/app/signing.properties
+      echo "keyPassword=${{ secrets.SIGNING_KEY_PASSWORD }}" &gt;&gt; android/app/signing.properties
+    shell: bash
+
+  # 构建 APK、发布等
+</code></pre>
 <p><a href="https://bhznjns.github.io/#static/编程/Flutter/Flutter Android 应用无法升级？.md">
     点此查看原文
 </a></p>
