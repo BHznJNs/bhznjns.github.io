@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人机交互的核心是操控感</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>人机交互的核心是操控感</h1><p>我昨天把我的 VSCode 使用的 Copilot 插件换成了 Cline。</p><p>究其原因，是因为在使用 Copilot 时，经常出现“我打开聊天框，给 Copilot 发送指令，Copilot 直接把要给 MCP 服务器的 JSON 指令返回给我，什么也没做”的情况。这种情况出现过很多次。</p><p>反观在使用 Cline 时，就目前来说还没有见到这种情况。</p><p>我之所以使用 Cline 来替代 Copilot，不是因为 Cline 有多聪明（事实上，我使用 Cline 时选择的模型和 Copilot 相同），而是因为当我向其发送指令时，Copilot 有可能什么都不做，也有可能只是把他要进行的修改直接返回，而不是按照我期望的直接修改文件。但 Cline 的行为则基本能满足我的期望。换言之，<strong>使用 Copilot 时的操控感不如 Cline</strong>。</p><h2>另一个例子</h2><p>智能终端上的语音助手出现了很多年，但一直都处于可有可无的状态，以至于微软于 2023 年停止了 Windows 上 Cortana 的服务（也是时代的眼泪了）。</p><p>语音助手的困境一方面是因为这些语音助手往往功能有限，只能做诸如计算、搜索、播放音乐等的基本任务，再加上其使用语音作为交互方式，导致其执行效率低下，不如用户直接操作高效。</p><p>另一方面也是由于使用语音作为交互方式带来的操控感缺失。由于语音识别的准确度不足，再加上其本身功能有限，可能就会出现用户对手机说出指令，等待数秒后手机所做的行为不符合用户预期（如做了错误的行为、响应不支持该功能）的尴尬情况。</p>
+<p><a href="https://bhznjns.github.io/#static/编程/UI & UX/人机交互的核心是操控感.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
