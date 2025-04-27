@@ -4,7 +4,7 @@
 
 信息来源：[How to get Pixel UI on Windows 11 | Customize Windows 11 Desktop](https://www.youtube.com/watch?v=j0sSBe7RcR0)
 相关项目：[MD3-Windows](https://github.com/Runixe786/MD3-Windows)
-盈利途径：通过 [Buy-me-a-coffee](https://buymeacoffee.com/sahilseth2s/e/331439), [Telegraph](https://telegra.ph/Pro-Membership-10-09) 两个途径售卖 Pro 版本，Pro 版本提供更多主题和小部件
+盈利途径：通过 [Buy-me-a-coffee](https://buymeacoffee.com/sahilseth2s/e/331439), [Telegraph](https://telegra.ph/Pro-Membership-10-09) 两个途径售卖 Pro 版本，价格 5$，Pro 版本提供更多主题和小部件。
 
 - - -
 
