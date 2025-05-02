@@ -71,6 +71,16 @@ ffmpeg -i demo.mp4 -c:v h264_videotoolbox -b:v 5000k -threads 0 -c:a aac -b:a 12
 ffmpeg -i demo.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 128k -movflags +faststart demo_h264.mp4
 ```
 
+### 编码效果
+
+原视频 demo.mp4（1080p, 25fps, 约 68 秒），大小 122 MB
+压缩后，保持原始分辨率 (1920x1080)、宽高比 (16:9) 和帧率 (25 fps)
+demo_av1_libaom.mp4 (4.9 MB)
+demo_hevc.mp4 (~5.7 MB)
+demo_h264.mp4 (~6.8 MB)
+
+## 实际使用
+
 最终使用的 HTML：
 
 ```xml

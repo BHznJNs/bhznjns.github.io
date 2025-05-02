@@ -87,7 +87,7 @@ if (darkModeMediaQuery) {
 </code></pre><p>换为软件编码方案，速度尚可，文件大小小很多。</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">ffmpeg -i demo.mp4 -c:v libx265 -crf 28 -preset slow -c:a aac -b:a 128k -movflags +faststart -tag:v hvc1 demo_hevc.mp4
 </code></pre><h3>H.264 编码</h3><p>使用硬件编码，大小较大</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">ffmpeg -i demo.mp4 -c:v h264_videotoolbox -b:v 5000k -threads 0 -c:a aac -b:a 128k -movflags +faststart demo_h264.mp4
 </code></pre><p>软编码方案，速度较慢（4~5x）</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">ffmpeg -i demo.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 128k -movflags +faststart demo_h264.mp4
-</code></pre><p>最终使用的 HTML：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;video poster="demo_thumbnail.png" playsinline autoplay loop muted loading="lazy"&gt;
+</code></pre><h3>编码效果</h3><p>原视频 demo.mp4（1080p, 25fps, 约 68 秒），大小 122 MB</p><p>压缩后，保持原始分辨率 (1920x1080)、宽高比 (16:9) 和帧率 (25 fps)</p><p>demo_av1_libaom.mp4 (4.9 MB)</p><p>demo_hevc.mp4 (~5.7 MB)</p><p>demo_h264.mp4 (~6.8 MB)</p><h2>实际使用</h2><p>最终使用的 HTML：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;video poster="demo_thumbnail.png" playsinline autoplay loop muted loading="lazy"&gt;
       &lt;!-- 注意 source 顺序：最优最省流的放前面 --&gt;
       &lt;source src="demo_av1_libaom.mp4" type="video/mp4; codecs=av01.0.04M.08"&gt;
       &lt;source src="demo_hevc.mp4" type="video/mp4; codecs=hvc1"&gt;
