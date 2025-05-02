@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web 前端压缩视频最大化加载速度的实践</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>Web 前端压缩视频最大化加载速度的实践</h1><p>原文链接：<a href="https://zhuanlan.zhihu.com/p/1900946363786691369" target="_blank">视频压缩到极致是种什么体验？122MB 到 4.9 MB，我的 AV1/HEVC/H.264 编码与 HTML5 播放器实践</a></p><hr><h2>使用不同格式确保所有场景下的体验</h2><p>在 <code>video</code> 标签中使用 <code>source</code> 标签，标签提供了 AV1、HEVC (H.265) 和 H.264 三种编码格式。浏览器会优先选择它支持的第一个资源，从 AV1 到 HEVC 再到 H.264，确保所有设备都能播放。</p><ul><li>文件大小优化：AV1 和 HEVC 的高压缩率显著减小文件体积（相比你提到的 122 MB 的 H.264 视频），加载更快，节省带宽。</li><li>广泛兼容性：从前沿的 AV1 到通用的 H.264，确保视频在任何设备上都能流畅播放。</li><li>用户体验提升：自动播放、循环和内联播放打造丝滑的观看体验，封面图则让页面更美观。</li><li>性能优化：懒加载和高效编码减少页面加载时间和数据消耗，尤其适合移动端用户。</li></ul><p>代码如下，适用于产品官网的演示视频。</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;video
+    poster="https://cdn-domain/homepage/enterprise-1.png" playsinline autoplay loop muted loading="lazy"&gt;
+    &lt;source data-src="https://cdn-domain/homepage/enterprise-1.av1.mp4"
+        type="video/mp4; codecs=av01.0.05M.08" src="https://cdn-domain/homepage/enterprise-1.av1.mp4"&gt;
+    &lt;source data-src="https://cdn-domain/homepage/enterprise-1.hevc.mp4" type="video/mp4; codecs=hvc1"
+        src="https://cdn-domain/homepage/enterprise-1.hevc.mp4"&gt;
+    &lt;source data-src="https://cdn-domain/homepage/enterprise-1.mp4" type="video/mp4"
+        src="https://cdn-domain/homepage/enterprise-1.mp4"&gt;&lt;noscript&gt;&lt;/noscript&gt;
+&lt;/video&gt;
+</code></pre><h2>ffmpeg 使用</h2><h3>生成缩略图 (封面)</h3><p>使用视频第一帧做封面：</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">ffmpeg -i demo.mp4 -vframes 1 demo_thumbnail.png
+</code></pre><h3>音频处理</h3><p>音频使用 AAC 编码，比特率从原始的 317 kb/s 降到了 128 kb/s (<code>-c:a aac -b:a 128k</code>)。使用 <code>-movflags +faststart</code> 参数把 moov atom（包含索引信息）移到文件开头，让视频可以边加载边播放。</p><h3>AV1 编码</h3><p>加入了 <code>-cpu-used 6</code> 参数（数值越高越快，但质量可能下降），并指定 CRF (Constant Rate Factor) 为 30 来控制质量与体积的平衡 (<code>-crf 30</code>，数值越大体积越小，质量越低)。同时启用多线程 <code>-threads 0</code> (自动使用所有核心)。</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">ffmpeg -i demo.mp4 -c:v libaom-av1 -crf 30 -b:v 0 -cpu-used 6 -threads 0 -c:a aac -b:a 128k -movflags +faststart -strict -2 demo_av1_libaom.mp4
+</code></pre><h3>HEVC 编码</h3><p>使用硬件加速的话，速度快，但是输出文件较大。</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">ffmpeg -i demo.mp4 -c:v hevc_videotoolbox -b:v 4000k -tag:v hvc1 -threads 0 -c:a aac -b:a 128k -movflags +faststart demo_hevc.mp4
+</code></pre><p>换为软件编码方案，速度尚可，文件大小小很多。</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">ffmpeg -i demo.mp4 -c:v libx265 -crf 28 -preset slow -c:a aac -b:a 128k -movflags +faststart -tag:v hvc1 demo_hevc.mp4
+</code></pre><h3>H.264 编码</h3><p>使用硬件编码，大小较大</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">ffmpeg -i demo.mp4 -c:v h264_videotoolbox -b:v 5000k -threads 0 -c:a aac -b:a 128k -movflags +faststart demo_h264.mp4
+</code></pre><p>软编码方案，速度较慢（4~5x）</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">ffmpeg -i demo.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 128k -movflags +faststart demo_h264.mp4
+</code></pre><p>最终使用的 HTML：</p><pre class="code-block" data-language="XML"><code class="language-xml" tabindex="0">&lt;video poster="demo_thumbnail.png" playsinline autoplay loop muted loading="lazy"&gt;
+      &lt;!-- 注意 source 顺序：最优最省流的放前面 --&gt;
+      &lt;source src="demo_av1_libaom.mp4" type="video/mp4; codecs=av01.0.04M.08"&gt;
+      &lt;source src="demo_hevc.mp4" type="video/mp4; codecs=hvc1"&gt;
+      &lt;source src="demo_h264.mp4" type="video/mp4"&gt;
+      &lt;!-- Fallback 信息 --&gt;
+      &lt;p class="fallback"&gt;抱歉，您的浏览器似乎不支持 HTML5 视频播放。推荐使用最新版 Chrome、Firefox 或 Safari 浏览器。&lt;/p&gt;
+&lt;/video&gt;
+</code></pre>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/Web 前端压缩视频最大化加载速度的实践.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
