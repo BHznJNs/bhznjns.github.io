@@ -11,11 +11,11 @@
 2. 卸载 Docker Desktop（可能无须卸载也能成功）
 3. 在“开启关闭 Windows 特性”中关闭“Windows Subsystem for Linux”
 
-![关闭“Windows Subsystem for Linux”](https://i.sstatic.net/V8FzJLth.png)
+![关闭“Windows Subsystem for Linux”](.一次使用 Docker 遇到各种问题的解决过程/关闭 WSL.png)
 
-4. 从这里 Releases · microsoft/WSL · GitHub 安装最新版本的 WSL（或者也可以使用命令行：wsl --install or wsl.exe --install）
-5. 使用命令 wsl --status 确保安装
-6. 重新安装 Docker Desktop
+1. 从这里 Releases · microsoft/WSL · GitHub 安装最新版本的 WSL（或者也可以使用命令行：wsl --install or wsl.exe --install）
+2. 使用命令 wsl --status 确保安装
+3. 重新安装 Docker Desktop
 
 ## Docker 无法使用代理
 
@@ -28,7 +28,7 @@
 
 ### 使用 Docker Desktop 自带的设置
 
-![Docker Desktop 设置](https://i.sstatic.net/3zn1b.png)
+![Docker Desktop 设置](.一次使用 Docker 遇到各种问题的解决过程/Docker Desktop Settings.png)
 直接选择目标位置即可。
 
 ### 建立链接
