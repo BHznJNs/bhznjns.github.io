@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>开始尝试 Vibe Coding</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>开始尝试 Vibe Coding</h1><h2>起因</h2><p>之前在刷油管的时候看到这个视频：<a href="https://www.youtube.com/watch?v=dutyOc_cAEU" target="_blank">VS Code Agent Mode Just Changed Everything</a></p><p>我对于 VSCode 集成了 AI 功能感到有些惊讶，虽然我之前就对于 AI 编辑器 Cursor 和 Windsurf 有所耳闻，但没想到 VSCode 会这么快跟进，而且能够免费使用。</p><h2>VSCode Copilot</h2><p>于是我更新了 VSCode，新版本的 VSCode 已经自带了 Copilot 相关功能，并预装了 Copilot 插件。</p><p>登录账号，把 Copilot 设置为 Agent 模式，就可以直接让它帮我改动编辑器中的代码了。</p><p>改动编辑器中的代码只是最基础的功能，我也可以让它读取工作区中的一些文件，再基于这些文件进行操作。或者直接指定一些文件或者文件夹，让它自己读取。</p><p>Copilot 也有 Cursor 中非常受欢迎的功能：Next edit。这个功能乍一看和传统的 AI 补全有些相似，但是它有一个特点：</p><p>但是 Copilot 有两个缺点：</p><ol><li>对于免费用户有使用限额：虽然 Copilot 支持设置自己的 API key，但是依然会使用到 Copilot 自身的聊天消息和代码的限额。</li><li>功能不够稳定：在使用自己的 API key 时，可能和模型能力有关，在聊天界面发出编辑要求时，有时会出现 Copilot 将描述编辑操作的 JSON 返回给用户而没有实际进行编辑的情况。</li></ol><h2>Cline</h2><p>于是我又开始尝试其它解决方案。</p><p>最终我选择了在其他博客中见过多次的 Cline。</p><p>Cline 的使用体验很好，无需登录，填入从 Google AI Studio 获取的免费 API key 即可使用。</p><p>虽然 Cline 相比 Copilot 少了自动补全和 Next edit 的功能，不过对于我个人反而是加分项。毕竟 Copilot 的自动补全和 Next edit 的提示常常会在我不希望的时候跳出来，打断思路，没有反而用着更舒服些。</p><p>为了规避 Gemini 免费 API key 请求频率的限制，我使用开源的 <a href="https://github.com/snailyp/gemini-balance" target="_blank">gemini-balance</a> 搭建了一个自己的 API key 池使用。</p><h2>其它工具</h2><p>我同样尝试过 Cline 的一个社区分支，Roo Code，有着相似的使用体验，同时有更多的设置项，不过我个人觉得 Cline 的使用体验已经足够，浅尝后就移除了 Roo Code。</p><p>我也尝试过给 Cline 安装一些近来常见到讨论的 MCP Server，虽然 Cline 自己有提供 MCP Marketplace，在点击安装后就会跳转到聊天界面，然后 Cline 就会自动开始配置；但是按照我自己的使用体验来说，在自动安装完成后往往是无法正常使用的。我也尝试过自己在本地安装，虽然可以正常使用，但是每次要用时还要手动启用 Server，还是有些麻烦。我同样尝试过在 Cloudflare Workers 上搭建远程 MCP Server，但是由于很多 MCP Server 的实现语言不一致，我对 Cloudflare Workers 也完全不了解，仅仅只是尝试着把官方的 <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking" target="_blank">Sequential Thinking</a> 示例部署之后就不了了之。</p><p>我在迁移到 Cline 之后同样尝试过其它的代码补全插件：</p><ul><li>Google 官方的编程插件 Gemini Code Assist 在我使用时无法正常登录，自然也无法使用</li><li>我同样尝试过虽然是小厂但效果很好的 Fitten Code，但在一番尝试后感觉我并不需要这种基于 AI 的代码补全，就放弃了进一步的尝试。</li></ul>
+<p><a href="https://bhznjns.github.io/#static/杂谈/LLM 使用/开始尝试 Vibe Coding.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
