@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>搭建 Gemini API key 池，免费爽用 Gemini</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>搭建 Gemini API key 池，免费爽用 Gemini</h1><h2>起因</h2><p>尝试在 Cline 中使用 Gemini 的免费 API key，但是发现对于免费用户，其请求速率有一定限制，只要 Cline 自动执行的指令稍微多一些就会达到这个限制。于是开始寻找能够均衡使用好几个 API key 的方法。</p><h2>尝试过的方案</h2><p>我通过 Perplexity 搜索，找到了 <a href="https://github.com/songquanpeng/one-api" target="_blank">One API</a> 这个项目，star 很多，但我实际使用后发现功能过于繁杂。对于基于其二次开发的 <a href="https://github.com/MartialBE/one-hub" target="_blank">One Hub</a> 等项目也有类似的问题。</p><p>最后我找到了 <a href="https://github.com/snailyp/gemini-balance" target="_blank">Gemini Balance</a> 这个项目，完美符合我的需求。跟随其<a href="https://gb-docs.snaily.top/guide/setup-hf.html" target="_blank">部署文档</a>可以很轻松地使用一些现成的免费服务部署起一个远程的 API key 池。</p><h2>部署之后遇到的问题</h2><h3>使用代理 IP</h3><p>按照论坛网友的说法，同一个 Google 账号下不同的 Google Cloud Project 下的 API key 是独立计算额度的，于是我使用了两个 Google 账号，每个账号创建了 7 个项目，并在每个项目下创建了 key 放在池子中使用。</p><p>但是实际使用发现在 <ruby data-notation="每分钟请求次数">RPM<rp>(</rp>,<rt>每分钟请求次数</rt>,<rp>)</rp></ruby> 达到 20 不到时，就开始返回 429。</p><p>查询发现可能是因为虽然使用了不同的 key，但是是从相同的 IP 访问的。于是使用了 Cloudflare 的 AI Gateway。</p><details><p>在 Cloudflare 中可以免费创建 AI Gateway，在创建时 platform 选择 <code>Universal</code>，复制 Endpoint URL，这个 URL 差不多长这样：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">https://gateway.ai.cloudflare.com/v1/xxxxxxxxxxxx/project-name/
+</code></pre><p>实际使用时，在其后加上后缀：<code>google-ai-studio/v1beta</code> 即可。</p><summary> 附：AI Gateway 的使用</summary></details><p>在 Gemini Balance 的配置中将 Base URL 设为 AI Gateway 的 Endpoint URL，这样就会通过 AI Gateway 来请求 Gemini 了。</p><h3>同一个账号使用的 key 过多</h3><p>在使用 AI Gateway 后，测试发现 RPM 依然差不多，求助得知可能是使用了同一账号过多的 key。</p><p>于是我将池子中的 key 数量减少到 4 个，两个 Google 账号各两个，测试的 RPM 果然达到了 30+，基本足够两个人爽用了。</p><h2>附：速率限制测试方法</h2><p>打开一个代码文件较多的项目，让 Cline 逐一读取项目中的每个代码文件（加以总结或进行 Review）。</p><p>如果觉得速度不够，可以同时打开好几个项目，并行进行。</p>
+<p><a href="https://bhznjns.github.io/#static/杂谈/LLM 使用/搭建 Gemini API key 池，免费爽用 Gemini.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
