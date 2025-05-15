@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025年3月下半及4月的小结</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>2025 年 3 月下半及 4 月的小结</h1><p>回过神来，已经好久没有写总结了。这两天状态不好写不动代码，但又想有点输出，思来想去，不如久违地写一篇总结吧。</p><h2>最大的变化：开始写日志了</h2><p>恰好是在上一篇阶段总结之后开始的，详见博客：<a href="#static/杂谈/我开始写日志了.md">我开始写日志了</a>。</p><h2>开发</h2><p>为了给 <a href="https://github.com/InputShare/InputShare" target="_blank">InputShare</a> 做一个更易于修改也更现代化的新界面，在进行了<a href="#static/编程/Python/一次%20Python%20GUI%20框架的选择.md">一番调研</a>后，最终选择基于 PySide6 和 Qt 自带的 QWebEngine 自己实现一个<a href="https://github.com/BHznJNs/PyQWebWindow" target="_blank">类似于 Electron </a>的 Python 库供自己的项目使用。</p><p>花了很多时间实现 PyQWebWindow 的 IPC 模块，</p><p>在 RSS 订阅中读到这篇<a href="https://doi.org/10.1265/ehpm.24-00247" target="_blank">关于预防晕车的论文</a>，通过 AI 大致了解相关原理后快速实现了一个<a href="https://github.com/BHznJNs/MotionEaseTune" target="_blank">基于这个原理的安卓应用</a>，在这个过程中还基于这个项目以及之前写的 Flutter 安卓项目抽离出来一个比较通用的<a href="https://github.com/BHznJNs/flutter_android_template" target="_blank"> Flutter 安卓项目模板</a>，带有基础的语言及主题的切换和设置，以及 GitHub CI 自动构建。随后又模仿之前推广 InputShare 的方法，在<a href="https://ruanyifeng.com/blog/" target="_blank">阮一峰的周刊</a>、<a href="https://weekly.howie6879.com/" target="_blank">老胡的周刊</a>、<a href="https://meta.appinn.net/" target="_blank">小众软件论坛</a>、<a href="https://linux.do" target="_blank">Linux.do</a>以及几个社群中发布了相关信息推广 MotionEaseTune 这个项目。截止我撰写这篇文章，这个项目已获得 286 个 Star。</p><p>在四月的后半月，开始尝试 Copilot 这种的 AI 编程插件，最后在尝试一圈后选择了 Cline。也是<a href="#static/杂谈/LLM 使用/开始尝试 Vibe Coding.md">开始 Vibe Coding </a>了。</p><h2>输出</h2><p>四月里时间基本都在代码上，博客写得也不多。输出字数 5000，共 15 篇博客，但技术类的内容多了些。</p><h2>其它</h2><p>去中国银行申请了一张 MasterCard 的借记卡，之后将应用上架到 MicroSoft Store 或者 Google Play 能用上。</p>
+<p><a href="https://bhznjns.github.io/#static/阶段小结/月度小结/2025年3月下半及4月的小结.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>

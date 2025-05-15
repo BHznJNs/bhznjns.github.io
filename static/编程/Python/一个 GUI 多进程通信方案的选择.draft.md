@@ -13,37 +13,8 @@ import threading
 import multiprocessing
 
 def settings_window_runner(queue: multiprocessing.Queue):
-    i18n = get_i18n()
     result = None
-
-    def config() -> dict:
-        config_ = get_config()
-        return asdict(config_)
-
-    def save_config(config: dict):
-        nonlocal result, window
-        result = config
-        window.close()
-
-    def setting_finished_callback():
-        nonlocal window
-        window.close()
-
-    app = QAppManager(theme=get_config().theme)
-    window = QWebWindow(
-        title=i18n(["InputShare Settings", "输入流转 —— 设置"]),
-        icon=str(ICON_ICO_PATH.absolute()),
-        size=(720, 400),
-        minimum_size=(600, 360),
-    )
-    window.event_listener\
-        .add_event_listener("window_close_requested", setting_finished_callback)
-    window.register_bindings([
-        config, save_config,
-    ])
-    window.load_file(str(SETTINGS_PAGE_PATH))
-    window.start()
-    app.exec()
+    # 省略窗口自身逻辑
     queue.put(result)
 
 def open_settings_window() -> threading.Thread:
@@ -73,19 +44,125 @@ def open_settings_window() -> threading.Thread:
 ## 方案二：使用进程池
 
 既然每次调用时启动子进程的延迟主要来自于进程创建，那我只要不创建进程不就解决了吗？
-我尝试使用进程池来消除子进程创建带来的开销。
+于是我开始尝试使用进程池来消除子进程创建带来的开销。
 
 ```python
 from concurrent.futures import ProcessPoolExecutor
 
 executor = ProcessPoolExecutor(1)
 
+def settings_window_runner():
+    result = None
+    # 省略窗口自身逻辑
+    return result
+
 def open_settings_window() -> threading.Thread:
     def inner():
         future = executor.submit(settings_window_runner)
         result = future.result()
+        # 使用任务返回的结果
+
+    background_thread = threading.Thread(target=inner, daemon=True)
+    background_thread.start()
+    return background_thread
 ```
 
-## 方案二：使用 ``QLocalServer`` 和 ``QLocalSocket``
+使用这种方案的话，runner 的编写更符合直觉，且由于使用了进程池，在实际运行 runner 时，少了启动进程带来的开销，速度快了很多。
+但是由于 Qt 的限制，在同一进程中不能反复启动 QApplication，此方案作废。
 
-我查询资料后得知，Qt 自身就有提供跨进程通信的相关库。
+## 方案三：使用 QApplication 单例
+
+在整个程序的生命周期中只启动一个 QApplication，通过 IPC 来启动窗口和返回任务结果。
+这也是我的项目中最终敲定使用的方案，最终实现如下：
+
+```python
+import asyncio
+import atexit
+from multiprocessing import Process
+from typing import Any, Callable, Iterable, TypeVar
+from PyQWebWindow.MqIpc.server import IpcServer
+from PyQWebWindow.utils import Serializable
+from utils.network.port_check import find_available_port
+
+_TaskResult = TypeVar("_TaskResult")
+
+class WindowManager:
+    _server: IpcServer
+    _worker: Process
+
+    @staticmethod
+    def _initializer(debugging: bool, ipc_port: int):
+        from PyQWebWindow.all import QAppManager, QWebWindow, IpcClient
+
+        def run_task_handler(task: Callable[[IpcClient, Any], QWebWindow], *args):
+            nonlocal window_pool
+            if task in window_pool:
+                window = window_pool[task]
+                window.focus()
+                return
+
+            window = task(client, *args)
+            window_pool[task] = window
+            window.window.closed.connect(lambda: window_pool.pop(task))
+
+        def exit_handler():
+            nonlocal app, client
+            client.stop()
+            app.quit()
+
+        app = QAppManager(debugging=debugging, disable_gpu=not debugging, auto_quit=False)
+        window_pool: dict[Callable[[IpcClient, Any], QWebWindow], QWebWindow] = {}
+        client = IpcClient(port=ipc_port)
+        client.on("run-task", run_task_handler)
+        client.on("process-exit", exit_handler)
+        app.use_ipc_client(client)
+        app.exec()
+
+    @staticmethod
+    def init(debugging: bool = False):
+        ipc_port = find_available_port(5556)
+        WindowManager._server = IpcServer(port=ipc_port)
+        WindowManager._server.start()
+        WindowManager._worker = Process(target=WindowManager._initializer, args=[debugging, ipc_port])
+        WindowManager._worker.start()
+        atexit.register(WindowManager.shutdown)
+
+    @staticmethod
+    def shutdown():
+        WindowManager._server.emit("process-exit")
+        WindowManager._worker.join()
+        WindowManager._server.stop()
+
+    @staticmethod
+    def submit_and_wait(
+        task: Callable,
+        _t: _TaskResult,
+        args: Iterable[Any] = [],
+    ) -> _TaskResult:
+        async def run_task() -> _TaskResult:
+            loop = asyncio.get_running_loop()
+            fut = loop.create_future()
+
+            server = WindowManager._server
+            server.emit("run-task", task, *args) # type: ignore
+            server.once("task-completed",
+                lambda res: loop.call_soon_threadsafe(fut.set_result, res)) # type: ignore
+            return await fut
+        return asyncio.run(run_task())
+
+    @staticmethod
+    def submit_and_then(
+        task: Callable,
+        callback: Callable[[_TaskResult], Any],
+        args: Iterable[Serializable] = [],
+    ):
+        server = WindowManager._server
+        server.emit("run-task", task, *args) # type: ignore
+        server.once("task-completed", lambda res: callback(res))
+```
+
+简单来说，就是自己实现了一个类似于进程池的结构，在程序初始化时就启动子进程，并在子进程中启动 QApplication 实例（同时设置 QApplication 不在所有窗口关闭后退出），这个 QApplication 会存在于整个程序的生命周期。通过两个 submit 方法（``submit_and_wait`` & ``submit_and_then``）向 manager 中提交任务；manager 中在收到任务后执行则启动窗口。在 runner 中通过 emit ``task-completed`` 事件来提交结果，再通过 IPC 将结果传到主进程。
+
+## 具体的事件通信的实现
+
+上面只是
