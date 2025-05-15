@@ -13,8 +13,8 @@
 
 ![关闭“Windows Subsystem for Linux”](.一次使用 Docker 遇到各种问题的解决过程/关闭 WSL.png)
 
-1. 从这里 Releases · microsoft/WSL · GitHub 安装最新版本的 WSL（或者也可以使用命令行：wsl --install or wsl.exe --install）
-2. 使用命令 wsl --status 确保安装
+1. 从[这里](https://github.com/microsoft/WSL/releases/)安装最新版本的 WSL（或者也可以使用命令行：``wsl \-\-install`` or ``wsl.exe \-\-install``）
+2. 使用命令 ``wsl \-\-status`` 确保安装
 3. 重新安装 Docker Desktop
 
 ## Docker 无法使用代理
