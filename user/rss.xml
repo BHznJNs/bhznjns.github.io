@@ -7,6 +7,11 @@
     <feedId>101282540872310784</feedId>
     <userId>96180252670732288</userId>
 </follow_challenge><item>
+<title>如何更好地开发 AI 应用程序</title>
+<link>https://bhznjns.github.io/pages/%E5%A6%82%E4%BD%95%E6%9B%B4%E5%A5%BD%E5%9C%B0%E5%BC%80%E5%8F%91%20AI%20%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F.html</link>
+<pubDate>Wed, 28 May 2025 18:08:00 +0800</pubDate>
+<lastBuildDate>Wed, 28 May 2025 20:02:00 +0800</lastBuildDate>
+</item><item>
 <title>一个全平台支持的追番客户端</title>
 <link>https://bhznjns.github.io/pages/%E4%B8%80%E4%B8%AA%E5%85%A8%E5%B9%B3%E5%8F%B0%E6%94%AF%E6%8C%81%E7%9A%84%E8%BF%BD%E7%95%AA%E5%AE%A2%E6%88%B7%E7%AB%AF.html</link>
 <pubDate>Thu, 15 May 2025 23:12:00 +0800</pubDate>
@@ -130,7 +135,7 @@
 <title>一次 Python GUI 框架的选择</title>
 <link>https://bhznjns.github.io/pages/%E4%B8%80%E6%AC%A1%20Python%20GUI%20%E6%A1%86%E6%9E%B6%E7%9A%84%E9%80%89%E6%8B%A9.html</link>
 <pubDate>Sun, 23 Mar 2025 23:03:00 +0800</pubDate>
-<lastBuildDate>Fri, 11 Apr 2025 23:34:00 +0800</lastBuildDate>
+<lastBuildDate>Sat, 17 May 2025 12:14:00 +0800</lastBuildDate>
 </item><item>
 <title>开源参与者都得读一读的几篇文章</title>
 <link>https://bhznjns.github.io/pages/%E5%BC%80%E6%BA%90%E5%8F%82%E4%B8%8E%E8%80%85%E9%83%BD%E5%BE%97%E8%AF%BB%E4%B8%80%E8%AF%BB%E7%9A%84%E5%87%A0%E7%AF%87%E6%96%87%E7%AB%A0.html</link>
@@ -251,9 +256,4 @@
 <link>https://bhznjns.github.io/pages/2025%E5%B9%B4%20%E5%AF%92%E5%81%87%E5%B0%8F%E7%BB%93.html</link>
 <pubDate>Sun, 23 Feb 2025 16:49:00 +0800</pubDate>
 <lastBuildDate>Sun, 23 Feb 2025 22:47:00 +0800</lastBuildDate>
-</item><item>
-<title>Flutter NFC 冷启动小坑</title>
-<link>https://bhznjns.github.io/pages/Flutter%20NFC%20%E5%86%B7%E5%90%AF%E5%8A%A8%E5%B0%8F%E5%9D%91.html</link>
-<pubDate>Thu, 20 Feb 2025 23:21:00 +0800</pubDate>
-<lastBuildDate>Sun, 23 Feb 2025 16:47:00 +0800</lastBuildDate>
 </item></channel></rss>
