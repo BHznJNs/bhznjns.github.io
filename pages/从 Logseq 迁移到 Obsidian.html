@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从 Logseq 迁移到 Obsidian</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>从 Logseq 迁移到 Obsidian</h1><h2>想要迁移的原因</h2><p>自从<a href="https://bhznjns.github.io/static/我开始写日志了.md">我开始写日志</a>到现在，已经两个多月了。</p><p>这期间，我发现我写日志的意愿不时地减弱，一部分是因为我有时会写代码上头，等回过神来已经没有写日志的闲暇；另一部分，Logseq 的启动速度也是很重要的原因。</p><p>Logseq 实在<strong>太慢了</strong>！我之前以为是我的手机性能不足，在电脑上也装了 Logseq，通过 syncthings 同步；但在电脑上装了 Logseq 才发现，电脑端<strong>更慢</strong>！</p><p>我曾看到一个说法：如果有件事你想去做，有意愿去做，但又懒得做，那一定是因为在开始做这件事的阻碍过多。</p><h2>为什么选择 Obsidian？</h2><p>之前看到有一些 Logseq 社区的帖子分享了从 Logseq 迁移到 Obsidian 的经历，于是再次将 Obsidian 下载回来尝试迁移。</p><p>事实上，我刚刚安装完成启动 Obsidian 时，就下定决心要迁移了，相比于 Logseq，Obsidian 简直不要太丝滑，完全是秒开的速度了。</p><p>得益于 Logseq 和 Obsidian 都使用本地优先的策略，并且都在本地直接存储 Markdown 文件，迁移变得无比轻松：只需要移动一下 Logseq 数据目录中的 Markdown 文件，把 <code>YYYY_MM_DD</code> 的文件名称改名为 <code>YYYY-MM-DD</code>，再在 Obsidian 中启用并设置内置的 Daily Notes 插件，就基本完成迁移了。</p><h2>为什么之前不使用 Obsidian？</h2><p>因为 Obsidian 作为一个 All in one 的笔记软件，其定位与我自己开发的 BaSB 其实有很大的重合。将其作为 Logseq 的替代品的话，就会出现其多数功能未被用上的情况。这是有软件洁癖的我难以接受的。</p><p>所以，我之前在选择日志软件时，宁可选择专注于日志功能的 Logseq，而非更全能的 Obsidian。 </p><p>不过，我最近也开始有从小米笔记迁移的打算，正好趁着用 Obsidian 替代 Logseq 的机会，把我存在小米笔记中的一些重要内容迁移走，也算是能多利用一些 Obsidian 中的功能了。</p><h2>现在，我的笔记矩阵</h2><ul><li>小米笔记依然在使用中，现在它被用来记录一些更临时的信息。</li><li>Obsidian 被用来记录碎片但又不那么碎片的信息，加上日志功能。</li><li>而整合汇总后的信息依然会在这里输出。</li></ul>
+<p><a href="https://bhznjns.github.io/#static/杂谈/从 Logseq 迁移到 Obsidian.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
