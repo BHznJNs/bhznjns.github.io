@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025年5月 月度小结</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>2025 年 5 月 月度小结</h1><h2>AI</h2><p>这个月算是我个人的 AI 月吧。陆续接触了很多 AI 相关的东西。开始探索通过 AI 技术提升自己的生产力。</p><h3>Vibe Coding</h3><p>我开始使用 Cline，<a href="#static/杂谈/LLM 使用/开始尝试 Vibe Coding.md">尝试 Vibe Coding</a>。</p><h3>Gemini 的 API 池</h3><p>在使用的过程中，为了优化使用体验，又<a href="#static/杂谈/LLM 使用/搭建 Gemini API key 池，免费爽用 Gemini.md">自己部署了 Gemini 的 API key 池</a>。</p><h3>MCP</h3><p>为了增强 Cline 的能力，我又开始折腾起 MCP。最开始是直接通过 Cline 内置的功能来安装调用 MCP 服务器，但是发现单靠 Cline 自己安装不太靠谱，又自己尝试手动安装。安装跑起来之后，发现 MCP 服务器在本地用起来不太方便，又开始探索将 MCP 服务器部署在云端的方案。</p><p>我最开始尝试了 Cloudflare 的 Worker，虽然我在之前并没有接触过 Worker 这种 Serverless 的云服务，不过也是久闻 Cloudflare“大善人”的大名。不过一方面 Worker 无法运行 Docker 镜像，也没有办法调用 Python 和 Node 来运行服务；另一方面 Worker 这种 Serverless 的服务天然就不适合 MCP 服务器这种需要长时运行的服务。所以我最终放弃了 Worker。</p><p>我又尝试了之前部署 API 池子的 Huggingface Space，Space 是支持部署 Docker 容器的，但是如果一个 Space 只部署一个 MCP 服务器的话，资源利用率未免太低了些。</p><p>于是我开始寻找能够在一个服务中部署多个 MCP 服务器的方案。我很快找到了<a href="https://github.com/kfirtoledo/multi-mcp" target="_blank">multi-mcp</a> 这个项目。经过一番尝试，很快就封装了一个 Dockerfile，让这个项目能够运行在 Huggingface 上。但还没结束，在尝试对 multi-mcp 进行二次开发的过程中，遇到了诸多问题，最后决定推翻重来，自己<a href="https://github.com/One-MCP/multi-mcp" target="_blank">重写了一个</a>，加上了我需要的鉴权功能和子路由功能。最后将前面使用的 Dockerfile 进行了封装，就有了<a href="https://github.com/One-MCP/one-mcp" target="_blank">One MCP</a> 这个项目。</p><h2>开始使用 Obsidian 以替代 Logseq</h2><p>在这个月月底时，我终于下定决心<a href="#static/杂谈/从 Logseq 迁移到 Obsidian.md">从 Logseq 迁移到 Obsidian </a>，同时也将小米笔记上的一些内容迁移到 Obsidian 中。</p><h2>开发</h2><p>这个月在开发上的收获还是颇丰。得益于折腾 AI 相关软件，我对于 LLM 的调用、MCP 服务端和客户端的开发有了很多了解，也学会使用 Dockerfile。</p>
+<p><a href="https://bhznjns.github.io/#static/阶段小结/月度小结/2025年5月 月度小结.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
