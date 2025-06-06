@@ -1,7 +1,7 @@
 # 计时器/计数器
 
 以 CPU 频率 16MHz 为例（time period: $$\cfrac{1}{16MHz} = 0.0000625ms$$）
-使用 Prescaler 已降低时钟频率：$$F_{CPU} / Prescaler$$
+使用 Prescaler 以降低时钟频率：$$F_{CPU} / Prescaler$$
 
 | Prescaler | Clock frequency | 8 bit Timer (max delay) | 16 bit Timer (max delay) |
 | 8         | 2MHz            | 0.128ms                 | 32.768ms                 |
