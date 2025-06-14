@@ -93,3 +93,33 @@ int main(void) {
     }
 }
 ```
+
+## {CTC}(Clear Timer on Compare) Mode
+
+>>>计算例
+F_CPU = 16MHz, prescaler = 1024, clock frequency = 15.625KHz 
+Required delay = 8ms → Total timer counts = 124
+>>>
+
+### Interrupts with CTC Mode
+
+```cpp
+void timer0_init() {
+    TCCR0A |= (1 << WGM01); // CTC mode
+    TCCR0B |= (1 << CS02) | (1 << CS00); // prescaler=1024
+    TCNT0 = 0; // initialise counter
+    OCR0A = 124; //initialise compare value
+    TIMSK0 |= (1<<OCIE0A); // enable compare interrupt
+    sei(); // enable global interrupt
+}
+ISR (TIMER0_COMPA_vect) {
+    PORTL ^= (1 << PL0); //toggle the LED whenever a match occurs
+}
+int main(void) {
+    DDRL |= (1 << 0); // connect LED to pin PL0;
+    timer0_init();    // initialise timer 0
+    while (1) {
+        // do nothing
+    }
+}
+```
