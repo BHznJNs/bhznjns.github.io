@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>平板电脑的使用场景</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>平板电脑的使用场景</h1><p>原视频：<a href="https://www.youtube.com/watch?v=alDhOLhbkbY" target="_blank">The Android Tablet Problem</a></p><p>现在的平板电脑性能很强大，但是似乎没有什么事是只有平板才能做的。</p><hr><blockquote><p>I realized that tablets are <strong>not about doing something different, it's about doing it more comfortably</strong>.</p><p>Reading, drawing, watching videos while chilling on the sofa or the bed. Tablets are so good to do stuff that the phone screen is too small and the PC is too "rigid" for.</p></blockquote><blockquote><p>As a math teacher it's a game changer. I mirror it to my smart board and walk around the room helping students individually while displaying the notes and instructing. It allows me to be right there if a student needs help, walk around to monitor engagement, and check work as we go to make sure no misconceptions go beyond my classroom.</p></blockquote><blockquote><p>For high school students, tablets with stylus are a game changer. They <strong>make out bags so much lighter, we get much more utility, with the tablet basically replacing our books and our laptop</strong> (for the most part)</p><p>I‘m a Student. I use my iPad with pen for <strong>taking notes directly on the lecture slides</strong> and generally everything I would do with a pen. For everything else, I use my phone or laptop</p></blockquote><blockquote><p>Im a physician. An iPad mini fits in my white coat, and in between patients, i can <strong>review my patient's chart, look up recommendations, and take notes</strong>. Its a game changer. </p><p>Its worth nothing that in professional settings, simply looking those same things up on your phone can be seen as unprofessional (as in "oh hes on his phone") but having a tablet that im navigating with a pencil gives an intentionality to my actions, challenging those assumptions. </p><p>Its a great product for those in a professional public space who need to move around a lot (Such as walking through the halls of the hospital or navigating in between rooms regularly).</p></blockquote><blockquote><p>I'm a classical musician and having all of my sheet music in one place connected to a page turner pedal and a high quality pen to make notes on the pages with is massive!</p></blockquote><blockquote><p>I have a specific use case. As a contractor, tablets are lifesavers. It <strong>saves hours of drawing by hand</strong> when measuring for a new kitchen or cabinet install, as well as anywhere where a picture can be snapped of an existing area and then measurements can be drawn right over top. It is a workflow gamechanger.</p></blockquote><blockquote><p>I am an audio engineer. Tablets are absolutely AWESOME in my world. <strong>Pretty much any pro-audio mixer has some form of remote control capability, and it is amazing to have the option to walk around with an iPad instead of setting up a whole sound booth</strong>. Depending on the gig, there is no front-of-house and you just have to take the hit. It's super clutch to have the Mixing Station app for small to medium sized events. (Also, giving the artist an extra tablet for their personal monitors is just as handy.) </p></blockquote><blockquote><p>I use it as <strong>my docked social media device on my desk as well as my third screen</strong>. My two monitors have work stuff on them and I can use my mouse and keyboard to control my iPad, answer chats, browse videos, view stuff on smaller screens and also just to post stuff on Instagram sometimes.</p></blockquote><blockquote><p>I also like a rhythm game things so i will put my iPad on the table and play it with index finger, it's so much fun and the size is perfect.</p></blockquote><blockquote><p>I’m an editor and translator for manga, and while I hate translating on the iPad due to lack of screen space, <strong>it’s GREAT for editing - goodnotes to open pdfs and draw directly on them, side by side with a books app to compare the English and JP versions, then side by side with our file management app to note my comments</strong>. It’s the best workflow for it that I’ve had so far. </p></blockquote>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/平板电脑的使用场景.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
