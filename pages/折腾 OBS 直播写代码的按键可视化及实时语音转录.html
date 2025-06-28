@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>折腾 OBS 直播写代码的按键可视化及实时语音转录</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>折腾 OBS 直播写代码的按键可视化及实时语音转录</h1><p>今天一时兴起，想再试试在 B 站直播写代码。但是之前直播</p><h2>首先是通过 OBS Studio 进行第三方推流</h2><p>通过 <a href="https://github.com/ChaceQC/bilibili_live_stream_code/" target="_blank">bilibili_live_stream_code</a> 这个项目可以很轻松地实现自动获取 B 站的 Cookies，并且生成推流地址和密钥，在 OBS 中粘贴即可使用。</p><h2>声音转录文本展示</h2><p>我在调研一番后原本打算使用 <a href="https://github.com/QuentinFuxa/WhisperLiveKit" target="_blank">WhisperLiveKit</a>，但是实际使用发现在我的电脑上可用性严重不足，遂放弃。</p><p>后来在 B 站搜索发现 Windows 自带的 Live Caption 功能也够用。</p><h2>按键可视化</h2><p>对于按键可视化，我一开始想要使用 BongoCat，但是<a href="https://github.com/ayangweb/BongoCat" target="_blank">二次开发的版本</a>无法在 OBS 中截取窗口，而<a href="https://github.com/MMmmmoko/Bongo-Cat-Mver" target="_blank">原版</a>又没法显示完整的键盘，遂放弃。</p><p>在 B 站搜索时发现可以使用类似于 <a href="https://github.com/mulaRahul/keyviz" target="_blank">keyviz</a> 的软件实现按键可视化。keyviz 虽然有名，但是 1.x 版本无法进行纵向显示，2.x 版本支持但 Bug 又太多。本想放弃，但调研了一番竞品，要么颜值不足，要么不支持纵向显示，要么要付费，最后还是选择了 keyviz。</p>
+<p><a href="https://bhznjns.github.io/#static/工具软件/折腾 OBS 直播写代码的按键可视化及实时语音转录.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
