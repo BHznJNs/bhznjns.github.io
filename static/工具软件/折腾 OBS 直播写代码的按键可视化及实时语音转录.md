@@ -9,7 +9,7 @@
 ## 声音转录文本展示
 
 我在调研一番后原本打算使用 [WhisperLiveKit](https://github.com/QuentinFuxa/WhisperLiveKit)，但是实际使用发现在我的电脑上可用性严重不足，遂放弃。
-后来在 B 站搜索发现 Windows 自带的 Live Caption 功能也够用。
+后来在 B 站搜索发现 Windows 自带的 Live Caption 功能貌似也够用，但是由于这个软件会同时监听系统音频且无法关闭，遂放弃。
 
 ## 按键可视化
 

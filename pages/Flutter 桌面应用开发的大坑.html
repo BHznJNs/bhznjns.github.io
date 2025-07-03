@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="color-scheme" content="light dark">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>折腾 OBS 直播写代码的按键可视化及实时语音转录</title>
+<title>Flutter 桌面应用开发的大坑</title>
 <link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="../dist/style.min.css">
 </head>
@@ -72,8 +72,8 @@ if (darkModeMediaQuery) {
 </span></span>
 </nav>
 <article>
-<h1>折腾 OBS 直播写代码的按键可视化及实时语音转录</h1><p>今天一时兴起，想再试试在 B 站直播写代码。但是之前直播</p><h2>首先是通过 OBS Studio 进行第三方推流</h2><p>通过 <a href="https://github.com/ChaceQC/bilibili_live_stream_code/" target="_blank">bilibili_live_stream_code</a> 这个项目可以很轻松地实现自动获取 B 站的 Cookies，并且生成推流地址和密钥，在 OBS 中粘贴即可使用。</p><h2>声音转录文本展示</h2><p>我在调研一番后原本打算使用 <a href="https://github.com/QuentinFuxa/WhisperLiveKit" target="_blank">WhisperLiveKit</a>，但是实际使用发现在我的电脑上可用性严重不足，遂放弃。</p><p>后来在 B 站搜索发现 Windows 自带的 Live Caption 功能貌似也够用，但是由于这个软件会同时监听系统音频且无法关闭，遂放弃。</p><h2>按键可视化</h2><p>对于按键可视化，我一开始想要使用 BongoCat，但是<a href="https://github.com/ayangweb/BongoCat" target="_blank">二次开发的版本</a>无法在 OBS 中截取窗口，而<a href="https://github.com/MMmmmoko/Bongo-Cat-Mver" target="_blank">原版</a>又没法显示完整的键盘，遂放弃。</p><p>在 B 站搜索时发现可以使用类似于 <a href="https://github.com/mulaRahul/keyviz" target="_blank">keyviz</a> 的软件实现按键可视化。keyviz 虽然有名，但是 1.x 版本无法进行纵向显示，2.x 版本支持但 Bug 又太多。本想放弃，但调研了一番竞品，要么颜值不足，要么不支持纵向显示，要么要付费，最后还是选择了 keyviz。</p>
-<p><a href="https://bhznjns.github.io/#static/工具软件/折腾 OBS 直播写代码的按键可视化及实时语音转录.md">
+<h1>Flutter 桌面应用开发的大坑</h1><p>最近在尝试使用 Flutter 开发桌面应用程序。在这个过程中，遇到一个大坑，直接让我放弃原本核心功能已经实现得差不多的 Flutter 代码库，转而使用 Tauri。</p><h2>遇到了什么问题？</h2><p>简单来说，就是 Flutter 对于多窗口的应用程序的支持非常薄弱。</p><p>如果不使用第三方的插件只能通过启动多个 Flutter 应用实例并靠传递命令行参数来实现区分不同的窗口，而这种做法我尝试之后发现多实例间的通信处理很麻烦，子窗口中出现问题也很难 debug。</p><p>如果使用了第三方的插件也好不到哪去，我在一番搜索后看到社区里有 <a href="https://pub.dev/packages/desktop_multi_window" target="_blank">desktop_multi_window</a> 这个插件能够在不启动多进程的情况下实现多窗口，但是我在实践后发现这个插件的坑很多：</p><ol><li>在使用 window_manager、dynamic_color 等涉及原生的插件时，需要自己在原生代码中手动为子窗口初始化这些插件</li><li>在启动子窗口后，子窗口的主题不会随系统的主题切换，需要自己手动编写原生代码实现</li></ol>
+<p><a href="https://bhznjns.github.io/#static/编程/Flutter/Flutter 桌面应用开发的大坑.md">
     点此查看原文
 </a></p>
 </article>
