@@ -1,5 +1,5 @@
 # 售卖 RSS 订阅源
-``2025/01/20``
+``2025/07/06``
 
 信息来源：[猫鱼周刊 vol. 070 一切都要支付两次](https://ameow.xyz/archives/weekly-070)
 原文链接：[这是一件很私人的事](https://luozx.org/posts/this-is-somthing-personal.html)
