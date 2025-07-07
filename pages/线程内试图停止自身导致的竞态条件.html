@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>线程内试图停止自身导致的竞态条件</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>线程内试图停止自身导致的竞态条件</h1><p>引发的原因很简单：在一个服务线程内，试图调用停止自身的方法并 join 导致死锁，进而导致线程被阻塞，服务无法正常退出。</p><p>伪代码如下：</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">import threading
+
+class Service:
+    def __init__(self, message_handler):
+        self._message_handler = message_handler
+        self._stop_event = threading.Event()
+        self._server_thread = threading.Thread(target=self._start_server)
+    
+    def _start_server(self):
+        while not self._stop_event.is_set():
+            # 收到客户端的 message，在回调中处理
+            self._message_handler(message)
+
+    def start(self):
+        self._server_thread.start()
+    
+    def stop(self):
+        self._stop_event.set()
+        self._server_thread.join()
+
+def message_handler(message):
+    if message == "stop":
+        service.stop() # &lt;-- 这里会导致死锁！
+
+if __name__ == "__main__":
+    service = Service(message_handler)
+    service.start()
+</code></pre><p>这段代码比较迷惑人的一点是，在实际项目中，Service 往往是在单独的模块中，而被传入的 message_handler 则是在 Service 的调用方。这就容易让人误以为 message_handler 是在调用 Service 的线程执行，但实际是在 Service 自身运行的线程中执行。</p><p>由于 message_handler 中调用了 <code>Service.stop</code>，这个方法中又 join 了 Service 所在的线程，从而导致死锁（join 要等到 Service 所在线程结束后返回，但 Service 所在线程又需要等到 join 调用完成后才能结束）。</p>
+<p><a href="https://bhznjns.github.io/#static/编程/Python/线程内试图停止自身导致的竞态条件.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
