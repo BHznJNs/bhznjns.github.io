@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>做 MVP 的技巧</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>做 MVP 的技巧</h1><p>摘自译文：https:<i>baoyu.io/translations/nda-mvp-building-tips</i></p><p>原文链接：https:<i>www.deeplearning.ai/the-batch/issue-308/</i></p><p>如果你的时间有限，就缩减项目的范围，直到项目小到你在现有时间里能完成为止。</p><p>假如你只有一个小时，那就找出你想要实现的某个创意中的一小部分，确保这一小部分能在一小时内完成。借助现代的代码助手（例如我目前最爱的开发工具 Anthropic 的 Claude Code），你可能会惊讶地发现，哪怕只有很短的时间，你也能做出很多有意思的东西。这种方法可以帮助你迅速上手，之后你随时都能继续完善项目。</p><p>这种 <strong>“快速起步”的方式</strong> 给我带来了以下的好处：</p><ul><li>能让我迅速试验创意，并决定哪些值得继续投入精力。</li><li>我能够在广泛的项目实践中锻炼不同领域的技能。</li><li>更重要的是，这种方法帮助我迅速将想法从头脑里释放出来，让潜在用户能及早接触到产品原型并提供反馈，加速项目的迭代与发展。</li></ul><h2>举一个我亲身经历的小例子，来更好地说明一下</h2><blockquote><p>我经常会利用周末尝试一些小巧有趣的项目，这些项目不一定有多大的前景，但却让我乐在其中并有所收获。</p><p>有一次，我有这样一个点子：</p><p>很多人害怕公开演讲，而演讲练习往往很难安排，因为你很难找到大量听众。因此我想到：能否做一个虚拟的观众模拟器，在屏幕上模拟出几十甚至几百个虚拟观众，让用户对着他们练习演讲呢？</p><p>一个周六下午，我在咖啡馆里碰巧有几个小时的空闲，于是我决定尝试一下这个“观众模拟器”。然而，我并不擅长复杂的图形编程，于是我决定大幅缩减项目的范围：</p><ol><li>把原本数十个虚拟观众缩减为只模拟一个观众（之后再通过复制扩展到多个）。</li><li>省去 AI 自动化的反馈机制，改为让一个真实的人在幕后手动选择虚拟观众的反应（类似 Wizard of Oz 原型方法）。</li><li>使用非常简单的 2D 图像而非复杂的图形技术。</li></ol><p>在几个代码助手的辅助下，我很快完成了一个基础版本。最终呈现的虚拟观众只是一个能微微移动和眨眼的简单 2D 头像，远没有我最初设想的那么精致。但即便如此，我也很高兴完成了这个基础版本，因为：</p><ul><li>它推动了我的项目进展，让我更深入地思考设计方案。</li><li>让我学习了一些基础的图形编程知识。</li></ul></blockquote>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/做 MVP 的技巧.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
