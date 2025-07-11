@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>对于资深开发者，AI 工具反成效率减速带</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>对于资深开发者，AI 工具反成效率减速带</h1><p><code>2025/07/11</code></p><p>内容来源：<a href="https://baoyu.io/translations/2025-07-10-early-2025-ai-experienced-os-dev-study" target="_blank">对于资深开发者，AI 工具反成效率减速带</a></p><p>原文链接：<a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank">Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity</a></p><hr><p>这个实验通过观察 16 名经验丰富的开源开发者（均长期贡献于知名的开源项目，GitHub 星数超过 2.2 万，代码行数超过百万）参与实验，通过设置允许或禁止使用 AI 工具完成任务的对照，来观察 AI 工具对开发者生产力的影响。</p><h2>实验结果</h2><p>在允许使用 AI 工具的情况下，开发者完成任务所需时间增加了 19%，这一结果与开发者的预期完全相反：</p><ul><li>开发者原本认为 AI 工具可以让他们的效率提高 24%；</li><li>即使经历了效率下降后，他们仍认为自己效率提高了 20%。</li></ul><h2>造成效率降低的原因分析</h2><div class="table"><table><thead><tr><th>因素</th><th>相关观察</th></tr></thead><tbody><tr><td>对 AI 工具过于乐观</td><td>开发者原本预期使用 AI 后任务耗时将减少 24%。即使亲身体会到了 AI 导致任务时间增加，他们事后仍估计 AI 节省了 20% 的时间。</td></tr><tr><td>开发者对代码库过于熟悉</td><td>开发者在自己更熟悉的任务上，被 AI 拖慢的情况更明显。开发者表示，丰富的个人经验使得 AI 很难有效地提供帮助。参与者平均有 5 年经验，且在相关代码库的贡献平均达到 1500 次提交。</td></tr><tr><td>大型复杂代码库</td><td>开发者报告称，在大型复杂环境中 AI 表现更差。所选代码库平均已有 10 年历史，代码规模超过 110 万行。</td></tr><tr><td>AI 生成结果可靠性低</td><td>开发者接受的 AI 生成代码不足 44%。大多数开发者表示需要对 AI 生成的代码做重大修改。大约 9% 的工作时间花费在审阅和修改 AI 生成的代码上。</td></tr><tr><td>隐含的代码库上下文</td><td>开发者表示 AI 无法有效利用隐含的知识或代码库上下文信息。</td></tr></tbody></table></div><h2>如何解释相关 AI 工具在标准评测及大众使用中表现出色？</h2><p>以下表格比较了几种证据来源的差异：</p><div class="table"><table><thead><tr><th></th><th>本次 RCT 实验</th><th>标准化评测 (如 SWE-Bench Verified)</th><th>大众普遍使用的反馈</th></tr></thead><tbody><tr><td><strong>任务类型</strong></td><td>真实大型开源代码库中的问题修复和功能实现</td><td>独立、明确且易自动化评分的任务</td><td>多样化、范围广泛</td></tr><tr><td><strong>成功标准</strong></td><td>代码能满足真实审查需求 (风格、文档、测试等)</td><td>算法自动评分</td><td>人类用户认为代码"有用"即可</td></tr><tr><td><strong>AI 形式</strong></td><td>聊天、Cursor 智能模式、自动补全</td><td>通常为全自动化的 AI 智能体</td><td>各种不同 AI 模型和工具</td></tr><tr><td><strong>观察结果</strong></td><td>在真实任务 (约 20 分钟至 4 小时) 中，AI 让人类开发者变慢</td><td>AI 在难度极高的标准任务中表现出色</td><td>很多反馈 AI 对长时间任务 (&gt;1 小时) 非常有用</td></tr></tbody></table></div>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/对于资深开发者，AI 工具反成效率减速带.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
