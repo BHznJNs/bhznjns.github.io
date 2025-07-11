@@ -1,7 +1,7 @@
 # 对于资深开发者，AI 工具反成效率减速带
 ``2025/07/11``
 
-内容来源：[对于资深开发者，AI 工具反成效率减速带](https://baoyu.io/translations/2025-07-10-early-2025-ai-experienced-os-dev-study)
+内容来源：[测量 2025 年初 AI 工具对资深开源开发者生产力的影响](https://baoyu.io/translations/2025-07-10-early-2025-ai-experienced-os-dev-study)
 原文链接：[Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)
 
 - - -
