@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whisper 模型中文调优</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>Whisper 模型中文调优</h1><details><p>因为网上对于 Whisper 模型的中文优化博客几乎都是从同一篇文章抄的，一个字都不带动，要不就是完全用 AI 生成的赛博垃圾。在这里点名批评：</p><ul><li><a href="https://www.cnblogs.com/v3ucn/p/17987069" target="_blank">https://www.cnblogs.com/v3ucn/p/17987069</a></li><li><a href="https://developer.baidu.com/article/details/3241515" target="_blank">https://developer.baidu.com/article/details/3241515</a></li><li><a href="https://v3u.cn/tag_id_3093" target="_blank">https://v3u.cn/tag_id_3093</a></li></ul><p>我花了些时间自己整理了足够可行的方案，在此分享。</p><summary>为什么要写这篇博客</summary></details><p>众所周知，Whisper 模型是 <del>CloseAI</del> OpenAI 开源的一个 STT 模型，性能强劲的同时可以直接在本地运行。但是你如果尝试过直接使用 Whisper 模型（或者速度优化后的 Faster-Whisper 模型）来转录中文语音，你会发现几乎必须要使用参数量最大的 Large-v3 模型才有能看的效果。</p><p>我在本地也尝试过 Faster-Whisper 模型，在我的 16G 核显本上，最大只能用 small 模型（占用 1.3G 内存左右），我也尝试过更大一点的 medium 模型，它也不是不能跑，只是速度相比 small 要慢很多，而且 3G 以上的内存占用也让我的电脑 OOM 了好几次。</p><p>那么，下面进入正文，这里的调优分为三个部分：</p><ol><li>音频预处理</li><li>模型调用参数优化</li><li>转录文本处理</li></ol><h2>音频预处理</h2><p>我在 AI 的帮助下编写了这个<a href="https://gist.github.com/BHznJNs/eb12f09f668107939e7d28c63bf4c6fa" target="_blank">音频预处理模块</a>，其主要功能如下：</p><h3>合并两个声道的音频数据，合为一个声道</h3><p>音频带有双声道最重要的作用是给人以空间感，而我们使用 Whisper 模型的目的是转录，在转录的使用场景下，空间感所带来的信息反而多余，会干扰模型的处理。</p><h3>使用 <code>noisereduce</code> 库降噪</h3><p>这个很好理解，降低噪音，凸显人声</p><h3>去除空白音频</h3><p>这一步中，我们使用 <code>pydub</code> 库自带的 <code>split_on_silence</code> 函数以一定的阈值来寻找并去除空白片段（这里说是空白片段，但实际上是响度低于一定阈值的片段）。</p><p>要去除空白片段的原因是 Whisper 模型会尝试转录空白片段，从中识别语句。去除后可以排除干扰。</p><hr><p>我实测后发现，音频预处理这一步对于小参数模型提升较大。</p><h2>模型调用参数优化</h2><p>这一步比较简单，主要就是给模型提供一个 <code>initial_prompt</code>，让模型在转录中文文本时也能适当地加上标点。</p><p>可以传入一个带有多个不同标点的中文语句，比如：<code>你好，这是一个包含逗号、句号等标点符号的中文语句。</code>。</p><h2>转录文本处理</h2><p>在使用 Whisper 模型转录中文音频时，转录结果中容易存在下面几个问题：</p><ol><li>标点缺失（这个可以通过上面的步骤二部分解决）</li><li>不使用中文的全角标点而使用半角标点</li><li>输出繁体字</li><li>同音字误用</li></ol><p>下面我们逐一给出解决方案。</p><h3>标点缺失</h3><p>除了通过传入 prompt 优化以外，还可以通过类似于 <a href="https://huggingface.co/p208p2002/zh-wiki-punctuation-restore" target="_blank">zh-wiki-punctuation-restore</a> 这样专门的恢复标点符号的小模型来补上缺失的标点符号。（这个小模型只有 0.1B 的参数量，完全能够本地运行）</p><h3>只使用半角标点</h3><p>这个问题可以使用 <a href="https://github.com/huacnlee/autocorrect" target="_blank">autocorrect</a>，这是一个专门纠正中日韩语言与英语混写时常见的标点符号使用错误和空格缺失的库，使用 rust 编写，速度极快，同时提供了多种编程语言的 SDK。</p><h3>输出繁体字</h3><p>这个问题可以使用 <a href="https://github.com/BYVoid/OpenCC" target="_blank">OpenCC</a> 这个专门的繁简字互转库解决。</p><h3>同音字误用</h3><p>这是最棘手的问题。一个比较无脑的改善方案就是使用更大参数的 Whisper 模型，但是这在本地部署的场景下可能不太现实。</p><p>虽然存在类似于 <a href="https://github.com/Macielyoung/T5Corrector" target="_blank">T5Corrector</a> 这样专门的同音字误用纠正模型可用，不过更通用一些的方案可能是用中文的大语言模型来处理。经过测试，使用千问三的模型，4B 参数模型在开启思考后基本能够正确纠错，如果是对实时性有一定要求的场景，14B 左右参数量的模型在不开思考的情况下也能够正确纠错，延迟基本在 1.5 秒以内。</p>
+<p><a href="https://bhznjns.github.io/#static/编程/Python/Whisper 模型中文调优.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
