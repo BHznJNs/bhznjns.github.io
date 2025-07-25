@@ -7,6 +7,11 @@
     <feedId>101282540872310784</feedId>
     <userId>96180252670732288</userId>
 </follow_challenge><item>
+<title>一个中文 ASR 的综合最佳解决方案</title>
+<link>https://bhznjns.github.io/pages/%E4%B8%80%E4%B8%AA%E4%B8%AD%E6%96%87%20ASR%20%E7%9A%84%E7%BB%BC%E5%90%88%E6%9C%80%E4%BD%B3%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html</link>
+<pubDate>Fri, 25 Jul 2025 21:52:00 +0800</pubDate>
+<lastBuildDate>Fri, 25 Jul 2025 22:13:00 +0800</lastBuildDate>
+</item><item>
 <title>Whisper 模型中文调优</title>
 <link>https://bhznjns.github.io/pages/Whisper%20%E6%A8%A1%E5%9E%8B%E4%B8%AD%E6%96%87%E8%B0%83%E4%BC%98.html</link>
 <pubDate>Wed, 23 Jul 2025 21:01:00 +0800</pubDate>
@@ -15,7 +20,7 @@
 <title>今天才明白，小模型的用处</title>
 <link>https://bhznjns.github.io/pages/%E4%BB%8A%E5%A4%A9%E6%89%8D%E6%98%8E%E7%99%BD%EF%BC%8C%E5%B0%8F%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%94%A8%E5%A4%84.html</link>
 <pubDate>Tue, 22 Jul 2025 20:54:00 +0800</pubDate>
-<lastBuildDate>Tue, 22 Jul 2025 22:05:00 +0800</lastBuildDate>
+<lastBuildDate>Wed, 23 Jul 2025 21:56:00 +0800</lastBuildDate>
 </item><item>
 <title>花了半小时，做了一个将 B 站视频转写成博客文章的小工具</title>
 <link>https://bhznjns.github.io/pages/%E8%8A%B1%E4%BA%86%E5%8D%8A%E5%B0%8F%E6%97%B6%EF%BC%8C%E5%81%9A%E4%BA%86%E4%B8%80%E4%B8%AA%E5%B0%86%20B%20%E7%AB%99%E8%A7%86%E9%A2%91%E8%BD%AC%E5%86%99%E6%88%90%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E7%9A%84%E5%B0%8F%E5%B7%A5%E5%85%B7.html</link>
@@ -251,9 +256,4 @@
 <link>https://bhznjns.github.io/pages/%E5%9C%A8%E5%B0%8F%E7%BA%A2%E4%B9%A6%E8%BF%9B%E8%A1%8C%E6%8E%A8%E5%B9%BF%E7%9A%84%E5%8F%AF%E8%A1%8C%E6%80%A7.html</link>
 <pubDate>Mon, 17 Mar 2025 17:53:00 +0800</pubDate>
 <lastBuildDate>Mon, 17 Mar 2025 21:53:00 +0800</lastBuildDate>
-</item><item>
-<title>关于 TypeScript 迁移到 Go，你应该知道的</title>
-<link>https://bhznjns.github.io/pages/%E5%85%B3%E4%BA%8E%20TypeScript%20%E8%BF%81%E7%A7%BB%E5%88%B0%20Go%EF%BC%8C%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84.html</link>
-<pubDate>Sun, 16 Mar 2025 21:44:00 +0800</pubDate>
-<lastBuildDate>Sun, 16 Mar 2025 22:23:00 +0800</lastBuildDate>
 </item></channel></rss>

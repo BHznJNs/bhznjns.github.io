@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一个中文 ASR 的综合最佳解决方案</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>一个中文 ASR 的综合最佳解决方案</h1><p>在写完<a href="https://bhznjns.github.io/static/%E7%BC%96%E7%A8%8B/Whisper%20模型中文调优.md">上一篇博客</a>后，我又对中文特化训练的 ASR 模型进行了调研，发现能打的基本就两个，一个是 <a href="https://huggingface.co/funasr/Paraformer-large" target="_blank">Paraformer-large</a> 模型，另一个是 <a href="https://huggingface.co/FunAudioLLM/SenseVoiceSmall" target="_blank">SenseVoiceSmall</a>。</p><p>Paraformer 模型我没有测试过，不过按着用新不用旧的原则，SenseVoice 应该会更好用一点 🐶</p><p>SenseVoice 的官方部署引导是需要依赖 pytorch 来运行的，但是有过 Python 程序打包部署的朋友应该知道，只要程序依赖 pytorch 这个东西，打包结果就不可能少于 1G 的大小。于是我查询了一些不需要 pytorch 运行 SenseVoice 的方法，最后发现有两个可行的途径。</p><p>一个是借助 sherpa-onnx，需要使用专门转换后的模型来运行，代码可以参考我的<a href="https://gist.github.com/BHznJNs/766cef99f190ceb777d585bc6e758618" target="_blank">这个示例</a>。</p><p>另一个就是本文的主角，<a href="https://github.com/lovemefan/SenseVoice.cpp" target="_blank">SenseVoice.cpp</a> 了。</p><h2>SenseVoice.cpp 是什么？</h2><p>类似于 <a href="https://github.com/ggml-org/whisper.cpp" target="_blank">whisper.cpp</a>，SenseVoice 也是通过将原始模型 port 到 CPP 的方式实现相比于原始模型没有明显的性能下降的同时，对于部署设备的性能要求大幅下降的。</p><p>我在自己的设备上的测试结果是，原始的 SenseVoice 通过 sherpa-onnx 运行，需要 2G 左右的内存占用，而使用 SenseVoice.cpp 配合 fp16 的模型，只需要 500M 作用的内存即可运行。同时，由于是 CPP 程序，可移植性也更强。</p><p>但是，在我尝试把 SenseVoice.cpp 接入到自己的项目中时，却遇到一个小问题，就是 SenseVoice.cpp 目前的调用方式只允许一次性调用，即传入音频文件路径，程序返回转录结果，执行完成。如果项目中需要持续进行转录，这样的调用方式就会导致大量的时间耗费在创建子进程和模型加载上。</p><p>于是我稍微对 SenseVoice.cpp 进行了<a href="https://github.com/BHznJNs/SenseVoice.cpp-repl" target="_blank">二次开发</a>，将其改成了一个 REPL 程序，使其能够与其它程序通过标准输入输出进行通信。我也给这个项目编写了一份<a href="https://github.com/BHznJNs/SenseVoice.cpp-repl/blob/main/examples/python-invocation-usage.py" target="_blank">Python 版本的调用示例</a>，实际使用时可以从这个示例出发进行修改，或者使用 AI 翻译成其它语言的版本。</p>
+<p><a href="https://bhznjns.github.io/#static/编程/Python/一个中文 ASR 的综合最佳解决方案.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
