@@ -7,6 +7,16 @@
     <feedId>101282540872310784</feedId>
     <userId>96180252670732288</userId>
 </follow_challenge><item>
+<title>由于缓冲区满了导致 STDIO 阻塞的小 Bug</title>
+<link>https://bhznjns.github.io/pages/%E7%94%B1%E4%BA%8E%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BB%A1%E4%BA%86%E5%AF%BC%E8%87%B4%20STDIO%20%E9%98%BB%E5%A1%9E%E7%9A%84%E5%B0%8F%20Bug.html</link>
+<pubDate>Sun, 27 Jul 2025 22:54:00 +0800</pubDate>
+<lastBuildDate>Sun, 27 Jul 2025 23:27:00 +0800</lastBuildDate>
+</item><item>
+<title>工厂函数</title>
+<link>https://bhznjns.github.io/pages/%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html</link>
+<pubDate>Sun, 27 Jul 2025 19:39:00 +0800</pubDate>
+<lastBuildDate>Sun, 27 Jul 2025 21:08:00 +0800</lastBuildDate>
+</item><item>
 <title>帮助老人解决电子产品相关问题的订阅服务</title>
 <link>https://bhznjns.github.io/pages/%E5%B8%AE%E5%8A%A9%E8%80%81%E4%BA%BA%E8%A7%A3%E5%86%B3%E7%94%B5%E5%AD%90%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%A2%E9%98%85%E6%9C%8D%E5%8A%A1.html</link>
 <pubDate>Sat, 26 Jul 2025 14:47:00 +0800</pubDate>
@@ -246,14 +256,4 @@
 <link>https://bhznjns.github.io/pages/Flutter%20Android%20%E5%BA%94%E7%94%A8%E6%97%A0%E6%B3%95%E5%8D%87%E7%BA%A7%EF%BC%9F.html</link>
 <pubDate>Fri, 21 Mar 2025 23:11:00 +0800</pubDate>
 <lastBuildDate>Thu, 24 Apr 2025 11:26:00 +0800</lastBuildDate>
-</item><item>
-<title>鼠标贴边时才出现的浏览器</title>
-<link>https://bhznjns.github.io/pages/%E9%BC%A0%E6%A0%87%E8%B4%B4%E8%BE%B9%E6%97%B6%E6%89%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8.html</link>
-<pubDate>Wed, 19 Mar 2025 22:54:00 +0800</pubDate>
-<lastBuildDate>Sun, 27 Apr 2025 19:37:00 +0800</lastBuildDate>
-</item><item>
-<title>我开始写日志了</title>
-<link>https://bhznjns.github.io/pages/%E6%88%91%E5%BC%80%E5%A7%8B%E5%86%99%E6%97%A5%E5%BF%97%E4%BA%86.html</link>
-<pubDate>Wed, 19 Mar 2025 19:49:00 +0800</pubDate>
-<lastBuildDate>Wed, 19 Mar 2025 21:24:00 +0800</lastBuildDate>
 </item></channel></rss>

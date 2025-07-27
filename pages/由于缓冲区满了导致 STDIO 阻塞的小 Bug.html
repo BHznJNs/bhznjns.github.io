@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="color-scheme" content="light dark">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>线程内试图停止自身导致的竞态条件</title>
+<title>由于缓冲区满了导致 STDIO 阻塞的小 Bug</title>
 <link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="../dist/style.min.css">
 </head>
@@ -72,35 +72,32 @@ if (darkModeMediaQuery) {
 </span></span>
 </nav>
 <article>
-<h1>线程内试图停止自身导致的竞态条件</h1><p>引发的原因很简单：在一个服务线程内，试图调用停止自身的方法并 join 导致死锁，进而导致线程被阻塞，服务无法正常退出。</p><p>伪代码如下：</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">import threading
+<h1>由于缓冲区满了导致 STDIO 阻塞的小 Bug</h1><h2>背景</h2><p>这个 Bug 的原因就写在标题了，那我是怎么写出这个 Bug 的？这就要提到我最近项目中的一个通过 STDIO 与另一个程序进行通信的模块了。由于那个程序是通过 STDOUT 来输出数据，STDERR 输出日志，于是我最初是这么写的：</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">process = subprocess.Popen(
+    args=args,
+    stdin=subprocess.PIPE,
+    stdout=subprocess.PIPE,
+    stderr=subprocess.PIPE,
+    text=True,
+    bufsize=1,
+    encoding="utf-8",
+)
 
-class Service:
-    def __init__(self, message_handler):
-        self._message_handler = message_handler
-        self._stop_event = threading.Event()
-        self._server_thread = threading.Thread(target=self._start_server)
-    
-    def _start_server(self):
-        while not self._stop_event.is_set():
-            # 收到客户端的 message，在回调中处理
-            self._message_handler(message)
+assert process.stdin is not None
+assert process.stdout is not None
 
-    def start(self):
-        self._server_thread.start()
-    
-    def stop(self):
-        self._stop_event.set()
-        self._server_thread.join()
+# wait for init
+while process.stdout.readline() != "[__INIT__]\n": pass
+self._loaded.set()
 
-def message_handler(message):
-    if message == "stop":
-        service.stop() # &lt;-- 这里会导致死锁！
+while True:
+    # 向 stdin 写入值或从 stdout 读值
 
-if __name__ == "__main__":
-    service = Service(message_handler)
-    service.start()
-</code></pre><p>这段代码比较迷惑人的一点是，在实际项目中，Service 往往是在单独的模块中，而被传入的 message_handler 则是在 Service 的调用方。这就容易让人误以为 message_handler 是在调用 Service 的线程执行，但实际是在 Service 自身运行的线程中执行。</p><p>由于 message_handler 中调用了 <code>Service.stop</code>，这个方法中又 join 了 Service 所在的线程，从而导致死锁（join 要等到 Service 所在线程结束后返回，但 Service 所在线程又需要等到 join 调用完成后才能结束）。</p>
-<p><a href="https://bhznjns.github.io/#static/编程/各种小 Bug/线程内试图停止自身导致的竞态条件.md">
+returncode = ...
+if returncode == 0: return
+for error_message in process.stderr.readlines():
+    print(error_message)
+</code></pre><p>这段代码的思路很好，只有在子进程运行出错时才打印日志。但是，我在实际使用时却发现，程序在运行一段时间后，子进程就未响应了❓</p><p>我最初意味是子进程中哪里阻塞了，花了很多时间看源码，排查，但都无果。</p><h2>那我是怎么发现问题的？</h2><p>我在尝试复现 bug 时，为了方便查看子进程的日志，将子进程的 STDERR 重定向到了一个日志文件，奇怪的是，这一回程序怎么跑都正常。</p><p>我突然想到，有没有可能是缓冲区的问题？</p><p>于是<del>问了问万能的 AI 爹</del>查了下 Windows 上缓冲区的大小，以及 STDERR 的缓冲区满了对 STDOUT 的影响，果不其然，就是缓冲区的问题。</p><p>之前的代码必须等到子进程运行结束，STDERR 的缓冲区才会被读取，改成重定向到日志之后，就会变成 STDERR 中一有东西，就被读取，写入日志文件中，缓冲区自然就不会满了。</p>
+<p><a href="https://bhznjns.github.io/#static/编程/各种小 Bug/由于缓冲区满了导致 STDIO 阻塞的小 Bug.md">
     点此查看原文
 </a></p>
 </article>

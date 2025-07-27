@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工厂函数</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>工厂函数</h1><p>工厂函数，通常是指固定返回特定实例的函数。</p><p>一般来说，工厂函数的用法有以下几种。</p><h2>类的构造函数的参数很多</h2><p>这种情况比较常出现在调用第三方库时，或者调用自己写的一些比较通用的库的时候（通用很多时候就代表可配置性强），往往在项目中只有少数几个参数需要变动，如果每个地方都写一长串的初始化的话就会显得很冗长。</p><p>比如说：</p><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">import library
+
+def factory(param1, param2) -&gt; library.Class:
+    return library.Class(
+        param1=param1,
+        param2=param2,
+        fixed_param1=...,
+        fixed_param2=...,
+        fixed_param3=...,
+        fixed_param4=...,
+        fixed_param5=...,
+        # more fixed parameter
+    )
+</code></pre><p>一个比较实际的例子：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">function rubyFactory(text: string, notation?: string): string {
+  if (notation === undefined) {
+    return `&lt;span&gt;${text}&lt;/span&gt;`
+  }
+  return `
+    &lt;ruby data-notation="${notation}"&gt;${text}
+      &lt;rp&gt;(&lt;/rp&gt;
+      &lt;rt&gt;${notation}&lt;/rt&gt;
+      &lt;rp&gt;)&lt;/rp&gt;
+    &lt;/ruby&gt;
+  `
+}
+</code></pre><h3>类实例化后有固定的初始化操作</h3><p>比如说这里对于 SourceNode 的初始化，由于 SourceNode 创建之后要做一些固定的属性设置，将其封装到一个工厂函数能显著提高代码的内聚程度。</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">class AudioPlayer {
+    // ...
+    sourceNodeFactory(buffer: typeof NodeAudioBuffer, loop: boolean) {
+        const source: any =
+            this.#audioContext.createBufferSource() // This is the constructor of SourceNode
+
+        if (this.#sourceNode) {
+            source.onended = this.#sourceNode.onended
+        }
+        source.buffer = buffer
+        source.loop   = loop
+        source.connect(this.#gainNode)
+    
+        this.#sourceNode = source
+        return source
+    }
+    // ...
+}
+</code></pre><h2>进行抽象</h2><p>这种情况和第一种情况很像，不过更偏向于增强代码的可读性，而不是方便书写。</p><p>比如：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">const callbackNameFactory = () =&gt; crypto.randomUUID()
+</code></pre><h2>一个类组合另一个类，但是不能让两个类过于耦合</h2><pre class="code-block" data-language="PYTHON"><code class="language-python" tabindex="0">class InnerClass:
+    def __init__(self, param):
+        pass
+
+class OuterClass:
+    def __init__(self, inner_instance: InnerClass, param):
+        self._inner = inner_instance
+
+def outer_factory(param1, param2) -&gt; OuterClass:
+    inner = InnerClass(param1)
+    outer = OuterClass(inner, param2)
+</code></pre>
+<p><a href="https://bhznjns.github.io/#static/编程/编程范式/工厂函数.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
