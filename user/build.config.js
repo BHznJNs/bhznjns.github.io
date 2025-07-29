@@ -9,6 +9,7 @@ export default {
 
     preview: {
         port: 3030,
+        mcpPort: 12560,
         liveReload: true,
     },
 
