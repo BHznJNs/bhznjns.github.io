@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloudflare 命令行登录的小坑</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>Cloudflare 命令行登录的小坑</h1><p>如果你是混迹在网络中的白嫖党，对于“大善人”Cloudflare 的大名应该不陌生。</p><p>Cloudflare 最有名而慷慨的服务可能就是其名为 Workers 的 Serverless 服务了。</p><p>在使用 Workers 时，需要使用 Cloudflare 提供的 Wrangler SDK 进行开发和部署。在部署时，这个工具会进行鉴权，以判断 Worker 的所属。</p><p>但是在鉴权时却很有可能遇到这个报错：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">✘ [ERROR] The body of the response was HTML rather than JSON. Check the debug logs to see the full body of the response.
+
+
+✘ [ERROR] It looks like you might have hit a bot challenge page. This may be transient but if not, please contact Cloudflare to find out what can be done. When you contact Cloudflare, please provide your Ray ID: 966b29db8af0fd61-SIN
+
+
+This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). The promise rejected with the reason:
+Error: Invalid JSON in response: status: 403 Forbidden
+    at getJSONFromResponse (D:\libs\npm\node_cache\_npx\d77349f55c2be1c0\node_modules\wrangler\wrangler-dist\cli.js:54159:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exchangeAuthCodeForAccessToken (D:\libs\npm\node_cache\_npx\d77349f55c2be1c0\node_modules\wrangler\wrangler-dist\cli.js:53756:31)
+    at async Server.&lt;anonymous&gt; (D:\libs\npm\node_cache\_npx\d77349f55c2be1c0\node_modules\wrangler\wrangler-dist\cli.js:53912:30)
+</code></pre><p>这个报错在使用了代理的情况下尤其常见。</p><p>要绕过这个小坑，我们可以按照下面这个步骤进行登录：</p><ol><li>登录 Cloudflare 网页端</li><li><a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank">在此</a>获取 API Token</li><li>在命令行下设置环境变量</li></ol><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0"># unix
+export CLOUDFLARE_API_TOKEN="YOUR_API_TOKEN"
+# windows
+$env:CLOUDFLARE_API_TOKEN="YOUR_API_TOKEN"
+</code></pre><ol><li>在设置完成后，调用命令 <code>npx wrangler whoami</code> 进行登录</li></ol><p>这样，wrangler 就会通过 API Token 进行登录了。</p>
+<p><a href="https://bhznjns.github.io/#static/工具软件/Cloudflare 命令行登录的小坑.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
