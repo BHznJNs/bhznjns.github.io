@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025年7月 月度小结</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>2025 年 7 月 月度小结</h1><h2>开发</h2><h3>狸语字幕助手</h3><p>这个月基本都在折腾狸语字幕助手这个项目。花了很多时间，也尝试了不少优化 ASR 识别的途径，具体的优化方案可以参考我之前写的这两篇博客：</p><ul><li><a href="#static/编程/Python/Whisper%20模型中文调优.md">Whisper 模型中文调优</a></li><li><a href="#static/编程/Python/一个中文 ASR 的综合最佳解决方案.md">一个中文 ASR 的综合最佳解决方案</a></li></ul><p>最后总结下来，方案如下：</p><p>首先，由于 Whisper 模型的中文能力不行，我对于中文场景使用了 SenseVoice.cpp 这个项目。</p><p>在转录前，进行音频预处理，统一成 16000 采样率，单声道的音频；</p><p>在转录后，对于中文引入了 OpenCC 进行繁简转换，对于中日韩语言引入了 Autocorrect 进行空格和标点纠正，再加上可选的大语言模型结果优化。</p><p>顺带一提，这个项目也是我第一个上架到微软应用商店的应用程序。</p><h3>Vibe Coding</h3><p>这个月在 L 站突然掀起了一股“打野”风潮。</p><div class="qa-block"><div class="question">什么是打野？</div><div class="answer">即在“野区”，也就是公开平台搜寻泄露的 API Key。</div></div><p>不断地能看到很多坛友分享自己“打野”的成果，我也是蹭了一波，把自己的 API 中转站扩张了一下。现在也是 AI 自由了（</p><h3>MCP</h3><p>在月中时，尝试了一下 Obsidian MCP，想到给自己的博客也开发了配套的 MCP Server。花了一天时间，编写了 MCP 本体加上可以部署在 Cloudflare Worker 上的版本。</p><h2>运动</h2><p>前几个月基本都在写代码，加上犯懒，没怎么动，这个月放假了，借此机会多出去活动了。</p><p>跑步大概十公里，不多，但比前几个月强。</p><p>也多去练了引体向上，感觉状态比前几个月好一些了。</p><h2>其它</h2><p>在 <a href="https://dash.domain.digitalplat.org/" target="_blank">digitalplat</a> 上白嫖了免费域名 bhznjns.qzz.io，把这个域名托管到 Cloudflare 上之后，给我部署的一些服务套上了这个域名的子域名。</p>
+<p><a href="https://bhznjns.github.io/#static/阶段小结/2025/2025年7月 月度小结.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
