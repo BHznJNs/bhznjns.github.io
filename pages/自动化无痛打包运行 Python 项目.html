@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自动化无痛打包运行 Python 项目</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>自动化无痛打包运行 Python 项目</h1><p>之前在做<a href="https://apps.microsoft.com/detail/9pfldtv29jfv" target="_blank">狸语字幕助手</a>这个项目时，最开始用的库中带有 PyTorch 依赖，而这个依赖又是出了名的大，导致要打包部署项目时特别费劲，我用传统的 PyInstaller、Nuitka 这两个打包方案试了一天都没成功。</p><p>于是我想起了之前看到的 <a href="https://github.com/skywind3000/PyStand/" target="_blank">PyStand</a> 这个项目。这个项目通过提供一个可执行文件，调用打包部署后的目录下的 Python Embedded 解释器来运行项目。</p><p>这个项目相比于传统的打包方式的区别如下：</p><p>优点：</p><ol><li>在面对 pytorch 这样的巨型依赖时不会处理不动</li><li>引入所需要进行的修改更少，通用性更强，只需要额外提供一个作为入口的 Python 模块文件</li></ol><p>同时缺点也很明显：</p><ol><li>需要自行手动构建</li><li>打包后只支持在 Windows 上运行</li></ol><p>我在狸语这个项目中使用了这个项目并配置了 GitHub Actions 来实现自动化打包，为了方便在其它项目中复用，我将这个流程封装成了一个单独的 GitHub Actions，你可以在<a href="https://github.com/marketplace/actions/build-python-application-standalone-package" target="_blank">这里</a>找到这个 Action。</p><p>具体的用法就像这样：</p><pre class="code-block" data-language="YAML"><code class="language-yaml" tabindex="0">jobs:
+  build:
+    runs-on: windows-latest
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Python Application Standalone Package
+        id: pystand-build
+        uses: BHznJNs/pystand-build@release-6
+        with:
+          application-name: "YourApplicationName" # 项目名称
+          python-version: "3.11.9" # 项目使用的 Python 版本
+          requirements-path: "backend/requirements.txt" # 你的 requirements.txt 文件的路径
+          pystand-entry-file: "PyStand.py" # 对于 PyStand 的入口文件
+          included-files: |
+            backend/ # Python 源代码目录
+            # 其它资源文件目录
+
+      - name: Create Zip Archive
+        shell: bash
+        run: |
+          build_path="${{ steps.pystand-build.outputs.build-directory }}"
+          (cd "$build_path" && 7z a -tzip "$RUNNER_TEMP/YourApplicationName.zip" .)
+
+      # upload package with `${{ runner.temp }}/YourApplicationName.zip`
+</code></pre><p>对于项目本身几乎不需要进行修改，只需新建一个面向 PyStand 的 Python 入口模块，再引入这个 action 即可。</p>
+<p><a href="https://bhznjns.github.io/#static/编程/Python/自动化无痛打包运行 Python 项目.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
