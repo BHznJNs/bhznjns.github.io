@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibe Coding 四天后的随想</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>Vibe Coding 四天后的随想</h1><p>最近在 L 站薅到了不少 Claude 模型的额度，正好又在写 <a href="https://github.com/BHznJNs/llm-hooks" target="_blank">llm-hooks</a> 这个全栈项目，索性就尝试一下用 Claude 模型来 Vibe Coding。</p><h2>我 Vibe 了哪些代码？</h2><p>llm-hooks 是个全栈项目，而且为了在使用 Docker 部署时能够持久化数据（因为一般的免费 Docker 容器无法配置硬盘进行数据持久化），我少有地在项目中使用了数据库。</p><p>由于对于后端及数据库相关的操作不了解，所以后端部分的代码基本都是自行实现的。</p><p>我对于前端比较熟悉，所以也趁此机会尝试使用 Claude Vibe Coding 前端部分。</p><h2>使用的技术栈？</h2><p>经过搜索，我得知 React + TailwindCSS 的组合对于 AI 比较友好，貌似是由于 TailwindCSS 可以将样式代码内联在 HTML 中，同时相对于直接写 CSS 更简短的缘故。</p><p>虽然我个人不太喜欢 TailwindCSS，但是反正是 AI 来写，我只提供需求和后续的少许纠正，也就无所谓了。</p><p>既然用了 React + TailwindCSS，干脆就上全套，把 zustand、radix-ui 等都一起上了。构建工具还是使用我比较熟悉的 Vite。（后续在查询时发现其实可以直接使用 shadcn-ui，省去自己调组件样式的麻烦）</p><h2>Vibe Coding 的体验如何？</h2><p>我一开始高估了目前模型的能力，直接把整个项目前端部分中需要的功能点列出，直接要求模型完成前端页面的框架，外加一个主要的功能点。</p><p>不过结果上不太好。</p><p>一方面是写出的东西和预期差别较大，需要很多调整，并且不提功能上的问题，实现的 UI 本身也有很多问题。比如可点击元素没有设置鼠标样式。</p><p>另一方面是让 AI 一次性编写太多代码难以 Review。加上我对于 React 生态的技术栈熟悉度不足，使得这个问题更加严重。</p><h2>我最后是怎么 Vibe 的？</h2><p>首先让 AI 搭建项目框架，即页面整体布局、主题切换、黑暗模式等，不进行实际功能的开发。</p><p>再将功能点进行拆分，对于相对较为简单的 tab，比如只具备展示功能的 tab 页，就直接给定需求进行开发；对于需要展示和数据更新的 tab 页，则将需求进行拆分，比如拆分为展示和更新两部分，在一次 Vibe 时专注于其一。</p><h2>Vibe Coding 后的体会？</h2><p>第一是对于在使用自己不熟悉的技术栈时，对于有一定复杂度的需求不要直接 Vibe，一定要做需求拆分。否则 Vibe 的结果难以维护。</p><p>第二是对于自己比较陌生的技术栈不要 Vibe，除非不考虑后续维护，可以通过 Vibe Coding 像玩老虎机一样看看能不能 Vibe 成功。</p><p>第三是 Vibe Coding 对于需求拆分的能力要求高。如果拆得细了就和平时正常写没有太大区别，不算 Vibe；如果拆得粗了，AI 又写不明白，往往得反复推翻重来。</p>
+<p><a href="https://bhznjns.github.io/#static/编程/Vibe Coding 四天后的随想.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
