@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 拉大了名校生和非名校生的差距</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>AI 拉大了名校生和非名校生的差距</h1><p><code>2025/09/05</code></p><p>原文：<a href="https://www.facebook.com/rainchamber123/posts/pfbid02UhZG3w4BBw4CB2Wn334x787v3Hvxh24V51aH1DfyTfpCLgUoh9YtsSk9ptaufoECl" target="_blank">鄭紹鈺's post</a></p><p>信息来源：<a href="https://www.ruanyifeng.com/blog/2025/09/weekly-issue-364.html" target="_blank">科技爱好者周刊（第 364 期）：最难还原的魔方</a></p><hr><details><p>哈佛經濟學家怎麼看生成式 AI 對就業市場的衝擊？</p><p>究竟 AI 對勞動市場的衝擊為何？我的同班同學兩人的論文總算出來了！</p><p>他們兩人在美國勞動經濟學權威 Larry Katz 及一票人的指導下，使用 LinkedIn 上 285,000 家美國企業僱員資料的研究，結果已經出來啦！我個人認為這是目前市面上最重要的研究，因為他們的資料最好，不是用推估的，也不是用加總的資料，而是追蹤了 LinkedIn 上約一千萬名員工的去向，實證方法也最乾淨。</p><p>結果非常直接：對許多產業來說，整個職涯階梯斷掉了！</p><p>AI 斬斷了新進到市場的 junior job，用一張圖可以講得最清楚，Senior 的工作職缺幾乎毫無減少，但是 Junior 工作的消失讓整體的職缺量掉了下去（見附圖一）。</p><p>-這效果在美國的零售業跟批發業的衝擊最大，許多零售業的文職基本上被取代了（e.g. 行銷人員等），對傳統製造業的直接衝擊較小。</p><p>-這效果在美國對於非名校的畢業生衝擊最大，對哈佛 MIT 之類的畢業生沒有什麼衝擊，但對非名校、中間 tier 的大學畢業生衝擊極大。</p><p>-在空間上，引爆點來自</p><p>California, New York, Texas, Massachusetts, and Virginia 這五個州，並逐步擴散出去。</p><p>-Senior 的工作職缺越來越搶手，但 Junior 卻開始崩掉了。（見圖二）</p><p>-對臺灣有什麼啟示？臺灣最核心的科技業乃是製造業為主，衝擊會比美國矽谷小，但如果你的工作是服務業性質，可能就要很小心了。</p><p>-而且 AI 是否「抹平了學歷？」目前看起來正相反！在美國，反而是非名校的學歷貶值的更快！</p><p>＊有興趣的請去他們的推特看原討論串：https:<i>x.com/SeyedMH98/status/1962332728130503027</i></p><p>＊或下載他們的論文來仔細讀：https:<i>papers.ssrn.com/sol3/papers.cfm?abstract_id=5425555</i></p><summary>原文</summary></details><blockquote><p>AI 斬斷了新進到市場的 junior job，用一張圖可以講得最清楚，Senior 的工作職缺幾乎毫無減少，但是 Junior 工作的消失讓整體的職缺量掉了下去</p><ul><li>這效果在美國對於非名校的畢業生衝擊最大，對哈佛 MIT 之類的畢業生沒有什麼衝擊，但對非名校、中間 tier 的大學畢業生衝擊極大。</li></ul></blockquote><hr><h2>原文评论</h2><blockquote><p>把在工作中從 junior 成長到 senior 的路徑給切斷了。現在的 senior 沒問題，但是未來要怎麼樣補充退休的 senior?</p><blockquote><p>我的想法是既然在工作中無法提供足夠的機會，可能就要透過很多的競賽和模擬來訓練 junior，要超多的來彌補工作上失去的機會，也許要由政府主辦相關的活動。</p><p>但困難就在這些 junior，在能參加專案之前就已經投了一大筆資金在學校 (跟可能的證照花費)，要是得等到 semi-senior 才能上線，那這中間的培訓成本、生活成本跟可能的沉沒成本 (沒辦法堅持到最後) 會讓投入與風險難以承受，尤其是轉換跑道/斜槓會變得非常困難，因為要能達到多面向 senior 的是極度稀缺人才、通常達成的人都是主管職了，而斜槓感覺也更難了...</p></blockquote></blockquote>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/AI 拉大了名校生和非名校生的差距.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
