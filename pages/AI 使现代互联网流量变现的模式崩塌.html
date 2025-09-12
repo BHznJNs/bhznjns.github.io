@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 使现代互联网流量变现的模式崩塌</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>AI 使现代互联网流量变现的模式崩塌</h1><p>信息来源：<a href="https://www.ruanyifeng.com/blog/2025/09/weekly-issue-365.html" target="_blank">科技爱好者周刊（第 365 期）：流量变现正在崩塌</a></p><hr><p>原文的观点总结如下：</p><p>过去的互联网由广告商（同时也是搜索引擎）支撑，广告商给内容网站以变现渠道，而内容网站则通过不断生产新内容的方式让人们需要搜索引擎。</p><p>但现在情况变了，<strong>互联网的操作入口，正从搜索引擎变成答案引擎</strong>。用户只需向 AI Chat 提出问题就能拿到答案，不需要自己翻搜索结果，也不用看广告。</p><p>对于用户友好了，但是对于内容平台来说，就没有了流量来源，原有的通过流量转化为广告收入变现的方式也就消失了。</p><hr><p>原文下的一条评论：</p><blockquote><p>流量为王的时代没有过去，最多只是说搜索引擎为王的时代过去了.</p><p>看看抖音带货，快手直播，公众号的广告，小红书，这些哪个不是流量为王，不是流量为王，董宇辉怎么年收入二十亿...</p></blockquote><p>我觉得这条评论的论据并不能用来反驳原文的观点。只能说明：</p><ol><li>正是因为内容创作者无法直接通过广告盈利，才必须走拿到流量后带货的方式来变现。</li><li>真人直播无法直接被 AI Chat 取代，因为直播的价值不是生产内容，而是给观众以陪伴感。</li></ol>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/AI 使现代互联网流量变现的模式崩塌.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
