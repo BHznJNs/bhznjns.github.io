@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电脑使用手机摄像头类应用调研</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>电脑使用手机摄像头类应用调研</h1><h2><a href="https://iriun.com/" target="_blank">Iriun Webcam</a> </h2><ul><li>打开 PC 端和手机端自动连接</li><li>支持局域网和 USB 连接</li><li>只支持横屏</li></ul><h2><a href="https://bhznjns.github.io/static/www.e2esoft.com/ivcam/">iVCam</a></h2><ul><li>支持竖屏拍摄</li><li>⚠️ 有广告</li></ul><h2><a href="https://www.dev47apps.com/droidcam/" target="_blank">DroidCam</a></h2><h3>Classic Version</h3><ul><li>仅支持横屏拍摄</li></ul><h3><a href="https://droidcam.app/" target="_blank">DroidCam Webcam</a></h3><ul><li>官方提供 OBS 插件支持</li><li>我在使用时无线连接无法正常连上，仅有线连接能正常用</li><li>依然仅支持横屏拍摄</li></ul><h2><a href="https://reincubate.com/zh/support/camo" target="_blank">Camo</a></h2><ul><li>电脑端和安卓端的 UI 风格偏向原生（Fluent UI / Material You），界面美观</li><li>支持横屏和竖屏拍摄</li><li>在手机开热点与电脑连接的情况下无法使用无线连接</li><li>支持有线连接</li><li>启动后会设置虚拟摄像机，可以直接在 OBS 中添加</li></ul><hr><p>综合下来，Camo 是最佳方案。</p>
+<p><a href="https://bhznjns.github.io/#static/工具软件/电脑使用手机摄像头类应用调研.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
