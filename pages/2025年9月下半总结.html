@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025年9月下半总结</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>2025 年 9 月下半总结</h1><p>这半个月的时间主要花在了 InputShare 付费版本的开发上。</p><h2>独立开发</h2><p>半个月时间，把 InputShare 新版本的基本流程给跑通了：</p><ol><li>换了全新的技术栈：Tauri（为了用 web 技术栈加速开发）+ Python（为了复用原先的一些代码和逻辑）</li><li>后端 API + 前端调用</li><li>多设备管理</li></ol><p>对于安卓端，也决定用 Jetpack Compose 重构（这里吐槽一下，之前的版本在编写的时候由于我完全没有安卓开发经验，代码几乎都由 AI 编写。结果 AI 完全使用 XML 来编写页面），同时将相关的 API 都换成更现代的写法。</p><h3>Vibe Coding</h3><p>在开发 InputShare 新版本时，也是延续了上个项目的经验，前端部分主要由 AI 编写。同时由于这个项目使用了 shadcn-ui（不同于之前项目直接使用 radix-ui），界面风格更统一，代码也更具可维护性。同时在开发中我也尝试使用了 Roo Code 的 sub-task 功能，利用子 task 下上下文隔离的特性，让 AI 在有限的上下文下能够辅助读遍项目中的所有代码文件帮忙重构。</p><h2>求职就业</h2><p>之前面试字节的三面后过了一周多，本以为没有通过，结果在第二周收到消息，说是通过了三面，安排参加 HR 面。</p><p>在 HR 面中，对方提到了有关提前实习的接受度，面试完后就感觉不对劲。果然后续的沟通中说明，不给校招 offer，只有实习 offer，且转正率未知。由于我相对于一些同龄的卷王还是比较缺乏实习经验的，再加上字节实习薪资较高，食宿都有补贴，这个 offer 其实还是比较有吸引力的。当时通知正好是周五，我犹豫了一个周末后决定拒绝。也算是破釜沉舟，让自己全心去把 InputShare 这个项目完成了。</p><p>当然，我也不是没有考虑到项目失败的风险，主要是念在 InputShare 这个项目同时也作为我的毕设项目，至少我可以在这个学期内将毕设完成，有需要的话下个学期还是有时间找实习的。</p><h2>游戏娱乐</h2><p>这个半月中把以前很喜欢的皇室战争重新拾起游玩，游戏本身确实很有意思，哪怕这已经是差不多十年前发布的游戏。但是游戏的运营属实是有些难评。</p><h2>其它</h2><p>通过 L 站得知了一些免费的 LLM API 调用渠道后自己薅了一些，做了中转在闲鱼售卖。</p>
+<p><a href="https://bhznjns.github.io/#static/阶段小结/2025/2025年9月下半总结.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
