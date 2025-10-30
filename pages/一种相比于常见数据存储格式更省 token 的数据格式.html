@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一种相比于常见数据存储格式更省 token 的数据格式</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>一种相比于常见数据存储格式更省 token 的数据格式</h1><p>项目地址：https:<i>github.com/johannschopplich/toon</i></p><p>比如对于 JSON：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">{
+  "users": [
+    { "id": 1, "name": "Alice", "role": "admin" },
+    { "id": 2, "name": "Bob", "role": "user" }
+  ]
+}
+</code></pre><p>会被转换为：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">users[2]{id,name,role}:
+  1,Alice,admin
+  2,Bob,user
+</code></pre><p>相比于其它常见的数据格式，能够显著减少同样数据的 token 数量：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">⭐ GitHub Repositories       ██████████████░░░░░░░░░░░    8,745 tokens
+                             vs JSON (-42.3%)           15,145
+                             vs JSON compact (-23.7%)   11,455
+                             vs YAML (-33.4%)           13,129
+                             vs XML (-48.8%)            17,095
+
+📈 Daily Analytics           ██████████░░░░░░░░░░░░░░░    4,507 tokens
+                             vs JSON (-58.9%)           10,977
+                             vs JSON compact (-35.7%)    7,013
+                             vs YAML (-48.8%)            8,810
+                             vs XML (-65.7%)            13,128
+
+🛒 E-Commerce Order          ████████████████░░░░░░░░░      166 tokens
+                             vs JSON (-35.4%)              257
+                             vs JSON compact (-2.9%)       171
+                             vs YAML (-15.7%)              197
+                             vs XML (-38.7%)               271
+
+─────────────────────────────────────────────────────────────────────
+Total                        ██████████████░░░░░░░░░░░   13,418 tokens
+                             vs JSON (-49.1%)           26,379
+                             vs JSON compact (-28.0%)   18,639
+                             vs YAML (-39.4%)           22,136
+                             vs XML (-56.0%)            30,494
+</code></pre><p>并且几乎不会影响模型对数据的理解：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">gpt-5-nano
+→ TOON           ███████████████████░    96.1% (148/154)
+  CSV            ██████████████████░░    91.6% (141/154)
+  YAML           ██████████████████░░    91.6% (141/154)
+  JSON compact   ██████████████████░░    91.6% (141/154)
+  XML            █████████████████░░░    87.0% (134/154)
+  JSON           █████████████████░░░    86.4% (133/154)
+
+claude-haiku-4-5-20251001
+  JSON           ██████████░░░░░░░░░░    50.0% (77/154)
+  YAML           ██████████░░░░░░░░░░    49.4% (76/154)
+→ TOON           ██████████░░░░░░░░░░    48.7% (75/154)
+  XML            ██████████░░░░░░░░░░    48.1% (74/154)
+  CSV            █████████░░░░░░░░░░░    47.4% (73/154)
+  JSON compact   █████████░░░░░░░░░░░    44.2% (68/154)
+
+gemini-2.5-flash
+  CSV            ██████████████████░░    87.7% (135/154)
+  XML            ██████████████████░░    87.7% (135/154)
+→ TOON           █████████████████░░░    86.4% (133/154)
+  YAML           ████████████████░░░░    79.9% (123/154)
+  JSON compact   ████████████████░░░░    79.9% (123/154)
+  JSON           ███████████████░░░░░    76.6% (118/154)
+
+grok-4-fast-non-reasoning
+→ TOON           ██████████░░░░░░░░░░    49.4% (76/154)
+  JSON           ██████████░░░░░░░░░░    48.7% (75/154)
+  XML            █████████░░░░░░░░░░░    46.1% (71/154)
+  YAML           █████████░░░░░░░░░░░    46.1% (71/154)
+  JSON compact   █████████░░░░░░░░░░░    45.5% (70/154)
+  CSV            █████████░░░░░░░░░░░    44.2% (68/154)
+</code></pre>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/一种相比于常见数据存储格式更省 token 的数据格式.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
