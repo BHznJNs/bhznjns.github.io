@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025年10月 月度小结</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>2025 年 10 月 月度小结</h1><p>这半个月的时间主要花在了 InputShare 付费版本的开发及完善上。</p><h2>独立开发</h2><p>在上个月的基础上，将开源版本的安卓端重写了，同时二开了 scrcpy 的服务端，给加入了额外的 UDP 监听以实现延迟更低的鼠标事件通信。</p><p>完成后基本就在用户的反馈下进行小修小改。原本计划在 10 月 20 日左右发布，后来发现还是有一些影响核心体验的问题，就推迟了。在 10 月 13 日时在多平台发布了预发布视频（顺带一提，最开始本来打算使用最近大热的 sora2 来生成的，但是效果实在不行，又没法给定视频进行修改，只能自己录了），其中 B 站上收到了一些表示期待的评论。</p><p>之前想到可以给 InputShare2 添加一个 Agent 自动控制手机的功能作为订阅服务，做了一些调研，但是感觉需求不痛，就先不管。可以先做 daigent，然后再 InputShare2 中暴露 MCP 接口供调用，这样来验证需求。</p><h2>开源</h2><p>开了新坑 <a href="https://github.com/BHznJNs/daigent" target="_blank">daigent</a>，虽然几个月前写了一个同名的项目，但只是同名而已，之前那个已经废弃了，这个项目用了全新的技术栈：Tauri 前端 + Nodejs SideCar 作后端，同时前端部分使用了我最近几个项目用得轻车熟路的 React + Shadcn-ui。目前是把 CI 构建和前端的框架搭好了。</p><h2>运动</h2><p>这个月没有跑步，只有时不时去拉下引体向上。</p>
+<p><a href="https://bhznjns.github.io/#static/阶段小结/2025/2025年10月 月度小结.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
