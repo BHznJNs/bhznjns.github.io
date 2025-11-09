@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在 Tauri 应用中引入 Sidecar 的实践</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>在 Tauri 应用中引入 Sidecar 的实践</h1><p>本文主要介绍了如何在 Tauri 项目中引入 Node.js 或 Python 作为 Sidecar。</p><h2>为什么要使用 Sidecar？</h2><p>一些场景，尤其是服务端开放和数据库操作，使用 Rust 的开发效率远没有使用 Node.js 或 Python 高，且 Rust 本身的特性决定了它不太适合开发应用原型。</p><h2>公共操作</h2><p>引入 shell plugin</p><pre class="code-block" data-language="SHELL"><code class="language-shell" tabindex="0">npm tauri add shell
+</code></pre><h2>Node.js Sidecar</h2><p>由于 Nodejs 官方的 SEA 还不成熟，<a href="https://github.com/yao-pkg/pkg" target="_blank">yao-pkg</a> 已被废弃，<a href="https://github.com/nexe/nexe" target="_blank">nexe</a> 要使用较新的 Nodejs 版本需要自行编译，于是我选择最朴素的方法：直接从官方发布的 Nodejs 构建好的包中提取出 node.exe 可执行文件，再在构建时将 Nodejs 部分的代码打包成单 javascript 文件，在 Tauri 应用运行时调用 node.exe + javascript bundle 文件路径来执行。</p><details><p>下载 Nodejs 构建包并提取 node.exe</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">import { createWriteStream, promises as fs } from 'node:fs';
+import { createGunzip } from 'node:zlib';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import https from 'node:https';
+import tar from 'tar';
+import AdmZip from 'adm-zip';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+/**
+ * 解析命令行参数
+ * @returns {Object} 解析后的参数对象
+ */
+function parseArgs() {
+  const args = process.argv.slice(2);
+  const options = {
+    version: 'v25.0.0',
+    platform: undefined,
+    arch: undefined,
+  };
+
+  for (let i = 0; i &lt; args.length; i++) {
+    const arg = args[i];
+    
+    switch (arg) {
+      case '--version':
+      case '-v':
+        options.version = args[++i];
+        break;
+      case '--platform':
+      case '-p':
+        options.platform = args[++i];
+        break;
+      case '--arch':
+      case '-a':
+        options.arch = args[++i];
+        break;
+      default:
+        if (arg.startsWith('--')) {
+          console.error(`Unknown option: ${arg}`);
+          process.exit(1);
+        }
+        break;
+    }
+  }
+
+  return options;
+}
+
+/**
+ * 根据平台和架构获取下载 URL
+ * @param {string} version - Node.js 版本，如 'v25.0.0'
+ * @param {string} platform - 操作系统：'win32', 'darwin', 'linux', 'aix'
+ * @param {string} arch - 架构：'x64', 'arm64', 'ppc64', 'ppc64le', 's390x'
+ * @returns {Object} - { url, filename, executableName }
+ */
+function getDownloadInfo(version, platform, arch) {
+  const baseUrl = `https://nodejs.org/dist/${version}/`;
+  
+  let filename;
+  let executableName = 'node';
+  
+  if (platform === 'win32') {
+    executableName = 'node.exe';
+    filename = `node-${version}-win-${arch}.zip`;
+  } else if (platform === 'darwin') {
+    filename = `node-${version}-darwin-${arch}.tar.gz`;
+  } else if (platform === 'linux') {
+    filename = `node-${version}-linux-${arch}.tar.gz`;
+  } else if (platform === 'aix') {
+    filename = `node-${version}-aix-${arch}.tar.gz`;
+  } else {
+    throw new Error(`Unsupported platform: ${platform}`);
+  }
+  
+  return {
+    url: baseUrl + filename,
+    filename,
+    executableName
+  };
+}
+
+/**
+ * 下载文件
+ * @param {string} url - 下载地址
+ * @param {string} destination - 保存路径
+ */
+async function downloadFile(url, destination) {
+  console.log(`Downloading from: ${url}`);
+  
+  return new Promise((resolve, reject) =&gt; {
+    https.get(url, (response) =&gt; {
+      // 处理重定向
+      if (response.statusCode === 302 || response.statusCode === 301) {
+        downloadFile(response.headers.location, destination)
+          .then(resolve)
+          .catch(reject);
+        return;
+      }
+      
+      if (response.statusCode !== 200) {
+        reject(new Error(`Failed to download: ${response.statusCode}`));
+        return;
+      }
+      
+      const fileStream = createWriteStream(destination);
+      const totalSize = parseInt(response.headers['content-length'], 10);
+      let downloadedSize = 0;
+      
+      response.on('data', (chunk) =&gt; {
+        downloadedSize += chunk.length;
+        const progress = ((downloadedSize / totalSize) * 100).toFixed(2);
+        process.stdout.write(`\rDownload progress: ${progress}%`);
+      });
+      
+      response.pipe(fileStream);
+      
+      fileStream.on('finish', () =&gt; {
+        fileStream.close();
+        console.log('\nDownload completed!');
+        resolve();
+      });
+      
+      fileStream.on('error', (err) =&gt; {
+        fs.unlink(destination);
+        reject(err);
+      });
+    }).on('error', reject);
+  });
+}
+
+/**
+ * 解压 tar.gz 文件并提取 node 可执行文件
+ * @param {string} archivePath - 压缩包路径
+ * @param {string} outputDir - 输出目录
+ * @param {string} executableName - 可执行文件名
+ */
+async function extractTarGz(archivePath, outputDir, executableName) {
+  console.log('Extracting tar.gz archive...');
+
+  await tar.x({
+    cwd: outputDir,
+    file: archivePath,
+    filter: (path) =&gt; {
+      // 只提取 bin/node 文件
+      return path.endsWith(`bin/${executableName}`)
+    },
+    strip: 2,
+    onentry: (entry) =&gt; console.log(`Extracting: ${entry.path}`)
+  });
+  return join(outputDir, executableName);
+}
+
+/**
+ * 解压 zip 文件并提取 node.exe
+ * @param {string} archivePath - 压缩包路径
+ * @param {string} outputDir - 输出目录
+ * @param {string} executableName - 可执行文件名
+ */
+async function extractZip(archivePath, outputDir, executableName) {
+  console.log('Extracting zip archive...');
+  
+  const zip = new AdmZip(archivePath);
+  const zipEntries = zip.getEntries();
+  
+  for (const entry of zipEntries) {
+    if (entry.entryName.endsWith(executableName)) {
+      console.log(`Extracting: ${entry.entryName}`);
+      
+      // 直接提取到目标位置
+      const targetPath = join(outputDir, executableName);
+      const content = entry.getData();
+      await fs.writeFile(targetPath, content);
+      
+      console.log(`Extracted to: ${targetPath}`);
+      return targetPath;
+    }
+  }
+  
+  throw new Error('Node executable not found in archive');
+}
+
+/**
+ * 主函数
+ * @param {Object} options - 配置选项
+ * @param {string} options.version - Node.js 版本
+ * @param {string} options.platform - 操作系统
+ * @param {string} options.arch - 架构
+ * @param {string} options.outputDir - 输出目录
+ */
+async function downloadAndExtractNode(options) {
+  const {
+    version = 'v25.0.0',
+    platform = process.platform,
+    arch = process.arch,
+    outputDir = join(__dirname, 'node-binaries')
+  } = options;
+  
+  try {
+    // 创建输出目录
+    await fs.mkdir(outputDir, { recursive: true });
+    
+    // 获取下载信息
+    const { url, filename, executableName } = getDownloadInfo(version, platform, arch);
+    const archivePath = join(outputDir, filename);
+    
+    // 下载文件
+    await downloadFile(url, archivePath);
+    
+    // 解压文件
+    let finalPath;
+    if (filename.endsWith('.zip')) {
+      finalPath = await extractZip(archivePath, outputDir, executableName);
+    } else if (filename.endsWith('.tar.gz')) {
+      finalPath = await extractTarGz(archivePath, outputDir, executableName);
+    }
+    
+    // 删除压缩包
+    await fs.unlink(archivePath);
+    console.log('Archive deleted.');
+    
+    // 设置执行权限 (Unix-like 系统)
+    if (platform !== 'win32' && finalPath) {
+      await fs.chmod(finalPath, 0o755);
+    }
+    
+    console.log(`\n✓ Node executable extracted to: ${finalPath}`);
+    return finalPath;
+    
+  } catch (error) {
+    console.error('Error:', error.message);
+    throw error;
+  }
+}
+
+
+const options = parseArgs();
+try {
+  await downloadAndExtractNode({
+    // version: 'v25.0.0',
+    // platform: 'darwin',  // 可选：'win32', 'darwin', 'linux', 'aix'
+    // arch: 'x64',        // 可选：'x64', 'arm64', 'ppc64', 'ppc64le', 's390x'
+    ...options,
+    outputDir: join(__dirname, '../node-bin')
+  }).catch(console.error);
+} catch (error) {
+  console.error('Error:', error.message);
+  process.exit(1);
+}
+</code></pre><p>将可执行文件移至 Tauri 目录下的 <code>bin/</code> 目录：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import { dirname } from 'node:path';
+
+const ext = process.platform === 'win32' ? '.exe' : '';
+
+let targetTriple;
+const targetIndex = process.argv.indexOf('--target');
+if (targetIndex !== -1 && process.argv[targetIndex + 1]) {
+  // prefer to use the target triple passed in
+  targetTriple = process.argv[targetIndex + 1];
+} else {
+  const rustInfo = execSync('rustc -vV');
+  targetTriple = /host: (\S+)/g.exec(rustInfo)[1];
+  if (!targetTriple) {
+    console.error('Failed to determine platform target triple');
+  }
+}
+
+const dest = `src-tauri/bin/node_runtime-${targetTriple}${ext}`;
+fs.mkdirSync(dirname(dest), { recursive: true });
+fs.renameSync(`node-bin/node${ext}`, dest);
+</code></pre><p>将 nodejs 部分构建成单 JavaScript 文件：</p><pre class="code-block" data-language="JAVASCRIPT"><code class="language-javascript" tabindex="0">esbuild src/index.ts --bundle --platform=node --format=esm --outfile=../src-tauri/bin/server.mjs
+</code></pre><p><code>tauri.conf.json</code> 中的 <code>bundle</code> 部分添加配置：</p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">    "resources": ["./bin/*.js"],
+    "externalBin": ["./bin/node_runtime"]
+</code></pre><summary>相关脚本</summary></details><h2>Python Sidecar</h2><p>虽然官方推荐使用 pyinstaller + one file 模式打包，但是这种构建方式构建出来的单可执行文件实际上是自解压文件，在运行时会将自身解压到临时目录下执行，所以启动速度往往偏慢。</p><p>我尝试了 pyinstaller、nuitka 这两种方案（其实我也尝试过 <a href="https://github.com/indygreg/PyOxidizer" target="_blank">PyOxidizer</a>，不过这个项目已经不再维护，所以不考虑使用）。</p><p>其中 nuitka 的 standalone 模式下会将可执行文件本身和依赖文件（.pyd, .dll 等）都平铺在输出目录下，由于 Tauri 执行 Sidecar 的机制的限制，必须将可执行文件本身放在 <code>tauri.conf.json</code> 种指定的 Sidecar 的位置，再将其余的依赖文件都放在 <code>tauri.conf.json</code> 的同级下，会导致 <code>src-tauri</code> 目录很混乱。</p><p>而 pyinstaller 会将所有依赖文件放在输出目录的 <code>_internal</code> 目录下，这样在 <code>tauri.conf.json</code> 中只需配置：</p><pre class="code-block" data-language="JSON"><code class="language-json" tabindex="0">"resources": ["./_internal/"],
+</code></pre><p>即可，更方便。</p><details><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">import sys
+import os
+import subprocess
+import re
+import shutil
+from pathlib import Path
+
+def get_rustc_host() -&gt; str:
+    try:
+        out = subprocess.check_output(['rustc', '-vV'], stderr=subprocess.STDOUT)
+        text = out.decode('utf-8', errors='replace')
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        print(f'Failed to run rustc: {e}', file=sys.stderr)
+        sys.exit(1)
+
+    m = re.search(r'host:\s+(\S+)', text)
+    if not m:
+        print('Failed to determine platform target triple', file=sys.stderr)
+        sys.exit(1)
+    target = m.group(1)
+    return target
+
+def main():
+    ext = '.exe' if os.name == 'nt' else ''
+
+    # 查找 --target 参数
+    target = None
+    if '--target' in sys.argv:
+        idx = sys.argv.index('--target')
+        if idx + 1 &lt; len(sys.argv):
+            target = sys.argv[idx + 1]
+
+    # 如果未指定，则从 rustc -vV 输出中解析 host
+    if not target:
+        target = get_rustc_host()
+
+    # move executable file
+    dest_executable = Path(f"src-tauri/bin/server-{target}{ext}")
+    dest_executable_parent = dest_executable.parent
+    dest_executable_parent.mkdir(parents=True, exist_ok=True)
+
+    src_executable = Path(f"src-server/dist/main/main{ext}")
+    if not src_executable.exists():
+        print(f"Source file not found: {src_executable}", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        shutil.move(str(src_executable), str(dest_executable))
+    except Exception as e:
+        print(f"Failed to move {src_executable} -&gt; {dest_executable}: {e}", file=sys.stderr)
+        sys.exit(1)
+    
+    # move dependency files
+    dest_dependency_dir = Path(f"src-tauri/_internal/")
+    src_dependency_dir = Path(f"src-server/dist/main/_internal/")
+    if not src_dependency_dir.exists():
+        print(f"Source directory not found: {src_dependency_dir}", file=sys.stderr)
+        sys.exit(1)
+        
+    try:
+        shutil.move(str(src_dependency_dir), str(dest_dependency_dir))
+    except Exception as e:
+        print(f"Failed to move {src_dependency_dir} -&gt; {dest_dependency_dir}: {e}", file=sys.stderr)
+        sys.exit(1)
+
+if __name__ == '__main__':
+    main()
+</code></pre><summary>附上将 pyinstaller 输出的文件复制并重命名到 Tauri 目录下的脚本</summary></details>
+<p><a href="https://bhznjns.github.io/#static/编程/Web 前端/在 Tauri 应用中引入 Sidecar 的实践.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
