@@ -89,6 +89,7 @@ $$$
 ### {Antenna Reciprocity}(天线互易性)
 
 一个天线在发射时“聚焦”能量的能力 (G)，和它在接收时“收集”能量的能力 (A_eff)，是完全成正比的。
+
 $$$
 G = \cfrac{4 \pi k A}{\lambda^2}
 $$$
@@ -96,3 +97,27 @@ $$$
 - $$A$$: actual physical area of antenna
 - $$k$$: a efficiency multiplier (<1, related to $$\eta$$) such that $$kA = A_{eff}$$
 - $$\lambda$$: wavelength of radiation
+
+### Friis transmission equation
+
+$$$
+P_r = P_t G_t G_r (\cfrac{\lambda}{4\pi R})^2
+$$$
+- $$P_r​$$: 接收功率 (Received Power)
+- $$P_t​$$: 发射功率 (Transmitted Power)
+- $$G_t​$$: 发射天线增益 (Transmitting Antenna Gain)
+- $$G_r​$$: 接收天线增益 (Receiving Antenna Gain)
+- $$λ$$: 波长 (Wavelength)
+- $$R$$: 发射机和接收机之间的距离 (Distance)
+
+#### Path loss
+
+$$$
+L_p = 20 \log(\cfrac{\lambda}{4\pi R}) dB
+$$$
+
+#### dB form of Friis transmission equation
+
+$$$
+P_r (\text{dBW}) = P_t (\text{dBW}) + G_t (\text{dB}) + G_r (\text{dB}) + L_p (\text{dB})
+$$$
