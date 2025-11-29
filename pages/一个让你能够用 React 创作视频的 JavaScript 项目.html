@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一个让你能够用 React 创作视频的 JavaScript 项目</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>一个让你能够用 React 创作视频的 JavaScript 项目</h1><p>项目地址：<a href="https://www.remotion.dev/" target="_blank">remotion.dev</a></p><p>在线编辑器 Demo：<a href="https://remotion-helloworld.vercel.app/?/HelloWorld" target="_blank">https:<i>remotion-helloworld.vercel.app/?/HelloWorld</i></a></p><hr><h2>基本介绍</h2><p>这个项目让你能够通过编排组合 React 组件来创建视频。也得益于此，创建的视频实际上是可以动态渲染的，项目也提供了专门的 <code>&lt;Player&gt;</code> 组件用于直接在网页中基于动态的 React 状态播放使用 remotion 创建的视频。具体可以<a href="https://www.remotion.dev/docs/player" target="_blank">见此</a>。</p><p>项目有部分高级功能，如高级的动画效果等需付费，定价<a href="https://www.remotion.pro/license" target="_blank">见此</a>。</p><h2>付费的 NPM 包</h2><p>有意思的是，这个项目为了通过一些付费功能变现（这些功能部分是以 NPM 包的形式交付的），基于 Stripe 设计了一个名为 <a href="https://npm-kiosk.remotion.dev/" target="_blank">npm-kiosk</a> 的 NPM 销售模板。</p>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/一个让你能够用 React 创作视频的 JavaScript 项目.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
