@@ -6,10 +6,19 @@ $$$
 U_H = U_E
 $$$
 
+## 电磁波在真空中的理论传播速度
+
+$$$
+v = \cfrac{1}{\epsilon_0 \mu_0}
+$$$
+
+计算结果为 $$v = 2.9986 \times 10^8 m/s$$。
+这个速度等于光速，因此这个公式证明光电统一（即光也是电磁波）。
+
 ## Poynting Vector
 
 电磁波能量流的强度
 
 $$$
-\underline{S} = \underline{E} \times \underline{H}
+S = E \times H
 $$$

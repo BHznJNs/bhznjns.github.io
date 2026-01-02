@@ -19,12 +19,12 @@ $$$
 - In case of transmit or received power: $$X_{ref}=1W$$ for dB  or $$X_{ref} = 1mW$$ for dBm
 - In case of antenna gain: $$X_{ref}=1$$
 
-#### 计算示例
+>>>计算示例
 
 给定一个 5G 发射器，功率 $$P = 4W$$
 a) 求换算成 dB 的传输功率
 
-参考功率 $$P_{ref} = 1 mW$$
+参考功率 $$P_{ref} = 1 W$$
 $$$
 P_{dB} = 10 \log_{10}\left(\frac{P}{1W}\right) = 10 \log_{10}(\frac{4}{1W}) = 10 \log_{10}(4)\\
 P_{dB} = 6.02 \text{dB}
@@ -37,6 +37,7 @@ $$$
 P_{\text{dBm}} = 10\log_{10}(\frac{P}{1\text{mW}}) = 10\log_{10}(\frac{4}{0.001}) = 10\log_{10}(4000) \\
 P_{\text{dBm}} = 36.02 \text{dBm}
 $$$
+>>>
 
 ### 将 dB 形式转换为线性功率
 
