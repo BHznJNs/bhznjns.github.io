@@ -122,3 +122,21 @@ $$$
 $$$
 P_r (\text{dBW}) = P_t (\text{dBW}) + G_t (\text{dB}) + G_r (\text{dB}) + L_p (\text{dB})
 $$$
+
+## Power budget for satellite communications link
+
+### {Carrier to noise ratio}(载噪比)
+
+$$$
+(C-N)(dB) = P_t(dBW) + G_t(dB) + L_p(dB) + \text{propagation \& reception losses} + G_r(dB) - N(dBW)
+$$$
+
+| Signal to noise required for adequate reception | Signal to noise at RXR |
+| | $$P_t$$ (dBW) |
+| | + $$G_t$$ (dB) |
+| | + $$L_p$$ (dB) |
+| | + propagation losses (dB) |
+| | + reception losses (dB) |
+| | + $$G_r$$ (dB) |
+| | ##- N (dBW)## |
+| Minimum detectable signal ##C - N## (dB) | Available ##C - N## (dB) |
