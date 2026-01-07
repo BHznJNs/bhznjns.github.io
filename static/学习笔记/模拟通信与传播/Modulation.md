@@ -34,7 +34,7 @@ $$$
 >>>AM 计算示例
 A carrier wave of frequency 10 MHz and amplitude 10 V is amplitude modulated with a 5 kHz sine wave of amplitude 6 V. Determine the modulation index and the frequency and amplitude of the spectral components. Draw the spectrum.
 
-##Modulation index:##  $$$m = \frac{V_m}{V_c} = \frac{6}{10} = 0.6$$$
+##Modulation index:##  $$m = \frac{V_m}{V_c} = \frac{6}{10} = 0.6$$
 
 ##USB frequency:##  $$(f_c + f_m) = 10.000 + 0.005 = 10.005 \text{ MHz}$$
 
