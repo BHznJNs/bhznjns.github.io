@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>看漫画解说也能学投资交易？</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>看漫画解说也能学投资交易？</h1><p>今天，我在 B 站刷到了关于《FX 战士久留美》要动画化的视频，我一开始其实是不太感兴趣的，但怎奈 B 站的幽默推送机制给我反复推，推多了我反倒起了些好奇，点进视频中看了看。</p><p>看漫画名称里带个“战士”，我一开始还以为是魔法少女或者异世界番，结果发现不是。漫画名称中的”FX“是”Foreign Exchange“的缩写，即外汇交易，整个漫画讲的则是主角久留美接触 FX 后越陷越深的故事。</p><p>我当时误以为动画已经推出，想找找盗版资源品鉴一下，但实际还没有开始放送。不过我倒是在搜索的过程中看到了油管主“歐尼哥”在两年前的一个<a href="https://www.youtube.com/playlist?list=PLqUxsnWJjAfCj2tUmc2rkKpe8ZN8vB6PY" target="_blank">解说系列视频</a></p><p>这个解说系列与其它的偏娱乐化的解说视频不太相同，这个解说系列主要是基于《FX 战士》的剧情，来向观众介绍证券交易中的一项基础概念以及主角久留美在交易中的误区。本来这些纯理论的内容如果单独来讲的话比较枯燥，但是搭配上相关的漫画边解说边讲感觉就很有意思了。</p><p>不过可惜这个系列只更了 7 集，后续似乎也没有再更新的计划。</p>
+<p><a href="https://bhznjns.github.io/#static/杂谈/看漫画解说也能学投资交易？.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
