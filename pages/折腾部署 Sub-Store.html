@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>折腾部署 Sub-Store</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>折腾部署 Sub-Store</h1><h2>背景</h2><p>今天刷 L 站看到了 <a href="https://github.com/ZeroDeng01/sublinkPro" target="_blank">SublinkPro</a> 这个项目，尝试了在线 demo 后感觉还行，就自己部署了。但部署后稍微深度一点就发现，这个项目大小 Bug 不少，要真正拿来使用可能还得等着再迭代一段时间。</p><p>于是我就搜了下，有哪些成熟的类似项目，看了看，基本就只有 <a href="https://github.com/sub-store-org/Sub-Store" target="_blank">Sub Store</a> 这个项目了。这个项目之前有尝试过，但用户引导实在太差，UI 设计得也没有引导性、不够直观，导致根本用不明白。今天重新尝试，花了一个下午才成功导入订阅，聚合节点，并且能够正常使用。</p><h2>部署方式</h2><p>我个人惯用 Docker 部署，不过对于 sub store 这个项目，由于官方的文档链接不知为何在我这无法打开，经过一番查找才找到官方的 Docker 镜像：<a href="https://hub.docker.com/r/xream/sub-store/" target="_blank">xream/sub-store</a></p><p>找到镜像后下一步就是配置启动设置了。主要重要的就三项，一项是持久化数据用的 volume，配置为 `/opt/app/data` 即可；另一项则是 `SUB_STORE_FRONTEND_BACKEND_PATH` 环境变量，这个变量相当于你的 sub store 实例的密码，必须以斜杠开头；最后一项就是容器暴露的端口了，sub store 默认使用 3001 为前端部分的端口，3000 为后端部分端口，一般只暴露前端就够。</p><h2>启动之后</h2><p>第一次进入前端页面会自动提示让你填入后端地址，这里填入前端地址 + 你前面设置的 `SUB_STORE_FRONTEND_BACKEND_PATH` 环境变量即可，比如你的前端地址为 `https:<i>example.com`，`SUB_STORE_FRONTEND_BACKEND_PATH` 设为 `12345`，这里就填入 `https:</i>example.com/12345`。</p><p>刚进入管理界面有一个推荐设置。进入更多设置后关闭`隐藏 "Gist 同步" 页`即可。我看到有的教程会教人一起关闭`隐藏 "文件" 页`选项，但我后来发现这个“文件”页面还是挺有用的，后面会提到。</p><h2>导入订阅</h2><p>这个应该不用多说了，导入时基本不需要额外设置。</p><h2>聚合订阅</h2><p>这里有个比较反直觉的地方，聚合订阅的 UI 入口和导入订阅的非常相近。你在订阅管理页面点击添加按钮后跳出来的抽屉中，“单条订阅”就是直接导入订阅，而“组合订阅”则是用来把你已经导入的几个订阅给聚合起来的。</p><h2>配置规则</h2><p>到这里还没完。虽然前面聚合起来的订阅已经可以直接导出订阅链接导入到客户端中，但是你可能会发现这样导出的订阅在导入到客户端中后，虽然能显示节点，但是却无法联网。</p><p>这是因为这样导出的订阅缺乏一些像 DNS 这样的基础设置。</p><p>这里就需要用到前面说的“文件管理”界面了。在文件管理界面可以新建一个 Mihomo 配置，在配置编辑页面的最下方会有一个脚本操作，在这里可以设置用来给订阅加上相关规则的脚本。我这里直接用一位大佬开源的现成脚本，GitHub 地址为：<a href="https://github.com/powerfullz/override-rules" target="_blank">powerfullz/override-rules</a>，直接使用其中的 convert.js 即可。</p><p>你在配置后发现确实能上网了，但是如果你在 cloudflare 有托管域名，你可能会发现使用 sub store 导出的订阅无法访问自己在 cloudflare 托管的域名。这是因为前面这个脚本的 quic 支持默认是关闭的，而 cloudflare 又强制使用 quic 协议，这导致你直接使用该脚本会使得无法正常建立连接。在 sub store 中编辑脚本的编辑器下方有一个“参数编辑”的开关，打开它，在下方添加 `quic` 为 true 的配置后，在客户端中刷新订阅即可正常使用了。</p>
+<p><a href="https://bhznjns.github.io/#static/工具软件/折腾部署 Sub-Store.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
