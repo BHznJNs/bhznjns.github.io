@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一个极简的 Agentic Coding 工作流：TODO 驱动开发</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>一个极简的 Agentic Coding 工作流：TODO 驱动开发</h1><h2>前言</h2><p>有尝试过使用 Coding Agent 来辅助开发的人应该都对 Spec 驱动开发有所耳闻。</p><p>我在浅尝过 spec 驱动开发后就被劝退，原因很简单，spec 驱动开发的前提是要有像样的 spec，但是写一份长长的 spec 对我来说实在难做到。别说自己写 spec，就是 AI 帮我写完，让我 review 我也没耐心看完。于是我发明了 TODO 驱动开发。</p><h2>什么是 TODO 驱动开发</h2><p>简单来说，就是将需求拆解后，在项目代码中需要修改处加上 TODO 注释，再让 Coding Agent 使用 git 读 diff，获取所有新增 TODO，再逐一编写代码。</p><h2>TODO 驱动开发有什么优点</h2><p>第一，也是最明显的优点，TODO 驱动开发是从源码出发，让你自己找到需要修改的点，可以是一个待完成的函数，一个需要新增的类，甚至是一个模块，加上对应的 TODO 信息，再转交给 agent 进行实现。你的工作流基本还是在 代码编辑器/IDE 中，不需要你改变现有工作流。</p><p>第二，Coding Agent 在读取 diff 信息时能顺便看到代码上下文，不需要你费劲说明应该改哪个模块。</p><p>第三，由于已经明确具体修改点以及每个点的修改逻辑，对于没那么强的模型也能有相对更好的执行效果。</p><p>第四，在任务开始前已经明确了改动点，Coding Agent 的改动更可控，Review 起来也更容易。</p>
+<p><a href="https://bhznjns.github.io/#static/编程/LLM/一个极简的 Agentic Coding 工作流：TODO 驱动开发.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
