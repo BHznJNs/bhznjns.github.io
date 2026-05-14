@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如何让 AI 参与重大决策</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>如何让 AI 参与重大决策</h1><p>今天刷到一条帖子：<a href="https://linux.do/t/topic/2173081" target="_blank">佬们会让 AI 主导重大决策吗，有没有被忽悠瘸过</a>，其中帖主提到，自己在准备买房时参考了几个 AI 给出的意见，“各家大模型都信誓旦旦已经接近触底”，于是果断订了房，结果过了一小段时间之后由于房贷压力等原因以赔付五万的代价退了房子。</p><p>帖子下有人认为是因为给 AI 的信息不足，同时很多人在使用 AI 来做决策时也容易出现“你心里早已经有了这个念头，只是缺个人推你一把”的情况，只是找了 AI 来当这个背锅侠，以掩盖自己决策错误的事实。</p><h2>我的观点</h2><p><strong>让 AI 帮你权衡利弊提出建议，而不是直接让 AI 帮你下决定</strong></p><p>比如两个场景：理财投资和 offer 选择，</p><p>对于投资场景，只能是你给定交易策略，给定技术指标，让 AI 判断是否符合策略定义的交易时机，<strong>最后决定是否听从的是你</strong></p><p>对于 offer 选择场景，主要还是让 AI 分析不同机会之间的利弊，以及不同机会背后我自己可能看不出的一些潜台词/潜在的坑点，<strong>我再根据自己的实际情况下决定</strong></p>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/如何让 AI 参与重大决策.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
