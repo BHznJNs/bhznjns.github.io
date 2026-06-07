@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>记一个在 Agent 中接入 ripgrep 的使用教训</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>记一个在 Agent 中接入 ripgrep 的使用教训</h1><h2>起因</h2><p>今天我在使用我自己的 Agent <a href="https://github.com/Dais-Project/Dais" target="_blank">Dais</a> 来理解一个项目时，在任务执行到一半时突然发现它报错显示输入长度超过上下文上限，同时中转站的余额不足。</p><p>这引起了我的注意。我使用的是 gpt-5.4，有 1M 的上下文，在有 subagent 辅助读文件的情况下不应该出现上下文溢出的问题。我调了下中转站的使用日志，发现确实有连续的几个超过八十万 token 的请求，一下把账号的余额干完了。</p><h2>排查过程</h2><p>我导出了该任务的 message 数据后，另外开了一个任务来排查。由于 message 数据过长，我在提示词中明确说明只读开头的一小部分，让后让 agent 编写 python 脚本来找导致累计输入输出 token 大幅增长的元凶。</p><p>最后定位到原因是一个 ripgrep 调用，这个调用匹配到了项目源码中内嵌的一串 base64 超长文本，该文本本身可能就超过 1M 的字符数，导致上下文爆炸也是顺理成章。</p><h2>解决方案</h2><p>经过搜索，使用 ripgrep 时可以加上如下参数来限制单个匹配结果的展示长度（加上 `<del>max-columns-preview` 可以在文本溢出时保留部分文本用于预览）：</del></p><pre class="code-block" data-language="PLAINTEXT"><code class="nohighlight" tabindex="0">rg --max-columns 300 --max-columns-preview ...
+</code></pre>
+<p><a href="https://bhznjns.github.io/#static/编程/LLM/记一个在 Agent 中接入 ripgrep 的使用教训.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
