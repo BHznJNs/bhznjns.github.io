@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国短剧行业全面用 AI 替代真人演员</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>中国短剧行业全面用 AI 替代真人演员</h1><p><code>2026/6/27</code></p><p>信息来源：<a href="https://www.yzaobao.com/news/china/202606/2675009.html" target="_blank">“人是干不赢 AI 的”：中国短剧产业失业潮 </a></p><p>相关视频：</p><ul><li><a href="https://www.bilibili.com/video/BV1zCQYBXEWf/" target="_blank">我们去看了 AI 短剧片场，结果像在逛网吧...【差评君】</a></li><li><a href="https://www.bilibili.com/video/BV138DWBmEYD/" target="_blank">短剧行业大洗牌：谁被替代，谁留下来？</a></li></ul><hr><p>在 2026 年春节后，不少短剧演员突然发现，自己无剧可拍了。</p><p>不只是那些还未成名的底层演员，不少曾经日薪上万的短剧演员即使主动将自己的日薪砍半甚至更低，也难找到演出机会。</p><p>这一切要从 2026 年字节跳动发布的 Seedance2.0 模型开始说起。从这个视频生成模型开始，终于有了一个模型能够从图片 + 纯文本生成基本可用的视频片段。从此，在短剧行业中，真人演员不再被需要；编剧和导演的角色模糊了；布景变成了一台电脑半个小时就能搞定的产品，整个灯光、摄影、道具组全部下岗；所有的人力需要变成了几位抽卡师。</p><h2>为什么 AI 替代真人短剧演员如此顺利？</h2><p>短剧最重要的是以最高效的方式调动观众的情绪。</p><blockquote><p>就算整个行业都会说“内容为王”等漂亮话，落在实际转化上就是要造就视觉奇观去让观众停留，然后付费。在短剧里，这些视觉奇观就意味着毒药、奇幻世界、水晶宫殿、或者三万斤白菜、一百克拉大钻戒、十万人马<del>这些好莱坞大片团队都要砸钱去做的场景，AI 算力几百块人民币、半小时内就能生成。</del></p><p>“这些都是最快拉动观众情绪的东西，而不是需要时间铺陈去感受的眼泪。”吕金说。</p><p>“眼泪、接吻，这些是很重要的人类情感，但在三万斤大白菜的场景面前，这些感情卖不了钱。”</p></blockquote><p>简单来说，使用 AI 能非常低成本地制作出夸张宏大的场面以最大程度吸引观众，同时对于短剧来说演员的演技并不重要。</p>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/中国短剧行业全面用 AI 替代真人演员.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
