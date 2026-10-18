@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open 但不开源，Agent Native 但不内置 AI</title>
+<link rel="shortcut icon" href="../dist/imgs/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dist/style.min.css">
+</head>
+<body>
+<script>
+const darkModeMediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)")
+const darkModeSwitcher = () => {
+    const isDarkMode = darkModeMediaQuery.matches
+    document.body.classList.toggle("dark" ,  isDarkMode)
+    document.body.classList.toggle("light", !isDarkMode)
+}
+if (darkModeMediaQuery) {
+    darkModeMediaQuery.addListener(darkModeSwitcher)
+    darkModeSwitcher()
+}
+</script>
+<nav>
+    <a
+    id="homepage"
+    class="icon-btn underline-side left"
+    href="../"
+    onclick="globalThis.__CurrentPage__=1"
+>
+    <img src="../dist/imgs/homepage.svg" alt="主页">
+    <span class="underline-target">主页</span>
+</a>
+    <span><a
+    id="rss-icon"
+    class="icon-btn"
+    href="../user/rss.xml"
+    title="RSS 订阅"
+>
+    <img
+        src="../dist/imgs/rss.svg"
+        alt="RSS 订阅"
+    >
+</a><span>
+    <span
+        id="light-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="亮色模式"
+        onclick="document.body.classList.remove('dark'); document.body.classList.add('light')"
+    >
+        <img
+            src="../dist/imgs/sun.svg"
+            alt="亮色模式图标"
+        >
+    </span>
+    <span
+        id="dark-btn"
+        class="icon-btn"
+        role="button"
+        tabindex="0"
+        title="黑暗模式"
+        onclick="document.body.classList.add('dark'); document.body.classList.remove('light')"
+    >
+        <img
+            src="../dist/imgs/moon.svg"
+            alt="黑暗模式图标"
+        >
+    </span>
+</span></span>
+</nav>
+<article>
+<h1>Open 但不开源，Agent Native 但不内置 AI</h1><ul><li>信息来源：<a href="https://openmarkdown.dev/" target="_blank">OpenMarkdown</a></li></ul><hr><blockquote><p>这里先吐槽一下，虽然这个软件名字叫 <strong>Open</strong>Markdown，但它的 GitHub 仓库实际只放了构建好的版本，并没有实际开源。它的所谓“Open”更多地是指软件设计上的 Open。</p></blockquote><p>这个产品与很多对标 Obsidian 以及 Typora 的产品类似，不过它并没有像其它产品那样简单粗暴地加上 AI 润色、AI 续写 或者 AI 对话侧边栏（不过它在后续版本中还是加入了基于 ACP 的 Agent 侧边栏功能）这样看起来很 AI 的功能，相反，它自己完全不直接请求 AI 服务。</p><h2>那它有哪些功能呢？</h2><p>简单介绍一下它最惊艳到我的两个功能</p><p>第一个功能，是它可以作为其它 Agent 产品（如 Claude Code）的提示词输入框。</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E4%BB%8A%E6%97%A5%E8%B6%A3%E9%97%BB/.Open%20%E4%BD%86%E4%B8%8D%E5%BC%80%E6%BA%90%EF%BC%8CAgent%20Native%20%E4%BD%86%E4%B8%8D%E5%86%85%E7%BD%AE%20AI/OpenMarkdown%20PromptInput%20ClaudeCode.gif" alt="OpenMarkdown 可以作为其它 Agent 产品（如 Claude Code）的提示词输入框" loading="lazy" tabindex="0"></div><p>第二个，是它把 Markdown 编辑器做成了类代码编辑器的体验。</p><p>比如它的界面设计布局非常像 VSCode</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E4%BB%8A%E6%97%A5%E8%B6%A3%E9%97%BB/.Open%20%E4%BD%86%E4%B8%8D%E5%BC%80%E6%BA%90%EF%BC%8CAgent%20Native%20%E4%BD%86%E4%B8%8D%E5%86%85%E7%BD%AE%20AI/OpenMarkdown%20UI.png" alt="OpenMarkdown 用户界面" loading="lazy" tabindex="0"></div><p>它支持代码编辑器中常见的选中文本后高亮相关部分的功能</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E4%BB%8A%E6%97%A5%E8%B6%A3%E9%97%BB/.Open%20%E4%BD%86%E4%B8%8D%E5%BC%80%E6%BA%90%EF%BC%8CAgent%20Native%20%E4%BD%86%E4%B8%8D%E5%86%85%E7%BD%AE%20AI/OpenMarkdown%20Highlight%20Text.png" alt="OpenMarkdown 选中文本后高亮相关部分的功能" loading="lazy" tabindex="0"></div><p>它甚至实现了类似于 VSCode 配合 Claude Code 使用中将代码编辑器内的选中文本和打开的文件作为 Agent 上下文这样的体验</p><div class="media-container"><img src="https://bhznjns.github.io/static/%E4%BB%8A%E6%97%A5%E8%B6%A3%E9%97%BB/.Open%20%E4%BD%86%E4%B8%8D%E5%BC%80%E6%BA%90%EF%BC%8CAgent%20Native%20%E4%BD%86%E4%B8%8D%E5%86%85%E7%BD%AE%20AI/OpenMarkdown%20Context.png" alt="OpenMarkdown 上下文" loading="lazy" tabindex="0"></div><h2>OpenMarkdown 的商业化</h2><p>目前看来 OpenMarkdown 这个产品已经具备一定的可用程度，不过他们团队对于商业化目前看来还是比较保守的，他们目前只在官网提供了单独的 <a href="https://openmarkdown.dev/support" target="_blank">Support</a> 界面，用户可以付费支持他们的开发，不过付费用户暂时不会获得什么特别的功能服务。</p><h2>小结</h2><p>OpenMarkdown 这个产品我觉得很有意思，不是因为它解决了什么很真实的痛点，而是它向我展示了一种另类的做 AI Native 产品以及 Markdown 编辑器产品的思路。</p>
+<p><a href="https://bhznjns.github.io/#static/今日趣闻/Open 但不开源，Agent Native 但不内置 AI.md">
+    点此查看原文
+</a></p>
+</article>
+<footer><p><span class="dim"><a href="user/count.html">字数统计</a> | <a href="pages/">静态目录</a> | Powered by <a href="https://github.com/BHznJNs/BaSB" target="_blank">BaSB</a></span></p></footer>
+<script>window.addEventListener("load", () => {
+    const scripts = ["https://www.googletagmanager.com/gtag/js?id=G-NV45LQLRQW","../user/external.js"]
+    for (const script of scripts) {
+        const scriptEl = document.createElement("script")
+        scriptEl.src = script
+        scriptEl.async = true
+        document.head.appendChild(scriptEl)
+    }
+})</script>
+</body>
+</html>
