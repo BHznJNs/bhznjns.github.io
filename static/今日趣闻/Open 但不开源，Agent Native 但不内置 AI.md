@@ -24,7 +24,7 @@
 ![OpenMarkdown 选中文本后高亮相关部分的功能](.Open 但不开源，Agent Native 但不内置 AI/OpenMarkdown Highlight Text.png)
 
 它甚至实现了类似于 VSCode 配合 Claude Code 使用中将代码编辑器内的选中文本和打开的文件作为 Agent 上下文这样的体验
-![OpenMarkdown 上下文](.Open 但不开源，Agent Native 但不内置 AI/OpenMarkdown Context.png)
+![OpenMarkdown 上下文](.Open 但不开源，Agent Native 但不内置 AI/OpenMarkdown Context.gif)
 
 ## OpenMarkdown 的商业化
 
